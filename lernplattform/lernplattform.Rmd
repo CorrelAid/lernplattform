@@ -22,7 +22,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Hallo und herzlich willkommen bei "R Lernen - der Datenkurs von und für die Zivilgesellschaft"! 
 Hier findet Ihr alle Informationen zum Kurs, Lernziele und Methodik.
-Schön, dass Ihr dabei seid.
+
+**Schön, dass Ihr dabei seid.**
+
+### Was Euch diese Woche erwartet
+Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw) und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/87628401718?pwd=UzN2a3FNV21VR1FkUmlVa1dFbnRLZz09). Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 1.10.21 um 12 Uhr**, nach einer kleinen Vorstellungsrunde klären. Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Nina (nina.h@correlaid.org) bitte rechtzeitig mit.
 
 ### Eckdaten 
 - 1.10.21 - 17.12.21, Aufwand: 2-4h/Woche
@@ -32,88 +36,112 @@ Schön, dass Ihr dabei seid.
 
 ### Wochenplan
 #### Woche 1 (1.10.21): Kick-Off!
-Wir stellen uns, Ihr Euch und wir die Kursmodalitäten vor.
+Wir stellen uns, Ihr Euch und wir die **Kursmodalitäten** vor.
 
 #### Woche 2 (08.10.21): Daten- und Leuchtturmprojekte der Zivilgesellschaft
-Wir präsentieren Anwendungsbeispiele von Datenprojekten aus unserem Arbeitsalltag und der Zivilgesellschaft, um einen Ausblick auf Mögliches zu geben. Ihr entwickelt erste Ideen für Euer eigenes Projekt.
+Wir präsentieren **Anwendungsbeispiele von Datenprojekten** aus unserem Arbeitsalltag und der Zivilgesellschaft, um einen Ausblick auf Mögliches zu geben. Ihr entwickelt erste Ideen für Euer eigenes Projekt.
 
 #### Woche 3 (15.10.21): Grundlagen der Datenstrategie
-Wir sprechen über Grundsätze der Datenstrategie und was es zu beachten gilt. Ihr entwickelt einen Plan für Euren eigenen Data Use Case (zu dt. Datenanwendungsfall).
+Wir sprechen über **Grundsätze der Datenstrategie** und was es zu beachten gilt. Ihr entwickelt einen Plan für Euren eigenen Data Use Case (zu dt. Datenanwendungsfall).
 
 #### Woche 4 (22.10.21): Datenschutz & -Ethik für Anfänger:innen
-Wir führen Euch pragmatisch und lebensnah durch den DSGVO-Dschungel, sprechen über Tools und Datenethik. Ihr prüft Euer Projekt auf geltende Regelungen und legt ein Datenverarbeitungsverzeichnis für die personenbezogenen Daten an, die Ihr in Eurem Projekt nutzen wollt. 
+Wir führen Euch pragmatisch und lebensnah durch den **DSGVO-Dschungel**, sprechen über Tools und Datenethik. Ihr prüft Euer Projekt auf geltende Regelungen und hinterlegt in einem Datenverarbeitungsverzeichnis die personenbezogenen Daten an, die Ihr in Eurem Projekt nutzen wollt. 
 
 #### Woche 5 (29.10.21): Einführung in RStudio
-Wir zeigen Euch, was in RStudio passiert, wo Ihr die erste Zeile Code schreiben dürft und was für spannende Funktionalitäten es in der Applikation so alles gibt. Ihr öffent RStudio das erste Mal, probiert Euch aus und - bei Fragen rund um Set-up - helfen wir Euch.
+Wir zeigen Euch, was in **RStudio** passiert, wo Ihr die erste Zeile Code schreiben dürft und was für spannende Funktionalitäten es in der Applikation so alles gibt. Ihr öffnet RStudio das erste Mal, probiert Euch aus und - bei Fragen rund um das Set-up - helfen wir Euch.
 
 #### Woche 6 (05.11.21): Erste Analysen in R
-Wir starten praktisch, laden Daten, berechnen statistische Kennwerte, visualisieren Daten und zeigen Teststatistik in lebensnah. Ihr macht erste Codingexperimente (aufregend, oder?)
+Wir starten praktisch, laden Daten, berechnen **statistische Kennwerte**, **visualisieren** Daten und zeigen **Teststatistik** in lebensnah. Ihr macht erste Codingexperimente (aufregend, oder?)
 
 #### Woche 7 (12.11.21): Datenimport
-Wir zeigen Euch, wie Ihr Daten in RStudio laden könnt - manuell, aber vorallem auch live und zeigen, wie wir mit APIs arbeiten. Ihr ladet Eure Daten.
+Wir zeigen Euch, wie Ihr Daten in RStudio laden könnt - **manuell**, aber vorallem auch **live** - und zeigen, wie wir mit **APIs** arbeiten. Ihr ladet Eure Daten.
 
 #### Woche 8 (19.11.21): Datenbereinigung
-Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das tidyverse der Datenbereinigung in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung!
+Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das **tidyverse** der Datenbereinigung in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung!
 
 #### Woche 9 und 10 (26.11. und 03.12.21): Reportautomatisierung
-In der vorletzten Phase des Datenkurses lernt Ihr, wie Ihr mit RMarkdown automatische Reports erstellen könnt, die Ihr als PDF- oder HTML-Dokument teilen könnt. Ihr sucht Euch die oassenden Funktionen aus "Erste Analysen in R" heraus und erstellt damit einen ersten Report.
-
-Notiz: Einfache Berechnungen von Kennwerten und dann Layout
+In der vorletzten Phase des Datenkurses lernt Ihr, wie Ihr mit **RMarkdown** automatische Reports erstellen könnt, die Ihr als **PDF- oder HTML-Dokument** teilen könnt. Ihr sucht Euch die passenden Funktionen aus "Erste Analysen in R" heraus und erstellt damit einen ersten Report.
 
 #### Woche 11 und 12 (10. und 17.12.21): Interaktive Visualisierung 
-In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer interaktiven Visualisierung teilen könnt. Wir programmieren mit Euch im Kurs eine erste Shiny-App, erklären, wie so eine Applikation funktioniert und wie Ihr sie hosten könnt. Ihr übertrag das Gelernte auf Eure eigenen Daten. 
-
-Notiz: Teil 1 - plotly oder ggplot?
+In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer interaktiven Visualisierung teilen könnt. Wir programmieren mit Euch im Kurs eine erste **Shiny-App**, erklären, wie so eine Applikation funktioniert und wie Ihr sie hosten könnt. Ihr übertragt das Gelernte auf Eure eigenen Daten. 
 
 ### Lernziele
-- Ihr entwickelt ein Grundverständnis für Datennutzung (inkl. Grundkonzepte der Mathematik und Statistik für Non-Techs) 
-- Ihr erlernt einfache Codesegmente in R selbst zu formulieren und zu adaptieren 
-- Ihr erhaltet eine Einführung in rechtliche Rahmenbedingungen (Fokus: DSGVO) und ethische Bedenken
-- Ihr gewinnt einen Überblick über gängige DSGVO-konforme Tools zur Datenverarbeitung 
-- Ihr versteht organisatorische Voraussetzungen und die Notwendigkeit der strategischen Konzeptionierung von IT-Neuerungen 
+- Ihr entwickelt ein **Grundverständnis für Datennutzung** (inkl. Grundkonzepte der Mathematik und Statistik für Non-Techs) 
+- Ihr erlernt einfache **Codesegmente in R** selbst zu formulieren und zu adaptieren 
+- Ihr erhaltet eine Einführung in **rechtliche Rahmenbedingungen** (Fokus: DSGVO) und **ethische Bedenken**
+- Ihr gewinnt einen Überblick über gängige DSGVO-konforme **Tools zur Datenverarbeitung**
+- Ihr versteht **organisatorische Voraussetzungen** und die **Notwendigkeit der strategischen Konzeptionierung** von IT-Neuerungen 
 
 ### Methodik
-- Jede Woche veröffentlichen wir neue Materialien auf unserer Online-Lernplattform
+- Jede Woche veröffentlichen wir neue Materialien auf unserer **Online-Lernplattform**
 - Dort findet ihr dann ein Video, die wichtigsten Kernaussagen des Wochenthemas, Übungsmaterialien und eine (freiwillige) Lernzielkontrolle
 - Die Materialien könnt Ihr bearbeiten, wenn Ihr dafür Zeit und einen freien Kopf habt
-- Jeden Freitag von 12-13 Uhr besprechen Datenprofis mit Euch die Lösung der Übung und Lernzielkontrolle, die im Anschluss online gestellt wird
-- Zusätzlich könnt Ihr 1:1 Sprechstunden mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten
+- Jeden **Freitag von 12-13 Uhr** besprechen Datenprofis mit Euch die Lösung der Übung und Lernzielkontrolle, die im Anschluss online gestellt wird
+- Zusätzlich könnt Ihr **1:1 Sprechstunden** mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten (entweder direkt in der Sprechstunde oder per Mail an Nina)
 
 ### Kontakt
-Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org
+Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org. Zusätzlich habt Ihr die Möglichkeit Euch untereinander in einem **Slack-Channel** auszutauschen: Tretet dem Channel einfach [hier](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw) bei.
+
+### Und eine kleine Bitte haben wir noch:
+Da für uns im Rahmen dieses Kurses allerhand Kosten entstehen und wir bisher leider **keine Anschlussfinanzierung** gefunden haben, würden wir uns freuen, wenn Ihr es auch der **Generation nach Euch** ermöglicht an diesem Kurs teilzunehmen. Wie das geht? Unter **betterplace** könnt Ihr für das Projekt **"R Lernen -  Der Datenkurs für die Zivilgesellschaft"** spenden und den Link gerne auch in Eurem Netzwerk teilen. Pro Teilnehmer:in entstehen uns über die **drei Monate etwa 300€ Kosten** für **Tutor:innen, Hosting und Verwaltung**, die auch nach der Erstellung der Online-Materialien bestehen bleiben. Überzeugt? Zur Spendenseite: [Klick hier!](https://www.betterplace.org/de/projects/58963-correlaid-e-v-foerderung-von-datenwissenschaft-in-der-zivilgesellschaft)
 
 ## Datenprojekte aus der Zivilgesellschaft
-Notiz Placeholder:Video
+![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (30min)*](https://youtu.be/kPBxyvHyIXk)
+
+Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/), in unserem [Blog](https://correlaid.org/blog/) und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast).
 
 ### Übung: Erste Ideen entwickeln
+Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
 
-Notiz: Preview Bild Template
+<center>
+![*Template: Ideenfindung](https://correlaid.org/material/Ideenfindung.png){#id .class width=100% height=100%}
+</center>
+<br>
 
-Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. 
+Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Ideenfindung (20min*)](https://app.mural.co/template/c37af069-bfd4-455b-997f-cd4d73d2560e/9d29d522-1204-4ff7-9081-571dad00bb79)
+[*Template: Ideenfindung (20min*)](https://app.mural.co/template/c37af069-bfd4-455b-997f-cd4d73d2560e/9d29d522-1204-4ff7-9081-571dad00bb79).
 
-Alternativ findet Ihr das Template als PDF:
-Notiz: Link PDF
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf).
 
 ## Grundlagen der Datenstrategie
 Notiz Placeholder:Video
 
+### Kernaussagen
+
+### Quiz
+
+```{r quiz_datenstrategie}
+quiz(caption = NULL,
+  question("Wie viele Unternehmen in Deutschland haben die DSGVO vollständig umgesetzt (Bitkom, Stand Sep. 20)?",
+    answer("90%"),
+    answer("50%"),
+    answer("20%", correct = TRUE),
+    answer("10%"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Trotz drohender Sanktionen haben erst 20% der von Bitkom befragten Unternehmen die DSGVO vollständig umgesetzt. Warum das so ist, erfahrt Ihr in der nächsten Frage.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
 ### Übung: Entwickelt Euren eigenen Data Use Case
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
 
 Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen.
 
-Notiz: Preview Bild Template
+<center>
+![*Template: Ideenfindung](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
+</center>
+<br>
 
-Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. 
+Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
 [*Template: Data Use Case (45min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3)
 
-Alternativ findet Ihr das Template als PDF:
-Notiz: Link PDF
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf).
 
 ## Datenschutz und Datenethik
 ![*Video: Datenschutz und Datenethik (45min*)](https://www.youtube.com/watch?v=bnLceww8qRg)
