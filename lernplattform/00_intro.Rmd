@@ -38,7 +38,7 @@ Wir führen Euch pragmatisch und lebensnah durch den **DSGVO-Dschungel**, sprech
 Wir zeigen Euch, was in **RStudio** passiert, wo Ihr die erste Zeile Code schreiben dürft und was für spannende Funktionalitäten es in der Applikation so alles gibt. Ihr öffnet RStudio das erste Mal, probiert Euch aus und - bei Fragen rund um das Set-up - helfen wir Euch.
 
 #### Woche 6 (05.11.21): Erste Analysen in R
-Wir starten praktisch, laden Daten, berechnen **statistische Kennwerte**, **visualisieren** Daten und zeigen **Teststatistik** in lebensnah. Ihr macht erste Codingexperimente (aufregend, oder?)
+Wir starten praktisch, laden Daten, **visualisieren** Daten, berechnen **statistische Kennwerte** und zeigen **Teststatistik** in lebensnah. Ihr macht erste Codingexperimente (aufregend, oder?)
 
 #### Woche 7 (12.11.21): Datenimport
 Wir zeigen Euch, wie Ihr Daten in RStudio laden könnt - **manuell**, aber vorallem auch **live** - und zeigen, wie wir mit **APIs** arbeiten. Ihr ladet Eure Daten.
