@@ -24,6 +24,8 @@ https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
 
 library(tidyverse) 
 library(janitor)
+library(countrycode)
+library(tmap)
 
 ```
 
@@ -66,30 +68,40 @@ plastics %>%
 ```
 
 
-``` {r Datensatz 1 community}
-
-community<- plastics %>%
-  select(country, year, num_events, volunteers) %>%
-  group_by(country, year) %>%
-  filter(row_number()==1)
+``` {r Daten prep 1 }
 
 
 # Country name cleaning: 
-  #United Kingdom of Great Britain & Northern Ireland
-community <- community %>%
-  mutate(country=str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"))
+  #United Kingdom of Great Britain & Northern Ireland ssowie für die USA
+plastics_prep <- plastics %>%
+  mutate(country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
+         country = str_replace(country, "United States of America", "United States")) %>%
+  #Continent und country code anspielen
+  mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
+         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c"))
 
+``` 
+
+``` {r Datensatz 1 community}
+
+community<- plastics_prep %>%
+  select(country, year, num_events, volunteers, continent, countrycode) %>%
+  group_by(country, year) %>%
+  filter(row_number()==1)
 
 ``` 
 
 ``` {r Datensatz 2 audit}
 
-audit<- plastics %>%
-  select(country, year, parent_company, grand_total) %>%
+audit<- plastics_prep %>%
+  select(country, year, parent_company, grand_total, continent, countrycode) %>%
   # grandtotal zeilen löschen - ist schon in einer Spalte erfasst
   filter(parent_company!="Grand Total")
 
 ``` 
+
+
+
 
 ### 1 Visuelle Exploration 
 
