@@ -1,0 +1,189 @@
+---
+title: "05_Erste_Datenanalyse"
+author: "Sylvi Rzepka"
+date: "21 9 2021"
+output: html_document
+ html_document:
+    number_sections: no
+    toc: yes
+    toc_float: true
+    toc_depth: 1
+theme: paper
+highlight: kate
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+## Einführung
+
+*dies sage ich im Video*
+
+Was machen wir in dieser Einheit? Noch mehr Lust bekommen auf Arbeit mit Daten. Daher starten wir direkt mit einem Anwendungsbeispiel. Hier geht es darum große Konzepte kennenzulernen und so Details zu wie das genau alles implementiert wird, die im Kursverlauf kommen, besser einordnen zu können.
+
+gern an einem eigenen datensatz nachmachen
+
+Agenda der Einheit
+0. Einlesen und Prep 
+1. Mittels Visualisierung die Daten erschließen
+2. Kompakte statistische Kennzahlen erstellen
+3. Inferenz: Teststatistik erstellen und interpretieren
+
+Datensatz von TidyTuesday vorstellen
+
+https://de.wikipedia.org/wiki/Recycling-Code
+
+https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
+
+
+## 0 
+``` {r Pakete laden}
+
+library(tidyverse) 
+library(janitor)
+
+```
+
+
+
+``` {r einlesen}
+
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+
+
+```
+
+
+``` {r cleaning}
+
+# länder namen
+# grandtotal zeilen löschen...
+# 
+
+```
+
+``` {r Daten Struktur}
+
+str(plastics)
+
+```
+
+``` {r Daten Struktur 2}
+head(plastics)
+tail(plastics)
+```
+
+
+
+``` {r Daten Struktur 3}
+plastics %>%
+        tabyl(country, year) %>%
+          janitor::adorn_rounding(digits=2) %>%
+          arrange(desc(`2019`))
+```
+
+
+``` {r Datensatz 1 community}
+
+community<- plastics %>%
+  select(country, year, num_events, volunteers) %>%
+  group_by(country, year) %>%
+  filter(row_number()==1)
+
+
+# Country name cleaning: 
+  #United Kingdom of Great Britain & Northern Ireland
+community <- community %>%
+  mutate(country=str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"))
+
+
+``` 
+
+``` {r Datensatz 2 audit}
+
+audit<- plastics %>%
+  select(country, year, parent_company, grand_total) %>%
+  # grandtotal zeilen löschen - ist schon in einer Spalte erfasst
+  filter(parent_company!="Grand Total")
+
+``` 
+
+## 1 Visuelle Exploration 
+
+
+*dies sage ich im Video*
+
+- Wichtig erst viz dann statistik!
+- Ein Q&A mit den Daten machen - mit dem Wissen der Aktion, welche Fragen würdet ihr den Daten stellen wollen?
+- Meine Ideen:
+
+Community Perspektive  
+  - Wie viele Teilnehmer? Insgesamt und nach Ländern?
+  - Wie viele Events?
+
+Activism Perspektive
+  - Wievele Firmen? Insgesamt und nach Ländern?
+  - 
+  
+- layered grammar
+- r4ds inspirierte Vorstellung von ggplot2
+
+https://github.com/allisonhorst/stats-illustrations/
+
+Cedrics Blog verlinken
+
+
+```{r grahik1, echo=FALSE}
+ggplot(community, aes(num_events, volunteers))
+```
+
+
+```{r grahik2, echo=FALSE}
+
+```
+
+```{r grahik3, echo=FALSE}
+
+```
+
+```{r grahik4, echo=FALSE}
+
+```
+
+## Exploration mit statistischen Kennzahlen
+
+https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_4_r_materials/day_4_part_2_key.R
+
+dplyr::group_by + summarize - a powerful combo
+
+```{r Kurz Statistik}
+summary(plastics)
+```
+
+
+## Teststatistik 
+
+*Sage ich im Video*
+
+- Spirit: Evaluation
+- Achtung - hier bewegen wir uns auf theoretisch gesehen auf neuem Territorium: Inferenzstatistik: wir schließen von unserer Stichprobe auf die Grundgesamtheit. Die Programmierung ist simple, damit es auch von der Interpretation her sinnvoll ist, müssen einige Annahmen gelten. Diese leiten wir hier nicht her, verweisen aber auf entweder euer Statistikwissen/ Nachschlagewerk oder: https://www.youtube.com/watch?v=RRIsBFW8ovc (2-sample test) oder https://www.youtube.com/watch?v=MCmZ-HXSZ4A (chi2 Test)
+- mögliche Fragen:
+  
+  *Community Perspektive*
+  - mehr durchschnittliche Teilnehmer pro Event? (2019-2020 Vgl)
+  
+  *Advocacy Perspektive*
+  - Haben sich die Anteile der Firmen von 2019 auf 2020 verschoben?
+  
+https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_6_r_materials/day_6_key.Rmd
+
+
+## Resourcen ZUsammenfassung
+
+- r4ds
+- https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
