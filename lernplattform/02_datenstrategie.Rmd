@@ -1,0 +1,40 @@
+
+## Grundlagen der Datenstrategie
+Notiz Placeholder:Video
+
+### Kernaussagen
+
+### Quiz
+
+```{r quiz_datenstrategie}
+quiz(caption = NULL,
+  question("Wie viele Unternehmen in Deutschland haben die DSGVO vollständig umgesetzt (Bitkom, Stand Sep. 20)?",
+    answer("90%"),
+    answer("50%"),
+    answer("20%", correct = TRUE),
+    answer("10%"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Trotz drohender Sanktionen haben erst 20% der von Bitkom befragten Unternehmen die DSGVO vollständig umgesetzt. Warum das so ist, erfahrt Ihr in der nächsten Frage.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+### Übung: Entwickelt Euren eigenen Data Use Case
+Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
+
+Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen.
+
+<center>
+![*Template: Ideenfindung](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
+
+
+</center>
+<br>
+
+Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
+
+Hier geht es zum
+[*Template: Data Use Case (45min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3)
+
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf).
