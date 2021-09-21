@@ -2,19 +2,57 @@
 ## Grundlagen der Datenstrategie
 Notiz Placeholder:Video
 
+Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/) heraus! 
+
 ### Kernaussagen
 
 ### Quiz
 
 ```{r quiz_datenstrategie}
 quiz(caption = NULL,
-  question("Wie viele Unternehmen in Deutschland haben die DSGVO vollständig umgesetzt (Bitkom, Stand Sep. 20)?",
-    answer("90%"),
-    answer("50%"),
-    answer("20%", correct = TRUE),
-    answer("10%"),
+  question("Daten sind...",
+    answer("Elemente, die Informationen formal darstellen.", correct = TRUE),
+    answer("Nullen und Einsen.", correct = TRUE),
+    answer("maschinell lesbar.", correct = TRUE),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Trotz drohender Sanktionen haben erst 20% der von Bitkom befragten Unternehmen die DSGVO vollständig umgesetzt. Warum das so ist, erfahrt Ihr in der nächsten Frage.",
+    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Welche der folgenden Fragestellungen können mit Daten beantwortet werden:",
+    answer("Was macht unsere gesellschaftliche Herausforderung aus?", correct = TRUE),
+    answer("Wie können wir bessere Entscheidungen treffen?", correct = TRUE),
+    answer("Wie können wir effizienter und effektiver arbeiten?", correct = TRUE),
+    correct = "Richtig! Darüber hinaus fallen Euch vielleicht auch noch eigene Fragen ein.",
+    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Datenwissenschaft ist ein interdisziplinäres Feld. Eine Person, die in diesem Bereich tätig ist, sollte...",
+    answer("analytische Fähigkeiten haben.", correct = TRUE),
+    answer("technische Fähigkeiten besitzen.", correct = TRUE),
+    answer("sich mit der Domain (zu dt. Bereich) auskennen.", correct = TRUE),
+    answer("Keins davon"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Alle diese Aussagen treffen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Die Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?",
+    answer("Ungenutzten Daten, die bereits erhoben habt"),
+    answer("Daten, die Ihr noch erheben möchtet"),
+    answer("Neusten, technischen Möglichkeiten"),
+    answer("Eurer Organisationsstrategie", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Datennutzung ist mit erheblichen Ressourcenaufwendungen verbunden.  Datenprojekte kosten Zeit und Geld und innerhalb Eurer Organisation müssen Veränderungsprozesse nicht nur in Euren Systemen sondern auch in Eurer Kultur verankert werden. Deshalb sollte die Datenstrategie auf strategischen Zielsetzungen aufbauen, sodass kostbare Ressourcen nicht an falscher Stelle verbraucht und Projekte umsichtig und inklusiv geplant werden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+      question("Automatisierungen haben einen höheren Mehrwert als explorative Analysen",
+    answer("Wahr"),
+    answer("Falsch", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Auch Technologien mit niedrigem analytischen Reifegrad wie explorative Analysen (Visualsierungen und erste Kennwertberechnungen) und manuelle Reports können enormen Mehrwert enthalten - insbesondere im Vergleich zu damit verbundenen Aufwendungen. Technologien müssen deshalb für jeden Anwendungsfalls individuell evaluiert werden.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )

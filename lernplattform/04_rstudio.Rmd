@@ -9,6 +9,8 @@ Write the R code required to add two plus two:
 
 ```
 
+Notiz: Datenimport, erste Befehle zur Datenerkundung, Screencast mit Einführung Datensatz
+
 ### Exercise with Code
 
 *Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
