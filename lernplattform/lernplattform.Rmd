@@ -40,7 +40,10 @@ out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Erste Datenenalysen
+```{r results='asis'}
+out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
 
 ## Datenimport und APIs
 
