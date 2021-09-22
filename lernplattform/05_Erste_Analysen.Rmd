@@ -1,4 +1,4 @@
-## Erste Datenenalysen
+## Erste Datenanalysen in R
 
 *dies sage ich im Video*
 

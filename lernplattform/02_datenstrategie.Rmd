@@ -1,10 +1,36 @@
 
 ## Grundlagen der Datenstrategie
-Notiz Placeholder:Video
+![*Video: Grundlagen der Datenstrategie - Planung von Datenprojekten (30min)*](https://youtu.be/HuDk2VF4pu0)
 
-Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/) heraus! 
+Für die Entwicklung einer Datenstrategie über diesen Kurs hinaus bieten wir eine digitale Bestandsaufnahme Eures Datenreifegrads an: Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/) heraus! 
 
 ### Kernaussagen
+- Daten sind **formalisierte, durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können
+- Daneben verstehen wir **Datenwissenschaft** auch als **Denkweise** ("Wie gehen wir an Herausforderungen heran?") und **Kompetenzbereich** ("Welche analytischen, technischen und fachlichen Fähigkeiten sind notwendig?")
+- Ohne Daten treffen wir **Entscheidungen auf Basis von Hypothesen**, die wir noch gar nicht überprüft haben, und lassen **Potenziale der Digitalisierung** für **effektive und effiziente** Arbeitsweisen ungenutzt
+- Der **Zweck** unserer Datenstrategie und unserer Datenprojekte ergibt sich aus unserer **Wirkungslogik** - sie folgen also einer **strategischen Zielsetzung**
+- Da die Einführung von technischen Veränderungen mit Hürden verbunden ist, gehört auch das **Einbeziehen von Mitarbeitenden** und eine Auseinandersetzung mit der **Organisationskultur** zu einer guten Datenstrategie
+
+Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit Mehrwert für Eure Organisation und Euch solltet Ihr einige Punkte beachten:
+
+**Was wir tun sollten:**
+
+- Projekte vom Zweck (und nicht von der Technologie aus) denken
+- Auch Technologien mit niedrigem analytischen Reifegrad auf ihren Nutzen prüfen
+- Quantiative und qualitative Forschungsmethoden nutzen
+- Externe und operationale Daten vor dem Beginn von Datenerhebungen evaluieren
+- Manuelle Prozesse mit menschlichen Fähigkeiten zu mappen, um passende Technolgien finden
+- Mit Prototypen und agilem Arbeiten in Iterationen die Nützlichkeit von Projekten überprüfen
+
+**Was wir nicht tun sollten:**
+
+- (Einmalig) identifizierte Signifikanz überbewerten und Experimente auf ihre Sinnhaftigkeit prüfen
+- Unsinnige Vergleichsgruppen bilden
+- Nur nach präferierten Resultaten suchen
+- Voraussetzungen der Datenqualität und -aktualität missachten
+- Uns auf Trendtechnologien und BuzzWords fokussieren
+- Den Aufwand von Datenprojekten (insb. im Bereich der Organisationskultur) unterschätzen
+
 
 ### Quiz
 
@@ -39,7 +65,7 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   ),
     question("Die Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?",
-    answer("Ungenutzten Daten, die bereits erhoben habt"),
+    answer("Ungenutzten Daten, die Ihr bereits erhoben habt"),
     answer("Daten, die Ihr noch erheben möchtet"),
     answer("Neusten, technischen Möglichkeiten"),
     answer("Eurer Organisationsstrategie", correct = TRUE),
@@ -50,9 +76,34 @@ quiz(caption = NULL,
   ),
       question("Automatisierungen haben einen höheren Mehrwert als explorative Analysen",
     answer("Wahr"),
-    answer("Falsch", correct = TRUE),
+    answer("Unwahr", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Auch Technologien mit niedrigem analytischen Reifegrad wie explorative Analysen (Visualsierungen und erste Kennwertberechnungen) und manuelle Reports können enormen Mehrwert enthalten - insbesondere im Vergleich zu damit verbundenen Aufwendungen. Technologien müssen deshalb für jeden Anwendungsfalls individuell evaluiert werden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Quantitative Forschung ist grundsätzlich besser als qualitative Forschung.",
+    answer("Wahr"),
+    answer("Unwahr", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Quantitative und qualitative Forschung haben unterschiedlicher Vor- und Nachteile. Am besten kombiniert Ihr die beiden Forschungsmethoden, indem Ihr beispielsweise in Euren Erhebungsdaten geschlossene und offene Fragestellungen wählt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Welche Datenquelle bedeutet für Eure Organisation am meisten Aufwand?",
+    answer("Externe (offene) Daten"),
+    answer("Interne Daten aus operationellen Prozessen"),
+    answer("Erhebungsdaten", correct=TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Erhebungsdaten sind am aufwendigsten, weshalb eine Recherche von öffentlichen Datenbanken und Studien zum Themengebiet sowie die Betrachtung von operationellen Daten sinnvoll ist.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("In Datenprojekten arbeitet Ihr am besten mit Prototypen und agil.",
+    answer("Wahr", correct = TRUE),
+    answer("Unwahr"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Durch Prototypen und agiles Arbeiten könnt Ihr in kleinen Iterationen und somit mit weniger Aufwand und Kosten prüfen, ob das Datenprojekt tatsächlich so funktioniert und so nützlich ist, wie Ihr es Euch vorgestellt habt.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
@@ -61,10 +112,10 @@ quiz(caption = NULL,
 ### Übung: Entwickelt Euren eigenen Data Use Case
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
 
-Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen.
+Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen.
 
 <center>
-![*Template: Ideenfindung](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
+![*Template: Data Use Case](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
 
 
 </center>
@@ -73,6 +124,6 @@ Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen.
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Data Use Case (45min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3)
+[*Template: Data Use Case (30min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3)
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf).

@@ -17,6 +17,8 @@ Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet 
 
 Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Nina (nina.h@correlaid.org) bitte rechtzeitig mit.
 
+Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](dataquest.io)** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Kontaktiert nach Eurer Registrierung bei DataQuest einfach Nina (nina.h@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon anfangs nicht beirren. Unser Kurs ist auf Anfänger:innen gedacht.
+
 ### Eckdaten 
 - 1.10.21 - 17.12.21, Aufwand: 2-4h/Woche
 - Blended-Learning mit Lernplattform
@@ -69,7 +71,9 @@ In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer
 - Zusätzlich könnt Ihr **1:1 Sprechstunden** mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten (entweder direkt in der Sprechstunde oder per Mail an Nina)
 
 ### Kontakt
-Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org. Zusätzlich habt Ihr die Möglichkeit Euch untereinander in einem **Slack-Channel** auszutauschen: Tretet dem Channel einfach [hier](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw) bei.
+Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org. Zusätzlich habt Ihr die Möglichkeit Euch untereinander in einem **Slack-Channel** auszutauschen: Tretet dem Channel einfach [hier](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw) bei. Der Link ist nur zwei Wochen gültig.
+
+Alle weiteren Angebot von CorrelAid e.V. erhaltet Ihr jeden Monat in unserem [Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988).
 
 ### Und eine kleine Bitte haben wir noch:
 Da für uns im Rahmen dieses Kurses allerhand Kosten entstehen und wir bisher leider **keine Anschlussfinanzierung** gefunden haben, würden wir uns freuen, wenn Ihr es auch der **Generation nach Euch** ermöglicht an diesem Kurs teilzunehmen. Wie das geht? Unter **betterplace** könnt Ihr für das Projekt **"R Lernen -  Der Datenkurs für die Zivilgesellschaft"** spenden und den Link gerne auch in Eurem Netzwerk teilen. Pro Teilnehmer:in entstehen uns über die **drei Monate etwa 300€ Kosten** für **Tutor:innen, Hosting und Verwaltung**, die auch nach der Erstellung der Online-Materialien bestehen bleiben. Überzeugt? Zur Spendenseite: [Klick hier!](https://www.betterplace.org/de/projects/58963-correlaid-e-v-foerderung-von-datenwissenschaft-in-der-zivilgesellschaft)
