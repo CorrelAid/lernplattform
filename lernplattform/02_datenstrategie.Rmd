@@ -2,7 +2,7 @@
 ## Grundlagen der Datenstrategie
 ![*Video: Grundlagen der Datenstrategie - Planung von Datenprojekten (30min)*](https://youtu.be/HuDk2VF4pu0)
 
-Für die Entwicklung einer Datenstrategie über diesen Kurs hinaus bieten wir eine digitale Bestandsaufnahme Eures Datenreifegrads an: Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/) heraus! 
+Für die Entwicklung einer Datenstrategie über diesen Kurs hinaus bieten wir eine digitale Bestandsaufnahme Eures Datenreifegrads an: Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/){target="_blank"} heraus! 
 
 ### Kernaussagen
 - Daten sind **formalisierte, durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können
@@ -13,18 +13,18 @@ Für die Entwicklung einer Datenstrategie über diesen Kurs hinaus bieten wir ei
 
 Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit Mehrwert für Eure Organisation und Euch solltet Ihr einige Punkte beachten:
 
-**Was wir tun sollten:**
+**Was wir beachten sollten:**
 
 - Projekte vom Zweck (und nicht von der Technologie aus) denken
-- Auch Technologien mit niedrigem analytischen Reifegrad auf ihren Nutzen prüfen
+- Auch Technologien mit niedrigem analytischen Reifegrad in Erwägung ziehen
 - Quantiative und qualitative Forschungsmethoden nutzen
 - Externe und operationale Daten vor dem Beginn von Datenerhebungen evaluieren
 - Manuelle Prozesse mit menschlichen Fähigkeiten zu mappen, um passende Technolgien finden
 - Mit Prototypen und agilem Arbeiten in Iterationen die Nützlichkeit von Projekten überprüfen
 
-**Was wir nicht tun sollten:**
+**Was wir vermeiden sollten:**
 
-- (Einmalig) identifizierte Signifikanz überbewerten und Experimente auf ihre Sinnhaftigkeit prüfen
+- (Einmalig) identifizierte Signifikanz überbewerten und Erkenntnisse ohne Sinnhaftigkeitsprüfung übernehmen
 - Unsinnige Vergleichsgruppen bilden
 - Nur nach präferierten Resultaten suchen
 - Voraussetzungen der Datenqualität und -aktualität missachten
@@ -74,7 +74,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-      question("Automatisierungen haben einen höheren Mehrwert als explorative Analysen",
+      question("Automatisierungen haben generell einen höheren Mehrwert als explorative Analysen",
     answer("Wahr"),
     answer("Unwahr", correct = TRUE),
     correct = "Richtig!",
@@ -112,7 +112,7 @@ quiz(caption = NULL,
 ### Übung: Entwickelt Euren eigenen Data Use Case
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
 
-Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen.
+Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen. Es ist zudem ausreichend, wenn Ihr allein bis Sektion 5 kommt. Wir werden im Verlauf des Kurses immer wieder auf das Template zurückgreifen und insbesondere die Sektionen 6-8 werden zu einem späteren Zeitpunkt leichter zu beantworten sein.
 
 <center>
 ![*Template: Data Use Case](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
@@ -124,6 +124,6 @@ Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. 
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Data Use Case (30min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3)
+[*Template: Data Use Case (30min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3){target="_blank"}
 
-Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf).
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.

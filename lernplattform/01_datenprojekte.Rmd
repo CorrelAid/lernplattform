@@ -2,12 +2,12 @@
 ## Datenprojekte aus der Zivilgesellschaft
 ![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (30min)*](https://youtu.be/w7wbIHQg7cs)
 
-Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/), in unserem [Blog](https://correlaid.org/blog/) und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast).
+Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/){target="_blank"}, in unserem [Blog](https://correlaid.org/blog/){target="_blank"} und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast){target="_blank"}.
 
 ### Kernaussagen
 - Datenprojekte von und für die Zivilgesellschaft gibt es in allen **Farben und Formen**
-- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](correlaid.org) und [DSSG](https://www.datascienceforsocialgood.org/)** und auf Konferenzen wie der **CorrelCon (jedes Jahr im November) und [AI for Good](https://aiforgood.itu.int/programme/)**
-- Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988)** vor
+- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](correlaid.org){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **CorrelCon (jedes Jahr im November) und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**
+- Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}** vor
 
 ### Übung: Erste Ideen entwickeln
 Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
@@ -22,6 +22,6 @@ Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an 
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Ideenfindung (20min*)](https://app.mural.co/template/c37af069-bfd4-455b-997f-cd4d73d2560e/9d29d522-1204-4ff7-9081-571dad00bb79).
+[*Template: Ideenfindung (20min*)](https://app.mural.co/template/c37af069-bfd4-455b-997f-cd4d73d2560e/9d29d522-1204-4ff7-9081-571dad00bb79){target="_blank"}.
 
-Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf).
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf){target="_blank"}.
