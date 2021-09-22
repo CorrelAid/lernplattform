@@ -25,7 +25,6 @@ https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
 library(tidyverse) 
 library(janitor)
 library(countrycode)
-library(tmap)
 
 ```
 
@@ -38,14 +37,6 @@ plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 
 ```
 
-
-``` {r cleaning}
-
-# länder namen
-# grandtotal zeilen löschen...
-# 
-
-```
 
 ``` {r Daten Struktur}
 
@@ -95,7 +86,7 @@ community<- plastics_prep %>%
 
 ``` {r Datensatz 2 audit}
 
-audit<- plastics_prep %>%
+audit_firm<- plastics_prep %>%
   select(country, year, parent_company, grand_total, continent, countrycode) %>%
   # grandtotal zeilen löschen - ist schon in einer Spalte erfasst
   filter(parent_company!="Grand Total")
@@ -131,18 +122,26 @@ Cedrics Blog verlinken
 
 
 ```{r grahik1, echo=FALSE}
-ggplot(community, aes(continent, volunteers))
+
+community %>%
+  ggplot(aes(continent, volunteers))
+
 ```
 
 
 ```{r grahik2, echo=FALSE}
-ggplot(community, aes(volunteers, continent)) +
+
+community %>%
+  ggplot(aes(volunteers, continent)) +
   geom_bar(stat="identity")
+
 ```
 
 
 ```{r grahik3, echo=FALSE}
-ggplot(community, aes(volunteers, reorder(continent, volunteers))) +
+
+community %>%
+  ggplot(aes(volunteers, reorder(continent, volunteers))) +
   geom_bar(stat="identity", position="dodge") +
   labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
       subtitle= "... unterscheidet sich nach Kontinent",
@@ -154,7 +153,9 @@ ggplot(community, aes(volunteers, reorder(continent, volunteers))) +
 
 
 ```{r grahik4 anderes geom, echo=FALSE}
-ggplot(community, aes(reorder(continent, volunteers),volunteers)) +
+
+community %>%
+  ggplot(aes(reorder(continent, volunteers),volunteers)) +
   geom_jitter(width = .1, alpha=0.75) +
   labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
        subtitle= "... unterscheidet sich nach Kontinent.",
@@ -164,24 +165,27 @@ ggplot(community, aes(reorder(continent, volunteers),volunteers)) +
 
 ```
 
-```{r tmap 1, echo=FALSE}
 
+```{r grahik5 outlier ausklammern anderes geom, echo=FALSE}
 
-  
+community %>%
+  filter(iso_a3!="TWN") %>%
+  ggplot(aes(reorder(continent, volunteers), volunteers)) +
+  geom_jitter(width = .2, alpha=0.6, size=3) +
+  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
+       subtitle= "... unterscheidet sich nach Kontinent.",
+       x = "Anzahl Freiwilliger",
+       y = "Kontinent") +
+  theme_minimal()
+
+```
+
+```{r graph übung, echo=FALSE}
+#Diese Graphik für firmen perspektive oder Plastik audit perspektive erstellen
+
 ```
 
 
-```{r tmap 2, echo=FALSE}
-
-
-  
-```
-
-```{r tmap 3, echo=FALSE}
-
-
-  
-```
 
 ### Exploration mit statistischen Kennzahlen
 
@@ -194,6 +198,18 @@ summary(plastics)
 ```
 
 
+```{r Gruppieren Statistik und Statistik ausgeben}
+
+
+```
+
+
+```{r audit Perspektive: Gruppieren Statistik und Statistik für top 3 ausgeben}
+
+
+```
+
+
 ### Teststatistik 
 
 *Sage ich im Video*
@@ -203,10 +219,10 @@ summary(plastics)
 - mögliche Fragen:
   
   *Community Perspektive*
-  - mehr durchschnittliche Teilnehmer pro Event? (2019-2020 Vgl)
+  - mehr durchschnittliche Teilnehmer pro Event? (Länder im Vgl)
   
   *Advocacy Perspektive*
-  - Haben sich die Anteile der Firmen von 2019 auf 2020 verschoben?
+  - Unterscheiden sich die Anteile der Firmen/Plastik der top3 signifikant voneinander?
   
 https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_6_r_materials/day_6_key.Rmd
 
