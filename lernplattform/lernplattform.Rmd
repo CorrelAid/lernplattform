@@ -19,15 +19,15 @@ knitr::opts_chunk$set(echo = FALSE)
 out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
-
+## Datenprojekte aus der Zivilgesellschaft
 ```{r results='asis'}
-out <- knitr::knit_child("01_datenprojekte.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("01_datenprojekte.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
-
+## Datenstrategie
 ```{r results='asis'}
-out <- knitr::knit_child("02_datenstrategie.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("02_datenstrategie.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ## Datenschutz und Datenethik
