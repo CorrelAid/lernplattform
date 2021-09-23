@@ -3,6 +3,8 @@ title: "Inhaltsverzeichnis"
 author:
 output: 
   learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
     language: de
 runtime: shiny_prerendered
 ---
