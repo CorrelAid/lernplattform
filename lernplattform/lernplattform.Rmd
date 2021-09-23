@@ -12,7 +12,6 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-# Notiz: Layout muss im JS des learnR packages geändert werden
 ```
 
 
@@ -31,6 +30,7 @@ out <- knitr::knit_child("02_datenstrategie.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
+## Datenschutz und Datenethik
 ```{r results='asis'}
 #out <- knitr::knit_child("03_datenschutz.Rmd", quiet = TRUE)
 #cat(out, sep = '')

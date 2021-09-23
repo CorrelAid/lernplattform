@@ -360,6 +360,9 @@ if (window.hljs) {
 <p>Alternativ findet Ihr das Template als PDF unter diesem <a href="https://correlaid.org/material/DataUseCase.pdf" target="_blank">Link</a>.</p>
 </div>
 </div>
+<div id="section-datenschutz-und-datenethik" class="section level2">
+<h2>Datenschutz und Datenethik</h2>
+</div>
 <div id="section-einführung-in-rstudio" class="section level2">
 <h2>Einführung in RStudio</h2>
 </div>
@@ -387,7 +390,6 @@ if (window.hljs) {
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-# Notiz: Layout muss im JS des learnR packages geändert werden
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -417,19 +419,19 @@ output$`tutorial-exercise-two-plus-two-output` <- renderUI({
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "# Notiz: Layout muss im JS des learnR packages geändert werden"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "two-plus-two", code = "cat(\"Schön, dass Du da bist,\",\"Hier dein Name!\")", 
-        opts = list(label = "\"two-plus-two\"", exercise = "TRUE"), 
-        engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        strip.white = TRUE, size = "normalsize", background = "#F7F7F7", 
-        cache = 0, cache.path = "lernplattform_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "lernplattform_files/figure-html/", 
+"knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
+    include = FALSE)), setup = NULL, chunks = list(list(label = "two-plus-two", 
+    code = "cat(\"Schön, dass Du da bist,\",\"Hier dein Name!\")", 
+    opts = list(label = "\"two-plus-two\"", exercise = "TRUE"), 
+    engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
+    solution = NULL, options = list(eval = FALSE, echo = TRUE, 
+        results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, strip.white = TRUE, 
+        size = "normalsize", background = "#F7F7F7", cache = 0, 
+        cache.path = "lernplattform_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "lernplattform_files/figure-html/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
         fig.width = 6.5, fig.height = 4, fig.env = "figure", 
         fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
@@ -448,16 +450,16 @@ learnr:::store_exercise_cache(structure(list(global_setup = structure(c("library
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "quiz_datenstrategie-1", 
     question = structure("Daten sind...", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_81a8818", 
+    "character")), answers = list(structure(list(id = "lnr_ans_61c1ee2", 
         option = "Elemente, die Informationen formal darstellen.", 
         value = "Elemente, die Informationen formal darstellen.", 
         label = structure("Elemente, die Informationen formal darstellen.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_13dfb5b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9149ffc", 
         option = "in der Regel binärcodiert.", value = "in der Regel binärcodiert.", 
         label = structure("in der Regel binärcodiert.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_99fe222", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8f7b59", 
         option = "idealerweise maschinell lesbar.", value = "idealerweise maschinell lesbar.", 
         label = structure("idealerweise maschinell lesbar.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
@@ -470,24 +472,24 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
         answer = "quiz_datenstrategie-1-answer", question = "quiz_datenstrategie-1"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nDaten sind...\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 1008816618.53023, options = list()), class = c("learnr_checkbox", 
+    seed = 1183436571.44892, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "quiz_datenstrategie-2", 
     question = structure("Welche der folgenden Fragestellungen können mit Daten beantwortet werden:", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_a0832b5", 
+    "character")), answers = list(structure(list(id = "lnr_ans_cadc4f5", 
         option = "Was macht unsere gesellschaftliche Herausforderung aus?", 
         value = "Was macht unsere gesellschaftliche Herausforderung aus?", 
         label = structure("Was macht unsere gesellschaftliche Herausforderung aus?", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_576621c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cbb4a9f", 
         option = "Wie können wir bessere Entscheidungen treffen?", 
         value = "Wie können wir bessere Entscheidungen treffen?", 
         label = structure("Wie können wir bessere Entscheidungen treffen?", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_68c3b1a", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_17dfde", 
         option = "Wie können wir effizienter und effektiver arbeiten?", 
         value = "Wie können wir effizienter und effektiver arbeiten?", 
         label = structure("Wie können wir effizienter und effektiver arbeiten?", html = TRUE, class = c("html", 
@@ -501,27 +503,27 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
         answer = "quiz_datenstrategie-2-answer", question = "quiz_datenstrategie-2"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nWelche der folgenden Fragestellungen können mit Daten beantwortet werden:\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 1626769354.74248, options = list()), class = c("learnr_checkbox", 
+    seed = 364665169.33019, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "quiz_datenstrategie-3", 
     question = structure("Datenwissenschaft ist ein interdisziplinäres Feld. Eine Person, die in diesem Bereich tätig ist, sollte...", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_2985db2", 
+    "character")), answers = list(structure(list(id = "lnr_ans_ccba439", 
         option = "analytische Fähigkeiten haben.", value = "analytische Fähigkeiten haben.", 
         label = structure("analytische Fähigkeiten haben.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_39c607b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_76dae62", 
         option = "technische Fähigkeiten besitzen.", value = "technische Fähigkeiten besitzen.", 
         label = structure("technische Fähigkeiten besitzen.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ec8eeef", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d70b5e9", 
         option = "sich mit der Domain (zu dt. Bereich) auskennen.", 
         value = "sich mit der Domain (zu dt. Bereich) auskennen.", 
         label = structure("sich mit der Domain (zu dt. Bereich) auskennen.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_64c946c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e9a914", 
         option = "Keins davon", value = "Keins davon", label = structure("Keins davon", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -533,27 +535,27 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
         answer = "quiz_datenstrategie-3-answer", question = "quiz_datenstrategie-3"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nDatenwissenschaft ist ein interdisziplinäres Feld. Eine Person, die in diesem Bereich tätig ist, sollte...\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 1829316141.14816, options = list()), class = c("learnr_checkbox", 
+    seed = 2004854605.06642, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz_datenstrategie-4", 
     question = structure("Die Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_651b050", 
+    "character")), answers = list(structure(list(id = "lnr_ans_7d08ca5", 
         option = "Ungenutzten Daten, die Ihr bereits erhoben habt", 
         value = "Ungenutzten Daten, die Ihr bereits erhoben habt", 
         label = structure("Ungenutzten Daten, die Ihr bereits erhoben habt", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f385a68", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7b39649", 
         option = "Daten, die Ihr noch erheben möchtet", value = "Daten, die Ihr noch erheben möchtet", 
         label = structure("Daten, die Ihr noch erheben möchtet", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6a85ada", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e5f3f26", 
         option = "Neusten, technischen Möglichkeiten", value = "Neusten, technischen Möglichkeiten", 
         label = structure("Neusten, technischen Möglichkeiten", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_13d9edc", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_826ed5", 
         option = "Eurer Organisationsstrategie", value = "Eurer Organisationsstrategie", 
         label = structure("Eurer Organisationsstrategie", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
@@ -566,17 +568,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "quiz_datenstrategie-4-answer", question = "quiz_datenstrategie-4"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nDie Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 831318152.612887, options = list()), class = c("learnr_radio", 
+    seed = 1523583683.29053, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz_datenstrategie-5", 
     question = structure("Automatisierungen haben generell einen höheren Mehrwert als explorative Analysen", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_df9999", 
+    "character")), answers = list(structure(list(id = "lnr_ans_c122190", 
         option = "Wahr", value = "Wahr", label = structure("Wahr", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d7aece4", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8ac15f5", 
         option = "Unwahr", value = "Unwahr", label = structure("Unwahr", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -588,17 +590,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "quiz_datenstrategie-5-answer", question = "quiz_datenstrategie-5"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nAutomatisierungen haben generell einen höheren Mehrwert als explorative Analysen\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 970226918.548203, options = list()), class = c("learnr_radio", 
+    seed = 596411535.722274, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz_datenstrategie-6", 
     question = structure("Quantitative Forschung ist grundsätzlich besser als qualitative Forschung.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_8aa8530", 
+    "character")), answers = list(structure(list(id = "lnr_ans_983306c", 
         option = "Wahr", value = "Wahr", label = structure("Wahr", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_31db032", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3c4fcd1", 
         option = "Unwahr", value = "Unwahr", label = structure("Unwahr", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -610,23 +612,23 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "quiz_datenstrategie-6-answer", question = "quiz_datenstrategie-6"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nQuantitative Forschung ist grundsätzlich besser als qualitative Forschung.\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 535774877.75051, options = list()), class = c("learnr_radio", 
+    seed = 1449243789.32514, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz_datenstrategie-7", 
     question = structure("Welche Datenquelle bedeutet für Eure Organisation am meisten Aufwand?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_d7345a0", 
+    "character")), answers = list(structure(list(id = "lnr_ans_5d92753", 
         option = "Externe (offene) Daten", value = "Externe (offene) Daten", 
         label = structure("Externe (offene) Daten", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d10783d", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d6b797e", 
         option = "Interne Daten aus operationellen Prozessen", 
         value = "Interne Daten aus operationellen Prozessen", 
         label = structure("Interne Daten aus operationellen Prozessen", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c993d2d", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a18523", 
         option = "Erhebungsdaten", value = "Erhebungsdaten", 
         label = structure("Erhebungsdaten", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
@@ -639,17 +641,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "quiz_datenstrategie-7-answer", question = "quiz_datenstrategie-7"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nWelche Datenquelle bedeutet für Eure Organisation am meisten Aufwand?\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 303817806.358524, options = list()), class = c("learnr_radio", 
+    seed = 27443972.9872204, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz_datenstrategie-8", 
     question = structure("In Datenprojekten arbeitet Ihr am besten mit Prototypen und agil.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_55716e6", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4137e6a", 
         option = "Wahr", value = "Wahr", label = structure("Wahr", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_16cc001", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_75ea245", 
         option = "Unwahr", value = "Unwahr", label = structure("Unwahr", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -661,7 +663,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "quiz_datenstrategie-8-answer", question = "quiz_datenstrategie-8"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nIn Datenprojekten arbeitet Ihr am besten mit Prototypen und agil.\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 1169847459.95525, options = list()), class = c("learnr_radio", 
+    seed = 310571805.355379, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  <!--html_preserve-->
