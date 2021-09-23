@@ -1,11 +1,13 @@
 
 ## Grundlagen der Datenstrategie
-![*Video: Grundlagen der Datenstrategie - Planung von Datenprojekten (30min)*](https://youtu.be/HuDk2VF4pu0)
+![*Video: Grundlagen der Datenstrategie - Planung von Datenprojekten (30min)*](https://youtu.be/hOhf1Uc_8Tc)
+
+Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
 
 Für die Entwicklung einer Datenstrategie über diesen Kurs hinaus bieten wir eine digitale Bestandsaufnahme Eures Datenreifegrads an: Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/){target="_blank"} heraus! 
 
 ### Kernaussagen
-- Daten sind **formalisierte, durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können
+- Daten sind **formalisierte, idealerweise durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können
 - Daneben verstehen wir **Datenwissenschaft** auch als **Denkweise** ("Wie gehen wir an Herausforderungen heran?") und **Kompetenzbereich** ("Welche analytischen, technischen und fachlichen Fähigkeiten sind notwendig?")
 - Ohne Daten treffen wir **Entscheidungen auf Basis von Hypothesen**, die wir noch gar nicht überprüft haben, und lassen **Potenziale der Digitalisierung** für **effektive und effiziente** Arbeitsweisen ungenutzt
 - Der **Zweck** unserer Datenstrategie und unserer Datenprojekte ergibt sich aus unserer **Wirkungslogik** - sie folgen also einer **strategischen Zielsetzung**
@@ -38,8 +40,8 @@ Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit M
 quiz(caption = NULL,
   question("Daten sind...",
     answer("Elemente, die Informationen formal darstellen.", correct = TRUE),
-    answer("Nullen und Einsen.", correct = TRUE),
-    answer("maschinell lesbar.", correct = TRUE),
+    answer("in der Regel binärcodiert.", correct = TRUE),
+    answer("idealerweise maschinell lesbar.", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
     allow_retry = TRUE,
