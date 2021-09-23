@@ -10,19 +10,21 @@
 Hallo und herzlich willkommen bei "R Lernen - der Datenkurs von und für die Zivilgesellschaft"! 
 Hier findet Ihr alle Informationen zum Kurs, Lernziele und Methodik.
 
-Ersetzt hier den Teil mit "Hier dein Name!" mit Eurem Namen. Klickt nun auf "Code ausführen".
+Ersetzt in diesem Codeeditior den Teil mit "Hier dein Name!" mit Eurem Namen. Klickt nun auf "Code ausführen".
 
-```{r two-plus-two, exercise=TRUE}
-cat("Schön, dass Du da bist,","Hier dein Name!")
+```{r paste, exercise=TRUE}
+paste("Schön, dass Du da bist,","Hier dein Name!")
 ```
 
+Als kleine Vorschau auf das, was wir auf der Lernplattform für Euch vorbereitet haben, könnt Ihr Euch gerne unser Promovideo ansehen:
+![*Promovideo R Lernen - Der Datenkurs von und für die Zivilgesellschaft (1min)](https://youtu.be/avH7Yn86SrU){target="_blank"}
 
 ### Was Euch diese Woche erwartet
-Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/87628401718?pwd=UzN2a3FNV21VR1FkUmlVa1dFbnRLZz09){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 1.10.21 um 12 Uhr**, nach einer kleinen Vorstellungsrunde klären. Wie jede Woche wird im Anschluss an unseren ersten Termin das nächste Kapitel freigeschaltet. 
+Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/87628401718?pwd=UzN2a3FNV21VR1FkUmlVa1dFbnRLZz09){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 1.10.21 um 12 Uhr**, nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/t/correlaid9916/m/correlaid9916/1632400701137/ed434bcae77ad54de53d24722eb1aafad39484a7?sender=ninah9635){target="_blank"}. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 
 
 Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Nina (nina.h@correlaid.org) bitte rechtzeitig mit.
 
-Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Kontaktiert nach Eurer Registrierung bei DataQuest einfach Nina (nina.h@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon anfangs nicht beirren. Unser Kurs ist auf Anfänger:innen gedacht.
+Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Kontaktiert nach Eurer Registrierung bei DataQuest einfach Nina (nina.h@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist auf Anfänger:innen gedacht.
 
 ### Eckdaten 
 - 1.10.21 - 17.12.21, Aufwand: 2-4h/Woche
@@ -47,10 +49,10 @@ Wir führen Euch pragmatisch und lebensnah durch den **DSGVO-Dschungel**, sprech
 Wir zeigen Euch, was in **RStudio** passiert, wo Ihr die erste Zeile Code schreiben dürft und was für spannende Funktionalitäten es in der Applikation so alles gibt. Ihr öffnet RStudio das erste Mal, probiert Euch aus und - bei Fragen rund um das Set-up - helfen wir Euch.
 
 #### Woche 6 (Livetermin 05.11.21): Erste Analysen in R
-Wir starten praktisch, laden Daten, **visualisieren** Daten, berechnen **statistische Kennwerte** und zeigen **Teststatistik** in lebensnah. Ihr macht erste Codingexperimente (aufregend, oder?)
+Wir starten praktisch, **visualisieren** Daten, berechnen **statistische Kennwerte** und zeigen **Teststatistik** in lebensnah. Ihr macht erste Codingexperimente (aufregend, oder?).
 
 #### Woche 7 (Livetermin 12.11.21): Datenimport
-Wir zeigen Euch, wie Ihr Daten in RStudio laden könnt - **manuell**, aber vorallem auch **live** - und zeigen, wie wir mit **APIs** arbeiten. Ihr ladet Eure Daten.
+Wir zeigen Euch, auf wieviele Arten Ihr Daten in RStudio laden könnt - **manuell**, aber vorallem auch **live** - und zeigen, wie wir mit **APIs** arbeiten. Ihr ladet Eure Daten.
 
 #### Woche 8 (Livetermin 19.11.21): Datenbereinigung
 Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das **tidyverse** der Datenbereinigung in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung!
@@ -69,14 +71,16 @@ In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer
 - Ihr versteht **organisatorische Voraussetzungen** und die **Notwendigkeit der strategischen Konzeptionierung** von IT-Neuerungen 
 
 ### Methodik
-- Jede Woche veröffentlichen wir neue Materialien auf unserer **Online-Lernplattform**
-- Dort findet ihr dann ein Video, die wichtigsten Kernaussagen des Wochenthemas, Übungsmaterialien und eine (freiwillige) Lernzielkontrolle
+- Jeden Freitag (im Anschluss an unsere Live-Session) veröffentlichen wir neue Materialien auf unserer **Online-Lernplattform**
+- Dort findet Ihr dann ein Video, die wichtigsten Kernaussagen des Wochenthemas, Übungsmaterialien und (freiwillige) Lernzielkontrollen
 - Die Materialien könnt Ihr bearbeiten, wenn Ihr dafür Zeit und einen freien Kopf habt
-- Jeden **Freitag von 12-13 Uhr** besprechen Datenprofis mit Euch die Lösung der Übung und Lernzielkontrolle, die im Anschluss online gestellt wird
+- In der Live-Session jeden **Freitag von 12-13 Uhr** besprechen Datenprofis mit Euch die Lösung der Übung und Lernzielkontrolle, die im Anschluss online gestellt wird
 - Zusätzlich könnt Ihr **1:1 Sprechstunden** mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten (entweder direkt in der Sprechstunde oder per Mail an Nina)
 
 ### Kontakt
-Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org. Zusätzlich habt Ihr die Möglichkeit Euch untereinander in einem **Slack-Channel** auszutauschen: Tretet dem Channel einfach [hier](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw){target="_blank"} bei. Der Link ist nur zwei Wochen gültig.
+Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org. 
+
+Zusätzlich habt Ihr die Möglichkeit Euch untereinander in einem **Slack-Channel** auszutauschen: Tretet dem Channel einfach [hier](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw){target="_blank"} bei. Der Link ist nur zwei Wochen gültig.
 
 Alle weiteren Angebot von CorrelAid e.V. erhaltet Ihr jeden Monat in unserem [Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}.
 

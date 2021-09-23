@@ -52,8 +52,6 @@ cat(out, sep = '')
 
 ## Datenbereinigung
 
-## RMarkdown
-
 ## Reportautomatisierungen
 
 ## Interaktive Visualisierungen
