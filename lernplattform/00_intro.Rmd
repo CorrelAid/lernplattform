@@ -31,34 +31,34 @@ Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitier
 - Mit und von Datenprofis
 
 ### Wochenplan
-#### Woche 1 (1.10.21): Kick-Off!
+#### Woche 1 (Livetermin 1.10.21): Kick-Off!
 Wir stellen uns, Ihr Euch und wir die **Kursmodalitäten** vor.
 
-#### Woche 2 (08.10.21): Daten- und Leuchtturmprojekte der Zivilgesellschaft
+#### Woche 2 (Livetermin 08.10.21): Daten- und Leuchtturmprojekte der Zivilgesellschaft
 Wir präsentieren **Anwendungsbeispiele von Datenprojekten** aus unserem Arbeitsalltag und der Zivilgesellschaft, um einen Ausblick auf Mögliches zu geben. Ihr entwickelt erste Ideen für Euer eigenes Projekt.
 
-#### Woche 3 (15.10.21): Grundlagen der Datenstrategie
+#### Woche 3 (Livetermin 15.10.21): Grundlagen der Datenstrategie
 Wir sprechen über **Grundsätze der Datenstrategie** und was es zu beachten gilt. Ihr entwickelt einen Plan für Euren eigenen Data Use Case (zu dt. Datenanwendungsfall).
 
-#### Woche 4 (22.10.21): Datenschutz & -Ethik für Anfänger:innen
+#### Woche 4 (Livetermin 22.10.21): Datenschutz & -Ethik für Anfänger:innen
 Wir führen Euch pragmatisch und lebensnah durch den **DSGVO-Dschungel**, sprechen über Tools und Datenethik. Ihr prüft Euer Projekt auf geltende Regelungen und hinterlegt in einem Datenverarbeitungsverzeichnis die personenbezogenen Daten an, die Ihr in Eurem Projekt nutzen wollt. 
 
-#### Woche 5 (29.10.21): Einführung in RStudio
+#### Woche 5 (Livetermin 29.10.21): Einführung in RStudio
 Wir zeigen Euch, was in **RStudio** passiert, wo Ihr die erste Zeile Code schreiben dürft und was für spannende Funktionalitäten es in der Applikation so alles gibt. Ihr öffnet RStudio das erste Mal, probiert Euch aus und - bei Fragen rund um das Set-up - helfen wir Euch.
 
-#### Woche 6 (05.11.21): Erste Analysen in R
+#### Woche 6 (Livetermin 05.11.21): Erste Analysen in R
 Wir starten praktisch, laden Daten, **visualisieren** Daten, berechnen **statistische Kennwerte** und zeigen **Teststatistik** in lebensnah. Ihr macht erste Codingexperimente (aufregend, oder?)
 
-#### Woche 7 (12.11.21): Datenimport
+#### Woche 7 (Livetermin 12.11.21): Datenimport
 Wir zeigen Euch, wie Ihr Daten in RStudio laden könnt - **manuell**, aber vorallem auch **live** - und zeigen, wie wir mit **APIs** arbeiten. Ihr ladet Eure Daten.
 
-#### Woche 8 (19.11.21): Datenbereinigung
+#### Woche 8 (Livetermin 19.11.21): Datenbereinigung
 Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das **tidyverse** der Datenbereinigung in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung!
 
-#### Woche 9 und 10 (26.11. und 03.12.21): Reportautomatisierung
+#### Woche 9 und 10 (Livetermine 26.11. und 03.12.21): Reportautomatisierung
 In der vorletzten Phase des Datenkurses lernt Ihr, wie Ihr mit **RMarkdown** automatische Reports erstellen könnt, die Ihr als **PDF- oder HTML-Dokument** teilen könnt. Ihr sucht Euch die passenden Funktionen aus "Erste Analysen in R" heraus und erstellt damit einen ersten Report.
 
-#### Woche 11 und 12 (10. und 17.12.21): Interaktive Visualisierung 
+#### Woche 11 und 12 (Livetermine 10. und 17.12.21): Interaktive Visualisierung 
 In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer interaktiven Visualisierung teilen könnt. Wir programmieren mit Euch im Kurs eine erste **Shiny-App**, erklären, wie so eine Applikation funktioniert und wie Ihr sie hosten könnt. Ihr übertragt das Gelernte auf Eure eigenen Daten. 
 
 ### Lernziele
