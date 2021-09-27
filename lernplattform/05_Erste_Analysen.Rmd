@@ -22,7 +22,7 @@ https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
 ### Vorbereitung
 ``` {r Pakete laden, echo=FALSE}
 
-library(tidyverse) 
+library(tidyverse)
 library(janitor)
 library(countrycode)
 
@@ -61,6 +61,7 @@ plastics %>%
 
 ``` {r Daten prep 1 }
 
+#@ Nina gern übernehmen...
 
 # Country name cleaning: 
   #United Kingdom of Great Britain & Northern Ireland ssowie für die USA
@@ -77,6 +78,7 @@ plastics_prep <- plastics %>%
 
 ``` {r Datensatz 1 community}
 
+
 community<- plastics_prep %>%
   select(country, year, num_events, volunteers, continent, countrycode) %>%
   group_by(country, year) %>%
@@ -84,7 +86,7 @@ community<- plastics_prep %>%
 
 ``` 
 
-``` {r Datensatz 2 audit}
+``` {r Datensatz 2 audit firm}
 
 audit_firm<- plastics_prep %>%
   select(country, year, parent_company, grand_total, continent, countrycode) %>%
@@ -93,8 +95,27 @@ audit_firm<- plastics_prep %>%
 
 ``` 
 
+``` {r Datensatz 2 audit plastik}
+
+audit_plastic<- plastics_prep %>%
+  
+  # nur grandtotal zeile behalten
+  filter(parent_company=="Grand Total") %>%
+  select(-c(parent_company, num_events, volunteers))
 
 
+``` 
+
+```{r empty-loschen, exercise=TRUE}
+
+```
+
+```{r empty-loschen}
+
+audit_plastic<- audit_plastic %>%
+  select(-empty)
+
+```
 
 ### 1 Visuelle Exploration 
 
