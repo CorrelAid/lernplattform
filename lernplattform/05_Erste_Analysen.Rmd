@@ -20,7 +20,7 @@ https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
 
 
 ### Vorbereitung
-``` {r Pakete laden, echo=FALSE}
+``` {r Pakete laden, echo=FALSE,include=FALSE}
 
 library(tidyverse)
 library(janitor)
@@ -30,7 +30,7 @@ library(countrycode)
 
 
 
-``` {r einlesen}
+``` {r einlesen, include=FALSE}
 
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
@@ -39,12 +39,15 @@ plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 
 
 ``` {r Daten Struktur}
+#@ Nina gern in 04 übernehmen...
 
 str(plastics)
 
 ```
 
 ``` {r Daten Struktur 2}
+#@ Nina gern in 04 übernehmen...
+
 head(plastics)
 tail(plastics)
 ```
@@ -59,9 +62,9 @@ plastics %>%
 ```
 
 
-``` {r Daten prep 1 }
+``` {r Daten prep 1 , include=FALSE}
 
-#@ Nina gern übernehmen...
+#@ Nina gern in 04 übernehmen...
 
 # Country name cleaning: 
   #United Kingdom of Great Britain & Northern Ireland ssowie für die USA
@@ -72,12 +75,13 @@ plastics_prep <- plastics %>%
          country = str_replace(country, "United States of America", "United States")) %>%
   #Continent und country code anspielen
   mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
-         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c"))
+         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
+  mutate(continent=replace_na(continent, "Unknown"),
+         countrycode==replace_na(countrycode, "Unknown"))
 
 ``` 
 
-``` {r Datensatz 1 community}
-
+``` {r Datensatz 1 community, include=FALSE}
 
 community<- plastics_prep %>%
   select(country, year, num_events, volunteers, continent, countrycode) %>%
@@ -86,7 +90,7 @@ community<- plastics_prep %>%
 
 ``` 
 
-``` {r Datensatz 2 audit firm}
+``` {r Datensatz 2 audit firm, include=FALSE}
 
 audit_firm<- plastics_prep %>%
   select(country, year, parent_company, grand_total, continent, countrycode) %>%
@@ -95,7 +99,7 @@ audit_firm<- plastics_prep %>%
 
 ``` 
 
-``` {r Datensatz 2 audit plastik}
+``` {r Datensatz 3 audit plastik, include=FALSE}
 
 audit_plastic<- plastics_prep %>%
   
@@ -106,33 +110,94 @@ audit_plastic<- plastics_prep %>%
 
 ``` 
 
-```{r empty-loschen, exercise=TRUE}
+Schau Dir an, wie die ersten Zeilen des `audit_plastic` Datensatz gefüllt sind.
+
+``` {r ersten5-zeilen, exercise=TRUE}
+head(audit_plastic)
 
 ```
 
-```{r empty-loschen}
+Welche Werte nehmen die Variablen "pvc" und "empty" an? Letzeres sind Plastikteile, die gefunden aber nicht klassifiziert wurden. Prüfe dies mit dem folgenden Code Snippet.
+
+``` {r empty-pvc-kategorie, exercise=TRUE}
+
+audit_plastic %>%
+  tabyl(empty)
+
+``` 
+```{r frage1, echo=FALSE}
+question("Welche Werte nehmen die Variablen 'pvc' nicht an?",
+  answer("9"),
+  answer("24"),
+  answer("0", correct = TRUE),
+  answer("188")
+)
+
+question("Welche Werte nehmen die Variablen 'empty' an?",
+  answer("0"),
+  answer("0 oder NA", correct = TRUE),
+  answer("11"),
+  answer("188")
+)
+```
+
+```{r empty-loschen, exercise=TRUE, exercise.eval=TRUE}
 
 audit_plastic<- audit_plastic %>%
   select(-empty)
 
 ```
 
+```{r empty-loschen-hint}
+
+audit_plastic<- audit_plastic %>%
+  select(-empty)
+
+```
+
+Alle 'NA' Ausprägungen, wandeln wir in 0 um. Das ist keine allgemeingültig richtiger Umgang mit fehlenden Werten, aber für `audit_plastic` ergibt das Sinn.
+
+```{r na-in-zero, exercise=TRUE}
+
+audit_plastic<- audit_plastic %>%
+ mutate(
+    across(everything(), ~replace_na(.x, 0))
+  )
+```
+
+
+
+
 ### 1 Visuelle Exploration 
 
 
 *dies sage ich im Video*
 
+### Kernaussagen
+
 - Wichtig erst viz dann statistik!
 - Ein Q&A mit den Daten machen - mit dem Wissen der Aktion, welche Fragen würdet ihr den Daten stellen wollen?
-- Meine Ideen:
+
+- `ggplot2` ist das Paket für gute Graphen in R.
+- Es folgt der "Grammar of graphics".
+- Die Syntax entsteht Schicht-für-Schicht. Einzelne Bestandteile werden mit einem '+' hinzugefügt.
+- Die wichtigsten Schichten (Bestandteile) eines ggplots sind: 
+
+1. `data` - Der Datensatz.
+2. `aes()` - Die ästhetischen Attribute wie die x- oder y-Achse.
+3. `geom_*()` - Die geometrische Form, mit welcher die Werte dargestellt werden,
+
+
+
+Meine Ideen:
 
 Community Perspektive  
   - Wie viele Teilnehmer? Insgesamt und nach Ländern?
   - Wie viele Events?
 
-Activism Perspektive
+Activism/ Audit Perspektive
   - Wievele Firmen? Insgesamt und nach Ländern?
-  - 
+  - Wieviel Plastik vo welcher Sorte?
   
 - layered grammar
 - r4ds inspirierte Vorstellung von ggplot2
@@ -142,6 +207,8 @@ https://github.com/allisonhorst/stats-illustrations/
 Cedrics Blog verlinken
 
 
+Beginnen wir mit der Community-Perspektive und dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästgetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
+
 ```{r grahik1, echo=FALSE}
 
 community %>%
@@ -149,8 +216,53 @@ community %>%
 
 ```
 
+Nun fügen wir ein `geom` hinzu. 
 
-```{r grahik2, echo=FALSE}
+```{r geom-point1, echo=FALSE}
+
+community %>%
+  ggplot(aes(continent, volunteers)) +
+  geom_point()
+
+```
+
+
+
+```{r geom-point2, echo=FALSE}
+
+community %>%
+  ggplot(aes(continent, volunteers)) +
+  geom_point(position = "jitter")
+
+```
+Finden heraus wer diese extreme Beobachtung ist.
+
+
+```{r extreme-beob, exercise=TRUE}
+
+community %>%
+  filter(volunteers>20000)
+
+```
+
+Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen?
+
+```{r geom-point3, echo=FALSE}
+
+community %>%
+  filter(countrycode!=TWN) %>%
+  ggplot(aes(continent, volunteers)) +
+  geom_point(position = "jitter") + 
+  labs(caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung wurde zur Lesbarkeit des Graphen ausgeklammert.")
+  # Bonus: 
+  #ggannotate with arrow.. ("Taiwan recorded \n 31318	volunteers") +
+  
+  
+
+```
+
+
+```{r grahik7, echo=FALSE}
 
 community %>%
   ggplot(aes(volunteers, continent)) +
@@ -190,7 +302,7 @@ community %>%
 ```{r grahik5 outlier ausklammern anderes geom, echo=FALSE}
 
 community %>%
-  filter(iso_a3!="TWN") %>%
+  filter(countrycode!="TWN") %>%
   ggplot(aes(reorder(continent, volunteers), volunteers)) +
   geom_jitter(width = .2, alpha=0.6, size=3) +
   labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
