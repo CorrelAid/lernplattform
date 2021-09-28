@@ -365,7 +365,7 @@ Leitfragen
 
 1. Wie viel Plastik wurde durchschnittlich gefunden? 
 2. Wie viel Plastik wurde durchschnittlich je Kontinent gefunden? 
-3. Was sind die top 3 Plastiktypen, die gefunden wurden? 
+3. Wie hoch sind die relativen Antile der Plastiktypen, die gefunden wurden? 
 
 https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_4_r_materials/day_4_part_2_key.R
 
