@@ -55,6 +55,7 @@ tail(plastics)
 
 
 ``` {r Daten Struktur 3}
+#@ Nina gern in 04 übernehmen...
 plastics %>%
         tabyl(country, year) %>%
           janitor::adorn_rounding(digits=2) %>%
@@ -83,6 +84,8 @@ plastics_prep <- plastics %>%
 
 ``` {r Datensatz 1 community, include=FALSE}
 
+#@ Nina gern in 04 übernehmen...
+
 community<- plastics_prep %>%
   select(country, year, num_events, volunteers, continent, countrycode) %>%
   group_by(country, year) %>%
@@ -92,6 +95,7 @@ community<- plastics_prep %>%
 
 ``` {r Datensatz 2 audit firm, include=FALSE}
 
+#@ Nina gern in 04 übernehmen...
 audit_firm<- plastics_prep %>%
   select(country, year, parent_company, grand_total, continent, countrycode) %>%
   # grandtotal zeilen löschen - ist schon in einer Spalte erfasst
@@ -100,6 +104,7 @@ audit_firm<- plastics_prep %>%
 ``` 
 
 ``` {r Datensatz 3 audit plastik, include=FALSE}
+#@ Nina gern in 04 übernehmen...
 
 audit_plastic<- plastics_prep %>%
   
@@ -155,7 +160,7 @@ audit_plastic<- audit_plastic %>%
 
 ```
 
-Alle 'NA' Ausprägungen, wandeln wir in 0 um. Das ist keine allgemeingültig richtiger Umgang mit fehlenden Werten, aber für `audit_plastic` ergibt das Sinn.
+Alle 'NA' Ausprägungen, wandeln wir in 0 um. Das ist kein allgemeingültig richtiger Umgang mit fehlenden Werten, aber für `audit_plastic` ergibt das Sinn.
 
 ```{r na-in-zero, exercise=TRUE}
 
@@ -175,10 +180,10 @@ audit_plastic<- audit_plastic %>%
 
 ### Kernaussagen
 
-- Wichtig erst viz dann statistik!
+- Wichtig erst visualisieren, dann zusammenfassende Statistik.
 - Ein Q&A mit den Daten machen - mit dem Wissen der Aktion, welche Fragen würdet ihr den Daten stellen wollen?
 
-- `ggplot2` ist das Paket für gute Graphen in R.
+- `ggplot2` ist ein Paket für gute Graphen in R.
 - Es folgt der "Grammar of graphics".
 - Die Syntax entsteht Schicht-für-Schicht. Einzelne Bestandteile werden mit einem '+' hinzugefügt.
 - Die wichtigsten Schichten (Bestandteile) eines ggplots sind: 
@@ -207,7 +212,10 @@ https://github.com/allisonhorst/stats-illustrations/
 Cedrics Blog verlinken
 
 
-Beginnen wir mit der Community-Perspektive und dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästgetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
+
+Im Video visualisieren wir die Plastikmengen. Hier widmen wir uns der Community-Perspektive: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt.
+
+Wir beginnen mit dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästhetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
 
 ```{r grahik1, echo=FALSE}
 
@@ -216,7 +224,7 @@ community %>%
 
 ```
 
-Nun fügen wir ein `geom` hinzu. 
+Nun fügen wir ein `geom_point` hinzu. 
 
 ```{r geom-point1, echo=FALSE}
 
@@ -225,17 +233,17 @@ community %>%
   geom_point()
 
 ```
-
+Mit `position = position_jitter(width=0.3)` schaffen wir es, dass die Punkte sich nicht alle überlagern. Mit `alpha = 0.6` werden die Punkte etwas transparent, mit `size=3` etwas größer und so auch einzeln besser sichtbar
 
 
 ```{r geom-point2, echo=FALSE}
 
 community %>%
   ggplot(aes(continent, volunteers)) +
-  geom_point(position = "jitter")
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6)
 
 ```
-Finden heraus wer diese extreme Beobachtung ist.
+Findet heraus, welches Land hinter dieser extreme Beobachtung steckt
 
 
 ```{r extreme-beob, exercise=TRUE}
@@ -250,19 +258,55 @@ Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen?
 ```{r geom-point3, echo=FALSE}
 
 community %>%
-  filter(countrycode!=TWN) %>%
+  #filter(countrycode!=TWN) %>%
   ggplot(aes(continent, volunteers)) +
-  geom_point(position = "jitter") + 
-  labs(caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung wurde zur Lesbarkeit des Graphen ausgeklammert.")
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,10000)) 
+  #labs(caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert.")
   # Bonus: 
   #ggannotate with arrow.. ("Taiwan recorded \n 31318	volunteers") +
   
+
   
 
 ```
 
+Anmerkungen sind ganz wesentliche Bestandteile von Graphen. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf den Ursprung der Daten sowie das eine Beobachtung rausgenommen wurde sinnvoll. Dies lässt sich alles über `labs()` in die Graphik einfügen.
 
-```{r grahik7, echo=FALSE}
+```{r geom-point4, echo=FALSE}
+
+community %>%
+  #filter(countrycode!="TWN") %>%
+  ggplot(aes(continent,  volunteers)) +
+  geom_point(position = position_jitter(width=0.3), size=2, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,10000)) +
+  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
+       subtitle= "... unterscheidet sich je nach Kontinent.",
+       y = "Anzahl Freiwilliger",
+       x = "Kontinent",
+       caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert.") 
+
+```
+
+Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel in them_minimal().
+
+```{r geom-point5, echo=FALSE}
+
+community %>%
+  filter(countrycode!="TWN") %>%
+  ggplot(aes(reorder(continent, volunteers), volunteers)) +
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,10000)) +
+  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
+       subtitle= "... unterscheidet sich nach Kontinent.",
+       y = "Anzahl Freiwilliger",
+       x = "Kontinent",
+       caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert.") +
+  theme_minimal()
+
+```
+
+```{r geom_bar, echo=FALSE}
 
 community %>%
   ggplot(aes(volunteers, continent)) +
@@ -299,19 +343,6 @@ community %>%
 ```
 
 
-```{r grahik5 outlier ausklammern anderes geom, echo=FALSE}
-
-community %>%
-  filter(countrycode!="TWN") %>%
-  ggplot(aes(reorder(continent, volunteers), volunteers)) +
-  geom_jitter(width = .2, alpha=0.6, size=3) +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
-       subtitle= "... unterscheidet sich nach Kontinent.",
-       x = "Anzahl Freiwilliger",
-       y = "Kontinent") +
-  theme_minimal()
-
-```
 
 ```{r graph übung, echo=FALSE}
 #Diese Graphik für firmen perspektive oder Plastik audit perspektive erstellen
