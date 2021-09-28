@@ -361,25 +361,130 @@ community %>%
 
 ### Exploration mit statistischen Kennzahlen
 
-Was sind die top 3 Plastiktypen, die gefunden wurden? 
+Leitfragen
+
+1. Wie viel Plastik wurde durchschnittlich gefunden? 
+2. Wie viel Plastik wurde durchschnittlich je Kontinent gefunden? 
+3. Was sind die top 3 Plastiktypen, die gefunden wurden? 
 
 https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_4_r_materials/day_4_part_2_key.R
 
 dplyr::group_by + summarize - a powerful combo
 
+Kurzstatistiken lassen sich ausgeben mit `summary()`
+
 ```{r Kurz Statistik}
-summary(plastics)
+summary(audit_plastic)
+```
+
+Ein sehr nützliche Kombination ist: `group_by()` und `summarize()`. Damit können wir Daten gruppieren und Kennzahlen wie den Mittelwert und die Standardabweichung der gefundenen Plastikstücke ausrechnen lassen.
+
+```{r Gruppieren Statistik und Statistik ausgeben 1}
+
+#audit_plastic<- audit_plastic %>%
+#  pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "plastic_type", values_to = "Amount")
+
+  
+#audit_plastic_sum<- 
+ 
+audit_plastic %>%
+  group_by(continent) %>%
+  summarize(menge_mittelw = mean(grand_total),
+            menge_sd = sd(grand_total)) 
+
+```
+
+```{r frage2, echo=FALSE}
+question("Warum ist die Standardabweichung für Oceania 'NA'?",
+  answer("Weil keine Plastikstücke gefunden wurden."),
+  answer("Weil Oceanien nur drei Stück Plastik registiert haben"),
+  answer("Weil nur ein Land in Ozeanien mitgemacht hat.", correct = TRUE),
+  answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.")
+)
+
+```
+
+Weitere interessante Kennzahlen sind: der Median und die Länderanzahl.
+
+```{r Gruppieren Statistik und Statistik ausgeben 2}
+
+audit_plastic %>%
+  group_by(continent) %>%
+  summarize(menge_mittelw = mean(grand_total),
+            menge_sd = sd(grand_total),
+            menge_median = median(grand_total),
+            länderanzahl = n()) 
+
+```
+
+```{r frage3, echo=FALSE}
+question("Wieviel Länder habn sich in Asien beteiligt?",
+  answer("1"),
+  answer("11"),
+  answer("15"),
+  answer("17", correct = TRUE)
+)
+
+question("Warum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?",
+  answer("Weil in Asien die meisten Länder sich beteiligt haben."),
+  answer("Weil es einige wenige, extreme Beobachtungen gab.", correct = TRUE),
+  answer("Weil das eine Eigenschaft des Medians ist."),
+  answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.")
+)
+
 ```
 
 
-```{r Gruppieren Statistik und Statistik ausgeben}
+```{r audit Perspektive: nur Europa und Asien}
 
+audit_plastic2<- audit_plastic %>%
+  filter(continent == "Europe" | continent == "Asia")
+```
+
+```{r audit Perspektive: erst zu einem langen Datensatz umwandeln}
+
+audit_plastic2<- audit_plastic2 %>%
+   pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "type", values_to = "amount")
 
 ```
 
 
-```{r audit Perspektive: Gruppieren Statistik und Statistik für top 3 ausgeben}
+```{r plastikarten je Kontinent aufsummieren}
+audit_plastic3 <- audit_plastic2 %>%
+  group_by(continent, type) %>%
+  summarize(amount_sum=sum(amount))
 
+
+audit_plastic3 <- audit_plastic2 %>%
+  group_by(continent, type) %>%
+  summarize(amount_sum=sum(amount, na.rm = TRUE),
+            grand_total_sum = sum(grand_total, na.rm=TRUE)) %>%
+  ungroup()
+
+```
+
+```{r audit Perspektive: relative Häufigkeiten und danach sortieren}
+
+audit_plastic3<- audit_plastic3 %>%
+   mutate(rel_frequency = amount_sum / grand_total_sum) %>%
+   arrange(rel_frequency)
+
+```
+
+```{r audit Perspektive: nach relative Häufigkeiten sortieren}
+
+audit_plastic3<- audit_plastic3 %>%
+   #group_by(continent) %>%
+   arrange(continent, rel_frequency)
+
+```
+
+
+```{r top3 identifizieren}
+audit_plastic4<- audit_plastic2 %>%
+  group_by(continent, type) %>%
+  summarize(amount_sum=sum(amount, na.rm = TRUE)) %>%
+  slice_max(order_by = amount_sum, n = 3)
 
 ```
 
@@ -395,8 +500,8 @@ summary(plastics)
   *Community Perspektive*
   - mehr durchschnittliche Teilnehmer pro Event? (Länder im Vgl)
   
-  *Advocacy Perspektive*
-  - Unterscheiden sich die Anteile der Firmen/Plastik der top3 signifikant voneinander?
+  *Audit Perspektive*
+  - Unterscheiden sich die Top3 Anteile der Plastik signifikant voneinander?
   
 https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_6_r_materials/day_6_key.Rmd
 
