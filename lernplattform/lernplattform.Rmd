@@ -44,13 +44,17 @@ cat(out, sep = '')
 
 ## Erste Datenanalysen in R
 ```{r results='asis'}
-out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ## Datenimport und APIs
 
 ## Datenbereinigung
+```{r results='asis'}
+#out <- knitr::knit_child("07_datenbereinigung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
 
 ## Reportautomatisierungen
 
