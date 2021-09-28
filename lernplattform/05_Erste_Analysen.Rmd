@@ -213,7 +213,7 @@ https://github.com/allisonhorst/stats-illustrations/
 
 Cedrics Blog verlinken
 
-```{r geom-point-video, echo=FALSE}
+```{r geom-point-video, exercise=TRUE}
 
 audit_plastic %>%
   filter(grand_total>15000)
@@ -237,7 +237,7 @@ Im Video visualisieren wir die Plastikmengen. Hier widmen wir uns der Community-
 
 Wir beginnen mit dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästhetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
 
-```{r grahik1, echo=FALSE}
+```{r grahik1, exercise=TRUE}
 
 community %>%
   ggplot(aes(continent, volunteers))
@@ -246,7 +246,7 @@ community %>%
 
 Nun fügen wir ein `geom_point` hinzu. 
 
-```{r geom-point1, echo=FALSE}
+```{r geom-point1, exercise=TRUE}
 
 community %>%
   ggplot(aes(continent, volunteers)) +
@@ -256,7 +256,7 @@ community %>%
 Mit `position = position_jitter(width=0.3)` schaffen wir es, dass die Punkte sich nicht alle überlagern. Mit `alpha = 0.6` werden die Punkte etwas transparent, mit `size=3` etwas größer und so auch einzeln besser sichtbar
 
 
-```{r geom-point2, echo=FALSE}
+```{r geom-point2,exercise=TRUE}
 
 community %>%
   ggplot(aes(continent, volunteers)) +
@@ -275,7 +275,7 @@ community %>%
 
 Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen?
 
-```{r geom-point3, echo=FALSE}
+```{r geom-point3,exercise=TRUE}
 
 community %>%
   ggplot(aes(continent, volunteers)) +
@@ -287,7 +287,7 @@ community %>%
 
 Anmerkungen sind ganz wesentliche Bestandteile von Graphen. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf den Ursprung der Daten sowie das eine Beobachtung rausgenommen wurde sinnvoll. Dies lässt sich alles über `labs()` in die Graphik einfügen.
 
-```{r geom-point4, echo=FALSE}
+```{r geom-point4,exercise=TRUE}
 
 community %>%
   #filter(countrycode!="TWN") %>%
@@ -304,7 +304,7 @@ community %>%
 
 Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel in them_minimal(). Zu dem können wir die Kontinente nach Teilnehmerzahl sortieren
 
-```{r geom-point5, echo=FALSE}
+```{r geom-point5,exercise=TRUE}
 
 community %>%
   ggplot(aes(reorder(continent, volunteers), volunteers)) +
@@ -321,7 +321,7 @@ community %>%
 
 Jetzt kennen wir die Grundfunktionen von `ggplot`. Es ist ein sehr mächtiges Tool mit vielen Stellschrauben. Probiert gern noch mehr aus. ZUm Beispiel gibt es ganz viele `geom_` Optionen. Für die Analyse der Frage: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt? Könnten wir auch ein Balkendiagramm nutzen. `geom_bar(stat="identity")` summiert direkt die Freiwilligenanzahl je Kontinent. 
 
-```{r geom_bar1, echo=FALSE}
+```{r geom_bar1,exercise=TRUE}
 
 community %>%
   ggplot(aes(volunteers, continent)) +
@@ -331,7 +331,7 @@ community %>%
 
 Hier könnte es sinnvoll sein, die Beobachtungen Kontinent "unkonwn" auszuklammern und nach der Gesamtzahl der Freiwilligen zu sortieren.  
 
-```{r geom_bar2, echo=FALSE}
+```{r geom_bar2,exercise=TRUE}
 
 community %>%
   filter(continent != "Unknown") %>%
@@ -343,7 +343,7 @@ community %>%
 
 Auch hier ist es wichtig, die Graphik gut zu beschriften. 
 
-```{r geombar3, echo=FALSE}
+```{r geombar3,exercise=TRUE}
 
 community %>%
   filter(continent != "Unknown") %>%
