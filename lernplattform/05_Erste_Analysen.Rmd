@@ -78,7 +78,9 @@ plastics_prep <- plastics %>%
   mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
          countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
   mutate(continent=replace_na(continent, "Unknown"),
-         countrycode==replace_na(countrycode, "Unknown"))
+         countrycode=replace_na(countrycode, "Unknown"))
+
+#to do: ECUADOR etc case ändern
 
 ``` 
 
@@ -211,9 +213,27 @@ https://github.com/allisonhorst/stats-illustrations/
 
 Cedrics Blog verlinken
 
+```{r geom-point-video, echo=FALSE}
 
+audit_plastic %>%
+  filter(grand_total>15000)
+  
 
-Im Video visualisieren wir die Plastikmengen. Hier widmen wir uns der Community-Perspektive: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt.
+audit_plastic %>%
+  filter(continent!="Unknown") %>%
+  ggplot(aes(continent, grand_total)) +
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,15000)) +
+  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
+       subtitle= "... unterscheidet sich nach Kontinent.",
+       y = "Anzahl gefundener Plastikstücke",
+       x = "Kontinent",
+       caption = "In Nigeria, Philippinen und Taiwan wurden 19841, 28055 und \n120646 Plastikstücke gesammelt. Diese Beoachtungen \nwurden zur Lesbarkeit ausgeklammert.") +
+  theme_minimal()
+
+```
+
+Im Video visualisieren wir die Plastikmengen. Hier widmen wir uns der Community-Perspektive: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt?
 
 Wir beginnen mit dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästhetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
 
@@ -258,16 +278,10 @@ Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen?
 ```{r geom-point3, echo=FALSE}
 
 community %>%
-  #filter(countrycode!=TWN) %>%
   ggplot(aes(continent, volunteers)) +
   geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
   coord_cartesian(ylim=c(0,10000)) 
-  #labs(caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert.")
-  # Bonus: 
-  #ggannotate with arrow.. ("Taiwan recorded \n 31318	volunteers") +
-  
 
-  
 
 ```
 
@@ -280,7 +294,7 @@ community %>%
   ggplot(aes(continent,  volunteers)) +
   geom_point(position = position_jitter(width=0.3), size=2, alpha = 0.6) + 
   coord_cartesian(ylim=c(0,10000)) +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
+  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
        subtitle= "... unterscheidet sich je nach Kontinent.",
        y = "Anzahl Freiwilliger",
        x = "Kontinent",
@@ -288,16 +302,15 @@ community %>%
 
 ```
 
-Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel in them_minimal().
+Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel in them_minimal(). Zu dem können wir die Kontinente nach Teilnehmerzahl sortieren
 
 ```{r geom-point5, echo=FALSE}
 
 community %>%
-  filter(countrycode!="TWN") %>%
   ggplot(aes(reorder(continent, volunteers), volunteers)) +
   geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
   coord_cartesian(ylim=c(0,10000)) +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
+  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
        subtitle= "... unterscheidet sich nach Kontinent.",
        y = "Anzahl Freiwilliger",
        x = "Kontinent",
@@ -306,7 +319,9 @@ community %>%
 
 ```
 
-```{r geom_bar, echo=FALSE}
+Jetzt kennen wir die Grundfunktionen von `ggplot`. Es ist ein sehr mächtiges Tool mit vielen Stellschrauben. Probiert gern noch mehr aus. ZUm Beispiel gibt es ganz viele `geom_` Optionen. Für die Analyse der Frage: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt? Könnten wir auch ein Balkendiagramm nutzen. `geom_bar(stat="identity")` summiert direkt die Freiwilligenanzahl je Kontinent. 
+
+```{r geom_bar1, echo=FALSE}
 
 community %>%
   ggplot(aes(volunteers, continent)) +
@@ -314,44 +329,39 @@ community %>%
 
 ```
 
+Hier könnte es sinnvoll sein, die Beobachtungen Kontinent "unkonwn" auszuklammern und nach der Gesamtzahl der Freiwilligen zu sortieren.  
 
-```{r grahik3, echo=FALSE}
+```{r geom_bar2, echo=FALSE}
 
 community %>%
+  filter(continent != "Unknown") %>%
   ggplot(aes(volunteers, reorder(continent, volunteers))) +
-  geom_bar(stat="identity", position="dodge") +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
-      subtitle= "... unterscheidet sich nach Kontinent",
-      x = "Anzahl Freiwilliger",
+  geom_bar(stat = "identity")
+  
+  
+```
+
+Auch hier ist es wichtig, die Graphik gut zu beschriften. 
+
+```{r geombar3, echo=FALSE}
+
+community %>%
+  filter(continent != "Unknown") %>%
+  ggplot(aes(volunteers, reorder(continent, volunteers))) +
+  geom_bar(stat = "identity") +
+  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
+      subtitle= "... unterscheidet sich je nach Kontinent",
+      x = "Gesamtzahl an Freiwilligen",
       y = "Kontinent") +
   theme_minimal()
   
 ```
 
 
-```{r grahik4 anderes geom, echo=FALSE}
-
-community %>%
-  ggplot(aes(reorder(continent, volunteers),volunteers)) +
-  geom_jitter(width = .1, alpha=0.75) +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
-       subtitle= "... unterscheidet sich nach Kontinent.",
-       x = "Anzahl Freiwilliger",
-       y = "Kontinent") +
-  theme_minimal()
-
-```
-
-
-
-```{r graph übung, echo=FALSE}
-#Diese Graphik für firmen perspektive oder Plastik audit perspektive erstellen
-
-```
-
-
 
 ### Exploration mit statistischen Kennzahlen
+
+Was sind die top 3 Plastiktypen, die gefunden wurden? 
 
 https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_4_r_materials/day_4_part_2_key.R
 
