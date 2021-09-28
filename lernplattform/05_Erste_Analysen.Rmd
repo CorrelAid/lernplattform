@@ -173,8 +173,6 @@ audit_plastic<- audit_plastic %>%
 ```
 
 
-
-
 ### 1 Visuelle Exploration 
 
 
@@ -185,7 +183,7 @@ audit_plastic<- audit_plastic %>%
 - Wichtig erst visualisieren, dann zusammenfassende Statistik.
 - Ein Q&A mit den Daten machen - mit dem Wissen der Aktion, welche Fragen würdet ihr den Daten stellen wollen?
 
-- `ggplot2` ist ein Paket für gute Graphen in R.
+- `ggplot2` ist ein Paket für vielseitige Graphiken in R.
 - Es folgt der "Grammar of graphics".
 - Die Syntax entsteht Schicht-für-Schicht. Einzelne Bestandteile werden mit einem '+' hinzugefügt.
 - Die wichtigsten Schichten (Bestandteile) eines ggplots sind: 
@@ -194,24 +192,16 @@ audit_plastic<- audit_plastic %>%
 2. `aes()` - Die ästhetischen Attribute wie die x- oder y-Achse.
 3. `geom_*()` - Die geometrische Form, mit welcher die Werte dargestellt werden,
 
+Exemplarische Leitfrage zur Community Perspektive hier: Wie viele Teilnehmer? Insgesamt und nach Ländern? 
 
 
-Meine Ideen:
+<!-- Activism/ Audit Perspektive -->
+<!--   - Wievele Firmen? Insgesamt und nach Ländern? -->
+<!--   - Wieviel Plastik vo welcher Sorte? -->
 
-Community Perspektive  
-  - Wie viele Teilnehmer? Insgesamt und nach Ländern?
-  - Wie viele Events?
+<!-- - layered grammar -->
+<!-- - r4ds inspirierte Vorstellung von ggplot2 -->
 
-Activism/ Audit Perspektive
-  - Wievele Firmen? Insgesamt und nach Ländern?
-  - Wieviel Plastik vo welcher Sorte?
-  
-- layered grammar
-- r4ds inspirierte Vorstellung von ggplot2
-
-https://github.com/allisonhorst/stats-illustrations/
-
-Cedrics Blog verlinken
 
 ```{r geom-point-video, exercise=TRUE}
 
@@ -319,7 +309,7 @@ community %>%
 
 ```
 
-Jetzt kennen wir die Grundfunktionen von `ggplot`. Es ist ein sehr mächtiges Tool mit vielen Stellschrauben. Probiert gern noch mehr aus. ZUm Beispiel gibt es ganz viele `geom_` Optionen. Für die Analyse der Frage: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt? Könnten wir auch ein Balkendiagramm nutzen. `geom_bar(stat="identity")` summiert direkt die Freiwilligenanzahl je Kontinent. 
+Jetzt kennen wir die Grundfunktionen von `ggplot`. Es ist ein sehr mächtiges Tool mit vielen Stellschrauben. Probiert gern noch mehr aus. Zum Beispiel gibt es ganz viele `geom_` Optionen. Für die Analyse der Frage: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt? Könnten wir auch ein Balkendiagramm nutzen. `geom_bar(stat="identity")` summiert direkt die Freiwilligenanzahl je Kontinent. 
 
 ```{r geom_bar1,exercise=TRUE}
 
@@ -367,9 +357,6 @@ Leitfragen
 2. Wie viel Plastik wurde durchschnittlich je Kontinent gefunden? 
 3. Wie hoch sind die relativen Antile der Plastiktypen, die gefunden wurden? 
 
-https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_4_r_materials/day_4_part_2_key.R
-
-dplyr::group_by + summarize - a powerful combo
 
 Kurzstatistiken lassen sich ausgeben mit `summary()`
 
@@ -503,10 +490,8 @@ audit_plastic4<- audit_plastic2 %>%
   *Audit Perspektive*
   - Unterscheiden sich die Top3 Anteile der Plastik signifikant voneinander?
   
-https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_6_r_materials/day_6_key.Rmd
-
 
 ### Resourcen ZUsammenfassung
 
-- r4ds
+- r4ds: https://r4ds.had.co.nz/
 - https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
