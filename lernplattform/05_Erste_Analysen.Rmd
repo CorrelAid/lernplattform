@@ -20,17 +20,18 @@ https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
 
 
 ### Vorbereitung
-``` {r Pakete laden, echo=FALSE}
+``` {r Pakete laden, echo=FALSE,include=FALSE}
 
-library(tidyverse) 
+library(tidyverse)
 library(janitor)
 library(countrycode)
+library(learnr)
 
 ```
 
 
 
-``` {r einlesen}
+``` {r einlesen, include=FALSE}
 
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
@@ -39,12 +40,15 @@ plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 
 
 ``` {r Daten Struktur}
+#@ Nina gern in 04 übernehmen...
 
 str(plastics)
 
 ```
 
 ``` {r Daten Struktur 2}
+#@ Nina gern in 04 übernehmen...
+
 head(plastics)
 tail(plastics)
 ```
@@ -52,6 +56,7 @@ tail(plastics)
 
 
 ``` {r Daten Struktur 3}
+#@ Nina gern in 04 übernehmen...
 plastics %>%
         tabyl(country, year) %>%
           janitor::adorn_rounding(digits=2) %>%
@@ -59,8 +64,9 @@ plastics %>%
 ```
 
 
-``` {r Daten prep 1 }
+``` {r Daten prep 1 , include=FALSE}
 
+#@ Nina gern in 04 übernehmen...
 
 # Country name cleaning: 
   #United Kingdom of Great Britain & Northern Ireland ssowie für die USA
@@ -71,21 +77,28 @@ plastics_prep <- plastics %>%
          country = str_replace(country, "United States of America", "United States")) %>%
   #Continent und country code anspielen
   mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
-         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c"))
+         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
+  mutate(continent=replace_na(continent, "Unknown"),
+         countrycode=replace_na(countrycode, "Unknown"))
+
+#to do: ECUADOR etc case ändern
 
 ``` 
 
-``` {r Datensatz 1 community}
+``` {r Datensatz 1 community, include=FALSE}
+
+#@ Nina gern in 04 übernehmen...
 
 community<- plastics_prep %>%
-  select(country, year, num_events, volunteers, continent, countrycode) %>%
+  select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
   group_by(country, year) %>%
   filter(row_number()==1)
 
 ``` 
 
-``` {r Datensatz 2 audit}
+``` {r Datensatz 2 audit firm, include=FALSE}
 
+#@ Nina gern in 04 übernehmen...
 audit_firm<- plastics_prep %>%
   select(country, year, parent_company, grand_total, continent, countrycode) %>%
   # grandtotal zeilen löschen - ist schon in einer Spalte erfasst
@@ -93,7 +106,84 @@ audit_firm<- plastics_prep %>%
 
 ``` 
 
+``` {r Datensatz 3 audit plastik, include=FALSE}
+#@ Nina gern in 04 übernehmen...
 
+audit_plastic<- plastics_prep %>%
+  
+  # nur grandtotal zeile behalten
+  filter(parent_company=="Grand Total") %>%
+  select(-c(parent_company, num_events, volunteers,)) 
+#%>% pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "type", values_to = "amount")
+
+
+``` 
+
+Schau Dir an, wie die ersten Zeilen des `audit_plastic` Datensatz gefüllt sind.
+
+``` {r ersten5-zeilen, exercise=TRUE}
+head(audit_plastic)
+
+```
+
+Welche Werte nehmen die Variablen "pvc" und "empty" an? Letzeres sind Plastikteile, die gefunden aber nicht klassifiziert wurden. Prüfe dies mit dem folgenden Code Snippet.
+
+``` {r empty-pvc-kategorie, exercise=TRUE}
+
+audit_plastic %>%
+  tabyl(empty)
+
+audit_plastic %>%
+  tabyl(pvc)
+
+``` 
+
+```{r frage1, echo=FALSE}
+
+
+ #quiz(caption = NULL,
+
+
+   question("Welche Werte nehmen die Variablen 'pvc' nicht an?",
+     answer("9"),
+     answer("24"),
+     answer("0", correct = TRUE),
+     answer("188")
+     )
+
+   question("Welche Werte nehmen die Variablen 'empty' an?",
+     answer("0"),
+     answer("0 oder NA", correct = TRUE),
+     answer("11"),
+     answer("188")
+   )
+
+# )
+```
+
+```{r empty-loschen, exercise=TRUE, exercise.eval=TRUE}
+
+audit_plastic<- audit_plastic %>%
+  select(-empty)
+
+```
+
+```{r empty-loschen-hint}
+
+audit_plastic<- audit_plastic %>%
+  select(-empty)
+
+```
+
+Alle 'NA' Ausprägungen, wandeln wir in 0 um. Das ist kein allgemeingültig richtiger Umgang mit fehlenden Werten, aber für `audit_plastic` ergibt das Sinn.
+
+```{r na-in-zero, exercise=TRUE}
+
+audit_plastic<- audit_plastic %>%
+ mutate(
+    across(everything(), ~replace_na(.x, 0))
+  )
+```
 
 
 ### 1 Visuelle Exploration 
@@ -101,35 +191,139 @@ audit_firm<- plastics_prep %>%
 
 *dies sage ich im Video*
 
-- Wichtig erst viz dann statistik!
-- Ein Q&A mit den Daten machen - mit dem Wissen der Aktion, welche Fragen würdet ihr den Daten stellen wollen?
-- Meine Ideen:
+### Kernaussagen
 
-Community Perspektive  
-  - Wie viele Teilnehmer? Insgesamt und nach Ländern?
-  - Wie viele Events?
+- Wichtig erst visualisieren, dann zusammenfassende Statistik.
+- Ein Q&A mit den Daten machen: stellt ihnen Fragen, um die Daten kennenzulernen, sie zu plausibisieren und datengetrieben Insights für eure Organisation herauszuziehen.
 
-Activism Perspektive
-  - Wievele Firmen? Insgesamt und nach Ländern?
-  - 
+*Visualisierungstools in R*
+- `ggplot2` ist ein Paket für vielseitige Graphiken in R.
+- Es folgt der "Grammar of graphics".
+- Die Syntax entsteht Schicht-für-Schicht. Einzelne Bestandteile werden mit einem '+' hinzugefügt.
+- Die wichtigsten Schichten (Bestandteile) eines ggplots sind: 
+
+1. `data` - Der Datensatz.
+2. `aes()` - Die ästhetischen Attribute wie die x- oder y-Achse.
+3. `geom_*()` - Die geometrische Form, mit welcher die Werte dargestellt werden,
+
+
+<!-- Activism/ Audit Perspektive -->
+<!--   - Wievele Firmen? Insgesamt und nach Ländern? -->
+<!--   - Wieviel Plastik vo welcher Sorte? -->
+
+<!-- - layered grammar -->
+<!-- - r4ds inspirierte Vorstellung von ggplot2 -->
+
+Im Video, stellen wir uns die Frage: Welche Mengen an Plastikstücken wurden zusammengetragen? Das wäre eher eine  Dafür visualisieren wir vom Datensatz `audit_plastic` die `aes()`-Variablen continent und grand_total mit `geom_point` in einem Punktediagramm.
+
+```{r geom-point-video, exercise=TRUE}
+
+audit_plastic %>%
+  filter(grand_total>15000)
   
-- layered grammar
-- r4ds inspirierte Vorstellung von ggplot2
 
-https://github.com/allisonhorst/stats-illustrations/
+audit_plastic %>%
+  filter(continent!="Unknown") %>%
+  ggplot(aes(continent, grand_total)) +
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,15000)) +
+  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
+       subtitle= "... unterscheidet sich nach Kontinent.",
+       y = "Anzahl gefundener Plastikstücke",
+       x = "Kontinent",
+       caption = "In Nigeria, Philippinen und Taiwan wurden 19841, 28055 und \n120646 Plastikstücke gesammelt. Diese Beoachtungen \nwurden zur Lesbarkeit ausgeklammert.") +
+  theme_minimal()
 
-Cedrics Blog verlinken
+```
 
+Hier widmen wir uns der Community-Perspektive: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt?
 
-```{r grahik1, echo=FALSE}
+Wir beginnen mit dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästhetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
+
+```{r grahik1, exercise=TRUE}
 
 community %>%
   ggplot(aes(continent, volunteers))
 
 ```
 
+Nun fügen wir ein `geom_point` hinzu. 
 
-```{r grahik2, echo=FALSE}
+```{r geom-point1, exercise=TRUE}
+
+community %>%
+  ggplot(aes(continent, volunteers)) +
+  geom_point()
+
+```
+Mit `position = position_jitter(width=0.3)` schaffen wir es, dass die Punkte sich nicht alle überlagern. Mit `alpha = 0.6` werden die Punkte etwas transparent, mit `size=3` etwas größer und so auch einzeln besser sichtbar
+
+
+```{r geom-point2,exercise=TRUE}
+
+community %>%
+  ggplot(aes(continent, volunteers)) +
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6)
+
+```
+Findet heraus, welches Land hinter dieser extreme Beobachtung steckt
+
+
+```{r extreme-beob, exercise=TRUE}
+
+community %>%
+  filter(volunteers>20000)
+
+```
+
+Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen? Mit `coord_cartesian(ylim=c(0,10000))` können wir den Achsenauschnitt einschränken.
+
+```{r geom-point3,exercise=TRUE}
+
+community %>%
+  ggplot(aes(continent, volunteers)) +
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,10000)) 
+
+
+```
+
+Anmerkungen sind ganz wesentliche Bestandteile von Graphen. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf den Ursprung der Daten sowie das eine Beobachtung rausgenommen wurde sinnvoll. Dies lässt sich alles über `labs()` in die Graphik einfügen.
+
+```{r geom-point4,exercise=TRUE}
+
+community %>%
+ ggplot(aes(continent,  volunteers)) +
+  geom_point(position = position_jitter(width=0.3), size=2, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,10000)) +
+  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
+       subtitle= "... unterscheidet sich je nach Kontinent.",
+       y = "Anzahl Freiwilliger",
+       x = "Kontinent",
+       caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP") 
+
+```
+
+Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel mit `theme_minimal()`. Zu dem können wir die Kontinente nach Teilnehmerzahl sortieren.
+
+```{r geom-point5,exercise=TRUE}
+
+community %>%
+  ggplot(aes(reorder(continent, volunteers), volunteers)) +
+  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
+  coord_cartesian(ylim=c(0,10000)) +
+  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
+       subtitle= "... unterscheidet sich nach Kontinent.",
+       y = "Anzahl Freiwilliger",
+       x = "Kontinent",
+       caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP") +
+  theme_minimal()
+
+```
+
+Jetzt kennen wir die Grundfunktionen von `ggplot`. Es ist ein sehr mächtiges Tool mit vielen Stellschrauben. Probiert gern noch mehr aus. Zum Beispiel gibt es ganz viele `geom_` Optionen. Für die Analyse der Frage: wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt? Könnten wir auch ein Balkendiagramm nutzen. `geom_bar(stat="identity")` summiert direkt die Freiwilligenanzahl je Kontinent. 
+
+```{r geom_bar1,exercise=TRUE}
 
 community %>%
   ggplot(aes(volunteers, continent)) +
@@ -137,97 +331,264 @@ community %>%
 
 ```
 
+Hier könnte es sinnvoll sein, die Beobachtungen Kontinent "unkonwn" auszuklammern und nach der Gesamtzahl der Freiwilligen zu sortieren.  
 
-```{r grahik3, echo=FALSE}
+```{r geom_bar2,exercise=TRUE}
 
 community %>%
+  filter(continent != "Unknown") %>%
   ggplot(aes(volunteers, reorder(continent, volunteers))) +
-  geom_bar(stat="identity", position="dodge") +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
-      subtitle= "... unterscheidet sich nach Kontinent",
-      x = "Anzahl Freiwilliger",
+  geom_bar(stat = "identity")
+  
+  
+```
+
+Auch hier ist es wichtig, die Graphik gut zu beschriften. 
+
+```{r geombar3,exercise=TRUE}
+
+community %>%
+  filter(continent != "Unknown") %>%
+  ggplot(aes(volunteers, reorder(continent, volunteers))) +
+  geom_bar(stat = "identity") +
+  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
+      subtitle= "... unterscheidet sich je nach Kontinent",
+      x = "Gesamtzahl an Freiwilligen",
       y = "Kontinent") +
   theme_minimal()
   
 ```
 
 
-```{r grahik4 anderes geom, echo=FALSE}
-
-community %>%
-  ggplot(aes(reorder(continent, volunteers),volunteers)) +
-  geom_jitter(width = .1, alpha=0.75) +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
-       subtitle= "... unterscheidet sich nach Kontinent.",
-       x = "Anzahl Freiwilliger",
-       y = "Kontinent") +
-  theme_minimal()
-
-```
-
-
-```{r grahik5 outlier ausklammern anderes geom, echo=FALSE}
-
-community %>%
-  filter(iso_a3!="TWN") %>%
-  ggplot(aes(reorder(continent, volunteers), volunteers)) +
-  geom_jitter(width = .2, alpha=0.6, size=3) +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
-       subtitle= "... unterscheidet sich nach Kontinent.",
-       x = "Anzahl Freiwilliger",
-       y = "Kontinent") +
-  theme_minimal()
-
-```
-
-```{r graph übung, echo=FALSE}
-#Diese Graphik für firmen perspektive oder Plastik audit perspektive erstellen
-
-```
-
-
 
 ### Exploration mit statistischen Kennzahlen
 
-https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_4_r_materials/day_4_part_2_key.R
+*Möchte ich im Video sagen*
 
-dplyr::group_by + summarize - a powerful combo
 
-```{r Kurz Statistik}
-summary(plastics)
+Weiß ich noch nicht Ideen?
+
+## Kernaussagen
+
+Leitfragen
+
+1. Wie viel Plastik wurde insgesamt gesammelt? 
+2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?
+3. Wieviel Plastikarten wurden gesammelt?
+
+#Gibt es einen statistischen zusammenhang zwischen der Anzahl an Events und der Menge an Plastik?
+#Evtl.: Wie hoch sind die relativen Antile der Plastiktypen, die gefunden wurden? 
+
+
+Kurzstatistiken lassen sich ausgeben mit `summary()`
+
+```{r Kurz Statistik, exercise=TRUE}
+summary(audit_plastic)
+```
+
+```{r quiz kurzstatistik}
+
+quiz(caption = "",
+
+question("Wieviele Länder sind im Datensatz?",
+    answer("Kann man anhand des `summary()' Befehls nicht sagen."),
+    answer("2019"),
+    answer("52", correct = TRUE),
+    answer("13"),
+    random_answer_order = TRUE
+    ),
+
+  question("Wieviele Kontinente sind im Datensatz?",
+      answer("13"),
+      answer("3"),
+      answer("Kann man anhand des `summary()' Befehls nicht sagen.", correct = TRUE),
+      answer("52"),
+      random_answer_order = TRUE
+  )
+)
+```
+
+Ein sehr nützliche Kombination ist: `group_by()` und `summarize()`. Damit können wir erst Daten gruppieren, hier zum Beispiel nach Kontinenten, und dann Kennzahlen wie den Mittelwert und die Standardabweichung der gefundenen Plastikstücke pro Kontinent berechnen lassen. 
+
+```{r Gruppieren Statistik und Statistik ausgeben 1, exercise=TRUE}
+
+#audit_plastic<- audit_plastic %>%
+#  pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "plastic_type", values_to = "Amount")
+
+  
+#audit_plastic_sum<- 
+ 
+audit_plastic %>%
+  group_by(continent) %>%
+  summarize(menge_mittelw = mean(grand_total),
+            menge_sd = sd(grand_total)) 
+
+```
+
+```{r frage2, echo=FALSE}
+quiz(caption = NULL,
+  question("Welcher Kontinent hat durchschnittlich den höchsten am meisten Plastikstücke gesammelt? ('Unknown' außen vor gelassen)",
+    answer("Afrika"),
+    answer("Nord- und Südamerika"),
+    answer("Asien", correct = TRUE),
+    answer("Kann nicht aus der Tabelle abgelesen werden."),
+    random_answer_order = TRUE
+  ) ,  
+  question("Warum ist die Standardabweichung für Oceania 'NA'?",
+    answer("Weil keine Plastikstücke gefunden wurden."),
+    answer("Weil Oceanien nur drei Stück Plastik registiert haben"),
+    answer("Weil nur ein Land in Ozeanien mitgemacht hat.", correct = TRUE),
+    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
+    random_answer_order = TRUE
+  )
+
+)
+```
+
+Weitere interessante Kennzahlen sind: der Median und die Länderanzahl.
+
+```{r Gruppieren Statistik und Statistik ausgeben 2 , exercise=TRUE}
+
+audit_plastic %>%
+  group_by(continent) %>%
+  summarize(menge_mittelw = mean(grand_total),
+            menge_sd = sd(grand_total),
+            menge_median = median(grand_total),
+            länderanzahl = n()) 
+
+```
+
+```{r frage3, echo=FALSE}
+quiz(caption = NULL,
+     
+  question("Wieviel Länder habn sich in Asien beteiligt?",
+    answer("1"),
+    answer("11"),
+    answer("15"),
+    answer("17", correct = TRUE),
+    random_answer_order = TRUE
+  ),
+  
+  question("Warum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?",
+    answer("Weil in Asien die meisten Länder sich beteiligt haben."),
+    answer("Weil es einige wenige, extreme Beobachtungen gab.", correct = TRUE),
+    answer("Weil das eine Eigenschaft des Medians ist."),
+    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
+    random_answer_order = TRUE
+  )
+
+)
+```
+
+Im Folgenden beschränken wir unsere Analyse auf Europa und Asien, wo sich am meisten Länder beteiligt haben. 
+```{r audit Perspektive: nur Europa und Asien, exercise=TRUE}
+
+audit_plastic2<- audit_plastic %>%
+  filter(continent == "Europe" | continent == "Asia")
+```
+
+```{r audit Perspektive: erst zu einem langen Datensatz umwandeln}
+#@07 vielleicht das noch nutzen? Um auch die Arte von Plastik näher zu analysieren
+#audit_plastic_long<- audit_plastic2 %>%
+#   pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "type", values_to = "amount")
+
+```
+
+Wie viele unterschiedliche Plastikarten werden in den asiatischen und europäischen Ländern aufgesammelt?
+
+
+```{r anzahl plastikarten, exercise = TRUE}
+audit_plastic3 <- audit_plastic2 %>%
+  group_by(country) %>%
+  mutate(n_types=sum(!is.na(c(hdpe, ldpe, o, pet, pp, ps, pvc))))
+
+```
+
+```{r durchschnittliche Anzahl plastikarten je Kontinent, exercise = TRUE}
+audit_plastic3  %>%
+  group_by(continent) %>%
+  summarize(n_types_mean = mean(n_types),
+            n_types_sd = sd(n_types))
+
 ```
 
 
-```{r Gruppieren Statistik und Statistik ausgeben}
+```{r frage4, echo=FALSE}
+quiz(caption = NULL,
+     
+  question("Wo wurden im Durchschnitt mehr Plastikarten gesammelt?",
+    answer("In Europa"),
+    answer("In Asien.", correct = TRUE),
+    answer("Beide sind gleich auf"),
+    random_answer_order = TRUE
+  ),
+  
+  question("Auf welchem Kontinent vermutet ihr in den einzelnen Ländern auf Basis der Auswertung größere Abweichungen vom Mittelwert?",
+    answer("In Europa"),
+    answer("In Asien.", correct = TRUE),
+    answer("In beiden sind die Abweichungen gleich hoch."),
+    answer("Kann auf Basis der Auswertug nicht gesagt werden."),
+    random_answer_order = TRUE
+  )
 
+)
 
 ```
 
+#Vllt noch cor(community$num_events[community$country!="EMPTY"], community$volunteers[community$country!="EMPTY"])
 
-```{r audit Perspektive: Gruppieren Statistik und Statistik für top 3 ausgeben}
+### Exkurs: Teststatistik 
 
+*Möchte ich im Video sagen*
 
-```
+- Wofür braucht es Tetstatistik?
+- Spirit: Evaluation -- hat eine Maßnahme Unterschiede bewirkt?
+- Achtung - hier bewegen wir uns auf theoretisch gesehen auf neuem Territorium: Inferenzstatistik: wir schließen von unserer Stichprobe auf die Grundgesamtheit. Die Programmierung ist simple, damit es auch von der Interpretation her sinnvoll ist, müssen einige Annahmen gelten. Diese leiten wir hier nicht her, verweisen aber auf euer Statistikwissen oder Nachschlagewerk oder gute Youtube Videos zum Thema:  https://www.youtube.com/watch?v=RRIsBFW8ovc (2-sample test)
 
-
-### Teststatistik 
-
-*Sage ich im Video*
-
-- Spirit: Evaluation
-- Achtung - hier bewegen wir uns auf theoretisch gesehen auf neuem Territorium: Inferenzstatistik: wir schließen von unserer Stichprobe auf die Grundgesamtheit. Die Programmierung ist simple, damit es auch von der Interpretation her sinnvoll ist, müssen einige Annahmen gelten. Diese leiten wir hier nicht her, verweisen aber auf entweder euer Statistikwissen/ Nachschlagewerk oder: https://www.youtube.com/watch?v=RRIsBFW8ovc (2-sample test) oder https://www.youtube.com/watch?v=MCmZ-HXSZ4A (chi2 Test)
-- mögliche Fragen:
+- Mögliche weitere Fragen:
   
   *Community Perspektive*
   - mehr durchschnittliche Teilnehmer pro Event? (Länder im Vgl)
   
-  *Advocacy Perspektive*
-  - Unterscheiden sich die Anteile der Firmen/Plastik der top3 signifikant voneinander?
+  *Audit Perspektive*
+  - Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit?
+  - Unterscheiden sich die Top3 der Firmen je Land oder Kontinent signifikant voneinander?
+
+
+## Kernaussagen
+
+- Inferenzstatistik hat zum Ziel... 
+- Sie ist nützlich für die Evaluation von Maßnahmen, um wirklich Änderungen von statistischen Artefakten unterscheiden zu können. 
+- Zur Auffrischung von t-tests: https://www.youtube.com/watch?v=RRIsBFW8ovc (der gesamte Kanal ist empfehlenswert)
+
   
-https://github.com/allisonhorst/bren-phd-workshop-r-materials/blob/master/day_6_r_materials/day_6_key.Rmd
+Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, in dem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an Break Free vor Plastik beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch.  Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass es mehrere Grundgesamtheiten in Bezug Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen anders sein müssten.
+
+So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen zweiseitigen t-Test durchführt.  
+
+  
+```{r ttest Anzahl plastikarten je Kontinent gleich?, exercise = TRUE}
+
+t.test(audit_plastic3$n_types ~ as.factor(audit_plastic3$continent))
+
+```  
+  
+wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervallm das die 0 umschließt hin. In unserem Beispiel bedeutet dies, dass sich die Anzahl an plastikarten in Europa nicht systematisch von denen in Asien unterscheidet. zumindest können wir keinen robusten statistischen mutterschied feststellen. An dieser Stelle beenden wir die Einheit wohl wissend dass wir noch weitergehende Analysen durchführen könnten, zum Beispiel könnten wir die genaue Verteilung der einzelnen Plastikarten vergleichen.      
 
 
-### Resourcen ZUsammenfassung
+### Übung
 
-- r4ds
+Diese Woche möchten wir die Präsenzzeit nutzen, um diese Übungen zu besprechen. Kommt gerne mit euren Ideen Fragen Anregungen oder Kommentaren zu diesem Input. Es ist nicht schlimm, wenn diese Woche noch gar nichts (komplexes) klappt, da die strukturierte Einführung in R noch folgt. In dieser Einheit ging es erst einmal darum, das R-Eis zu brechen und in den Analyse Spirit einzutauchen.
+
+1. Versucht das zugehörige rmarkdown zum Laufen zu bringen und es nachzuvollziehen.
+
+2. Zur Diskussion: Welche Fragen möchtet ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert diese gern auf dem Papier bzw. überlegt 
+
+3. Erstelle ein Punktediagramm der Variablen Events und Anzahl der Teilnehmer:innen.
+
+4. Kennzahlen übung
+
+### Resourcen Zusammenfassung
+
+- r4ds: https://r4ds.had.co.nz/
 - https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
