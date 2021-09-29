@@ -1,6 +1,6 @@
 
 ## Datenschutz und Datenethik
-![*Video: Datenschutz und Datenethik (45min*)](https://www.youtube.com/watch?v=bnLceww8qRg)
+![*Video: Datenschutz und Datenethik (40min*)](https://youtu.be/16Un83i1YRY)
 
 ### Kernaussagen
 #### Datenschutz
@@ -23,8 +23,6 @@
 - Denkt bei der Programmierung von Algorithmen darüber nach, ob die zu treffende **Entscheidung** überhaupt **maschinell** anhand von sozio-demographischen Merkmalen und deren Proxies getroffen werden sollte - das gilt insbesondere bei Algorithmen, die über **Zugang zu essentiellen Bereichen** wie dem Arbeits- und Finanzmarkt entscheiden
 
 ### Quiz
-
-*Hier kannst Du dein Wissen überprüfen. Viel Spaß!*
 
 ```{r quiz}
 quiz(caption = NULL,
@@ -230,3 +228,13 @@ correct = "Richtig! Darüber hinaus gibt es aber noch wesentlich mehr Möglichke
   )
 )
 ```
+
+### Übung (optional)
+Ihr arbeitet mit personenbezogenen Daten und möchtet ein **Datenverarbeitungsverzeichnis** anlegen? Zur Erstellung eines solchen Verzeichnisses gibt es im Netz zahlreiche Informationen. Hier geht es zu den Veröffentlichungen der [Datenschutzkonferenz (DKI)](https://www.bfdi.bund.de/DE/Fachthemen/Inhalte/Allgemein/Verzeichnis-Verarbeitungstaetigkeiten.html){target="_blank"} und [bitkom](https://www.bitkom.org/sites/default/files/file/import/180529-LF-Verarbeitungsverzeichnis-online.pdf){target="_blank"}. 
+
+Wir haben für Euch zudem ein **Muster in Excel** erstellt, das Ihr [hier](https://correlaid.org/material/MusterDatenverarbeitungsverzeichnis.xlsx){target="_blank"} herunterladen könnt.
+
+<center>
+![*Template: Datenverarbeitungsverzeichnis](https://correlaid.org/material/Verarbeitungsverzeichnis.png){#id .class width=50% height=50%}
+</center>
+<br>

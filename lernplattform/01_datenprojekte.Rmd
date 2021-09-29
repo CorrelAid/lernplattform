@@ -9,6 +9,22 @@ Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webse
 - Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](correlaid.org){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **CorrelCon (jedes Jahr im November) und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**
 - Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}** vor
 
+### Quiz
+Derzeit sind 20 Data4Good-Projekte bei CorrelAid e.V. aktiv. Aber wie viele Projekte hat CorrelAid e.V. bereits abgeschlossen (Stand 2021)? Ersetzt in dem Codebeispiel unten den Wert für die Variable "abgeschlossene_projekte" mit der richtigen Zahl 30 und führt den Code aus.
+
+```{r projekte, exercise=TRUE}
+# Hier definieren wir die Variable "aktive_projekte" mit dem Wert 20
+aktive_projekte <- 20
+
+# An dieser Stelle dürft Ihr den Code angepassen
+abgeschlossene_projekte <- 0
+
+# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind. %d formatiert den Tag, %m den Monat und %y das Jahr. Als Trennungszeichen haben wir uns für "." entschieden.
+datum <- format(Sys.Date(),"%d.%m.%y")
+
+paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
+```
+
 ### Übung: Erste Ideen entwickeln
 Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
 

@@ -111,6 +111,27 @@ quiz(caption = NULL,
   )
 )
 ```
+
+Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
+
+Mit der Funktion **typeof(EureVariable)** könnt Ihr überprüfen, welches Datenformat bei Eurer Variable vorliegt. Testet die Funktion in Zeile 12 für Datumsformate und führt den Code aus.
+
+```{r datentypen, exercise=TRUE}
+# Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
+typeof("Hallo")
+
+# 20 ist eine Zahl - bei R bezeichnet man numerische Werte als "double", ganze Zahlen als "integer". 
+typeof(20)
+
+# Mit Funktionen wie "is.numeric(EureVariable) könnt Ihr ebenfalls überprüfen welches Datenformat vorliegt. Output der Funktion ist eine Variable vom Typ "logical" - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
+typeof(is.numeric(20))
+
+# Bei Datumsformaten geht R besonders klug vor. Testet hier die Varibale "datum" mit "typeof()". Was fällt Euch auf?
+datum <- Sys.Date()
+# Hier Euer Code
+class(datum)
+```
+
 ### Übung: Entwickelt Euren eigenen Data Use Case
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
 
