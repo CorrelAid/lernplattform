@@ -303,7 +303,10 @@ $(document).ready(function () {
 <p>Welche Werte nehmen die Variablen “pvc” und “empty” an? Letzeres sind Plastikteile, die gefunden aber nicht klassifiziert wurden. Prüfe dies mit dem folgenden Code Snippet.</p>
 <div class="tutorial-exercise" data-label="empty-pvc-kategorie" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>audit_plastic %&gt;%
-  tabyl(empty)</code></pre>
+  tabyl(empty)
+
+audit_plastic %&gt;%
+  tabyl(pvc)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="panel panel-default">
@@ -347,24 +350,21 @@ $(document).ready(function () {
 <div id="section-kernaussagen" class="section level3">
 <h3>Kernaussagen</h3>
 <ul>
-<li><p>Wichtig erst visualisieren, dann zusammenfassende Statistik.</p></li>
-<li><p>Ein Q&amp;A mit den Daten machen - mit dem Wissen der Aktion, welche Fragen würdet ihr den Daten stellen wollen?</p></li>
-<li><p><code>ggplot2</code> ist ein Paket für vielseitige Graphiken in R.</p></li>
-<li><p>Es folgt der “Grammar of graphics”.</p></li>
-<li><p>Die Syntax entsteht Schicht-für-Schicht. Einzelne Bestandteile werden mit einem ‘+’ hinzugefügt.</p></li>
-<li><p>Die wichtigsten Schichten (Bestandteile) eines ggplots sind:</p></li>
+<li>Wichtig erst visualisieren, dann zusammenfassende Statistik.</li>
+<li>Ein Q&amp;A mit den Daten machen: stellt ihnen Fragen, um die Daten kennenzulernen, sie zu plausibisieren und datengetrieben Insights für eure Organisation herauszuziehen.</li>
 </ul>
+<p><em>Visualisierungstools in R</em> - <code>ggplot2</code> ist ein Paket für vielseitige Graphiken in R. - Es folgt der “Grammar of graphics”. - Die Syntax entsteht Schicht-für-Schicht. Einzelne Bestandteile werden mit einem ‘+’ hinzugefügt. - Die wichtigsten Schichten (Bestandteile) eines ggplots sind:</p>
 <ol style="list-style-type: decimal">
 <li><code>data</code> - Der Datensatz.</li>
 <li><code>aes()</code> - Die ästhetischen Attribute wie die x- oder y-Achse.</li>
 <li><code>geom_*()</code> - Die geometrische Form, mit welcher die Werte dargestellt werden,</li>
 </ol>
-<p>Exemplarische Leitfrage zur Community Perspektive hier: Wie viele Teilnehmer? Insgesamt und nach Ländern?</p>
 <!-- Activism/ Audit Perspektive -->
 <!--   - Wievele Firmen? Insgesamt und nach Ländern? -->
 <!--   - Wieviel Plastik vo welcher Sorte? -->
 <!-- - layered grammar -->
 <!-- - r4ds inspirierte Vorstellung von ggplot2 -->
+<p>Im Video, stellen wir uns die Frage: Welche Mengen an Plastikstücken wurden zusammengetragen? Das wäre eher eine Dafür visualisieren wir vom Datensatz <code>audit_plastic</code> die <code>aes()</code>-Variablen continent und grand_total mit <code>geom_point</code> in einem Punktediagramm.</p>
 <div class="tutorial-exercise" data-label="geom-point-video" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>audit_plastic %&gt;%
   filter(grand_total&gt;15000)
@@ -383,7 +383,7 @@ audit_plastic %&gt;%
   theme_minimal()</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<p>Im Video visualisieren wir die Plastikmengen. Hier widmen wir uns der Community-Perspektive: wo haben sich wie viele Freiwillige an <em>Breaking Free From Plastic</em> beteiligt?</p>
+<p>Hier widmen wir uns der Community-Perspektive: wo haben sich wie viele Freiwillige an <em>Breaking Free From Plastic</em> beteiligt?</p>
 <p>Wir beginnen mit dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästhetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?</p>
 <div class="tutorial-exercise" data-label="grahik1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>community %&gt;%
@@ -410,7 +410,7 @@ audit_plastic %&gt;%
   filter(volunteers&gt;20000)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<p>Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen?</p>
+<p>Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen? Mit <code>coord_cartesian(ylim=c(0,10000))</code> können wir den Achsenauschnitt einschränken.</p>
 <div class="tutorial-exercise" data-label="geom-point3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>community %&gt;%
   ggplot(aes(continent, volunteers)) +
@@ -421,15 +421,14 @@ audit_plastic %&gt;%
 <p>Anmerkungen sind ganz wesentliche Bestandteile von Graphen. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf den Ursprung der Daten sowie das eine Beobachtung rausgenommen wurde sinnvoll. Dies lässt sich alles über <code>labs()</code> in die Graphik einfügen.</p>
 <div class="tutorial-exercise" data-label="geom-point4" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>community %&gt;%
-  #filter(countrycode!=&quot;TWN&quot;) %&gt;%
-  ggplot(aes(continent,  volunteers)) +
+ ggplot(aes(continent,  volunteers)) +
   geom_point(position = position_jitter(width=0.3), size=2, alpha = 0.6) + 
   coord_cartesian(ylim=c(0,10000)) +
   labs(title = &quot;Die Beteiligung an &#39;Break free from Plastik&#39; ...&quot; ,
        subtitle= &quot;... unterscheidet sich je nach Kontinent.&quot;,
        y = &quot;Anzahl Freiwilliger&quot;,
        x = &quot;Kontinent&quot;,
-       caption = &quot;In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert.&quot;) </code></pre>
+       caption = &quot;In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP&quot;) </code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <p>Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über <code>theme_()</code> ändern. Zum Beispiel in them_minimal(). Zu dem können wir die Kontinente nach Teilnehmerzahl sortieren</p>
@@ -442,7 +441,7 @@ audit_plastic %&gt;%
        subtitle= &quot;... unterscheidet sich nach Kontinent.&quot;,
        y = &quot;Anzahl Freiwilliger&quot;,
        x = &quot;Kontinent&quot;,
-       caption = &quot;In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert.&quot;) +
+       caption = &quot;In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP&quot;) +
   theme_minimal()</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
@@ -479,9 +478,9 @@ audit_plastic %&gt;%
 <h3>Exploration mit statistischen Kennzahlen</h3>
 <p>Leitfragen</p>
 <ol style="list-style-type: decimal">
-<li>Wie viel Plastik wurde durchschnittlich gefunden?</li>
-<li>Wie viel Plastik wurde durchschnittlich je Kontinent gefunden?</li>
-<li>Wie hoch sind die relativen Antile der Plastiktypen, die gefunden wurden?</li>
+<li>Wie viel Plastik wurde insgesamt gesammelt?</li>
+<li>Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?</li>
+<li>Gibt es einen statistischen zusammenhang zwischen der Anzahl an Events und der Menge an Plastik? Evtl.: Wie hoch sind die relativen Antile der Plastiktypen, die gefunden wurden?</li>
 </ol>
 <p>Kurzstatistiken lassen sich ausgeben mit <code>summary()</code></p>
 <pre><code>##    country               year           hdpe             ldpe         
@@ -544,9 +543,38 @@ audit_plastic %&gt;%
 <script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
 </div>
 </div>
-<pre><code>## `summarise()` has grouped output by &#39;continent&#39;. You can override using the `.groups` argument.
-## `summarise()` has grouped output by &#39;continent&#39;. You can override using the `.groups` argument.</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;continent&#39;. You can override using the `.groups` argument.</code></pre>
+<p>Wie viele unterschiedliche Plastikarten werden in den asiatischen und europäischen Ländern aufgesammelt?</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["continent"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n_types_mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n_types_sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Asia","2":"3.882353","3":"2.528403"},{"1":"Europe","2":"3.000000","3":"1.941451"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- ```{r plastikarten je Kontinent aufsummieren} -->
+<!-- audit_plastic3 <- audit_plastic_long %>% -->
+<!--   group_by(continent, type) %>% -->
+<!--   summarize(amount_sum=sum(amount)) -->
+<!-- audit_plastic3 <- audit_plastic_long %>% -->
+<!--   group_by(continent, type) %>% -->
+<!--   summarize(amount_sum=sum(amount, na.rm = TRUE), -->
+<!--             grand_total_sum = sum(grand_total, na.rm=TRUE)) %>% -->
+<!--   ungroup() -->
+<!-- ``` -->
+<!-- ```{r audit Perspektive: relative Häufigkeiten und danach sortieren} -->
+<!-- audit_plastic3<- audit_plastic3 %>% -->
+<!--    mutate(rel_frequency = amount_sum / grand_total_sum) %>% -->
+<!--    arrange(rel_frequency) -->
+<!-- ``` -->
+<!-- ```{r audit Perspektive: nach relative Häufigkeiten sortieren} -->
+<!-- audit_plastic3<- audit_plastic3 %>% -->
+<!--    #group_by(continent) %>% -->
+<!--    arrange(continent, rel_frequency) -->
+<!-- ``` -->
+<!-- ```{r top3 identifizieren} -->
+<!-- audit_plastic4<- audit_plastic2 %>% -->
+<!--   group_by(continent, type) %>% -->
+<!--   summarize(amount_sum=sum(amount, na.rm = TRUE)) %>% -->
+<!--   slice_max(order_by = amount_sum, n = 3) -->
+<!-- ``` -->
 </div>
 <div id="section-teststatistik" class="section level3">
 <h3>Teststatistik</h3>
@@ -564,9 +592,33 @@ audit_plastic %&gt;%
 <li>Unterscheiden sich die Top3 Anteile der Plastik signifikant voneinander?</li>
 </ul></li>
 </ul>
+<p>Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, in dem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an Break Free vor Plastik beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass es mehrere Grundgesamtheiten in Bezug Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen anders sein müssten.</p>
+<p>So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen zweiseitigen t-Test durchführt.</p>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  audit_plastic3$n_types by as.factor(audit_plastic3$continent)
+## t = 2.9474, df = 217.96, p-value = 0.003553
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.2923348 1.4723711
+## sample estimates:
+##   mean in group Asia mean in group Europe 
+##             3.882353             3.000000</code></pre>
+<p>To Do : Interpretation</p>
+</div>
+<div id="section-übung" class="section level3">
+<h3>Übung</h3>
+<p>Diese Woche möchten wir die Präsenzzeit nutzen, um diese Übungen zu besprechen. Kommt gerne mit euren Ideen Fragen Anregungen oder Kommentaren zu diesem Input. Es ist nicht schlimm, wenn diese Woche noch gar nichts (komplexes) klappt, da die strukturierte Einführung in R noch folgt. In dieser Einheit ging es erst einmal darum, das R-Eis zu brechen und in den Analyse Spirit einzutauchen.</p>
+<ol style="list-style-type: decimal">
+<li><p>Versucht das zugehörige rmarkdown zum Laufen zu bringen und es nachzuvollziehen.</p></li>
+<li><p>Zur Diskussion: Welche Fragen möchtet ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert diese gern auf dem Papier bzw. überlegt</p></li>
+<li><p>Erstelle ein Punktediagramm der Variablen Events und</p></li>
+<li><p>Kennzahlen übung</p></li>
+</ol>
 </div>
 <div id="section-resourcen-zusammenfassung" class="section level3">
-<h3>Resourcen ZUsammenfassung</h3>
+<h3>Resourcen Zusammenfassung</h3>
 <ul>
 <li>r4ds: <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></li>
 <li><a href="https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/" class="uri">https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/</a></li>
@@ -625,11 +677,11 @@ output$`tutorial-exercise-empty-pvc-kategorie-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage1", question = structure("Welche Werte nehmen die Variablen &#39;pvc&#39; nicht an?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_e9f6147",     option = "9", value = "9", label = structure("9", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9ded487",     option = "24", value = "24", label = structure("24", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7150aa6",     option = "0", value = "0", label = structure("0", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1213857",     option = "188", value = "188", label = structure("188", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage1-answer", question = "frage1"), loading = structure("<strong>Loading:<\u002fstrong> \nWelche Werte nehmen die Variablen &#39;pvc&#39; nicht an?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 758588613.146755, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage1", question = structure("Welche Werte nehmen die Variablen &#39;pvc&#39; nicht an?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_53658d6",     option = "9", value = "9", label = structure("9", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1c1b89a",     option = "24", value = "24", label = structure("24", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8d169bd",     option = "0", value = "0", label = structure("0", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7cde2b",     option = "188", value = "188", label = structure("188", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage1-answer", question = "frage1"), loading = structure("<strong>Loading:<\u002fstrong> \nWelche Werte nehmen die Variablen &#39;pvc&#39; nicht an?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 1448509854.32548, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage1", question = structure("Welche Werte nehmen die Variablen &#39;empty&#39; an?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_5fa3cea",     option = "0", value = "0", label = structure("0", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_83f0c0a",     option = "0 oder NA", value = "0 oder NA", label = structure("0 oder NA", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1a1521e",     option = "11", value = "11", label = structure("11", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2368417",     option = "188", value = "188", label = structure("188", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage1-answer", question = "frage1"), loading = structure("<strong>Loading:<\u002fstrong> \nWelche Werte nehmen die Variablen &#39;empty&#39; an?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 1872015889.12827, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage1", question = structure("Welche Werte nehmen die Variablen &#39;empty&#39; an?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_e5b1407",     option = "0", value = "0", label = structure("0", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_895e83",     option = "0 oder NA", value = "0 oder NA", label = structure("0 oder NA", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8f6e734",     option = "11", value = "11", label = structure("11", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_322ef4b",     option = "188", value = "188", label = structure("188", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage1-answer", question = "frage1"), loading = structure("<strong>Loading:<\u002fstrong> \nWelche Werte nehmen die Variablen &#39;empty&#39; an?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 354138660.335091, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -724,15 +776,15 @@ output$`tutorial-exercise-geombar3-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage2", question = structure("Warum ist die Standardabweichung für Oceania &#39;NA&#39;?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_d99fb30",     option = "Weil keine Plastikstücke gefunden wurden.", value = "Weil keine Plastikstücke gefunden wurden.",     label = structure("Weil keine Plastikstücke gefunden wurden.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d2c1d79",     option = "Weil Oceanien nur drei Stück Plastik registiert haben",     value = "Weil Oceanien nur drei Stück Plastik registiert haben",     label = structure("Weil Oceanien nur drei Stück Plastik registiert haben", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_99a1abd",     option = "Weil nur ein Land in Ozeanien mitgemacht hat.",     value = "Weil nur ein Land in Ozeanien mitgemacht hat.",     label = structure("Weil nur ein Land in Ozeanien mitgemacht hat.", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9aa39da",     option = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     value = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     label = structure("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage2-answer", question = "frage2"), loading = structure("<strong>Loading:<\u002fstrong> \nWarum ist die Standardabweichung für Oceania &#39;NA&#39;?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 1496865720.30297, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage2", question = structure("Warum ist die Standardabweichung für Oceania &#39;NA&#39;?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_df1f779",     option = "Weil keine Plastikstücke gefunden wurden.", value = "Weil keine Plastikstücke gefunden wurden.",     label = structure("Weil keine Plastikstücke gefunden wurden.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6037f06",     option = "Weil Oceanien nur drei Stück Plastik registiert haben",     value = "Weil Oceanien nur drei Stück Plastik registiert haben",     label = structure("Weil Oceanien nur drei Stück Plastik registiert haben", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_691a9e4",     option = "Weil nur ein Land in Ozeanien mitgemacht hat.",     value = "Weil nur ein Land in Ozeanien mitgemacht hat.",     label = structure("Weil nur ein Land in Ozeanien mitgemacht hat.", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d070ff7",     option = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     value = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     label = structure("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage2-answer", question = "frage2"), loading = structure("<strong>Loading:<\u002fstrong> \nWarum ist die Standardabweichung für Oceania &#39;NA&#39;?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 1801517992.6611, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage3", question = structure("Wieviel Länder habn sich in Asien beteiligt?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_659ec6c",     option = "1", value = "1", label = structure("1", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1ced353",     option = "11", value = "11", label = structure("11", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2c12c9",     option = "15", value = "15", label = structure("15", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_162fe35",     option = "17", value = "17", label = structure("17", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage3-answer", question = "frage3"), loading = structure("<strong>Loading:<\u002fstrong> \nWieviel Länder habn sich in Asien beteiligt?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 207132150.903547, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage3", question = structure("Wieviel Länder habn sich in Asien beteiligt?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_cb6613f",     option = "1", value = "1", label = structure("1", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9003b86",     option = "11", value = "11", label = structure("11", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_24caa4b",     option = "15", value = "15", label = structure("15", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a5f8d74",     option = "17", value = "17", label = structure("17", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage3-answer", question = "frage3"), loading = structure("<strong>Loading:<\u002fstrong> \nWieviel Länder habn sich in Asien beteiligt?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 1574694988.76673, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage3", question = structure("Warum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_8ca52b1",     option = "Weil in Asien die meisten Länder sich beteiligt haben.",     value = "Weil in Asien die meisten Länder sich beteiligt haben.",     label = structure("Weil in Asien die meisten Länder sich beteiligt haben.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_632071b",     option = "Weil es einige wenige, extreme Beobachtungen gab.",     value = "Weil es einige wenige, extreme Beobachtungen gab.",     label = structure("Weil es einige wenige, extreme Beobachtungen gab.", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1398641",     option = "Weil das eine Eigenschaft des Medians ist.", value = "Weil das eine Eigenschaft des Medians ist.",     label = structure("Weil das eine Eigenschaft des Medians ist.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3e48f9c",     option = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     value = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     label = structure("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage3-answer", question = "frage3"), loading = structure("<strong>Loading:<\u002fstrong> \nWarum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 621077594.210788, options = list()), class = c("learnr_radio", "tutorial_question")))
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "frage3", question = structure("Warum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?", html = TRUE, class = c("html", "character")), answers = list(structure(list(id = "lnr_ans_716c7f2",     option = "Weil in Asien die meisten Länder sich beteiligt haben.",     value = "Weil in Asien die meisten Länder sich beteiligt haben.",     label = structure("Weil in Asien die meisten Länder sich beteiligt haben.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5bbf701",     option = "Weil es einige wenige, extreme Beobachtungen gab.",     value = "Weil es einige wenige, extreme Beobachtungen gab.",     label = structure("Weil es einige wenige, extreme Beobachtungen gab.", html = TRUE, class = c("html",     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_259c7d0",     option = "Weil das eine Eigenschaft des Medians ist.", value = "Weil das eine Eigenschaft des Medians ist.",     label = structure("Weil das eine Eigenschaft des Medians ist.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer")), structure(list(id = "lnr_ans_170c837",     option = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     value = "Kann eigentlich nicht sein. Deutet auf einen Fehler hin.",     label = structure("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.", html = TRUE, class = c("html",     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", "character")), try_again = structure("Try Again", html = TRUE, class = c("html", "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", "character")), message = NULL, post_message = NULL), ids = list(    answer = "frage3-answer", question = "frage3"), loading = structure("<strong>Loading:<\u002fstrong> \nWarum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?\n<br/><br/><br/>", html = TRUE, class = c("html", "character")), random_answer_order = FALSE, allow_retry = FALSE,     seed = 1217949349.93285, options = list()), class = c("learnr_radio", "tutorial_question")))
 </script>
  <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">

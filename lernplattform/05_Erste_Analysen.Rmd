@@ -25,6 +25,7 @@ https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
 library(tidyverse)
 library(janitor)
 library(countrycode)
+library(learnr)
 
 ```
 
@@ -140,15 +141,15 @@ audit_plastic %>%
 ```{r frage1, echo=FALSE}
 
 
- quiz(caption = NULL,
+ #quiz(caption = NULL,
 
 
    question("Welche Werte nehmen die Variablen 'pvc' nicht an?",
      answer("9"),
      answer("24"),
      answer("0", correct = TRUE),
-     answer("188"),
-   ),
+     answer("188")
+     )
 
    question("Welche Werte nehmen die Variablen 'empty' an?",
      answer("0"),
@@ -157,7 +158,7 @@ audit_plastic %>%
      answer("188")
    )
 
- )
+# )
 ```
 
 ```{r empty-loschen, exercise=TRUE, exercise.eval=TRUE}
@@ -303,7 +304,7 @@ community %>%
 
 ```
 
-Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel in them_minimal(). Zu dem können wir die Kontinente nach Teilnehmerzahl sortieren
+Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel mit `theme_minimal()`. Zu dem können wir die Kontinente nach Teilnehmerzahl sortieren.
 
 ```{r geom-point5,exercise=TRUE}
 
@@ -362,23 +363,54 @@ community %>%
 
 ### Exploration mit statistischen Kennzahlen
 
+*Möchte ich im Video sagen*
+
+
+Weiß ich noch nicht Ideen?
+
+## Kernaussagen
+
 Leitfragen
 
 1. Wie viel Plastik wurde insgesamt gesammelt? 
 2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?
-3. Gibt es einen statistischen zusammenhang zwischen der Anzahl an Events und der Menge an Plastik?
-Evtl.: Wie hoch sind die relativen Antile der Plastiktypen, die gefunden wurden? 
+3. Wieviel Plastikarten wurden gesammelt?
+
+#Gibt es einen statistischen zusammenhang zwischen der Anzahl an Events und der Menge an Plastik?
+#Evtl.: Wie hoch sind die relativen Antile der Plastiktypen, die gefunden wurden? 
 
 
 Kurzstatistiken lassen sich ausgeben mit `summary()`
 
-```{r Kurz Statistik}
+```{r Kurz Statistik, exercise=TRUE}
 summary(audit_plastic)
 ```
 
-Ein sehr nützliche Kombination ist: `group_by()` und `summarize()`. Damit können wir Daten gruppieren und Kennzahlen wie den Mittelwert und die Standardabweichung der gefundenen Plastikstücke ausrechnen lassen.
+```{r quiz kurzstatistik}
 
-```{r Gruppieren Statistik und Statistik ausgeben 1}
+quiz(caption = "",
+
+question("Wieviele Länder sind im Datensatz?",
+    answer("Kann man anhand des `summary()' Befehls nicht sagen."),
+    answer("2019"),
+    answer("52", correct = TRUE),
+    answer("13"),
+    random_answer_order = TRUE
+    ),
+
+  question("Wieviele Kontinente sind im Datensatz?",
+      answer("13"),
+      answer("3"),
+      answer("Kann man anhand des `summary()' Befehls nicht sagen.", correct = TRUE),
+      answer("52"),
+      random_answer_order = TRUE
+  )
+)
+```
+
+Ein sehr nützliche Kombination ist: `group_by()` und `summarize()`. Damit können wir erst Daten gruppieren, hier zum Beispiel nach Kontinenten, und dann Kennzahlen wie den Mittelwert und die Standardabweichung der gefundenen Plastikstücke pro Kontinent berechnen lassen. 
+
+```{r Gruppieren Statistik und Statistik ausgeben 1, exercise=TRUE}
 
 #audit_plastic<- audit_plastic %>%
 #  pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "plastic_type", values_to = "Amount")
@@ -395,12 +427,19 @@ audit_plastic %>%
 
 ```{r frage2, echo=FALSE}
 quiz(caption = NULL,
-     
+  question("Welcher Kontinent hat durchschnittlich den höchsten am meisten Plastikstücke gesammelt? ('Unknown' außen vor gelassen)",
+    answer("Afrika"),
+    answer("Nord- und Südamerika"),
+    answer("Asien", correct = TRUE),
+    answer("Kann nicht aus der Tabelle abgelesen werden."),
+    random_answer_order = TRUE
+  ) ,  
   question("Warum ist die Standardabweichung für Oceania 'NA'?",
     answer("Weil keine Plastikstücke gefunden wurden."),
     answer("Weil Oceanien nur drei Stück Plastik registiert haben"),
     answer("Weil nur ein Land in Ozeanien mitgemacht hat.", correct = TRUE),
-    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.")
+    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
+    random_answer_order = TRUE
   )
 
 )
@@ -408,7 +447,7 @@ quiz(caption = NULL,
 
 Weitere interessante Kennzahlen sind: der Median und die Länderanzahl.
 
-```{r Gruppieren Statistik und Statistik ausgeben 2}
+```{r Gruppieren Statistik und Statistik ausgeben 2 , exercise=TRUE}
 
 audit_plastic %>%
   group_by(continent) %>%
@@ -426,43 +465,46 @@ quiz(caption = NULL,
     answer("1"),
     answer("11"),
     answer("15"),
-    answer("17", correct = TRUE)
+    answer("17", correct = TRUE),
+    random_answer_order = TRUE
   ),
   
   question("Warum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?",
     answer("Weil in Asien die meisten Länder sich beteiligt haben."),
     answer("Weil es einige wenige, extreme Beobachtungen gab.", correct = TRUE),
     answer("Weil das eine Eigenschaft des Medians ist."),
-    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin.")
+    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
+    random_answer_order = TRUE
   )
 
 )
 ```
 
-
-```{r audit Perspektive: nur Europa und Asien}
+Im Folgenden beschränken wir unsere Analyse auf Europa und Asien, wo sich am meisten Länder beteiligt haben. 
+```{r audit Perspektive: nur Europa und Asien, exercise=TRUE}
 
 audit_plastic2<- audit_plastic %>%
   filter(continent == "Europe" | continent == "Asia")
 ```
 
 ```{r audit Perspektive: erst zu einem langen Datensatz umwandeln}
-
-audit_plastic_long<- audit_plastic2 %>%
-   pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "type", values_to = "amount")
+#@07 vielleicht das noch nutzen? Um auch die Arte von Plastik näher zu analysieren
+#audit_plastic_long<- audit_plastic2 %>%
+#   pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "type", values_to = "amount")
 
 ```
 
 Wie viele unterschiedliche Plastikarten werden in den asiatischen und europäischen Ländern aufgesammelt?
 
-```{r anzahl plastikarten}
-audit_plastic3 <- audit_plastic_long %>%
+
+```{r anzahl plastikarten, exercise = TRUE}
+audit_plastic3 <- audit_plastic2 %>%
   group_by(country) %>%
-  mutate(n_types=sum(!is.na(amount)))
+  mutate(n_types=sum(!is.na(c(hdpe, ldpe, o, pet, pp, ps, pvc))))
 
 ```
 
-```{r durchschnittliche Anzahl plastikarten je Kontinent}
+```{r durchschnittliche Anzahl plastikarten je Kontinent, exercise = TRUE}
 audit_plastic3  %>%
   group_by(continent) %>%
   summarize(n_types_mean = mean(n_types),
@@ -471,77 +513,68 @@ audit_plastic3  %>%
 ```
 
 
+```{r frage4, echo=FALSE}
+quiz(caption = NULL,
+     
+  question("Wo wurden im Durchschnitt mehr Plastikarten gesammelt?",
+    answer("In Europa"),
+    answer("In Asien.", correct = TRUE),
+    answer("Beide sind gleich auf"),
+    random_answer_order = TRUE
+  ),
+  
+  question("Auf welchem Kontinent vermutet ihr in den einzelnen Ländern auf Basis der Auswertung größere Abweichungen vom Mittelwert?",
+    answer("In Europa"),
+    answer("In Asien.", correct = TRUE),
+    answer("In beiden sind die Abweichungen gleich hoch."),
+    answer("Kann auf Basis der Auswertug nicht gesagt werden."),
+    random_answer_order = TRUE
+  )
 
+)
 
-<!-- ```{r plastikarten je Kontinent aufsummieren} -->
-<!-- audit_plastic3 <- audit_plastic_long %>% -->
-<!--   group_by(continent, type) %>% -->
-<!--   summarize(amount_sum=sum(amount)) -->
+```
 
+#Vllt noch cor(community$num_events[community$country!="EMPTY"], community$volunteers[community$country!="EMPTY"])
 
-<!-- audit_plastic3 <- audit_plastic_long %>% -->
-<!--   group_by(continent, type) %>% -->
-<!--   summarize(amount_sum=sum(amount, na.rm = TRUE), -->
-<!--             grand_total_sum = sum(grand_total, na.rm=TRUE)) %>% -->
-<!--   ungroup() -->
+### Exkurs: Teststatistik 
 
-<!-- ``` -->
+*Möchte ich im Video sagen*
 
-<!-- ```{r audit Perspektive: relative Häufigkeiten und danach sortieren} -->
+- Wofür braucht es Tetstatistik?
+- Spirit: Evaluation -- hat eine Maßnahme Unterschiede bewirkt?
+- Achtung - hier bewegen wir uns auf theoretisch gesehen auf neuem Territorium: Inferenzstatistik: wir schließen von unserer Stichprobe auf die Grundgesamtheit. Die Programmierung ist simple, damit es auch von der Interpretation her sinnvoll ist, müssen einige Annahmen gelten. Diese leiten wir hier nicht her, verweisen aber auf euer Statistikwissen oder Nachschlagewerk oder gute Youtube Videos zum Thema:  https://www.youtube.com/watch?v=RRIsBFW8ovc (2-sample test)
 
-<!-- audit_plastic3<- audit_plastic3 %>% -->
-<!--    mutate(rel_frequency = amount_sum / grand_total_sum) %>% -->
-<!--    arrange(rel_frequency) -->
-
-<!-- ``` -->
-
-<!-- ```{r audit Perspektive: nach relative Häufigkeiten sortieren} -->
-
-<!-- audit_plastic3<- audit_plastic3 %>% -->
-<!--    #group_by(continent) %>% -->
-<!--    arrange(continent, rel_frequency) -->
-
-<!-- ``` -->
-
-
-<!-- ```{r top3 identifizieren} -->
-<!-- audit_plastic4<- audit_plastic2 %>% -->
-<!--   group_by(continent, type) %>% -->
-<!--   summarize(amount_sum=sum(amount, na.rm = TRUE)) %>% -->
-<!--   slice_max(order_by = amount_sum, n = 3) -->
-
-<!-- ``` -->
-
-
-### Teststatistik 
-
-*Sage ich im Video*
-
-- Spirit: Evaluation
-- Achtung - hier bewegen wir uns auf theoretisch gesehen auf neuem Territorium: Inferenzstatistik: wir schließen von unserer Stichprobe auf die Grundgesamtheit. Die Programmierung ist simple, damit es auch von der Interpretation her sinnvoll ist, müssen einige Annahmen gelten. Diese leiten wir hier nicht her, verweisen aber auf entweder euer Statistikwissen/ Nachschlagewerk oder: https://www.youtube.com/watch?v=RRIsBFW8ovc (2-sample test) oder https://www.youtube.com/watch?v=MCmZ-HXSZ4A (chi2 Test)
-- mögliche Fragen:
+- Mögliche weitere Fragen:
   
   *Community Perspektive*
   - mehr durchschnittliche Teilnehmer pro Event? (Länder im Vgl)
   
   *Audit Perspektive*
-  - Unterscheiden sich die Top3 Anteile der Plastik signifikant voneinander?
+  - Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit?
+  - Unterscheiden sich die Top3 der Firmen je Land oder Kontinent signifikant voneinander?
 
 
-Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit?
-Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, in dem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an Break Free vor Plastik beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch.  Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass es mehrere Grundgesamtheiten in Bezug Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen anders sein müssten.
+## Kernaussagen
+
+- Inferenzstatistik hat zum Ziel... 
+- Sie ist nützlich für die Evaluation von Maßnahmen, um wirklich Änderungen von statistischen Artefakten unterscheiden zu können. 
+- Zur Auffrischung von t-tests: https://www.youtube.com/watch?v=RRIsBFW8ovc (der gesamte Kanal ist empfehlenswert)
+
+  
+Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, in dem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an Break Free vor Plastik beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch.  Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass es mehrere Grundgesamtheiten in Bezug Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen anders sein müssten.
 
 So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen zweiseitigen t-Test durchführt.  
 
   
-```{r ttest Anzahl plastikarten je Kontinent gleich?}
+```{r ttest Anzahl plastikarten je Kontinent gleich?, exercise = TRUE}
 
 t.test(audit_plastic3$n_types ~ as.factor(audit_plastic3$continent))
 
 ```  
   
-  
-  To Do : Interpretation
+wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervallm das die 0 umschließt hin. In unserem Beispiel bedeutet dies, dass sich die Anzahl an plastikarten in Europa nicht systematisch von denen in Asien unterscheidet. zumindest können wir keinen robusten statistischen mutterschied feststellen. An dieser Stelle beenden wir die Einheit wohl wissend dass wir noch weitergehende Analysen durchführen könnten, zum Beispiel könnten wir die genaue Verteilung der einzelnen Plastikarten vergleichen.      
+
 
 ### Übung
 
@@ -551,7 +584,7 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um diese Übungen zu bespreche
 
 2. Zur Diskussion: Welche Fragen möchtet ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert diese gern auf dem Papier bzw. überlegt 
 
-3. Erstelle ein Punktediagramm der Variablen Events und
+3. Erstelle ein Punktediagramm der Variablen Events und Anzahl der Teilnehmer:innen.
 
 4. Kennzahlen übung
 
