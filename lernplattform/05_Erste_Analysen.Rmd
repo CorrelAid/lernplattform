@@ -275,7 +275,7 @@ community %>%
 
 ```
 
-Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen?
+Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen? Mit `coord_cartesian(ylim=c(0,10000))` können wir den Achsenauschnitt einschränken.
 
 ```{r geom-point3,exercise=TRUE}
 
@@ -545,11 +545,15 @@ t.test(audit_plastic3$n_types ~ as.factor(audit_plastic3$continent))
 
 ### Übung
 
-1. ZUr Diskussion: Welche Fragen möchtet ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen?
+Diese Woche möchten wir die Präsenzzeit nutzen, um diese Übungen zu besprechen. Kommt gerne mit euren Ideen Fragen Anregungen oder Kommentaren zu diesem Input. Es ist nicht schlimm, wenn diese Woche noch gar nichts (komplexes) klappt, da die strukturierte Einführung in R noch folgt. In dieser Einheit ging es erst einmal darum, das R-Eis zu brechen und in den Analyse Spirit einzutauchen.
 
-2. Visualisierunsübung
+1. Versucht das zugehörige rmarkdown zum Laufen zu bringen und es nachzuvollziehen.
 
-3. Kennzahlen übung
+2. Zur Diskussion: Welche Fragen möchtet ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert diese gern auf dem Papier bzw. überlegt 
+
+3. Erstelle ein Punktediagramm der Variablen Events und
+
+4. Kennzahlen übung
 
 ### Resourcen Zusammenfassung
 
