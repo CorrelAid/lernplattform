@@ -386,7 +386,7 @@ Leitfragen
 
 Kurzstatistiken lassen sich ausgeben mit `summary()`
 
-```{r Kurz Statistik, exercise=TRUE}
+```{r Kurz_Statistik, exercise=TRUE}
 summary(audit_plastic)
 ```
 
