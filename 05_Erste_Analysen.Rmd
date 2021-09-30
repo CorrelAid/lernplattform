@@ -1,8 +1,9 @@
 ## Erste Datenanalysen in R
 
-*dies sage ich im Video*
+*dies möchte ich im Video sagen*
 
-Was machen wir in dieser Einheit? Noch mehr Lust bekommen auf Arbeit mit Daten. Daher starten wir direkt mit einem Anwendungsbeispiel. Hier geht es darum große Konzepte kennenzulernen und so Details zu wie das genau alles implementiert wird, die im Kursverlauf kommen, besser einordnen zu können.
+
+Was machen wir in dieser Einheit? Noch mehr Lust bekommen auf Arbeit mit Daten. Daher starten wir direkt mit einem Anwendungsbeispiel. Hier geht es darum, in den Analyse-Spirit zu kommen und R als Analysetool kennenzulernen.  So könnt ihr Details, wie das genau alles implementiert wird, die im Kursverlauf besprochen werden, besser einordnen zu können.
 
 gern an einem eigenen datensatz nachmachen
 
@@ -12,11 +13,14 @@ Agenda der Einheit
 2. Kompakte statistische Kennzahlen erstellen
 3. Inferenz: Teststatistik erstellen und interpretieren
 
-Datensatz von TidyTuesday vorstellen
 
-https://de.wikipedia.org/wiki/Recycling-Code
 
-https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26
+<!-- @Nina - diese 3 punkte kannst du vllt mit übernehmen -->
+<!-- Datensatz von TidyTuesday vorstellen -->
+
+<!-- https://de.wikipedia.org/wiki/Recycling-Code -->
+
+<!-- https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26 -->
 
 
 ### Vorbereitung
