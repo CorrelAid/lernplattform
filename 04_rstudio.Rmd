@@ -8,11 +8,13 @@ Placeholder: Video (15min)
 #### Programmierumgebung
 - R ist eine **freie, statistische Programmiersprache**
 - RStudio ist auf R spezialisierte **integrierte Entwicklungsumgebung** (eng. Integrated Development Environment oder IDE), in der wir Code schreiben, ausführen, auf Dokumentation und Dateien zugreifen, unsere Arbeit mit Anderen teilen können uvm.
+- 
 
 #### Dateiformate
 - Wenn wir **PDF- oder HTML-Reporte** erstellen möchten, ist **R Markdown** für uns das richtige Format
-- Interaktive Visualisierungen können wir mit **Shiny Web Apps** programmieren
+- **Interaktive Visualisierungen** können wir mit **Shiny Web Apps** programmieren
 - Daneben gibt es weitere nützliche Dateiformate wie R Präsentationen und das simple R-Skript sowie Mustervorlagen wie zum Beispiel das **"learnR"-Package** für digitales Lernen, mit dem wir auch diese Lernplattform programmiert haben
+- Zu einem späteren Zeitpunkt werdet Ihr auch **R-Projekte** nutzen, die eine gesamte **Dateistruktur aus mehreren R-Dateien, zugrundeliegenden Daten und sonstigen Dateien** in einem **leicht teilbaren Format** speichern (Wenn Ihr Euch dafür jetzt schon interessiert, könnt Ihr [hier](https://r4ds.had.co.nz/workflow-projects.html){target = "_blank"} mehr dazu lesen)
 
 *Here's a simple exercise with an empty code chunk provided for entering the answer.*
 
