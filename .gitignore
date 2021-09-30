@@ -4,6 +4,7 @@
 
 # Session Data files
 .RData
+/lernplattform/lernplattform.html
 
 # User-specific files
 .Ruserdata

@@ -1,0 +1,51 @@
+## Einführung in RStudio
+
+Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr **[R](https://ftp.fau.de/cran/){target = "_blank"}** und **[RStudio](https://rstudio.com/products/rstudio/download/#download){target = "_blank"}**. Versucht gerne selbst beide Programme für das Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per E-Mail** an Nina (nina.h@correlaid.org) kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
+
+Placeholder: Video (15min)
+
+### Kernaussagen 
+#### Programmierumgebung
+- R ist eine **freie, statistische Programmiersprache**
+- RStudio ist auf R spezialisierte **integrierte Entwicklungsumgebung** (eng. Integrated Development Environment oder IDE), in der wir Code schreiben, ausführen, auf Dokumentation und Dateien zugreifen, unsere Arbeit mit Anderen teilen können uvm.
+
+#### Dateiformate
+- Wenn wir **PDF- oder HTML-Reporte** erstellen möchten, ist **R Markdown** für uns das richtige Format
+- Interaktive Visualisierungen können wir mit **Shiny Web Apps** programmieren
+- Daneben gibt es weitere nützliche Dateiformate wie R Präsentationen und das simple R-Skript sowie Mustervorlagen wie zum Beispiel das **"learnR"-Package** für digitales Lernen, mit dem wir auch diese Lernplattform programmiert haben
+
+*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+
+Write the R code required to add two plus two:
+
+```{r two-plus-two, exercise=TRUE}
+
+```
+
+Notiz: Datenimport, erste Befehle zur Datenerkundung, Screencast mit Einführung Datensatz
+
+### Exercise with Code
+
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
+
+### Exercise with Hint
+
+*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+
+Modify the following code to limit the number of rows printed to 5:
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+mtcars
+```
+
+```{r print-limit-hint}
+head(mtcars)
+```

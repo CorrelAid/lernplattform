@@ -1,0 +1,152 @@
+
+## Grundlagen der Datenstrategie
+![*Video: Grundlagen der Datenstrategie - Planung von Datenprojekten (30min)*](https://youtu.be/hOhf1Uc_8Tc)
+
+Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
+
+Für die Entwicklung einer Datenstrategie über diesen Kurs hinaus bieten wir eine digitale Bestandsaufnahme Eures Datenreifegrads an: Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/){target="_blank"} heraus! 
+
+### Kernaussagen
+- Daten sind **formalisierte, idealerweise durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können
+- Daneben verstehen wir **Datenwissenschaft** auch als **Denkweise** ("Wie gehen wir an Herausforderungen heran?") und **Kompetenzbereich** ("Welche analytischen, technischen und fachlichen Fähigkeiten sind notwendig?")
+- Ohne Daten treffen wir **Entscheidungen auf Basis von Hypothesen**, die wir noch gar nicht überprüft haben, und lassen **Potenziale der Digitalisierung** für **effektive und effiziente** Arbeitsweisen ungenutzt
+- Der **Zweck** unserer Datenstrategie und unserer Datenprojekte ergibt sich aus unserer **Wirkungslogik** - sie folgen also einer **strategischen Zielsetzung**
+- Da die Einführung von technischen Veränderungen mit Hürden verbunden ist, gehört auch das **Einbeziehen von Mitarbeitenden** und eine Auseinandersetzung mit der **Organisationskultur** zu einer guten Datenstrategie
+
+Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit Mehrwert für Eure Organisation und Euch solltet Ihr einige Punkte beachten:
+
+**Was wir beachten sollten:**
+
+- Projekte vom Zweck (und nicht von der Technologie aus) denken
+- Auch Technologien mit niedrigem analytischen Reifegrad in Erwägung ziehen
+- Quantiative und qualitative Forschungsmethoden nutzen
+- Externe und operationale Daten vor dem Beginn von Datenerhebungen evaluieren
+- Manuelle Prozesse mit menschlichen Fähigkeiten zu mappen, um passende Technolgien finden
+- Mit Prototypen und agilem Arbeiten in Iterationen die Nützlichkeit von Projekten überprüfen
+
+**Was wir vermeiden sollten:**
+
+- (Einmalig) identifizierte Signifikanz überbewerten und Erkenntnisse ohne Sinnhaftigkeitsprüfung übernehmen
+- Unsinnige Vergleichsgruppen bilden
+- Nur nach präferierten Resultaten suchen
+- Voraussetzungen der Datenqualität und -aktualität missachten
+- Uns auf Trendtechnologien und BuzzWords fokussieren
+- Den Aufwand von Datenprojekten (insb. im Bereich der Organisationskultur) unterschätzen
+
+
+### Quiz
+
+```{r quiz_datenstrategie}
+quiz(caption = NULL,
+  question("Daten sind...",
+    answer("Elemente, die Informationen formal darstellen.", correct = TRUE),
+    answer("in der Regel binärcodiert.", correct = TRUE),
+    answer("idealerweise maschinell lesbar.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Welche der folgenden Fragestellungen können mit Daten beantwortet werden:",
+    answer("Was macht unsere gesellschaftliche Herausforderung aus?", correct = TRUE),
+    answer("Wie können wir bessere Entscheidungen treffen?", correct = TRUE),
+    answer("Wie können wir effizienter und effektiver arbeiten?", correct = TRUE),
+    correct = "Richtig! Darüber hinaus fallen Euch vielleicht auch noch eigene Fragen ein.",
+    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Datenwissenschaft ist ein interdisziplinäres Feld. Eine Person, die in diesem Bereich tätig ist, sollte...",
+    answer("analytische Fähigkeiten haben.", correct = TRUE),
+    answer("technische Fähigkeiten besitzen.", correct = TRUE),
+    answer("sich mit der Domain (zu dt. Bereich) auskennen.", correct = TRUE),
+    answer("Keins davon"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Alle diese Aussagen treffen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Die Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?",
+    answer("Ungenutzten Daten, die Ihr bereits erhoben habt"),
+    answer("Daten, die Ihr noch erheben möchtet"),
+    answer("Neusten, technischen Möglichkeiten"),
+    answer("Eurer Organisationsstrategie", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Datennutzung ist mit erheblichen Ressourcenaufwendungen verbunden.  Datenprojekte kosten Zeit und Geld und innerhalb Eurer Organisation müssen Veränderungsprozesse nicht nur in Euren Systemen sondern auch in Eurer Kultur verankert werden. Deshalb sollte die Datenstrategie auf strategischen Zielsetzungen aufbauen, sodass kostbare Ressourcen nicht an falscher Stelle verbraucht und Projekte umsichtig und inklusiv geplant werden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+      question("Automatisierungen haben generell einen höheren Mehrwert als explorative Analysen",
+    answer("Wahr"),
+    answer("Unwahr", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Auch Technologien mit niedrigem analytischen Reifegrad wie explorative Analysen (Visualsierungen und erste Kennwertberechnungen) und manuelle Reports können enormen Mehrwert enthalten - insbesondere im Vergleich zu damit verbundenen Aufwendungen. Technologien müssen deshalb für jeden Anwendungsfalls individuell evaluiert werden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Quantitative Forschung ist grundsätzlich besser als qualitative Forschung.",
+    answer("Wahr"),
+    answer("Unwahr", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Quantitative und qualitative Forschung haben unterschiedlicher Vor- und Nachteile. Am besten kombiniert Ihr die beiden Forschungsmethoden, indem Ihr beispielsweise in Euren Erhebungsdaten geschlossene und offene Fragestellungen wählt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Welche Datenquelle bedeutet für Eure Organisation am meisten Aufwand?",
+    answer("Externe (offene) Daten"),
+    answer("Interne Daten aus operationellen Prozessen"),
+    answer("Erhebungsdaten", correct=TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Erhebungsdaten sind am aufwendigsten, weshalb eine Recherche von öffentlichen Datenbanken und Studien zum Themengebiet sowie die Betrachtung von operationellen Daten sinnvoll ist.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("In Datenprojekten arbeitet Ihr am besten mit Prototypen und agil.",
+    answer("Wahr", correct = TRUE),
+    answer("Unwahr"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Durch Prototypen und agiles Arbeiten könnt Ihr in kleinen Iterationen und somit mit weniger Aufwand und Kosten prüfen, ob das Datenprojekt tatsächlich so funktioniert und so nützlich ist, wie Ihr es Euch vorgestellt habt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
+
+Mit der Funktion **typeof(EureVariable)** könnt Ihr überprüfen, welches Datenformat bei Eurer Variable vorliegt. Testet die Funktion in Zeile 12 für Datumsformate und führt den Code aus.
+
+```{r datentypen, exercise=TRUE}
+# Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
+typeof("Hallo")
+
+# 20 ist eine Zahl - bei R bezeichnet man numerische Werte als "double", ganze Zahlen als "integer". 
+typeof(20)
+
+# Mit Funktionen wie "is.numeric(EureVariable) könnt Ihr ebenfalls überprüfen welches Datenformat vorliegt. Output der Funktion ist eine Variable vom Typ "logical" - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
+typeof(is.numeric(20))
+
+# Bei Datumsformaten geht R besonders klug vor. Testet hier die Varibale "datum" mit "typeof()". Was fällt Euch auf?
+datum <- Sys.Date()
+# Hier Euer Code
+class(datum)
+```
+
+### Übung: Entwickelt Euren eigenen Data Use Case
+Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
+
+Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen. Es ist zudem ausreichend, wenn Ihr allein bis Sektion 5 kommt. Wir werden im Verlauf des Kurses immer wieder auf das Template zurückgreifen und insbesondere die Sektionen 6-8 werden zu einem späteren Zeitpunkt leichter zu beantworten sein.
+
+<center>
+![*Template: Data Use Case](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
+
+
+</center>
+<br>
+
+Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
+
+Hier geht es zum
+[*Template: Data Use Case (30min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3){target="_blank"}
+
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.

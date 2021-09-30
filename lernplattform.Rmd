@@ -1,0 +1,65 @@
+---
+title: "Inhaltsverzeichnis"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r results='asis'}
+out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
+## Datenprojekte aus der Zivilgesellschaft
+```{r results='asis'}
+out <- knitr::knit_child("01_datenprojekte.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
+## Grundlagen der Datenstrategie
+```{r results='asis'}
+out <- knitr::knit_child("02_datenstrategie.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
+## Datenschutz und Datenethik
+```{r results='asis'}
+out <- knitr::knit_child("03_datenschutz.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
+## Einführung in RStudio
+```{r results='asis'}
+#out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
+
+## Erste Datenanalysen in R
+```{r results='asis'}
+#out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
+
+## Datenimport und APIs
+
+## Datenbereinigung
+```{r results='asis'}
+#out <- knitr::knit_child("07_datenbereinigung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
+
+## Reportautomatisierungen
+
+## Interaktive Visualisierungen
+
+## Und jetzt?
