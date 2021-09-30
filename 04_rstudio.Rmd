@@ -40,23 +40,25 @@ Placeholder: Video (15min)
 
 ### Übung
 *Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE (wer weiß noch, wofür das steht?) RStudio zu gewöhnen.*
-
+``` {r Pakete laden, echo=FALSE, include=FALSE}
+library(readr)
+```
 Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analyiseren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete,) - eine ziemlich gute Sache. Euer Code beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **install.packages("package")** und **library(package)**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant.
 
 Ladet hier nun das Package "readr", mit dem wir CSV-Dateien laden können.
 ```{r pakete, exercise = TRUE}
 # Installation und Laden des Packages "readr"
-install.packages("readr")
-library(readr)
+#install.packages("readr")
+#library(readr)
 ```
 
 ```{r pakete-loesung}
 # Installation und Laden des Packages "readr"
-install.packages("readr")
-library(readr)
+#install.packages("readr")
+#library(readr)
 ```
 
-``` {r einlesen, exercise = TRUE}
+``` {r einlesen, include=TRUE}
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
 ```
 
