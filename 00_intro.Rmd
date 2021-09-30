@@ -13,7 +13,9 @@ Hier findet Ihr alle Informationen zum Kurs, Lernziele und Methodik.
 Ersetzt in diesem Codeeditior den Teil mit "Hier dein Name!" mit Eurem Namen. Klickt nun auf "Code ausführen".
 
 ```{r paste, exercise=TRUE}
-paste("Schön, dass Du da bist,","Hier dein Name!")
+library(glue)
+name <- "hier dein Name"
+glue("Schön, dass du da bist, {name}!") # die glue Funktion setzt automatisch den Namen ein!
 ```
 
 Als kleine Vorschau auf das, was wir auf der Lernplattform für Euch vorbereitet haben, könnt Ihr Euch gerne unser Promovideo ansehen:
@@ -24,7 +26,7 @@ Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet 
 
 Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Nina (nina.h@correlaid.org) bitte rechtzeitig mit.
 
-Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Kontaktiert nach Eurer Registrierung bei DataQuest einfach Nina (nina.h@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist auf Anfänger:innen gedacht.
+Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Kontaktiert nach Eurer Registrierung bei DataQuest einfach Nina (nina.h@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist für Anfänger:innen gedacht.
 
 ### Eckdaten 
 - 1.10.21 - 17.12.21, Aufwand: 2-4h/Woche
