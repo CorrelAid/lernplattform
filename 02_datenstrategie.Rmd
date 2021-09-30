@@ -114,22 +114,23 @@ quiz(caption = NULL,
 
 Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
 
-Mit der Funktion **typeof(EureVariable)** könnt Ihr überprüfen, welches Datenformat bei Eurer Variable vorliegt. Testet die Funktion in Zeile 12 für Datumsformate und führt den Code aus.
+Mit der Funktion **class(EureVariable)** könnt Ihr überprüfen, welches Datenformat bei Eurer Variable vorliegt. Testet die Funktion in Zeile 14 für Datumsformate und führt den Code aus.
 
 ```{r datentypen, exercise=TRUE}
 # Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
-typeof("Hallo")
+class("Hallo")
 
-# 20 ist eine Zahl - bei R bezeichnet man numerische Werte als "double", ganze Zahlen als "integer". 
-typeof(20)
+# 20.5 ist eine Zahl - bei R bezeichnet man Zahlen als "numeric" (manchmal wird auch noch unterschieden zwischen ganzen Zahlen - "integer" - und Zahlen mit Nachkommastellen - "double"). 
+class(20.5)
 
-# Mit Funktionen wie "is.numeric(EureVariable) könnt Ihr ebenfalls überprüfen welches Datenformat vorliegt. Output der Funktion ist eine Variable vom Typ "logical" - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
-typeof(is.numeric(20))
+# Bei der Datenanalyse kommen häufig Vergleiche zum Einsatz, z.B. "zeige nur alle Mitglieder, die **älter sind als** 20". Es werden dann nur alle Beobachtungen angezeigt für die dieser Vergleich wahr ist. Solche Vergleiche und andere "Tests" werden als "logical" Variablen abgebildet - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
+alter <- 22
+print(alter > 20)
+class(alter > 20)
 
-# Bei Datumsformaten geht R besonders klug vor. Testet hier die Varibale "datum" mit "typeof()". Was fällt Euch auf?
+# Bei Datumsformaten geht R besonders klug vor. Testet hier die Varibale "datum" mit "class()".
 datum <- Sys.Date()
 # Hier Euer Code
-class(datum)
 ```
 
 ### Übung: Entwickelt Euren eigenen Data Use Case
