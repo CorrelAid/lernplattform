@@ -10,7 +10,7 @@ Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webse
 - Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}** vor
 
 ### Quiz
-Derzeit sind 20 Data4Good-Projekte bei CorrelAid e.V. aktiv. Aber wie viele Projekte hat CorrelAid e.V. bereits abgeschlossen (Stand 2021)? Ersetzt in dem Codebeispiel unten den Wert für die Variable "abgeschlossene_projekte" mit der richtigen Zahl 30 und führt den Code aus.
+Derzeit sind 20 Data4Good-Projekte bei CorrelAid e.V. aktiv. Aber wie viele Projekte hat CorrelAid e.V. bereits abgeschlossen (Stand 2021)? Ersetzt in dem Codebeispiel unten den Wert für die Variable "abgeschlossene_projekte" mit der richtigen Zahl 44 und führt den Code aus.
 
 ```{r projekte, exercise=TRUE}
 # Hier definieren wir die Variable "aktive_projekte" mit dem Wert 20

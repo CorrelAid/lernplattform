@@ -229,15 +229,16 @@ correct = "Richtig! Darüber hinaus gibt es aber noch wesentlich mehr Möglichke
 )
 ```
 
-Beobachtungen und Variablen werden in **Objekten** zusammengefasst. Wir stellen Euch hier zwei wichtige Objekte vor: Listen und Dataframes (zu dt. Datenrahmen, ein tabellarisches Format). Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit **class()** überprüfen. Testet die Funktion in Zeile 7 für Dataframes und führt den Code aus.
+Wenn Ihr Daten analysiert, arbeitet Ihr meistens mit Excel-Tabellen oder unstrukturierten Daten. In R gibt es hierfür spezifische Lösungen: Data Frames (zu dt. Datenrahmen, ein tabellarisches Format) bzw. Listen. In Data Frames und Listen werden einzelne Beobachtungen und Variablen in **Objekten** zusammengefasst. Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit **class()** überprüfen. Testet die Funktion in Zeile 8 für den kleinen Beispiel Data Frame und führt den Code aus.
 
 ```{r objekte, exercise=TRUE}
 # Eine Liste kann aus verschiedenen Datenformaten bestehen
 liste <- list("Text", 20, Sys.Date())
 class(liste)
 
-# In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert. Spalten sollten dabei nur ein Datenformat enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
-df <- data.frame("Variable1" = 1, "Variable2" = "Text")
+# In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert (denke Excel Tabelle). Jede Spalte kann dabei nur Werte des gleichen Datentyps enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
+df <- data.frame(Variable1 = c(1, 2, 3), # c() erstellt eine Spalte im Data frame
+                 Variable2 = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
 # Euer Code hier
 print(df)
 ```
