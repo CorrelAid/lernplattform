@@ -229,6 +229,20 @@ correct = "Richtig! Darüber hinaus gibt es aber noch wesentlich mehr Möglichke
 )
 ```
 
+Beobachtungen und Variablen werden in **Objekten** zusammengefasst. Wir stellen Euch hier zwei wichtige Objekte vor: Listen und Dataframes (zu dt. Datenrahmen, ein tabellarisches Format). Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit **class()** überprüfen. Testet die Funktion in Zeile 7 für Dataframes und führt den Code aus.
+
+```{r objekte, exercise=TRUE}
+# Eine Liste kann aus verschiedenen Datenformaten bestehen
+liste <- list("Text", 20, Sys.Date())
+class(liste)
+
+# In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert. Spalten sollten dabei nur ein Datenformat enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
+df <- data.frame("Variable1" = 1, "Variable2" = "Text")
+# Euer Code hier
+print(df)
+```
+
+
 ### Übung (optional)
 Ihr arbeitet mit personenbezogenen Daten und möchtet ein **Datenverarbeitungsverzeichnis** anlegen? Zur Erstellung eines solchen Verzeichnisses gibt es im Netz zahlreiche Informationen. Hier geht es zu den Veröffentlichungen der [Datenschutzkonferenz (DKI)](https://www.bfdi.bund.de/DE/Fachthemen/Inhalte/Allgemein/Verzeichnis-Verarbeitungstaetigkeiten.html){target="_blank"} und [bitkom](https://www.bitkom.org/sites/default/files/file/import/180529-LF-Verarbeitungsverzeichnis-online.pdf){target="_blank"}. 
 
