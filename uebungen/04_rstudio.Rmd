@@ -1,0 +1,40 @@
+---
+title: "03_EinfuehrungRStudio_Uebung"
+author: "Nina Hauser"
+date: "9/30/2021"
+output: html_document
+---
+
+```{r pakete}
+# Installation und Laden des Packages "readr"
+install.packages("readr")
+library(readr)
+```
+
+``` {r einlesen}
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
+```
+
+
+```{r view}
+View(plastics)
+```
+
+``` {r datenstruktur1}
+head(plastics)
+```
+
+``` {r datenstruktur2}
+tail(plastics)
+```
+
+```{r spalten}
+length(plastics)
+nrow(plastics)
+ncol(plastics)
+dim(plastics)
+```
+
+``` {r datenstruktur3}
+summary(plastics)
+```

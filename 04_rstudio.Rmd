@@ -1,30 +1,28 @@
 ## Einführung in RStudio
 
-Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr **[R](https://ftp.fau.de/cran/){target = "_blank"}** und **[RStudio](https://rstudio.com/products/rstudio/download/#download){target = "_blank"}**. Versucht gerne selbst beide Programme für das Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per E-Mail** an Nina (nina.h@correlaid.org) kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
+``` {r Pakete laden, echo=FALSE, include=FALSE}
+library(readr)
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
+```
+
+Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für das Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per E-Mail** an Nina (nina.h@correlaid.org) kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
 
 Placeholder: Video (15min)
 
+Speaker Notes:
 - R und RStudio installieren
 - Neuen File öffnen: Optionen erklären
 - Verschiedene Bereiche in IDE erklären
 - Erste kleine Übungen mit Syntax:
   - Variablenassignment (<-)
   - Funktionen Funktion(Argument1, Argument2)
-  - # Kommentare (werden von dem Intepreter ignoriert)
+  - Kommentare (werden von dem Intepreter ignoriert)
   - Schlüsselwörter, die eine bestimmte Bedeutung haben
   - Groß- und Kleinschreibung beachten
+  - help()/?
 - Datensatz: Verschmutzung durch Plastik - Die Bewegung #breakfreefromplastic setzt sich für die Reduktion von Einwegplastik ein
 - Im Rahmen ihrer Tätigkeit sammeln sie weltweit Plastik, das nicht angemessen entsorgt wurde, ein und erheben dabei Daten zu den gefundenen Plastikteilen - z.B. in welchem Land, in welchem Jahr, von welcher Firma und was gefunden wurde
-- Die Daten aus 2020 schauen wir uns in diesem Kurs gemeinsam an
-
-<!-- @Nina - diese 3 punkte kannst du vllt mit übernehmen -->
-<!-- Datensatz von TidyTuesday vorstellen -->
-
-<!-- https://de.wikipedia.org/wiki/Recycling-Code -->
-
-<!-- https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26 -->
-
-
+- Die Daten aus 2020 schauen wir uns in diesem Kurs gemeinsam an und bedanken uns an dieser Stelle an #breakfreefromplastic, der Tidyverse-Community und Sarah Sauve
 
 ### Kernaussagen 
 #### Programmierumgebung
@@ -36,68 +34,74 @@ Placeholder: Video (15min)
 - Wenn wir **PDF- oder HTML-Reporte** erstellen möchten, ist **R Markdown** für uns das richtige Format
 - **Interaktive Visualisierungen** können wir mit **Shiny Web Apps** programmieren
 - Daneben gibt es weitere nützliche Dateiformate wie R Präsentationen und das simple R-Skript sowie Mustervorlagen wie zum Beispiel das **"learnR"-Package** für digitales Lernen, mit dem wir auch diese Lernplattform programmiert haben
-- Zu einem späteren Zeitpunkt werdet Ihr auch **R-Projekte** nutzen, die eine gesamte **Dateistruktur aus mehreren R-Dateien, zugrundeliegenden Daten und sonstigen Dateien** in einem **leicht teilbaren Format** speichern (Wenn Ihr Euch dafür jetzt schon interessiert, könnt Ihr [hier](https://r4ds.had.co.nz/workflow-projects.html){target = "_blank"} mehr dazu lesen)
+- Zu einem späteren Zeitpunkt werdet Ihr auch **R-Projekte** nutzen, die eine gesamte **Dateistruktur aus mehreren R-Dateien, zugrundeliegenden Daten und sonstigen Dateien** in einem **leicht teilbaren Format** speichern (Wenn Ihr Euch dafür jetzt schon interessiert, könnt Ihr [hier](https://r4ds.had.co.nz/workflow-projects.html){target="_blank"} mehr dazu lesen)
+
+### Quiz
 
 ### Übung
 *Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE (wer weiß noch, wofür das steht?) RStudio zu gewöhnen.*
-``` {r Pakete laden, echo=FALSE, include=FALSE}
-library(readr)
-```
-Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analyiseren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete,) - eine ziemlich gute Sache. Euer Code beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **install.packages("package")** und **library(package)**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant.
 
-Ladet hier nun das Package "readr", mit dem wir CSV-Dateien laden können.
+Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analyiseren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete,) - eine ziemlich gute Sache. Euer Code beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **install.packages("package")** und **library(package)**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. 
+
+Ein Codechunk (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben).
+
 ```{r pakete, exercise = TRUE}
 # Installation und Laden des Packages "readr"
 #install.packages("readr")
 #library(readr)
 ```
 
-```{r pakete-loesung}
-# Installation und Laden des Packages "readr"
-#install.packages("readr")
-#library(readr)
-```
-
-``` {r einlesen, include=TRUE}
+Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen.
+``` {r einlesen, exercise = TRUE}
+# Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
 ```
+Überprüft hier nochmal, als welches Objekt die Funktion "read_csv()" unseren Datensatz speichert. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
+```{r datenobjekt, exercise = TRUE}
 
-``` {r Daten Struktur}
-str(plastics)
+```
+```{r datenobjekt-solution}
+# Datenformate überprüfen wir mit "typeof()", Objektarten mit "class()"
+class(plastics)
+```
+
+```{r datenobjekt-check}
+grade_this_code(correct = "Gut gemacht!", incorrect = "Leider nicht ganz richtig. Probier es nochmal!")
+```
+
+Mit der Funktion "head()" könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden.
+``` {r datenstruktur2, exercise = TRUE}
+head(plastics)
+```
+Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion "colnames()" deren Namen anzeigen lassen.
+``` {r variablen, exercise = TRUE}
+colnames(plastics)
+```
+
+Die Funktionen nrow(), ncol() und dim() helfen Euch die Dimensionen Eures Datensatzes zu bestimmen. Mit help("Funktion") könnt Ihr Euch über RStudio in der Konsole die Erklärung zu den Funktionen anzeigen lassen. Nutzt das bisher Gelernte, um Euch die Spaltenanzahl (also die Anzahl an Variablen) ausgeben zu lassen.
+
+```{r exercise1, exercise = TRUE}
+
+```
+
+```{r exercise1-solution}
+ncol(plastics)
+```
+
+```{r exercise1-check}
+  give_code_feedback(grade_this({
+    pass_if_equal(.solution, "Good job!")
+    if (.result == 13880) {
+      fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen!")
+    }
+    fail()
+  }))
+```
+
+Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion "summary()" anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
+``` {r datenstruktur1, exercise = TRUE}
 summary(plastics)
 ```
 
-``` {r Daten Struktur 2}
-head(plastics)
-tail(plastics)
-```
 
 Notiz: Datenimport, erste Befehle zur Datenerkundung, Screencast mit Einführung Datensatz
-
-
-
-### Exercise with Code
-
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
-
-Now write a function that adds any two numbers and then call it:
-
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
-```
-
-### Exercise with Hint
-
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
-
-Modify the following code to limit the number of rows printed to 5:
-
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
-```
-
-```{r print-limit-hint}
-head(mtcars)
-```
