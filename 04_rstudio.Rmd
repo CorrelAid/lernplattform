@@ -102,7 +102,6 @@ Die Funktionen **nrow(), ncol() und dim()** helfen Euch die **Dimensionen** Eure
 ncol(plastics)
 ```
 
-# engl. Warnmessages raus
 ```{r exercise1-check}
   give_code_feedback(grade_this({
     pass_if_equal(.solution)
