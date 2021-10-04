@@ -372,6 +372,11 @@ community %>%
 
 Weiß ich noch nicht Ideen?
 
+Vorschläge:
+- Was ist Modus/Median/Mittelwert
+- Streuungsmaße
+- Wie liest man einen Boxplot?
+
 ## Kernaussagen
 
 Leitfragen
@@ -584,7 +589,7 @@ wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Stati
 
 Diese Woche möchten wir die Präsenzzeit nutzen, um diese Übungen zu besprechen. Kommt gerne mit euren Ideen Fragen Anregungen oder Kommentaren zu diesem Input. Es ist nicht schlimm, wenn diese Woche noch gar nichts (komplexes) klappt, da die strukturierte Einführung in R noch folgt. In dieser Einheit ging es erst einmal darum, das R-Eis zu brechen und in den Analyse Spirit einzutauchen.
 
-1. Versucht das zugehörige rmarkdown zum Laufen zu bringen und es nachzuvollziehen.
+1. Versucht das zugehörige R Markdown zum Laufen zu bringen und es nachzuvollziehen.
 
 2. Zur Diskussion: Welche Fragen möchtet ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert diese gern auf dem Papier bzw. überlegt 
 

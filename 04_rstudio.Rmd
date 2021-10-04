@@ -55,6 +55,8 @@ Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **F
 
 Ein Codechunk (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben).
 
+Notiz: here::here()
+
 ```{r pakete, exercise = TRUE}
 # Installation und Laden des Packages "readr"
 #install.packages("readr")
