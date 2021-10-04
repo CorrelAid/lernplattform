@@ -13,7 +13,7 @@ runtime: shiny_prerendered
 # remotes::install_github("rstudio/learnr")
 # remotes::install_github("rstudio/gradethis")
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 gradethis::gradethis_setup(pass = "Gut gemacht!", 
                            fail = "Das ist leider nicht ganz richtig. Probier es nochmal!",
                            code_correct = "Gut gemacht!", 

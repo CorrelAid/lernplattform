@@ -24,7 +24,7 @@ Agenda der Einheit
 
 
 ### Vorbereitung
-``` {r Pakete laden, echo=FALSE,include=FALSE}
+``` {r Pakete laden, echo=FALSE}
 
 library(tidyverse)
 library(janitor)
