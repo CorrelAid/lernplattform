@@ -25,42 +25,20 @@ Agenda der Einheit
 
 ### Vorbereitung
 ``` {r Pakete laden, echo=FALSE}
-
 library(tidyverse)
 library(janitor)
 library(countrycode)
 library(learnr)
-
 ```
 
 
 
 ``` {r einlesen, include=FALSE}
-
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
-
-
 ```
-
-
-``` {r Daten Struktur}
-#@ Nina gern in 04 übernehmen...
-
-str(plastics)
-
-```
-
-``` {r Daten Struktur 2}
-#@ Nina gern in 04 übernehmen...
-
-head(plastics)
-tail(plastics)
-```
-
-
 
 ``` {r Daten Struktur 3}
-#@ Nina gern in 04 übernehmen...
+#@ Nina gern in 04 übernehmen... RE: Würde das in Datenbereinigung schieben
 plastics %>%
         tabyl(country, year) %>%
           janitor::adorn_rounding(digits=2) %>%
@@ -70,7 +48,7 @@ plastics %>%
 
 ``` {r Daten prep 1 , include=FALSE}
 
-#@ Nina gern in 04 übernehmen...
+#@ Nina gern in 04 übernehmen... RE: Würde das in Datenbereinigung schieben
 
 # Country name cleaning: 
   #United Kingdom of Great Britain & Northern Ireland ssowie für die USA

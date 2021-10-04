@@ -17,7 +17,10 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 gradethis::gradethis_setup(pass = "Gut gemacht!", 
                            fail = "Das ist leider nicht ganz richtig. Probier es nochmal!",
                            code_correct = "Gut gemacht!", 
-                           code_incorrect = "Das ist leider nicht ganz richtig. Probier es nochmal!"
+                           code_incorrect = "Das ist leider nicht ganz richtig. Probier es nochmal!",
+                           maybe_code_feedback = FALSE,
+                           fail.hint = FALSE,
+                           grading_problem.message = "Hups. Hier legt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
                            )
 ```
 
@@ -45,8 +48,8 @@ cat(out, sep = '')
 
 ## Einführung in RStudio
 ```{r results='asis'}
-#out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Erste Datenanalysen in R

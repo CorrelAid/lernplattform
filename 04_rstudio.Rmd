@@ -64,7 +64,7 @@ Notiz: here::here()
 ```
 
 Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und die Funktion **"read_csv"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("Name <- Objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
-``` {r einlesen, exercise = TRUE}
+``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
 ```
@@ -75,7 +75,7 @@ plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 ```
 
 ```{r datenobjekt-solution}
-# Datenformate überprüfen wir mit "typeof()", Objektarten mit "class()"
+# Datenformate überprüfen wir mit "class()"
 class(plastics)
 ```
 
@@ -102,13 +102,14 @@ Die Funktionen **nrow(), ncol() und dim()** helfen Euch die **Dimensionen** Eure
 ncol(plastics)
 ```
 
+# engl. Warnmessages raus
 ```{r exercise1-check}
   give_code_feedback(grade_this({
-    pass_if_equal(.solution, "Gut gemacht!")
+    pass_if_equal(.solution)
     if (.result == 13880) {
-      fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen!")
+        fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen!")
     }
-    fail()
+    fail("Noch nicht ganz richtig. Probiere es nochmal mit der Funktion ncol().")
   }))
 ```
 
