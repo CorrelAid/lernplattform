@@ -142,18 +142,15 @@ audit_plastic %>%
 
 ``` 
 
-```{r frage1, echo=FALSE}
-
-
- #quiz(caption = NULL,
-
+```{r quiz_lsk, echo=FALSE}
+ quiz(caption = NULL,
 
    question("Welche Werte nehmen die Variablen 'pvc' nicht an?",
      answer("9"),
      answer("24"),
      answer("0", correct = TRUE),
      answer("188")
-     )
+     ),
 
    question("Welche Werte nehmen die Variablen 'empty' an?",
      answer("0"),
@@ -161,8 +158,7 @@ audit_plastic %>%
      answer("11"),
      answer("188")
    )
-
-# )
+)
 ```
 
 ```{r empty-loschen, exercise=TRUE, exercise.eval=TRUE}
@@ -377,7 +373,7 @@ Vorschläge:
 - Streuungsmaße
 - Wie liest man einen Boxplot?
 
-## Kernaussagen
+### Kernaussagen
 
 Leitfragen
 
@@ -395,7 +391,7 @@ Kurzstatistiken lassen sich ausgeben mit `summary()`
 summary(audit_plastic)
 ```
 
-```{r quiz kurzstatistik}
+```{r quiz_kurzstatistik}
 
 quiz(caption = "",
 
@@ -419,7 +415,7 @@ question("Wieviele Länder sind im Datensatz?",
 
 Ein sehr nützliche Kombination ist: `group_by()` und `summarize()`. Damit können wir erst Daten gruppieren, hier zum Beispiel nach Kontinenten, und dann Kennzahlen wie den Mittelwert und die Standardabweichung der gefundenen Plastikstücke pro Kontinent berechnen lassen. 
 
-```{r Gruppieren Statistik und Statistik ausgeben 1, exercise=TRUE}
+```{r gruppieren, exercise=TRUE}
 
 #audit_plastic<- audit_plastic %>%
 #  pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "plastic_type", values_to = "Amount")
@@ -434,7 +430,7 @@ audit_plastic %>%
 
 ```
 
-```{r frage2, echo=FALSE}
+```{r quiz_kennwerte, echo=FALSE}
 quiz(caption = NULL,
   question("Welcher Kontinent hat durchschnittlich den höchsten am meisten Plastikstücke gesammelt? ('Unknown' außen vor gelassen)",
     answer("Afrika"),
@@ -456,7 +452,7 @@ quiz(caption = NULL,
 
 Weitere interessante Kennzahlen sind: der Median und die Länderanzahl.
 
-```{r Gruppieren Statistik und Statistik ausgeben 2 , exercise=TRUE}
+```{r gruppieren2, exercise=TRUE}
 
 audit_plastic %>%
   group_by(continent) %>%
@@ -467,7 +463,7 @@ audit_plastic %>%
 
 ```
 
-```{r frage3, echo=FALSE}
+```{r quiz_kennwerte2, echo=FALSE}
 quiz(caption = NULL,
      
   question("Wieviel Länder habn sich in Asien beteiligt?",
@@ -490,13 +486,14 @@ quiz(caption = NULL,
 ```
 
 Im Folgenden beschränken wir unsere Analyse auf Europa und Asien, wo sich am meisten Länder beteiligt haben. 
-```{r audit Perspektive: nur Europa und Asien, exercise=TRUE}
+```{r asieneuropa, exercise=TRUE}
 
 audit_plastic2<- audit_plastic %>%
   filter(continent == "Europe" | continent == "Asia")
 ```
 
-```{r audit Perspektive: erst zu einem langen Datensatz umwandeln}
+```{r audit}
+#erst zu einem langen Datensatz umwandeln
 #@07 vielleicht das noch nutzen? Um auch die Arte von Plastik näher zu analysieren
 #audit_plastic_long<- audit_plastic2 %>%
 #   pivot_longer(cols=c(hdpe, ldpe, o, pet, pp, ps, pvc), names_to = "type", values_to = "amount")
@@ -506,14 +503,14 @@ audit_plastic2<- audit_plastic %>%
 Wie viele unterschiedliche Plastikarten werden in den asiatischen und europäischen Ländern aufgesammelt?
 
 
-```{r anzahl plastikarten, exercise = TRUE}
+```{r anzahl_plastikarten, exercise = TRUE}
 audit_plastic3 <- audit_plastic2 %>%
   group_by(country) %>%
   mutate(n_types=sum(!is.na(c(hdpe, ldpe, o, pet, pp, ps, pvc))))
 
 ```
 
-```{r durchschnittliche Anzahl plastikarten je Kontinent, exercise = TRUE}
+```{r durchschnitt, exercise = TRUE}
 audit_plastic3  %>%
   group_by(continent) %>%
   summarize(n_types_mean = mean(n_types),
@@ -522,7 +519,7 @@ audit_plastic3  %>%
 ```
 
 
-```{r frage4, echo=FALSE}
+```{r quiz_kennwerte3, echo=FALSE}
 quiz(caption = NULL,
      
   question("Wo wurden im Durchschnitt mehr Plastikarten gesammelt?",
@@ -564,7 +561,7 @@ quiz(caption = NULL,
   - Unterscheiden sich die Top3 der Firmen je Land oder Kontinent signifikant voneinander?
 
 
-## Kernaussagen
+### Kernaussagen
 
 - Inferenzstatistik hat zum Ziel... 
 - Sie ist nützlich für die Evaluation von Maßnahmen, um wirklich Änderungen von statistischen Artefakten unterscheiden zu können. 
@@ -576,8 +573,8 @@ Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine 
 So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen zweiseitigen t-Test durchführt.  
 
   
-```{r ttest Anzahl plastikarten je Kontinent gleich?, exercise = TRUE}
-
+```{r ttest, exercise = TRUE}
+#Anzahl plastikarten je Kontinent gleich?
 t.test(audit_plastic3$n_types ~ as.factor(audit_plastic3$continent))
 
 ```  
