@@ -11,7 +11,8 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE}
 # remotes::install_github("rstudio/learnr")
-# remotes::install_github("NinaCorrelAid/gradethis")
+# remotes::install_github("rstudio/gradethis")
+library(gradethis)
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 gradethis::gradethis_setup(pass = "Gut gemacht!", 

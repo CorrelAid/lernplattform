@@ -87,9 +87,13 @@ Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kom
 Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"here::here()"**, die Euch den Pfad in den Ordner zurückgibt, in dem auch Euer R-Skript abliegt.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
+<<<<<<< HEAD
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
 # Alternative für lokale Dateien mit dem "here"-Package
 # plastics <- readr::read_csv(here::here('./daten/plastics.csv'))
+=======
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+>>>>>>> 6ea4b1285826999330c2450594d44ac897c6b09d
 ```
 
 Überprüft hier nochmal, als welches Objekt die Funktion "read_csv()" unseren Datensatz speichert. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
