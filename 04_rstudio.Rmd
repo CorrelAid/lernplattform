@@ -2,7 +2,7 @@
 
 ``` {r pakete_laden, echo=FALSE, include=FALSE}
 library(readr)
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
 Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für das Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per E-Mail** an Nina (nina.h@correlaid.org) kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
@@ -47,6 +47,28 @@ Speaker Notes:
 - Zu einem späteren Zeitpunkt werdet Ihr auch **R-Projekte** nutzen, die eine gesamte **Dateistruktur aus mehreren R-Dateien, zugrundeliegenden Daten und sonstigen Dateien** in einem **leicht teilbaren Format** speichern (Wenn Ihr Euch dafür jetzt schon interessiert, könnt Ihr [hier](https://r4ds.had.co.nz/workflow-projects.html){target="_blank"} mehr dazu lesen)
 
 ### Quiz
+```{r quiz_datenstrategie}
+quiz(caption = NULL,
+  question("RStudio ist eine integrierte Entwicklungsumgebung für R.",
+    answer("Korrekt", correct = TRUE),
+    answer("Inkorrekt"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Es gibt all diese Dateiformate in RStudio.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Dateiformate in RStudio sind unter anderem...",
+    answer("R Markdowns zur Erstellung von PDF- und HTML-Reporten.", correct = TRUE),
+    answer("Shiny Web Apps zur Erstellung von interaktiven Dashboards.", correct = TRUE),
+    answer("R Skripte ohne bestimmtes Format", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Es gibt all diese Dateiformate in RStudio.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
 
 ### Übung
 *Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio (wer weiß noch, wofür das steht?) zu gewöhnen.*
@@ -55,8 +77,6 @@ Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **F
 
 Ein Codechunk (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben).
 
-Notiz: here::here()
-
 ```{r pakete, exercise = TRUE}
 # Installation und Laden des Packages "readr"
 #install.packages("readr")
@@ -64,9 +84,12 @@ Notiz: here::here()
 ```
 
 Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und die Funktion **"read_csv"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("Name <- Objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
+Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"here::here()"**, die Euch den Pfad in den Ordner zurückgibt, in dem auch Euer R-Skript abliegt.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
+# Alternative für lokale Dateien mit dem "here"-Package
+# plastics <- readr::read_csv(here::here('./daten/plastics.csv'))
 ```
 
 Überprüft hier nochmal, als welches Objekt die Funktion "read_csv()" unseren Datensatz speichert. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
@@ -93,22 +116,25 @@ colnames(plastics)
 ```
 
 Die Funktionen **nrow(), ncol() und dim()** helfen Euch die **Dimensionen** Eures Datensatzes zu bestimmen. Mit help("Funktion") könnt Ihr Euch über RStudio in der Konsole die Erklärung zu den Funktionen anzeigen lassen. Nutzt das bisher Gelernte, um Euch die Spaltenanzahl (also die Anzahl an Variablen) ausgeben zu lassen.
-
-```{r exercise1, exercise = TRUE}
+```{r exercise_ncol, exercise = TRUE}
 # Euer Code hier
 ```
 
-```{r exercise1-solution}
+```{r exercise_ncol-solution}
+# Mit ncol() könnt Ihr Euch die Anzahl an Spalten (eng. columns) anzeigen lassen
 ncol(plastics)
 ```
 
-```{r exercise1-check}
+```{r exercise_ncol-check}
   give_code_feedback(grade_this({
     pass_if_equal(.solution)
-    if (.result == 13880) {
-        fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen!")
+    if (length(.result) != 1) {
+        fail("Eure Antwort enthält {length(.result)} Wert(e) und nicht: {length(.solution)}. Habt Ihr die richtige Funktion genutzt?")
     }
-    fail("Noch nicht ganz richtig. Probiere es nochmal mit der Funktion ncol().")
+    if (.result == 13380) {
+        fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen! Habt Ihr die richtige Funktion genutzt?")
+    }
+    fail("Noch nicht ganz richtig.")
   }))
 ```
 
@@ -121,5 +147,5 @@ summary(plastics)
 Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und:
 
 1. Installiert und ladet das Package "readr".
-2. Lest den Datensatz ein. Ihr findet ihn unter diesem [Link]( 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'){target="_blank"}
+2. Lest den Datensatz ein. Ihr findet ihn unter diesem [Link]( 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'){target="_blank"}.
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden.
