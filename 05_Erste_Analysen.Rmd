@@ -346,7 +346,7 @@ community %>%
 
 Weiß ich noch nicht Ideen?
 
-Vorschläge:
+Vorschläge von Nina:
 - Was ist Modus/Median/Mittelwert
 - Streuungsmaße
 - Wie liest man einen Boxplot?
@@ -557,7 +557,7 @@ t.test(audit_plastic3$n_types ~ as.factor(audit_plastic3$continent))
 
 ```  
   
-wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervallm das die 0 umschließt hin. In unserem Beispiel bedeutet dies, dass sich die Anzahl an plastikarten in Europa nicht systematisch von denen in Asien unterscheidet. zumindest können wir keinen robusten statistischen mutterschied feststellen. An dieser Stelle beenden wir die Einheit wohl wissend dass wir noch weitergehende Analysen durchführen könnten, zum Beispiel könnten wir die genaue Verteilung der einzelnen Plastikarten vergleichen.      
+Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervallm das die 0 umschließt hin. In unserem Beispiel bedeutet dies, dass sich die Anzahl an plastikarten in Europa nicht systematisch von denen in Asien unterscheidet. zumindest können wir keinen robusten statistischen mutterschied feststellen. An dieser Stelle beenden wir die Einheit wohl wissend dass wir noch weitergehende Analysen durchführen könnten, zum Beispiel könnten wir die genaue Verteilung der einzelnen Plastikarten vergleichen.      
 
 
 ### Übung
