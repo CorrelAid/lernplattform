@@ -1,8 +1,7 @@
 ## Einführung in RStudio
 
-``` {r pakete_laden, echo=FALSE, include=FALSE}
+``` {r settings_rstudio, echo=FALSE, include=FALSE}
 library(readr)
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
 Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für das Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per E-Mail** an Nina (nina.h@correlaid.org) kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
@@ -93,21 +92,21 @@ plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 ```
 
 Überprüft hier nochmal, als welches Objekt die Funktion "read_csv()" unseren Datensatz speichert. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
-```{r datenobjekt, exercise = TRUE}
+```{r exercise_class, exercise = TRUE}
 # Euer Code hier
 ```
 
-```{r datenobjekt-solution}
+```{r exercise_class-solution}
 # Datenformate überprüfen wir mit "class()"
 class(plastics)
 ```
 
-```{r datenobjekt-check}
+```{r exercise_class-check}
 grade_this_code()
 ```
 
 Mit der Funktion "head()" könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden.
-``` {r datenstruktur2, exercise = TRUE}
+``` {r head, exercise = TRUE}
 head(plastics)
 ```
 Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion "colnames()" deren Namen anzeigen lassen.
@@ -139,7 +138,13 @@ ncol(plastics)
 ```
 
 Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **"summary()"** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
-``` {r datenstruktur1, exercise = TRUE}
+``` {r datenstruktur_summary, exercise = TRUE}
+summary(plastics)
+```
+
+Alternativ gibt es auch die Funktion **str()**, die ähnlich wie **summary()** Grundeigenschaften von Datentabellen anzeigt. Welche Unterschiede findet Ihr?
+
+``` {r datenstruktur_str, exercise = TRUE}
 summary(plastics)
 ```
 
