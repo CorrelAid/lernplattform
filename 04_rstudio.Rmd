@@ -70,11 +70,11 @@ quiz(caption = NULL,
 
 
 ### Übung
-*Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio (wer weiß noch, wofür das steht?) zu gewöhnen.*
+*Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio zu gewöhnen. Wer weiß noch, wofür IDE steht?*
 
 Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analyiseren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete) - eine ziemlich gute Sache. Euer Code beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **install.packages("package")** und **library(package)**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. 
 
-Ein Codechunk (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben).
+Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben). **Kommentare** erkennt Ihr in der Regel an dem Hash **"#"**, bei mehrzeiligen Kommentaren werden diese aber auch oft in Anführungszeichen gesetzt.
 
 ```{r pakete, exercise = TRUE}
 # Installation und Laden des Packages "readr"
@@ -82,13 +82,13 @@ Ein Codechunk (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete instal
 #library(readr)
 ```
 
-Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und die Funktion **"read_csv"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("Name <- Objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
+Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und die Funktion **"read_csv()"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("Name <- Objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
 Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"here::here()"**, die Euch den Pfad in den Ordner zurückgibt, in dem auch Euer R-Skript abliegt.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
 plastics <- plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
-# Alternative für lokale Dateien mit dem "here"-Package
-# plastics <- readr::read_csv(here::here('./daten/plastics.csv'))
+# Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
+# plastics <- readr::read_csv(here::here('daten/plastics.csv'))
 ```
 
 Überprüft hier nochmal, als welches Objekt die Funktion "read_csv()" unseren Datensatz speichert. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
@@ -142,10 +142,10 @@ Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **"summary()"** an
 summary(plastics)
 ```
 
-Alternativ gibt es auch die Funktion **str()**, die ähnlich wie **summary()** Grundeigenschaften von Datentabellen anzeigt. Welche Unterschiede findet Ihr?
+Alternativ gibt es auch die Funktion **str()**, die ähnlich wie **summary()** Grundeigenschaften von Datentabellen anzeigt. Welche Unterschiede findet Ihr zwischen den beiden Funktionen?
 
 ``` {r datenstruktur_str, exercise = TRUE}
-summary(plastics)
+str(plastics)
 ```
 
 ### Und jetzt Ihr
