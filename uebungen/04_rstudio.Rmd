@@ -5,36 +5,57 @@ date: "9/30/2021"
 output: html_document
 ---
 
-```{r pakete}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
 # Installation und Laden des Packages "readr"
 install.packages("readr")
 library(readr)
 ```
 
 ``` {r einlesen}
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', show_col_types = FALSE)
+# Laden des Datensatzes, der als CSV vorliegt, über einen Link mit dem Package "readr"
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+
+# Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
+readr::read_csv(here::here('daten/plastics.csv'))
 ```
 
 
 ```{r view}
+# Datensatz anschauen
 View(plastics)
 ```
 
-``` {r datenstruktur1}
+``` {r head}
+# Die ersten fünf Zeilen
 head(plastics)
 ```
 
-``` {r datenstruktur2}
+``` {r tail}
+# Die letzten fünf Zeilen
 tail(plastics)
 ```
 
-```{r spalten}
+```{r colnames}
+# Variablennamen
+colnames(plastics)
+```
+
+```{r dimensionen}
+# Betrachtung der Dimensionen
 length(plastics)
 nrow(plastics)
 ncol(plastics)
 dim(plastics)
 ```
 
-``` {r datenstruktur3}
+``` {r summary}
+# Erkundung der Datenstruktur mit summary()
 summary(plastics)
+```
+
+``` {r summary}
+# Erkundung der Datenstruktur mit str()
+str(plastics)
 ```
