@@ -83,6 +83,10 @@ Variable1 <= Variable 2 (kleiner gleich) <br>
 Variable1 > Variable 2 (größer als) <br>
 Variable1 >= Variable 2 (größer gleich) <br>
 
+**Pipe-Operator (zum Zusammenfügen von Operationen** <br>
+%>% (im Rahmen des dpylr) <br>
+|> (der generelle Pipeoperator) <br>
+
 **Variablenzuweisung** <br>
 objektname <- objekt <br>
 
