@@ -108,7 +108,7 @@ Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete in
 ```
 
 Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und der Funktion **"read_csv()"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("objektname <- objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
-Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"here::here()"**, die Euch den Pfad in den Ordner zurückgibt, in dem auch Euer R-Skript abliegt.
+Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"here::here()"**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
