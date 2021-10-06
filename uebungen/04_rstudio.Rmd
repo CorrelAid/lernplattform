@@ -5,13 +5,21 @@ date: "9/30/2021"
 output: html_document
 ---
 
+Das hier ist ein Set-up-Code Chunk, in dem Ihr global (= also für das gesamte Dokument) Einstellungen vornehmen könnt.
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 # Installation und Laden des Packages "readr"
-install.packages("readr")
+#install.packages("readr")
 library(readr)
 ```
+
+# Hier steht eine Überschrift
+## Hier eine etwas kleinere
+### Hier eine noch kleinere
+#### usw
+
+Das ist beispielhafter Text - in **fett** und *kursiv*.
 
 ``` {r einlesen}
 # Laden des Datensatzes, der als CSV vorliegt, über einen Link mit dem Package "readr"

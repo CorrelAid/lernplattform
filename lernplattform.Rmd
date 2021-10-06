@@ -57,8 +57,8 @@ cat(out, sep = '')
 
 ## Erste Datenanalysen in R
 ```{r results='asis'}
-out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ## Datenimport und APIs
@@ -74,3 +74,8 @@ cat(out, sep = '')
 ## Interaktive Visualisierungen
 
 ## Und jetzt?
+
+```{r results='asis'}
+out <- knitr::knit_child("99_glossar.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
