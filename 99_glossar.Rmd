@@ -1,0 +1,129 @@
+## Glossar
+
+``` {r settings_glossar, echo=FALSE, include=FALSE}
+library(readr)
+```
+
+Da man in dem **Fachwortdschungel der Datenwissenschaft** gerne mal verloren gehen kann, pflegen wir hier für Euch ein Glossar, das unsere Tutor:innen nach und nach für Euch mit wichtigen Begrifflichkeiten füllen werden. <br>
+Zusätzlich erstellen wir für Euch an dieser Stelle eine Übersicht zu den wichtigsten Syntaxregeln und Funktionen.
+
+Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data Meetup (OODM) - zur Aufzeichnung geht es [hier](https://www.youtube.com/watch?v=HhH6nOQmqa0){target="_blank"}.
+
+### Technische Fachbegriffe
+
+**Dashboard** (zu dt. Instrumententafel) = Zusammenstellung von (zumeist) explorativen Datenanalyseelementen wie Visualisierungen und statistischen Kennwerten 
+
+**Dataframe** (zu dt. Datenrahmen) = tabellarisches Objekt, in dem Daten gespeichert werden 
+
+**Daten** = formalisierte, idealerweise durch Binärcodierung maschinell lesbare Informationen 
+
+**Datenwissenschaft** = Werkzeug zur Verarbeitung von Daten, Denkweise ("Wie gehen wir an Herausforderungen heran?") und Kompetenzbereich ("Welche analytischen, technischen und fachlichen Fähigkeiten sind notwendig?")
+
+**Dimension eines Datensatzes** = Anzahl an Beobachtungen (Zeilen) und Anzahl an Variablen (Spalten)
+
+**Dokumentation (von Code)** = Abrufbare Informationen zu Packages, Funktionen und Argumenten
+
+**DSGVO** = verfassungsrechtlich verankertes Grundrecht, das personenbezogene Daten vor Missbrauch schützt (Art. 1 Abs. 1 und Art. 2 Abs. 1 GG, Art. 1 - 4 ff. DSGVO)
+
+**Environment (RStudio** = Ort der IDE RStudio, in dem Objekte gespeichert werden 
+
+**Framework** = Grundgerüst zur Programmierung von Applikationen
+
+**Git** = Kollaborationstool für Informatiker:innen, über das wir Code und Daten austauschen
+
+**Image Recognition** (zu dt. Bilderkennung) = Automatisierte Verarbeitung und Interpretation von Bilddateien 
+
+**Integrierte Entwicklungsumgebung** (kurz: IDE) = Umgebung für das Schreiben und die Intrepreation von Code
+
+**Open Source Software** = frei nutzbare, unlizenzierte Software (aber eventuell mit Verpflichtung zur Autor:innenkennung)
+
+**Packages** (zu dt. Pakete) = Bündel an programmierten, wiederverwendbaren Funktionalitäten
+
+**R Markdown** = RStudio-Dateiformat zur Kombination von Code und Text mit Exportfunktionalitäten zu PDF und HTML
+
+**RProject** = Tool zur Dateibündelung von Codeskripten, Daten uvm. für das vereinfachte Teilen von Programmierprojekten
+
+**Shiny Web App** = *Framework* zur Programmierung von interaktiven *Dashboards* in R
+
+**Slicing** = Zugriff auf bestimmte Daten in einem *Dataframe*
+
+**Subsets** = Teilmenge des Datensatzes
+
+**Variable Assignment** (zu dt. Variablenzuweisung) = Benennung von Objekten (in R durch "objektname <- objekt)
+
+**Work Space** (zu dt. Arbeitsspeicher) = Temporärer Arbeitsspeicher der *IDE* während der Programmierung (nie speichern)
+
+
+### Wichtiger Syntax in R
+
+**Code Chunk** <br>
+\```{r} <br>
+Dein Code hier <br>
+\``` <br>
+
+**Funktion** <br>
+package::funktion(argument1, argument2, ...) <br>
+
+**Konditionale Statements** <br>
+if ( test_expression1) { <br>
+  statement1 <br>
+  } else if ( test_expression2) { <br>
+  statement2 <br>
+  } else if ( test_expression3) { <br>
+  statement3 <br>
+  } else { <br>
+  statement4 <br>
+}
+
+**Logische Ausdrücke** <br>
+*Hinweis: Der Output von logischen Ausdrücken ergibt "TRUE" (wahr) oder "FALSE" (falsch)* <br>
+Variable == "Ausdruck" (ist gleich) <br>
+Variable1 < Variable 2 (kleiner als) <br>
+Variable1 <= Variable 2 (kleiner gleich) <br>
+Variable1 > Variable 2 (größer als) <br>
+Variable1 >= Variable 2 (größer gleich) <br>
+
+**Variablenzuweisung** <br>
+objektname <- objekt <br>
+
+**Zugriff auf Daten/Zeilen/Spalten in Dataframes** <br>
+*Hinweis: In R fängt man bei 1 an zu zählen - nicht wie in anderen Programmiersprachen bei 0* <br>
+dataframe[zeilennummer,spaltennummer] <br>
+dataframe[zeilennummer,] <br>
+dataframe[,spaltennummer] <br>
+dataframe[beginnzeile:endezeile, beginnspalte:endespalte] <br>
+
+**Zugriff auf Variablen (Spalten) über den Namen in Dataframes** <br>
+datensatz$variablenname <br>
+datensatz['variablenname'] <br>
+
+**Zugriff auf Subsets in Dataframes** <br>
+*Hinweis: In R fängt man bei 1 an zu zählen - nicht wie in anderen Programmiersprachen bei 0* <br>
+dataframe[beginnzeile:endezeile, beginnspalte:endespalte] <br>
+subset(dataframe, ausdruck) <br>
+
+### Wichtige Funktionen in R
+
+**(Partiellen) Datensatz anzeigen** = View()/head()/tail()
+
+**(tagesaktuelles) Datum** = Sys.Date()
+
+**Dimension** = dim()
+
+**Einlesen von CSV-Dateien** = readr:read_csv()
+
+**Hilfe** = help("")/?funktion
+
+**Installation von Packages** = install.packages("") 
+
+**Laden von Packages** = library()
+
+**Spaltenanzahl** = ncol()
+
+**Subsets** = subset()
+
+**Übersicht über Datensatz** = summary()/str()
+
+**Variablennamen anzeigen** = colnames()
+
+**Zeilenanzahl** = nrow()

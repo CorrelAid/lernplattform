@@ -6,31 +6,19 @@ library(readr)
 
 Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für das Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per E-Mail** an Nina (nina.h@correlaid.org) kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
 
-Placeholder: Video (15min)
-
-Speaker Notes:
-- R und RStudio installieren
-- Neuen File öffnen: Optionen erklären
-- Verschiedene Bereiche in IDE erklären
-- Erste kleine Übungen mit Syntax:
-  - Variablenassignment (<-)
-  - Funktionen Funktion(Argument1, Argument2)
-  - Kommentare (werden von dem Intepreter ignoriert)
-  - Schlüsselwörter, die eine bestimmte Bedeutung haben
-  - Groß- und Kleinschreibung beachten
-  - help()/?
-- Datensatz: Verschmutzung durch Plastik - Die Bewegung #breakfreefromplastic setzt sich für die Reduktion von Einwegplastik ein
-- Im Rahmen ihrer Tätigkeit sammeln sie weltweit Plastik, das nicht angemessen entsorgt wurde, ein und erheben dabei Daten zu den gefundenen Plastikteilen - z.B. in welchem Land, in welchem Jahr, von welcher Firma und was gefunden wurde
-- Die Daten aus 2020 schauen wir uns in diesem Kurs gemeinsam an und bedanken uns an dieser Stelle an #breakfreefromplastic, der Tidyverse-Community und Sarah Sauve
-
+![*Video: Einführung in RStudio (30min)*](https://youtu.be/zHpCjZDbpB8)
+  
 ### Kernaussagen 
 #### R
 - R ist eine **freie, statistische Programmiersprache**
 - Die **Groß- und Kleinschreibung** muss in R unbedingt beachtet werden
+- Nicht jede **Funktionalität** müsst Ihr in R selbst schreiben: Über **"install.packages()"** und **"library()"** könnt Ihr Funktionalitäten, die andere Coder:innen für Euch bereitstellen, nutzen - das spart viel Zeit!
+- Innerhalb von Code muss Text auskommentiert werden (z.B. über das Einfügen eines Hashtags "#" zu Beginn des Textes)
 
 #### RStudio
 - RStudio ist auf R spezialisierte **integrierte Entwicklungsumgebung** (eng. Integrated Development Environment oder IDE), in der Ihr Code schreiben, ausführen, auf Dokumentation und Dateien zugreift, Eure Arbeit mit Anderen teilen könnt uvm.
 - Im **Code Editor** (zu dt. Codebearbeitungsprogramm) wird programmiert
+- Ein **Code Chunk** kann in RStudio in RMDs mit \```{r} Dein Code hier\```, über das Menü "Code -> Insert Chunk" oder den Kurzbefehlen "CMD + CTRL + i" für Mac und "CTRL + Alt + i) hinzugefügt werden
 - Den Code könnt Ihr mit einem Klick auf **"Run/Run All"** oder mit **"CTRL + Enter"** ausführen
 - In der **Console** erhaltet Ihr die Ergebnisse Eurer Programmierung
 - Bei R Markdown-Dateien öffnet sich - je nach Einstellung - ein **externes Fenster** für den HTML/PDF-Bericht, bei Shiny Web Apps ein externes Fenster, in dem Ihr Eure App testen könnt
@@ -45,23 +33,60 @@ Speaker Notes:
 - Daneben gibt es weitere nützliche Dateiformate wie R Präsentationen und das simple R-Skript sowie Mustervorlagen wie zum Beispiel das **"learnR"-Package** für digitales Lernen, mit dem wir auch diese Lernplattform programmiert haben
 - Zu einem späteren Zeitpunkt werdet Ihr auch **R-Projekte** nutzen, die eine gesamte **Dateistruktur aus mehreren R-Dateien, zugrundeliegenden Daten und sonstigen Dateien** in einem **leicht teilbaren Format** speichern (Wenn Ihr Euch dafür jetzt schon interessiert, könnt Ihr [hier](https://r4ds.had.co.nz/workflow-projects.html){target="_blank"} mehr dazu lesen)
 
+Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet Ihr [hier](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"}.
+
 ### Quiz
-```{r quiz_datenstrategie}
+```{r quiz_rstudio}
 quiz(caption = NULL,
-  question("RStudio ist eine integrierte Entwicklungsumgebung für R.",
-    answer("Korrekt", correct = TRUE),
-    answer("Inkorrekt"),
+  question("Ich muss nicht auf die Groß- und Kleinschreibung achten, wenn ich in R programmiere.",
+    answer("Korrekt"),
+    answer("Inkorrekt", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Es gibt all diese Dateiformate in RStudio.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
+  question("Code ist über Patent- und Urheberrechte geschützt, deshalb darf ich nichts von anderen Coder:innen benutzen.",
+    answer("Korrekt"),
+    answer("Inkorrekt", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Gerade dadurch dass Code nicht geschützt ist, können wir Packages ja erst nutzen - oder uns in Foren wie StackOverflow austauschen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Welche Aussagen über den Syntax in R und RMDs sind wahr?",
+    answer("Code Chunks werden in RMDs durch ``` eingeschlossen und sind grau hinterlegt.", correct = TRUE),
+    answer("Optionen für den Output eines Code Chunks können wir in RMDs durch \"{r code_chunk_label, setting1 =..., ...\" festlegen.", correct = TRUE),
+    answer("Funktionsaufrufe folgen der Logik \"package::funktion(argument1, argument2, ...)\".", correct = TRUE),
+    answer("Obejkte werden mit \"name <- objekt\" definiert.", correct = TRUE),
+    answer("Kommentare in Code Chunks werden mit \"#\" geschrieben und dann bei der Auswertung des Codes ignoriert.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch. Alle Aussagen über den Syntax in R sind wahr.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("IDE steht für Integrated Development Environment (zu dt. integrierte Entwicklungsumgebung). RStudio ist eine integrierte Entwicklungsumgebung für R.",
+    answer("Korrekt", correct = TRUE),
+    answer("Inkorrekt"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch - die beiden Aussagen sind richtig.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
   question("Dateiformate in RStudio sind unter anderem...",
-    answer("R Markdowns zur Erstellung von PDF- und HTML-Reporten.", correct = TRUE),
+    answer("R Markdowns (kurz RMD) zur Erstellung von PDF- und HTML-Reporten.", correct = TRUE),
     answer("Shiny Web Apps zur Erstellung von interaktiven Dashboards.", correct = TRUE),
     answer("R Skripte ohne bestimmtes Format", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Es gibt all diese Dateiformate in RStudio.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Knitting bedeuted, dass ich aus einem ganzen RMD PDF-, HTML- oder Worddateien erstelle, während \"Run\" bedeutet, dass Code über die Konsole oder in meinem RMD interpretiert werden soll.",
+    answer("Korrekt", correct = TRUE),
+    answer("Inkorrekt"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Die Aussage ist wahr",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
@@ -70,9 +95,9 @@ quiz(caption = NULL,
 
 
 ### Übung
-*Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio zu gewöhnen. Wer weiß noch, wofür IDE steht?*
+*Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio zu gewöhnen.*
 
-Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analyiseren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete) - eine ziemlich gute Sache. Euer Code beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **install.packages("package")** und **library(package)**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. 
+Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analyiseren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete) - eine ziemlich gute Sache. Euer Code beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **install.packages("package")** und **library(package)**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. Bitte denkt daran, "install.packages()" auszukommentieren, wenn die Installation abgeschlossen ist - sonst wird die Installation bei jedem Ausführen des Skripts wieder durchgeführt.
 
 Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben). **Kommentare** erkennt Ihr in der Regel an dem Hash **"#"**, bei mehrzeiligen Kommentaren werden diese aber auch oft in Anführungszeichen gesetzt.
 
@@ -82,16 +107,16 @@ Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete in
 #library(readr)
 ```
 
-Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und die Funktion **"read_csv()"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("Name <- Objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
+Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und die Funktion **"read_csv()"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("variablenname <- variable"). Über diesen ist er dann im weiteren Skript abrufbar.
 Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"here::here()"**, die Euch den Pfad in den Ordner zurückgibt, in dem auch Euer R-Skript abliegt.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
-plastics <- plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
 # plastics <- readr::read_csv(here::here('daten/plastics.csv'))
 ```
 
-Überprüft hier nochmal, als welches Objekt die Funktion "read_csv()" unseren Datensatz speichert. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
+Überprüft hier nochmal, wie die Funktion "read_csv()" unseren Datensatz importiert. Die Funktion dafür habt Ihr in den vergangenen Lektionen kennengelernt. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
 ```{r exercise_class, exercise = TRUE}
 # Euer Code hier
 ```
@@ -105,11 +130,11 @@ class(plastics)
 grade_this_code()
 ```
 
-Mit der Funktion "head()" könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden.
+Mit der Funktion **"head()"** könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden. Das Gegenteil von "head()" ist "tail()" - damit könnt Ihr die letzten fünf Beobachtungen erkunden.
 ``` {r head, exercise = TRUE}
 head(plastics)
 ```
-Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion "colnames()" deren Namen anzeigen lassen.
+Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion **"colnames()"** deren Namen anzeigen lassen.
 ``` {r variablen, exercise = TRUE}
 colnames(plastics)
 ```
@@ -148,9 +173,86 @@ Alternativ gibt es auch die Funktion **str()**, die ähnlich wie **summary()** G
 str(plastics)
 ```
 
+
+### Exkurs (optional): Syntax in R
+Neben dem sog. Variable Assignment über "<-" sind noch einige weitere **Syntaxregeln, Operatoren und Ausdrücke** in R wichtig. Diese lernt man in der Regel durch wiederholte Praxis. Damit Ihr die wichtigsten Formen nachschauen könnt, haben wir für Euch diesen Exkurs erstellt.
+
+``` {r zuweisung, exercise = TRUE}
+# Variablenzuweisung
+zahl <- 2
+```
+
+``` {r mathop, exercise = TRUE}
+### mathematische Operatoren
+2 + 2   # plus
+2 - 1   # minus
+2 * 2   # mal
+2 / 2   # geteilt
+```
+
+Mit **logischen Ausdrücke**n könnt Ihr u.a. Datensätze filtern und Wenn-Dann-Begingungen für Operationen definieren. Wenn der Ausdruck wahr ist, wird die Operation durchgeführt, wenn er falsch ist, dann wird sie übersprungen. Was denkt Ihr, was für die folgenden Ausdrücke gilt? Führt den Code Chunk aus und prüft Euer logisches Denken!
+
+``` {r logik, exercise = TRUE}
+### logische Ausdrücke
+2 == 2  # ist gleich
+2 != 3 # nicht gleich
+!(2 == 2) # nicht
+2 < 3   # kleiner als
+2 > 3   # größer als
+2 <= 2  # kleiner gleich
+2 >= 3  # größer gleich
+(1 + 1 == 2) & (2 + 2 == 5) # und
+(1 + 1 == 2) | (2 + 2 == 5) # oder
+```
+
+Falls Code nur unter bestimmten Bedingungen ausgeführt werden soll, wird er in **Wenn-Dann-Begingungen** integriert. Welcher Text wird hier gedruckt?
+``` {r ausdruck, exercise = TRUE}
+# Wenn-Dann-Ausdrücke
+if (2 + 2 == 5) {
+  print("Oh nein!")
+  } else if (2 + 2 <= 3) {
+  print("Oh nein!")
+  } else if (2 + 2 >= 5) {
+  print("Oh nein!")
+  } else {
+  print("Puh...")
+}
+```
+
+Wenn Ihr einzelne Daten, Zeilen, Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr den Datensatz **"slicen"**. 
+``` {r slicing1, exercise = TRUE}
+# Auslesen des Datums in der ersten Zeile und ersten Spalte
+plastics[1,1]
+# Auslesen der ersten Zeile
+plastics[1,]
+# Auslesen der ersten Spalte
+plastics[,1]
+# Auslesen der ersten zwei Zeilen und Spalten
+plastics[1:2,1:2]
+
+# Auslesen der Spalte 'country'
+plastics$country 
+plastics['country']
+
+# Erstellung eines Subsets auf Basis von Bedingungen
+subset(plastics, country == "Argentina" & year == 2020)
+```
+``` {r slicing2, exercise = TRUE}
+# Auslesen der Spalte 'country'
+plastics$country 
+plastics['country']
+```
+
+``` {r slicing3, exercise = TRUE}
+# Erstellung eines Subsets auf Basis von Bedingungen
+subset(plastics, country == "Argentina" & year == 2020)
+```
+Aufgepasst: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. In **StackOverflow** finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
+
+
 ### Und jetzt Ihr
-Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und:
+Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und...
 
 1. Installiert und ladet das Package "readr".
 2. Lest den Datensatz ein. Ihr findet ihn unter diesem [Link]( 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'){target="_blank"}.
-3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden.
+3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.
