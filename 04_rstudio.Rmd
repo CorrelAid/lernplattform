@@ -33,7 +33,7 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 - Zusätzlich werden dort Plots (zu dt. Abbildungen), geladene Packages und die **Dokumentation** ("Hilfe") angezeigt, die Ihr mit dem Befehl **help("Funktion")** oder **?Funktion** durchsuchen könnt
 
 #### Dateiformate in RStudio
-- Wenn wir **PDF- oder HTML-Reporte** erstellen möchten, ist **R Markdown** für uns das richtige Format
+- Wenn wir **PDF- oder HTML-Reporte** erstellen möchten, ist **R Markdown** für uns das richtige Format. Um uns die Formatierung des Gesamtdokuments zu erleichtern, verfügen RMDs über einen **Setup-Codechunk** mit verschiedenen Einstellungsoptionen
 - **Interaktive Visualisierungen** können wir mit **Shiny Web Apps** programmieren
 - Daneben gibt es weitere nützliche Dateiformate wie R Präsentationen und das simple R-Skript (besonders empfehlenswert für Automatisierungen außerhalb von Reporting) sowie Mustervorlagen wie zum Beispiel das **"learnR"-Package** für digitales Lernen, mit dem wir auch diese Lernplattform programmiert haben
 - Zu einem späteren Zeitpunkt werdet Ihr auch **R-Projekte** nutzen, die eine gesamte **Dateistruktur aus mehreren R-Dateien, zugrundeliegenden Daten und sonstigen Dateien** in einem **leicht teilbaren Format** speichern und die **Navigation zu Daten erleichtern** (Wenn Ihr Euch dafür jetzt schon interessiert, könnt Ihr [hier](https://r4ds.had.co.nz/workflow-projects.html){target="_blank"} mehr dazu lesen)
@@ -210,7 +210,7 @@ Mit **logischen Ausdrücken** könnt Ihr u.a. Datensätze filtern und Wenn-Dann-
 (1 + 1 == 2) | (2 + 2 == 5) # oder
 ```
 
-Falls Code nur unter bestimmten Bedingungen ausgeführt werden soll, wird er in **Wenn-Dann-Bedingungen** integriert. Dazu sind logische Ausdrücke sehr hilfreich. Welcher Text wird hier gedruckt?
+Falls Code nur unter bestimmten Bedingungen ausgeführt werden soll, wird er in **Wenn-Dann-Bedingungen** integriert. Dazu sind logische Ausdrücke (*innerhalb der runden Klammern*) sehr hilfreich. Welcher Text (*Operation innerhalb der geschwungenen Klammern*) wird hier gedruckt?
 ``` {r ausdruck, exercise = TRUE}
 # Wenn-Dann-Ausdrücke
 if (2 + 2 == 5) {
@@ -224,7 +224,7 @@ if (2 + 2 == 5) {
     }
 ```
 
-Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen.
+Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **c()** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
 ``` {r slicing1, exercise = TRUE}
 # Auslesen der Spalte 'country'
 plastics$country 
@@ -235,6 +235,7 @@ plastics[c('country', 'year')]
 # Erstellung eines Subsets auf Basis von Bedingungen
 subset(plastics, country == "Argentina" & year == 2020)
 ```
+
 Aufgepasst: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. In **StackOverflow** finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
 
 
