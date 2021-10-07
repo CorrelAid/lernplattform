@@ -65,7 +65,7 @@ audit_plastic<- plastics_prep %>%
 audit_plastic_eu_asia<- audit_plastic %>%
   filter(continent == "Europe" | continent == "Asia") %>%
   group_by(country) %>%
-  mutate(n_types=sum(!is.na(c(hdpe, ldpe, o, pet, pp, ps, pvc))))
+  mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
 
 
 ``` 
