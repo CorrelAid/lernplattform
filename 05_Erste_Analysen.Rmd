@@ -3,12 +3,12 @@
 *dies möchte ich im Video sagen*
 
 
-Was machen wir in dieser Einheit? Noch mehr Lust bekommen auf Arbeit mit Daten. Daher starten wir direkt mit einem Anwendungsbeispiel. Hier geht es darum, in den Analyse-Spirit zu kommen und R als Analysetool kennenzulernen.  So könnt ihr Details, wie das genau alles implementiert wird, die im Kursverlauf besprochen werden, besser einordnen zu können.
+Was machen wir in dieser Einheit? Noch mehr Lust bekommen auf Arbeit mit Daten. Daher starten wir direkt mit einem Anwendungsbeispiel. Hier geht es darum, in den Analyse-Spirit zu kommen und R als Analysetool kennenzulernen. So könnt ihr Details, wie das genau alles implementiert wird, die im Kursverlauf besprochen werden, besser einordnen zu können.
 
 gern an einem eigenen datensatz nachmachen
 
 Agenda der Einheit
-0. Vorbereitung: Einlesen und Prep 
+0. Vorbereitung: Einlesen und finaler Datencheck
 1. Mittels Visualisierung die Daten erschließen
 2. Kompakte statistische Kennzahlen erstellen
 3. Inferenz: Teststatistik erstellen und interpretieren
@@ -22,12 +22,13 @@ library(tidyverse)
 library(janitor)
 library(countrycode)
 library(learnr)
+library(here)
 ```
 
 
 
 ``` {r einlesen, include=FALSE}
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+#plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
 
@@ -109,6 +110,7 @@ community %>%
        caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP") +
   theme_minimal()
 
+ggsave(here("community_scatterplot.jpg"))
 
 
 ```
@@ -179,7 +181,7 @@ community %>%
 
 ```
 
-Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel mit `theme_minimal()`. Zu dem können wir die Kontinente nach Teilnehmerzahl sortieren.
+Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel mit `theme_minimal()`. Zu dem können wir mit `reorder()` die Kontinente nach Teilnehmerzahl sortieren.
 
 ```{r geom-point5,exercise=TRUE}
 
@@ -255,7 +257,7 @@ ggsave(here("community_bargraph.jpg"))
     - `median()` für den Median, der "Mittelpunkt" (50% der Ausprägungen sind kleiner oder größer)
     - `mean()` für das arithmetische Mittel, schlicht: Mittelwert
     - `sd()` für die Standardabweichung, ein standardisiertes Maß für die Streuung um den Mittelwert
-    - `n()` für absolute Häufigkeiten der Ausprägungen
+    - `n()` für die Anzahl/ absolute Häufigkeiten der Ausprägungen
 - Oft ist es nützlich diese Kennzahlen bedingt, das heißt innerhalb bestimmter Gruppen, auszugeben. Dies gelingt im tidyverse mit dem Zusammenspiel von `group_by()` & `summarize()`. 
 
 
