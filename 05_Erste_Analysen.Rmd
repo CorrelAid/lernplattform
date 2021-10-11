@@ -240,8 +240,8 @@ ggsave(here("community_bargraph.jpg"))
 
 - Mittels Kennzahlen lassen sich Datensätze zusammenfassen und Fragen an den Datensatz beantworten.
 - Besonders oft nutzt man: 
-    - `min()` für die minimale Ausprägung einer Variabeln
-    - `max()` für die maximalen Ausprägung einer Variabeln
+    - `min()` für die minimale Ausprägung einer Variablen
+    - `max()` für die maximalen Ausprägung einer Variablen
     - `median()` für den Median, der "Mittelpunkt" (50% der Ausprägungen sind kleiner oder größer)
     - `mean()` für das arithmetische Mittel, schlicht: Mittelwert
     - `sd()` für die Standardabweichung, ein standardisiertes Maß für die Streuung um den Mittelwert
