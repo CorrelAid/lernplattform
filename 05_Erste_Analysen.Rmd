@@ -1,20 +1,5 @@
 ## Erste Datenanalysen in R
 
-*dies möchte ich im Video sagen*
-
-
-Was machen wir in dieser Einheit? Noch mehr Lust bekommen auf Arbeit mit Daten. Daher starten wir direkt mit einem Anwendungsbeispiel. Hier geht es darum, in den Analyse-Spirit zu kommen und R als Analysetool kennenzulernen. So könnt ihr Details, wie das genau alles implementiert wird, die im Kursverlauf besprochen werden, besser einordnen zu können.
-
-gern an einem eigenen datensatz nachmachen
-
-Agenda der Einheit
-0. Vorbereitung: Einlesen und finaler Datencheck
-1. Mittels Visualisierung die Daten erschließen
-2. Kompakte statistische Kennzahlen erstellen
-3. Inferenz: Teststatistik erstellen und interpretieren
-
-
-
 
 ### Vorbereitung
 ``` {r Pakete laden, echo=FALSE}
@@ -32,10 +17,10 @@ library(here)
 ```
 
 
-Schau Dir an, wie die ersten Zeilen des `audit_plastic` Datensatz gefüllt sind.
+In dieser Einheit geht es darum, in den Analyse-Spirit zu kommen und R als Analysetool kennenzulernen. Wir starten direkt mit einem Anwendungsbeispiel zu Teildatensätzen von "Breaking free from plastic". Schau Dir an, wie die ersten Zeilen des `community` Datensatz gefüllt sind.
 
 ``` {r ersten5-zeilen, exercise=TRUE}
-head(audit_plastic)
+head(community)
 
 ```
 
@@ -44,9 +29,9 @@ Zunächst müssen wir überprüfen Wie viele fehlende ("NA") Ausprägungen im Da
 
 ```{r na-in-zero, exercise=TRUE}
 
-table(is.na(audit_plastic))
+table(is.na(community))
 
-summary(is.na(audit_plastic))
+summary(is.na(community))
 
 
 ```
@@ -69,9 +54,7 @@ quiz(question("Wie viele NA-Werte gibt es im Datensatz?",
 ### 1 Visuelle Exploration 
 
 
-*dies sage ich im Video*
-
-### Kernaussagen
+### Kernaussagen aus dem Video
 
 - Wichtig erst visualisieren, dann zusammenfassende Statistik.
 - Ein Q&A mit den Daten machen: stellt ihnen Fragen, um die Daten kennenzulernen, sie zu plausibisieren und datengetrieben Insights für eure Organisation herauszuziehen.
@@ -94,8 +77,10 @@ quiz(question("Wie viele NA-Werte gibt es im Datensatz?",
 <!-- - layered grammar -->
 <!-- - r4ds inspirierte Vorstellung von ggplot2 -->
 
-Im Video nehmen wir die *Community-Perspektive* ein und fragen: Wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt? Das wäre eher eine  Dafür visualisieren wir vom Datensatz `community` die `aes()`-Variablen continent und volunteer mit `geom_point` in einem Punktediagramm (englisch: Scatterplot).
+Im Video nehmen wir die *Community-Perspektive* ein und fragen: Wo haben sich wie viele Freiwillige an *Breaking Free From Plastic* beteiligt?  Dafür visualisieren wir vom Datensatz `community` die `aes()`-Variablen continent und volunteer mit `geom_point` in einem Punktediagramm (englisch: Scatterplot).
 
+
+Wie sieht dieser Scatterplot aus? Lass den Code durchlaufen! Versuche gern auch hier und da, einige Befehle abzuändern, um ein Gefühl für die Funktionalität von `ggplot2` zu bekommen. 
 
 ```{r geom-point-video, exercise=TRUE}
 
@@ -103,19 +88,20 @@ community %>%
   ggplot(aes(reorder(continent, volunteers), volunteers)) +
   geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
   coord_cartesian(ylim=c(0,10000)) +
-  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
+  labs(title = "Die Beteiligung an 'Break free from Plastic' ..." ,
        subtitle= "... unterscheidet sich nach Kontinent.",
        y = "Anzahl Freiwilliger",
        x = "Kontinent",
        caption = "In Taiwan haben sich 31318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP") +
   theme_minimal()
 
-ggsave(here("community_scatterplot.jpg"))
+
+ggsave(here("community_scatterplot.png"))
 
 
 ```
 
-Wir beginnen mit dem Grundgerüst einer ggplot Graphik: dem Erstellen eines ggplot-Objekt und der Definition von ästhetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
+Nun bauen wir diese Graphik schritt-für-Schritt nach. Wir beginnen mit dem Grundgerüst einer `ggplot`-Graphik: dem Erstellen eines `ggplot`-Objekt und der Definition von ästhetischen Attributen. Das sind zum Beipiel die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code Snippet? Was passiert, wenn ihr die Variablen vertauscht?
 
 ```{r grahik1, exercise=TRUE}
 
@@ -133,7 +119,8 @@ community %>%
   geom_point()
 
 ```
-Mit `position = position_jitter(width=0.3)` schaffen wir es, dass die Punkte sich nicht alle überlagern. Mit `alpha = 0.6` werden die Punkte etwas transparent, mit `size=3` etwas größer und so auch einzeln besser sichtbar
+
+Mit `position = position_jitter(width=0.3)` schaffen wir es, dass die Punkte sich nicht alle überlagern. Mit `alpha = 0.6` werden die Punkte etwas transparent, mit `size=3` etwas größer und so auch einzeln besser sichtbar.
 
 
 ```{r geom-point2,exercise=TRUE}
@@ -143,6 +130,7 @@ community %>%
   geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6)
 
 ```
+
 Findet heraus, welches Land hinter dieser extreme Beobachtung steckt
 
 
@@ -153,7 +141,7 @@ community %>%
 
 ```
 
-Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen? Mit `coord_cartesian(ylim=c(0,10000))` können wir den Achsenauschnitt einschränken.
+Welche Möglichkeiten seht ihr, mit dieser Beobachtung umzugehen? Eine Möglichkeit: Mit `coord_cartesian(ylim=c(0,10000))` können wir den Achsenauschnitt einschränken.
 
 ```{r geom-point3,exercise=TRUE}
 
@@ -165,7 +153,7 @@ community %>%
 
 ```
 
-Anmerkungen sind ganz wesentliche Bestandteile von Graphen. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf den Ursprung der Daten sowie das eine Beobachtung rausgenommen wurde sinnvoll. Dies lässt sich alles über `labs()` in die Graphik einfügen.
+Anmerkungen sind ganz wesentliche Bestandteile einer Graphik. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf die Datenquelle sowie die nichtdargestellte Beobachtung sinnvoll. Dies lässt sich alles über `labs()` in die Graphik einfügen. Mit `\n` könnt ihr händisch Zeilenumbrüche einfügen.
 
 ```{r geom-point4,exercise=TRUE}
 
@@ -181,7 +169,7 @@ community %>%
 
 ```
 
-Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel mit `theme_minimal()`. Zu dem können wir mit `reorder()` die Kontinente nach Teilnehmerzahl sortieren.
+Den letzten Schliff können wir dem Layout geben, in dem wir den Stil über `theme_()` ändern. Zum Beispiel mit `theme_minimal()`. Zu dem können wir mit `reorder()` die Kontinente nach aufsteigender Teilnehmerzahl sortieren.
 
 ```{r geom-point5,exercise=TRUE}
 
@@ -189,7 +177,7 @@ community %>%
   ggplot(aes(reorder(continent, volunteers), volunteers)) +
   geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
   coord_cartesian(ylim=c(0,10000)) +
-  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
+  labs(title = "Die Beteiligung an 'Break free from Plastic' ..." ,
        subtitle= "... unterscheidet sich nach Kontinent.",
        y = "Anzahl Freiwilliger",
        x = "Kontinent",
@@ -208,7 +196,7 @@ community %>%
 
 ```
 
-Hier könnte es sinnvoll sein, die Beobachtungen Kontinent "unkonwn" auszuklammern und nach der Gesamtzahl der Freiwilligen zu sortieren.  
+Hier könnte es sinnvoll sein, die Beobachtungen Kontinent "unkonwn" auszuklammern und nach der Gesamtzahl der Freiwilligen zu sortieren. Dies erreichen wir mit `filter()` direkt nach dem Datensatz.
 
 ```{r geom_bar2,exercise=TRUE}
 
@@ -228,8 +216,8 @@ community %>%
   filter(continent != "Unknown") %>%
   ggplot(aes(volunteers, reorder(continent, volunteers))) +
   geom_bar(stat = "identity") +
-  labs(title = "Die Beteiligung an 'Break free from Plastik' ..." ,
-      subtitle= "... unterscheidet sich je nach Kontinent",
+  labs(title = "Die Beteiligung an 'Break free from Plastic' ..." ,
+      subtitle= "... unterscheidet sich je nach Kontinent.",
       x = "Gesamtzahl an Freiwilligen",
       y = "Kontinent") +
   theme_minimal()
@@ -258,10 +246,11 @@ ggsave(here("community_bargraph.jpg"))
     - `mean()` für das arithmetische Mittel, schlicht: Mittelwert
     - `sd()` für die Standardabweichung, ein standardisiertes Maß für die Streuung um den Mittelwert
     - `n()` für die Anzahl/ absolute Häufigkeiten der Ausprägungen
+    - `sum()` für die Summe numerischer Variablen.
 - Oft ist es nützlich diese Kennzahlen bedingt, das heißt innerhalb bestimmter Gruppen, auszugeben. Dies gelingt im tidyverse mit dem Zusammenspiel von `group_by()` & `summarize()`. 
 
 
-Wir nutzen diese Kennzahlen, um die folgenden Fragen zu beantworten:
+Wir nutzen diese Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten:
   1. Wie viel Plastik wurde insgesamt gesammelt? 
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? (Analyse innerhalb der Kontinente)
   3. Wieviel Plastikarten wurden gesammelt?
@@ -277,7 +266,15 @@ summary(audit_plastic)
 
 quiz(caption = "",
 
-question("Wieviele Länder sind im Datensatz?",
+  question("Wieviele Variablen hat der `audit_plastic`-Datensatz?",
+    answer("Kann man anhand des `summary()' Befehls nicht sagen."),
+    answer("52"),
+    answer("12", correct = TRUE),
+    answer("7"),
+    random_answer_order = TRUE
+    ),
+
+  question("Wieviele Länder sind im Datensatz?",
     answer("Kann man anhand des `summary()' Befehls nicht sagen."),
     answer("2019"),
     answer("52", correct = TRUE),
@@ -295,7 +292,7 @@ question("Wieviele Länder sind im Datensatz?",
 )
 ```
 
-Kennzahlen können auch einzeln berechnet werden mittel `summarize`. Dies hat den Vorteil, dass ein kompaktes R-Objekt entsteht (ein `Tibble`), das wir abspeichern könnten. 
+Kennzahlen können auch einzeln berechnet werden mittels `summarize`. Dies hat den Vorteil, dass ein kompaktes R-Objekt entsteht (ein `tibble`), das wir abspeichern können und auch weiterverwenden. 
 
 ```{r summarize_einfuhrung, exercise=TRUE}
 
@@ -335,7 +332,7 @@ quiz(caption = NULL,
 )
 ```
 
-Weitere interessante Kennzahlen sind: der Median (`median()) und die Länderanzahl (`n()`). Ergänzt den Code um diese beiden Kennzahlen. 
+Weitere interessante Kennzahlen sind: der Median (`median()`), die Länderanzahl (`n()`) und die Summe aller gesammelten Plastikstücke (`sum()`). Ergänzt den Code um diese beiden Kennzahlen. 
 
 ```{r gruppieren2, exercise=TRUE}
 
@@ -352,7 +349,8 @@ audit_plastic %>%
   summarize(menge_mittelw = mean(grand_total),
             menge_sd = sd(grand_total),
             menge_median = median(grand_total),
-            länderanzahl = n()) 
+            länderanzahl = n(),
+            summe_plastik = sum(grand_total)) 
 ```
 
 ```{r quiz_kennwerte2, echo=FALSE}
@@ -372,6 +370,14 @@ quiz(caption = NULL,
     answer("Weil das eine Eigenschaft des Medians ist."),
     answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
     random_answer_order = TRUE
+  ),
+  
+  question("Wie viele Plastikstücke wurden in Europa sammelt?",
+    answer("204051"),
+    answer("29579", correct = TRUE),
+    answer("3459"),
+    answer("17"),
+    random_answer_order = TRUE
   )
 
 )
@@ -379,12 +385,19 @@ quiz(caption = NULL,
 
 Im Folgenden beschränken wir unsere Analyse auf Europa und Asien, wo sich am meisten Länder beteiligt haben. Hierfür haben wir bereits den `audit_plastic_eu_asia` Datensatz erstellt, der nur Europa und Asien enthält sowie eine neue Variable: `n_types`. Sie gibt an wie viele unterschiedliche Plastikarten in den einzelnen Ländern gesammelt wurden. 
 
+Vergewissern wir uns, wie dieser Datensatz aussieht mit `head()`.
+
+```{r head_eu_asia, exercise = TRUE}
+
+head(audit_plastic_eu_asia)
+
+```
 
 Wie viele unterschiedliche Plastikarten werden in den asiatischen und europäischen Ländern aufgesammelt? Wie groß war die Streuung je Kontinent?
 
 
 ```{r durchschnitt, exercise = TRUE}
-audit_plastic3  %>%
+audit_plastic_eu_asia  %>%
   group_by(continent) %>%
   summarize(n_types_mean = mean(n_types),
             n_types_sd = sd(n_types))
@@ -416,30 +429,16 @@ quiz(caption = NULL,
 
 ### Exkurs: Teststatistik 
 
-*Möchte ich im Video sagen*
-
-- Wofür braucht es Tetstatistik?
-- Spirit: Evaluation -- hat eine Maßnahme Unterschiede bewirkt?
-- Achtung - hier bewegen wir uns auf theoretisch gesehen auf neuem Territorium: Inferenzstatistik: wir schließen von unserer Stichprobe auf die Grundgesamtheit. Die Programmierung ist simple, damit es auch von der Interpretation her sinnvoll ist, müssen einige Annahmen gelten. Diese leiten wir hier nicht her, verweisen aber auf euer Statistikwissen oder Nachschlagewerk oder gute Youtube Videos zum Thema:  https://www.youtube.com/watch?v=RRIsBFW8ovc (2-sample test)
-
-- Mögliche weitere Fragen:
-  
-  *Community Perspektive*
-  - mehr durchschnittliche Teilnehmer pro Event? (Länder im Vgl)
-  
-  *Audit Perspektive*
-  - Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit?
-  - Unterscheiden sich die Top3 der Firmen je Land oder Kontinent signifikant voneinander?
 
 
 ### Kernaussagen
 
-- Inferenzstatistik hat zum Ziel... 
-- Sie ist nützlich für die Evaluation von Maßnahmen, um wirklich Änderungen von statistischen Artefakten unterscheiden zu können. 
+- Inferenzstatistik zielt darauf ab, Aussagen über eine Grundgesamtheit auf Basis einer Stichprobe zu treffen.
+- Sie ist nützlich, um von einer Umfrage auf die Grundgesamtheit zu schließen oder für die Evaluation von Maßnahmen, um wirklich Änderungen von statistischen Artefakten unterscheiden zu können. 
 - [Zur Auffrischung von t-tests](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} (Der gesamte Kanal ist empfehlenswert!)
 
   
-Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, in dem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an Break Free vor Plastik beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch.  Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass es mehrere Grundgesamtheiten in Bezug Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen anders sein müssten.
+Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, in dem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an "Break Free from Plastic" beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch.  Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die Grundgesamtheiten in diesen beiden Regionen unterscheiden. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, anders sein müssten.
 
 So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen zweiseitigen t-Test durchführt.  
 
@@ -450,12 +449,12 @@ t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent)
 
 ```  
   
-Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervallm das die 0 umschließt hin. In unserem Beispiel bedeutet dies, dass sich die Anzahl an plastikarten in Europa nicht systematisch von denen in Asien unterscheidet. zumindest können wir keinen robusten statistischen Unterschied feststellen. An dieser Stelle beenden wir die Einheit wohl wissend dass wir noch weitergehende Analysen durchführen könnten, zum Beispiel könnten wir die genaue Verteilung der einzelnen Plastikarten vergleichen.      
+Zur Interpretation: Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. In unserem Beispiel bedeutet dies, dass sich die Anzahl an Plastikarten in Europa nicht systematisch von denen in Asien unterscheidet. Zumindest können wir keinen robusten statistischen Unterschied feststellen.       
 
 
 ### Übung
 
-Diese Woche möchten wir die Präsenzzeit nutzen, um diese Übungen zu besprechen. Kommt gerne mit euren Ideen Fragen Anregungen oder Kommentaren zu diesem Input. Es ist nicht schlimm, wenn diese Woche noch gar nichts (komplexes) klappt, da die strukturierte Einführung in R noch folgt. In dieser Einheit ging es erst einmal darum, das R-Eis zu brechen und in den Analyse Spirit einzutauchen.
+Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Kommt gerne mit euren Ideen Fragen Anregungen oder Kommentaren zu diesem Input. Es ist nicht schlimm, wenn diese Woche noch gar nichts (komplexes) klappt, da die strukturierte Einführung in R noch folgt. In dieser Einheit ging es erst einmal darum, das R-Eis zu brechen und in den Analyse Spirit einzutauchen.
 
 
 
@@ -466,7 +465,7 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um diese Übungen zu bespreche
 3. In der Einheit haben wir uns bei der Visualisierung vor allem der *Community Perspektive* gewidmet. Nun blicken wir auf die *Audit Perspektive*: Wie viel Plastik wurde wo für *Breaking Free From Plastic* gesammelt? Erstelle ein Punktediagramm (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die Anzahl der gesammelten Plastikstücke auf der y-Achse und die Kontinente auf der x-Achse zeigen.
 
 
-``` {r mogl_lsg, echo=FALSE}
+``` {r mogl_lsg_viz, echo=FALSE}
 
 audit_plastic %>%
   filter(grand_total>15000)
@@ -486,9 +485,18 @@ audit_plastic %>%
 
 ```
 
-4. Kennzahlen übung
+4. Nutzt den `community` Datensatz und erstellt eine Tabelle, welche die Länder- und Teilnehmeranzahl je Kontinent darstellt.
 
-### Resourcen Zusammenfassung
+``` {r mogl_lsg_kennzahl, echo=FALSE}
 
-- [r4ds](https://r4ds.had.co.nz/){target="_blank"} 
+community %>%
+  group_by(continent) %>%
+  summarize(Länderanzahl=n(),
+            Teilnehmner=sum(volunteers))
+
+```
+
+### Weitere Ressourcen
+
+- [r4ds](https://r4ds.had.co.nz/){target="_blank"} Das Data Science mit R Handbuch.
 - [Ausführliche Einführung in ggplot2 aus der CorrelAid Community](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/){target="_blank"}
