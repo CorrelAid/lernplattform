@@ -1,0 +1,106 @@
+## Aufbau Video
+
+1.  Kurze Einführung/Wiederholung was ist R-Markdown?
+
+2.  Wofür ist es nützlich?
+
+    1.  --\> unter anderem Reporting (Export Möglichkeiten von RMarkdown)
+    2.  --\> Exercise 1: Explore R-Markdown Gallery, post your fav in slack channel
+
+3.  Struktur von RMarkdown
+
+    1.  YAML Header
+
+    2.  Inhalte
+
+    3.  Knitr Code Chunks
+
+```{=html}
+<!-- -->
+```
+4.  Inhalte
+
+    1.  Überschriften
+    2.  Text
+    3.  Listen
+    4.  Links
+    5.  Bilder
+    6.  --\> Exercise mit [Tutorial](https://commonmark.org/help/tutorial/)
+
+5.  Code Chunks (wurde evtl schon abgedeckt?)
+
+    1.  Tabellen einfügen
+    2.  Plots darstellen
+
+6.  YAML Header
+
+    1.  Basic Funktionen
+
+    2.  Advanced Optionen
+
+    3.  Params Parameter
+
+    4.  --\> Exercise wähle ein theme aus, füge ein Inhaltsverzeichnis ein, toggle sichtbarkeit von chunks
+
+## Topic 1
+
+### Exercise
+
+*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+
+Write the R code required to add two plus two:
+
+```{r two-plus-two, exercise=TRUE}
+
+```
+
+### Exercise with Code
+
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
+
+## Topic 2
+
+### Exercise with Hint
+
+*Here's an exercise where the chunk is pre-evaluated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+
+Modify the following code to limit the number of rows printed to 5:
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+mtcars
+```
+
+```{r print-limit-hint}
+head(mtcars)
+```
+
+### Quiz
+
+*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+
+Some questions to verify that you understand the purposes of various base and recommended R packages:
+
+```{r quiz}
+quiz(
+  question("Which package contains functions for installing other R packages?",
+    answer("base"),
+    answer("tools"),
+    answer("utils", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which of the R packages listed below are used to create plots?",
+    answer("lattice", correct = TRUE),
+    answer("tools"),
+    answer("stats"),
+    answer("grid", correct = TRUE)
+  )
+)
+```
