@@ -112,16 +112,20 @@ cat(out, sep = '')
 #cat(out, sep = '')
 ```
 
-## Reportautomatisierungen
+## Reports
 ```{r results='asis'}
 #out <- knitr::knit_child("09_Reports", quiet = TRUE)
 #cat(out, sep = '')
 ```
 
+## Reportautomatisierungen
 ```{r results='asis'}
 #out <- knitr::knit_child("10_AutomatisierteReports", quiet = TRUE)
 #cat(out, sep = '')
 ```
+
+## Datenvisualisierung
+
 ## Interaktive Visualisierungen
 
 ## Und jetzt?
