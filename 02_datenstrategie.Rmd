@@ -1,5 +1,5 @@
-
 ## Grundlagen der Datenstrategie
+
 ![*Video: Grundlagen der Datenstrategie - Planung von Datenprojekten (30min)*](https://youtu.be/hOhf1Uc_8Tc)
 
 Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
@@ -17,21 +17,21 @@ Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit M
 
 **Was wir beachten sollten:**
 
-- Projekte vom Zweck (und nicht von der Technologie aus) denken
-- Auch Technologien mit niedrigem analytischen Reifegrad in Erwägung ziehen
-- Quantiative und qualitative Forschungsmethoden nutzen
-- Externe und operationale Daten vor dem Beginn von Datenerhebungen evaluieren
-- Manuelle Prozesse mit menschlichen Fähigkeiten zu mappen, um passende Technolgien finden
-- Mit Prototypen und agilem Arbeiten in Iterationen die Nützlichkeit von Projekten überprüfen
+- Projekte vom Zweck (und nicht von der Technologie aus) zu denken
+- Auch Technologien mit niedrigem analytischen Reifegrad in Erwägung zu ziehen
+- Quantiative und qualitative Forschungsmethoden zu nutzen
+- Externe und operationale Daten vor dem Beginn von Datenerhebungen zu evaluieren
+- Manuelle Prozesse mit menschlichen Fähigkeiten zu mappen, um passende Technolgien zu finden
+- Mit Prototypen und agilem Arbeiten in Iterationen die Nützlichkeit von Projekten zu überprüfen
 
 **Was wir vermeiden sollten:**
 
-- (Einmalig) identifizierte Signifikanz überbewerten und Erkenntnisse ohne Sinnhaftigkeitsprüfung übernehmen
-- Unsinnige Vergleichsgruppen bilden
-- Nur nach präferierten Resultaten suchen
-- Voraussetzungen der Datenqualität und -aktualität missachten
-- Uns auf Trendtechnologien und BuzzWords fokussieren
-- Den Aufwand von Datenprojekten (insb. im Bereich der Organisationskultur) unterschätzen
+- (Einmalig) identifizierte Signifikanz überzubewerten und Erkenntnisse ohne Sinnhaftigkeitsprüfung zu übernehmen
+- Unsinnige Vergleichsgruppen zu bilden
+- Nur nach präferierten Resultaten zu suchen
+- Voraussetzungen der Datenqualität und -aktualität zu missachten
+- Uns auf Trendtechnologien und BuzzWords zu fokussieren
+- Den Aufwand von Datenprojekten (insb. im Bereich der Organisationskultur) zu unterschätzen
 
 
 ### Quiz
@@ -114,7 +114,7 @@ quiz(caption = NULL,
 
 Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
 
-Mit der Funktion **class(EureVariable)** könnt Ihr überprüfen, welches Datenformat bei Eurer Variable vorliegt. Testet die Funktion in Zeile 15 für Datumsformate und führt den Code aus.
+Mit der Funktion **class(Euer Objekt)** könnt Ihr überprüfen, welches Datenformat bei Eurem Objekt vorliegt. Testet die Funktion in Zeile 15 für Datumsformate und führt den Code aus.
 
 ```{r datentypen, exercise=TRUE}
 # Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
@@ -134,7 +134,7 @@ typeof(datum)
 # Hier Euer Code
 ```
 
-Wie in Excel könnt Ihr auch in R mit Datumsformaten Rechenoperationen durchführen.
+Anmerkung: Wie in Excel könnt Ihr auch in R mit Datumsformaten Rechenoperationen durchführen.
 
 ### Übung: Entwickelt Euren eigenen Data Use Case
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.

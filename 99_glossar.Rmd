@@ -31,6 +31,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Git** = Kollaborationstool für Informatiker:innen, über das wir Code und Daten austauschen
 
+**Granularität** = Konzept der Datenwissenschaft, nach dem Daten idealerweise pro individuellem Subjekt vorliegen (in unserem R Lernen Kurs also pro Teilnehmer:in) und nicht aggregiert (also z.B. als aggregierter Anzahl von Teilnahmer:innen pro Live Session)
+
 **Image Recognition** (zu dt. Bilderkennung) = Automatisierte Verarbeitung und Interpretation von Bilddateien 
 
 **Integrierte Entwicklungsumgebung** (kurz: IDE) = Umgebung für das Schreiben und die Intrepreation von Code
