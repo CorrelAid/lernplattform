@@ -28,29 +28,14 @@ Damit ihr euch am Anfang leichter im Funktionen-Dschungel zurecht findet haben w
 
 
 ### Quiz
-Derzeit sind 20 Data4Good-Projekte bei CorrelAid e.V. aktiv. Aber wie viele Projekte hat CorrelAid e.V. bereits abgeschlossen (Stand 2021)? Ersetzt in dem Codebeispiel unten den Wert für die Variable "abgeschlossene_projekte" mit der richtigen Zahl 44 und führt den Code aus.
 
-```{r projekte, exercise=TRUE}
-# Hier definieren wir die Variable "aktive_projekte" mit dem Wert 20
-aktive_projekte <- 20
 
-# An dieser Stelle dürft Ihr den Code angepassen
-abgeschlossene_projekte <- 0
+```{r dataimport_q1, exercise=TRUE}
 
-# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind. %d formatiert den Tag, %m den Monat und %y das Jahr. Als Trennungszeichen haben wir uns für "." entschieden.
-datum <- format(Sys.Date(),"%d.%m.%y")
-
-paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
 ```
 
 ### Übung: Dateien lesen
 
-
-<center>
-![*Template: Ideenfindung*](https://correlaid.org/material/Ideenfindung.png){#id .class width=100% height=100%}
-
-
-</center>
 <br>
 
 
