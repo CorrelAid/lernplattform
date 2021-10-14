@@ -142,7 +142,7 @@ Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes S
 Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen. Es ist zudem ausreichend, wenn Ihr allein bis Sektion 5 kommt. Wir werden im Verlauf des Kurses immer wieder auf das Template zurückgreifen und insbesondere die Sektionen 6-8 werden zu einem späteren Zeitpunkt leichter zu beantworten sein.
 
 <center>
-![*Template: Data Use Case](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
+![*Template: Data Use Case*](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
 
 
 </center>
