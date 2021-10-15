@@ -1,6 +1,71 @@
-## Shiny 2
+## Interaktive Visualisierungen
 
-Nach der ersten Einführung in ShinyApps, sehen wir uns diese Woche noch mehr Funktionen in der App. Zunächst aber kurz noch eine genauere Erklärung, wie eine ShinyApp funktioniert -- das ganze Geheimnis hinter der App nennt sich *reactive programming*, oder auch *reaktives Programmieren*. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
+
+Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen oder XX gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid ihr bei ShinyApps genau richtig! 
+
+# Was sind ShinyApps?
+
+- Beispiele bringen
+- Link zur Gallerie 
+
+Ihr seht also, Eurer Phantasie sind keine Grenzen gesetzt! Man kann ShinyApps zur Visualisierung, als Suchmaschine oder aber auch, um euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene App zu bauen.
+
+# Wie funktioniert eine ShinyApp genau? 
+
+**Test - was ist Server, was ist UI**
+
+Ihr habt meist zwei Dateien, eine `ui.R`-Datei und eine `server.R`-Datei, die ihr dann mit `XXX` zusammenbringt. 
+
+<center>![](daten/abbildungen/brain.png){#id .class width=15% height=15%}</center>
+
+Eine `server.R` Datei kann so aussehen:
+
+```{r server, eval = FALSE}
+
+```
+
+Die `server.R`-Datei erlaubt es euch, das "Gehirn" der ShinyApp zu programmieren. 
+
+<center>![](daten/abbildungen/body.png){#id .class width=15% height=15%}</center>
+
+Die `ui.R` kann zum Beispiel so aussehen:
+```{r ui, eval = FALSE}
+
+```
+
+
+Eine `ui.R` Datei, die das *User Interface*, also die Benutzeroberfläche einer ShinyApp darstellt, ermöglicht es dem Nutzer die ShinyApp letztendlich zu bedienen. Im Video haben wir die `ui.R` Datei den "Körper" genannt und die `server.R`-Datei das Gehirn. Genauso kann man es sich auch vorstellen: Im Gehirn, also der `server.R`-Datei, findet die gesamte Berechnung im Hintergrund statt. Die `ui.R`-Datei zeigt dann hinterher das Ergebnis an :)
+
+Ihr könnt in einer ShinyApp eure bisherigen Kenntnisse anwenden. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
+
+![]() Abbildung einfügen
+
+Hier ist noch einmal der Code als Erinnerung dafür:
+
+```{r plot, eval = FALSE}
+# Code Snippet
+```
+
+Wenn wir diese Abbildung in unsere ShinyApp integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Aber machen wir das doch einmal zusammen. 
+
+Was haben wir? 
+
+1. *(Nutzer durchguiden) durch die Komponennt*
+2. 
+3. 
+
+# Und jetzt seid Ihr dran!
+
+Todo 
+
+- Code zum Herunterladen implementieren
+- Einfache ShinyApp
+    1. ShinyApp zum Laufen bringen
+    2. Kleinere Anpassungen (basierend auf dem anderen Kurs) vornehmen
+    3. ?? 
+
+
+Das ganze Geheimnis hinter der App nennt sich *reactive programming*, oder auch *reaktives Programmieren*. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
 
 ![](daten/abbildungen/reactivity.png) Video zur Reaktivität mit Brieftaube
 
@@ -12,17 +77,25 @@ Wir haben letzte Woche den `select` Button kennen gelernt,
 
 - Weitere Buttons/Auswahloptionen vorstellen
 
+- Verweis auf letzte Sitzung?
+
 **Quiz - zwei bis drei Buttons - oder ist das blöd?**
 
 - Weitere Aufgaben in der App
 
 - ShinyApps hosten
 
-
 - Ggf. Automatisierte Reports in der App als Ausblick??
 
 
 ## Weitere Ressourcen
+  - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
+  - [Hadley Wickham: Mastering Shiny](https://mastering-shiny.org){target="_blank"}
+  - [Konstantin Gavras and Nick Baumann: Shiny Apps: Development and Deployment](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/shiny-apps/){target="_blank"} auf Methods Bites
+  - [Julie Scholler: Intro to Shiny Web App](https://juliescholler.gitlab.io/files/M2/M2-CM3-Shiny.html#1){target="_blank"}
+  - [Kaleen L. Medeiros: Introduction to Shiny](https://github.com/klmedeiros/rladies-tunisia-july2020-intro-shiny){target="_blank"}
+  - [Garrett Grolemund: How to understand reactivity in R](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}
+  - [CheatSheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf){target="_blank"}
 - ShinyApps hosten
   - [Hosting and deployment](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
   - [Shinyapps.io - Step-by-step guide](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
