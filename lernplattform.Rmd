@@ -124,8 +124,16 @@ cat(out, sep = '')
 ```
 
 ## Datenvisualisierung
+```{r results='asis'}
+# out <- knitr::knit_child("11_Shiny1", quiet = TRUE)
+# cat(out, sep = '')
+```
 
 ## Interaktive Visualisierungen
+```{r results='asis'}
+#out <- knitr::knit_child("12_Shiny2", quiet = TRUE)
+#cat(out, sep = '')
+```
 
 ## Und jetzt?
 ```{r results='asis'}
