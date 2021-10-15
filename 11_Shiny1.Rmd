@@ -1,77 +1,33 @@
-## Shiny 1
+## Datenvisualisierung
 
-Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen oder XX gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid ihr bei ShinyApps genau richtig! 
+In dieser Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche XX XX ansehen.
 
-# Was sind ShinyApps?
+# Ggplot
 
-- Beispiele bringen
-- Link zur Gallerie 
+- Wiederholung von der vorherigen Sitzung
+- Was kann man noch mit dem Plot machen? (ein paar Veränderungen zeigen)
 
-Ihr seht also, Eurer Phantasie sind keine Grenzen gesetzt! Man kann ShinyApps zur Visualisierung, als Suchmaschine oder aber auch, um euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene App zu bauen.
+# Visualisierung von Karten 
 
-# Wie funktioniert eine ShinyApp genau? 
+Die Daten bieten aber auch eine wunderbare Möglichkeit eine Weltkarte zu visualisieren! 
 
-**Test - was ist Server, was ist UI**
+![]() Abbildung
 
-Ihr habt meist zwei Dateien, eine `ui.R`-Datei und eine `server.R`-Datei, die ihr dann mit `XXX` zusammenbringt. 
-
-<center>![](daten/abbildungen/brain.png){#id .class width=15% height=15%}</center>
-
-Eine `server.R` Datei kann so aussehen:
-
-```{r server, eval = FALSE}
+```{r karte, eval=FALSE}
 
 ```
 
-Die `server.R`-Datei erlaubt es euch, das "Gehirn" der ShinyApp zu programmieren. 
+**oder**
+- Wie am besten? Leaflet
 
-<center>![](daten/abbildungen/body.png){#id .class width=15% height=15%}</center>
+Die Programmierlogik in `Leaflet` ist ähnlich wie in `ggplot`.
 
-Die `ui.R` kann zum Beispiel so aussehen:
-```{r ui, eval = FALSE}
-
-```
-
-
-Eine `ui.R` Datei, die das *User Interface*, also die Benutzeroberfläche einer ShinyApp darstellt, ermöglicht es dem Nutzer die ShinyApp letztendlich zu bedienen. Im Video haben wir die `ui.R` Datei den "Körper" genannt und die `server.R`-Datei das Gehirn. Genauso kann man es sich auch vorstellen: Im Gehirn, also der `server.R`-Datei, findet die gesamte Berechnung im Hintergrund statt. Die `ui.R`-Datei zeigt dann hinterher das Ergebnis an :)
-
-Ihr könnt in einer ShinyApp eure bisherigen Kenntnisse anwenden. Nehmen wir einmal die Visualisierung aus Sitzung XX als Beispiel: 
-
-![]() Abbildung einfügen
-
-Hier ist noch einmal der Code als Erinnerung dafür:
-
-```{r plot, eval = FALSE}
-# Code Snippet
-```
-
-Wenn wir diese Abbildung in unsere ShinyApp integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Aber machen wir das doch einmal zusammen. 
-
-Was haben wir? 
-
-1. *(Nutzer durchguiden) durch die Komponennt*
-2. 
-3. 
-
-# Und jetzt seid Ihr dran!
-
-Todo 
-
-- Code zum Herunterladen implementieren
-- Einfache ShinyApp
-    1. ShinyApp zum Laufen bringen
-    2. Kleinere Anpassungen (basierend auf dem anderen Kurs) vornehmen
-    3. ?? 
 
 # Noch mehr Visualisierungen
 
 - Zusatz zu Ninas Nachfrage reinbringen
 
 ## Weitere Ressourcen
-  - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
-  - [Hadley Wickham: Mastering Shiny](https://mastering-shiny.org){target="_blank"}
-  - [Konstantin Gavras and Nick Baumann: Shiny Apps: Development and Deployment](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/shiny-apps/){target="_blank"} auf Methods Bites
-  - [Julie Scholler: Intro to Shiny Web App](https://juliescholler.gitlab.io/files/M2/M2-CM3-Shiny.html#1){target="_blank"}
-  - [Kaleen L. Medeiros: Introduction to Shiny](https://github.com/klmedeiros/rladies-tunisia-july2020-intro-shiny){target="_blank"}
-  - [Garrett Grolemund: How to understand reactivity in R](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}
-  - [CheatSheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf){target="_blank"}
+- https://geocompr.robinlovelace.net/adv-map.html
+- https://rstudio.github.io/leaflet/
+- https://r-spatial.org/r/2018/10/25/ggplot2-sf-2.html
