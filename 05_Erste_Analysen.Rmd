@@ -54,7 +54,7 @@ quiz(question("Wie viele NA-Werte gibt es im Datensatz?",
 ### 1 Visuelle Exploration 
 
 
-### Kernaussagen aus dem Video
+#### Kernaussagen
 
 - Wichtig erst visualisieren, dann zusammenfassende Statistik.
 - Ein Q&A mit den Daten machen: stellt ihnen Fragen, um die Daten kennenzulernen, sie zu plausibisieren und datengetrieben Insights für eure Organisation herauszuziehen.
@@ -233,10 +233,14 @@ ggsave(here("community_bargraph.jpg"))
 ```
 
 
+#### Visualisierung Übung 
+In der Einheit haben wir uns bei der Visualisierung vor allem der *Community Perspektive* gewidmet. Nun blicken wir auf die *Audit Perspektive*: Wie viel Plastik wurde wo für *Breaking Free From Plastic* gesammelt? Erstelle ein Punktediagramm (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die Anzahl der gesammelten Plastikstücke auf der y-Achse und die Kontinente auf der x-Achse zeigen.
+
+
 ### Exploration mit statistischen Kennzahlen
 
 
-### Kernaussagen
+#### Kernaussagen
 
 - Mittels Kennzahlen lassen sich Datensätze zusammenfassen und Fragen an den Datensatz beantworten.
 - Besonders oft nutzt man: 
@@ -323,7 +327,7 @@ quiz(caption = NULL,
   ) ,  
   question("Warum ist die Standardabweichung für Oceania 'NA'?",
     answer("Weil keine Plastikstücke gefunden wurden."),
-    answer("Weil Oceanien nur drei Stück Plastik registiert haben"),
+    answer("Weil Oceanien nur drei Stück Plastik registiert hat."),
     answer("Weil nur ein Land in Ozeanien mitgemacht hat.", correct = TRUE),
     answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
     random_answer_order = TRUE
@@ -356,7 +360,7 @@ audit_plastic %>%
 ```{r quiz_kennwerte2, echo=FALSE}
 quiz(caption = NULL,
      
-  question("Wieviel Länder habn sich in Asien beteiligt?",
+  question("Wie viele Länder haben sich in Asien beteiligt?",
     answer("1"),
     answer("11"),
     answer("15"),
@@ -427,14 +431,17 @@ quiz(caption = NULL,
 
 ```
 
+#### Übung zu statistischen Kennzahlen
+
+Nutzt den `community` Datensatz und erstellt eine Tabelle, welche die Länder- und Teilnehmeranzahl je Kontinent darstellt.
+
+
 ### Exkurs: Teststatistik 
 
-
-
-### Kernaussagen
+#### Kernaussagen
 
 - Inferenzstatistik zielt darauf ab, Aussagen über eine Grundgesamtheit auf Basis einer Stichprobe zu treffen.
-- Sie ist nützlich, um von einer Umfrage auf die Grundgesamtheit zu schließen oder für die Evaluation von Maßnahmen, um wirklich Änderungen von statistischen Artefakten unterscheiden zu können. 
+- Sie ist nützlich, um von einer Umfrage auf die Grundgesamtheit zu schließen oder um bei der Evaluation von Maßnahmen, reale Änderungen von statistischen Artefakten unterscheiden zu können. 
 - [Zur Auffrischung von t-tests](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} (Der gesamte Kanal ist empfehlenswert!)
 
   
@@ -449,7 +456,7 @@ t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent)
 
 ```  
   
-Zur Interpretation: Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. In unserem Beispiel bedeutet dies, dass sich die Anzahl an Plastikarten in Europa nicht systematisch von denen in Asien unterscheidet. Zumindest können wir keinen robusten statistischen Unterschied feststellen.       
+Zur Interpretation: Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. Kurzum wir können keinen robusten statistischen Unterschied feststellen. In unserem Beispiel bedeutet dies, dass die beobachteten Unterschiede in der durchschnittlichen Anzahl an Plastikarten in Europa und Asien potentiell nur Eigenschaften der Stichproben aber nicht der Grundgesamtheiten sind. 
 
 
 ### Übung
@@ -465,36 +472,9 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 3. In der Einheit haben wir uns bei der Visualisierung vor allem der *Community Perspektive* gewidmet. Nun blicken wir auf die *Audit Perspektive*: Wie viel Plastik wurde wo für *Breaking Free From Plastic* gesammelt? Erstelle ein Punktediagramm (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die Anzahl der gesammelten Plastikstücke auf der y-Achse und die Kontinente auf der x-Achse zeigen.
 
 
-``` {r mogl_lsg_viz, echo=FALSE}
-
-audit_plastic %>%
-  filter(grand_total>15000)
-  
-
-audit_plastic %>%
-  filter(continent!="Unknown") %>%
-  ggplot(aes(continent, grand_total)) +
-  geom_point(position = position_jitter(width=0.3), size=3, alpha = 0.6) + 
-  coord_cartesian(ylim=c(0,15000)) +
-  labs(title = "Beteiligung an 'Break free from Plastik' ..." ,
-       subtitle= "... unterscheidet sich nach Kontinent.",
-       y = "Anzahl gefundener Plastikstücke",
-       x = "Kontinent",
-       caption = "In Nigeria, Philippinen und Taiwan wurden 19841, 28055 und \n120646 Plastikstücke gesammelt. Diese Beoachtungen \nwurden zur Lesbarkeit ausgeklammert.") +
-  theme_minimal()
-
-```
-
 4. Nutzt den `community` Datensatz und erstellt eine Tabelle, welche die Länder- und Teilnehmeranzahl je Kontinent darstellt.
 
-``` {r mogl_lsg_kennzahl, echo=FALSE}
 
-community %>%
-  group_by(continent) %>%
-  summarize(Länderanzahl=n(),
-            Teilnehmner=sum(volunteers))
-
-```
 
 ### Weitere Ressourcen
 
