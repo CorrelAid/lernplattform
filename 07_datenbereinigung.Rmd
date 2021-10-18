@@ -5,6 +5,8 @@
 - Mehr als ein Datensatz? - Wie wir mehrere **Datensätze zusammenfügen** können
 - Mehr als nur Zahlen? - **Visualisierung** unserer Daten mit `ggplot`
 
+Nina: Im Video unbedingt den Pipe-Operator und die gängigsten Funktionen (summarize, group_by etc...) und Power-Kombis vorstellen 
+
 ### Das Tidyverse
 
 <left>
@@ -40,6 +42,8 @@ Zuerst laden wir unseren Datensatz - das kennt Ihr ja bereits schon! Wie Ihr seh
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
 ```
+
+Nina: Das kannst Du auch weglassen, wenn du möchtest - für die Funktionalität des Abschnitts ist es nicht notwendig
 
 Um Euch einen Überblick über die Daten zu verschaffen, führt folgenden Code aus:
 
@@ -111,6 +115,7 @@ Neben Zeilen bzw. Beobachtungen könnt Ihr aber natürlich auch **Spalten bzw. V
 plastics_2019 %>%
   select(-grand_total) -> plastics_reduced
 ```
+Nina: Assignen funktioniert in den Exercise-Chunks leider eh nicht, würde es weglassen oder in "<-" konvertieren, da sie es bisher so gesehen haben, wenn es didaktisch sinnvoll ist, weil du dich dann nochmal auf den datensatz beziehst
 
 Wie Ihr vielleicht schon wisst, ist die Variable `grand_total` einfach nur die Summe an Plastik, die sich aus den anderen Plastik-Kategorien im Datensatz zusammensetzt. Deshalb könnt Ihr die eben gelöschte Variable wieder leicht in Euren Datensatz einfügen: 
 
@@ -339,7 +344,10 @@ quiz(caption = NULL,
 ```
 
 ### Visualisierungen
+Nina: Hier könnte Cosima vielleicht Ideen übernehmen, damit du nicht noch mehr Content aufnehmen musst :) 
 
-### String Manipulation
+### Exkurs: String Manipulation
+
+Nina: Das als kleiner Exkurs?
 
 ### Übung
