@@ -10,13 +10,6 @@ library(learnr)
 library(here)
 ```
 
-
-
-``` {r einlesen, include=FALSE}
-#plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
-```
-
-
 In dieser Einheit geht es darum, in den Analyse-Spirit zu kommen und R als Analysetool kennenzulernen. Wir starten direkt mit einem Anwendungsbeispiel zu Teildatensätzen von "Breaking free from plastic". Schau Dir an, wie die ersten Zeilen des `community` Datensatz gefüllt sind.
 
 ``` {r ersten5-zeilen, exercise=TRUE}
@@ -51,7 +44,7 @@ quiz(question("Wie viele NA-Werte gibt es im Datensatz?",
 
 ```
 
-### 1 Visuelle Exploration 
+### Visuelle Exploration 
 
 
 #### Kernaussagen
@@ -440,43 +433,30 @@ Nutzt den `community` Datensatz und erstellt eine Tabelle, welche die Länder- u
 
 #### Kernaussagen
 
-- Inferenzstatistik zielt darauf ab, Aussagen über eine Grundgesamtheit auf Basis einer Stichprobe zu treffen.
-- Sie ist nützlich, um von einer Umfrage auf die Grundgesamtheit zu schließen oder um bei der Evaluation von Maßnahmen, reale Änderungen von statistischen Artefakten unterscheiden zu können. 
-- [Zur Auffrischung von t-tests](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} (Der gesamte Kanal ist empfehlenswert!)
-
+- Inferenzstatistik zielt darauf ab, Aussagen über eine **Grundgesamtheit** auf Basis einer Stichprobe zu treffen.
+- Sie ist nützlich, um von einer **Umfrage** auf die Grundgesamtheit zu schließen oder um bei der **Evaluation von Interventionen** reale Effekte von statistischen Artefakten unterscheiden zu können
+- Falls Ihr die Theorie dazu nochmal vertiefen wollte, empfehlen wir dieses [Lernvideo](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} (und den gesamten Kanal!)
   
-Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, in dem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an "Break Free from Plastic" beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch.  Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die Grundgesamtheiten in diesen beiden Regionen unterscheiden. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, anders sein müssten.
+Gehören die gesammelten Plastikmengen zu einer Grundgesamtheit? Das wäre eine mögliche statistische Frage, die wir uns hier in diesem Exkurs zur statistischen Inferenz stellen könnten. Wir überprüfen diese Frage, indem wir vergleichen, ob in den asiatischen Ländern und europäischen Ländern, die sich an "Break Free from Plastic" beteiligt haben, die gleiche Anzahl an unterschiedlichen Plastikarten gesammelt worden. Unsere Hypothese könnte lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch.  Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, anders sein müssten.
 
-So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen zweiseitigen t-Test durchführt.  
-
+So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen **zweiseitigen t-Test** durchführt.
   
 ```{r ttest, exercise = TRUE}
-#Anzahl plastikarten je Kontinent gleich?
+# Test-Statistik zur Anzahl der Plastikarten je Kontinent
 t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent)
-
 ```  
   
-Zur Interpretation: Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. Kurzum wir können keinen robusten statistischen Unterschied feststellen. In unserem Beispiel bedeutet dies, dass die beobachteten Unterschiede in der durchschnittlichen Anzahl an Plastikarten in Europa und Asien potentiell nur Eigenschaften der Stichproben aber nicht der Grundgesamtheiten sind. 
+Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. Kurzum: Wir können **keinen robusten statistischen Unterschied** feststellen. In unserem Beispiel bedeutet dies, dass die beobachteten Unterschiede in der durchschnittlichen Anzahl an Plastikarten in Europa und Asien potentiell nur Eigenschaften der Stichproben aber nicht der Grundgesamtheiten sind. 
 
 
-### Übung
+### Und jetzt Ihr
+Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne mit zudem mit Euren Ideen, Fragen, Anregungen oder Kommentaren. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
 
-Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Kommt gerne mit euren Ideen Fragen Anregungen oder Kommentaren zu diesem Input. Es ist nicht schlimm, wenn diese Woche noch gar nichts (komplexes) klappt, da die strukturierte Einführung in R noch folgt. In dieser Einheit ging es erst einmal darum, das R-Eis zu brechen und in den Analyse Spirit einzutauchen.
+1. Überlegt: Welche **Fragen** möchtet Ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
 
+2. Versucht das zugehörige **R Markdown** zum Laufen zu bringen und es nachzuvollziehen.
+Nina: Link zum RMD?
 
-
-1. Zur Diskussion: Welche Fragen möchtet ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert diese gern auf dem Papier bzw. überlegt 
-
-2. Versucht das zugehörige R Markdown zum Laufen zu bringen und es nachzuvollziehen.
-
-3. In der Einheit haben wir uns bei der Visualisierung vor allem der *Community Perspektive* gewidmet. Nun blicken wir auf die *Audit Perspektive*: Wie viel Plastik wurde wo für *Breaking Free From Plastic* gesammelt? Erstelle ein Punktediagramm (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die Anzahl der gesammelten Plastikstücke auf der y-Achse und die Kontinente auf der x-Achse zeigen.
-
+3. In der Einheit haben wir uns bei der Visualisierung vor allem der *Community Perspektive* gewidmet. Nun blicken wir auf die *Audit Perspektive*: Wie viel Plastik wurde wo für *Breaking Free From Plastic* gesammelt? Erstellt ein Punktediagramm (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die Anzahl der gesammelten Plastikstücke auf der y-Achse und die Kontinente auf der x-Achse zeigen.
 
 4. Nutzt den `community` Datensatz und erstellt eine Tabelle, welche die Länder- und Teilnehmeranzahl je Kontinent darstellt.
-
-
-
-### Weitere Ressourcen
-
-- [r4ds](https://r4ds.had.co.nz/){target="_blank"} Das Data Science mit R Handbuch.
-- [Ausführliche Einführung in ggplot2 aus der CorrelAid Community](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/){target="_blank"}

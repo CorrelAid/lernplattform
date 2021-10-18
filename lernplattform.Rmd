@@ -93,14 +93,14 @@ cat(out, sep = '')
 
 ## Einführung in RStudio
 ```{r results='asis'}
-#out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Erste Datenanalysen in R
 ```{r results='asis'}
-out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ## Datenimport und APIs
@@ -113,31 +113,31 @@ cat(out, sep = '')
 
 ## Reports
 ```{r results='asis'}
-#out <- knitr::knit_child("09_Reports", quiet = TRUE)
+#out <- knitr::knit_child("08_Reports", quiet = TRUE)
 #cat(out, sep = '')
 ```
 
 ## Reportautomatisierungen
 ```{r results='asis'}
-#out <- knitr::knit_child("10_AutomatisierteReports", quiet = TRUE)
+#out <- knitr::knit_child("09_AutomatisierteReports", quiet = TRUE)
 #cat(out, sep = '')
 ```
 
 ## Datenvisualisierung
 ```{r results='asis'}
-# out <- knitr::knit_child("11_Shiny1", quiet = TRUE)
+# out <- knitr::knit_child("10_Shiny1", quiet = TRUE)
 # cat(out, sep = '')
 ```
 
 ## Interaktive Visualisierungen
 ```{r results='asis'}
-#out <- knitr::knit_child("12_Shiny2", quiet = TRUE)
+#out <- knitr::knit_child("11_Shiny2", quiet = TRUE)
 #cat(out, sep = '')
 ```
 
 ## Und jetzt?
 ```{r results='asis'}
-#out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
+#out <- knitr::knit_child("12_closing.Rmd", quiet = TRUE)
 #cat(out, sep = '')
 ```
 

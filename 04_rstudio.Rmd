@@ -9,7 +9,6 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 ![*Video: Einführung in RStudio (30min)*](https://youtu.be/zHpCjZDbpB8)
 *Anmerkung: CSV-Dateien (comma separated values, zu dt. Komma getrennte Werte) sind strukturierte Textdateien, die Ihr u.a. in Excel erstellen oder aus anderen Tools exportieren könnt.* 
 
-
 ### Kernaussagen 
 #### R
 - R ist eine **freie, statistische Programmiersprache**
@@ -24,6 +23,7 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 - Mit **Knit** "strickt" Ihr aus einem RMD ein Outputdokument, während Ihr mit Run Code intepretieren lasst 
 - Den Code könnt Ihr mit einem Klick auf den "Playbutton", auf **"Run/Run All"** oder mit **"STRG/CTRL/CMD + Enter"** ausführen - für einzelne Code Chunks müsst Ihr den Cursor in der Zeile platzieren oder den Codebereich markieren
 - Alle **Shortcuts** für RStudio findet Ihr unter ("Menü Help -> Keyboard Shortcuts Help)
+- In englischer Sprache ist zudem ein **Schummelblatt** zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} verfügbar
 - Mit dem **Tabstopp** (Pfeil nach rechts über Shift) könnt Ihr die **Vorschläge**, die Euch RStudio für Euren Code macht, übernehmen
 - In der **Console** erhaltet Ihr die Ergebnisse Eurer Programmierung
 - Bei R Markdown-Dateien öffnet sich - je nach Einstellung - ein **externes Fenster** für den HTML/PDF-Bericht, bei Shiny Web Apps ein externes Fenster, in dem Ihr Eure App testen könnt
@@ -236,7 +236,7 @@ plastics[c('country', 'year')]
 subset(plastics, country == "Argentina" & year == 2020)
 ```
 
-Aufgepasst: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. In **StackOverflow** finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
+Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf (**StackOverflow**)[https://stackoverflow.com/]{target="_blank"} und in der (**R-Online Community**)[https://community.rstudio.com/]{target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
 
 
 ### Und jetzt Ihr
