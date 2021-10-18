@@ -3,6 +3,8 @@
 
 Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen oder XX gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid ihr bei ShinyApps genau richtig! 
 
+Nina: hier vielleicht eine kleine Preview und mündliche Erklärung des Textes unten?
+
 # Was sind ShinyApps?
 
 - Beispiele bringen
@@ -87,6 +89,7 @@ Wir haben letzte Woche den `select` Button kennen gelernt,
 
 - Ggf. Automatisierte Reports in der App als Ausblick??
 
+Nina: Da kannst du ganz flexibel sein - lass dich gerne von den Beispielen von learnR inspirieren!
 
 ## Weitere Ressourcen
   - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
