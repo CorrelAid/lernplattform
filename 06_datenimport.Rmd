@@ -12,7 +12,9 @@ video outline:
 - APIs: definition + beispiele
 - server/client model kurz
 - methods: GET (POST, PUT, DELETE only mention)
+Nina: bei der Erklärung der API gerne Analogien nutzen (Restaurant oder sowas)
 - wie kann ich eine anfrage mit R stellen?
+Nina: Vielleicht haben wir noch ein paar nützliche APIs, die wir vorstellen wollen? Eigene oder sonstige für amtliche Datenquellen, wichtigen internationalen Institutionen, Wetter, etc.?
 
 
 ![*Video: Datenimport (~ 30min)*](https://youtu.be/w7wbIHQg7cs)
@@ -20,12 +22,13 @@ video outline:
 
 ### Kernaussagen
 - Check data: Was für eine Datei möchte ich laden (Dateiendung)?
-- Fehler beim Laden? Was sind Uhrsachen: Fehlermeldung lesen und in die Daten schauen.
+- Fehler beim Laden? Was sind Ursachen: Fehlermeldung lesen und in die Daten schauen.
 - API: Daten aus dem Web, live, weltweit und anwendungsbezogen
 - Wie muss ich mich authentifizieren, was sind die Routes & Parameter?
 
 Damit ihr euch am Anfang leichter im Funktionen-Dschungel zurecht findet haben wir eine Grafik erstellt:
 
+Nina: sieht erstmal gut aus, die Graphikidee ist super - gerne auch die (deutschen) Cheat Sheets verlinken (es gibt Datenimport) und auf engl. auch was zu plumber
 
 ### Quiz
 
