@@ -2,7 +2,7 @@
 
 In dieser Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche XX XX ansehen.
 
-Nina: Video zu warum visualisieren, welche Viz für welchen Sachverhalt, erste Codesnippets zeigen, eventuell Matching zum Schaubild mit verschiedenen Graphen bei GGPlot?
+Nina: Video vielleicht zu den Inhalten: warum visualisieren, welche Viz für welchen Sachverhalt, erste Codesnippets zeigen, eventuell Matching zum Schaubild mit verschiedenen Graphen bei GGPlot?
 
 # Ggplot
 
@@ -26,7 +26,7 @@ Die Daten bieten aber auch eine wunderbare Möglichkeit eine Weltkarte zu visual
 
 Die Programmierlogik in `Leaflet` ist ähnlich wie in `ggplot`.
 
-Edit: Leaflet finde ich gut, eventuell müssen wir hier noch auf das Konzept von Geocodierungen verweisen, damit das klar ist
+Nina: Leaflet finde ich gut, eventuell müssen wir hier noch auf das Konzept von Geocodierungen verweisen, damit das klar ist
 
 # Noch mehr Visualisierungen
 

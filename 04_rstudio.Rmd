@@ -13,7 +13,7 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 #### R
 - R ist eine **freie, statistische Programmiersprache**
 - Die **Groß- und Kleinschreibung** muss in R unbedingt beachtet werden
-- Nicht jede **Funktionalität** müsst Ihr in R selbst schreiben: Über **"install.packages()"** und **"library()"** könnt Ihr Funktionalitäten, die andere Coder:innen für Euch bereitstellen, nutzen - das spart viel Zeit! Es ist empfehlenswert, install.packages("") in Euren Dateien **auszukommentieren** oder eine dezidierte Datei mit den Installationsbefehlen anzulegen.
+- Nicht jede **Funktionalität** müsst Ihr in R selbst schreiben: Über **"`install.packages()`"** und **"`library()`"** könnt Ihr Funktionalitäten, die andere Coder:innen für Euch bereitstellen, nutzen - das spart viel Zeit! Es ist empfehlenswert, install.packages("") in Euren Dateien **auszukommentieren** oder eine dezidierte Datei mit den Installationsbefehlen anzulegen.
 - Innerhalb von Code muss auch **Text auskommentiert werden** (z.B. über das Einfügen eines Hashtags "#" zu Beginn des Textes), in einem RMD wird über "#" allerdings formatiert
 
 #### RStudio
@@ -51,6 +51,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
+  
   question("Code ist über Patent- und Urheberrechte geschützt, deshalb darf ich nichts von anderen Coder:innen benutzen.",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
@@ -59,6 +60,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
+  
   question("Welche Aussagen über den Syntax in R und RMDs sind wahr?",
     answer("Code Chunks werden in RMDs durch ``` eingeschlossen und sind grau hinterlegt.", correct = TRUE),
     answer("Optionen für den Output eines Code Chunks können wir in RMDs durch \"{r code_chunk_label, setting1 =..., ...\" festlegen.", correct = TRUE),
@@ -70,6 +72,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
+  
   question("IDE steht für Integrated Development Environment (zu dt. integrierte Entwicklungsumgebung). RStudio ist eine integrierte Entwicklungsumgebung für R.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -78,6 +81,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
+  
   question("Dateiformate in RStudio sind unter anderem...",
     answer("R Markdowns (kurz RMD) zur Erstellung von PDF- und HTML-Reporten.", correct = TRUE),
     answer("Shiny Web Apps zur Erstellung von interaktiven Dashboards.", correct = TRUE),
@@ -87,6 +91,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
+  
   question("Knitting bedeutet, dass ich aus einem ganzen RMD PDF-, HTML- oder Worddateien erstelle, während \"Run\" bedeutet, dass Code über die Konsole oder in meinem RMD interpretiert werden soll.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -102,7 +107,7 @@ quiz(caption = NULL,
 ### Übung
 *Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio zu gewöhnen.*
 
-Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analysieren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete) - eine ziemlich gute Sache. Eure Arbeit beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **install.packages("package")** und **library(package)**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. Bitte denkt daran, "install.packages()" auszukommentieren, wenn die Installation abgeschlossen ist - sonst wird die Installation bei jedem Ausführen des Skripts wieder durchgeführt. In der Zukunft könnt Ihr auch eine eigene Datei für Installationsskripte einrichten - das zeigen wir Euch zu einem späteren Zeitpunkt.
+Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analysieren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete) - eine ziemlich gute Sache. Eure Arbeit beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **`install.packages("package")`** und **`library(package)`**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. Bitte denkt daran, "install.packages()" auszukommentieren, wenn die Installation abgeschlossen ist - sonst wird die Installation bei jedem Ausführen des Skripts wieder durchgeführt. In der Zukunft könnt Ihr auch eine eigene Datei für Installationsskripte einrichten - das zeigen wir Euch zu einem späteren Zeitpunkt.
 
 Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben). **Kommentare** erkennt Ihr in der Regel an dem Hash **"#"**, bei mehrzeiligen Kommentaren werden diese aber auch oft in Anführungszeichen gesetzt.
 
@@ -112,8 +117,8 @@ Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete in
 #library(readr)
 ```
 
-Mit der Notation "package::funktion()" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"readr"** und der Funktion **"read_csv()"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("objektname <- objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
-Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"here::here()"**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
+Mit der Notation "`package::funktion()`" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"`readr`"** und der Funktion **"`read_csv()`"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("objektname <- objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
+Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"`here::here()`"**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
@@ -121,7 +126,7 @@ plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/t
 # plastics <- readr::read_csv(here::here('daten/plastics.csv'))
 ```
 
-Überprüft hier nochmal, als welches **Objekt** "read_csv()" unseren Datensatz importiert. Die Funktion dafür habt Ihr in den vergangenen Lektionen kennengelernt. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
+Überprüft hier nochmal, als welches **Objekt** "`read_csv()`" unseren Datensatz importiert. Die Funktion dafür habt Ihr in den vergangenen Lektionen kennengelernt. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
 ```{r exercise_class, exercise = TRUE}
 # Euer Code hier
 ```
@@ -135,16 +140,16 @@ class(plastics)
 grade_this_code()
 ```
 
-Mit der Funktion **"head()"** könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden. Das Gegenteil von "head()" ist "tail()" - damit könnt Ihr die letzten fünf Beobachtungen erkunden.
+Mit der Funktion **"`head()`"** könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden. Das Gegenteil von "head()" ist "tail()" - damit könnt Ihr die letzten fünf Beobachtungen erkunden.
 ``` {r head, exercise = TRUE}
 head(plastics)
 ```
-Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion **"colnames()"** deren Namen anzeigen lassen.
+Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion **"`colnames()`"** deren Namen anzeigen lassen.
 ``` {r variablen, exercise = TRUE}
 colnames(plastics)
 ```
 
-Die Funktionen **nrow(), ncol() und dim()** helfen Euch die **Dimensionen** Eures Datensatzes zu bestimmen. Mit help("Funktion") könnt Ihr Euch über RStudio in der Konsole die Erklärung zu den Funktionen anzeigen lassen. Nutzt das bisher Gelernte, um Euch die Spaltenanzahl (also die Anzahl an Variablen) ausgeben zu lassen.
+Die Funktionen **`nrow()`, `ncol()` und `dim()`** helfen Euch die **Dimensionen** Eures Datensatzes zu bestimmen. Mit help("Funktion") könnt Ihr Euch über RStudio in der Konsole die Erklärung zu den Funktionen anzeigen lassen. Nutzt das bisher Gelernte, um Euch die Spaltenanzahl (also die Anzahl an Variablen) ausgeben zu lassen.
 ```{r exercise_ncol, exercise = TRUE}
 # Euer Code hier
 ```
@@ -167,12 +172,12 @@ ncol(plastics)
   }))
 ```
 
-Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **"summary()"** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
+Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **"`summary()`"** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
 ``` {r datenstruktur_summary, exercise = TRUE}
 summary(plastics)
 ```
 
-Alternativ gibt es auch die Funktion **str()**, die ähnlich wie **summary()** Grundeigenschaften von Datentabellen anzeigt. Welche Unterschiede findet Ihr zwischen den beiden Funktionen?
+Alternativ gibt es auch die Funktion **`str()`**, die ähnlich wie **`summary()`** Grundeigenschaften von Datentabellen anzeigt. Welche Unterschiede findet Ihr zwischen den beiden Funktionen?
 
 ``` {r datenstruktur_str, exercise = TRUE}
 str(plastics)
@@ -224,7 +229,7 @@ if (2 + 2 == 5) {
     }
 ```
 
-Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **c()** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
+Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **"`c()`"** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
 ``` {r slicing1, exercise = TRUE}
 # Auslesen der Spalte 'country'
 plastics$country 
