@@ -4,6 +4,7 @@ Nina:
 - Ansprache: wir/ihr
 - Vorbereitung und Extremwerte zu Datenbereinigung?
 - Verwendung zweier Datensätze/Perspektiven zu kompliziert?
+- Gesamtstruktur an vorherige Lektionen anpassen
 - In Quiz und Code Exercises Tipps und Lösungen einfügen
 
 ### Vorbereitung -> zu Datenbereinigung? @Zoe
