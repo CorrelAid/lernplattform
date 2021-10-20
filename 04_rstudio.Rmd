@@ -20,7 +20,7 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 - RStudio ist auf R spezialisierte **integrierte Entwicklungsumgebung** (eng. Integrated Development Environment oder IDE), in der Ihr Code schreiben, ausführen, auf Dokumentation und Dateien zugreift, Eure Arbeit mit Anderen teilen könnt uvm.
 - Im **Code Editor** (zu dt. Codebearbeitungsprogramm) wird programmiert
 - Ein **Code Chunk** kann in RStudio in RMDs mit \```{r} Dein Code hier\```, über das Menü "Code -> Insert Chunk" oder den Kurzbefehlen "CMD + CTRL + i" für Mac und "CTRL + Alt + i) hinzugefügt werden
-- Mit **Knit** "strickt" Ihr aus einem RMD ein Outputdokument, während Ihr mit Run Code intepretieren lasst 
+- Mit **Knit** "strickt" Ihr aus einem RMD ein Outputdokument, während Ihr mit Run Code interpretieren lasst 
 - Den Code könnt Ihr mit einem Klick auf den "Playbutton", auf **"Run/Run All"** oder mit **"STRG/CTRL/CMD + Enter"** ausführen - für einzelne Code Chunks müsst Ihr den Cursor in der Zeile platzieren oder den Codebereich markieren
 - Alle **Shortcuts** für RStudio findet Ihr unter ("Menü Help -> Keyboard Shortcuts Help)
 - In englischer Sprache ist zudem ein **Schummelblatt** zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} verfügbar
@@ -56,7 +56,7 @@ quiz(caption = NULL,
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Gerade dadurch dass Code nicht geschützt ist, können wir Packages ja erst nutzen - oder uns in Foren wie StackOverflow austauschen.",
+    incorrect = "Leider falsch: Gerade dadurch, dass Code nicht geschützt ist, können wir Packages ja erst nutzen - oder uns in Foren wie StackOverflow austauschen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
@@ -244,7 +244,7 @@ subset(plastics, country == "Argentina" & year == 2020)
 Einen Überblick über die Grundlagen in R erhaltet Ihr in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}.
 <br>
 
-Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf (**StackOverflow**)[https://stackoverflow.com/]{target="_blank"} und in der (**R-Online Community**)[https://community.rstudio.com/]{target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
+Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf (**Stack Overflow**)[https://stackoverflow.com/]{target="_blank"} und in der (**R-Online Community**)[https://community.rstudio.com/]{target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
 
 
 ### Und jetzt Ihr

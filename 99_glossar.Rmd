@@ -1,7 +1,6 @@
 ## Glossar
 
 ``` {r settings_glossar, echo=FALSE, include=FALSE}
-library(readr)
 ```
 
 Da man in dem **Fachwortdschungel der Datenwissenschaft** gerne mal verloren gehen kann, pflegen wir hier für Euch ein Glossar, das unsere Tutor:innen nach und nach für Euch mit wichtigen Begrifflichkeiten füllen werden. <br>
@@ -35,11 +34,11 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Git** = Kollaborationstool für Informatiker:innen, über das wir Code und Daten austauschen
 
-**Granularität** = Konzept der Datenwissenschaft, nach dem Daten idealerweise pro individuellem Subjekt vorliegen (in unserem R Lernen Kurs also pro Teilnehmer:in) und nicht aggregiert (also z.B. als aggregierter Anzahl von Teilnahmer:innen pro Live Session)
+**Granularität** = Konzept der Datenwissenschaft, nach dem Daten idealerweise pro individuellem Subjekt vorliegen (in unserem R Lernen Kurs also pro Teilnehmer:in) und nicht aggregiert (also z.B. als aggregierte Anzahl von Teilnehmer:innen pro Live Session)
 
 **Image Recognition** (zu dt. Bilderkennung) = Automatisierte Verarbeitung und Interpretation von Bilddateien 
 
-**Integrierte Entwicklungsumgebung** (kurz: IDE) = Umgebung für das Schreiben und die Intrepreation von Code
+**Integrierte Entwicklungsumgebung** (kurz: IDE) = Umgebung für das Schreiben und die Interpretation von Code
 
 **Median** = robuster "Mittelpunkt" mehrerer Zahlen (50% der Ausprägungen sind kleiner oder größer)
 
@@ -55,7 +54,7 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **R Markdown** = RStudio-Dateiformat zur Kombination von Code und Text mit Exportfunktionalitäten zu PDF und HTML
 
-**Robustheit** = Unsensibilität gegenüber *Ausreißern*
+**Robustheit** = Insensibilität gegenüber *Ausreißern*
 
 **RProject** = Tool zur Dateibündelung von Codeskripten, Daten uvm. für das vereinfachte Teilen von Programmierprojekten
 
@@ -152,7 +151,7 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 
 **Dimension** = `dim()`
 
-**Einlesen von CSV-Dateien** = `readr:read_csv()`
+**Einlesen von Dateien** = `rio::import()`
 
 **Gruppierung von Zielen** (Beobachtungen) nach Kriterien = `dplyr::group_by()`
 
@@ -179,6 +178,8 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 **Variablennamen anzeigen** = `colnames()`
 
 **Varianz** = `var()`
+
+**(Erstellung einer) Visualisierung** = `ggplot2:ggplot(data = , aes(x = , y = ))`
 
 **Zeilenanzahl** = `nrow()`
 
