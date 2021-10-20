@@ -14,7 +14,10 @@ runtime: shiny_prerendered
 # remotes::install_github("rstudio/gradethis")
 library(gradethis)
 library(learnr)
+library(rio)
 library(tidyverse)
+library(ggplot2)
+library(dplyr)
 library(janitor)
 library(countrycode)
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -26,32 +29,31 @@ gradethis::gradethis_setup(pass = "Gut gemacht!",
                            fail.hint = FALSE,
                            grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
                            )
-# Daten laden
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+### Daten laden
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
-# Daten für 05 bereinigen
+### Daten bereinigen
 # Country name cleaning: 
-  #United Kingdom of Great Britain & Northern Ireland ssowie für die USA
+  # United Kingdom of Great Britain & Northern Ireland sowie für die USA
 plastics_prep <- plastics %>%
   # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
   filter(year==2019) %>%
   mutate(country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
          country = str_replace(country, "United States of America", "United States"),
          country = str_to_title(country) ) %>% #um z.B.: ECUADOR etc case ändern
-  #Continent und country code anspielen
+  #Continent und Country Code anspielen
   mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
          countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
   mutate(continent=replace_na(continent, "Unknown"),
          countrycode=replace_na(countrycode, "Unknown"))
 
-# Community Datensatz für 05
+### Community Datensatz erstellen
 community<- plastics_prep %>%
   select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
   group_by(country, year) %>%
   filter(row_number()==1)
 
-# Audit plastik Datensatz für 05
-
+# Audit Plastik Datensatz erstellen
 audit_plastic<- plastics_prep %>%
   # nur grandtotal zeile behalten
   filter(parent_company=="Grand Total") %>%
@@ -61,13 +63,11 @@ audit_plastic<- plastics_prep %>%
     across(everything(), ~replace_na(.x, 0))
   )
 
-# EU-Asien Audit plastik Datensatz für 05
+# EU-Asien Audit Plastik Datensatz erstellen
 audit_plastic_eu_asia<- audit_plastic %>%
   filter(continent == "Europe" | continent == "Asia") %>%
   group_by(country) %>%
   mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
-
-
 ``` 
 
 

@@ -10,6 +10,7 @@ Nina: Video vielleicht zu den Inhalten: warum visualisieren, welche Viz für wel
 - Was kann man noch mit dem Plot machen? (ein paar Veränderungen zeigen)
 
 Nina: plus verschiedene Graphtypen vielleicht? (simpel gehalten, aber so dass man die wichtigsten mal gesehen hat)
+kleine Ergänzung: könntest du ggsave irgendwo einführen?
 
 # Visualisierung von Karten 
 

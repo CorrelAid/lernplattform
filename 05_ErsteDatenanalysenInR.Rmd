@@ -1,0 +1,115 @@
+---
+title: "Erste Datenanalysen in R"
+author: "Nina Hauser"
+date: "10/20/2021"
+output: pdf_document
+---
+
+# Schritt 1: Infrastruktur
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
+library(rio)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(janitor)
+library(countrycode)
+```
+
+# Schritt 2: Daten laden
+
+```{r}
+### Daten laden
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+```
+
+# Schritt 3: Daten bereinigen (diesen Teil müsst Ihr noch nicht nachvollziehen)
+```{r}
+### Daten bereinigen
+# Country name cleaning: 
+  # United Kingdom of Great Britain & Northern Ireland sowie für die USA
+plastics_prep <- plastics %>%
+  # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
+  filter(year==2019) %>%
+  mutate(country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
+         country = str_replace(country, "United States of America", "United States"),
+         country = str_to_title(country) ) %>% #um z.B.: ECUADOR etc case ändern
+  #Continent und Country Code anspielen
+  mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
+         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
+  mutate(continent=replace_na(continent, "Unknown"),
+         countrycode=replace_na(countrycode, "Unknown"))
+
+### Community Datensatz erstellen
+community<- plastics_prep %>%
+  select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
+  group_by(country, year) %>%
+  filter(row_number()==1)
+
+# Audit Plastik Datensatz erstellen
+audit_plastic<- plastics_prep %>%
+  # nur grandtotal zeile behalten
+  filter(parent_company=="Grand Total") %>%
+  select(-c(parent_company, num_events, volunteers, empty)) %>%
+  #NA zu 0
+  mutate(
+    across(everything(), ~replace_na(.x, 0))
+  )
+
+# EU-Asien Audit Plastik Datensatz erstellen
+audit_plastic_eu_asia<- audit_plastic %>%
+  filter(continent == "Europe" | continent == "Asia") %>%
+  group_by(country) %>%
+  mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
+```
+
+# Schritt 4: Übersicht verschaffen
+```{r}
+# Überblick über die Community verschaffen
+dplyr::glimpse(community)
+```
+
+```{r}
+# Überblick über den Plastik-Audit verschaffen
+dplyr::glimpse(community)
+```
+
+# Schritt 5: Visuelle Exploration
+```{r}
+# Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
+ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen inklusive Änderung der Reihenfolge
+  geom_point(position = position_jitter(width = 0.3),
+             size = 3,
+             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
+  coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
+  labs(
+    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl Freiwilliger",
+    x = "Kontinent",
+    caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+```
+
+# Schritt 6: Statistische Kennzahlen
+```{r}
+# Berechnung statistischer Kennzahlen pro Kontinent
+audit_plastic %>%
+  group_by(continent) %>%
+  summarize(
+    # Mittelwert
+    menge_mittelwert = mean(grand_total),
+    # Standardabweichung
+    menge_standardabweichung = sd(grand_total),
+    # Median
+    menge_median = median(grand_total),
+    # Anzahl beteiligter Länder
+    länder_anzahl = n(),
+    # Summe der Plastikmenge
+    menge_summe = sum(grand_total)
+  )
+```
+

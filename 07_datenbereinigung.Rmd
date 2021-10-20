@@ -351,3 +351,32 @@ Nina: Hier könnte Cosima vielleicht Ideen übernehmen, damit du nicht noch mehr
 Nina: Das als kleiner Exkurs?
 
 ### Übung
+
+### Content aus anderen Lektionen
+
+Zunächst überprüfen wir, wie viele **fehlende Ausprägungen ("NA")** im Datensatz sind. Dazu nutzen wir eine Filterfunktion, die der Logik "funktion(bedingung(dataframe))" folgt. Hier filten wir über die Funktion **is.na()**, die ermittelt, ob ein fehlender Wert "NA" enthalten ist ("TRUE" = NA enthalten, "FALSE" = kein NA enthalten). Lasst den Code Chunk laufen, um herauszufinden, in welchen der Variablen "NA"s enthalten sind. 
+
+```{r na-in-zero, exercise=TRUE}
+# Anzahl der Zeilen im Datensatz
+nrow(community)
+
+# Zusammenfassung der NA-Werte pro Spalte
+summary(is.na(community))
+```
+
+``` {r quiz_na, echo=FALSE}
+quiz(
+  question(
+    "Wie viele NA-Werte gibt es im Datensatz?",
+    answer("624"),
+    answer("52"),
+    answer("0", correct = TRUE),
+    answer("12"),
+    random_answer_order = TRUE,
+    correct = "Richtig! Wir haben diesen Datensatz so vorbereitet, dass er keine fehlende Werte, NAs mehr enthält. Wie man dies implementiert, erfährst du in der Einheit 7.",
+    incorrect = "Leider falsch. Sowohl die Gesamtanzahl der Zeilen des Datensatzes und die Anzahl von FALSE (keine NAs) in den Variablen ist 52.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```

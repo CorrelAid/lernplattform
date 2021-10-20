@@ -1,7 +1,7 @@
 ## Einführung in RStudio
 
 ``` {r settings_rstudio, echo=FALSE, include=FALSE}
-library(readr)
+library(rio)
 ```
 
 Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per E-Mail** an Nina (nina.h@correlaid.org) kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
@@ -112,18 +112,18 @@ Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **F
 Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete installiert und lädt, sieht so aus. Hier wurde der Code auskommentiert (da wir alle Pakete, die für die Lernplattform notwendig sind für Euch schon installiert und geladen haben). **Kommentare** erkennt Ihr in der Regel an dem Hash **"#"**, bei mehrzeiligen Kommentaren werden diese aber auch oft in Anführungszeichen gesetzt.
 
 ```{r pakete, exercise = TRUE}
-# Installation und Laden des Packages "readr"
-#install.packages("readr")
-#library(readr)
+# Installation und Laden des Packages "rio"
+#install.packages("rio")
+library(rio)
 ```
 
-Mit der Notation "`package::funktion()`" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). CSV-Dateien können u.a. mit dem Package **"`readr`"** und der Funktion **"`read_csv()`"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("objektname <- objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
+Mit der Notation "`package::funktion()`" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). Dateien können u.a. mit dem Package **"`rio``"** und der Funktion **"`import()`"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("objektname <- objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
 Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"`here::here()`"**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
 ``` {r daten_einlesen, exercise = TRUE}
-# Hier laden wir mit dem readr-Package und der Funktion "read_csv()" unseren Datensatz.
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+# Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
-# plastics <- readr::read_csv(here::here('daten/plastics.csv'))
+# plastics <- rio::import(here::here('daten/plastics.csv'))
 ```
 
 Überprüft hier nochmal, als welches **Objekt** "`read_csv()`" unseren Datensatz importiert. Die Funktion dafür habt Ihr in den vergangenen Lektionen kennengelernt. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
@@ -240,6 +240,9 @@ plastics[c('country', 'year')]
 # Erstellung eines Subsets auf Basis von Bedingungen
 subset(plastics, country == "Argentina" & year == 2020)
 ```
+<br>
+Einen Überblick über die Grundlagen in R erhaltet Ihr in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}.
+<br>
 
 Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf (**StackOverflow**)[https://stackoverflow.com/]{target="_blank"} und in der (**R-Online Community**)[https://community.rstudio.com/]{target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
 
@@ -247,6 +250,6 @@ Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal 
 ### Und jetzt Ihr
 Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und...
 
-1. Installiert und ladet das Package "readr".
+1. Installiert und ladet das Package "rio".
 2. Lest den Datensatz über den Hyperlink oder lokal ein. Ihr findet ihn unter diesem [Link]( 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'){target="_blank"} und könnt ihn dort auch herunterladen, wenn Ihr Euch für die zweite Variante entscheidet.
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.

@@ -11,6 +11,10 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 ### Technische Fachbegriffe
 
+**Absolute Häufigkeit** = Anzahl der Ausprägungen
+
+**Ausreißer** = Beobachtung, die von anderen Beobachtungen auffällig abweicht
+
 **Dashboard** (zu dt. Instrumententafel) = Zusammenstellung von (zumeist) explorativen Datenanalyseelementen wie Visualisierungen und statistischen Kennwerten 
 
 **Dataframe** (zu dt. Datenrahmen) = tabellarisches Objekt, in dem Daten gespeichert werden 
@@ -37,11 +41,21 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Integrierte Entwicklungsumgebung** (kurz: IDE) = Umgebung für das Schreiben und die Intrepreation von Code
 
+**Median** = robuster "Mittelpunkt" mehrerer Zahlen (50% der Ausprägungen sind kleiner oder größer)
+
+**Mittelwert** = Durchschnittswert einer Menge aus mehreren Zahlen
+
+**Modus (auch: Modalwert)** = häufigster Wert in einer Menge an Zahlen
+
 **Open Source Software** = frei nutzbare, unlizenzierte Software (aber eventuell mit Verpflichtung zur Autor:innenkennung)
 
 **Packages** (zu dt. Pakete) = Bündel an programmierten, wiederverwendbaren Funktionalitäten
 
+**Relative Häufigkeit** = Prozentualer Anteil der Ausprägungen in einer Gruppe
+
 **R Markdown** = RStudio-Dateiformat zur Kombination von Code und Text mit Exportfunktionalitäten zu PDF und HTML
+
+**Robustheit** = Unsensibilität gegenüber *Ausreißern*
 
 **RProject** = Tool zur Dateibündelung von Codeskripten, Daten uvm. für das vereinfachte Teilen von Programmierprojekten
 
@@ -49,9 +63,13 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Slicing** = Zugriff auf bestimmte Daten in einem *Dataframe*
 
+**Standardabweichung** = standardisiertes Maß für die Streuung um den Mittelwert
+
 **Subsets** = Teilmenge des Datensatzes
 
 **Variable Assignment** (zu dt. Variablenzuweisung) = Benennung von Objekten (in R durch "objektname <- objekt)
+
+**Varianz** = Streuung um den *Mittelwert*
 
 **Work Space** (zu dt. Arbeitsspeicher) = Temporärer Arbeitsspeicher der *IDE* während der Programmierung (nie speichern)
 
@@ -86,7 +104,7 @@ Variable1 > Variable 2 (größer als) <br>
 Variable1 >= Variable 2 (größer gleich) <br>
 
 **Pipe-Operator (zum Zusammenfügen von Operationen** <br>
-%>% (im Rahmen des dpylr) <br>
+%>% (im Rahmen des tidyverse) <br>
 |> (der generelle Pipeoperator) <br>
 
 **Variablenzuweisung** <br>
@@ -108,28 +126,60 @@ datensatz['variablenname'] <br>
 dataframe[beginnzeile:endezeile, beginnspalte:endespalte] <br>
 subset(dataframe, ausdruck) <br>
 
+### Wichtige Packages in R
+Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere Funktionen. Diese findet Ihr in sog. Packages:
+
+`library(dplyr)` - Package zur Datenbereinigung und Berechnung statistischer Kennzahlen
+`library(ggplot2)` - Package zur Visualisierung von Daten
+`library(rio)` - Package zum vereinfachten Laden von Daten
+`library(tidyverse)` - Packagesammlung für die Datenwissenschaft
+
 ### Wichtige Funktionen in R
 
-**(Partiellen) Datensatz anzeigen** = View()/head()/tail()
+**Anzahl** = `n()`
 
-**(tagesaktuelles) Datum** = Sys.Date()
+**Auswahl von Spalten** (Variablen) = `dplyr::select()`
 
-**Dimension** = dim()
+**Auswahl von Zeilen** (Beobachtungen) nach Kriterien = `dplyr::filter()`
 
-**Einlesen von CSV-Dateien** = readr:read_csv()
+**(minimale/maximale) Ausprägung** einer Variablen = `min()`/`max()`
 
-**Hilfe** = help("")/?funktion
+**Berechnung neuer Spalten** (Variablen) auf Basis vorhandener Variablen = `dplyr::mutate()`
 
-**Installation von Packages** = install.packages("") 
+**(Partiellen) Datensatz anzeigen** = `View()`/`head()`/`tail()`
 
-**Laden von Packages** = library()
+**(tagesaktuelles) Datum** = `Sys.Date()`
 
-**Spaltenanzahl** = ncol()
+**Dimension** = `dim()`
 
-**Subsets** = subset()
+**Einlesen von CSV-Dateien** = `readr:read_csv()`
 
-**Übersicht über Datensatz** = summary()/str()
+**Gruppierung von Zielen** (Beobachtungen) nach Kriterien = `dplyr::group_by()`
 
-**Variablennamen anzeigen** = colnames()
+**Hilfe** = `help("")`/`?funktion`
 
-**Zeilenanzahl** = nrow()
+**Installation von Packages** = `install.packages("") `
+
+**Laden von Packages** = `library()`
+
+**Mittelwert, Median und Modus** = `mean()`/`median()`/`mode()`
+
+**Sortierung von Zeilen** nach Kriterien = `dplyr::arrange()`
+
+**Spaltenanzahl** = `ncol()`
+
+**Standardabweichung** = `sd()`
+
+**Subsets** = `subset()`
+
+**Summe** = `sum()`
+
+**Übersicht über Datensatz** = `summary()`/`str()`/`dplyr::glimpse()`
+
+**Variablennamen anzeigen** = `colnames()`
+
+**Varianz** = `var()`
+
+**Zeilenanzahl** = `nrow()`
+
+**Zusammenfassung von Werten** zur Vereinfachung des Informationsgehalts = `dplyr::summarize()`
