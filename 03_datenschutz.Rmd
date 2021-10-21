@@ -161,7 +161,7 @@ question("Muss immer eine explizite Einwilligung in die Datenverarbeitung erfolg
 
 question("Wie lange dürfen Daten gespeichert werden?",
     answer("Unbegrenzt"),
-    answer("Bis zur Erlöschung des Zwecks (Prinzip der Zweckbindung)", correct = TRUE),
+    answer("Bis zur Erlöschung des Zwecks (Prinzip der Zweckbindung)"),
     answer("Bis zur Erlöschung des Zwecks, allerdings kann eine längere Aufhebung durch konkurrierende Gesetzgebung nötig sein", correct = TRUE),
     correct = "Richtig! Grundsätzlich gilt bei Erlöschung der Zweckbindung (z.B. Austritt eines Vereinsmitglieds) auch die Pflicht zur Löschung der Daten. Allerdings können der Löschung vertragliche Vereinbarungen und Satzungen entgegenstehen (§35 BDSG). Zudem kann eine eine gesetzliche Pflicht zur längeren Aufhebung bestehen, z.B. Dokumente, die für die Steuer relevant sind (10 Jahre, §257 HGB), und Sozialdaten (10 Jahre, §304 SGB). Bei einem Mitgliedsaustritt müssen deshalb Name, Anschrift, Daten zur Mitgliedschaft im Verein und Daten zur Beitragszahlung über 10 Jahre aufgehoben werden. Ansonsten gilt grundsätzlich die Frist zur Löschung nach drei Jahren.",
     incorrect = "Leider falsch. Grundsätzlich gilt bei Erlöschung der Zweckbindung (z.B. Austritt eines Vereinsmitglieds) auch die Pflicht zur Löschung der Daten. Allerdings können der Löschung vertragliche Vereinbarungen und Satzungen entgegenstehen (§35 BDSG). Zudem kann eine eine gesetzliche Pflicht zur längeren Aufhebung bestehen, z.B. Dokumente, die für die Steuer relevant sind (10 Jahre, §257 HGB), und Sozialdaten (10 Jahre, §304 SGB). Bei einem Mitgliedsaustritt müssen deshalb Name, Anschrift, Daten zur Mitgliedschaft im Verein und Daten zur Beitragszahlung über 10 Jahre aufgehoben werden. Ansonsten gilt grundsätzlich die Frist zur Löschung nach drei Jahren.",
@@ -189,7 +189,7 @@ question("Weil Ihr den morgendlichen und bitter benötigten Kaffee über Euren 
 question("Zum Austausch von personenbezogenen Daten nutzt die HR-Abteilung Eures Unternehmens passwortgeschützte Ordnerstrukturen in der Google Cloud. Zugang haben lediglich Mitarbeitende der Personalabteilung. Ist das unbedenklich?",
     answer("Ja"),
     answer("Nein", correct = TRUE),
-    correct = "Richtig! Es ist zwar lobenswert, dass die hochsensiblen Daten durch Passwörter geschützt werden, aber Google ist ein US-Amerikanischer Anbieter, weshalb mit dem Kippen des Privacy Shields 2020 (Schrems I) das Nutzen von US-Amerikanischen Tools zur Speicherung personenbezogener Daten unzulässig ist. Das ist zwar erstmal eine ziemlich schlechte Nachricht, aber auch wir sind derzeit noch in der Umstellung – und erwarten hier auch Korrekturen und Eingriffe der Gesetzgebenden. Bis dahin nutzen wir – wo möglich – digitale Tools aus der EU oder hosten Alternativen, wie z.B. IDGARD oder eine eigene Instanz von NextCloud.",
+    correct = "Richtig! Es ist zwar lobenswert, dass die hochsensiblen Daten durch Passwörter geschützt werden, aber Google ist ein US-Amerikanischer Anbieter, weshalb mit dem Kippen des Privacy Shields 2020 (Schrems II) das Nutzen von US-Amerikanischen Tools zur Speicherung personenbezogener Daten unzulässig ist. Das ist zwar erstmal eine ziemlich schlechte Nachricht, aber auch wir sind derzeit noch in der Umstellung – und erwarten hier auch Korrekturen und Eingriffe der Gesetzgebenden. Bis dahin nutzen wir – wo möglich – digitale Tools aus der EU oder hosten Alternativen, wie z.B. IDGARD oder eine eigene Instanz von NextCloud.",
     incorrect = " Leider falsch! Es ist zwar lobenswert, dass die hochsensiblen Daten durch Passwörter geschützt werden, aber Google ist ein US-Amerikanischer Anbieter, weshalb mit dem Kippen des Privacy Shields 2020 (Schrems I) das Nutzen von US-Amerikanischen Tools zur Speicherung personenbezogener Daten unzulässig ist. Das ist zwar erstmal eine ziemlich schlechte Nachricht, aber auch wir sind derzeit noch in der Umstellung – und erwarten hier auch Korrekturen und Eingriffe der Gesetzgebenden. Bis dahin nutzen wir – wo möglich – digitale Tools aus der EU oder hosten Alternativen, wie z.B. IDGARD oder eine eigene Instanz von NextCloud.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -240,7 +240,10 @@ class(liste)
 # In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert (wie in einer Excel Tabelle). Jede Spalte kann dabei nur Werte des gleichen Datentyps enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
 df <- data.frame(Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
                  Variable2_string = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
+
 # Euer Code hier
+
+# Data Frame drucken (hier nur zur Veranschaulichung)
 print(df)
 ```
 

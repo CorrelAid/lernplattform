@@ -185,7 +185,7 @@ str(plastics)
 
 
 ### Exkurs (optional): Syntax in R
-Neben dem sog. Variable Assignment über "<-" sind noch einige weitere **Syntaxregeln, Operatoren und Ausdrücke** in R wichtig. Diese lernt man in der Regel durch wiederholte Praxis. Damit Ihr die wichtigsten Formen nachschauen könnt, haben wir für Euch diesen Exkurs erstellt.
+Neben dem sog. Variable Assignment über "<-" sind noch einige weitere **Syntaxregeln, Operatoren und Ausdrücke** in R wichtig. Diese lernt man in der Regel durch wiederholte Praxis. Damit Ihr die wichtigsten Formen nachschauen könnt, haben wir für Euch diesen Exkurs erstellt. Einen Überblick über die Grundlagen in R erhaltet Ihr zudem in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}.
 
 ``` {r zuweisung, exercise = TRUE}
 # Variablenzuweisung
@@ -240,8 +240,6 @@ plastics[c('country', 'year')]
 # Erstellung eines Subsets auf Basis von Bedingungen
 subset(plastics, country == "Argentina" & year == 2020)
 ```
-<br>
-Einen Überblick über die Grundlagen in R erhaltet Ihr in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}.
 <br>
 
 Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf (**Stack Overflow**)[https://stackoverflow.com/]{target="_blank"} und in der (**R-Online Community**)[https://community.rstudio.com/]{target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
