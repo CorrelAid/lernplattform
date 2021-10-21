@@ -14,7 +14,7 @@
 - Die wichtigsten Schichten (Bestandteile) eines ggplots sind: 
     1. `data` - der **Datensatz**
     2. `aes()` - die **"ästhetischen Attribute"** wie die x- oder y-Achse und Darstellungsoptionen
-    3. `geom_*()` - die **geometrische Form**, mit welcher die Werte dargestellt werden, z.B. geom_bar() für Bardiagramme
+    3. `geom_*()` - die **geometrische Form**, mit welcher die Werte dargestellt werden, z.B. geom_point() für Punktediagramme oder geom_bar() für Bardiagramme
 - Einzelne Bestandteile werden mit einem **"+" verknüpft** 
 
 Im Kapitel "Datenvisualisierung" lernt Ihr noch mehr Optionen zur Datenvisualisierung in R kennen. 
@@ -30,14 +30,14 @@ Im Kapitel "Datenvisualisierung" lernt Ihr noch mehr Optionen zur Datenvisualisi
     - `sd()`: **Standardabweichung**, ein standardisiertes Maß für die Streuung um den Mittelwert
     - `n()`: **Anzahl**/ absolute Häufigkeiten der Ausprägungen
     - `sum()`: **Summe** numerischer Variablen.
-- Darüber hinaus können mit dem **`tidyverse`** folgende Operationen vorgenommen werden:
-    - `dplyr::select()` - **Auswahl von Spalten** (Variablen)
-    - `dplyr::filter()` - **Auswahl von Zeilen** (Beobachtungen) nach Kriterien
-    - `dplyr::arrange()` - **Sortierung von Zeilen** nach Kriterien
-    - `dplyr::mutate()` - **Berechnung neuer Spalten** (Variablen) auf Basis vorhandener Variablen
+- Darüber hinaus möchten wir schon folgende **`tidyverse`** folgende Operationen hervorheben:
+    <!-- - `dplyr::select()` - **Auswahl von Spalten** (Variablen) -->
+    <!-- - `dplyr::filter()` - **Auswahl von Zeilen** (Beobachtungen) nach Kriterien -->
+    <!-- - `dplyr::arrange()` - **Sortierung von Zeilen** nach Kriterien -->
+    <!-- - `dplyr::mutate()` - **Berechnung neuer Spalten** (Variablen) auf Basis vorhandener Variablen -->
     - `dplyr::summarize()` - **Zusammenfassung von Werten** zur Vereinfachung des Informationsgehalts
     - `dplyr::group_by()` - **Gruppierung von Zielen** (Beobachtungen) nach Kriterien
-- Ein besonderes **Power-Duo** ist dabei das Zusammenspiel von `dplyr::group_by()` & `dplyr::summarize()` - so können statistische Kennzahlen **pro Variablenkategorie** (z.B. Land) ausgegeben werden
+- Diese sind eine Art **Power-Duo**. Denn mit `dplyr::group_by()` & `dplyr::summarize()` können statistische Kennzahlen **pro Variablenkategorie** (z.B. Land) ausgegeben werden.
 - Verknüpft werden Operationen des *`tidyverse`* mit dem **Pipe-Operator "%>%"** (zu dt. Rohrbetreiber), der eine ähnliche Funktion wie das "+" in `ggplot2` erfüllt.
 
 Im Kapitel "Datenbereinigung" lernt Ihr noch mehr Funktionen des tidyverse in R kennen. 
@@ -52,7 +52,7 @@ library(ggplot2)
 library(tidyverse)
 ```
 
-### Übung
+### Interaktive Lerneinheit
 #### Überblick
 In der letzten Lektion habt Ihr bereits erfahren, dass wir  in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: Community (als `community` hinterlegt) & Audit (als `audit_plastic` hinterlegt). 
 
