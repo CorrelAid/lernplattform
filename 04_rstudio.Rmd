@@ -13,7 +13,7 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 #### R
 - R ist eine **freie, statistische Programmiersprache**
 - Die **Groß- und Kleinschreibung** muss in R unbedingt beachtet werden
-- Nicht jede **Funktionalität** müsst Ihr in R selbst schreiben: Über **"`install.packages()`"** und **"`library()`"** könnt Ihr Funktionalitäten, die andere Coder:innen für Euch bereitstellen, nutzen - das spart viel Zeit! Es ist empfehlenswert, install.packages("") in Euren Dateien **auszukommentieren** oder eine dezidierte Datei mit den Installationsbefehlen anzulegen.
+- Nicht jede **Funktionalität** müsst Ihr in R selbst schreiben: Über **`install.packages()`** und **`library()`** könnt Ihr Funktionalitäten, die andere Coder:innen für Euch bereitstellen, nutzen - das spart viel Zeit! Es ist empfehlenswert, install.packages("") in Euren Dateien **auszukommentieren** oder eine dezidierte Datei mit den Installationsbefehlen anzulegen.
 - Innerhalb von Code muss auch **Text auskommentiert werden** (z.B. über das Einfügen eines Hashtags "#" zu Beginn des Textes), in einem RMD wird über "#" allerdings formatiert
 
 #### RStudio
@@ -117,8 +117,8 @@ Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete in
 library(rio)
 ```
 
-Mit der Notation "`package::funktion()`" kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). Dateien können u.a. mit dem Package **"`rio``"** und der Funktion **"`import()`"** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("objektname <- objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
-Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **"`here::here()`"**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
+Mit der Notation **`package::funktion()`** kennzeichnen wir, woher eine Funktion kommt und können - unabhängig von geladenen Package-Libraries - Funktionen nutzen. Die Funktionen folgen dem Syntax Funktion(argument1, argument2, ...). Dateien können u.a. mit dem Package **`rio`** und der Funktion **`import()`** geladen werden. Die geladenen Daten werden dann in einem Dataframe gespeichert - hier wird dem Datensatz der Name "plastics" zugewiesen ("objektname <- objekt"). Über diesen ist er dann im weiteren Skript abrufbar.
+Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **`here::here()`**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
@@ -126,7 +126,7 @@ plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidyt
 # plastics <- rio::import(here::here('daten/plastics.csv'))
 ```
 
-Überprüft hier nochmal, als welches **Objekt** "`read_csv()`" unseren Datensatz importiert. Die Funktion dafür habt Ihr in den vergangenen Lektionen kennengelernt. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
+Überprüft hier nochmal, als welches **Objekt** `rio::import()` unseren Datensatz importiert. Die Funktion dafür habt Ihr in den vergangenen Lektionen kennengelernt. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
 ```{r exercise_class, exercise = TRUE}
 # Euer Code hier
 ```
@@ -140,11 +140,11 @@ class(plastics)
 grade_this_code()
 ```
 
-Mit der Funktion **"`head()`"** könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden. Das Gegenteil von "head()" ist "tail()" - damit könnt Ihr die letzten fünf Beobachtungen erkunden.
+Mit der Funktion **`head()`** könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden. Das Gegenteil von "head()" ist "tail()" - damit könnt Ihr die letzten fünf Beobachtungen erkunden.
 ``` {r head, exercise = TRUE}
 head(plastics)
 ```
-Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion **"`colnames()`"** deren Namen anzeigen lassen.
+Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion **`colnames()`** deren Namen anzeigen lassen.
 ``` {r variablen, exercise = TRUE}
 colnames(plastics)
 ```
@@ -172,7 +172,7 @@ ncol(plastics)
   }))
 ```
 
-Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **"`summary()`"** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
+Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **`summary()`** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
 ``` {r datenstruktur_summary, exercise = TRUE}
 summary(plastics)
 ```
@@ -229,7 +229,7 @@ if (2 + 2 == 5) {
     }
 ```
 
-Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **"`c()`"** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
+Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **`c()`** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
 ``` {r slicing1, exercise = TRUE}
 # Auslesen der Spalte 'country'
 plastics$country 

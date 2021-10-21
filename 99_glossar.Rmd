@@ -128,10 +128,10 @@ subset(dataframe, ausdruck) <br>
 ### Wichtige Packages in R
 Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere Funktionen. Diese findet Ihr in sog. Packages:
 
-`library(dplyr)` - Package zur Datenbereinigung und Berechnung statistischer Kennzahlen
-`library(ggplot2)` - Package zur Visualisierung von Daten
-`library(rio)` - Package zum vereinfachten Laden von Daten
-`library(tidyverse)` - Packagesammlung für die Datenwissenschaft
+`library(dplyr)` - Package zur Datenbereinigung und Berechnung statistischer Kennzahlen <br>
+`library(ggplot2)` - Package zur Visualisierung von Daten <br>
+`library(rio)` - Package zum vereinfachten Laden von Daten <br>
+`library(tidyverse)` - Packagesammlung für die Datenwissenschaft <br>
 
 ### Wichtige Funktionen in R
 

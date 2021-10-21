@@ -185,7 +185,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 Jetzt kennt Ihr die **Grundfunktionen** von `ggplot`. Es ist ein sehr mächtiges Tool mit **vielen Stellschrauben**. Sobald Ihr die Grundlogik des Aufbaus verstanden habt, ist es eigentlich ganz leicht Codebausteine wiederzuverwenden. So könntet Ihr ein Balkendiagramm (engl. bar chart) mit den folgenden Schritten erstellen:
 
 ```{r geombar,exercise=TRUE}
-ggplot2::ggplot(data = community, aes(volunteers, continent)) +
+ggplot2::ggplot(data = community, aes(x = volunteers, y = continent)) +
   geom_bar(stat = "identity", fill = "#3863a2") + # Initialisierung eines Barplots mit absoluten Werten (stat = "identity") in der Farbe blau (#3863a2)
   labs(
     title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
