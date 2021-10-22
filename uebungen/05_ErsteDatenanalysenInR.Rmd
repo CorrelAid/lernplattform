@@ -5,6 +5,12 @@ date: "10/20/2021"
 output: pdf_document
 ---
 
+### Übung 1: 
+Überlegt: Welche **Fragen** möchtet Ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
+
+### Übung 2:
+Versucht, dieses RMarkdown zum Laufen zu bringen (Tipp: Run -> Run All) und es nachzuvollziehen.
+
 # Schritt 1: Infrastruktur
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -73,7 +79,7 @@ dplyr::glimpse(community)
 
 ```{r}
 # Überblick über den Plastik-Audit verschaffen
-dplyr::glimpse(community)
+dplyr::glimpse(audit_plastic)
 ```
 
 # Schritt 5: Visuelle Exploration
@@ -94,6 +100,14 @@ ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
+### Übung 3:
+In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **Community Perspektive** gewidmet. Nun blicken wir auf die **Audit Perspektive**: Wie viel Plastik wurde wo für "Break Free From Plastic" gesammelt? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die **Anzahl der gesammelten Plastikstücke** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen.
+
+```{r}
+#Euer Code hier
+```
+
+
 # Schritt 6: Statistische Kennzahlen
 ```{r}
 # Berechnung statistischer Kennzahlen pro Kontinent
@@ -112,4 +126,9 @@ audit_plastic %>%
     menge_summe = sum(grand_total)
   )
 ```
+### Übung 4:
+In der zweiten Einheit haben wir uns auf statistische Kennzahlen des `audit_plastic`-Datensatzes konzentriert. Nutzt nun den `community` Datensatz und erstellt eine **Tabelle**, welche die **Länder- und Freiwilligenanzahl je Kontinent** darstellt.
 
+```{r}
+#Euer Code hier
+```

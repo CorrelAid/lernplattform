@@ -22,11 +22,11 @@ library(readr)
 Das ist beispielhafter Text - in **fett** und *kursiv*.
 
 ``` {r einlesen}
-# Laden des Datensatzes, der als CSV vorliegt, über einen Link mit dem Package "readr"
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+# Laden des Datensatzes, der als CSV vorliegt, über einen Link mit dem Package "rio"
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
-readr::read_csv(here::here('daten/plastics.csv'))
+rio::import(here::here('daten/plastics.csv'))
 ```
 
 
