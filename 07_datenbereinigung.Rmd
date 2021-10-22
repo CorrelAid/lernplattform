@@ -354,6 +354,12 @@ Nina: Das als kleiner Exkurs?
 
 ### Content aus anderen Lektionen
 
+
+    - `dplyr::select()` - **Auswahl von Spalten** (Variablen)
+    - `dplyr::filter()` - **Auswahl von Zeilen** (Beobachtungen) nach Kriterien
+    - `dplyr::arrange()` - **Sortierung von Zeilen** nach Kriterien
+    - `dplyr::mutate()` - **Berechnung neuer Spalten** (Variablen) auf Basis vorhandener Variablen
+
 Zunächst überprüfen wir, wie viele **fehlende Ausprägungen ("NA")** im Datensatz sind. Dazu nutzen wir eine Filterfunktion, die der Logik "funktion(bedingung(dataframe))" folgt. Hier filten wir über die Funktion **is.na()**, die ermittelt, ob ein fehlender Wert "NA" enthalten ist ("TRUE" = NA enthalten, "FALSE" = kein NA enthalten). Lasst den Code Chunk laufen, um herauszufinden, in welchen der Variablen "NA"s enthalten sind. 
 
 ```{r na-in-zero, exercise=TRUE}

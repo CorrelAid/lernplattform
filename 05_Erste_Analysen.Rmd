@@ -4,10 +4,10 @@
 
 ### Kernaussagen
 #### Grundlagen der Datenanalyse
+- Konzeptionell sollten wir uns dabei von **Fragen zur Exploration, möglichen Plausibilitätschecks und Fallentscheidungen** leiten lassen, die während der Analyse beantwortet werden
 - Bei einer Datenanalyse nutzen wir zunächst niedrigschwellige **tabellarische Formate** wie `summary()` und `str()`, um uns einen Überblick über die Daten zu verschaffen
 - Danach helfen uns **einfache Datenvisualisierungen**, die Ausprägungen von Variablen zu untersuchen (und Extremwerte zu identifizieren)
 - Um dann weitere Operationen durchführen zu können, berechnen wir im Anschluss **statistische Kennzahlen**, Lage- und Verteilungsparameter, die für uns spannende Informationen enthalten und die Grundlage für weitere Analysen bilden
-- Konzeptionell können dazu vorab **Fragen zur Exploration, mögliche Plausibilitätschecks und Fallentscheidungen** entwickelt werden, die während der Analyse beantwortet werden
 
 #### Visuelle Exploration
 - **`ggplot2`** ist ein Paket für vielseitige **Graphiken** in R
@@ -31,10 +31,6 @@ Im Kapitel "Datenvisualisierung" lernt Ihr noch mehr Optionen zur Datenvisualisi
     - `n()`: **Anzahl**/ absolute Häufigkeiten der Ausprägungen
     - `sum()`: **Summe** numerischer Variablen.
 - Darüber hinaus möchten wir schon folgende **`tidyverse`** folgende Operationen hervorheben:
-    <!-- - `dplyr::select()` - **Auswahl von Spalten** (Variablen) -->
-    <!-- - `dplyr::filter()` - **Auswahl von Zeilen** (Beobachtungen) nach Kriterien -->
-    <!-- - `dplyr::arrange()` - **Sortierung von Zeilen** nach Kriterien -->
-    <!-- - `dplyr::mutate()` - **Berechnung neuer Spalten** (Variablen) auf Basis vorhandener Variablen -->
     - `dplyr::summarize()` - **Zusammenfassung von Werten** zur Vereinfachung des Informationsgehalts
     - `dplyr::group_by()` - **Gruppierung von Zielen** (Beobachtungen) nach Kriterien
 - Diese sind eine Art **Power-Duo**. Denn mit `dplyr::group_by()` & `dplyr::summarize()` können statistische Kennzahlen **pro Variablenkategorie** (z.B. Land) ausgegeben werden.
@@ -52,7 +48,7 @@ library(ggplot2)
 library(tidyverse)
 ```
 
-### Interaktive Lerneinheit
+### Interaktive Übung
 #### Überblick
 In der letzten Lektion habt Ihr bereits erfahren, dass wir  in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: Community (als `community` hinterlegt) & Audit (als `audit_plastic` hinterlegt). 
 
@@ -83,7 +79,7 @@ Nutzt an dieser Stelle gerne auch die anderen Funktionen, die Ihr in den letzten
 # Euer Code hier
 ```
 
-#### Visuelle Exploration
+#### Visuelle Exploration (Übung Teil 1)
 Zunächst nehmen wir die **Community-Perspektive** ein und fragen: Wo haben sich wie viele Freiwillige an *Break Free From Plastic* beteiligt?  Dafür visualisieren wir vom Datensatz `community` die `aes()`-Variablen continent und volunteer mit `geom_point` in einem Punktediagramm (englisch: Scatterplot).
 
 Wie sieht der Code für diesen **Scatterplot** aus? Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert.
@@ -133,7 +129,6 @@ Ein Land hatte besonders viele Volunteers. Findet heraus, welches Land hinter de
 community %>%
   dplyr::filter(volunteers > 20000)
 ```
-
 Welche Möglichkeiten seht Ihr, **mit dieser Beobachtung umzugehen**? Würdet Ihr sie bei späteren Berechnungen und statistischen Verfahren ausschließen? Auch in Visualisierungen können wir **Extremwerte** exkludieren, wenn die Graphik sonst stark an Leserlichkeit verliert. In diesem Beispiel könnten wir mit **`coord_cartesian(ylim=c(0,10000))`** den Achsenausschnitt der y-Achse einschränken, sodass Extremwerte über 10.000  abgeschnitten werden. <br>
 *Hinweis: Nicht immer ist der Ausschluss von Extremwerten sinnvoll. Gerade bei der visuellen Exploration der Daten ist es sinnvoll sie zu inkludieren, da man sich dann bereits Gedanken über die Auswirkungen auf statistische Kennzahlen und Teststatistik machen kann.*
 
@@ -195,10 +190,8 @@ ggplot2::ggplot(data = community, aes(x = volunteers, y = continent)) +
   ) +
   theme_minimal()
 ```
-<br>
-<br>
 
-#### Statistische Kennzahlen
+#### Statistische Kennzahlen (Übung Teil 2)
 Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten:
   1. Wie viel Plastik wurde insgesamt gesammelt? <br>
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? (Analyse innerhalb der Kontinente) <br>
@@ -232,7 +225,8 @@ quiz(
     correct = "Richtig!",
     incorrect = "Leider falsch: 12 Variablen sind enthalten.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
   ),
   
   question(
@@ -244,7 +238,8 @@ quiz(
     correct = "Richtig!",
     incorrect = "Leider falsch: 52 Länder sind enthalten.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
   ),
   
   question(
@@ -259,7 +254,8 @@ quiz(
     correct = "Richtig!",
     incorrect = "Leider falsch: Um das zu beurteilen, müssen wir noch mehr Rechenoperationen durchführen.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
   )
 )
 ```
@@ -297,7 +293,8 @@ quiz(caption = NULL,
     correct = "Richtig!",
     incorrect = "Leider falsch: Asien hat am meisten Plastikstücke gesammelt.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
   ),
   
   question("Warum ist die Standardabweichung für Ozeanien (eng. Oceania) 'NA'?",
@@ -308,7 +305,8 @@ quiz(caption = NULL,
     correct = "Richtig!",
     incorrect = "Leider falsch: In Ozeanien hat nur ein Land mitgemacht, weshalb es zwischen einzelnen Beobachtungen auf Länderebene natürlich keine Standardabweichung geben kann.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
   )
 )
 ```
@@ -386,9 +384,6 @@ quiz(
   )
 )
 ```
-<br>
-<br>
-
 
 ### Exkurs: Teststatistik 
 
