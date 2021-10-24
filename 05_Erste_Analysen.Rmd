@@ -51,7 +51,7 @@ library(tidyverse)
 ### Interaktive Übung
 #### Vorbereitung: Überblick über die Daten gewinnen
 
-In der letzten Lektion habt Ihr bereits erfahren, dass wir in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: Community (als `community` hinterlegt) & Audit (als `audit_plastic` hinterlegt). Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
+In der letzten Lektion habt Ihr bereits erfahren, dass wir in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: der Community Datensatz (als `community` hinterlegt) enthält alle Variablen, welche für Fragestellungen rundum die im Video angesprochene Community-Perspektive nützlich sind und der Audit Datensatz (als `audit_plastic` hinterlegt), umfasst jene Variablen, die für Fragen zur Audit-Perspektive nützlich sind. Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
 
 Insbesondere bei Datensätzen mit vielen Variablen kann die Funktion **`dplyr::glimpse()`** Euch helfen, zu verstehen, was im Datensatz überhaupt enthalten ist. Der `community` Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen:
 ```{r exercise_community, exercise = TRUE}
@@ -198,7 +198,7 @@ Zum Abschluss des Abschnitts zur visuellen Exploration würde es sich jetzt anbi
 
 
 #### Statistische Kennzahlen 
-Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten:
+Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten: <br>
   1. Wie viel Plastik wurde insgesamt gesammelt? <br>
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? (Analyse innerhalb der Kontinente) <br>
   3. Wie viel Plastikarten wurden gesammelt? <br>
@@ -236,7 +236,7 @@ quiz(
   ),
   
   question(
-    "Wie viele Länder sind im Datensatz?",
+    "Wie viele Zeilen (Länder) sind im Datensatz?",
     answer("Das kann man anhand des Outputs nicht sagen."),
     answer("2019"),
     answer("52", correct = TRUE),
