@@ -98,7 +98,7 @@ cat(out, sep = '')
 
 ## Erste Datenanalysen in R
 ```{r results='asis'}
-out <- knitr::knit_child("SylvisLastEdit.Rmd", quiet = TRUE) #05_Erste_Analysen.Rmd
+out <- knitr::knit_child("05_Erste_Analysen.Rmd", quiet = TRUE) #SylvisLastEdit.Rmd
 cat(out, sep = '')
 ```
 

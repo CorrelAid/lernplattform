@@ -49,10 +49,11 @@ library(tidyverse)
 ```
 
 ### Interaktive Übung
-#### Überblick
-In der letzten Lektion habt Ihr bereits erfahren, dass wir  in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: Community (als `community` hinterlegt) & Audit (als `audit_plastic` hinterlegt). 
+#### Vorbereitung: Überblick über die Daten gewinnen
 
-Insbesondere bei Datensätzen mit vielen Variablen kann die Funktion **`dplyr::glimpse()`** Euch helfen, zu verstehen, was im Datensatz überhaupt enthalten ist. Der Community Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen:
+In der letzten Lektion habt Ihr bereits erfahren, dass wir in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: Community (als `community` hinterlegt) & Audit (als `audit_plastic` hinterlegt). Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
+
+Insbesondere bei Datensätzen mit vielen Variablen kann die Funktion **`dplyr::glimpse()`** Euch helfen, zu verstehen, was im Datensatz überhaupt enthalten ist. Der `community` Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen:
 ```{r exercise_community, exercise = TRUE}
 # Überblick über die Community verschaffen
 dplyr::glimpse(community)
@@ -71,7 +72,7 @@ dplyr::glimpse(audit_plastic)
 ```{r exercise_audit-check}
 grade_this_code()
 ```
-Der **Audit-Datensatz** enthält also - wie der Community-Datensatz - die Gesamtplastikmenge, geographische und zeitliche Daten, aber keine Daten zu Veranstaltungen und Freiwilligen. Stattdessen findet Ihr hier Daten zu den Plastikarten.
+Der **Audit-Datensatz** enthält also - wie der `Community`-Datensatz - die Gesamtplastikmenge, geographische und zeitliche Daten, aber keine Daten zu Veranstaltungen und Freiwilligen. Stattdessen findet Ihr hier Daten zu den Plastikarten.
 
 Nutzt an dieser Stelle gerne auch die anderen Funktionen, die Ihr in den letzten Lektionen kennengelernt habt, um Euch einen Überblick über die beiden bereinigten Datensätze zu verschaffen.
 
@@ -79,7 +80,7 @@ Nutzt an dieser Stelle gerne auch die anderen Funktionen, die Ihr in den letzten
 # Euer Code hier
 ```
 
-#### Visuelle Exploration (Übung Teil 1)
+#### Visuelle Exploration 
 Zunächst nehmen wir die **Community-Perspektive** ein und fragen: Wo haben sich wie viele Freiwillige an *Break Free From Plastic* beteiligt?  Dafür visualisieren wir vom Datensatz `community` die `aes()`-Variablen continent und volunteer mit `geom_point` in einem Punktediagramm (englisch: Scatterplot).
 
 Wie sieht der Code für diesen **Scatterplot** aus? Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert.
@@ -191,7 +192,12 @@ ggplot2::ggplot(data = community, aes(x = volunteers, y = continent)) +
   theme_minimal()
 ```
 
-#### Statistische Kennzahlen (Übung Teil 2)
+
+
+Zum Abschluss des Abschnitts zur visuellen Exploration würde es sich jetzt anbieten, **Übung 3** zu machen. Da könnt Ihr Eure Visualisierungsskills auf die Probe stellen und auf den `audit_plastic`-Datensatzen anwenden. Diesen nutzen wir im kommenden Abschnitt. So könnt Ihr auch in der Lerneinheit das Credo "erst visualisieren, dann zusammenfassende Statistik" einhalten. 
+
+
+#### Statistische Kennzahlen 
 Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten:
   1. Wie viel Plastik wurde insgesamt gesammelt? <br>
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? (Analyse innerhalb der Kontinente) <br>
@@ -246,8 +252,7 @@ quiz(
     "Wie viele Kontinente sind im Datensatz?",
     answer("13"),
     answer("3"),
-    answer(
-      "Das kann man anhand des Outputs nicht sagen.",
+    answer("Das kann man anhand des Outputs nicht sagen.",
       correct = TRUE
     ),
     answer("52"),
@@ -363,7 +368,7 @@ quiz(
     "Warum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?",
     answer("Weil in Asien die meisten Länder sich beteiligt haben."),
     answer("Weil es einige wenige, extreme Beobachtungen gab.", correct = TRUE),
-    answer("Weil das eine Eigenschaft des Medians ist."),
+    answer("Weil dies eine Eigenschaft des Medians ist."),
     answer("Das kann eigentlich nicht sein - es deutet auf einen Fehler hin."),
     correct = "Richtig!",
     incorrect = "Leider falsch: Der Mittelwert wird von Extremwerten stark beeinflusst. Der Median ist im Vergleich wesentlich robuster, weshalb er für Asien kleiner ausfällt.",
@@ -378,7 +383,7 @@ quiz(
     answer("3.459"),
     answer("17"),
     correct = "Richtig!",
-    incorrect = "Leider falsch: 29.579 Plastikstücke wurden auch hier gefunden.",
+    incorrect = "Leider falsch: 29.579 Plastikstücke wurden hier gefunden.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
@@ -390,10 +395,10 @@ quiz(
 #### Kernaussagen
 - Inferenzstatistik zielt darauf ab, Aussagen über eine **Grundgesamtheit** auf Basis einer Stichprobe zu treffen.
 - Sie ist nützlich, um von einer **Umfrage** auf die Grundgesamtheit zu schließen oder um bei der **Evaluation von Interventionen** reale Effekte von statistischen Artefakten unterscheiden zu können
-- Falls Ihr die Theorie dazu nochmal vertiefen wollte, empfehlen wir dieses [Lernvideo](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} (und den gesamten Kanal!)
+- Falls Ihr die Theorie dazu nochmal vertiefen wollt, empfehlen wir dieses [Lernvideo](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} (und den gesamten Kanal!)
 
-#### Übung
-Im Folgenden beschränken wir unsere Analyse auf Europa und Asien, wo sich am meisten Länder beteiligt haben. Hierfür haben wir bereits den `audit_plastic_eu_asia` Datensatz erstellt, der nur Europa und Asien enthält sowie eine neue Variable: `n_types`. Sie gibt an wie viele unterschiedliche Plastikarten in den einzelnen Ländern gesammelt wurden. 
+#### Interaktive Übung
+Im Folgenden beschränken wir unsere Analyse auf Europa und Asien, wo sich am meisten Länder beteiligt haben. Hierfür haben wir bereits den `audit_plastic_eu_asia` Datensatz erstellt, der nur Europa und Asien enthält sowie eine neue Variable: `n_types`. Sie gibt an, wie viele unterschiedliche Plastikarten in den einzelnen Ländern gesammelt wurden. 
 
 Vergewissern wir uns mit `head()`, wie dieser Datensatz aussieht.
 
@@ -440,7 +445,7 @@ quiz(
 )
 ```
 
-Unsere Hypothese für eine Teststatistik könnte demnach lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikant unterschiedliche Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden, es also nicht nur in unserer Stichprobe sondern in der Realität Unterschiede bei der Anzahl von Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass also der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, andere sein müssten.
+Auf Basis dieses ersten Eindrucks der Stichprobe könnten wir uns fragen, ob Asien über mehr Plastikarten als Europa verfügt. Um dies statistisch zu überprüfen nutzen wir einen **Hypothesentest**. Bei dieser Methode haben wir immer das Ziel, die Hypothese zu widerlegen. Demnach könnte unsere Hypothese lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikante Unterschiede in der Anzahl der Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden, es also nicht nur in unserer Stichprobe sondern in der Realität Unterschiede bei der Anzahl von Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, andere sein müssten.
 
 So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen **zweiseitigen t-Test** durchführt.
   

@@ -173,6 +173,9 @@ plastics_2020 %>%
                    volunteers = mean(volunteers)) -> reduced_2020
 ```
 
+Sylvi: Zur Info ganz ähnliche Zahlen haben wir schon in 05 erstellt u.a. in der Übung werden die Teilnehmer:innen nach  **Länder- und Freiwilligenanzahl je Kontinent** gefragt - vielleicht verweist du explizit auf die Dopplung (Wiederholung macht den Meister)!?
+
+
 Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen vorhanden sind (hier führen viele Wege zum Ziel!):
 
 ``` {r 07nrow_ex, exercise = TRUE}
@@ -211,6 +214,8 @@ quiz(caption = NULL,
 ```
 
 Vergleicht mit dem folgenden Code einmal die Länder, die in den beiden Datensätzen vorhanden sind:
+
+Sylvi - ich glaube, hier begegnet den Teilnehmer:innen das erste Mal factor variables - vielleicht eingangs etwas motivieren!?
 
 ``` {r 07compare_countries1, exercise = TRUE}
 # Ihr nehmt Eure Variable country,...
@@ -345,11 +350,29 @@ quiz(caption = NULL,
 
 ### Visualisierungen
 Nina: Hier könnte Cosima vielleicht Ideen übernehmen, damit du nicht noch mehr Content aufnehmen musst :) 
+Sylvi: finde ich auch eine sinnvolle Herangehensweise.
+
 
 ### Exkurs: String Manipulation
 
 Nina: Das als kleiner Exkurs?
 
+
+Sylvi: Ich hatte in der Datenaufbereitung diese Funktionen genutzt - vielleicht könntest du das in diesem Abschnitt erklären!? (Nachtrag: str_replace hast du oben schon... Hier wäre nur str_to_title())
+
+mutate(country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
+         country = str_replace(country, "United States of America", "United States"),
+         country = str_to_title(country) ) %>% #um z.B.: ECUADOR etc case ändern
+  
+Sylvi: Ggf. könntest du noch den Umgang mit na's thematisieren / diskutieren. Für die Datensätze in 05 hatte ich für einen folgende Umwandlung gemacht. Vielleicht kannst du das recyclen? 
+  
+  #NA zu 0
+  mutate(
+    across(everything(), ~replace_na(.x, 0))
+  )
+
+  
+  
 ### Übung
 
 ### Content aus anderen Lektionen
