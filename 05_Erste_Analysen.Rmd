@@ -19,6 +19,10 @@
 
 Im Kapitel "Datenvisualisierung" lernt Ihr noch mehr Optionen zur Datenvisualisierung in R kennen. 
 
+
+@Nina: hier könnte das zweite Video platziert werden
+
+
 #### Statistische Kennzahlen
 - Mittels statistischer Kennzahlen lassen sich **Datensätze zusammenfassen** und Fragen an den Datensatz beantworten
 - Besonders oft werden folgende Funktionen genutzt: 
