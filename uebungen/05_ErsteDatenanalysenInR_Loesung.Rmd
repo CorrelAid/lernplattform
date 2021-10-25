@@ -116,7 +116,7 @@ ggplot(data = audit_plastic, aes(continent, grand_total)) + # Initialisierung de
              alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
   coord_cartesian(ylim = c(0, 15000)) + # Festlegung der Achsenlänge der y-Achse
   labs(
-    title = "Beteiligung an 'Break free from Plastic' ..." ,
+    title = "Beteiligung an 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
@@ -161,5 +161,5 @@ community %>% # Bezug zum Datensatz
     # Anzahl beteiligter Länder
     länder_anzahl = n(),
     # Teilnahmezahl der Freiwilligen
-    Teilnahmezahl = sum(volunteers))
+    freiwillige_anzahl = sum(volunteers))
 ```
