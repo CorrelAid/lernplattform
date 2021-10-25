@@ -1,6 +1,6 @@
 ## Erste Datenanalysen in R
 
-![*Video: Erste Datenanalysen in R (30min)*](https://youtu.be/wVNVZAM7sV8)
+![*Video: Erste Datenanalysen in R (30min)*](https://youtu.be/58i2_o-zDug)
 
 ### Kernaussagen
 #### Grundlagen der Datenanalyse
@@ -18,10 +18,6 @@
 - Einzelne Bestandteile werden mit einem **"+" verknüpft** 
 
 Im Kapitel "Datenvisualisierung" lernt Ihr noch mehr Optionen zur Datenvisualisierung in R kennen. 
-
-
-@Nina: hier könnte das zweite Video platziert werden
-
 
 #### Statistische Kennzahlen
 - Mittels statistischer Kennzahlen lassen sich **Datensätze zusammenfassen** und Fragen an den Datensatz beantworten
