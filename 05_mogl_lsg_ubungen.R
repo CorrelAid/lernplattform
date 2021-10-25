@@ -69,6 +69,6 @@ audit_plastic %>%
 
 community %>%
   group_by(continent) %>%
-  summarize(Länderanzahl=n(),
-            Teilnehmner=sum(volunteers))
+  summarize(Länderanzahl = n(),
+            Teilnahmezahl = sum(volunteers))
 

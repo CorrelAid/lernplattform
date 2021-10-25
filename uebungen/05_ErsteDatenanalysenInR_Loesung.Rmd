@@ -13,7 +13,7 @@ Versucht, dieses RMarkdown zum Laufen zu bringen (Tipp: Run -> Run All) und es n
 
 # Schritt 1: Infrastruktur
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 # Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
 library(rio)
@@ -106,6 +106,25 @@ In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **Commu
 #Euer Code hier
 ```
 
+### Übung 3 - Lösung:
+Um die Übung zu lösen, müssen wir nur wenige Argumente des Codeauschnitts adaptieren. Wir tauschen die Daten und Variablen aus und passen den Achsenausschnitt, Achsenbezeichungen, Überschriften und Titel den Daten an. Die Grundstruktur aus der vorgestellten Visualisierung bleibt gleich. Hier findet Ihr eine mögliche Lösung für die Übung:
+```{r}
+# Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
+ggplot(data = audit_plastic, aes(continent, grand_total)) + # Initialisierung des ggplots mit Variablen
+  geom_point(position = position_jitter(width = 0.3),
+             size = 3,
+             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
+  coord_cartesian(ylim = c(0, 15000)) + # Festlegung der Achsenlänge der y-Achse
+  labs(
+    title = "Beteiligung an 'Break free from Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl gefundener Plastikstücke",
+    x = "Kontinent",
+    caption = "In Nigeria, Philippinen und Taiwan wurden 19.841, 28.055 und \n120.646 Plastikstücke gesammelt. Diese Beoachtungen \nwurden zur Lesbarkeit ausgeklammert."
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+```
+
 # Schritt 6: Statistische Kennzahlen
 ```{r}
 # Berechnung statistischer Kennzahlen pro Kontinent
@@ -130,4 +149,17 @@ In der zweiten Einheit haben wir uns auf statistische Kennzahlen des `audit_plas
 
 ```{r}
 #Euer Code hier
+```
+
+### Übung 4 - Lösung:
+Auch in dieser Übung bleibt die Grundstruktur des vorherig vorgestellen Codesegments erhalten. Hier findet Ihr eine mögliche Lösung für die Übung:
+```{r}
+# Berechnung der Länder- und Freiwilligenanzahl je Kontinent
+community %>% # Bezug zum Datensatz
+  group_by(continent) %>% # Gruppierung pro Kontinent
+  summarize( # Initialisierung der Berechnung
+    # Anzahl beteiligter Länder
+    länder_anzahl = n(),
+    # Teilnahmezahl der Freiwilligen
+    Teilnahmezahl = sum(volunteers))
 ```

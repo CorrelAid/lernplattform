@@ -86,7 +86,7 @@ Zunächst nehmen wir die **Community-Perspektive** ein und fragen: Wo haben sich
 Wie sieht der Code für diesen **Scatterplot** aus? Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert.
 ```{r geom-point-video, exercise=TRUE}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen inklusive Änderung der Reihenfolge
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(width = 0.3),
              size = 3,
              alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
