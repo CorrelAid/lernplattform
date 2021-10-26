@@ -13,6 +13,10 @@ Frie:
 - vlt noch kurz webscraping anschneiden, damit ein verständnis dafür da ist, worin der große vorteil ist von apis? aber idk obd as zu weit geht. 
 - bei csv würde ich unbedingt mal eine csv datei gegenüberstellen in vscode / r vs excel um zu sehen, wie die "comma" separation funktioniert. 
 
+Phil: 
+- tidy data erläutern würde ich begrüßen (zumindest ein datensatz = ein excel sheet und nicht 5 verschiedene auf einem sheet)
+- kurz vielleicht auch auf die Datentypen einzelner Variablen eingehen, was da beim einlesen alles falsch laufen kann (NA vllt kurz erwähnen)
+
 - welche function für welchen typ (grafik)
 - mögliche fehler und wie behebe ich die?
 - APIs: definition + beispiele
@@ -22,6 +26,7 @@ Nina: bei der Erklärung der API gerne Analogien nutzen (Restaurant oder sowas)
 - wie kann ich eine anfrage mit R stellen?
 Nina: Vielleicht haben wir noch ein paar nützliche APIs, die wir vorstellen wollen? Eigene oder sonstige für amtliche Datenquellen, wichtigen internationalen Institutionen, Wetter, etc.?
 Frie: für APIs hat ja Jan Dix auch schon mal was gemacht , vlt ist da was nuetzliches dabei: https://projektzyklus.correlaid.org/ 
+Phil: Yep die Aufstellung von Jan ist super, besonders der Link: https://github.com/public-apis/public-apis
 
 
 ![*Video: Datenimport (~ 30min)*](https://youtu.be/w7wbIHQg7cs)
