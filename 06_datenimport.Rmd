@@ -7,6 +7,12 @@ video outline:
   - APIs
 - es gibt verschiede datei typen, die üblichsten sind: csv, json, xlsx (or exel related files)
   - wie sind diese datein aufgebaut und gibt es vorteile / unterschiede
+  
+Frie: 
+- bei den Datenprojekten kam jetzt schon häufiger geospatial auf. bzw. karten, weil karten = fancy! also vlt noch kurz darauf eingehen (va polygone) -> sf package. ggf. osmdata? 
+- vlt noch kurz webscraping anschneiden, damit ein verständnis dafür da ist, worin der große vorteil ist von apis? aber idk obd as zu weit geht. 
+- bei csv würde ich unbedingt mal eine csv datei gegenüberstellen in vscode / r vs excel um zu sehen, wie die "comma" separation funktioniert. 
+
 - welche function für welchen typ (grafik)
 - mögliche fehler und wie behebe ich die?
 - APIs: definition + beispiele
@@ -15,6 +21,7 @@ video outline:
 Nina: bei der Erklärung der API gerne Analogien nutzen (Restaurant oder sowas)
 - wie kann ich eine anfrage mit R stellen?
 Nina: Vielleicht haben wir noch ein paar nützliche APIs, die wir vorstellen wollen? Eigene oder sonstige für amtliche Datenquellen, wichtigen internationalen Institutionen, Wetter, etc.?
+Frie: für APIs hat ja Jan Dix auch schon mal was gemacht , vlt ist da was nuetzliches dabei: https://projektzyklus.correlaid.org/ 
 
 
 ![*Video: Datenimport (~ 30min)*](https://youtu.be/w7wbIHQg7cs)
@@ -22,6 +29,7 @@ Nina: Vielleicht haben wir noch ein paar nützliche APIs, die wir vorstellen wol
 
 ### Kernaussagen
 - Check data: Was für eine Datei möchte ich laden (Dateiendung)?
+  - Frie: für windows leute vlt hinweis wie sie das aktivieren in windows explorer
 - Fehler beim Laden? Was sind Ursachen: Fehlermeldung lesen und in die Daten schauen.
 - API: Daten aus dem Web, live, weltweit und anwendungsbezogen
 - Wie muss ich mich authentifizieren, was sind die Routes & Parameter?
@@ -29,7 +37,8 @@ Nina: Vielleicht haben wir noch ein paar nützliche APIs, die wir vorstellen wol
 Damit ihr euch am Anfang leichter im Funktionen-Dschungel zurecht findet haben wir eine Grafik erstellt:
 
 Nina: sieht erstmal gut aus, die Graphikidee ist super - gerne auch die (deutschen) Cheat Sheets verlinken (es gibt Datenimport) und auf engl. auch was zu plumber
-
+  - Frie: zu plumber?? damit würden sie ja ihre eigene api bauen. idk ob das nicht zu advanced ist. 
+  
 ### Quiz
 
 
@@ -40,7 +49,7 @@ Nina: sieht erstmal gut aus, die Graphikidee ist super - gerne auch die (deutsch
 ### Übung: Dateien lesen
 
 <br>
-
+Frie: bei csv dateien unbedingt mind. eine mit "deutschen" daten (; als separator, "," als dezimaltrennstelle etc.) -> read_csv2 
 
 ### Übung: Arbeiten mit APIs
 
