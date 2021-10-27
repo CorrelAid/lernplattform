@@ -16,7 +16,8 @@ library(gradethis)
 library(learnr)
 library(tidyverse)
 library(janitor)
-library(countrycode)
+library(countrycode) 
+library(RSQLite)
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 gradethis::gradethis_setup(pass = "Gut gemacht!", 
                            fail = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
@@ -82,13 +83,22 @@ community_db <- community %>%
   select(countrycode, year, num_events, volunteers)
 # write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
 
+
 # Audit Plastic
 audit_db <- plastics_prep %>%
+  filter(parent_company != "Grand Total") %>% 
   ungroup() %>%
   select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
   pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
   filter(parent_company != "Grand Total")
 # write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
+
+con <- dbConnect(RSQLite::SQLite(), "docs/daten/plastics.sqlite")
+dbWriteTable(con, "audits", audit_db, overwrite = TRUE)
+dbWriteTable(con, "events", community_db, overwrite = TRUE)
+dbWriteTable(con, "countries", country_db, overwrite = TRUE)
+dbListTables(con)
+dbDisconnect(con)
 ```
 
 
