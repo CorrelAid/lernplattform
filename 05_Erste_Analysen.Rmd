@@ -1,6 +1,7 @@
 ## Erste Datenanalysen in R
 
 ![*Video: Erste Datenanalysen in R (30min)*](https://youtu.be/58i2_o-zDug)
+*Empfehlung: Schaut Euch das Video in zwei Teilen an. Bis 18:42 geht es um Visualisierung, danach um statistische Kennzahlen.*
 
 ### Kernaussagen
 #### Grundlagen der Datenanalyse
@@ -191,8 +192,6 @@ ggplot2::ggplot(data = community, aes(x = volunteers, y = continent)) +
   ) +
   theme_minimal()
 ```
-
-
 
 Zum Abschluss des Abschnitts zur visuellen Exploration würde es sich jetzt anbieten, **Übung 3** zu machen. Da könnt Ihr Eure Visualisierungsskills auf die Probe stellen und auf den `audit_plastic`-Datensatzen anwenden. Diesen nutzen wir im kommenden Abschnitt. So könnt Ihr auch in der Lerneinheit das Credo "erst visualisieren, dann zusammenfassende Statistik" einhalten. 
 
