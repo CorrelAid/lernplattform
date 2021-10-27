@@ -86,10 +86,11 @@ audit_db <- plastics_prep %>%
   filter(parent_company != "Grand Total") %>% 
   ungroup() %>%
   select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
-  pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc"))
+  pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc"), names_to = "plastic", values_to = "count") %>% 
+  select(countrycode, year, parent_company, plastic, count)
 
 
-con <- dbConnect(RSQLite::SQLite(), "public/daten/plastics.sqlite")
+con <- dbConnect(RSQLite::SQLite(), "docs/daten/plastics.sqlite")
 dbWriteTable(con, "audits", audit_db, overwrite = TRUE)
 dbWriteTable(con, "events", community_db, overwrite = TRUE)
 dbWriteTable(con, "countries", country_db, overwrite = TRUE)
