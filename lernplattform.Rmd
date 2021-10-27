@@ -74,13 +74,13 @@ audit_plastic_eu_asia<- audit_plastic %>%
 country_db <- community %>%
   ungroup() %>%
   select(countrycode, country, continent)
-write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
+# write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
 
 # Community
 community_db <- community %>%
   ungroup() %>%
   select(countrycode, year, num_events, volunteers)
-write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
+# write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
 
 # Audit Plastic
 audit_db <- plastics_prep %>%
@@ -88,7 +88,7 @@ audit_db <- plastics_prep %>%
   select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
   pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
   filter(parent_company != "Grand Total")
-write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
+# write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
 ```
 
 
