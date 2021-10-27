@@ -51,7 +51,6 @@ community<- plastics_prep %>%
   filter(row_number()==1)
 
 # Audit plastik Datensatz für 05
-
 audit_plastic<- plastics_prep %>%
   # nur grandtotal zeile behalten
   filter(parent_company=="Grand Total") %>%
@@ -66,9 +65,31 @@ audit_plastic_eu_asia<- audit_plastic %>%
   filter(continent == "Europe" | continent == "Asia") %>%
   group_by(country) %>%
   mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
-
-
 ``` 
+
+```{r}
+# Exportieren der Datensets in CSV für DB
+
+# Country Codes
+country_db <- community %>%
+  ungroup() %>%
+  select(countrycode, country, continent)
+write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
+
+# Community
+community_db <- community %>%
+  ungroup() %>%
+  select(countrycode, year, num_events, volunteers)
+write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
+
+# Audit Plastic
+audit_db <- plastics_prep %>%
+  ungroup() %>%
+  select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
+  pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
+  filter(parent_company != "Grand Total")
+write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
+```
 
 
 ```{r results='asis'}
