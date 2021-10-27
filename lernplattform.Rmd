@@ -68,39 +68,6 @@ audit_plastic_eu_asia<- audit_plastic %>%
   mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
 ``` 
 
-```{r}
-# Exportieren der Datensets in CSV für DB
-
-# Country Codes
-country_db <- community %>%
-  ungroup() %>%
-  select(countrycode, country, continent)
-# write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
-
-# Community
-community_db <- community %>%
-  ungroup() %>%
-  select(countrycode, year, num_events, volunteers)
-# write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
-
-
-# Audit Plastic
-audit_db <- plastics_prep %>%
-  filter(parent_company != "Grand Total") %>% 
-  ungroup() %>%
-  select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
-  pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
-  filter(parent_company != "Grand Total")
-# write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
-
-con <- dbConnect(RSQLite::SQLite(), "docs/daten/plastics.sqlite")
-dbWriteTable(con, "audits", audit_db, overwrite = TRUE)
-dbWriteTable(con, "events", community_db, overwrite = TRUE)
-dbWriteTable(con, "countries", country_db, overwrite = TRUE)
-dbListTables(con)
-dbDisconnect(con)
-```
-
 
 ```{r results='asis'}
 out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
