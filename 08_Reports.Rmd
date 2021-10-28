@@ -1,3 +1,8 @@
+
+Frie: hier wird es wahrscheinlich schwer die übung auf der platform direkt zu machen? 
+
+ganz praktisch sehe ich schon die fragen nach Logo und CI kommen. latex und css sind natuerlich bitchesss aber how do we deal with this? :D bin kein fan davor, leute nicht zumindest vorzuwarnen, dass in der realität sowas auch noch auf sie zukommt. 
+
 ## Aufbau Video
 
 1.  Kurze Einführung/Wiederholung was ist R-Markdown?

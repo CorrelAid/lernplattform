@@ -6,6 +6,15 @@
 - Mehr als nur Zahlen? - **Visualisierung** unserer Daten mit `ggplot`
 
 Nina: Im Video unbedingt den Pipe-Operator und die gängigsten Funktionen (summarize, group_by etc...) und Power-Kombis vorstellen 
+Frie: 
+- die fünf / sechs Verben: filter, mutate, select, groupby summarize, arrange ganz am anfang und dann sich durchhangeln. groupby summarize eher rauslassen
+- tidy data Konzepte (video): https://r4ds.had.co.nz/tidy-data.html (muss man ja nicht religiös nehmen, aber vieles ist schon sinnvoll)
+- pivoting (tidyr)
+- beim "zusammenfügen" dachte ich zuerst an bind_rows, nicht an joins. was in dem fall ja auch mehr sinn  machen würde oder? vlt kann man hier ncohmal konzeptionell unterscheiden zw "daten unten anhaengen " und "mehr variablen hinzufuegen aus einem anderen datensatz"?
+- vlt kann man für joins dafür einen datensatz der Weltbank dazunehmen? irgendwas mit GDP per capita oder so? ich finde, so ist es etwas verwirrend, weil man den datensatz teilt und dann wieder zusammenführt . der fokus geht auch etwas verloren weil zuerst noch groupby summarized wird. was ich gut finde ist der gotcha mit den verschiedenen ländernamen - sehr lebensnah :D 
+- weiß nicht ob ich den forward arrow so gut finde..ich verstehe die motivation dah inter aber bin mir nicht sicher ob es nicht mehr verwirrung stiftet
+
+
 
 ### Das Tidyverse
 
@@ -350,12 +359,17 @@ quiz(caption = NULL,
 
 ### Visualisierungen
 Nina: Hier könnte Cosima vielleicht Ideen übernehmen, damit du nicht noch mehr Content aufnehmen musst :) 
+<<<<<<< Updated upstream
 Sylvi: finde ich auch eine sinnvolle Herangehensweise.
+=======
+Frie: jup! wenn noch pLatz, dann lieber über pivoting
+>>>>>>> Stashed changes
 
 
 ### Exkurs: String Manipulation
 
 Nina: Das als kleiner Exkurs?
+Frie: Regex als Konzept einführen und dann auf gute Ressourcen verweisen (dazu machen wir jetzt nicht _nochmal_ content :D #pain)
 
 
 Sylvi: Ich hatte in der Datenaufbereitung diese Funktionen genutzt - vielleicht könntest du das in diesem Abschnitt erklären!? (Nachtrag: str_replace hast du oben schon... Hier wäre nur str_to_title())
