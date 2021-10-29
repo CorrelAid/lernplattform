@@ -70,7 +70,6 @@ audit_plastic_eu_asia<- audit_plastic %>%
   mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
 ``` 
 
-
 ```{r results='asis'}
 out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
 cat(out, sep = '')
@@ -102,6 +101,10 @@ cat(out, sep = '')
 ```
 
 ## Datenimport und APIs
+```{r results='asis'}
+out <- knitr::knit_child("06_datenimport_NH.Rmd", quiet = TRUE) #SylvisLastEdit.Rmd
+cat(out, sep = '')
+```
 
 ## Datenbereinigung
 ```{r results='asis'}
