@@ -1,24 +1,130 @@
-
 ## Datenimport: Datein lesen und mit APIs interagieren
 
-video outline:
+
+![*Video: Datenimport (~ 30min)*](https://youtu.be/.....) 
+video outline (follow & expand kernaussagen):
 - 2 major möglichkeiten für daten laden 
   - dateien
-  - APIs
-- es gibt verschiede datei typen, die üblichsten sind: csv, json, xlsx (or exel related files)
+  - APIs (mention webscraping /extrating info from site)
+- es gibt verschiede datei typen, die üblichsten sind: csv, json, xlsx (or exel related files) .dta /.spss?
   - wie sind diese datein aufgebaut und gibt es vorteile / unterschiede
-  
+  - csv gegenüberstellung
+
+Diese Woche geht es darum wie ich überhaupt Daten in R-Studio laden kann um damit dann weiter zu arbeiten.
+Bevor wir zu den Kernaussagen des Videos kommen: [hier](link) findet ihr ein Cheatsheet (en) zum Datenimport Daten aus Dateien. Jetzt aber zu den:
+
+### Kernaussagen 
+Es gibt zwei grundlegene Möglichkeiten Daten zu importieren:
+
+  1. Lokale Dateien (CSV, JSON, ...)
+  2. Über das Internet (via APIs, Web-Scraping)
+
+#### Lokale Dateien lesen
+Als erster Schritt zum importieren von Daten aus einer lokalen Datei ist es wichtig herauszufinden welches Dateiformat (Dateiendung) die Datei hat.
+
+> Für Windows-User: "Klicken Sie in der Multifunktionsleiste auf die Registerkarte "Ansicht". Aktivieren Sie das Feld "Dateinamenerweiterungen" im Abschnitt "Ein-/Ausblenden", um die Dateierweiterungen ein- oder auszuschalten."
+
+Im folgenden beschreiben wir nochmal kurz die verschieden Dateiformate und zeigen wie man diese am besten lädt.
+
+##### CSV
+CSV (comma separated values, zu dt. Komma getrennte Werte) ist wie der Name sagt eine Datei in der die verschiedenen Datenwerte durch Kommata getrennt sind.
+Jede Zeile enstpricht einem Record, also einer Aufzeichung von Daten. 
+```csv
+Country Name,Country Code
+Aruba,ABW
+Africa Eastern and Southern,AFE
+Afghanistan,AFG
+Africa Western and Central,AFW
+Angola,AGO
+```
+Hier können wir auch gleich ein weiters Feature von CSV-Dateien sehen, die erste Zeile hier ist nicht befüllt mit Werten, sondern mit den Bezeichnern für die Entsprechende Spalte. Diese Zeile nennen wir **Header** und diese Bezeichner können wir nutzen um auf bestimmte Spalten und Werte zuzugreifen.
+
+**Fehler beim Laden Vorbeugen:**
+Um schon beim Laden Fehler vorzubeugen ist es sinnvoll vorher mal in die Daten mit einem einfachen text-editor zu schauen und hierbei darauf zu achten:
+  - gibt Na Values: Zellen die nicht mit Daten befüllt sind
+    - Wie sind diese gefüllt?
+    - Sollen diese Reihen entfernt (drop) werden?
+    - Welche Werte sollen als Na gelesen werden?
+``` {r 06col_types, exercise = TRUE}
+# na.string wird verwendet, um festzulegen, welche Werte als NA-Wert aus den Daten gelesen werden sollen
+file <- "daten/plastics.csv"
+tm <- read.csv(file, 
+  # ...
+  stringsAsFactors = TRUE,  # convert strings to facors
+  # man kann auch eigene Typen spezifizieren - für jede Spalte und der default hier ist "c"="character" 
+  # col_types = cols (.default = "c", num_events = "numeric"))
+)
+```
+  - Um welches Format handelt es sich bei der entsprechenden Spalte?
+    - Text, Zahlen, ...?
+``` {r 06read_na_values, exercise = TRUE}
+# na.string wird verwendet, um festzulegen, welche Werte als NA-Wert aus den Daten gelesen werden sollen
+file <- "daten/terrestrial_and_marine_protected_areas.csv"
+tm <- read.csv(file, 
+  # ...
+  na.strings = "EMPTY", # wenn kein Wert vorhanden ist: 13,46,,9182 => 13,46,NA,9182
+  # na.strings = c("EMPTY", -1) # es gehen auch mehrere Werte (im Vektor)
+)
+```
+
+Um CSV-Datein zu lesen benutzen wir häufig die read.csv Funktion, diese hat viele verschiedene Argumente welche wir entsprechend setzen können:
+``` {r 06read_arguments, exercise = FALSE}
+file <- "daten/terrestrial_and_marine_protected_areas.csv"
+# Komma als separator und Punkt als Dezimal-Punkt als Standard
+read.csv(file,                 # Dateiame/Pfad zur Datei
+         header = TRUE,        # Soll der header gelesen werden/existiert einer
+         sep = ",",            # Separator der Werte
+         quote = "\"",         # Quoting Character
+         dec = ".",            # Dezimal-Punkt
+         na.strings = "EMPTY"  # festzulegen, welche Werte als NA-Wert gelesen werden
+         fill = TRUE,          # Wenn Reihen ungleiche Längen haben, sollen diese gefüllt werden?
+         encoding = "unknown", # Encoding der Datei - nützlich bei verschieden Systemen (Linux vs Windows),
+         stringsAsFactors = F, # 
+         colClasses = c(),     #  
+         ...
+) 
+```
+
+read.csv2() ist einfach read.csv mit sep=";", und dec="," - wir können beides verwenden und bekommen das selbe Ergbenis.
+
+Was sind Ursachen: Fehlermeldung lesen und in die Daten schauen.
+
+#### Dateien aus dem Web
+
+##### Import über Link
+Das funktioniert identisch zu lokalen Dateien, aber nur dann, wenn **eine Dateiendung am ende des Links ist** (z.B. so: [https://github.com/CorrelAid/lernplattform/blob/main/daten/plastics.csv](https://github.com/CorrelAid/lernplattform/blob/main/daten/plastics.csv)).
+
+##### APIs
+Eine API (Application Programming Interface, de:Schnittstelle zur Programmierung von Anwendungen) ist eine Schnitstelle zu einem externen System um mit diesem zu interagieren.
+In unserem Fall schauen wir auf Interaktionen welche sich auf den Datenaustausch fokussieren. Hier gibt es alle möglichen APIs die es uns ermöglichen einfach an Daten aus allen Bereichen zu kommen. [Hier (en)](https://github.com/public-apis/public-apis) findet ihr eine Liste von öffentlichen APIs die Ihr kostenfrei nutzen könnt:D. Für einige APIs gibt es eigene Packete welche euch die Arbeit der manuellen Anfrage abnhemen, auf solche gehen wir hier aber nicht ein, das sich diese immer von Packet zu Packet unterscheiden. 
+
+Viele APIs benötigen einen *KEY*, also einen Schlüssel um der Schnittstelle mitzuteilen, dass man autorisiert ist auf die Daten zuzugreifen. Diese Schlüssel kann man sich meistens einfach in auf den entsprechenden Websites im User-Portal generieren lassen. 
+
+*Der große Vorteil von APIs gegenüber von Web-Scraping (extrahieren von Infos aus einer Website) ist die Einfachheit und Struktur die APIs bieten - es reicht oft eine einzige Anfrage für die Daten die man möchte*
+
+Die Fragen die man sich bei der Arbeit mit APIs stellen muss sind: <br>
+*Wie muss ich mich authentifizieren, was sind die Routes & Parameter?* 
+
+Eine Anfrageurl für einen API-Call setzt sich aus drei Teilen zusammen: 
+`{BASIS-URL}/{ROUTE}?{PARAMETER}`
+Zum Beispiel: 
+`URL BSP`
+
+Die meisten Daten werden im JSON-Format zurückgegeben (siehe JSON Dateien weiter oben). Um nun eine Anfrage zu stellen nutzen wir die `jsonlite` und `httr` Biblotheken und können mit `GET(URL)` die Daten laden.
+
+library(httr)
+library(jsonlite)
+
+### Tidy Data - Best practices
+Phil: Tidy data erläutern würde ich begrüßen (zumindest ein datensatz = ein excel sheet und nicht 5 verschiedene auf einem sheet)
+
+
 Frie: 
 - bei den Datenprojekten kam jetzt schon häufiger geospatial auf. bzw. karten, weil karten = fancy! also vlt noch kurz darauf eingehen (va polygone) -> sf package. ggf. osmdata? 
-- vlt noch kurz webscraping anschneiden, damit ein verständnis dafür da ist, worin der große vorteil ist von apis? aber idk obd as zu weit geht. 
-- bei csv würde ich unbedingt mal eine csv datei gegenüberstellen in vscode / r vs excel um zu sehen, wie die "comma" separation funktioniert. 
 
-Phil: 
-- tidy data erläutern würde ich begrüßen (zumindest ein datensatz = ein excel sheet und nicht 5 verschiedene auf einem sheet)
-- kurz vielleicht auch auf die Datentypen einzelner Variablen eingehen, was da beim einlesen alles falsch laufen kann (NA vllt kurz erwähnen)
 
 - welche function für welchen typ (grafik)
-- mögliche fehler und wie behebe ich die?
+- mögliche fehler und wie behebe ich die? -> password protected / cloud / speicherort / encoding / time_format / dec
 - APIs: definition + beispiele
 - server/client model kurz
 - methods: GET (POST, PUT, DELETE only mention)
@@ -26,30 +132,62 @@ Nina: bei der Erklärung der API gerne Analogien nutzen (Restaurant oder sowas)
 - wie kann ich eine anfrage mit R stellen?
 Nina: Vielleicht haben wir noch ein paar nützliche APIs, die wir vorstellen wollen? Eigene oder sonstige für amtliche Datenquellen, wichtigen internationalen Institutionen, Wetter, etc.?
 Frie: für APIs hat ja Jan Dix auch schon mal was gemacht , vlt ist da was nuetzliches dabei: https://projektzyklus.correlaid.org/ 
-Phil: Yep die Aufstellung von Jan ist super, besonders der Link: https://github.com/public-apis/public-apis
 
 
-![*Video: Datenimport (~ 30min)*](https://youtu.be/w7wbIHQg7cs)
+read CSV files readr::
+read.table(), read.csv(), 
+
+read.csv() and read.csv2() (Komma vs Semicolon)
+
+rio package
 
 
-### Kernaussagen
-- Check data: Was für eine Datei möchte ich laden (Dateiendung)?
-  - Frie: für windows leute vlt hinweis wie sie das aktivieren in windows explorer
-- Fehler beim Laden? Was sind Ursachen: Fehlermeldung lesen und in die Daten schauen.
-- API: Daten aus dem Web, live, weltweit und anwendungsbezogen
-- Wie muss ich mich authentifizieren, was sind die Routes & Parameter?
+read.table(URL, 
+  header = FALSE, 
+  sep="/", 
+  dec = ".",
+  na.strings = "EMPTY"
+  stringsAsFactors = TRUE, 
+  )
+  
+  
+df <- read.xlsx(FILE, 
+    sheetIndex = 1)
+
 
 Damit ihr euch am Anfang leichter im Funktionen-Dschungel zurecht findet haben wir eine Grafik erstellt:
 
 Nina: sieht erstmal gut aus, die Graphikidee ist super - gerne auch die (deutschen) Cheat Sheets verlinken (es gibt Datenimport) und auf engl. auch was zu plumber
-  - Frie: zu plumber?? damit würden sie ja ihre eigene api bauen. idk ob das nicht zu advanced ist. 
+- Frie: zu plumber?? damit würden sie ja ihre eigene api bauen. idk ob das nicht zu advanced ist
+- Tilman: dann lasse ich das erstmal weg
   
 ### Quiz
 
 
-```{r dataimport_q1, exercise=TRUE}
-
+```{r 06_quiz_files}
+quiz(caption = NULL,
+  question("Wie ist eine CSV Datei aufgebaut?",
+    answer("Die Informationen sind in tags gespeichert: <number>2</number>."),
+    answer("Die Informationen sind ein Reihen gespeichert und durch z.B. Kommas getrennt.", correct=TRUE),
+    answer("Die Informationen sind durch Key-Value Pairs identifizierbar."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("In einer CSV Datei sind Dezimalzahlen welche ein Komma enthalten - was kann ich machen?",
+    answer("read.csv2 ist der Held der Stunde!", correct=TRUE),
+    answer("Gar nichts, das war's, das Ende ist nah :(("),
+    answer("read.csv und das Argument dec setzen"),
+    answer("read.csv und die Argumente dec und sep setzen", correct=TRUE),
+    correct = "Richtig! Mit dec können wir das Dezimalzeichen setzen & mit sep den Seperator, am einfachsten ist aber einfach die read.csv2(..) Funktion zu benutzen:)",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
 ```
+
 
 ### Übung: Dateien lesen
 
