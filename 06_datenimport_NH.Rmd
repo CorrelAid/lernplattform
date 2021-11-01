@@ -1,6 +1,96 @@
 ## Datenimport und APIs
 
+#### R-Packages
+Viele APIs sind bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten noch leichter funktioniert. Über das Package `WDI` könnt Ihr **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
+
+*Anmerkung: Genau wissen wir das natürlich nicht, die Daten geben uns hier lediglich einen Hinweis darauf, wo der Bedarf groß sein könnte. Deshalb ist es wichtig die Annahmen, auf denen Entscheidungen basieren genau zu definieren und sich darüber Gedanken zu machen, ob die Datengrundlage für eine Entscheidung überhaupt ausreichend ist. Unsere Thesen können wir dann ggf. in Interviews mit Expert:innen (hier z.B. Naturschützer:innen) verifizieren.*
+```{r wb, exercise = TRUE}
+# Daten der World Bank mit R-Package ziehen
+wb_areas <- WDI::WDI(
+  country = "all", # Auswahl der Länder
+  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  start = 2018, # Auswahl Zeithorizont: Anfang
+  end = 2018, # Auswahl Zeithorizont: Ende
+  language = "en" # Sprachauswahl
+) 
+```
+
+Ladet nun den Datensatz zum Indikator ["Fish species, threatened" (EN.FSH.THRD.NO)](https://data.worldbank.org/indicator/EN.FSH.THRD.NO?view=chart){target="_blank"}. Kopiert dazu den Code von oben und fügt den richtigen Indikatorschlüssel ein.
+```{r exercise_wb, exercise = TRUE}
+# Euer Code hier
+```
+
+```{r exercise_wb-solution}
+# Daten der World Bank mit R-Package ziehen
+WDI::WDI(
+  country = "all", # Auswahl der Länder
+  indicator = "EN.FSH.THRD.NO",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  start = 2018, # Auswahl Zeithorizont: Anfang
+  end = 2018, # Auswahl Zeithorizont: Ende
+  language = "en" # Sprachauswahl
+) 
+```
+
+```{r exercise_wb-check}
+grade_this_code(pass = "Gut gemacht!", 
+                           fail = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Indikatorschlüssel ersetzt?",
+                           code_correct = "Gut gemacht!", 
+                           code_incorrect = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Indikatorschlüssel ersetzt?",
+                           maybe_code_feedback = FALSE,
+                           fail.hint = FALSE,
+                           grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung.")
+```
+
+Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr einfach und wir sparen uns viel Zeit für die Datenbereinigung. Neben dem `WDI`-Package für die World Bank, gibt es noch viele **weitere, nützliche R-Packages**:
+
+- `acled.api`-Package: Daten zu **bewaffneten Konflikten** von ACLED (zur [Doku](https://cran.r-project.org/web/packages/acled.api/index.html){target="_blank"}//mehr [Infos](https://acleddata.com/#/dashboard){target="_blank"})
+- `datenguideR`-Package: Daten der **amtlichen Amtstatistik** in Deutschland (zum [Repo](https://github.com/CorrelAid/datenguideR){target="_blank"}//mehr [Infos](https://datengui.de/){target="_blank"})
+- `DWD`-Package: Daten des **Deutschen Wetter Dienstes** (zur [Doku](https://github.com/CorrelAid/datenguideR){target="_blank"}//mehr [Infos](https://www.dwd.de/DE/Home/home_node.html){target="_blank"})
+- `eurostat`-Package: Open Data von **Eurostat** (zur [Doku](https://cran.r-project.org/web/packages/eurostat/index.html){target="_blank"}//mehr [Infos](https://ec.europa.eu/eurostat/de/home){target="_blank"})
+- `GermaParl`-Package: Plenarprotokolle des **Bundestags** (zur [Doku](https://cran.r-project.org/web/packages/gesisdata/index.html){target="_blank"}//mehr [Infos](https://www.gesis.org/home){target="_blank"})
+- `gesisdata`-Package: Daten des **Leibniz-Instituts** (zur [Doku](https://cran.r-project.org/web/packages/gesisdata/index.html){target="_blank"}//mehr [Infos](https://www.gesis.org/home){target="_blank"})
+- `googleAnalyticsR`-Package: Daten von **Google Analytics** (zur [Doku](https://cran.r-project.org/web/packages/googleAnalyticsR/index.html){target="_blank"}//mehr [Infos](https://analytics.google.com/analytics/web/provision/#/provision){target="_blank"})
+- `gtrendsR`-Package: **Google Trends** Daten (zur [Doku](https://cran.r-project.org/web/packages/gtrendsR/gtrendsR.pdf){target="_blank"}//mehr [Infos](https://trends.google.com/trends/?geo=FR){target="_blank"})
+- `nasadata`-Package: Daten von **NASA** (zur [Doku](https://cran.r-project.org/web/packages/nasadata/index.html){target="_blank"}//mehr [Infos](https://data.nasa.gov/){target="_blank"})
+- `pangaear`-Package: Daten zu Erde und **Umwelt** (zur [Doku](https://cran.r-project.org/web/packages/pangaear/pangaear.pdf){target="_blank"}//mehr [Infos](https://www.pangaea.de/){target="_blank"})
+- `dieZeit`-Package: Online-Veröffentlichungen der **Zeit** (zur [Doku](https://cran.r-project.org/web/packages/diezeit/index.html){target="_blank"}//mehr [Infos](https://www.zeit.de/){target="_blank"})
+- uvm...
+
+Schaut Euch gerne um - entweder indem Ihr über eine Suchmaschine prüft, ob Eure Lieblingsdatenquellen ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können.
+*Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
+
+### zu Zoe
+```{r wb_explore, exercise = TRUE}
+# Berechnung des Mittelwerts
+mean(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+
+# Berechnung des Medians
+median(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+
+# Berechnung von Minimum und Maximum
+min(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+max(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+
+# Filtern des Datensatzes (Geschütze Fläche unter Median)
+wb_areas %>%
+  filter(ER.PTD.TOTL.ZS <= median(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE))
+```
+
+
+Option 2 (UN Daten mit API)
+Alternativ könnte SDG 11.6.1 (Proportion of urban solid waste regularly collected and with adequate final discharge out of total urban solid waste generated, by cities) und 12.5.1 (National recycling rate, tons of material recycled) interessant sein. Daten als XLSX exportiert anbei.
+
+Idee: Als Initiative dahin gehen, wo viel Müll entsteht und wo wenig recycelt wird.
+
+@Tilman Kerl Vielleicht könnte man in den Übungen erstmal die Daten a) über den Link, b) lokal als CSV-Datei, c) konvertiert als XLSX (beides mit here::here()) laden. Im Anschluss könnte man im zweiten Teil den Datensatz mit WorldBank bzw. UN-Daten anreichern. Hier gehts zum Package für die WB: https://cran.r-project.org/web/packages/WDI/WDI.pdf, Hier die Doku für die UN: https://unstats.un.org/SDGAPI/swagger/
+
 ```{r}
+
+```
+
+### Exkurs: SQL-basierte Datenbanken 
+
+```{r exportcsv}
 # Exportieren der Datensets in CSV für DB
 
 # Country Codes
@@ -25,7 +115,7 @@ audit_db <- plastics_prep %>%
 # write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
 ```
 
-```{r}
+```{r sqlite}
 # Laden der benötigten Packages für die Verknüpfung mit SQLite-Datenbanken
 library(RSQLite)
 library(DBI)
@@ -35,8 +125,6 @@ tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über da
 download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
 con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
 ```
-
-### Exkurs: SQL-basierte Datenbanken 
 
 Daten, die uns in unserem Alltag als Datenanalyst:innen und Datenwissenschaftler:innen begegnen, sind oft in **Datenbanken** gespeichert. Datenbanken sind **logisch modellierte, strukturierte Datenspeicher**, mit denen mit Hilfe von **Datenbankmanagementsystemen (kurz DBMS)**, also Softwaretools, interagiert werden kann. Diese Interaktion funktioniert für jedes Datenbankmanagementsystem anders und ist **nicht trivial**. Während in einigen Fällen ein manueller Export als XLSX-, CSV- oder JSON-Datei möglich ist, kann es in einigen Fällen, auch auf Grund der Größe der Datensätze, nicht praktikabel sein manuell Daten zu exportieren. Daneben ist das natürlich auch IT im Schneckentempo statt in Lichtgeschwindigkeit. Idealerweise sind Eure Daten nämlich **live** mit Euren Analysetools verknüpft, sodass sie beständig aktuell sind. Die populärsten Datenbankmanagementsysteme findet Ihr in dieser Übersicht einer Umfrage unter Entwickler:innen von [Stack Overflow](https://insights.stackoverflow.com/survey/2020#technology-databases-all-respondents4){target="_blank}.
 

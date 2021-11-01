@@ -29,8 +29,20 @@ gradethis::gradethis_setup(pass = "Gut gemacht!",
                            fail.hint = FALSE,
                            grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
                            )
+``` 
+
+```{r daten}
 ### Daten laden
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+
+# Daten der World Bank mit R-Package ziehen
+wb_areas <- WDI::WDI(
+  country = "all", # Auswahl der Länder
+  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  start = 2018, # Auswahl Zeithorizont: Anfang
+  end = 2018, # Auswahl Zeithorizont: Ende
+  language = "en" #Sprachauswahl
+) 
 
 ### Daten bereinigen
 # Country name cleaning: 
@@ -68,7 +80,7 @@ audit_plastic_eu_asia<- audit_plastic %>%
   filter(continent == "Europe" | continent == "Asia") %>%
   group_by(country) %>%
   mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
-``` 
+```
 
 ```{r results='asis'}
 out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
@@ -102,8 +114,8 @@ cat(out, sep = '')
 
 ## Datenimport und APIs
 ```{r results='asis'}
-#out <- knitr::knit_child("06_datenimport_NH.Rmd", quiet = TRUE) #SylvisLastEdit.Rmd
-#cat(out, sep = '')
+out <- knitr::knit_child("06_datenimport_NH.Rmd", quiet = TRUE) #SylvisLastEdit.Rmd
+cat(out, sep = '')
 ```
 
 ## Datenbereinigung
