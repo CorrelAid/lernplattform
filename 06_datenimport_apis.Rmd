@@ -1,0 +1,186 @@
+## Datenimport: Datein lesen und mit APIs interagieren
+
+
+### APIs
+Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
+
+Die Interaktion sieht so aus:
+
+1. Der _Client_ macht eine Anfrage (en: _Request_) an die API
+2. Die API verarbeitet die Anfrage und gibt eine Antwort (en: _Response_) zurück
+
+APIs sind idealerweise in einer Dokumentation definiert, welche dem Client mitteilt, welche Funktionalitäten wie verfügbar sind. 
+
+**Analogie**: Ihr könnt euch das so vorstellen, wie wenn Ihr (als _Client_) im Restaurant seid. Das Restaurant stellt euch eine:n Kellner:in (eure _API_) und eine Speisekarte (eure _API Dokumentation_) bereit, welche eure Bestellungen ( _Anfragen_ ) entgegen nimmt, verarbeitet und Essen ( _Antwort_ ) liefert. 
+
+Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sogenannte _Methoden_ umfasst: GET, POST, PUT, PATCH und DELETE. Da wir in unserem Fall auf Interaktionen schauen, welche sich auf den Datenaustausch fokussieren, ergibt sich folgende Entsprechung:
+
+- GET --> Daten lesen
+- POST  --> Neue Daten erstellen
+- PUT --> Daten ersetzen
+- PATCH --> Daten akutalisieren
+- DELETE --> Daten löschen
+
+(siehe Folie 10 von ["Datenzugriff im World Wide Web"](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf), Jan Dix, lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de).)
+
+Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein.
+
+`GET`-Anfragen können als normale URL (das was ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
+`{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
+
+Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/search?q=CorrelAid`.
+
+- `BASIS_URL`: `https://www.google.com/`
+- `ROUTE`: `search`
+- `QUERY_PARAMETER`:
+  - `q`: `CorrelAid`
+
+**Analogie**: Wenn ihr im Restaurant "Correl and Friends" zu Gast seid und euer Kellner Elmo heißt, bestellt (--> `GET`) ihr bei Elmo (eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
+
+### Beispiel
+
+Es gibt es viele APIs, die es uns ermöglichen, einfach an Daten aus allen Bereichen zu kommen. [Hier (en)](https://github.com/public-apis/public-apis) findet ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
+Als Beispiel verwenden wir hier die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet ihr [hier](https://unstats.un.org/SDGAPI/swagger/).
+
+Als erstes _lesen_ wir die [Liste aller UN Social Development Goals](https://unstats.un.org/SDGAPI/swagger/#!/Goal/V1SdgGoalListGet):
+
+```{r}
+library(httr)
+basis_url <- "https://unstats.un.org/"
+req <- httr::GET(basis_url,
+                 path = "/SDGAPI/v1/sdg/Goal/List") # macht einen GET request
+
+# sich das req Objekt anschauen mit str()
+str(req, max.level = 1) # max.level=1 zeigt die Struktur nur auf der obersten "Ebene"
+```
+
+
+Wenn wir uns die URL anschauen, erkennen wir auch wieder unser Schema aus `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`
+```{r}
+req$url
+```
+
+quiz: wie viele parameter?
+was ist die Route, was der base url? ziehe die doku zu rate
+
+```{r}
+
+```
+
+Wir erhalten eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid ihr hauptsächlich an den übermittelten Daten interessiert. Diese erhaltet ihr, indem ihr die Funktion `httr::content()` verwendet:
+
+```{r}
+goals_list <- httr::content(req)
+str(goals_list)
+length(goals_list)
+```
+
+Wir erhalten eine Liste mit 17 Elementen, für jedes Sustainable Development Goal ist ein Element vorhanden. 
+
+Hilfreichere, weil granularere Daten zum Thema Plastikverschmutzung können wir auf der Ebene der Indikatoren bekommen. Zum Beispiel können wir hier Daten zum Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) laden.
+
+Hierzu verwenden wir den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Hier haben wir nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den wir Daten benötigen.
+
+```{r}
+basis_url <- "https://unstats.un.org/"
+req <- httr::GET(basis_url,
+                 path = "/SDGAPI/v1/sdg/Series/Data", 
+                 query = list(
+                   seriescode = "EN_REF_WASCOL", 
+                   years = "[2019, 2020]"
+                 )) 
+```
+
+
+
+```{r}
+waste_collection <- httr::content(req)
+
+str(waste_collection, max.level = 1)
+
+tmp <- waste_collection$data
+```
+
+jsonlite
+purrr
+
+mehr dazu im thema datenbereinigung???
+
+
+Die meisten Daten werden im JSON-Format zurückgegeben (siehe JSON Dateien weiter oben). Um nun eine Anfrage zu stellen nutzen wir die `jsonlite` und `httr` Biblotheken und können mit `GET(URL)` die Daten laden.
+
+
+mit einem sogenannten _Statuscode_, welcher Aufschluss darüber gibt, ob die Anfrage erfolgreich war oder nicht. 
+
+#### Authentifizierung
+
+Viele APIs benötigen einen *KEY*, also einen Schlüssel um der Schnittstelle mitzuteilen, dass man autorisiert ist auf die Daten zuzugreifen. Diese Schlüssel kann man sich meistens einfach in auf den entsprechenden Websites im User-Portal generieren lassen. 
+
+*Der große Vorteil von APIs gegenüber von Web-Scraping (extrahieren von Infos aus einer Website) ist die Einfachheit und Struktur die APIs bieten - es reicht oft eine einzige Anfrage für die Daten die man möchte*
+
+Die Fragen die man sich bei der Arbeit mit APIs stellen muss sind: <br>
+*Wie muss ich mich authentifizieren, was sind die Routes & Parameter?* 
+
+library(httr)
+library(jsonlite)
+
+### Tidy Data - Best practices
+Phil: Tidy data erläutern würde ich begrüßen (zumindest ein datensatz = ein excel sheet und nicht 5 verschiedene auf einem sheet)
+
+
+Frie: 
+- bei den Datenprojekten kam jetzt schon häufiger geospatial auf. bzw. karten, weil karten = fancy! also vlt noch kurz darauf eingehen (va polygone) -> sf package. ggf. osmdata? 
+
+
+- welche function für welchen typ (grafik)
+- mögliche fehler und wie behebe ich die? -> password protected / cloud / speicherort / encoding / time_format / dec
+- APIs: definition + beispiele
+- server/client model kurz
+- methods: GET (POST, PUT, DELETE only mention)
+Nina: bei der Erklärung der API gerne Analogien nutzen (Restaurant oder sowas)
+- wie kann ich eine anfrage mit R stellen?
+Nina: Vielleicht haben wir noch ein paar nützliche APIs, die wir vorstellen wollen? Eigene oder sonstige für amtliche Datenquellen, wichtigen internationalen Institutionen, Wetter, etc.?
+Frie: für APIs hat ja Jan Dix auch schon mal was gemacht , vlt ist da was nuetzliches dabei: https://projektzyklus.correlaid.org/ 
+
+
+read CSV files readr::
+read.table(), read.csv(), 
+
+read.csv() and read.csv2() (Komma vs Semicolon)
+
+rio package
+
+
+read.table(URL, 
+  header = FALSE, 
+  sep="/", 
+  dec = ".",
+  na.strings = "EMPTY"
+  stringsAsFactors = TRUE, 
+  )
+  
+  
+df <- read.xlsx(FILE, 
+    sheetIndex = 1)
+
+
+Damit ihr euch am Anfang leichter im Funktionen-Dschungel zurecht findet haben wir eine Grafik erstellt:
+
+Nina: sieht erstmal gut aus, die Graphikidee ist super - gerne auch die (deutschen) Cheat Sheets verlinken (es gibt Datenimport) und auf engl. auch was zu plumber
+- Frie: zu plumber?? damit würden sie ja ihre eigene api bauen. idk ob das nicht zu advanced ist
+- Tilman: dann lasse ich das erstmal weg
+  
+  
+Für viele populäre APIs gibt es eigene R Pakete, welche euch die Arbeit der manuellen Anfrage. Hier lohnt es sich, bei Google nach "[Name der API] API R package" zu googeln. Probiert das gerne mal für die Weltbank (en: Worldbank) API aus. 
+
+### Quiz
+
+### Übung: Dateien lesen
+
+<br>
+Frie: bei csv dateien unbedingt mind. eine mit "deutschen" daten (; als separator, "," als dezimaltrennstelle etc.) -> read_csv2 
+
+### Übung: Arbeiten mit APIs
+
+
+
