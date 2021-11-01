@@ -1,0 +1,73 @@
+---
+title: "Beach Clean Ups"
+author: "Nina Hauser"
+date: "7/8/2020"
+output: html_document
+---
+
+Dieser Code generiert eine XLSX-Datei zu Google Trends Daten über die Zeit und pro Land für den Suchbegriff "Beach Clean Up".
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages("gtrendsR")  
+
+library(gtrendsR)
+library(dplyr)
+library(lubridate)
+library(openxlsx)
+```
+
+```{r}
+# get google trends over time
+get_gtrends_time <- function(nemo){
+  weekly_hits <-  gtrends(nemo, 
+                          time = "today+5-y",
+                          geo = "",
+                          low_search_volume = TRUE)$interest_over_time
+  
+  weekly_hits <-   weekly_hits %>%
+    group_by(year=year(date), week = week(date), date = date, geo = geo) %>%
+    summarise(google = hits)
+  
+  weekly_hits <- subset(weekly_hits, select = -c(year,week))
+  return(weekly_hits)
+}
+
+# incorporate different search words
+main_searchword <- "plastic pollution"
+gtrends_beachcleanup <- get_gtrends_time(main_searchword)
+
+# make one data frame
+gtrends_timedata <- gtrends_beachcleanup
+names(gtrends_timedata)[names(gtrends_timedata) == 'google'] <- 'plastic_pollution'
+```
+
+
+```{r}
+# get interest in beach clean ups by country of the last 12 months
+gtrends_countrydata <-
+  gtrends(main_searchword,
+          time = "today 12-m",
+          low_search_volume = TRUE)$interest_by_country
+```
+
+```{r}
+# Write files
+# Create a blank workbook
+OUT <- createWorkbook()
+
+# Add some sheets to the workbook
+addWorksheet(OUT, "trends_over_time")
+addWorksheet(OUT, "by_country")
+
+# Write the data to the sheets
+writeData(OUT, sheet = "trends_over_time", x = gtrends_timedata)
+writeData(OUT, sheet = "by_country", x = gtrends_countrydata)
+
+# Reorder worksheets
+worksheetOrder(OUT) <- c(1,2)
+
+# Export the file
+saveWorkbook(OUT, "Plastic Pollution - Google Trends.xlsx")
+```
+

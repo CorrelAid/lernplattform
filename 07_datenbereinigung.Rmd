@@ -423,3 +423,20 @@ quiz(
   )
 )
 ```
+
+### Filtern des Worldbank-Datensatzes
+```{r wb_explore, exercise = TRUE}
+# Berechnung des Mittelwerts
+mean(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+
+# Berechnung des Medians
+median(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+
+# Berechnung von Minimum und Maximum
+min(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+max(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
+
+# Filtern des Datensatzes (Geschütze Fläche unter Median)
+wb_areas %>%
+  filter(ER.PTD.TOTL.ZS <= median(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE))
+```
