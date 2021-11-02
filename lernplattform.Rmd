@@ -119,7 +119,7 @@ cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_apis.Rmd", quiet = TRUE) 
+out <- knitr::knit_child("06_datenimport_apis.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 

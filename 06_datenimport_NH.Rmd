@@ -1,4 +1,199 @@
 ## Datenimport und APIs
+Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um damit Analysen durchzuführen. 
+
+![*Video: Datenimport und APIs (30min)*](https://youtu.be/zHpCjZDbpB8)
+
+- Dateiformate erklären
+- Manuellen Import ohne Code zeigen
+
+[Hier](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} findet Ihr ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
+
+### Kernaussagen 
+- Es gibt **zwei grundlegene Möglichkeiten** Daten zu importieren:
+     a) aus lokal oder remote gespeicherten **Dateiformaten** (XLSX, CSV, JSON, ...)
+     b) über **Datenabfragen** von Datenbanken und aus dem Internet (Abfragesprachen wie SQL oder über APIs und Web-Scraping)
+- Um Dateien richtig importieren zu können, ist es wichtig herauszufinden, welches **Dateiformat** die Datei hat
+- **Windows-User** können sich die Dateiendung über die Multifunktionsleiste auf der Registerkarte "Ansicht" anzeigen lassen: Aktiviert dort das Feld "Dateinamenerweiterungen" im Abschnitt "Ein-/Ausblenden"
+- **Mac-User** navigieren zu ihrem Schreibtisch und können sich dort die Dateiendung über "Finder" -> "Erweitert" -> Alle Dateinamensuffixe einblenden" anzeigen lassen
+- Der Import von CSV-, XLSX-, SPSS-, SAS und Stata-Dateien kann in RStudio **ohne Code** über "File" -> "Import Dataset erfolgen
+- Damit Ihr Fehler beim Importieren von Daten von Anfang an vorbeugt, solltet Ihr die **Datei vorab in einem Texteditor öffnen** (nicht immer möglich) und die folgende Checkliste beachten:
+
+    1) In welchem **Dateiformat** liegt die Datei vor?
+    2) Wo ist die Datei **gespeichert**?
+    3) Was gibt es hinsichtlich **Dateistruktur** zu beachten (Separatoren, fehlende Werte, etc.)?
+    
+
+**Überblick über die verschiedenen Dateiformate:**
+```{r dateiformate_tabelle, results='asis'}
+tabelle <- "
+
+Dateiformat:  | Dateistruktur:                                                    | Endung:
+--------------|-------------------------------------------------------------------|---------------------------------
+Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx                        
+JSON          | textbasiertes, strukturiertes Format für JavaScript-Objekte       | .json (zumeist aus API-Requests) 
+SAS           | SAS-Export, der nicht in allen Anwendungen geöffnet werden kann   | .sas 
+SPSS          | SPSS-Export, der nicht in allen Anwendungen geöffnet werden kann  | .sav
+Stata         | Stata-Export, der nicht in allen Anwendungen geöffnet werden kann | .dta
+Textdatei     | unformatierte Textdaten                                           | .csv/.txt  
+"
+cat(tabelle)
+```
+
+### Interaktive Übung
+Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link zu einem öffentlichen Server eingelesen. Damit haben wir uns um drei wichtige Stellschrauben des Datenimports herumgemogelt:
+1. Die **Dateiendung** konnten wir ignorieren, da das `rio`-Package dies für uns automatisch erkennt.
+2. Der **Speicherort** wird über einen Web-Link und nicht über einen sog. Path (zu dt. Pfad) auf unserem Computer definiert.
+3. Die **Dateistruktur** wird automatisch erkannt.
+
+``` {r daten_einlesen_wdh, exercise = TRUE}
+# Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+```
+
+Lesen wir Dateien ein, die lokal gespeichert sind, müssen wir diesen Path definieren. Dazu gibt es verschiedene Methoden, von denen jedoch nur eine wirklich sinnvoll ist: Arbeiten wir an Analysen in R, legen wir sowohl unser Skript als auch unsere Daten in einem dafür vorgesehenen **Ordner** ab, der "daten" heißt. Zu diesem Speicherort navigieren wir mithilfe der Funktion `here::here()`.
+
+``` {r daten_einlesen_lokal, exercise = TRUE}
+# Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
+rio::import(here::here('daten/plastics.csv'))
+```
+Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
+
+##### CSV
+Eine CSV-Datei (comma separated values, zu dt. Komma getrennte Werte) ist, wie der schon Name sagt, eine Datei in der die verschiedenen Datenwerte durch Kommata getrennt sind. Grundsätzlich entspricht **jede Zeile** einer **Beobachtung**. Die erste Zeile enthält allerding keine Werte sondern die **Bezeichnungen für die entsprechende Spalte**. Sie wird **Header** genannt und wird genutzt, um auf bestimmte Spalten und Werte zuzugreifen. 
+
+Um CSV-Dateien zu lesen, benutzen wir häufig die `read.csv()`-Funktion des `readr`-Packages. Diese hat verschiedene Argumente, welche wir entsprechend unserer Dateistruktur setzen können:
+``` {r exericse_csv, exercise = TRUE}
+# install.packages("readr")
+
+# Komma als separator und Punkt als Dezimal-Punkt als Standard
+readr::read_csv(
+  file = here::here('daten/plastics.csv'), # Dateiame/Pfad zur Datei
+  col_names = TRUE, # Vorhandensein des Headers
+  skip = 0, # Festlegen, ob Zeilen übersprungen werden sollen
+  na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
+  )
+```
+Aber Achtung: Wer **Programme** (insb. Excel) in **deutscher Sprache** nutzt, exportiert CSV-Dateien häufig mit dem Separator ";" und dem Dezimal-Trennzeichen ",". Das führt zu Fehlern. Deutschsprachige CSV-Dateien müssen deshalb mit der Funktion `read.csv2()` importiert werden.
+
+#### XLSX
+Mit **Google Trends Daten** könnt Ihr erforschen, wonach die Welt gerade auf der Suchmaschine Google sucht. Das **Google Search Volume** (zu dt. Google Suchvolumen) bezieht sich dabei konkret auf die Anzahl der Suchanfragen, die Nutzer:innen zu einem bestimmten Suchbegriff innerhalb eines bestimmten Zeitraums eingeben. Ein hohes Volumen deutet auf hohes Interesse an einem Thema hin.
+
+Wir haben für Euch zwei **XLSX-Dateien** erstellt, die zu den Suchbegriffen "beach clean up" (zu dt. Strand aufräumen), also Aktionen wie denen von "Break Free From Plastics", und "plastic pollution" (zu dt. Plastikverschmutzung) Daten enthalten. Das Arbeitsblatt "trends_over_time" stellt die Entwicklung des Google Search Volumes über die Zeit für die letzten fünf Jahre dar. "by_country" enthält die Entwicklung aufgeschlüsselt nach verschiedenen Ländern im Durchschnitt des letzten Jahres.
+
+Hier laden wir mit der Funktion `readxl::read_excel()` das Arbeitsblatt (`sheet = ...`) "trends_over_time" der Excel-Datei "Plastic Pollution - Google Trends.xlsx" aus unserem Ordner "Daten" (`path = ...`), das Spaltenbezeichnungen enthält (`col_names = ...`) und bei dem fehlende Werte zumeist durch "" (leer) gekennzeichnet sind (`na = ...`).
+
+*Anmerkung: Zur Live-Verknüpfung mit den aktuellen Daten von Google gibt es in R das `gtrendsR`-Package. Dazu gleich mehr.*
+```{r exercise_xlsx, exercise = TRUE}
+#install.packages(readxl)
+
+# Laden der Entwicklung des Suchbegriffs "Plastic Pollution" über die Zeit
+googletrendstime_plasticpollution <- readxl::read_excel(
+  path = here::here("daten/Plastic Pollution - Google Trends.xlsx"), # Definition von Path und Dateinamen
+  sheet = "trends_over_time", # Definition des Arbeitsblatts
+  col_names = TRUE, # Deklarierung der Spaltennamen
+  na = c("", NA)) # Syntax fehlender Werte
+```
+
+Ladet nun das Arbeitsblatt "by_country" der Datei "Beach Clean Up - Google Trends.xlsx". Kopiert dazu den Code von oben und passt den Dateinamen und das Arbeitsblatt an der richtigen Stelle an.
+```{r exercise_excel, exercise = TRUE}
+# Euer Code hier
+```
+
+```{r exercise_excel-solution}
+# Laden des Arbeitsblatt "by_country" der Datei "Beach Clean Up - Google Trends.xlsx"
+readxl::read_excel(
+  path = here::here("daten/Beach Clean Up - Google Trends.xlsx"), # hier ändern wir den Dateinamen
+  sheet = "by_country", # hier ändern wir den Arbeitsblattnamen
+  col_names = TRUE,
+  na = c("", NA))
+```
+
+```{r exercise_excel-check}
+grade_this_code(pass = "Gut gemacht!", 
+                           fail = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Datei- und Arbeitsblattnamen ersetzt?",
+                           code_correct = "Gut gemacht!", 
+                           code_incorrect = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Datei- und Arbeitsblattnamen ersetzt?",
+                           maybe_code_feedback = FALSE,
+                           fail.hint = FALSE,
+                           grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung.")
+```
+
+#### SPSS, SAS und Stata
+
+Gerade in der akademischen Welt (oder den dort produzierten Datensätzen) werden
+euch hin und wieder auch Dateien mit anderen Endungen begegnen. Diese stammen
+meist von kostenpflichtigen Analyseprogrammen wie SPSS oder STATA. Von welchem 
+Programm eure Daten stammen, erkennt ihr wie gehabt an der Endung:
+- `.sav` steht für Daten aus SPSS
+- `.dta` steht für Daten aus STATA
+- `.sas7bdat"` steht für Daten aus SAS
+
+R selbst hat übrigens auch ein eigenes Format in dem ihr Dateien abspeichern könnt.
+Wenn ihr eine Datei mit der Endung `.RDATA` seht, wurde diese mit R erstellt und 
+lässt sich dementsprechend sehr einfach mit R einlesen. Wir raten euch aber trotzdem
+die Daten wenn möglich als `.csv` abzuspeichern, da dieses Format sehr weit verbreitet ist
+und auch mit gängiger Software wie Excel geöffnet werden kann.
+
+Um Dateien mit den oben genannten Formaten einzulesen nutzen wir das `haven` 
+package. Die jeweiligen Datensätze dienen dabei nur der Veranschaulichung und 
+haben für unseren Kurs keine inhaltliche Bedeutung.
+
+```{r, exercise = TRUE}
+#install.packages("haven")
+library(haven)
+
+# SAS
+haven::read_sas(data_file = "https://libguides.library.kent.edu/ld.php?content_id=11205331")
+
+# SPSS
+haven::read_sav(file = "http://calcnet.mth.cmich.edu/org/spss/V16_materials/DataSets_v16/Cars.sav")
+
+# Stata
+haven::read_dta(file = "http://www.stata-press.com/data/r8/auto.dta")
+```
+
+Wenn ihr die Befehle aufmerksam lest, wird euch auffallen dass wir einfach eine
+ULR/Internetaddresse als Dateipfad angegeben haben. Wenn sich hinter der URL 
+eine Datei verbirgt, ist dies bei allen Funktionen aus dem `haven` package
+problemlos möglich. Solltet ihr eine Datei öffnen wollen, welche auf eurem PC 
+gespeichert ist, könnt ihr wie gewohnt einen Pfad auf eurem Rechner angeben.
+
+
+```{r 06datenimport_pb1}
+quiz(caption = NULL,
+  question("Mit dem haven package kann man sowohl Dateien aus dem Internet als auch
+           lokal gespeicherte Dateien einlesen.",
+    answer("Das ist korrekt", correct = TRUE),
+    answer("Nur Dateien aus dem Internet können eingelesen werden."),
+    answer("Nur lokal gespeicherte Dateien können eingelesen werden."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Code nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+
+Eine Besonderheit von `.dta` und `.sav` Daten sind "Labels". Labels finden sich
+häufig bei Umfragedaten. Prinzipiell sind diese Labels auch eine schöne Sache. Sie
+liefern euch beispielsweise Informationen über eine bestimme Variable (über einen
+kryptischen Variablennamen hinaus). Programme wie STATA oder SPSS haben eine eigene
+Infrastruktur wie sie diese Labels als Metainformationen anzeigen. Wenn solche Daten
+in R eingelesen werden, kann es aber manchmal zu Problemen mit den Labels kommen. 
+Sollte euch das Thema näher interessieren, findet ihr [hier](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) 
+weitere Informationen.
+
+Ansonsten raten wir euch immer nach einem Codebuch zu euren Daten Ausschau zu halten.
+Zumindest Umfragedaten werden eigentlich immer mit einem Codebuch bereitgestellt.
+In diesem Codebuch finden sich beispielsweise Informationen darüber, wie fehlende
+Werte codiert sind. So kann euch ein Codebuch vor bösen Überraschung bewahren wenn
+ihr von Anfang an wisst, dass fehlende Werte für das Alter von Befragten im zugehörigen 
+Datensatz mit **-99** codiert sind. 
+
+
+#### JSON
+
 
 #### R-Packages
 Viele APIs sind bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten noch leichter funktioniert. Über das Package `WDI` könnt Ihr **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
@@ -53,40 +248,13 @@ Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr ein
 - `gtrendsR`-Package: **Google Trends** Daten (zur [Doku](https://cran.r-project.org/web/packages/gtrendsR/gtrendsR.pdf){target="_blank"}//mehr [Infos](https://trends.google.com/trends/?geo=FR){target="_blank"})
 - `nasadata`-Package: Daten von **NASA** (zur [Doku](https://cran.r-project.org/web/packages/nasadata/index.html){target="_blank"}//mehr [Infos](https://data.nasa.gov/){target="_blank"})
 - `pangaear`-Package: Daten zu Erde und **Umwelt** (zur [Doku](https://cran.r-project.org/web/packages/pangaear/pangaear.pdf){target="_blank"}//mehr [Infos](https://www.pangaea.de/){target="_blank"})
+Einfügen: - ``-Package: **Twitter**-Daten (zur [Doku](https://cran.r-project.org/web/packages/pangaear/pangaear.pdf){target="_blank"}//mehr [Infos](https://www.pangaea.de/){target="_blank"})
 - `dieZeit`-Package: Online-Veröffentlichungen der **Zeit** (zur [Doku](https://cran.r-project.org/web/packages/diezeit/index.html){target="_blank"}//mehr [Infos](https://www.zeit.de/){target="_blank"})
 - uvm...
 
-Schaut Euch gerne um - entweder indem Ihr über eine Suchmaschine prüft, ob Eure Lieblingsdatenquellen ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können.
+Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquellen ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können.
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
-### zu Zoe
-```{r wb_explore, exercise = TRUE}
-# Berechnung des Mittelwerts
-mean(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
-
-# Berechnung des Medians
-median(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
-
-# Berechnung von Minimum und Maximum
-min(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
-max(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE)
-
-# Filtern des Datensatzes (Geschütze Fläche unter Median)
-wb_areas %>%
-  filter(ER.PTD.TOTL.ZS <= median(wb_areas$ER.PTD.TOTL.ZS, na.rm = TRUE))
-```
-
-
-Option 2 (UN Daten mit API)
-Alternativ könnte SDG 11.6.1 (Proportion of urban solid waste regularly collected and with adequate final discharge out of total urban solid waste generated, by cities) und 12.5.1 (National recycling rate, tons of material recycled) interessant sein. Daten als XLSX exportiert anbei.
-
-Idee: Als Initiative dahin gehen, wo viel Müll entsteht und wo wenig recycelt wird.
-
-@Tilman Kerl Vielleicht könnte man in den Übungen erstmal die Daten a) über den Link, b) lokal als CSV-Datei, c) konvertiert als XLSX (beides mit here::here()) laden. Im Anschluss könnte man im zweiten Teil den Datensatz mit WorldBank bzw. UN-Daten anreichern. Hier gehts zum Package für die WB: https://cran.r-project.org/web/packages/WDI/WDI.pdf, Hier die Doku für die UN: https://unstats.un.org/SDGAPI/swagger/
-
-```{r}
-
-```
 
 ### Exkurs: SQL-basierte Datenbanken 
 
@@ -97,13 +265,13 @@ Idee: Als Initiative dahin gehen, wo viel Müll entsteht und wo wenig recycelt w
 country_db <- community %>%
   ungroup() %>%
   select(countrycode, country, continent)
-# write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
+write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
 
 # Community
 community_db <- community %>%
   ungroup() %>%
   select(countrycode, year, num_events, volunteers)
-# write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
+write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
 
 # Audit Plastic
 audit_db <- plastics_prep %>%
@@ -112,7 +280,7 @@ audit_db <- plastics_prep %>%
   select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
   pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
   filter(parent_company != "Grand Total")
-# write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
+write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
 ```
 
 ```{r sqlite}
@@ -224,4 +392,8 @@ Im letzten Schritt **schließen** wir die **Verbindung** zu der Datenbank mit de
 dbDisconnect(con)
 ```
 
-Ihr wollt mehr lernen? Unser Partner Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
+Ihr wollt mehr SQL lernen? Unser Partner Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
+
+### Und jetzt Ihr
+1. Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, einen Ordner "daten" an und versucht die Datei mit diesem Code lokal zu laden.
+
