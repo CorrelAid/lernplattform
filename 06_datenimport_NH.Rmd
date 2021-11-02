@@ -21,7 +21,7 @@ Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um dami
     1) In welchem **Dateiformat** liegt die Datei vor?
     2) Wo ist die Datei **gespeichert**?
     3) Was gibt es hinsichtlich **Dateistruktur** zu beachten (Separatoren, fehlende Werte, etc.)?
-    
+- Mit dem **`rio`-Package** könnt Ihr zahlreiche Dateiformate automatisch einlesen (hier geht es zur [Übersicht](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"})
 
 **Überblick über die verschiedenen Dateiformate:**
 ```{r dateiformate_tabelle, results='asis'}
@@ -40,7 +40,7 @@ cat(tabelle)
 ```
 
 ### Interaktive Übung
-Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link zu einem öffentlichen Server eingelesen. Damit haben wir uns um drei wichtige Stellschrauben des Datenimports herumgemogelt:
+Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link zu einem öffentlichen Server eingelesen. Mit [`rio`](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"} könnt Ihr fast alle Dateiformate und -strukturen automatisch importieren - in der Theorie zumindest, manchmal klappt es leider nicht. Denn wir haben uns hier um drei wichtige Stellschrauben des Datenimports herumgemogelt:
 1. Die **Dateiendung** konnten wir ignorieren, da das `rio`-Package dies für uns automatisch erkennt.
 2. Der **Speicherort** wird über einen Web-Link und nicht über einen sog. Path (zu dt. Pfad) auf unserem Computer definiert.
 3. Die **Dateistruktur** wird automatisch erkannt.
@@ -119,10 +119,47 @@ grade_this_code(pass = "Gut gemacht!",
 ```
 
 #### SPSS, SAS und Stata
-
+Phil
 
 #### JSON
 
+### Geo(-referenzierte) Daten
+Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergönzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein.
+```{r polygons_world, exercise = TRUE}
+# install.packages("sf")
+
+# Einlesen des Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
+polygons_welt <- sf::st_read(here::here("daten/geospatial/world_50m_countries.shp"))
+```
+
+Unser Datensatz enthält zahlreiche Spalten mit zusätzlichen Informationen zu den Ländern der Welt. Uns interessiert hier die Spalte "`geometry`", die die kartographischen Informationen enthält.
+```{r}
+# Betrachtung der Daten
+head(polygons_welt$geometry)
+```
+
+Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualiserung.
+```{r}
+# Erstellung eines einfachen Kartenplots
+plot(polygons_welt$geometry)
+```
+Auch für Deutschland gibt es ähnliche Shapefiles:
+```{r}
+# Einlesen der Deutschlandkarte mit Bundesländern
+polygon_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
+plot(polygon_deutschland$geometry)
+```
+Der Import von geographischen Daten folgt also der folgenden Checkliste:
+```
+  1) Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
+  2) Wo kann ich zugehörige **Shapefiles** finden? 
+      Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden. 
+  3) Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
+````
+
+### APIs
+Friee
+https://app.dataquest.io/course/apis-in-r
 
 #### R-Packages
 Viele APIs sind bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten noch leichter funktioniert. Über das Package `WDI` könnt Ihr **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
