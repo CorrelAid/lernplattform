@@ -137,7 +137,7 @@ Um Dateien mit den oben genannten Formaten einzulesen nutzen wir das `haven`
 package. Die jeweiligen Datensätze dienen dabei nur der Veranschaulichung und 
 haben für unseren Kurs keine inhaltliche Bedeutung.
 
-```{r, exercise = TRUE}
+```{r otherformats_exercise, exercise = TRUE}
 #install.packages("haven")
 library(haven)
 
@@ -157,7 +157,6 @@ eine Datei verbirgt, ist dies bei allen Funktionen aus dem `haven` package
 problemlos möglich. Solltet ihr eine Datei öffnen wollen, welche auf eurem PC 
 gespeichert ist, könnt ihr wie gewohnt einen Pfad auf eurem Rechner angeben.
 
-
 ```{r 06datenimport_pb1}
 quiz(caption = NULL,
   question("Mit dem haven package kann man sowohl Dateien aus dem Internet als auch
@@ -172,9 +171,7 @@ quiz(caption = NULL,
   )
 )
 ```
-
-
-Eine Besonderheit von `.dta` und `.sav` Daten sind "Labels". Labels finden sich
+Eine Besonderheit von `.dta` und `.sav` Daten sind **"Labels"**. Labels finden sich
 häufig bei Umfragedaten. Prinzipiell sind diese Labels auch eine schöne Sache. Sie
 liefern euch beispielsweise Informationen über eine bestimme Variable (über einen
 kryptischen Variablennamen hinaus). Programme wie STATA oder SPSS haben eine eigene
@@ -192,43 +189,264 @@ Datensatz mit **-99** codiert sind.
 
 #### JSON
 
-### Geo(-referenzierte) Daten
+#### Geo(-referenzierte) Daten
 Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergönzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein.
 ```{r polygons_world, exercise = TRUE}
 # install.packages("sf")
 
-# Einlesen des Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
-polygons_welt <- sf::st_read(here::here("daten/geospatial/world_50m_countries.shp"))
+# Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
+polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
 ```
 
 Unser Datensatz enthält zahlreiche Spalten mit zusätzlichen Informationen zu den Ländern der Welt. Uns interessiert hier die Spalte "`geometry`", die die kartographischen Informationen enthält.
-```{r}
+```{r polygon_welt_exercise, exercise = TRUE}
 # Betrachtung der Daten
 head(polygons_welt$geometry)
 ```
 
 Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualiserung.
-```{r}
+```{r polygon_welt__plot_exercise, exercise = TRUE}
 # Erstellung eines einfachen Kartenplots
 plot(polygons_welt$geometry)
 ```
 Auch für Deutschland gibt es ähnliche Shapefiles:
-```{r}
+```{r polygon_de_exercise, exercise = TRUE}
 # Einlesen der Deutschlandkarte mit Bundesländern
-polygon_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
-plot(polygon_deutschland$geometry)
+polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
+plot(polygons_deutschland$geometry)
 ```
 Der Import von geographischen Daten folgt also der folgenden Checkliste:
-```
-  1) Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
-  2) Wo kann ich zugehörige **Shapefiles** finden? 
-      Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden. 
-  3) Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
-````
 
-### APIs
-Friee
-https://app.dataquest.io/course/apis-in-r
+1. Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
+2. Wo kann ich zugehörige **Shapefiles** finden? 
+      Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden. 
+3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
+
+
+#### APIs
+```{r api_reqs, echo=FALSE}
+basis_url <- "https://unstats.un.org/"
+antwort_goals <- httr::GET(basis_url,
+                     path = "/SDGAPI/v1/sdg/Goal/List") # macht einen GET request
+
+antwort_series <- httr::GET(
+  basis_url,
+  path = "/SDGAPI/v1/sdg/Series/Data",
+  query = list(
+    seriescode = "EN_REF_WASCOL",
+    timePeriodStart = 2015,
+    # 2015 hat ausreichend Daten!
+    timePeriodEnd = 2015,
+    # nur ein Jahr
+    pageSize = 100
+  )
+)
+
+waste_collection <- httr::content(antwort_series)
+
+```
+Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
+
+Eine Interaktion sieht so aus:
+
+1. Der _Client_ macht eine Anfrage (en: _Request_) an die API
+2. Die API verarbeitet die Anfrage und gibt eine Antwort (en: _Response_) zurück
+
+APIs sind idealerweise in einer _Dokumentation_ definiert, welche Programmierer:innen kommuniziert, welche Funktionalitäten verfügbar sind und wie Anfragen gestellt werden müssen. 
+
+**Analogie**: Ihr könnt euch das so vorstellen, wie wenn Ihr (als _Client_) im Restaurant seid. Das Restaurant stellt euch eine:n Kellner:in (eure _API_) und eine Speisekarte (eure _API Dokumentation_) bereit. Der:die Kellner:in nimmt eure eure Bestellungen (_Anfragen_) entgegen, die Küche verabeitet diese und der:die Kellner:in bringt euch Essen (_Antwort_). 
+
+Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sogenannte _Methoden_ umfasst: GET, POST, PUT, PATCH und DELETE. Da wir in unserem Fall auf Interaktionen schauen, welche sich auf den Datenaustausch fokussieren, ergeben sich folgende Entsprechungen:
+
+- GET --> Daten lesen
+- POST  --> Neue Daten erstellen
+- PUT --> Daten ersetzen
+- PATCH --> Daten akutalisieren
+- DELETE --> Daten löschen
+
+(siehe Folie 10 von ["Datenzugriff im World Wide Web"](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf), Jan Dix, lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de).)
+
+Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein.
+
+##### GET-Anfragen
+
+`GET`-Anfragen können als normale URL (das was ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
+`{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
+
+Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/search?q=CorrelAid`.
+
+- `BASIS_URL`: `https://www.google.com/`
+- `ROUTE`: `search`
+- `QUERY_PARAMETER`:
+  - `q`: `CorrelAid`
+
+**Analogie**: Wenn ihr im Restaurant "Correl and Friends" zu Gast seid und euer Kellner Elmo heißt, bestellt (--> `GET`) ihr bei Elmo (eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
+
+##### Beispiel
+
+Es gibt es viele APIs, die es uns ermöglichen, einfach an Daten aus allen Bereichen zu kommen. [Hier (en)](https://github.com/public-apis/public-apis) findet ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
+Als Beispiel verwenden wir die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet ihr [hier](https://unstats.un.org/SDGAPI/swagger/).
+
+Als erstes _lesen_ wir die [Liste aller UN Social Development Goals](https://unstats.un.org/SDGAPI/swagger/#!/Goal/V1SdgGoalListGet) mit einer `GET`-Anfrage. Wir nutzen das [httr](https://httr.r-lib.org/) Paket.
+
+```{r goals_req, exercise=TRUE}
+library(httr) # das httr package laden
+
+basis_url <- "https://unstats.un.org/"
+antwort_goals <- httr::GET(basis_url,
+                     path = "/SDGAPI/v1/sdg/Goal/List") # macht einen GET request
+
+# sich das antwort_goals Objekt anschauen mit str()
+str(antwort_goals, max.level = 1) # max.level=1 zeigt die Struktur nur auf der obersten "Ebene"
+```
+
+
+Wenn wir uns die URL anschauen, erkennen wir auch wieder unser Schema aus `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`:
+
+```{r goals_url, exercise=TRUE}
+antwort_goals$url
+```
+
+```{r quiz_route, exercise = FALSE, echo=FALSE}
+quiz(caption = NULL,
+  question("Was ist die Basis-URL der Anfrage?",
+    answer("https://unstats.un.org/SDGAPI/v1/sdg/Goal/List"),
+    answer("https://unstats.un.org/SDGAPI/v1/sdg/Goal/"),
+    answer("https://unstats.un.org/", correct = TRUE),
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"),
+  question("Was ist die Route der Anfrage?",
+    answer("v1/sdg/Goal/List"),
+    answer("SDGAPI/v1/sdg/Goal/", correct = TRUE),
+    answer("sdg/Goal/"),
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Wie viele Parameter hat die Anfrage?",
+    answer("0", correct = TRUE),
+    answer("1"),
+    answer("2"),
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Wir erhalten eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid ihr hauptsächlich an den übermittelten Daten interessiert. Diese erhaltet ihr, indem ihr die Funktion `httr::content()` (de: Inhalt) verwendet:
+
+```{r goals_extract, exercise=TRUE}
+goals_list <- httr::content(antwort_goals)
+str(goals_list)
+length(goals_list)
+```
+
+Wir erhalten eine Liste mit 17 Elementen, für jedes Sustainable Development Goal ist ein Element vorhanden. 
+
+Hilfreichere, weil granularere Daten zum Thema Plastikverschmutzung können wir auf der Ebene der Indikatoren bekommen. Zum Beispiel können wir Daten zum Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) laden. Hierzu verwenden wir den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Hier haben wir nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den wir Daten benötigen.
+
+```{r series_req, exercise=TRUE}
+basis_url <- "https://unstats.un.org/"
+antwort_series <- httr::GET(
+  basis_url,
+  path = "/SDGAPI/v1/sdg/Series/Data",
+  query = list(
+    seriescode = "EN_REF_WASCOL",
+    timePeriodStart = 2015,
+    # 2015 hat ausreichend Daten!
+    timePeriodEnd = 2015,
+    # nur ein Jahr
+    pageSize = 100
+  )
+)
+
+# wieder die Antwort extrahieren
+waste_collection <- httr::content(antwort_series)
+str(waste_collection, max.level = 1)
+```
+
+Der _Content_ (de: Inhalt) einer Antwort enthält häufig neben den eigentlichen Daten (hier im Element `data`) auch Informationen über die Antwort an sich. 
+
+```{r quiz_metainfo, exercise = FALSE, echo=FALSE}
+quiz(caption = NULL,
+  question("Wie viele Elemente wurden insgesamt zurückgegeben?",
+    answer("100"),
+    answer("60", correct = TRUE),
+    answer("23"),
+    answer("0"),
+    incorrect = "Leider falsch: Schaue dir den Output nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen")
+)
+```
+
+```{r inspect_data, exercise=TRUE}
+# wir schauen uns eines der Daten Elemente an. Die doppelten Klammern extrahieren das x-te Element aus der Liste, hier das zehnte.
+str(waste_collection$data[[10]])
+```
+
+Das Daten-Listenelement enthält ziemlich viele Informationen. Für euch relevant ist der Wert (`value`) sowie die Informationen über das "Wo": `geoAreaCode` und `geoAreaName`. 
+
+Wie ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt ihr später im Kurs.
+
+##### Authentifizierung
+In unserem Beispiel konnten wir einfach die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. ihr müsst beweisen, dass ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
+
+Die Details zur Authentifizierung sind von API zu API unterschiedlich. Die genauen Instruktionen solltet ihr in der jeweiligen API Dokumentation finden. Im einfachsten Fall erstellt ihr euch einen sogenannten *Token* in der entsprechenden Website in den Benutzereinstellungen. Ein *Token* ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus: `eyJpc3MiOiJodHRwczovL2V4YW1wbGUuYXV0aDAuY29tLyIsImF1ZCI6Imh0dHBzOi8vYXBpLmV4YW1wbGUuY29tL2NhbGFuZGFyL3YxLyIsInN1YiI6InVzcl8xMjMiLCJpYXQiOjE0NTg3ODU3OTYsImV4cCI6MTQ1ODg3MjE5Nn0`. 
+
+Das Ganze kann dann so aussehen:
+
+```{r authorization-ex, exercise=FALSE, eval=FALSE}
+# liest die Umgebungsvariable API_TOKEN und speichert sie im Objekt token
+basis_url <- "https://beispielapi.org/"
+token <- Sys.getenv("API_TOKEN") 
+
+# füge unserer Anfrage einen Authorisierungs-Header hinzu, 
+# sodass die API weiß dass wir autorisiert sind
+antwort <- httr::GET(basis_url, 
+                 httr::add_headers(Authorization = paste("Authorization", token)))
+```
+
+Aus Sicherheitsgründen ist es sehr wichtig, euren Token (oder sonstige sicherheitsrelevante Informationen) nicht direkt im Code zu speichern. Anstatt dessen nutzt ihr hierzu am besten *Umgebungsvariablen* (en: environment variables). Umgebungsvariablen werden häufig von eurem Betriebssystem verwendet, z.B. um bestimmte Pfade zu speichern, die euer Computer braucht. Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Wir üben das später auch nochmal gemeinsam.
+
+
+##### Tipp: Statuscode 
+Fast alle APIs geben in ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
+
+In R können wir den Statuscode aus dem Antwort-Objekt extrahieren:
+
+```{r status-code, exercise=TRUE}
+basis_url <- "https://unstats.un.org/"
+antwort <- httr::GET(basis_url,
+                 path = "/SDGAPI/v1/sdg/Goal/List") # macht einen GET request
+
+antwort$status_code
+```
+ 
+Wenn die Anfrage erfolgreich war, gibt die API einen 200er Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
+ 
+- `404`: Nicht gefunden ("Not found"). Z.B. existiert der Endpunkt / die Route gar nicht in der API
+- `401`: Nicht authorisiert: ihr seid nicht autorisiert auf die API zuzugreifen, z.B. weil ihr keinen *Token* übergeben habt.
+- `403`: Nicht erlaubt ("Forbidden"): ihr seid zwar im Prinzip für die API autorisiert, aber nicht für die Route, auf die ihr zugreifen wollt (z.B. sensitive Daten oder Administration).
+- `422`: Nicht verabeitbare Anfrage ("Unprocessable Entity"): eure Anfrage ist nicht richtig gestellt
+- `500`: Interner Server-Fehler ("Internal Server Error"): irgendwas ist bei der API schief gelaufen
+
+Damit ihr nicht manuell den Statuscode interpretieren müsst, stellt das `httr` Package die nützliche `stop_for_status()` Funktion bereit:
+
+```{r stop-for-status, exercise=TRUE}
+basis_url <- "https://unstats.un.org/"
+antwort <- httr::GET(basis_url,
+                 path = "/SDGAPI/das/existiert/nicht") 
+
+antwort$status_code
+httr::stop_for_status(antwort)
+```
+
+Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet ihr noch mehr Erklärungen zu wichtigen Statuscodes.
+
+Unser Partner Dataquest bietet übrigens auch einen Kurs zu [APIs](https://app.dataquest.io/course/apis-in-r){target="_blank"} an.
 
 #### R-Packages
 Viele APIs sind bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten noch leichter funktioniert. Über das Package `WDI` könnt Ihr **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
