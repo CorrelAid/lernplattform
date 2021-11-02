@@ -2,13 +2,17 @@
 Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um damit Analysen durchzuführen. 
 
 ![*Video: Datenimport und APIs (30min)*](https://youtu.be/zHpCjZDbpB8)
-
-- Dateiformate erklären
-- Manuellen Import ohne Code zeigen
+Vorstellung nicht vergessen
+- Dateiformate erklären und zeigen (Phil)
+- Manuellen Import ohne Code zeigen (Phil)
+- Beliebte Fehlerquellen (Phil)
+- APIs: Content interaktiv zeigen über Webseites (Frie)
+- Some API stuff (Frie)
+- R-Packages mit denen man APIs nutzen kann (Frie)
 
 [Hier](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} findet Ihr ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
 
-### Kernaussagen 
+### Kernaussagen
 - Es gibt **zwei grundlegene Möglichkeiten** Daten zu importieren:
      a) aus lokal oder remote gespeicherten **Dateiformaten** (XLSX, CSV, JSON, ...)
      b) über **Datenabfragen** von Datenbanken und aus dem Internet (Abfragesprachen wie SQL oder über APIs und Web-Scraping)
@@ -21,7 +25,10 @@ Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um dami
     1) In welchem **Dateiformat** liegt die Datei vor?
     2) Wo ist die Datei **gespeichert**?
     3) Was gibt es hinsichtlich **Dateistruktur** zu beachten (Separatoren, fehlende Werte, etc.)?
+    
 - Mit dem **`rio`-Package** könnt Ihr zahlreiche Dateiformate automatisch einlesen (hier geht es zur [Übersicht](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"})
+- Über **APIs** (zu dt. Schnittstellen) könnt Ihr Datenabfragen an externe Systeme über das Internet stellen
+- Viele APIs sind bereits in **R-Packages** eingebettet, weshalb wir zuerst danach suchen sollten
 
 **Überblick über die verschiedenen Dateiformate:**
 ```{r dateiformate_tabelle, results='asis'}
@@ -129,7 +136,7 @@ Programm eure Daten stammen, erkennt ihr wie gehabt an der **Endung**:
 
 R selbst hat übrigens auch ein **eigenes Format** in dem Ihr Dateien abspeichern könnt.
 Wenn ihr eine Datei mit der Endung `.RDATA` seht, wurde diese mit R erstellt und 
-lässt sich dementsprechend sehr einfach mit R einlesen. Wir raten euch aber trotzdem
+lässt sich dementsprechend sehr einfach mit R einlesen. Wir raten Euch aber trotzdem
 die Daten wenn möglich als `.csv` abzuspeichern, da dieses Format sehr weit verbreitet ist
 und auch mit gängiger Software wie Excel geöffnet werden kann.
 
@@ -161,6 +168,11 @@ in R eingelesen werden, kann es aber manchmal zu Problemen mit den Labels kommen
 findet Ihr dazu Hilfe.
 
 #### JSON
+Normalerweise lesen wir JSONs nicht manuell ein, vielmehr sind sie **Teil der Antwort einer Datenabfrage**. Der Vollständigkeit halber findet Ihr trotzdem das Package `jsontlite` und die Funktion `read_json()` zum Einlesen von JSON-Dateien.
+```{r json_exercise, exercise = TRUE}
+# Einlesen einer JSON-Datei mit dem jsonlite-Package.
+jsonlite::read_json(here::here("daten/deutsche_gemeinden.json"))
+```
 
 #### Geo(-referenzierte) Daten
 Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergönzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein.
@@ -197,12 +209,11 @@ Der Import von geographischen Daten folgt also der folgenden Checkliste:
 
 
 #### APIs
-```{r api_reqs, echo=FALSE}
+```{r reqs, echo=FALSE}
 basis_url <- "https://unstats.un.org/"
-antwort_goals <- httr::GET(basis_url,
-                     path = "/SDGAPI/v1/sdg/Goal/List") # macht einen GET request
 
-antwort_series <- httr::GET(
+
+waste_antwort <- httr::GET(
   basis_url,
   path = "/SDGAPI/v1/sdg/Series/Data",
   query = list(
@@ -215,35 +226,35 @@ antwort_series <- httr::GET(
   )
 )
 
-waste_collection <- httr::content(antwort_series)
+waste_data <- httr::content(waste_antwort)
 
 ```
-Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine **Schnittstelle**, die ein System bereitstellt, um anderen Programmen die **Interaktion** zu ermöglichen. 
+Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
 
 Eine Interaktion sieht so aus:
 
-1. Der _Client_ macht eine Anfrage (en: _Request_) an die API
-2. Die API verarbeitet die Anfrage und gibt eine Antwort (en: _Response_) zurück
+1. Der **Client** macht eine Anfrage (engl. Request) an die API
+2. Die API verarbeitet die Anfrage und gibt eine Antwort (engl.: **Response**) zurück. 
+3. Der Client verarbeitet die Antwort.
 
-APIs sind idealerweise in einer _Dokumentation_ definiert, welche Programmierer:innen kommuniziert, welche Funktionalitäten verfügbar sind und wie Anfragen gestellt werden müssen. 
+APIs verfügen zumeist über eine **Dokumentation**, die enthält, welche Funktionalitäten verfügbar sind und wie Anfragen gestellt werden müssen.
 
-**Analogie**: Ihr könnt euch das so vorstellen, wie wenn Ihr (als _Client_) im Restaurant seid. Das Restaurant stellt euch eine:n Kellner:in (eure _API_) und eine Speisekarte (eure _API Dokumentation_) bereit. Der:die Kellner:in nimmt eure eure Bestellungen (_Anfragen_) entgegen, die Küche verabeitet diese und der:die Kellner:in bringt euch Essen (_Antwort_). 
+**Analogie**: Wenn Ihr wenn (als _Client_) im Restaurant seid, stellt Euch das Restaurant eine:n Kellner:in (Eure _API_) und eine Speisekarte (Eure _API Dokumentation_) bereit. Der:die Kellner:in nimmt Eure Bestellungen (_Anfragen_) entgegen, die Küche verabeitet diese und der:die Kellner:in bringt euch Essen (_Antwort_). 
 
 Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sogenannte _Methoden_ umfasst: GET, POST, PUT, PATCH und DELETE. Da wir in unserem Fall auf Interaktionen schauen, welche sich auf den Datenaustausch fokussieren, ergeben sich folgende Entsprechungen:
 
-- GET --> Daten lesen
-- POST  --> Neue Daten erstellen
-- PUT --> Daten ersetzen
-- PATCH --> Daten akutalisieren
-- DELETE --> Daten löschen
+- `GET` --> Daten lesen
+- `POST` --> Neue Daten erstellen
+- `PUT` --> Daten ersetzen
+- `PATCH` --> Daten akutalisieren
+- `DELETE` --> Daten löschen
 
 (siehe Folie 10 von ["Datenzugriff im World Wide Web"](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf), Jan Dix, lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de).)
 
-Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein.
+[Hier (en)](https://github.com/public-apis/public-apis) findet Ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
 
 ##### GET-Anfragen
-
-`GET`-Anfragen können als normale URL (das was ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
+Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein. `GET`-Anfragen können als normale URL (das was Ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
 `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
 
 Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/search?q=CorrelAid`.
@@ -253,79 +264,31 @@ Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/searc
 - `QUERY_PARAMETER`:
   - `q`: `CorrelAid`
 
-**Analogie**: Wenn ihr im Restaurant "Correl and Friends" zu Gast seid und euer Kellner Elmo heißt, bestellt (--> `GET`) ihr bei Elmo (eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
+**Analogie**: Im Restaurant bestellt (--> `GET`) Ihr bei Elmo (Eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
+
+##### Statuscode 
+Fast alle APIs geben in Ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
+
+Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
+ 
+- `404`: Nicht gefunden ("Not found"). Z.B. existiert der Endpunkt / die Route gar nicht in der API 
+- `401`: Nicht authorisiert: Ihr seid nicht autorisiert auf die API zuzugreifen, z.B. weil Ihr keinen *Token* übergeben habt.
+- `403`: Nicht erlaubt ("Forbidden"): Ihr seid zwar im Prinzip für die API autorisiert, aber nicht für die Route, auf die ihr zugreifen wollt (z.B. sensitive Daten oder Administration).
+- `422`: Nicht verabeitbare Anfrage ("Unprocessable Entity"): Eure Anfrage ist nicht richtig gestellt
+- `500`: Interner Server-Fehler ("Internal Server Error"): irgendwas ist bei der API schief gelaufen
+
+**Analogie**: Nach Eurem Besuch im Restaurant "Correl and Friends" geht Ihr noch in die Bar "AidBar". Doch irgendwie seid Ihr nicht so richtig satt geworden vorhin und bestellt, ohne die Karte (_API Dokumentation_) zu konsultieren, eine Pommes (`/essen?gericht=Pommes`). Leider muss Euch die Kellnerin enttäuschen, "Aid's Tavern" verkauft nur Getränke: 404!
+
+Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet Ihr noch mehr Erklärungen zu wichtigen Statuscodes.
 
 ##### Beispiel
+Wir verwenden die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet Ihr [hier](https://unstats.un.org/SDGAPI/swagger/). Der Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) passt gut zu unseren bisherigen Analysen zum Thema Plastikverschmutzung. Um die Daten zu diesem Indikator zu laden, verwendet Ihr den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Zudem habt Ihr nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den Ihr Daten benötigt.
 
-Es gibt es viele APIs, die es uns ermöglichen, einfach an Daten aus allen Bereichen zu kommen. [Hier (en)](https://github.com/public-apis/public-apis) findet ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
-Als Beispiel verwenden wir die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet ihr [hier](https://unstats.un.org/SDGAPI/swagger/).
+Um Anfragen an APIs zu machen, nutzen wir das [httr](https://httr.r-lib.org/)-Package.
 
-Als erstes _lesen_ wir die [Liste aller UN Social Development Goals](https://unstats.un.org/SDGAPI/swagger/#!/Goal/V1SdgGoalListGet) mit einer `GET`-Anfrage. Wir nutzen das [httr](https://httr.r-lib.org/) Paket.
-
-```{r goals_req, exercise=TRUE}
-library(httr) # das httr package laden
-
+```{r series-req, exercise=TRUE}
 basis_url <- "https://unstats.un.org/"
-antwort_goals <- httr::GET(basis_url,
-                     path = "/SDGAPI/v1/sdg/Goal/List") # macht einen GET request
-
-# sich das antwort_goals Objekt anschauen mit str()
-str(antwort_goals, max.level = 1) # max.level=1 zeigt die Struktur nur auf der obersten "Ebene"
-```
-
-
-Wenn wir uns die URL anschauen, erkennen wir auch wieder unser Schema aus `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`:
-
-```{r goals_url, exercise=TRUE}
-antwort_goals$url
-```
-
-```{r quiz_route, exercise = FALSE, echo=FALSE}
-quiz(caption = NULL,
-  question("Was ist die Basis-URL der Anfrage?",
-    answer("https://unstats.un.org/SDGAPI/v1/sdg/Goal/List"),
-    answer("https://unstats.un.org/SDGAPI/v1/sdg/Goal/"),
-    answer("https://unstats.un.org/", correct = TRUE),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"),
-  question("Was ist die Route der Anfrage?",
-    answer("v1/sdg/Goal/List"),
-    answer("SDGAPI/v1/sdg/Goal/", correct = TRUE),
-    answer("sdg/Goal/"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  ),
-  question("Wie viele Parameter hat die Anfrage?",
-    answer("0", correct = TRUE),
-    answer("1"),
-    answer("2"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  )
-)
-```
-
-Wir erhalten eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid ihr hauptsächlich an den übermittelten Daten interessiert. Diese erhaltet ihr, indem ihr die Funktion `httr::content()` (de: Inhalt) verwendet:
-
-```{r goals_extract, exercise=TRUE}
-goals_list <- httr::content(antwort_goals)
-str(goals_list)
-length(goals_list)
-```
-
-Wir erhalten eine Liste mit 17 Elementen, für jedes Sustainable Development Goal ist ein Element vorhanden. 
-
-Hilfreichere, weil granularere Daten, zum Thema Plastikverschmutzung können wir auf der Ebene der Indikatoren bekommen. Zum Beispiel können wir Daten zum Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) laden. Hierzu verwenden wir den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Hier haben wir nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den wir Daten benötigen.
-
-```{r series_req, exercise=TRUE}
-basis_url <- "https://unstats.un.org/"
-antwort_series <- httr::GET(
+waste_antwort <- httr::GET(
   basis_url,
   path = "/SDGAPI/v1/sdg/Series/Data",
   query = list(
@@ -337,15 +300,63 @@ antwort_series <- httr::GET(
     pageSize = 100
   )
 )
-
-# wieder die Antwort extrahieren
-waste_collection <- httr::content(antwort_series)
-str(waste_collection, max.level = 1)
 ```
 
-Der _Content_ (de: Inhalt) einer Antwort enthält häufig neben den eigentlichen Daten (hier im Element `data`) auch Informationen über die Antwort an sich. 
+Zuerst checken wir den Statuscode, um sicher zu gehen, dass unsere Anfrage erfolgreich war. In `httr` gibt es hierzu auch die `stop_for_status` Funktion, die einen Fehler schmeißt, wenn die Anfrage nicht erfolgreich war, sonst aber nichts tut.
 
-```{r quiz_metainfo, exercise = FALSE, echo=FALSE}
+```{r waste-status, exercise=TRUE}
+waste_antwort$status_code # 200
+httr::stop_for_status(waste_antwort) # nichts passiert, alles gut!
+```
+
+Wenn wir uns die Anfrage-URL anschauen, erkennen wir auch wieder das Schema aus `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`.
+
+```{r waste-url, exercise=TRUE}
+waste_antwort$url
+```
+
+```{r quiz-route, exercise = FALSE, echo=FALSE}
+quiz(caption = NULL,
+  question("Was ist die Basis-URL der Anfrage?",
+    answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/Data"),
+    answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/"),
+    answer("https://unstats.un.org/", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"),
+  question("Was ist die Route der Anfrage?",
+    answer("v1/sdg/Series/Data"),
+    answer("SDGAPI/v1/sdg/Series/Data/", correct = TRUE),
+    answer("sdg/Series/"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Wie viele Parameter hat unsere Anfrage?",
+    answer("0"),
+    answer("1"),
+    answer("2"),
+    answer("3"),
+    answer("4", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Wir erhalten von der Anfrage eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid Ihr hauptsächlich an den **übermittelten Daten** interessiert. Diese erhaltet Ihr, indem Ihr die Funktion `httr::content()` (de: Inhalt) verwendet:
+```{r goals-extract, exercise=TRUE}
+waste_data <- httr::content(waste_antwort)
+length(waste_data)
+str(waste_data, max.level = 1)
+```
+
+Der **Content** (zu dt. Inhalt) einer Antwort enthält häufig neben den eigentlichen Daten (hier im Element `data`) auch Informationen über die Antwort an sich.
+```{r quiz-metainfo, exercise = FALSE, echo=FALSE}
 quiz(caption = NULL,
   question("Wie viele Elemente wurden insgesamt zurückgegeben?",
     answer("100"),
@@ -359,71 +370,35 @@ quiz(caption = NULL,
 )
 ```
 
-```{r inspect_data, exercise=TRUE}
-# wir schauen uns eines der Daten Elemente an. Die doppelten Klammern extrahieren das x-te Element aus der Liste, hier das zehnte.
-str(waste_collection$data[[10]])
+Abschließend schauen wir uns eines der Datenelemente an:
+```{r inspect-data, exercise=TRUE}
+# Wir schauen uns eines der Daten Elemente an. Die doppelten Klammern extrahieren das x-te Element aus der Liste, hier das zehnte.
+str(waste_data$data[[10]])
 ```
 
 Das Daten-Listenelement enthält ziemlich viele Informationen. Für euch relevant ist der Wert (`value`) sowie die Informationen über das "Wo": `geoAreaCode` und `geoAreaName`. 
 
-Wie ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt ihr später im Kurs.
+Wie Ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt Ihr später im Kurs.
 
-##### Authentifizierung
-In unserem Beispiel konnten wir einfach die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. ihr müsst beweisen, dass ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
+##### Exkurs: Authentifizierung
+In unserem Beispiel konnten wir ohne Authentifizierung die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. Ihr müsst beweisen, dass Ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
 
-Die Details zur Authentifizierung sind von API zu API unterschiedlich. Die genauen Instruktionen solltet ihr in der jeweiligen API Dokumentation finden. Im einfachsten Fall erstellt ihr euch einen sogenannten *Token* in der entsprechenden Website in den Benutzereinstellungen. Ein *Token* ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus: `eyJpc3MiOiJodHRwczovL2V4YW1wbGUuYXV0aDAuY29tLyIsImF1ZCI6Imh0dHBzOi8vYXBpLmV4YW1wbGUuY29tL2NhbGFuZGFyL3YxLyIsInN1YiI6InVzcl8xMjMiLCJpYXQiOjE0NTg3ODU3OTYsImV4cCI6MTQ1ODg3MjE5Nn0`. 
+Hierzu gibt es viele verschiedene Modelle. Im einfachsten Fall erstellt ihr euch einen sogenannten Token in der entsprechenden Website in den Benutzereinstellungen. Ein **Token** ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus `eyJpc3MiOiJodHRwczovL2V4YW1...`.
 
-Das Ganze kann dann so aussehen:
-
-```{r authorization-ex, exercise=FALSE, eval=FALSE}
-# liest die Umgebungsvariable API_TOKEN und speichert sie im Objekt token
+```{r authorization-ex, exercise=FALSE, eval=FALSE, echo=TRUE}
+# Liest die Umgebungsvariable API_TOKEN und speichert sie im Objekt Token
 basis_url <- "https://beispielapi.org/"
 token <- Sys.getenv("API_TOKEN") 
 
-# füge unserer Anfrage einen Authorisierungs-Header hinzu, 
-# sodass die API weiß dass wir autorisiert sind
+# Füge unserer Anfrage einen Authorisierungs-Header hinzu,sodass die API weiß dass wir autorisiert sind
 antwort <- httr::GET(basis_url, 
                  httr::add_headers(Authorization = paste("Authorization", token)))
 ```
+Die Details zur Authentifizierung sind von API zu API unterschiedlich. Die genauen Instruktionen solltet ihr in der jeweiligen API Dokumentation finden. 
 
-Aus Sicherheitsgründen ist es sehr wichtig, euren Token (oder sonstige sicherheitsrelevante Informationen) nicht direkt im Code zu speichern. Anstatt dessen nutzt ihr hierzu am besten *Umgebungsvariablen* (en: environment variables). Umgebungsvariablen werden häufig von eurem Betriebssystem verwendet, z.B. um bestimmte Pfade zu speichern, die euer Computer braucht. Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Wir üben das später auch nochmal gemeinsam.
+Es gibt spezifische Statuscodes, die in Verbindung mit Authentifzierung besonders häufig auftauchen: 401 und 403. Diese Fehlercodes tauchen häufig auf, wenn man eigentlich den richtigen Token hat, aber ihn in der Anfrage nicht richtig übergeben hat. Lest deshalb immer genau in der Dokumentation nach, wie die Authentifizierung der API im Detail funktioniert.
 
-
-##### Tipp: Statuscode 
-Fast alle APIs geben in ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
-
-In R können wir den Statuscode aus dem Antwort-Objekt extrahieren:
-
-```{r status-code, exercise=TRUE}
-basis_url <- "https://unstats.un.org/"
-antwort <- httr::GET(basis_url,
-                 path = "/SDGAPI/v1/sdg/Goal/List") # macht einen GET request
-
-antwort$status_code
-```
- 
-Wenn die Anfrage erfolgreich war, gibt die API einen 200er Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
- 
-- `404`: Nicht gefunden ("Not found"). Z.B. existiert der Endpunkt / die Route gar nicht in der API
-- `401`: Nicht authorisiert: ihr seid nicht autorisiert auf die API zuzugreifen, z.B. weil ihr keinen *Token* übergeben habt.
-- `403`: Nicht erlaubt ("Forbidden"): ihr seid zwar im Prinzip für die API autorisiert, aber nicht für die Route, auf die ihr zugreifen wollt (z.B. sensitive Daten oder Administration).
-- `422`: Nicht verabeitbare Anfrage ("Unprocessable Entity"): eure Anfrage ist nicht richtig gestellt
-- `500`: Interner Server-Fehler ("Internal Server Error"): irgendwas ist bei der API schief gelaufen
-
-Damit ihr nicht manuell den Statuscode interpretieren müsst, stellt das `httr` Package die nützliche `stop_for_status()` Funktion bereit:
-
-```{r stop-for-status, exercise=TRUE}
-basis_url <- "https://unstats.un.org/"
-antwort <- httr::GET(basis_url,
-                 path = "/SDGAPI/das/existiert/nicht") 
-
-antwort$status_code
-httr::stop_for_status(antwort)
-```
-
-Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet ihr noch mehr Erklärungen zu wichtigen Statuscodes.
-
-Unser Partner Dataquest bietet übrigens auch einen Kurs zu [APIs](https://app.dataquest.io/course/apis-in-r){target="_blank"} an.
+Aus Sicherheitsgründen ist es zudem sehr wichtig, Euren Token (oder sonstige **sicherheitsrelevante Informationen**) **nicht direkt im Code zu speichern**. Anstatt dessen nutzt ihr hierzu am besten **Umgebungsvariablen** (engl. environment variables). Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Auch wir üben das zu einem späteren Zeitpunkt nochmal.
 
 #### R-Packages
 Viele APIs sind bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten noch leichter funktioniert. Über das Package `WDI` könnt Ihr **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
@@ -478,7 +453,7 @@ Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr ein
 - `gtrendsR`-Package: **Google Trends** Daten (zur [Doku](https://cran.r-project.org/web/packages/gtrendsR/gtrendsR.pdf){target="_blank"}//mehr [Infos](https://trends.google.com/trends/?geo=FR){target="_blank"})
 - `nasadata`-Package: Daten von **NASA** (zur [Doku](https://cran.r-project.org/web/packages/nasadata/index.html){target="_blank"}//mehr [Infos](https://data.nasa.gov/){target="_blank"})
 - `pangaear`-Package: Daten zu Erde und **Umwelt** (zur [Doku](https://cran.r-project.org/web/packages/pangaear/pangaear.pdf){target="_blank"}//mehr [Infos](https://www.pangaea.de/){target="_blank"})
-Einfügen: - ``-Package: **Twitter**-Daten (zur [Doku](https://cran.r-project.org/web/packages/pangaear/pangaear.pdf){target="_blank"}//mehr [Infos](https://www.pangaea.de/){target="_blank"})
+- `rtweet`-Package: **Twitter**-Daten (zur [Doku](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf){target="_blank"}//mehr [Infos](https://www.twitter.com/){target="_blank"})
 - `dieZeit`-Package: Online-Veröffentlichungen der **Zeit** (zur [Doku](https://cran.r-project.org/web/packages/diezeit/index.html){target="_blank"}//mehr [Infos](https://www.zeit.de/){target="_blank"})
 - uvm...
 
@@ -487,4 +462,5 @@ Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure 
 
 ### Und jetzt Ihr
 1. Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, einen Ordner "daten" an und versucht die Datei mit diesem Code lokal zu laden.
-
+2. Ladet den "Plastics"-Datensatz über einen Hyperlink [Link](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"}.
+3. In den SDG-Datensätzen der UN findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Schreibt eine Datenabfrage zu diesem Indikator.

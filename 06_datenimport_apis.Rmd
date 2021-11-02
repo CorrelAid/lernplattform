@@ -1,5 +1,4 @@
-
-
+### APIs
 ```{r reqs, echo=FALSE}
 basis_url <- "https://unstats.un.org/"
 
@@ -21,8 +20,6 @@ waste_data <- httr::content(waste_antwort)
 
 ```
 
-
-### APIs
 Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
 
 Eine Interaktion sieht so aus:
