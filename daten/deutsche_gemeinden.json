@@ -1,0 +1,112 @@
+{
+    "communes-2001": {
+        "date": "01/01/2002",
+        "documentation": "communes-2001-release-notes.txt",
+        "files": "communes-2001-files.json",
+        "hashtag": "communes01",
+        "metadata": {},
+        "packages": "communes-2001-packages.json",
+        "title": "Communes 2001",
+        "titleMultilingual": {
+            "de": "Gemeinden 2001",
+            "en": "Communes 2001",
+            "fr": "Communes 2001"
+        }
+    },
+    "communes-2004": {
+        "date": "01/01/2005",
+        "documentation": "communes-2004-release-notes.txt",
+        "files": "communes-2004-files.json",
+        "hashtag": "communes04",
+        "metadata": {},
+        "packages": "communes-2004-packages.json",
+        "title": "Communes 2004",
+        "titleMultilingual": {
+            "de": "Gemeinden 2004",
+            "en": "Communes 2004",
+            "fr": "Communes 2004"
+        }
+    },
+    "communes-2006": {
+        "date": "01/01/2008",
+        "documentation": "communes-2006-release-notes.txt",
+        "files": "communes-2006-files.json",
+        "hashtag": "communes06",
+        "metadata": {},
+        "packages": "communes-2006-packages.json",
+        "title": "Communes 2006",
+        "titleMultilingual": {
+            "de": "Gemeinden 2006",
+            "en": "Communes 2006",
+            "fr": "Communes 2006"
+        }
+    },
+    "communes-2008": {
+        "date": "01/01/2010",
+        "documentation": "communes-2008-release-notes.txt",
+        "files": "communes-2008-files.json",
+        "hashtag": "communes08",
+        "metadata": {},
+        "packages": "communes-2008-packages.json",
+        "title": "Communes 2008",
+        "titleMultilingual": {
+            "de": "Gemeinden 2008",
+            "en": "Communes 2008",
+            "fr": "Communes 2008"
+        }
+    },
+    "communes-2010": {
+        "date": "01/01/2012",
+        "documentation": "communes-2010-release-notes.txt",
+        "files": "communes-2010-files.json",
+        "hashtag": "communes10",
+        "metadata": {
+            "pdf": "communes-2010-metadata.pdf",
+            "url": "https://webgate.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/b4d44141-e5c0-4e23-b11e-d64c5087c413",
+            "xml": "communes-2010-metadata.xml"
+        },
+        "packages": "communes-2010-packages.json",
+        "title": "Communes 2010",
+        "titleMultilingual": {
+            "de": "Gemeinden 2010",
+            "en": "Communes 2010",
+            "fr": "Communes 2010"
+        }
+    },
+    "communes-2013": {
+        "date": "01/01/2015",
+        "documentation": "communes-2013-release-notes.txt",
+        "files": "communes-2013-files.json",
+        "hashtag": "communes13",
+        "metadata": {
+            "pdf": "communes-2013-metadata.pdf",
+            "url": "https://webgate.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/a741642f-c1cc-4b12-b05f-aa5229651a73",
+            "xml": "communes-2013-metadata.xml"
+        },
+        "packages": "communes-2013-packages.json",
+        "title": "Communes 2013",
+        "titleMultilingual": {
+            "de": "Gemeinden 2013",
+            "en": "Communes 2013",
+            "fr": "Communes 2013"
+        }
+    },
+    "communes-2016": {
+        "date": "01/04/2018",
+        "documentation": "communes-2016-release-notes.txt",
+        "files": "communes-2016-files.json",
+        "hashtag": "communes16",
+        "metadata": {
+            "pdf": "communes-2016-metadata.pdf",
+            "url": "https://webgate.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/a741642f-c1cc-4b12-b05f-aa5229651a73",
+            "xml": "communes-2016-metadata.xml"
+        },
+        "packages": "communes-2016-packages.json",
+        "title": "Communes 2016",
+        "titleMultilingual": {
+            "de": "Gemeinden 2016",
+            "en": "Communes 2016",
+            "fr": "Communes 2016"
+        }
+    }
+}
