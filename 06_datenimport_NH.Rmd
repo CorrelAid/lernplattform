@@ -26,6 +26,7 @@ Vorstellung nicht vergessen
     2) Wo ist die Datei **gespeichert**?
     3) Was gibt es hinsichtlich **Dateistruktur** zu beachten (Separatoren, fehlende Werte, etc.)?
     
+- Wenn Ihr **deutschsprachige Dateien** importiert, müsst Ihr auf Zeichen wie "ä, ö, ü", Spaltentrenner (engl. Separator, im Deutschen ";") und Dezimaltrennzeichen (im Deutschen ",") achten, da dies besonders fehleranfällig ist (die meisten Datenanalyseprogramme arbeiten vorwiegend in englischer Sprache)
 - Mit dem **`rio`-Package** könnt Ihr zahlreiche Dateiformate automatisch einlesen (hier geht es zur [Übersicht](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"})
 - Über **APIs** (zu dt. Schnittstellen) könnt Ihr Datenabfragen an externe Systeme über das Internet stellen
 - Viele APIs sind bereits in **R-Packages** eingebettet, weshalb wir zuerst danach suchen sollten
