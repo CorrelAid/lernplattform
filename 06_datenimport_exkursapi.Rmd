@@ -1,4 +1,4 @@
-## Exkurs: APIs
+## Eigene APIs schreiben (Exkurs)
 ```{r reqs, echo=FALSE}
 basis_url <- "https://unstats.un.org/" # Haupt-URL
 initiale_anfrage <- httr::GET( # Initialisierung

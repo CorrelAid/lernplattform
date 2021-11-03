@@ -268,7 +268,7 @@ Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr ein
 - `dieZeit`-Package: Online-Veröffentlichungen der **Zeit** (zur [Doku](https://cran.r-project.org/web/packages/diezeit/index.html){target="_blank"}//mehr [Infos](https://www.zeit.de/){target="_blank"})
 - uvm...
 
-Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquelle ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können.
+Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquelle ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können. <br>
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
 ### Und jetzt Ihr

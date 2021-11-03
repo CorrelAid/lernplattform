@@ -1,4 +1,4 @@
-## Exkurs: SQL-basierte Datenbanken 
+## Datenabfragen in SQL (Exkurs)
 
 ```{r exportcsv}
 # Exportieren der Datensets in CSV für DB
