@@ -25,13 +25,13 @@ library(countrycode)
 ```
 
 # Schritt 2: Daten laden
-```{r}
+```{r datenimport}
 ### Daten laden
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
 # Schritt 3: Daten bereinigen (diesen Teil müsst Ihr noch nicht nachvollziehen)
-```{r}
+```{r datenbereinigung}
 ### Daten bereinigen
 # Country name cleaning: 
   # United Kingdom of Great Britain & Northern Ireland sowie für die USA
@@ -71,18 +71,18 @@ audit_plastic_eu_asia<- audit_plastic %>%
 ```
 
 # Schritt 4: Übersicht verschaffen
-```{r}
+```{r datenueberblick}
 # Überblick über die Community verschaffen
 dplyr::glimpse(community)
 ```
 
-```{r}
+```{r datenueberblickdplyr}
 # Überblick über den Plastik-Audit verschaffen
 dplyr::glimpse(audit_plastic)
 ```
 
 # Schritt 5: Visuelle Exploration
-```{r}
+```{r visuelleexploration}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
 ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(width = 0.3),
@@ -108,7 +108,7 @@ In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **Commu
 
 ### Übung 3 - Lösung:
 Um die Übung zu lösen, müssen wir nur wenige Argumente des Codeauschnitts adaptieren. Wir tauschen die Daten und Variablen aus und passen den Achsenausschnitt, Achsenbezeichungen, Überschriften und Titel den Daten an. Die Grundstruktur aus der vorgestellten Visualisierung bleibt gleich. Hier findet Ihr eine mögliche Lösung für die Übung:
-```{r}
+```{r erstellungdiagramm}
 # Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = audit_plastic, aes(continent, grand_total)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(width = 0.3),
@@ -126,7 +126,7 @@ ggplot(data = audit_plastic, aes(continent, grand_total)) + # Initialisierung de
 ```
 
 # Schritt 6: Statistische Kennzahlen
-```{r}
+```{r kennzahlen}
 # Berechnung statistischer Kennzahlen pro Kontinent
 audit_plastic %>%
   group_by(continent) %>%
@@ -153,7 +153,7 @@ In der zweiten Einheit haben wir uns auf statistische Kennzahlen des `audit_plas
 
 ### Übung 4 - Lösung:
 Auch in dieser Übung bleibt die Grundstruktur des vorherig vorgestellen Codesegments erhalten. Hier findet Ihr eine mögliche Lösung für die Übung:
-```{r}
+```{r dplyruebung}
 # Berechnung der Länder- und Freiwilligenanzahl je Kontinent
 community %>% # Bezug zum Datensatz
   group_by(continent) %>% # Gruppierung pro Kontinent

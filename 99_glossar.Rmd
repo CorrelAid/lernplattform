@@ -12,6 +12,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Absolute Häufigkeit** = Anzahl der Ausprägungen
 
+**API (Application Programming Interface, dt. Schnittstelle zur Programmierung von Anwendungen)** = Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen
+
 **Ausreißer** = Beobachtung, die von anderen Beobachtungen auffällig abweicht
 
 **Dashboard** (zu dt. Instrumententafel) = Zusammenstellung von (zumeist) explorativen Datenanalyseelementen wie Visualisierungen und statistischen Kennwerten 
@@ -63,6 +65,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 **Slicing** = Zugriff auf bestimmte Daten in einem *Dataframe*
 
 **Standardabweichung** = standardisiertes Maß für die Streuung um den Mittelwert
+
+**Statuscode** = Antwort eines Servers auf HTTP-Anfragen (über APIs)
 
 **Subsets** = Teilmenge des Datensatzes
 
@@ -144,6 +148,8 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 **(minimale/maximale) Ausprägung** einer Variablen = `min()`/`max()`
 
 **Berechnung neuer Spalten** (Variablen) auf Basis vorhandener Variablen = `dplyr::mutate()`
+
+**Datenabfrage mit APIs** und Statuscode = `httr::GET()`//`httr::stop_for_status()`
 
 **(Partiellen) Datensatz anzeigen** = `View()`/`head()`/`tail()`
 

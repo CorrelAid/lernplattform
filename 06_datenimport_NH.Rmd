@@ -13,7 +13,7 @@ Vorstellung nicht vergessen
 [Hier](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} findet Ihr ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
 
 ### Kernaussagen
-- Es gibt **zwei grundlegene Möglichkeiten** Daten zu importieren:
+- Es gibt **zwei grundlegende Möglichkeiten** Daten zu importieren:
      a) aus lokal oder remote gespeicherten **Dateiformaten** (XLSX, CSV, JSON, ...)
      b) über **Datenabfragen** von Datenbanken und aus dem Internet (Abfragesprachen wie SQL oder über APIs und Web-Scraping)
 - Um Dateien richtig importieren zu können, ist es wichtig herauszufinden, welches **Dateiformat** die Datei hat
@@ -39,6 +39,7 @@ Dateiformat:  | Dateistruktur:                                                  
 Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx                        
 JSON          | textbasiertes, strukturiertes Format für JavaScript-Objekte       | .json (zumeist aus API-Requests) 
 SAS           | SAS-Export, der nicht in allen Anwendungen geöffnet werden kann   | .sas 
+Shapefile     | Kartographische Datei, die Koordinaten und Polygone enthält       | .shp
 SPSS          | SPSS-Export, der nicht in allen Anwendungen geöffnet werden kann  | .sav
 Stata         | Stata-Export, der nicht in allen Anwendungen geöffnet werden kann | .dta
 Textdatei     | unformatierte Textdaten                                           | .csv/.txt  
@@ -57,7 +58,7 @@ Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link z
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
-Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link) als auch über lokale Dateipfade importiert werden. Ersteres funktioniert für die meisten Packages intuitiv (siehe oben). Lesen wir Dateien ein, die lokal gespeichert sind, müssen wir diesen Path definieren. Dazu gibt es verschiedene Methoden, von denen jedoch nur eine wirklich sinnvoll ist: Arbeiten wir an Analysen in R, legen wir sowohl unser Skript als auch unsere Daten in einem dafür vorgesehenen **Ordner** ab, der "daten" heißt. Zu diesem Speicherort navigieren wir mithilfe der Funktion `here::here()`.
+Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link) als auch über lokale Dateipfade importiert werden. Ersteres funktioniert für die meisten Packages intuitiv (siehe oben). Lesen wir Dateien ein, die lokal gespeichert sind, müssen wir den Path definieren. Dazu gibt es verschiedene Methoden, von denen jedoch nur eine wirklich sinnvoll ist: Arbeiten wir an Analysen in R, legen wir sowohl unser Skript als auch unsere Daten in einem dafür vorgesehenen **Ordner** ab, der "daten" heißt. Zu diesem Speicherort navigieren wir mithilfe der Funktion `here::here()`.
 
 ``` {r daten_einlesen_lokal, exercise = TRUE}
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
@@ -66,15 +67,15 @@ rio::import(here::here('daten/plastics.csv'))
 Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
 
 ##### CSV
-Eine CSV-Datei (comma separated values, zu dt. Komma getrennte Werte) ist, wie der schon Name sagt, eine Datei in der die verschiedenen Datenwerte durch Kommata getrennt sind. Grundsätzlich entspricht **jede Zeile** einer **Beobachtung**. Die erste Zeile enthält allerding keine Werte sondern die **Bezeichnungen für die entsprechende Spalte**. Sie wird **Header** genannt und wird genutzt, um auf bestimmte Spalten und Werte zuzugreifen. 
+Eine CSV-Datei (comma separated values, zu dt. Komma getrennte Werte) ist, wie der schon Name sagt, eine Datei in der die verschiedenen Datenwerte durch Kommata getrennt sind. Grundsätzlich entspricht **jede Zeile** einer **Beobachtung**. Die erste Zeile enthält allerding keine Werte, sondern die **Bezeichnungen für die entsprechende Spalte**. Sie wird **Header** genannt und wird genutzt, um auf bestimmte Spalten und Werte zuzugreifen. 
 
 Um CSV-Dateien zu lesen, benutzen wir häufig die `read.csv()`-Funktion des `readr`-Packages. Diese hat verschiedene Argumente, welche wir entsprechend unserer Dateistruktur setzen können:
 ``` {r exericse_csv, exercise = TRUE}
 # install.packages("readr")
 
-# Komma als separator und Punkt als Dezimal-Punkt als Standard
+# Komma als Separator und Punkt als Dezimaltrennzeichen als Standard
 readr::read_csv(
-  file = here::here('daten/plastics.csv'), # Dateiame/Pfad zur Datei
+  file = here::here('daten/plastics.csv'), # Dateiname/Pfad zur Datei
   col_names = TRUE, # Vorhandensein des Headers
   skip = 0, # Festlegen, ob Zeilen übersprungen werden sollen
   na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
@@ -87,7 +88,7 @@ Mit **Google Trends Daten** könnt Ihr erforschen, wonach die Welt gerade auf de
 
 Wir haben für Euch zwei **XLSX-Dateien** erstellt, die zu den Suchbegriffen "beach clean up" (zu dt. Strand aufräumen), also Aktionen wie denen von "Break Free From Plastics", und "plastic pollution" (zu dt. Plastikverschmutzung) Daten enthalten. Das Arbeitsblatt "trends_over_time" stellt die Entwicklung des Google Search Volumes über die Zeit für die letzten fünf Jahre dar. "by_country" enthält die Entwicklung aufgeschlüsselt nach verschiedenen Ländern im Durchschnitt des letzten Jahres.
 
-Hier laden wir mit der Funktion `readxl::read_excel()` das Arbeitsblatt (`sheet = ...`) "trends_over_time" der Excel-Datei "Plastic Pollution - Google Trends.xlsx" aus unserem Ordner "Daten" (`path = ...`), das Spaltenbezeichnungen enthält (`col_names = ...`) und bei dem fehlende Werte zumeist durch "" (leer) gekennzeichnet sind (`na = ...`).
+Hier laden wir mit der Funktion `readxl::read_excel()` das Arbeitsblatt (`sheet = ...`) "trends_over_time" der Excel-Datei "Plastic Pollution - Google Trends.xlsx" aus unserem Ordner "Daten" (`path = ...`), das Spaltenbezeichnungen enthält (`col_names = ...`) und in dem fehlende Werte zumeist durch "" (leer) gekennzeichnet sind (`na = ...`).
 
 *Anmerkung: Zur Live-Verknüpfung mit den aktuellen Daten von Google gibt es in R das `gtrendsR`-Package. Dazu gleich mehr.*
 ```{r exercise_xlsx, exercise = TRUE}
@@ -107,7 +108,7 @@ Ladet nun das Arbeitsblatt "by_country" der Datei "Beach Clean Up - Google Trend
 ```
 
 ```{r exercise_excel-solution}
-# Laden des Arbeitsblatt "by_country" der Datei "Beach Clean Up - Google Trends.xlsx"
+# Laden des Arbeitsblattes "by_country" der Datei "Beach Clean Up - Google Trends.xlsx"
 readxl::read_excel(
   path = here::here("daten/Beach Clean Up - Google Trends.xlsx"), # hier ändern wir den Dateinamen
   sheet = "by_country", # hier ändern wir den Arbeitsblattnamen
@@ -135,12 +136,12 @@ Programm eure Daten stammen, erkennt ihr wie gehabt an der **Endung**:
 - `.sas7bdat"` steht für Daten aus SAS
 
 R selbst hat übrigens auch ein **eigenes Format** in dem Ihr Dateien abspeichern könnt.
-Wenn ihr eine Datei mit der Endung `.RDATA` seht, wurde diese mit R erstellt und 
+Wenn Ihr eine Datei mit der Endung `.RDATA` seht, wurde diese mit R erstellt und 
 lässt sich dementsprechend sehr einfach mit R einlesen. Wir raten Euch aber trotzdem
-die Daten wenn möglich als `.csv` abzuspeichern, da dieses Format sehr weit verbreitet ist
+die Daten, wenn möglich, als `.csv` abzuspeichern, da dieses Format sehr weit verbreitet ist
 und auch mit gängiger Software wie Excel geöffnet werden kann.
 
-Um Dateien mit den oben genannten Formaten einzulesen nutzen wir das `haven` 
+Um Dateien mit den oben genannten Formaten einzulesen, nutzen wir das `haven` 
 package. Die jeweiligen Datensätze dienen dabei nur der Veranschaulichung und 
 haben für unseren Kurs keine inhaltliche Bedeutung.
 
@@ -175,7 +176,8 @@ jsonlite::read_json(here::here("daten/deutsche_gemeinden.json"))
 ```
 
 #### Geo(-referenzierte) Daten
-Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergönzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein.
+Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergänzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein.
+*Achtung: Damit der Import funktioniert müsst Ihr die gesamte ZIP-Datei, die Ihr laden wollt, in einem Ordner mit der hier gewünschten .shp-Datei ablegen - also auch alle Dateien mit anderen Endungen.*
 ```{r polygons_world, exercise = TRUE}
 # install.packages("sf")
 
@@ -189,7 +191,7 @@ Unser Datensatz enthält zahlreiche Spalten mit zusätzlichen Informationen zu d
 head(polygons_welt$geometry)
 ```
 
-Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualiserung.
+Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualisierung.
 ```{r polygon_welt__plot_exercise, exercise = TRUE}
 # Erstellung eines einfachen Kartenplots
 plot(polygons_welt$geometry)
@@ -207,215 +209,24 @@ Der Import von geographischen Daten folgt also der folgenden Checkliste:
       Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden. 
 3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
 
-
-#### APIs
-```{r reqs, echo=FALSE}
-basis_url <- "https://unstats.un.org/"
-
-
-waste_antwort <- httr::GET(
-  basis_url,
-  path = "/SDGAPI/v1/sdg/Series/Data",
-  query = list(
-    seriescode = "EN_REF_WASCOL",
-    timePeriodStart = 2015,
-    # 2015 hat ausreichend Daten!
-    timePeriodEnd = 2015,
-    # nur ein Jahr
-    pageSize = 100
-  )
-)
-
-waste_data <- httr::content(waste_antwort)
-
-```
-Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
-
-Eine Interaktion sieht so aus:
-
-1. Der **Client** macht eine Anfrage (engl. Request) an die API
-2. Die API verarbeitet die Anfrage und gibt eine Antwort (engl.: **Response**) zurück. 
-3. Der Client verarbeitet die Antwort.
-
-APIs verfügen zumeist über eine **Dokumentation**, die enthält, welche Funktionalitäten verfügbar sind und wie Anfragen gestellt werden müssen.
-
-**Analogie**: Wenn Ihr wenn (als _Client_) im Restaurant seid, stellt Euch das Restaurant eine:n Kellner:in (Eure _API_) und eine Speisekarte (Eure _API Dokumentation_) bereit. Der:die Kellner:in nimmt Eure Bestellungen (_Anfragen_) entgegen, die Küche verabeitet diese und der:die Kellner:in bringt euch Essen (_Antwort_). 
-
-Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sogenannte _Methoden_ umfasst: GET, POST, PUT, PATCH und DELETE. Da wir in unserem Fall auf Interaktionen schauen, welche sich auf den Datenaustausch fokussieren, ergeben sich folgende Entsprechungen:
-
-- `GET` --> Daten lesen
-- `POST` --> Neue Daten erstellen
-- `PUT` --> Daten ersetzen
-- `PATCH` --> Daten akutalisieren
-- `DELETE` --> Daten löschen
-
-(siehe Folie 10 von ["Datenzugriff im World Wide Web"](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf), Jan Dix, lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de).)
-
-[Hier (en)](https://github.com/public-apis/public-apis) findet Ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
-
-##### GET-Anfragen
-Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein. `GET`-Anfragen können als normale URL (das was Ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
-`{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
-
-Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/search?q=CorrelAid`.
-
-- `BASIS_URL`: `https://www.google.com/`
-- `ROUTE`: `search`
-- `QUERY_PARAMETER`:
-  - `q`: `CorrelAid`
-
-**Analogie**: Im Restaurant bestellt (--> `GET`) Ihr bei Elmo (Eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
-
-##### Statuscode 
-Fast alle APIs geben in Ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
-
-Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
- 
-- `404`: Nicht gefunden ("Not found"). Z.B. existiert der Endpunkt / die Route gar nicht in der API 
-- `401`: Nicht authorisiert: Ihr seid nicht autorisiert auf die API zuzugreifen, z.B. weil Ihr keinen *Token* übergeben habt.
-- `403`: Nicht erlaubt ("Forbidden"): Ihr seid zwar im Prinzip für die API autorisiert, aber nicht für die Route, auf die ihr zugreifen wollt (z.B. sensitive Daten oder Administration).
-- `422`: Nicht verabeitbare Anfrage ("Unprocessable Entity"): Eure Anfrage ist nicht richtig gestellt
-- `500`: Interner Server-Fehler ("Internal Server Error"): irgendwas ist bei der API schief gelaufen
-
-**Analogie**: Nach Eurem Besuch im Restaurant "Correl and Friends" geht Ihr noch in die Bar "AidBar". Doch irgendwie seid Ihr nicht so richtig satt geworden vorhin und bestellt, ohne die Karte (_API Dokumentation_) zu konsultieren, eine Pommes (`/essen?gericht=Pommes`). Leider muss Euch die Kellnerin enttäuschen, "Aid's Tavern" verkauft nur Getränke: 404!
-
-Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet Ihr noch mehr Erklärungen zu wichtigen Statuscodes.
-
-##### Beispiel
-Wir verwenden die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet Ihr [hier](https://unstats.un.org/SDGAPI/swagger/). Der Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) passt gut zu unseren bisherigen Analysen zum Thema Plastikverschmutzung. Um die Daten zu diesem Indikator zu laden, verwendet Ihr den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Zudem habt Ihr nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den Ihr Daten benötigt.
-
-Um Anfragen an APIs zu machen, nutzen wir das [httr](https://httr.r-lib.org/)-Package.
-
-```{r series-req, exercise=TRUE}
-basis_url <- "https://unstats.un.org/"
-waste_antwort <- httr::GET(
-  basis_url,
-  path = "/SDGAPI/v1/sdg/Series/Data",
-  query = list(
-    seriescode = "EN_REF_WASCOL",
-    timePeriodStart = 2015,
-    # 2015 hat ausreichend Daten!
-    timePeriodEnd = 2015,
-    # nur ein Jahr
-    pageSize = 100
-  )
-)
-```
-
-Zuerst checken wir den Statuscode, um sicher zu gehen, dass unsere Anfrage erfolgreich war. In `httr` gibt es hierzu auch die `stop_for_status` Funktion, die einen Fehler schmeißt, wenn die Anfrage nicht erfolgreich war, sonst aber nichts tut.
-
-```{r waste-status, exercise=TRUE}
-waste_antwort$status_code # 200
-httr::stop_for_status(waste_antwort) # nichts passiert, alles gut!
-```
-
-Wenn wir uns die Anfrage-URL anschauen, erkennen wir auch wieder das Schema aus `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`.
-
-```{r waste-url, exercise=TRUE}
-waste_antwort$url
-```
-
-```{r quiz-route, exercise = FALSE, echo=FALSE}
-quiz(caption = NULL,
-  question("Was ist die Basis-URL der Anfrage?",
-    answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/Data"),
-    answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/"),
-    answer("https://unstats.un.org/", correct = TRUE),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"),
-  question("Was ist die Route der Anfrage?",
-    answer("v1/sdg/Series/Data"),
-    answer("SDGAPI/v1/sdg/Series/Data/", correct = TRUE),
-    answer("sdg/Series/"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  ),
-  question("Wie viele Parameter hat unsere Anfrage?",
-    answer("0"),
-    answer("1"),
-    answer("2"),
-    answer("3"),
-    answer("4", correct = TRUE),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  )
-)
-```
-
-Wir erhalten von der Anfrage eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid Ihr hauptsächlich an den **übermittelten Daten** interessiert. Diese erhaltet Ihr, indem Ihr die Funktion `httr::content()` (de: Inhalt) verwendet:
-```{r goals-extract, exercise=TRUE}
-waste_data <- httr::content(waste_antwort)
-length(waste_data)
-str(waste_data, max.level = 1)
-```
-
-Der **Content** (zu dt. Inhalt) einer Antwort enthält häufig neben den eigentlichen Daten (hier im Element `data`) auch Informationen über die Antwort an sich.
-```{r quiz-metainfo, exercise = FALSE, echo=FALSE}
-quiz(caption = NULL,
-  question("Wie viele Elemente wurden insgesamt zurückgegeben?",
-    answer("100"),
-    answer("60", correct = TRUE),
-    answer("23"),
-    answer("0"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Output nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen")
-)
-```
-
-Abschließend schauen wir uns eines der Datenelemente an:
-```{r inspect-data, exercise=TRUE}
-# Wir schauen uns eines der Daten Elemente an. Die doppelten Klammern extrahieren das x-te Element aus der Liste, hier das zehnte.
-str(waste_data$data[[10]])
-```
-
-Das Daten-Listenelement enthält ziemlich viele Informationen. Für euch relevant ist der Wert (`value`) sowie die Informationen über das "Wo": `geoAreaCode` und `geoAreaName`. 
-
-Wie Ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt Ihr später im Kurs.
-
-##### Exkurs: Authentifizierung
-In unserem Beispiel konnten wir ohne Authentifizierung die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. Ihr müsst beweisen, dass Ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
-
-Hierzu gibt es viele verschiedene Modelle. Im einfachsten Fall erstellt ihr euch einen sogenannten Token in der entsprechenden Website in den Benutzereinstellungen. Ein **Token** ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus `eyJpc3MiOiJodHRwczovL2V4YW1...`.
-
-```{r authorization-ex, exercise=FALSE, eval=FALSE, echo=TRUE}
-# Liest die Umgebungsvariable API_TOKEN und speichert sie im Objekt Token
-basis_url <- "https://beispielapi.org/"
-token <- Sys.getenv("API_TOKEN") 
-
-# Füge unserer Anfrage einen Authorisierungs-Header hinzu,sodass die API weiß dass wir autorisiert sind
-antwort <- httr::GET(basis_url, 
-                 httr::add_headers(Authorization = paste("Authorization", token)))
-```
-Die Details zur Authentifizierung sind von API zu API unterschiedlich. Die genauen Instruktionen solltet ihr in der jeweiligen API Dokumentation finden. 
-
-Es gibt spezifische Statuscodes, die in Verbindung mit Authentifzierung besonders häufig auftauchen: 401 und 403. Diese Fehlercodes tauchen häufig auf, wenn man eigentlich den richtigen Token hat, aber ihn in der Anfrage nicht richtig übergeben hat. Lest deshalb immer genau in der Dokumentation nach, wie die Authentifizierung der API im Detail funktioniert.
-
-Aus Sicherheitsgründen ist es zudem sehr wichtig, Euren Token (oder sonstige **sicherheitsrelevante Informationen**) **nicht direkt im Code zu speichern**. Anstatt dessen nutzt ihr hierzu am besten **Umgebungsvariablen** (engl. environment variables). Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Auch wir üben das zu einem späteren Zeitpunkt nochmal.
-
-#### R-Packages
-Viele APIs sind bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten noch leichter funktioniert. Über das Package `WDI` könnt Ihr **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
+#### APIs in R-Packages
+Der Umgang mit APIs ist für Programmieranfänger:innen oft eine Herausforderung. Im "Exkurs: APIs" zeigen wir Euch, wie das Ganze für die UN-API funktioniert. Viele APIs sind aber bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten wesentlich leichter funktioniert. Über das Package `WDI` könnt Ihr beispielsweise **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
 
 *Anmerkung: Genau wissen wir das natürlich nicht, die Daten geben uns hier lediglich einen Hinweis darauf, wo der Bedarf groß sein könnte. Deshalb ist es wichtig die Annahmen, auf denen Entscheidungen basieren genau zu definieren und sich darüber Gedanken zu machen, ob die Datengrundlage für eine Entscheidung überhaupt ausreichend ist. Unsere Thesen können wir dann ggf. in Interviews mit Expert:innen (hier z.B. Naturschützer:innen) verifizieren.*
 ```{r wb, exercise = TRUE}
+#install.packages("WDI")
+
 # Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
   country = "all", # Auswahl der Länder
   indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
-  start = 2018, # Auswahl Zeithorizont: Anfang
+    start = 2018, # Auswahl Zeithorizont: Anfang
   end = 2018, # Auswahl Zeithorizont: Ende
   language = "en" # Sprachauswahl
 ) 
 ```
 
-Ladet nun den Datensatz zum Indikator ["Fish species, threatened" (EN.FSH.THRD.NO)](https://data.worldbank.org/indicator/EN.FSH.THRD.NO?view=chart){target="_blank"}. Kopiert dazu den Code von oben und fügt den richtigen Indikatorschlüssel ein.
+Ladet nun den Datensatz zum Indikator ["Fish species, threatened" (EN.FSH.THRD.NO)](https://data.worldbank.org/indicator/EN.FSH.THRD.NO?view=chart){target="_blank"} für das Jahr 2018. Kopiert dazu den Code von oben und fügt den richtigen Indikatorschlüssel ein.
 ```{r exercise_wb, exercise = TRUE}
 # Euer Code hier
 ```
@@ -457,10 +268,11 @@ Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr ein
 - `dieZeit`-Package: Online-Veröffentlichungen der **Zeit** (zur [Doku](https://cran.r-project.org/web/packages/diezeit/index.html){target="_blank"}//mehr [Infos](https://www.zeit.de/){target="_blank"})
 - uvm...
 
-Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquellen ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können.
+Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquelle ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können.
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
 ### Und jetzt Ihr
-1. Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, einen Ordner "daten" an und versucht die Datei mit diesem Code lokal zu laden.
-2. Ladet den "Plastics"-Datensatz über einen Hyperlink [Link](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"}.
-3. In den SDG-Datensätzen der UN findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Schreibt eine Datenabfrage zu diesem Indikator.
+1. Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, einen Ordner "daten" an und versucht die Datei mit diesem Code **lokal zu laden**.
+2. Ladet den "Plastics"-Datensatz über einen **Hyperlink** [Link](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
+3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
+4. In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um. 
