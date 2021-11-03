@@ -1,22 +1,32 @@
-### Exkurs: APIs
+## Exkurs: APIs
 ```{r reqs, echo=FALSE}
-basis_url <- "https://unstats.un.org/"
-
-
-waste_antwort <- httr::GET(
-  basis_url,
-  path = "/SDGAPI/v1/sdg/Series/Data",
+basis_url <- "https://unstats.un.org/" # Haupt-URL
+initiale_anfrage <- httr::GET( # Initialisierung
+  basis_url, # URL verlinken
+  path = "/SDGAPI/v1/sdg/Series/Data", # Route definieren
   query = list(
-    seriescode = "EN_REF_WASCOL",
-    timePeriodStart = 2015,
-    # 2015 hat ausreichend Daten!
-    timePeriodEnd = 2015,
-    # nur ein Jahr
-    pageSize = 100
+    seriescode = "EN_REF_WASCOL"
   )
 )
 
-waste_data <- httr::content(waste_antwort)
+# Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
+content <- httr::content(initiale_anfrage)
+
+# Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
+total_pages <- content$totalPages
+pages <- c(1:total_pages)
+
+# Inhalt der Response herausziehen
+waste_data <- httr::content(initiale_anfrage)
+
+# Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
+waste_list <- waste_data$data
+
+# Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
+library(purrr)
+waste_geo <- waste_list %>%
+  purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
+  filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
 
 ```
 Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
@@ -43,7 +53,7 @@ Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sog
 
 [Hier (en)](https://github.com/public-apis/public-apis) findet Ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
 
-#### GET-Anfragen
+### GET-Anfragen
 Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein. `GET`-Anfragen können als normale URL (das was Ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
 `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
 
@@ -56,7 +66,7 @@ Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/searc
 
 **Analogie**: Im Restaurant bestellt (--> `GET`) Ihr bei Elmo (Eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
 
-#### Statuscode 
+### Statuscodes 
 Fast alle APIs geben in Ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
 
 Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
@@ -71,12 +81,13 @@ Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. D
 
 Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet Ihr noch mehr Erklärungen zu wichtigen Statuscodes.
 
-#### Beispiel
+### Beispiel
 Wir verwenden die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet Ihr [hier](https://unstats.un.org/SDGAPI/swagger/). Der Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) passt gut zu unseren bisherigen Analysen zum Thema Plastikverschmutzung. Um die Daten zu diesem Indikator zu laden, verwendet Ihr den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Zudem habt Ihr nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den Ihr Daten benötigt.
 
 Um Anfragen an APIs zu machen, nutzen wir das [`httr`](https://httr.r-lib.org/)-Package (Doku).
 
 ```{r series-req, exercise=TRUE}
+# library(httr)
 basis_url <- "https://unstats.un.org/" # Haupt-URL
 initiale_anfrage <- httr::GET( # Initialisierung
   basis_url, # URL verlinken
@@ -90,7 +101,7 @@ initiale_anfrage <- httr::GET( # Initialisierung
 Wenn wir uns die Anfrage-URL anschauen, erkennen wir wieder das Schema `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`.
 
 ```{r waste-url, exercise=TRUE}
-waste_antwort$url
+initiale_anfrage$url
 ```
 
 ```{r quiz-route, exercise = FALSE, echo=FALSE}
@@ -129,8 +140,8 @@ quiz(caption = NULL,
 Zuerst checken wir nun den **Statuscode**, um sicher zu gehen, dass unsere Anfrage erfolgreich war. In `httr` gibt es hierzu auch die `stop_for_status` Funktion, die einen Fehler schmeißt, wenn die Anfrage nicht erfolgreich war, sonst aber nichts tut.
 
 ```{r waste-status, exercise=TRUE}
-waste_antwort$status_code # 200
-httr::stop_for_status(waste_antwort) # nichts passiert, alles gut!
+initiale_anfrage$status_code # 200
+httr::stop_for_status(initiale_anfrage) # nichts passiert, alles gut!
 ```
 
 Nun fragen wir uns: **Wie viele Seiten Dokument** müssen überhaupt geladen werden? APIs geben Euch nämlich meistens nicht von Haus aus alle Resultate zurück.
@@ -146,7 +157,7 @@ pages <- c(1:total_pages)
 Wir erhalten von der Anfrage eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid Ihr hauptsächlich an den **übermittelten Daten** interessiert. Diese erhaltet Ihr, indem Ihr die Funktion `httr::content()` (de: Inhalt) verwendet. Output dieser Funktion ist eine vielschichtige (eng. nested) Liste, aus der wir nun die Daten ("data") ziehen. Mit `purrr::map_df` können wir nun die Datenliste (ebenfalls vielschichtig) entpacken.
 ```{r goals-extract, exercise=TRUE}
 # Inhalt der Response herausziehen
-waste_data <- httr::content(waste_antwort)
+waste_data <- httr::content(initiale_anfrage)
 
 # Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
 waste_list <- waste_data$data
@@ -210,7 +221,7 @@ list_of_dataframes <- purrr::map(pages, function(page) {
 waste_geo_df <- dplyr::bind_rows(list_of_dataframes)
 ```
 
-#### Authentifizierung
+### Authentifizierung
 In unserem Beispiel konnten wir ohne Authentifizierung die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. Ihr müsst beweisen, dass Ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
 
 Hierzu gibt es viele verschiedene Modelle. Im einfachsten Fall erstellt ihr euch einen sogenannten Token in der entsprechenden Website in den Benutzereinstellungen. Ein **Token** ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus `eyJpc3MiOiJodHRwczovL2V4YW1...`.
@@ -229,3 +240,5 @@ Die Details zur Authentifizierung sind von API zu API unterschiedlich. Die genau
 Es gibt spezifische Statuscodes, die in Verbindung mit Authentifizierung besonders häufig auftauchen: 401 und 403. Diese Fehlercodes tauchen häufig auf, wenn man eigentlich den richtigen Token hat, aber ihn in der Anfrage nicht richtig übergeben hat. Lest deshalb immer genau in der Dokumentation nach, wie die Authentifizierung der API im Detail funktioniert.
 
 Aus Sicherheitsgründen ist es zudem sehr wichtig, Euren Token (oder sonstige **sicherheitsrelevante Informationen**) **nicht direkt im Code zu speichern**. Anstatt dessen nutzt ihr hierzu am besten **Umgebungsvariablen** (engl. environment variables). Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Auch wir üben das zu einem späteren Zeitpunkt nochmal.
+
+Ihr wollt mehr darüber lernen, wie man APIs selbst programmiert? Unser Partner Dataquest bietet den Kurs ["APIs in R"](https://app.dataquest.io/course/apis-in-r){target="_blank"} an.
