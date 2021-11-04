@@ -84,6 +84,29 @@ audit_plastic_eu_asia<- audit_plastic %>%
   filter(continent == "Europe" | continent == "Asia") %>%
   group_by(country) %>%
   mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
+
+# Datensätze für 2019 & 2020 & reduziert
+plastics_2019 <- plastics %>%
+  dplyr::filter(year == "2019") 
+plastics_2020 <- plastics %>%
+  dplyr::filter(year == "2020") 
+plastics_reduced <- plastics_2019 %>%
+  dplyr::select(-grand_total)
+reduced_2019 <- plastics_2019 %>%
+  dplyr::filter(parent_company != "Grand Total" 
+                & country != "EMPTY") %>%
+  dplyr::group_by(country) %>%
+  dplyr::summarize(grand_total = sum(grand_total),
+                   num_events = mean(num_events),
+                   volunteers = mean(volunteers))
+
+# Datensatz Weltbank GDP per Capita
+gdppc <- readxl::read_excel("daten/worldbank-gdp.xls")
+gdppc_reduced <- gdppc %>% 
+  dplyr::select(country_name = 'Country Name',
+                country_code = 'Country Code',
+                gdp_2019 = '2019'
+                )
 ```
 
 ```{r results='asis'}
