@@ -1,4 +1,4 @@
-## Eigene APIs schreiben (Exkurs)
+## Eigene API-Anfragen (Exkurs)
 ```{r reqs, echo=FALSE}
 basis_url <- "https://unstats.un.org/" # Haupt-URL
 initiale_anfrage <- httr::GET( # Initialisierung
@@ -29,6 +29,9 @@ waste_geo <- waste_list %>%
   filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
 
 ```
+![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)
+
+### Interaktive Übung
 Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
 
 Eine Interaktion sieht so aus:
@@ -241,4 +244,4 @@ Es gibt spezifische Statuscodes, die in Verbindung mit Authentifizierung besonde
 
 Aus Sicherheitsgründen ist es zudem sehr wichtig, Euren Token (oder sonstige **sicherheitsrelevante Informationen**) **nicht direkt im Code zu speichern**. Anstatt dessen nutzt ihr hierzu am besten **Umgebungsvariablen** (engl. environment variables). Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Auch wir üben das zu einem späteren Zeitpunkt nochmal.
 
-Ihr wollt mehr darüber lernen, wie man APIs selbst programmiert? Unser Partner Dataquest bietet den Kurs ["APIs in R"](https://app.dataquest.io/course/apis-in-r){target="_blank"} an.
+Ihr wollt mehr darüber lernen, wie man API-Anfragen selbst schreibt? Unser Partner Dataquest bietet den Kurs ["APIs in R"](https://app.dataquest.io/course/apis-in-r){target="_blank"} an.

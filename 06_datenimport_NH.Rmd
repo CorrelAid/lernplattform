@@ -42,30 +42,28 @@ Textdatei     | unformatierte Textdaten                                         
 cat(tabelle)
 ```
 ### Quiz
-```{r quiz_kennzahlen, echo=FALSE}
+```{r quiz_datenimport, echo=FALSE}
 quiz(caption = NULL,
      
   question("Welche Faktoren spielen beim Datenimport eine wichtige Rolle?",
     answer("Das Dateiformat (erkennbar an der Dateiendung)", correct = TRUE),
     answer("Die Dateistruktur mit Codierung, (Dezimal-)Trennzeichen, uvm.", correct = TRUE),
     answer("Der Speicherort (lokal oder remote)", correct = TRUE),
-    answer("Die Art und Weise wie die Daten reladen werden sollen (einmalig, periodisch oder live)", correct = TRUE),
+    answer("Die Art und Weise wie die Daten geladen werden sollen (einmalig, periodisch oder live)", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Alle vier Faktoren sind wichtig.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
+    try_again_button = "Nochmal versuchen"
   ),
   
   question("An welcher Dateiendung erkennt Ihr Excel-Dateien?",
-    answer("XLS", correct = TRUE),
-    answer("XLSX", correct = TRUE),
-    answer("CSV"),
+    answer(".xls", correct = TRUE),
+    answer(".xlsx", correct = TRUE),
+    answer(".csv"),
     correct = "Richtig!",
-    incorrect = "Leider falsch: CSV-Dateien sind Textdateien.",
+    incorrect = "Leider falsch: CSV-Dateien sind Textdateien - aber Ihr könnt sie natürlich in Excel öffnen.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
+    try_again_button = "Nochmal versuchen"
   ),
   
   question("Woran erkennt Ihr CSV-Dateien?",
@@ -74,51 +72,45 @@ quiz(caption = NULL,
     correct = "Richtig!",
     incorrect = "Leider falsch: CSV-Dateien sind zwar in der Regel durch Kommata getrennt, es gibt allerdings auch CSV-Dateien, deren Spalten durch Semikolons, Pipes (senkrechte Striche) und Tabstopps getrennt werden.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
+    try_again_button = "Nochmal versuchen"
   ),
   
   question("Welche Optionen habt Ihr lokale Dateien zu importieren?",
-    answer("Manuell über den File Explorer in RStudio (File -> Import Dataset", correct = TRUE),
+    answer("Manuell über den File Explorer in RStudio (File -> Import Dataset)", correct = TRUE),
     answer("Mit der Funktion import() des rio-Packages", correct = TRUE),
-    answer("Mit individuellen Funktionen für die verschiedenen Dateiformate", correct = TRUE),
+    answer("Mit individuellen Funktionen aus verschiedenen Packages für die verschiedenen Dateiformate", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Ihr könnt von allen drei Optionen Gebrauch machen",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
+    try_again_button = "Nochmal versuchen"
   ),
   
-  question("Können nur lokale Dateien geladen werden?",
+  question("Können nur lokal gespeicherte Dateien importiert werden?",
     answer("Ja"),
     answer("Nein", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Auch das Laden von Dateien über Hyperlinks ist beispielsweise möglich.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
+    try_again_button = "Nochmal versuchen"
   ),
   
   question("Warum ist es best practice Datenquellen live mit Analysetools zu verknüpfen?",
-    answer("Es ist nicht best practice."),
     answer("Es ist leichter technisch umzusetzen."),
     answer("Es garantiert, dass Daten aktuell und damit qualitativ hochwertiger sind.", correct = TRUE),
+    answer("Es ist nicht best practice."),
     correct = "Richtig! Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
     incorrect = "Leider falsch: Zwar sind Live-Verknüpfungen schwer einzurichten, aber dafür sind die Daten auch aktuell. Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
+    try_again_button = "Nochmal versuchen"
   ),
   
-  question("Um Datenquellen live zu verknüpfen, ist es notwendig, selbst eine  ",
-    answer("Es ist nicht best practice."),
-    answer("Es ist leichter technisch umzusetzen."),
-    answer("Es garantiert, dass Daten aktuell und damit qualitativ hochwertiger sind.", correct = TRUE),
-    correct = "Richtig! Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
-    incorrect = "Leider falsch: Zwar sind Live-Verknüpfungen schwer einzurichten, aber dafür sind die Daten auch aktuell. Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
+  question("Um Datenquellen live zu verknüpfen, ist es immer notwendig, selbst Code zu schreiben, der mit einer API interagiert.",
+    answer("Wahr"),
+    answer("Unwahr", correct = TRUE),
+    correct = "Richtig! Ihr könnt dazu auch R-Packages nutzen, die von der R-Community zahlreich bereitgestellt wurden.",
+    incorrect = "Leider falsch: Ihr könnt dazu auch R-Packages nutzen, die von der R-Community zahlreich bereitgestellt wurden.",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
+    try_again_button = "Nochmal versuchen"
   )
 )
 ```
@@ -348,6 +340,8 @@ Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure 
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
 ### Und jetzt Ihr
+Gerne könnt Ihr nun versuchen, eigene Datensätze in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben:
+
 1. Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, einen Ordner "daten" an und versucht die Datei mit diesem Code **lokal zu laden**.
 2. Ladet den "Plastics"-Datensatz über einen **Hyperlink** [Link](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
 3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
