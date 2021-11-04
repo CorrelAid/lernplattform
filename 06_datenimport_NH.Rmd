@@ -1,16 +1,9 @@
 ## Datenimport und APIs
 Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um damit Analysen durchzuführen. 
 
-![*Video: Datenimport und APIs (30min)*](https://youtu.be/zHpCjZDbpB8)
-Vorstellung nicht vergessen
-- Dateiformate erklären und zeigen (Phil)
-- Manuellen Import ohne Code zeigen (Phil)
-- Beliebte Fehlerquellen (Phil)
-- APIs: Content interaktiv zeigen über Webseites (Frie)
-- Some API stuff (Frie)
-- R-Packages mit denen man APIs nutzen kann (Frie)
+![*Video: Datenimport und APIs (30min)*](https://youtu.be/NA9QLeQsE9M)
 
-[Hier](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} findet Ihr ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
+[Hier](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} findet Ihr zudem ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
 
 ### Kernaussagen
 - Es gibt **zwei grundlegende Möglichkeiten** Daten zu importieren:
@@ -28,8 +21,9 @@ Vorstellung nicht vergessen
     
 - Wenn Ihr **deutschsprachige Dateien** importiert, müsst Ihr auf Zeichen wie "ä, ö, ü", Spaltentrenner (engl. Separator, im Deutschen ";") und Dezimaltrennzeichen (im Deutschen ",") achten, da dies besonders fehleranfällig ist (die meisten Datenanalyseprogramme arbeiten vorwiegend in englischer Sprache)
 - Mit dem **`rio`-Package** könnt Ihr zahlreiche Dateiformate automatisch einlesen (hier geht es zur [Übersicht](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"})
+- Falls das nicht funktioniert, gibt es für jedes Dateiformat **zahlreiche Funktionen**, mit denen Daten geladen werden können
 - Über **APIs** (zu dt. Schnittstellen) könnt Ihr Datenabfragen an externe Systeme über das Internet stellen
-- Viele APIs sind bereits in **R-Packages** eingebettet, weshalb wir zuerst danach suchen sollten
+- Viele APIs können über einfach zu bedienende Funktionen aus **R-Packages** angesprochen werden, weshalb wir zuerst danach suchen sollten
 
 **Überblick über die verschiedenen Dateiformate:**
 ```{r dateiformate_tabelle, results='asis'}
@@ -46,6 +40,87 @@ Stata         | Stata-Export, der nicht in allen Anwendungen geöffnet werden ka
 Textdatei     | unformatierte Textdaten                                           | .csv/.txt  
 "
 cat(tabelle)
+```
+### Quiz
+```{r quiz_kennzahlen, echo=FALSE}
+quiz(caption = NULL,
+     
+  question("Welche Faktoren spielen beim Datenimport eine wichtige Rolle?",
+    answer("Das Dateiformat (erkennbar an der Dateiendung)", correct = TRUE),
+    answer("Die Dateistruktur mit Codierung, (Dezimal-)Trennzeichen, uvm.", correct = TRUE),
+    answer("Der Speicherort (lokal oder remote)", correct = TRUE),
+    answer("Die Art und Weise wie die Daten reladen werden sollen (einmalig, periodisch oder live)", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Alle vier Faktoren sind wichtig.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question("An welcher Dateiendung erkennt Ihr Excel-Dateien?",
+    answer("XLS", correct = TRUE),
+    answer("XLSX", correct = TRUE),
+    answer("CSV"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: CSV-Dateien sind Textdateien.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question("Woran erkennt Ihr CSV-Dateien?",
+    answer('An dem Trennzeichen ","'),
+    answer('An der Dateiendung ".csv"', correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: CSV-Dateien sind zwar in der Regel durch Kommata getrennt, es gibt allerdings auch CSV-Dateien, deren Spalten durch Semikolons, Pipes (senkrechte Striche) und Tabstopps getrennt werden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question("Welche Optionen habt Ihr lokale Dateien zu importieren?",
+    answer("Manuell über den File Explorer in RStudio (File -> Import Dataset", correct = TRUE),
+    answer("Mit der Funktion import() des rio-Packages", correct = TRUE),
+    answer("Mit individuellen Funktionen für die verschiedenen Dateiformate", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Ihr könnt von allen drei Optionen Gebrauch machen",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question("Können nur lokale Dateien geladen werden?",
+    answer("Ja"),
+    answer("Nein", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Auch das Laden von Dateien über Hyperlinks ist beispielsweise möglich.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question("Warum ist es best practice Datenquellen live mit Analysetools zu verknüpfen?",
+    answer("Es ist nicht best practice."),
+    answer("Es ist leichter technisch umzusetzen."),
+    answer("Es garantiert, dass Daten aktuell und damit qualitativ hochwertiger sind.", correct = TRUE),
+    correct = "Richtig! Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
+    incorrect = "Leider falsch: Zwar sind Live-Verknüpfungen schwer einzurichten, aber dafür sind die Daten auch aktuell. Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question("Um Datenquellen live zu verknüpfen, ist es notwendig, selbst eine  ",
+    answer("Es ist nicht best practice."),
+    answer("Es ist leichter technisch umzusetzen."),
+    answer("Es garantiert, dass Daten aktuell und damit qualitativ hochwertiger sind.", correct = TRUE),
+    correct = "Richtig! Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
+    incorrect = "Leider falsch: Zwar sind Live-Verknüpfungen schwer einzurichten, aber dafür sind die Daten auch aktuell. Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  )
+)
 ```
 
 ### Interaktive Übung

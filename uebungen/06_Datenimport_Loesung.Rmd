@@ -5,8 +5,6 @@ date: "10/20/2021"
 output: pdf_document
 ---
 
-4. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) herunter.
-
 # Schritt 1: Infrastruktur
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
@@ -30,7 +28,7 @@ library(purrr)
 # Schritt 2: Daten laden
 
 ### Übung 1: 
-Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, einen Ordner "daten" an und versucht die Datei mit diesem Code **lokal zu laden**.
+Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei **lokal zu laden**.
 
 ```{r}
 # Euer Code hier

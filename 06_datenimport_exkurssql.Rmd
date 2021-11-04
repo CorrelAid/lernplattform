@@ -128,10 +128,12 @@ dbGetQuery(con, "SELECT *
 grade_this_code()
 ```
 
-Im letzten Schritt **schließen** wir die **Verbindung** zu der Datenbank mit dem Befehl `dbDisconnect()`.
+Im letzten Schritt **schließen** wir **immer** die **Verbindung** zu der Datenbank mit dem Befehl `dbDisconnect()`.
 ```{r dbclose_exercise, exercise = TRUE}
 # Schließen der DB-Verbindung
 dbDisconnect(con)
 ```
+
+SQLite-Datenbanken benötigen in der Regel **kein Passwort** (und somit auch keinen Code für die Authentifizierung). Falls das für Euch notwendig ist, findet Ihr in der Dokumentation von RStudio in den Kapiteln [Database](https://docs.rstudio.com/connect/1.7.8/admin/database-provider.html){target="_blank"} und [Authentication](https://docs.rstudio.com/connect/1.7.8/admin/authentication.html){target="_blank"} Hilfestellungen.
 
 Ihr wollt mehr SQL lernen? Unser Partner Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
