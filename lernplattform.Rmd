@@ -20,6 +20,11 @@ library(ggplot2)
 library(dplyr)
 library(janitor)
 library(countrycode)
+library(haven)
+library(httr)
+library(purrr)
+library(RSQLite)
+library(DBI)
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 gradethis::gradethis_setup(pass = "Gut gemacht!", 
                            fail = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
@@ -29,9 +34,6 @@ gradethis::gradethis_setup(pass = "Gut gemacht!",
                            fail.hint = FALSE,
                            grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
                            )
-``` 
-
-```{r daten, include = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 ### Daten laden
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
@@ -47,6 +49,39 @@ wb_areas <- WDI::WDI(
 # Einlesen der Shapefiles
 polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
 polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
+
+# Initialisierung eines temporären Ordners
+tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
+download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
+con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
+
+# API
+basis_url <- "https://unstats.un.org/" # Haupt-URL
+initiale_anfrage <- httr::GET( # Initialisierung
+  basis_url, # URL verlinken
+  path = "/SDGAPI/v1/sdg/Series/Data", # Route definieren
+  query = list(
+    seriescode = "EN_REF_WASCOL"
+  )
+)
+
+# Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
+content <- httr::content(initiale_anfrage)
+
+# Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
+total_pages <- content$totalPages
+pages <- c(1:total_pages)
+
+# Inhalt der Response herausziehen
+waste_data <- httr::content(initiale_anfrage)
+
+# Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
+waste_list <- waste_data$data
+
+# Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
+waste_geo <- waste_list %>%
+  purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
+  filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
 
 ### Daten bereinigen
 # Country name cleaning: 
@@ -68,6 +103,7 @@ community<- plastics_prep %>%
   select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
   group_by(country, year) %>%
   filter(row_number()==1)
+#write.csv(community, here::here("daten/community_perspective.csv"), row.names = FALSE)
 
 # Audit Plastik Datensatz erstellen
 audit_plastic<- plastics_prep %>%
@@ -78,6 +114,7 @@ audit_plastic<- plastics_prep %>%
   mutate(
     across(everything(), ~replace_na(.x, 0))
   )
+#write.csv(audit_plastic, here::here("daten/audit_perspective.csv"), row.names = FALSE)
 
 # EU-Asien Audit Plastik Datensatz erstellen
 audit_plastic_eu_asia<- audit_plastic %>%
@@ -107,7 +144,30 @@ gdppc_reduced <- gdppc %>%
                 country_code = 'Country Code',
                 gdp_2019 = '2019'
                 )
-```
+
+# Exportieren der Datensets in CSV für DB
+# Country Codes
+country_db <- community %>%
+  ungroup() %>%
+  select(countrycode, country, continent)
+#write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
+
+# Community
+community_db <- community %>%
+  ungroup() %>%
+  select(countrycode, year, num_events, volunteers)
+#write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
+
+# Audit Plastic
+audit_db <- plastics_prep %>%
+  filter(parent_company != "Grand Total") %>% 
+  ungroup() %>%
+  select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
+  pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
+  filter(parent_company != "Grand Total")
+write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
+``` 
+
 
 ```{r results='asis'}
 out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)

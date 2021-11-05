@@ -1,41 +1,5 @@
 ## Datenabfragen in SQL (Exkurs)
 
-```{r exportcsv}
-# Exportieren der Datensets in CSV für DB
-
-# Country Codes
-country_db <- community %>%
-  ungroup() %>%
-  select(countrycode, country, continent)
-write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
-
-# Community
-community_db <- community %>%
-  ungroup() %>%
-  select(countrycode, year, num_events, volunteers)
-write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
-
-# Audit Plastic
-audit_db <- plastics_prep %>%
-  filter(parent_company != "Grand Total") %>% 
-  ungroup() %>%
-  select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
-  pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
-  filter(parent_company != "Grand Total")
-write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
-```
-
-```{r sqlite}
-# Laden der benötigten Packages für die Verknüpfung mit SQLite-Datenbanken
-library(RSQLite)
-library(DBI)
-
-# Initialisierung eines temporären Ordners zur Beschleunigung von Abfragen bei kleinen Datenbanken
-tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
-download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
-con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
-```
-
 
 ### Interaktive Übung
 Daten, die uns in unserem Alltag als Datenanalyst:innen und Datenwissenschaftler:innen begegnen, sind oft in **Datenbanken** gespeichert. Datenbanken sind **logisch modellierte, strukturierte Datenspeicher**, mit denen mit Hilfe von **Datenbankmanagementsystemen (kurz DBMS)**, also Softwaretools, interagiert werden kann. Diese Interaktion funktioniert für jedes Datenbankmanagementsystem anders und ist **nicht trivial**. Während in einigen Fällen ein manueller Export als XLSX-, CSV- oder JSON-Datei möglich ist, kann es in einigen Fällen, auch auf Grund der Größe der Datensätze, nicht praktikabel sein manuell Daten zu exportieren. Daneben ist das natürlich auch IT im Schneckentempo statt in Lichtgeschwindigkeit. Idealerweise sind Eure Daten nämlich **live** mit Euren Analysetools verknüpft, sodass sie beständig aktuell sind. Die populärsten Datenbankmanagementsysteme findet Ihr in dieser Übersicht einer Umfrage unter Entwickler:innen von [Stack Overflow](https://insights.stackoverflow.com/survey/2020#technology-databases-all-respondents4){target="_blank}.

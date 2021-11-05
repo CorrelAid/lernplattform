@@ -1,34 +1,5 @@
 ## Eigene API-Anfragen (Exkurs)
-```{r reqs, echo=FALSE}
-basis_url <- "https://unstats.un.org/" # Haupt-URL
-initiale_anfrage <- httr::GET( # Initialisierung
-  basis_url, # URL verlinken
-  path = "/SDGAPI/v1/sdg/Series/Data", # Route definieren
-  query = list(
-    seriescode = "EN_REF_WASCOL"
-  )
-)
 
-# Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
-content <- httr::content(initiale_anfrage)
-
-# Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
-total_pages <- content$totalPages
-pages <- c(1:total_pages)
-
-# Inhalt der Response herausziehen
-waste_data <- httr::content(initiale_anfrage)
-
-# Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
-waste_list <- waste_data$data
-
-# Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
-library(purrr)
-waste_geo <- waste_list %>%
-  purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
-  filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
-
-```
 ![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)
 
 ### Interaktive Übung
@@ -154,14 +125,17 @@ content <- httr::content(initiale_anfrage)
 
 # Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
 total_pages <- content$totalPages
+print(total_pages)
 pages <- c(1:total_pages)
 ```
 
-Wir erhalten von der Anfrage eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid Ihr hauptsächlich an den **übermittelten Daten** interessiert. Diese erhaltet Ihr, indem Ihr die Funktion `httr::content()` (de: Inhalt) verwendet. Output dieser Funktion ist eine vielschichtige (eng. nested) Liste, aus der wir nun die Daten ("data") ziehen. Mit `purrr::map_df` können wir nun die Datenliste (ebenfalls vielschichtig) entpacken.
-```{r goals-extract, exercise=TRUE}
+Diese Information merken wir uns und schauen uns nun an, was genau die Antwort unserer Anfrage beinhaltet. Diese erhaltet Ihr, indem Ihr die Funktion `httr::content()` (de: Inhalt) verwendet. Output dieser Funktion ist eine **vielschichtige (eng. nested) Liste**.
+```{r content, exercise=TRUE}
 # Inhalt der Response herausziehen
-waste_data <- httr::content(initiale_anfrage)
-
+httr::content(initiale_anfrage)
+```
+Wir erhalten von der Anfrage also eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid Ihr hauptsächlich an den **übermittelten Daten** interessiert, die wir nun ziehen ("$data") . Mit `purrr::map_df` können wir nun die Datenliste (ebenfalls vielschichtig) entpacken.
+```{r goals-extract, exercise=TRUE}
 # Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
 waste_list <- waste_data$data
 
@@ -190,15 +164,15 @@ quiz(caption = NULL,
 )
 ```
 
-Abschließend schauen wir uns eines der Datenelemente an:
+Abschließend schauen wir uns nochmal genauer eines der Datenelemente an:
 ```{r inspect-data, exercise=TRUE}
 # Wir schauen uns eines der Daten Elemente an. Die doppelten Klammern extrahieren das x-te Element aus der Liste, hier das zehnte.
 str(waste_data$data[[10]])
 ```
 
-Das Daten-Listenelement enthält ziemlich viele Informationen. Für euch relevant ist der Wert (`value`) sowie die Informationen über das "Wo": `geoAreaCode` und `geoAreaName`. 
+Das Daten-Listenelement enthält ziemlich viele Informationen. Für Euch relevant ist der Wert (`value`) sowie die Informationen über das "Wo": `geoAreaCode` und `geoAreaName`. 
 
-Wie Ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt Ihr zu einem späteren Zeitpunkt - hier schon einmal die Preview:
+Diese Informationen nutzen wir nun - gemeinsam mit der Seitenanzahl - um für jede Seite die benötigten Informationen zu ziehen und diese in einem Dataframe zusammenzuführen. Wie genau Ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt Ihr zu einem späteren Zeitpunkt in Eurer Karriere als Datenwissenschaftler:innen der Zivilgesellschaft - hier schon einmal die Preview:
 
 ```{r}
 # Funktion, mit der alle Seiten geladen werden, indem die Seitenanzahl "Page" durch eine Nummer zwischen 1 und 11 (= Total Pages) ersetzt wir

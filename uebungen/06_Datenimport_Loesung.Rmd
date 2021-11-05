@@ -139,7 +139,6 @@ recycling_geo_test <- recycling_list_test %>%
 # Datensatz betrachten
 dplyr::glimpse(recycling_geo_test)
 
-
 ## Schritt 5: Daten von allen Seiten der Response ziehen
 # Funktion, mit der alle Seiten geladen werden, indem die Seitenanzahl "Page" durch eine Nummer zwischen 1 und 11 (= Total Pages) ersetzt wird
 list_of_dataframes <- purrr::map(pages, function(page) {
