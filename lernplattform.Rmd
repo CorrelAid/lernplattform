@@ -140,14 +140,24 @@ reduced_2019 <- plastics_2019 %>%
   dplyr::summarize(grand_total = sum(grand_total),
                    num_events = mean(num_events),
                    volunteers = mean(volunteers))
+reduced_2020 <- plastics_2020 %>%
+  dplyr::filter(parent_company != "Grand Total"
+                & country != "EMPTY") %>%
+  dplyr::group_by(country) %>%
+  dplyr::summarize(grand_total = sum(grand_total),
+                   num_events = mean(num_events),
+                   volunteers = mean(volunteers))
+data_no_na <- na.omit(reduced_2020)
 
-# Datensatz Weltbank GDP per Capita
-gdppc <- readxl::read_excel("daten/worldbank-gdp.xls")
-gdppc_reduced <- gdppc %>% 
-  dplyr::select(country_name = 'Country Name',
-                country_code = 'Country Code',
-                gdp_2019 = '2019'
-                )
+# Mini-Datensätze für NA's
+df <- tibble::tribble(
+  ~name,              ~x,  ~y,           ~z,  
+  "Person 1",         1,   -99,          6.7, 
+  "Person 2",         3,   NA,           -99,
+  "Person 3",         NA,  0.76,         -1.6
+  )
+df2 <- df %>% 
+  dplyr::na_if(-99)
 
 # Exportieren der Datensets in CSV für DB
 # Country Codes

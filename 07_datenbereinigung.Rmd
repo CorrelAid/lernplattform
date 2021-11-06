@@ -234,13 +234,83 @@ reduced_2019 %>%
 
 ``` {r 07group_by_summarize2, exercise = TRUE}
 # Und das selbe für 2020:
-plastics_2020 %>%
+reduced_2020 <- plastics_2020 %>%
   dplyr::filter(parent_company != "Grand Total"
                 & country != "EMPTY") %>%
   dplyr::group_by(country) %>%
   dplyr::summarize(grand_total = sum(grand_total),
                    num_events = mean(num_events),
                    volunteers = mean(volunteers))
+```
+
+#### Umgang mit NA's
+Nachdem Ihr nun Variablen und Beobachtungen auswählen und filtern könnt, schaut Ihr Euch nun den Umgang mit fehlenden Werten, also NA's (**n**ot **a**vailable) an. Versucht zu erst einmal, den Mittelwert für die Variable `grand_total` im Datensatz `reduced_2019` zu berechnen. (Hinweis: Für den Mittelwert habt Ihr die Funktion `mean()` kennengelernt.)
+
+``` {r 07mean_na1, exercise = TRUE}
+reduced_2019$grand_total %>%
+  mean()
+```
+Klappt! Im Datensatz `reduced_2019` sind keine NA's enthalten, die bei der Berechnung des Mittelwerts stören könnten. Versucht das gleiche jetzt mal für den `reduced_2020`-Datensatz in folgendem Codeblock:
+
+``` {r 07mean_na2, exercise = TRUE}
+# Hier Euer Code!
+
+```
+Ups - Ihr erhaltet ein NA? R kann den Mittelwert hier nicht einfach berechnen, da in der Variable mehrere NA's enthalten sind. Versucht hier mal zu berechnen, wie viele NA's die Variable tatsächlich hat. (Hinweis: Experimentiert hier mal mit der Funktion `summary()`):
+
+``` {r 07mean_na3, exercise = TRUE}
+# Hier Euer Code!
+
+```
+
+```{r 07quiz_datenbereinigung_na}
+quiz(caption = NULL,
+  question("Wie viele NA's hat die Variable grand_total im Datensatz reduced_2020?",
+    answer("1"),
+    answer("2"),
+    answer("3", correct = TRUE),
+    correct = "Gut gemacht!",
+    incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Trotzdem wollt Ihr Euren Mittelwert ja berechnen - dafür könnt Ihr R explizit sagen, dass die NA's bei der Berechnung ignoriert werden sollen:
+
+``` {r 07mean_na4, exercise = TRUE}
+reduced_2020$grand_total %>%
+  mean(na.rm = TRUE)
+```
+Perfekt, jetzt könnt Ihr R schon mitteilen, NA's zu ignorieren! Natürlich gibt es noch viele weitere Möglichkeiten, NA's in Datensätzen zu entdecken und zu filtern - versucht dafür mal den folgenden Codeblock zu verstehen: 
+
+``` {r 07mean_na5, exercise = TRUE}
+# Anzahl an fehlenden Werten
+sum(is.na(reduced_2020$grand_total))
+
+# Auflisten von Beobachtungen, die fehlende Werte haben
+reduced_2020[!complete.cases(reduced_2020), ]
+which(is.na(reduced_2020$grand_total))
+
+# Neuer Datensatz ohen fehlende Werte
+data_no_na <- na.omit(reduced_2020)
+```
+
+**Achtung:** Häufig kommt es auch vor, dass NA's gar nicht als NA's direkt codiert sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als “N/A”, “N A”, und “Not Available”, oder -99, oder -1 angegeben. Schaut deshalb immer ins Codebuch bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen mit einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`. Da in Eurem Plastik-Datensatz die Bereinigung schon stattgefunden hat und NA's bereits so codiert sind, hier ein anderer kleiner Beispieldatensatz:
+
+``` {r 07mean_na6, exercise = TRUE}
+df <- tibble::tribble(
+  ~name,              ~x,  ~y,           ~z,  
+  "Person 1",         1,   -99,          6.7, 
+  "Person 2",         3,   NA,           -99,
+  "Person 3",         NA,  0.76,         -1.6
+  )
+
+df2 <- df %>% 
+  dplyr::na_if(-99)
+
+head(df2)
 ```
 
 #### Datensätze zusammenfügen
@@ -386,9 +456,11 @@ quiz(caption = NULL,
 )
 ```
 
+#### Pivoting
+
+
 #### Visualisierungen
 Zum Tidyverse gehört natürlich auch das `ggplot2`-Package, damit hattet ihr vor zwei Wochen bereits schicke Visualisierungen erstellt - mehr dazu lernt Ihr dann in den kommenden Wochen! 
-
 
 ### Exkurs: String Manipulation
 Natürlich habt Ihr auch die Möglichkeit, Strings zu verändern, in Eurem Beispiel könnte man die Namen der Länder verändern, mit dem Ziel die Daten zu bereinigen. Beispielsweise ist im Datensatz `reduced_2019` Taiwan als "Taiwan_ Republic of China (ROC)" eingetragen und Nigeria in Großbuchstaben geschrieben. Dafür hat das `stringr`-Package aus dem Tidyverse die Funktion `str_replace`:
