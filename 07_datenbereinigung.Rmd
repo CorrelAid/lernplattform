@@ -245,25 +245,52 @@ plastics_2020 %>%
 
 #### Datensätze zusammenfügen
 
-Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt werden sollen. Von der Weltbank habt Ihr nun noch einen Datensatz zum GDP pro Kopf (https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?end=2020&start=2019), der unter `gdppc` gespeichert ist. Verschafft euch zuerst einen kleinen Überblick über den Datensatz: 
+Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt werden sollen. Letzte Woche habt Ihr bereits den Datensatz der Weltbank zu Naturschutzgebieten heruntergeladen. Das macht Ihr jetzt wieder: 
+
+```{r weltbank, exercise = TRUE}
+#install.packages("WDI")
+
+# Daten der World Bank mit R-Package ziehen
+wb_areas <- WDI::WDI(
+  country = "all", # Auswahl der Länder
+  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+    start = 2018, # Auswahl Zeithorizont: Anfang
+  end = 2018, # Auswahl Zeithorizont: Ende
+  language = "en" # Sprachauswahl
+  ) 
+```
+
+Verschafft euch zuerst einen kleinen Überblick über den Datensatz `wb_areas`: 
 
 ``` {r 07gdppc, exercise = TRUE}
 # Hier Euer Code!
 
 ```
 
-Da Ihr Euch im Folgenden nur das Jahr 2019 anschauen werdet, könnt Ihr alle anderen Jahre mit diesem Code aus dem Datensatz entfernen: 
-``` {r 07gdppc_select, exercise = TRUE}
-gdppc_reduced <- gdppc %>% 
-  dplyr::select(country_name = 'Country Name',
-                country_code = 'Country Code',
-                gdp_2019 = '2019'
-                )
-gdppc_reduced %>%
+Den Datensatz `wb_areas` wollt Ihr nun mit dem Datensatz `reduced_2019`, den Ihr eben bereinigt habt, zusammenfügen. Um die Datensätze zusammenzuführen, braucht Ihr eine gemeinsame Variable, anhand der R die Länder einander zuordnen kann. Da der ausgeschriebene Ländername teilweise unterschiedlich sein kann, fügt Ihr zum `reduced_2019`-Datensatz erst einmal die Country Codes hinzu: 
+
+``` {r 07plastics_country, exercise = TRUE}
+# Zuerst legt Ihr Euch eine Kopie des Datensatzes an, der dann um die Variable ergänzt wird,...
+data_2019 <- reduced_2019
+# ...was mit Hilfe des countrycode-Packages sehr einfach funktioniert...
+data_2019$country_code <- countrycode::countrycode(data_2019$country, origin = 'country.name', destination = 'iso2c')
+# ...und zum Schluss das Überprüfen nicht vergessen!
+data_2019 %>% 
   head()
 ```
 
-Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `gdppc_reduced` und `reduced_2019` vorhanden sind (hier führen viele Wege zum Ziel!):
+Da die Variable auch den gleichen Namen in beiden Datensätzen haben muss, benennt Ihr die Variablen im Datensatz `wb_areas` nun um und löscht die Variablen `country` und `year`:
+
+``` {r 07wb_clean, exercise = TRUE}
+data_wb <- wb_areas %>% 
+  dplyr::select(country_code = 'iso2c',
+                protected_area = 'ER.PTD.TOTL.ZS'
+                )
+data_wb %>%
+  head()
+```
+
+Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `data_2019` und `data_wb` vorhanden sind (hier führen viele Wege zum Ziel!):
 
 ``` {r 07nrow_ex, exercise = TRUE}
 # Hier Euer Code!
@@ -272,7 +299,7 @@ Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `
 
 ```{r 07quiz_datenbereinigung5}
 quiz(caption = NULL,
-  question("Wie viele Länder sind im gdppc_reduced-Datensatz?",
+  question("Wie viele Länder sind im data_wb-Datensatz?",
     answer("3"),
     answer("266", correct = TRUE),
     answer("51"),
@@ -287,7 +314,7 @@ quiz(caption = NULL,
 
 ```{r 07quiz_datenbereinigung6}
 quiz(caption = NULL,
-  question("Wie viele Länder sind im reduced_2019-Datensatz?",
+  question("Wie viele Länder sind im data_2019-Datensatz?",
     answer("51", correct = TRUE),
     answer("4"),
     answer("9296"),
@@ -298,15 +325,6 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   )
 )
-```
-
-Um die Datensätze zusammenzuführen, braucht Ihr eine gemeinsame Variable, anhand der R die Länder einander zuordnen kann. Da der ausgeschriebene Ländername teilweise unterschiedlich sein kann, fügt Ihr zum `reduced_2019`-Datensatz erst einmal die Country Codes hinzu:
-
-``` {r 07gdppc_country, exercise = TRUE}
-data_2019 <- reduced_2019
-data_2019$country_code <- countrycode::countrycode(data_2019$country, origin = 'country.name', destination = 'wb')
-data_2019 %>% 
-  head()
 ```
 
 Jetzt - endlich - könnt Ihr die beiden Datensätze zusammenfügen. Dabei gibt es verschiedene Möglichkeiten, denn in dem einen Datensatz kommen viel mehr Länder vor als im anderen:
@@ -323,7 +341,7 @@ Führt die folgenden Codeblöcke nacheinander aus und schaut Euch an, wie diese 
 # Ihr nehmt Euren ersten Datensatz...
 data_2019 %>%
   # ...führt den Join aus...
-  dplyr::inner_join(gdppc_reduced, by = "country_code") %>% 
+  dplyr::inner_join(data_wb, by = "country_code") %>% 
   # ...und lasst die ersten Zeilen anzeigen
   head()
 ```
@@ -332,7 +350,7 @@ data_2019 %>%
 # Ihr nehmt Euren ersten Datensatz...
 data_2019 %>%
   # ...führt den Join aus...
-  dplyr::full_join(gdppc_reduced, by = "country_code") %>% 
+  dplyr::full_join(data_wb, by = "country_code") %>% 
   # ...und lasst die ersten Zeilen anzeigen
   head()
 ```
@@ -341,7 +359,7 @@ data_2019 %>%
 # Ihr nehmt Euren ersten Datensatz...
 data_2019 %>%
   # ...führt den Join aus...
-  dplyr::left_join(gdppc_reduced, by = "country_code") %>%
+  dplyr::left_join(data_wb, by = "country_code") %>% 
   # ...und lasst die ersten Zeilen anzeigen
   head()
 ```
@@ -350,7 +368,7 @@ data_2019 %>%
 # Ihr nehmt Euren ersten Datensatz...
 data_2019 %>%
   # ...führt den Join aus...
-  dplyr::right_join(gdppc_reduced, by = "country_code") %>%
+  dplyr::right_join(data_wb, by = "country_code") %>% 
   # ...und lasst die ersten Zeilen anzeigen
   head()
 ```
