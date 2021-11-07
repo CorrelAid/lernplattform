@@ -1,12 +1,3 @@
-Nina: Im Video unbedingt den Pipe-Operator und die gängigsten Funktionen (summarize, group_by etc...) und Power-Kombis vorstellen 
-Frie: 
-- die fünf / sechs Verben: filter, mutate, select, groupby summarize, arrange ganz am anfang und dann sich durchhangeln. groupby summarize eher rauslassen
-- tidy data Konzepte (video): https://r4ds.had.co.nz/tidy-data.html (muss man ja nicht religiös nehmen, aber vieles ist schon sinnvoll)
-- pivoting (tidyr)
-- beim "zusammenfügen" dachte ich zuerst an bind_rows, nicht an joins. was in dem fall ja auch mehr sinn  machen würde oder? vlt kann man hier ncohmal konzeptionell unterscheiden zw "daten unten anhaengen " und "mehr variablen hinzufuegen aus einem anderen datensatz"?
-- vlt kann man für joins dafür einen datensatz der Weltbank dazunehmen? irgendwas mit GDP per capita oder so? ich finde, so ist es etwas verwirrend, weil man den datensatz teilt und dann wieder zusammenführt . der fokus geht auch etwas verloren weil zuerst noch groupby summarized wird. was ich gut finde ist der gotcha mit den verschiedenen ländernamen - sehr lebensnah :D 
-- weiß nicht ob ich den forward arrow so gut finde..ich verstehe die motivation dah inter aber bin mir nicht sicher ob es nicht mehr verwirrung stiftet
-
 ### Lernziele - Was Euch diese Woche erwartet!
 - Was ist das **Tidyverse**? - Einsatz und Packages
 - Wie können wir bestimmte Beobachtungen oder Variablen in einem Datensatz **filtern**?
@@ -457,24 +448,70 @@ quiz(caption = NULL,
 ```
 
 #### Pivoting
+Über die Bereinigung von Werten im Datensatz und das Filtern von Werten hinaus, könnt Ihr auch die Form des gesamten Datensatzes über `tidyr::pivot_longer` und `tidyr::pivot_wider` verändern. Wenn Ihr beispielsweise analysieren wollt, ob manche Firmen in mehreren Ländern und in welchem Umfang die Quelle des Plastiks sind, könnt Ihr den Datensatz folgendermaßen umformen: 
+
+``` {r 07pivot_wider, exercise = TRUE}
+# Ihr nehmt den Original-Datensatz vom Beginn...
+plastics %>% 
+  # ...filtert diesen auf die relevanten Werte...
+  dplyr::filter(parent_company != 'Grand Total'
+                & country != 'EMPTY') %>% 
+  # ...wählt die Variablen von Interesse... 
+  dplyr::select(c(country, parent_company, year, grand_total)) %>%
+  # ...und ändert das Format des Datensatz von lang zu weit!
+  tidyr::pivot_wider(names_from = parent_company, values_from = grand_total)
+```
+
+Umgekehrt könnt Ihr den Datensatz natürlich auch wieder in das ursprüngliche lange Format bringen: 
+``` {r 07pivot_longer, exercise = TRUE}
+# Zuerst bringt ihr das Format des Datensatzes von lang zu weit...
+plastics %>% 
+  dplyr::filter(parent_company != 'Grand Total'
+                & country != 'EMPTY') %>% 
+  dplyr::select(c(country, parent_company, year, grand_total)) %>%
+  tidyr::pivot_wider(names_from = parent_company, values_from = grand_total) %>%
+  
+  tidyr::pivot_longer(!c(country, year), 
+                      names_to = 'parent_company', 
+                      values_to = 'grand_total') %>%
+  dplyr::filter(!is.na(grand_total))
+```
 
 
 #### Visualisierungen
 Zum Tidyverse gehört natürlich auch das `ggplot2`-Package, damit hattet ihr vor zwei Wochen bereits schicke Visualisierungen erstellt - mehr dazu lernt Ihr dann in den kommenden Wochen! 
 
 ### Exkurs: String Manipulation
-Natürlich habt Ihr auch die Möglichkeit, Strings zu verändern, in Eurem Beispiel könnte man die Namen der Länder verändern, mit dem Ziel die Daten zu bereinigen. Beispielsweise ist im Datensatz `reduced_2019` Taiwan als "Taiwan_ Republic of China (ROC)" eingetragen und Nigeria in Großbuchstaben geschrieben. Dafür hat das `stringr`-Package aus dem Tidyverse die Funktion `str_replace`:
+Natürlich habt Ihr auch die Möglichkeit, Strings zu verändern, in Eurem Beispiel könnte man die Namen der Länder verändern, mit dem Ziel die Daten zu bereinigen. Beispielsweise ist im Datensatz `reduced_2020` UK als "United Kingdom of Great Britain & Northern Ireland" eingetragen und die USA als "United States of America". Um diese Bezeichnungen zu verändern hat das `stringr`-Package aus dem Tidyverse die Funktion `str_replace`:
 
 ``` {r 07strings1, exercise = TRUE}
-reduced_2019 %>%
-  mutate(country = str_replace(country, 'Taiwan_ Republic of China (ROC)', 'ROC'),
-         country = str_to_title(country)
-         )
+# Lasst Euch zuerst alle Länder im Datensatz anzeigen...
+reduced_2020$country %>%
+  unique()
+
+# ...verändert die entsprechenden Bezeichnungen...
+reduced_2020 %>%
+  mutate(country = str_replace(country, 
+                               'United Kingdom of Great Britain & Northern Ireland', 
+                               'UK'),
+         country = str_replace(country,
+                               'United States of America',
+                               'USA')
+         ) %>%
+  # ...und lasst euch davon wieder die Ländernamen anzeigen
+  .$country
 ```
 
-@me: DAS FUNKTIONIERT SO NOCH NICHT?!
+Wenn es etwas komplizierter sein sollte, dann könnt Ihr auch Regex (Regular Expressions) verwenden, um Strings zu manipulieren. Hier findet Ihr ein gutes [Cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/){target="_blank"} mit den wichtigsten Symbolen und ihrer Bedeutung. Wenn Ihr einen Regex testen wollt, dann könnt Ihr beispielsweise folgende [Website](https://regex101.com/){target="_blank"} nutzen. Zum Beispiel könnt Ihr mit Hife von Regex alle Klammern entfernen, die noch in den Firmennamen enthalten sind. Führt dazu folgenden Code aus und versucht den Regex zu verstehen: 
 
-Wenn es etwas komplizierter sein sollte, dann könnt Ihr auch Regex (Regular Expressions) verwenden, um Strings zu manipulieren. Hier findet ihr ein gutes [Cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/){target="_blank"} mit den wichtigsten Symbolen und ihrer Bedeutung. 
+``` {r 07strings2, exercise = TRUE}
+plastics %>%
+  mutate(parent_company = str_replace(parent_company,
+                                      '\\([^()]*\\)',
+                                      '')
+         ) %>%
+  .$parent_company
+```
   
 ### Und jetzt Ihr
-
+Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_datenbereinigung**](){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
