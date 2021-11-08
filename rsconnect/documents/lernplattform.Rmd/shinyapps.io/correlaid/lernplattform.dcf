@@ -5,9 +5,9 @@ account: correlaid
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4572281
-bundleId: 5190206
+bundleId: 5217738
 url: https://correlaid.shinyapps.io/lernplattform/
-when: 1635508509.46081
-lastSyncTime: 1635508509.46082
+when: 1636121336.46638
+lastSyncTime: 1636121336.46639
 asMultiple: FALSE
 asStatic: FALSE
