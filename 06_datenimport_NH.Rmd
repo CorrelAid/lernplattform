@@ -31,13 +31,15 @@ tabelle <- "
 
 Dateiformat:  | Dateistruktur:                                                    | Endung:
 --------------|-------------------------------------------------------------------|---------------------------------
-Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx                        
-JSON          | textbasiertes, strukturiertes Format für JavaScript-Objekte       | .json (zumeist aus API-Requests) 
+CSV-Datei     | tabellarisch-strukturierte Textdatei                              | .csv 
+Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx     
+GEOJSON       | textbasiertes, strukturiertes Format  mit geographischen Daten    | .geojson
+JSON          | textbasiertes, strukturiertes Format                              | .json (zumeist aus API-Requests) 
 SAS           | SAS-Export, der nicht in allen Anwendungen geöffnet werden kann   | .sas 
 Shapefile     | Kartographische Datei, die Koordinaten und Polygone enthält       | .shp
 SPSS          | SPSS-Export, der nicht in allen Anwendungen geöffnet werden kann  | .sav
 Stata         | Stata-Export, der nicht in allen Anwendungen geöffnet werden kann | .dta
-Textdatei     | unformatierte Textdaten                                           | .csv/.txt  
+Textdatei     | allgemeine Textdateien                                            | .txt  
 "
 cat(tabelle)
 ```
@@ -130,7 +132,8 @@ Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link)
 
 ``` {r daten_einlesen_lokal, exercise = TRUE}
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
-rio::import(here::here('daten/plastics.csv'))
+plastics <- rio::import(here::here('daten/plastics.csv'))
+head(plastics)
 ```
 Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
 
@@ -142,12 +145,13 @@ Um CSV-Dateien zu lesen, benutzen wir häufig die `read.csv()`-Funktion des `rea
 # install.packages("readr")
 
 # Komma als Separator und Punkt als Dezimaltrennzeichen als Standard
-readr::read_csv(
+plastics <- readr::read_csv(
   file = here::here('daten/plastics.csv'), # Dateiname/Pfad zur Datei
   col_names = TRUE, # Vorhandensein des Headers
   skip = 0, # Festlegen, ob Zeilen übersprungen werden sollen
   na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
   )
+head(plastics)
 ```
 Aber Achtung: Wer **Programme** (insb. Excel) in **deutscher Sprache** nutzt, exportiert CSV-Dateien häufig mit dem Separator ";" und dem Dezimal-Trennzeichen ",". Das führt zu Fehlern. Deutschsprachige CSV-Dateien müssen deshalb mit der Funktion `read.csv2()` importiert werden.
 
@@ -168,6 +172,8 @@ googletrendstime_plasticpollution <- readxl::read_excel(
   sheet = "trends_over_time", # Definition des Arbeitsblatts
   col_names = TRUE, # Deklarierung der Spaltennamen
   na = c("", NA)) # Syntax fehlender Werte
+
+head(googletrendstime_plasticpollution)
 ```
 
 Ladet nun das Arbeitsblatt "by_country" der Datei "Beach Clean Up - Google Trends.xlsx". Kopiert dazu den Code von oben und passt den Dateinamen und das Arbeitsblatt an der richtigen Stelle an.
@@ -218,13 +224,13 @@ haben für unseren Kurs keine inhaltliche Bedeutung.
 library(haven)
 
 # SAS
-haven::read_sas(data_file = "https://libguides.library.kent.edu/ld.php?content_id=11205331")
+sas_daten <- haven::read_sas(data_file = "http://libguides.library.kent.edu/ld.php?content_id=11205331")
 
 # SPSS
-haven::read_sav(file = "http://calcnet.mth.cmich.edu/org/spss/V16_materials/DataSets_v16/Cars.sav")
+sav_daten <- haven::read_sav(file = "http://calcnet.mth.cmich.edu/org/spss/V16_materials/DataSets_v16/Cars.sav")
 
 # Stata
-haven::read_dta(file = "http://www.stata-press.com/data/r8/auto.dta")
+dta_daten <- haven::read_dta(file = "http://www.stata-press.com/data/r8/auto.dta")
 ```
 
 Eine Besonderheit von `.dta` und `.sav` Daten sind **"Labels"**. Labels finden sich
@@ -240,11 +246,12 @@ findet Ihr dazu Hilfe.
 Normalerweise lesen wir JSONs nicht manuell ein, vielmehr sind sie **Teil der Antwort einer Datenabfrage**. Der Vollständigkeit halber findet Ihr trotzdem das Package `jsontlite` und die Funktion `read_json()` zum Einlesen von JSON-Dateien.
 ```{r json_exercise, exercise = TRUE}
 # Einlesen einer JSON-Datei mit dem jsonlite-Package.
-jsonlite::read_json(here::here("daten/deutsche_gemeinden.json"))
+dtgemeinden <- jsonlite::read_json(here::here("daten/deutsche_gemeinden.json"))
+head(dtgemeinden)
 ```
 
 #### Geo(-referenzierte) Daten
-Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergänzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein.
+Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergänzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein. <br>
 *Achtung: Damit der Import funktioniert müsst Ihr die gesamte ZIP-Datei, die Ihr laden wollt, in einem Ordner mit der hier gewünschten .shp-Datei ablegen - also auch alle Dateien mit anderen Endungen.*
 ```{r polygons_world, exercise = TRUE}
 # install.packages("sf")
@@ -273,7 +280,7 @@ plot(polygons_deutschland$geometry)
 Der Import von geographischen Daten folgt also der folgenden Checkliste:
 
 1. Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
-2. Wo kann ich zugehörige **Shapefiles** finden? 
+2. Wo kann ich zugehörige **Shapefiles** finden? <br>
       Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden. 
 3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
 
@@ -292,6 +299,8 @@ wb_areas <- WDI::WDI(
   end = 2018, # Auswahl Zeithorizont: Ende
   language = "en" # Sprachauswahl
 ) 
+
+head(wb_areas)
 ```
 
 Ladet nun den Datensatz zum Indikator ["Fish species, threatened" (EN.FSH.THRD.NO)](https://data.worldbank.org/indicator/EN.FSH.THRD.NO?view=chart){target="_blank"} für das Jahr 2018. Kopiert dazu den Code von oben und fügt den richtigen Indikatorschlüssel ein.
