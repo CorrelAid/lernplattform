@@ -5,6 +5,18 @@
 
 ### Kernaussagen
 
+### comments Phil
+- first things first: mega Lektion!
+- Anmerkung zu filter: sind die verschiedenen Variablentypen klar genug?
+  - Warum brauche ich Anführungszeichen um die 2000, bzw wann brauch ich die nicht?
+- Anmerkung zu select: es können auch mehrere Variablen mit `-c()` gelöscht werden (manchmal ganz handy) 
+- Anmerkung zu Bild von joins: Zumindest auf meinem Bildschirm war das grau nur sehr schwer zu erkennen
+- Anmerkungen zu joins: Variablen müssen nicht unbedingt gleich heißen, vllt eine nützliche Info (dann sieht die by Bedingung etwas anders aus)
+- pivoting wäre sehr cool mit Visualisierung im Video, fällt am Anfang extrem schwer sich das vorzustellen
+- `str_replace()` könnte man auch mit `str_remove()` ersetzen (oder beide zeigen)
+- das ist alles jammern auf höchstem Niveau btw. :D 
+
+
 #### Das Tidyverse
 <left>
 ![*Tidyverse](https://www.tidyverse.org/images/hex-tidyverse.png){#id .class width=20% height=100%}
