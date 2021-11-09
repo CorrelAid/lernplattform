@@ -5,18 +5,6 @@
 
 ### Kernaussagen
 
-### comments Phil
-- first things first: mega Lektion!
-- Anmerkung zu filter: sind die verschiedenen Variablentypen klar genug?
-  - Warum brauche ich Anführungszeichen um die 2000, bzw wann brauch ich die nicht?
-- Anmerkung zu select: es können auch mehrere Variablen mit `-c()` gelöscht werden (manchmal ganz handy) 
-- Anmerkung zu Bild von joins: Zumindest auf meinem Bildschirm war das grau nur sehr schwer zu erkennen
-- Anmerkungen zu joins: Variablen müssen nicht unbedingt gleich heißen, vllt eine nützliche Info (dann sieht die by Bedingung etwas anders aus)
-- pivoting wäre sehr cool mit Visualisierung im Video, fällt am Anfang extrem schwer sich das vorzustellen
-- `str_replace()` könnte man auch mit `str_remove()` ersetzen (oder beide zeigen)
-- das ist alles jammern auf höchstem Niveau btw. :D 
-
-
 #### Das Tidyverse
 <left>
 ![*Tidyverse](https://www.tidyverse.org/images/hex-tidyverse.png){#id .class width=20% height=100%}
@@ -122,7 +110,7 @@ quiz(caption = NULL,
 
 Um Euch einen Überblick über die Daten zu verschaffen, führt folgenden Code aus. Die Funktion `dplyr::arrange` **sortiert** dabei die Werte in der ausgewählten Spalte.
 
-``` {r 07overview_data, exercise = TRUE}
+``` {r 07arrange_data, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
 plastics %>%
   # ...und sortiert die Werte absteigend!
@@ -150,7 +138,7 @@ Ihr das `dplyr` Package auch zum **Filtern von Zeilen bzw. Beobachtungen** verwe
 # Ihr nehmt Euren Datensatz...
 plastics %>%
   # ..filtert "EMPTY" und "Grand Total" heraus
-  filter(country != "EMPTY" & parent_company == "Grand Total") %>%
+  dplyr::filter(country != "EMPTY" & parent_company == "Grand Total") %>%
   # ...und sortiert die Werte absteigend!
   dplyr::arrange(desc(grand_total))
 ```
@@ -180,6 +168,14 @@ plastics_2020 <- plastics %>%
 grade_this_code()
 ```
 
+Kleine Anmerkung: Wie Euch bestimmt aufgefallen ist, sind die Jahreszahlen beim Filtern in Anführungszeichen geschrieben. Hier kommt es auf den Datentyp an, ob Ihr Anführungszeichen braucht oder nicht - in diesem Fall ist die Variable `plastics$year` sogar numerisch, die Anführungszeichen damit gar nicht notwendig. Hier aber dafür noch eine kleine Übersicht über die Datentypen, die es in R gibt: 
+
+- character: `apfel`, `wort`
+- numeric: `2`, `15.5`
+- integer: `2L` (das L teilt R nur mit, die 2 als Integer zu speichern)
+- logical: `True`, `False`
+- complex: `2+3i`
+
 #### Die Funktion `dplyr::select`
 
 Neben Zeilen bzw. Beobachtungen könnt Ihr aber natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `select` wieder weiter. Mit `select` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `plastics_2019`-Datensatz:
@@ -189,6 +185,8 @@ Neben Zeilen bzw. Beobachtungen könnt Ihr aber natürlich auch **Spalten bzw. V
 plastics_reduced <- plastics_2019 %>%
   dplyr::select(-grand_total)
 ```
+
+Kleine Anmerkung: Natürlich könnt Ihr auch mehere Variablen gleichzeitig aus dem Datensatz entfernen, dafür könnt Ihr einfach `-c(variable1, variable2)` verwenden!
 
 Führt den folgenden Code aus, um Euch alle im Datensatz enthaltenen Variablen anzeigen zu lassen. Wie Ihr seht: `grand_total` ist nicht mehr enthalten!
 
@@ -416,7 +414,7 @@ data_2019 %>%
   head()
 ```
 
-Da die Variable auch den **gleichen Namen** in beiden Datensätzen haben muss, benennt Ihr die Variablen im Datensatz `wb_areas` nun um und löscht die Variablen `country` und `year`:
+Da die Variable auch den **gleichen Namen** in beiden Datensätzen haben sollte (dazu findet Ihr unten noch eine Anmerkung), benennt Ihr die Variablen im Datensatz `wb_areas` nun um und löscht die Variablen `country` und `year`:
 
 ``` {r 07wb_clean, exercise = TRUE}
 # Umbennung der Spalten
@@ -525,6 +523,8 @@ quiz(caption = NULL,
 )
 ```
 
+Kleine Anmerkung: Ihr könnt auch zwei Datensätze zusammenfügen, wenn die Variablen unterschiedlich benannt sind. In dem Fall sieht das `by`-Argument dann ein wenig anders aus, z.B. `by = c("a" = "b")`. Schaut dazu auch mal in die [Dokumentation der joins](https://dplyr.tidyverse.org/reference/mutate-joins.html){target="_blank"}!
+
 #### Pivoting
 Über die Bereinigung von Werten im Datensatz und das Filtern von Werten hinaus, könnt Ihr auch die Form des gesamten Datensatzes über `tidyr::pivot_longer` und `tidyr::pivot_wider` verändern. Wenn Ihr beispielsweise analysieren wollt, ob manche Firmen in mehreren Ländern und in welchem Umfang die Quelle des Plastiks sind, könnt Ihr den Datensatz folgendermaßen umformen: 
 
@@ -542,13 +542,14 @@ plastics %>%
 
 Umgekehrt könnt Ihr den Datensatz natürlich auch wieder in das ursprüngliche lange Format bringen: 
 ``` {r 07pivot_longer, exercise = TRUE}
-# Zuerst bringt ihr das Format des Datensatzes von lang zu weit...
+# Zuerst bringt Ihr das Format des Datensatzes von lang zu weit...
 plastics %>% 
   dplyr::filter(parent_company != 'Grand Total'
                 & country != 'EMPTY') %>% 
   dplyr::select(c(country, parent_company, year, grand_total)) %>%
   tidyr::pivot_wider(names_from = parent_company, values_from = grand_total) %>%
   
+  # ...um es dann wieder von weit zu lang zu ändern!
   tidyr::pivot_longer(!c(country, year), 
                       names_to = 'parent_company', 
                       values_to = 'grand_total') %>%
@@ -583,10 +584,19 @@ reduced_2020 %>%
 Wenn es etwas komplizierter sein sollte, dann könnt Ihr auch Regex (Regular Expressions) verwenden, um Strings zu manipulieren. Hier findet Ihr ein gutes [Cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/){target="_blank"} mit den wichtigsten Symbolen und ihrer Bedeutung. Wenn Ihr einen Regex testen wollt, dann könnt Ihr beispielsweise folgende [Website](https://regex101.com/){target="_blank"} nutzen. Zum Beispiel könnt Ihr mit Hilfe von Regex alle Klammern entfernen, die noch in den Firmennamen enthalten sind. Führt dazu folgenden Code aus und versucht den Regex zu verstehen: 
 
 ``` {r 07strings2, exercise = TRUE}
+# Erste Möglichkeit: Ersetzen des gefundenen Strings durch '' mit str_replace
 plastics %>%
-  mutate(parent_company = str_replace(parent_company,
+  mutate(parent_company = stringr::str_replace(parent_company,
                                       '\\([^()]*\\)',
                                       '')
+         ) %>%
+  .$parent_company
+
+# Zweite Möglichkeit: Löschen des gefundenen Strings mit str_remove
+plastics %>%
+  mutate(parent_company = stringr::str_remove(parent_company,
+                                              '\\([^()]*\\)'
+                                              )
          ) %>%
   .$parent_company
 ```
