@@ -11,7 +11,7 @@
 </left>
 <br>
 
-- Das Tidyverse ist eine **Sammlung von verschiedenen R-Packages**, die aufeinander abgestimmt sind und dabei der selben Logik folgen ([tidyverse.org](https://www.tidyverse.org/){target="_blank"}). 
+- Das Tidyverse ist eine **Sammlung von verschiedenen R-Packages**, die aufeinander abgestimmt sind und dabei derselben Logik folgen ([tidyverse.org](https://www.tidyverse.org/){target="_blank"}). 
 - Einige der Packages und Funktionen kennt Ihr bereits aus den letzten Wochen!
 - Die Packages können einzeln installiert und aufgerufen werden, aber auch gesammelt über `install_packages('tidyverse')` bzw. `library(tidyverse)`. 
 - Aber was macht einen **Datensatz tidy**?
@@ -137,7 +137,7 @@ Ihr das `dplyr` Package auch zum **Filtern von Zeilen bzw. Beobachtungen** verwe
 ``` {r 07overview_data, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
 plastics %>%
-  # ..filtert "EMPTY" heraus
+  # ..filtert "EMPTY" und "Grand Total" heraus
   filter(country != "EMPTY" & parent_company == "Grand Total") %>%
   # ...und sortiert die Werte absteigend!
   dplyr::arrange(desc(grand_total))
@@ -173,6 +173,7 @@ grade_this_code()
 Neben Zeilen bzw. Beobachtungen könnt Ihr aber natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `select` wieder weiter. Mit `select` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `plastics_2019`-Datensatz:
 
 ``` {r 07select_data1, exercise = TRUE}
+# Spalte "grand total" NICHT auswählen
 plastics_reduced <- plastics_2019 %>%
   dplyr::select(-grand_total)
 ```
@@ -180,6 +181,7 @@ plastics_reduced <- plastics_2019 %>%
 Führt den folgenden Code aus, um Euch alle im Datensatz enthaltenen Variablen anzeigen zu lassen. Wie Ihr seht: `grand_total` ist nicht mehr enthalten!
 
 ``` {r 07select_data2, exercise = TRUE}
+# Spaltenbezeichnungen anzeigen lassen
 plastics_reduced %>%
   names()
 ```
@@ -226,7 +228,7 @@ reduced_2019 <- plastics_2019 %>%
                 & country != "EMPTY") %>%
   # ...gruppiert die Daten nach Ländern,...
   dplyr::group_by(country) %>%
-  # ...und aggreggiert die Daten für die einzelnen Länder
+  # ...und aggregiert die Daten für die einzelnen Länder
   dplyr::summarize(grand_total = sum(grand_total),
                    num_events = mean(num_events),
                    volunteers = mean(volunteers))
@@ -281,7 +283,7 @@ quiz(caption = NULL,
 ```
 
 #### Umgang mit NA's
-Nachdem Ihr nun Variablen und Beobachtungen auswählen und filtern könnt, schaut Ihr Euch nun den Umgang mit fehlenden Werten, also NA's (**n**ot **a**vailable) an. Versucht zu erst einmal, den Mittelwert für die Variable `grand_total` im Datensatz `reduced_2019` zu berechnen. (Hinweis: Für den Mittelwert habt Ihr die Funktion `mean()` kennengelernt.)
+Nachdem Ihr nun Variablen und Beobachtungen auswählen und filtern könnt, schaut Ihr Euch nun den Umgang mit fehlenden Werten, also NA's (**n**ot **a**vailable) an. Versucht zuerst einmal, den Mittelwert für die Variable `grand_total` im Datensatz `reduced_2019` zu berechnen. (Hinweis: Für den Mittelwert habt Ihr die Funktion `mean()` kennengelernt.)
 
 ``` {r 07mean_na1, exercise = TRUE}
 # Berechnung des Mittelwerts für 2019
@@ -326,9 +328,10 @@ quiz(caption = NULL,
 )
 ```
 
-Trotzdem wollt Ihr Euren Mittelwert ja berechnen - dafür könnt Ihr R explizit sagen, dass die NA's bei der Berechnung ignoriert werden sollen. Das funktioniert über das Argument `na.rm = TRUE`, das Ihr schon aus der vorherigen Übung kennt:
+Trotzdem wollt Ihr Euren Mittelwert ja berechnen - dafür könnt Ihr R explizit sagen, dass die **NA's bei der Berechnung ignoriert** werden sollen. Das funktioniert über das Argument `na.rm = TRUE`, das Ihr schon aus der vorherigen Übung kennt:
 
 ``` {r 07mean_na4, exercise = TRUE}
+# Berechnung des Mittelwerts unter Ausschluss der NAs
 reduced_2020$grand_total %>%
   mean(na.rm = TRUE)
 ```
@@ -349,6 +352,7 @@ data_no_na <- na.omit(reduced_2020)
 **Achtung:** Häufig kommt es auch vor, dass **NA's nicht als NA's codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** angegeben. Schaut deshalb immer ins **Codebuch** bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen mit einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`. Da in Eurem Plastik-Datensatz die Bereinigung schon stattgefunden hat und NA's bereits so codiert sind, hier ein anderer kleiner Beispieldatensatz:
 
 ``` {r 07mean_na6, exercise = TRUE}
+# Erstellung eines Beispieldataframes mit NAs als "NA" und "-99"
 df <- tibble::tribble(
   ~name,              ~x,  ~y,           ~z,  
   "Person 1",         1,   -99,          6.7, 
@@ -356,9 +360,11 @@ df <- tibble::tribble(
   "Person 3",         NA,  0.76,         -1.6
   )
 
+# Definition der NAs
 df2 <- df %>% 
   dplyr::na_if(-99)
 
+# Erste fünf Zeilen anzeigen
 head(df2)
 ```
 
@@ -401,10 +407,12 @@ data_2019 %>%
 Da die Variable auch den **gleichen Namen** in beiden Datensätzen haben muss, benennt Ihr die Variablen im Datensatz `wb_areas` nun um und löscht die Variablen `country` und `year`:
 
 ``` {r 07wb_clean, exercise = TRUE}
+# Umbennung der Spalten
 data_wb <- wb_areas %>% 
   dplyr::select(country_code = 'iso2c',
                 protected_area = 'ER.PTD.TOTL.ZS'
                 )
+# Erste fünf Zeilen anzeigen
 data_wb %>%
   head()
 ```
@@ -560,7 +568,7 @@ reduced_2020 %>%
   .$country
 ```
 
-Wenn es etwas komplizierter sein sollte, dann könnt Ihr auch Regex (Regular Expressions) verwenden, um Strings zu manipulieren. Hier findet Ihr ein gutes [Cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/){target="_blank"} mit den wichtigsten Symbolen und ihrer Bedeutung. Wenn Ihr einen Regex testen wollt, dann könnt Ihr beispielsweise folgende [Website](https://regex101.com/){target="_blank"} nutzen. Zum Beispiel könnt Ihr mit Hife von Regex alle Klammern entfernen, die noch in den Firmennamen enthalten sind. Führt dazu folgenden Code aus und versucht den Regex zu verstehen: 
+Wenn es etwas komplizierter sein sollte, dann könnt Ihr auch Regex (Regular Expressions) verwenden, um Strings zu manipulieren. Hier findet Ihr ein gutes [Cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/){target="_blank"} mit den wichtigsten Symbolen und ihrer Bedeutung. Wenn Ihr einen Regex testen wollt, dann könnt Ihr beispielsweise folgende [Website](https://regex101.com/){target="_blank"} nutzen. Zum Beispiel könnt Ihr mit Hilfe von Regex alle Klammern entfernen, die noch in den Firmennamen enthalten sind. Führt dazu folgenden Code aus und versucht den Regex zu verstehen: 
 
 ``` {r 07strings2, exercise = TRUE}
 plastics %>%
