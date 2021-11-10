@@ -48,9 +48,15 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Modus (auch: Modalwert)** = häufigster Wert in einer Menge an Zahlen
 
+**NA** = fehlender Wert (*not available*)
+
 **Open Source Software** = frei nutzbare, unlizenzierte Software (aber eventuell mit Verpflichtung zur Autor:innenkennung)
 
 **Packages** (zu dt. Pakete) = Bündel an programmierten, wiederverwendbaren Funktionalitäten
+
+**Pivoting** = Umformen eines rechteckigen Datensatzes zwischen long- und wide-Format
+
+**Regex** (Regular Expressions) = Reguläre Ausdrücke zur Bestimmung von bestimmten Zeichen(folgen) 
 
 **Relative Häufigkeit** = Prozentualer Anteil der Ausprägungen in einer Gruppe
 
@@ -69,6 +75,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 **Statuscode** = Antwort eines Servers auf HTTP-Anfragen (über APIs)
 
 **Subsets** = Teilmenge des Datensatzes
+
+**Tidyverse** = Sammlung an Packages zur Datenbereinigung, die aufeinander abgestimmt sind und dabei der selben Logik folgen
 
 **Variable Assignment** (zu dt. Variablenzuweisung) = Benennung von Objekten (in R durch "objektname <- objekt)
 
@@ -159,11 +167,13 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 
 **Einlesen von Dateien** = `rio::import()`
 
-**Gruppierung von Zielen** (Beobachtungen) nach Kriterien = `dplyr::group_by()`
+**Gruppierung von Zeilen** (Beobachtungen) nach Kriterien = `dplyr::group_by()`
 
 **Hilfe** = `help("")`/`?funktion`
 
 **Installation von Packages** = `install.packages("") `
+
+**Joins** (Zusammenfügen von Datensätzen) = `dplyr::full_join()`, `dplyr::inner_join()`, `dplyr::left_join()`, `dplyr::right_join()`
 
 **Laden von Packages** = `library()`
 
@@ -174,6 +184,8 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 **Spaltenanzahl** = `ncol()`
 
 **Standardabweichung** = `sd()`
+
+**String-Manipulation** = `stringr::str_replace`/`stringr::str_remove()`
 
 **Subsets** = `subset()`
 
