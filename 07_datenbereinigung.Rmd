@@ -3,19 +3,9 @@
 - Wie können wir bestimmte Beobachtungen oder Variablen in einem Datensatz **filtern**?
 - Mehr als ein Datensatz? - Wie wir mehrere **Datensätze zusammenfügen** können
 
+![*Video: Datenbereinigung (30min)*](https://youtu.be/YWFLSovbha0)
+
 ### Kernaussagen
-
-### comments Phil
-- first things first: mega Lektion!
-- Anmerkung zu filter: sind die verschiedenen Variablentypen klar genug?
-  - Warum brauche ich Anführungszeichen um die 2000, bzw wann brauch ich die nicht?
-- Anmerkung zu select: es können auch mehrere Variablen mit `-c()` gelöscht werden (manchmal ganz handy) 
-- Anmerkung zu Bild von joins: Zumindest auf meinem Bildschirm war das grau nur sehr schwer zu erkennen
-- Anmerkungen zu joins: Variablen müssen nicht unbedingt gleich heißen, vllt eine nützliche Info (dann sieht die by Bedingung etwas anders aus)
-- pivoting wäre sehr cool mit Visualisierung im Video, fällt am Anfang extrem schwer sich das vorzustellen
-- `str_replace()` könnte man auch mit `str_remove()` ersetzen (oder beide zeigen)
-- das ist alles jammern auf höchstem Niveau btw. :D 
-
 
 #### Das Tidyverse
 <left>
@@ -122,7 +112,7 @@ quiz(caption = NULL,
 
 Um Euch einen Überblick über die Daten zu verschaffen, führt folgenden Code aus. Die Funktion `dplyr::arrange` **sortiert** dabei die Werte in der ausgewählten Spalte.
 
-``` {r 07overview_data, exercise = TRUE}
+``` {r 07overview_data2, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
 plastics %>%
   # ...und sortiert die Werte absteigend!
