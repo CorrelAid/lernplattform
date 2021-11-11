@@ -1,7 +1,4 @@
-### Lernziele - Was Euch diese Woche erwartet!
-- Was ist das **Tidyverse**? - Einsatz und Packages
-- Wie können wir bestimmte Beobachtungen oder Variablen in einem Datensatz **filtern**?
-- Mehr als ein Datensatz? - Wie wir mehrere **Datensätze zusammenfügen** können
+## Datenbereinigung
 
 ![*Video: Datenbereinigung (30min)*](https://youtu.be/YWFLSovbha0)
 

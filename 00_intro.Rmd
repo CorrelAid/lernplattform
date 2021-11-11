@@ -26,6 +26,8 @@ Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen ha
 
 Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Kontaktiert nach Eurer Registrierung bei DataQuest einfach Nina (nina.h@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist auf Anfänger:innen gedacht.
 
+Materialien der Lernplattform sind unter **CC-BY 4.0** lizensiert (Open Source mit Autor:innenakkreditierung). Bitte behandelt den **Link zur Lernplattform vertraulich**. 
+
 ### Eckdaten 
 - 1.10.21 - 17.12.21, Aufwand: 2-4h/Woche
 - Blended-Learning mit Lernplattform

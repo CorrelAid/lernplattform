@@ -230,8 +230,8 @@ cat(out, sep = '')
 
 ## Datenbereinigung
 ```{r results='asis'}
-out <- knitr::knit_child("07_datenbereinigung.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("07_datenbereinigung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ## Reports

@@ -191,13 +191,7 @@ readxl::read_excel(
 ```
 
 ```{r exercise_excel-check}
-grade_this_code(pass = "Gut gemacht!", 
-                           fail = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Datei- und Arbeitsblattnamen ersetzt?",
-                           code_correct = "Gut gemacht!", 
-                           code_incorrect = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Datei- und Arbeitsblattnamen ersetzt?",
-                           maybe_code_feedback = FALSE,
-                           fail.hint = FALSE,
-                           grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung.")
+grade_this_code()
 ```
 
 #### SPSS, SAS und Stata
@@ -243,11 +237,13 @@ in R eingelesen werden, kann es aber manchmal zu Problemen mit den Labels kommen
 findet Ihr dazu Hilfe.
 
 #### JSON
-Normalerweise lesen wir JSONs nicht manuell ein, vielmehr sind sie **Teil der Antwort einer Datenabfrage**. Der Vollständigkeit halber findet Ihr trotzdem das Package `jsontlite` und die Funktion `read_json()` zum Einlesen von JSON-Dateien.
+Normalerweise lesen wir JSONs nicht manuell ein, vielmehr sind sie **Teil der Antwort einer Datenabfrage**. Der Vollständigkeit halber findet Ihr hier trotzdem das Package `jsontlite` und die Funktion `read_json()` zum Einlesen von JSON-Dateien.
 ```{r json_exercise, exercise = TRUE}
 # Einlesen einer JSON-Datei mit dem jsonlite-Package.
 dtgemeinden <- jsonlite::read_json(here::here("daten/deutsche_gemeinden.json"))
-head(dtgemeinden)
+
+# Drucken des zweiten Elements
+head(dtgemeinden[[2]])
 ```
 
 #### Geo(-referenzierte) Daten
@@ -320,13 +316,7 @@ WDI::WDI(
 ```
 
 ```{r exercise_wb-check}
-grade_this_code(pass = "Gut gemacht!", 
-                           fail = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Indikatorschlüssel ersetzt?",
-                           code_correct = "Gut gemacht!", 
-                           code_incorrect = "Das ist leider nicht ganz richtig. Hast Du den Code von oben vollständig kopiert und den Indikatorschlüssel ersetzt?",
-                           maybe_code_feedback = FALSE,
-                           fail.hint = FALSE,
-                           grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung.")
+grade_this_code()
 ```
 
 Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr einfach und wir sparen uns viel Zeit für die Datenbereinigung. Neben dem `WDI`-Package für die World Bank, gibt es noch viele **weitere, nützliche R-Packages**:
@@ -349,7 +339,7 @@ Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure 
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
 ### Und jetzt Ihr
-Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben:
+Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige [RMD 06_Datenimport](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"}:
 
 1. Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei mit diesem Code **lokal zu laden**.
 2. Ladet den "Plastics"-Datensatz über einen [**Hyperlink**](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.

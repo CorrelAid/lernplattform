@@ -1,0 +1,71 @@
+---
+title: "Datenbereinigung in R"
+author: "Zoé Wolter"
+date: "Nov 19, 2021"
+output: pdf_document
+---
+
+### Schritt 1: Infrastruktur
+Im ersten Schritt müsst Ihr alle Packages installieren und laden, mit denen Ihr später arbeiten werdet. Installiert und ladet hier das `tidyverse`-Package, falls Ihr weitere Packages benutzen wollt, fügt sie gerne hinzu!
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# Hier Euer Code!
+```
+
+
+### Schritt 2: Daten laden
+Als nächstes ladet Ihr den Datensatz `plastics`, den Ihr inzwischen schon gut kennt. Nutzt dafür das die Funktion `read_csv`, die Daten findet Ihr unter diesem Link: https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv
+
+```{r datenimport}
+plastics <- # Hier Euer Code!
+```
+
+
+### Schritt 3: Daten bereinigen
+
+#### Daten filtern
+Filtert die Daten zuerst für 2019. Welche Variable nimmt hier den Wert 2019 an?
+
+```{r filtern}
+plastics <- # Hier Euer Code!
+```
+
+#### Länder bereinigen
+Schaut Euch einmal an, welche Länder im Datensatz enthalten sind. Nutzt hierfür die Funktion `unique()` für die Variable `country`.
+
+```{r länder_untersuchen}
+# Hier Euer Code!
+```
+
+Passt die Länderbezeichnungen nun an:
+
+- Großbritannien soll mit *United Kingdom* bezeichnet werden, 
+- die USA sollen mit *United States* benannt werden
+- und Ecuador (und auch alle anderen Bezeichnungen) sollen nicht im upper case geschrieben sein. 
+
+Hinweis: Schaut Euch dafür die Hilfe zu den Funktionen `?stringr::str_replace()` und `?stringr::str_to_title()` einmal an.
+
+```{r länder_anpassen}
+plastics <- # Hier Euer Code!
+```
+
+Nachdem Ihr die Ländernamen nun bereinigt habt, fügt jetzt noch zwei neue Variablen hinzu: 
+
+- `continent`: Name des Kontinents, zu dem das Land gehört,
+- `countrycode`: Countrycode des Landes in iso3c.
+
+Hinweis: Das `countrycode`-Package ist hier wahnsinnig hilfreich. Schaut gerne mal in die Dokumentation des Packages (https://cran.r-project.org/web/packages/countrycode/countrycode.pdf), bevor Ihr die Aufgabe bearbeitet.
+
+```{r countrycode}
+plastics <- # Hier Euer Code!
+```
+
+Leider hat das jetzt nicht für alle Länder und Kontinente wie erhofft funktioniert, codiert deshalb alle NA's in den Variablen `countrycode` und `continent` um und bezeichnet diese mit *Unknown*.
+
+```{r countrycode_na}
+plastics <- # Hier Euer Code!
+```
+
+Kam Euch das alles irgendwie bekannt vor? Diesen Code habt Ihr im Übungsskript zu den ersten Analysen mit R bereits ausgeführt, solltet ihn damals aber noch ignorieren - jetzt könnt Ihr den Code schon selbst schreiben, sehr gut! Wenn Ihr weitere Ideen zur Bereinigung des Codes habt oder Ihr die `dplyr`-Verben nochmal testen wollt, dann macht gerne mit diesem Datensatz weiter oder versucht Euren eigenen Datensatz von Anfang an einzulesen und zu bereinigen. 

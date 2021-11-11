@@ -42,6 +42,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Integrierte Entwicklungsumgebung** (kurz: IDE) = Umgebung für das Schreiben und die Interpretation von Code
 
+**JSON** = textbasiertes, strukturiertes Dateiformat
+
 **Median** = robuster "Mittelpunkt" mehrerer Zahlen (50% der Ausprägungen sind kleiner oder größer)
 
 **Mittelwert** = Durchschnittswert einer Menge aus mehreren Zahlen
@@ -66,9 +68,13 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **RProject** = Tool zur Dateibündelung von Codeskripten, Daten uvm. für das vereinfachte Teilen von Programmierprojekten
 
+**Shapefile** = Kartographische Datei, die Koordinaten und Polygone enthält
+
 **Shiny Web App** = *Framework* zur Programmierung von interaktiven *Dashboards* in R
 
 **Slicing** = Zugriff auf bestimmte Daten in einem *Dataframe*
+
+**SQL** (Structured Query Language, dt. Strukturierte Abfragesprache) = eine Sprache zur Definition, Bearbeitung und Abfrage von Daten aus Datenbanken
 
 **Standardabweichung** = standardisiertes Maß für die Streuung um den Mittelwert
 
@@ -140,8 +146,11 @@ subset(dataframe, ausdruck) <br>
 ### Wichtige Packages in R
 Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere Funktionen. Diese findet Ihr in sog. Packages:
 
-`library(dplyr)` - Package zur Datenbereinigung und Berechnung statistischer Kennzahlen <br>
-`library(ggplot2)` - Package zur Visualisierung von Daten <br>
+`library(dplyr)` - tidyverse-Package zur Datenbereinigung und Berechnung statistischer Kennzahlen <br>
+`library(ggplot2)` - tidyverse-Package zur Visualisierung von Daten <br>
+`library(here)` - Package zur Vereinfachung der Navigation in Orderstrukturen <br>
+`library(httr)` - Package zum Schreiben von eigenen API-Anfragen <br>
+`library(readr)` - tidyverse-Package zum Import von Daten <br>
 `library(rio)` - Package zum vereinfachten Laden von Daten <br>
 `library(tidyverse)` - Packagesammlung für die Datenwissenschaft <br>
 
@@ -165,7 +174,7 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 
 **Dimension** = `dim()`
 
-**Einlesen von Dateien** = `rio::import()`
+**Einlesen von Dateien** = `rio::import()`, `readr::read_csv()`, `readxl::read_excel()`, `jsonlite::read_json()`, `sf::st_read()`, ...
 
 **Gruppierung von Zeilen** (Beobachtungen) nach Kriterien = `dplyr::group_by()`
 
@@ -197,7 +206,7 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 
 **Varianz** = `var()`
 
-**(Erstellung einer) Visualisierung** = `ggplot2:ggplot(data = , aes(x = , y = ))`
+**(Erstellung einer) Visualisierung** = `ggplot2:ggplot(data = , aes(x = , y = ))`, `plot()`
 
 **Zeilenanzahl** = `nrow()`
 
