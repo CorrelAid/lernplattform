@@ -110,7 +110,6 @@ quiz(caption = NULL,
 Um Euch einen Überblick über die Daten zu verschaffen, führt folgenden Code aus. Die Funktion `dplyr::arrange` **sortiert** dabei die Werte in der ausgewählten Spalte.
 
 ``` {r 07arrange_data, exercise = TRUE}
->>>>>>> d42a79ea277c01c4ee336a7e68638ce165b1cc61
 # Ihr nehmt Euren Datensatz...
 plastics %>%
   # ...und sortiert die Werte absteigend!
@@ -153,7 +152,7 @@ plastics_2019 <- plastics %>%
 
 Jetzt seid Ihr dran! Erstellt aus `plastics` nun noch einen Datensatz `plastics_2020`, der nur die Daten aus dem Jahr 2020 enthält: 
 
-``` {r 07filter_data_exercise, exercise = TRUE}
+``` {r exercise_07filter_data_exercise, exercise = TRUE}
 # Hier Euer Code!
 
 ```
