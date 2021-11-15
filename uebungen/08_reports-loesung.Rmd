@@ -1,0 +1,12 @@
+---
+title: "R Markdown Reports"
+author: "Lisa Reiber"
+date: "Nov 26, 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+#TODO sobald die Übung fertig ist
+```

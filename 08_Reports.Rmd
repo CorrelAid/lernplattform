@@ -1,111 +1,144 @@
+## R Markdown Reports
 
-Frie: hier wird es wahrscheinlich schwer die übung auf der platform direkt zu machen? 
+<!-- Frie: hier wird es wahrscheinlich schwer die übung auf der platform direkt zu machen?  -->
 
-ganz praktisch sehe ich schon die fragen nach Logo und CI kommen. latex und css sind natuerlich bitchesss aber how do we deal with this? :D bin kein fan davor, leute nicht zumindest vorzuwarnen, dass in der realität sowas auch noch auf sie zukommt. 
+<!-- ganz praktisch sehe ich schon die Fragen nach Logo und CI kommen. latex und css sind natuerlich bitchesss aber how do we deal with this? :D bin kein fan davor, leute nicht zumindest vorzuwarnen, dass in der realität sowas auch noch auf sie zukommt.  -->
 
-## Aufbau Video
+### Aufbau Video
 
-1.  Kurze Einführung/Wiederholung was ist R-Markdown?
+1.  Kurze Einführung/Wiederholung: Was ist R-Markdown?\
 
 2.  Wofür ist es nützlich?
 
-    1.  --\> unter anderem Reporting (Export Möglichkeiten von RMarkdown)
-    2.  --\> Exercise 1: Explore R-Markdown Gallery, post your fav in slack channel
+    1.  --\> unter anderem Reporting (Export Möglichkeiten von RMarkdown)\
+    2.  --\> Exercise 1: Explore R-Markdown Gallery, post your fav in slack channel\
 
 3.  Struktur von RMarkdown
 
-    1.  YAML Header
+    1.  YAML Header\
+    2.  Inhalte\
+    3.  Knitr Code Chunks\
 
-    2.  Inhalte
-
-    3.  Knitr Code Chunks
-
-```{=html}
-<!-- -->
-```
 4.  Inhalte
 
-    1.  Überschriften
-    2.  Text
-    3.  Listen
-    4.  Links
-    5.  Bilder
+    1.  Überschriften\
+    2.  Text\
+    3.  Listen\
+    4.  Links\
+    5.  Bilder\
     6.  --\> Exercise mit [Tutorial](https://commonmark.org/help/tutorial/)
 
 5.  Code Chunks (wurde evtl schon abgedeckt?)
 
-    1.  Tabellen einfügen
-    2.  Plots darstellen
+    1.  Tabellen einfügen\
+    2.  Plots darstellen\
 
 6.  YAML Header
 
-    1.  Basic Funktionen
-
+    1.  Basic Funktionen\
     2.  Advanced Optionen
+    3.  Params Parameter\
+    4.  --\> Exercises: wähle ein theme aus, füge ein Inhaltsverzeichnis ein, toggle sichtbarkeit von chunks
 
-    3.  Params Parameter
+### Kernaussagen
 
-    4.  --\> Exercise wähle ein theme aus, füge ein Inhaltsverzeichnis ein, toggle sichtbarkeit von chunks
+-   R Markdown ist ein Framework das es ermöglicht sowohl R Code zu schreiben und auszuführen, als auch den Code und die dazugehörigen Ergebnisse mit anderen zu teilen.\
 
-## Topic 1
+-   Mit R Markdown Dateien habt ihr schon in den vorigen Wochen gearbeitet und wir beschäftigen uns nun detailierter mit den verschiedenen Komponenten von R Markdown und den Funktionen für die ihr R Markdown verwenden könnt.\
 
-### Exercise
+-   R Markdown ist so beliebt, weil es ermöglicht alle Schritte einer Datenanalyse an einem Ort zu sammeln und auf vielfätige Art & Weise mit anderen zu teilen.
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+    -   Einleitung und Fragestellung (Text)\
+    -   Daten Importieren, Bereinigen & Analysieren (Code)\
+    -   Ergebnisse Darstellen (Code Output)\
+    -   Ergebnisse Interpretieren (Text)\
+    -   Zusammenfassung (Text)\
 
-Write the R code required to add two plus two:
+-   Mit Code, Output und erklärenden Texten an einem Ort wird es leichter, anderen Menschen die eigene Arbeit zu vermitteln. Aber auch dein zukünftiges selbst wird sich über ein paar Anmerkungen zu deiner Analyse freuen, wenn es in 2 Jahren zu der Datei zurückkehrt.\
 
-```{r two-plus-two, exercise=TRUE}
+-   [R Markdown Hilfeseite (EN)](https://rmarkdown.rstudio.com/lesson-1.html): R-Studio bietet eine sehr gute Übersicht zu vielen Themen rund um R Markdown in englischer Spreche. (unter anderem ein tolles 1min Einführungsvideo)\
 
-```
 
-### Exercise with Code
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+#### Aufbau der R Markdown Datei  
 
-Now write a function that adds any two numbers and then call it:
+##### 1. Markdown Inhalt  
+In R Markdown Dateien steht das **md** in der Dateiendung `meine_datei.Rmd` für **Markdown.** Markdown (ohne R) ist eine einfache Möglichkeit, Text zu formatieren, der auf jedem Gerät gut aussieht. Es macht nichts Besonderes wie das Ändern der Schriftgröße, -farbe oder -art, nur das Wesentliche, mit ein paar nützlichen Tastatursymbolen.  
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
-```
+Zu Beginn lohnt es sich sogenannte [Schummelzettel oder Cheatsheets](https://rmarkdown.rstudio.com/lesson-15.html) zu nutzen, um die Syntax schnell nachschlagen zu können. *In R-Studio findest du sie auch im Menü unter Hilfe > Cheat Sheets.*
 
-## Topic 2
+##### 2. R Code Blöcke (Chunks)
 
-### Exercise with Hint
+Code Blöcke habt ihr schon ein wenig kennengelern. Hier eine Übersicht zu den verschiedenen Komponenten und Funktionen
 
-*Here's an exercise where the chunk is pre-evaluated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+(Übersichtsbild einfügen)
 
-Modify the following code to limit the number of rows printed to 5:
+Solche Blöcke könnt ihr schnell in Eure Datei einfügen mit  
+- der Tastenkombination Strg + Alt + I (OS X: Cmd + Wahl + I)  
+- der Befehl `Chunk hinzufügen` in der Symbolleiste des Editors (grünes C+)  
 
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
-```
+- einige der bekanntesten Code Block Argumente:  
+  - `include = FALSE` verhindert, dass Code und Ergebnisse in der fertigen Datei erscheinen. R Markdown führt den Code weiterhin im Chunk aus und die Ergebnisse können von anderen Chunks verwendet werden.  
+  - `echo = FALSE` verhindert, dass Code, aber nicht die Ergebnisse in der fertigen Datei erscheinen. Dies ist eine nützliche Methode zum Einbetten von Abbildungen.  
+  - `message = FALSE` verhindert, dass Nachrichten, die durch Code generiert werden, in der fertigen Datei erscheinen.  
+  - `warning = FALSE` verhindert, dass Warnungen, die durch Code generiert werden, im Report erscheinen.  
+  - `fig.cap = "..."` fügt den grafischen Ergebnissen eine Beschriftung hinzu.
 
-```{r print-limit-hint}
-head(mtcars)
-```
+- Um eine Option für alle Code Blocks festzulegen, definiere Sie als global im ersten setup Code Block mit der Funktion `knitr::opts_chunk$set(Argument1 = TRUE)`. Knitr behandelt jede Option, die an knitr::opts_chunk$set übergeben wurde, als globalen Standard, der in einzelnen Chunk-Headern überschrieben werden kann.
 
-### Quiz
+##### 3. YAML Kopfzeile
 
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+In der YAML Kopfzeile können verschiedene Meta-Parameter festgelegt werden, die für die Verarbeitung der R Markdown Datei wichtig sind.
 
-Some questions to verify that you understand the purposes of various base and recommended R packages:
+Der YAML Abschnitt ist für gewöhnlich ganz oben im .Rmd Dateien zu finden und daran zu erkennen, dass er mit `---` umschlossen ist.
 
-```{r quiz}
-quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
+
+
+### Interaktive Übungen
+
+#### 1. Was ist R Markdown?
+
+```{r 08quiz_reports1}
+quiz(caption = NULL,
+  question("Welche diese Beschreibungen treffen zu? R Markdown ist... ",
+    answer("...📦 ein R-Paket namens rmarkdown.", correct = TRUE),
+    answer("...️Zauberei 🧙"),
+    answer("...ein Dateiformat zum Erstellen dynamischer Dokumente mit R.", correct = TRUE),
+    answer("...ein Tool zum Integrieren von Prosa, Code und Ergebnissen.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
   )
 )
 ```
+
+#### 2. Wofür ist R Markdown nützlich?
+
+**Lass Dich inspirieren**: besuche die [R-Studio R Markdown Gallerie](https://rmarkdown.rstudio.com/gallery.html) und stöbere durch einige Beispiel Reports, die mit R Markdown erstellt wurden. Du kannst zwischen Webseiten, PDF Dokumenten oder Word Dokumenten auswählen. Teile dein Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibe in 1-3 Sätzen, was du daran besonders gut findest.
+
+![Screenshot der verlinkten R Markdown Gallery Website mit der Anweisung, sich Beispiele aus dem Abschnitt "Documents" anzusehen](daten/abbildungen/08_reports_uebung1_gallery-instruction.png "Übersicht zu der verlinkten Website")
+
+#### 3. Die drei Komponenten von R Markdown Dateien (.Rmd)
+
+```{r 08quiz_reports2}
+quiz(caption = NULL,
+  question("Die drei Komponenten aus denen sich R Markdown Dateien zusammensetzen sind:",
+    answer("YAML Abschnitt, Inhalt und Code Chunks", correct = TRUE),
+    answer("Überschriften, Texte und Bilder", correct = TRUE),
+    answer("Code, Tabellen und Grafiken"),
+    answer("R, Mark und Down"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+#### 3.1 Markdown Inhalt
+
+Markdown
+
+-   10-Min Exkurs: wenn du noch ein bisschen üben willst, wie du deinen Text mit Hilfe von der Markdown Syntax formatieren kannst gibt es hier ein [10-minuten interaktives Tutorial in englischer Sprache](https://commonmark.org/help/), welches ich sehr empfehlen kann
+

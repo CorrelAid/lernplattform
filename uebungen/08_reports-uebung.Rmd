@@ -1,0 +1,54 @@
+---
+title: "R Markdown Reports"
+author: "Lisa Reiber"
+date: "Nov 26, 2021"
+output:
+  html_document:
+    df_print: "kable"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# Hier Euer Set-up Code!
+```
+
+### Schritt 1: Markdown Texte
+
+<!-- Stellt euch vor, ihr beginnt eine neue Analyse. Bevor ihr mit dem Code loslegt, bietet es sich an, das Projekt und das Ziel kurz zu beschreiben. Füge also unter diesem Kommentar eine Art Einleitung für dein Projekt ein. Nutze dafür die verschiedenen Wege, den Text mithilfe von Markdown zu formatieren. Wenn du dieses Dokument knittest, kannst du deinen Fortschritt überprüfen. Beispiel Formatierungen: Überschriften, fett, kursiv, Listen, Links. Du kannst auch gerne die vorhandenen Überschriften verändern, sodass aus diesem Dokument dein eigender Report wird. -->
+
+### Schritt 2: Code Chunks
+
+<!-- Als nächstes ladet Ihr den Datensatz `plastics`, den Ihr inzwischen schon gut kennt. Nutze dafür deinen Code aus vorherigen Sessions. -->
+
+```{r datenimport}
+# plastics <- # Hier Euer Code! #TODO for now
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+```
+
+
+<!-- die nächsten Code Chunk geben verschiedene Outputs deines Datensatzes aus. Probiere dich nun in den Code Chunk Optionen aus, die du diese Woche kennengelernt hast. Was passiert, wenn du eval = FALSE setzt? was wenn du show = FALSE setzt? Eine Übersicht zu den Code Chunks findest du hier #TODO. Jetzt kannst du entscheiden. Möchtest du, dass deine Code Chunks mit in dem Report angezeigt werden, oder sollen lieber nur die Ergebnisse und deine Beschreibungen dazu zu sehen sein? Probiere beides aus und entscheide was dir besser gefällt. -->
+
+
+```{r tabelle}
+head(plastics)
+```
+
+
+```{r grafik}
+#TODO
+```
+
+# Schritt 3: YAML Kopfzeile
+<!--
+
+Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet sich die YAML Kopfzeile an.
+- Ändere das Format des Outputs von PDF zu Word und schließlich zu html.
+- Ändere die definierte Autorin
+- Ändere die Darstellung von Tabellen mit der Option df_print: "paged", probiere es danach mit df_print: "kable". Schaue dir jeweils den Tabellen Output an: Was gefällt dir besser?
+- Pro: schaffst du es das aktuelle Datum einzufügen?
+- Setze deinen eigenen Titel
+- Füge ein Inhaltsverzeichnis ein mithilfe der `toc: TRUE` Option
+- Pro: schaffst du es, das Inhaltsverzeichnis an der Seite schweben zu lassen? (klappt nur, wenn der Output "html_document" ist) 
+
+-->

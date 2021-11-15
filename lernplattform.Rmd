@@ -233,10 +233,9 @@ out <- knitr::knit_child("07_datenbereinigung.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Reports
 ```{r results='asis'}
-#out <- knitr::knit_child("08_Reports", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("08_Reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Reportautomatisierungen
