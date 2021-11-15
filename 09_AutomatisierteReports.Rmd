@@ -14,7 +14,8 @@
 
 4.  Parameter mit code "eingeben"
 
-Frie: hier müsste man ggf. for loops einführen oder purrr::walk - das ist in den bisherigen lektionen noch nicht drin oder?
+Frie: hier müsste man ggf. for loops einführen oder purrr::walk - das ist in den bisherigen lektionen noch nicht drin oder? (+1 Nina)
+Idee: Vielleicht könnte man hier eine Beobachtung einpflegen, die dann in Graphiken, Tabellen und Text immer mit dem Rest verglichen wird.
 
 Frie: weiß nicht ob das zu weit geht und zu technisch wird aber was ist mit child documents? https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html
 

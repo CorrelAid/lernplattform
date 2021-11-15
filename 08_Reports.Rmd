@@ -4,6 +4,10 @@
 
 <!-- ganz praktisch sehe ich schon die Fragen nach Logo und CI kommen. latex und css sind natuerlich bitchesss aber how do we deal with this? :D bin kein fan davor, leute nicht zumindest vorzuwarnen, dass in der realität sowas auch noch auf sie zukommt.  -->
 
+<!-- Nina: Vielleicht können wir Logo im Header und Änderung vom Styling aber auch über den YAML-Header abfangen. Dafür muss man nicht direkt das alles rund um Latex und HTML verstehen. Die Klassiker sind in der Regel (gerne ergänzen): Logo oben links, mitte, rechts und Schriftart und Größe ändern.  (siehe https://bookdown.org/yihui/rmarkdown-cookbook/latex-variables.html und https://bookdown.org/yihui/rmarkdown-cookbook/latex-logo.html)  -->
+
+<!-- Nina: Hier nochmal den Unterschied PDF und HTML zeigen - da gibt es bestimmt Fragen zu (Was sind die Vorteile/Nachteile? Wie genau sieht das im Vergleich aus? Wie kann ich das Teilen?)  -->
+
 ### Aufbau Video
 
 1.  Kurze Einführung/Wiederholung: Was ist R-Markdown?\
@@ -28,7 +32,7 @@
     5.  Bilder\
     6.  --\> Exercise mit [Tutorial](https://commonmark.org/help/tutorial/)
 
-5.  Code Chunks (wurde evtl schon abgedeckt?)
+5.  Code Chunks (wurde evtl schon abgedeckt? Nina: Nein, gerne da ganz ausführlich sein! :) 
 
     1.  Tabellen einfügen\
     2.  Plots darstellen\
