@@ -13,6 +13,12 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 # Hier Euer Set-up Code!
 ```
 
+<!-- ganz praktisch sehe ich schon die Fragen nach Logo und CI kommen. latex und css sind natuerlich bitchesss aber how do we deal with this? :D bin kein fan davor, leute nicht zumindest vorzuwarnen, dass in der realität sowas auch noch auf sie zukommt.  -->
+
+<!-- Nina: Vielleicht können wir Logo im Header und Änderung vom Styling aber auch über den YAML-Header abfangen. Dafür muss man nicht direkt das alles rund um Latex und HTML verstehen. Die Klassiker sind in der Regel (gerne ergänzen): Logo oben links, mitte, rechts und Schriftart und Größe ändern.  (siehe https://bookdown.org/yihui/rmarkdown-cookbook/latex-variables.html und https://bookdown.org/yihui/rmarkdown-cookbook/latex-logo.html)  -->
+
+Nina: Inline Code - Kennzahl einfügen
+
 ### Schritt 1: Markdown Texte
 
 <!-- Stellt euch vor, ihr beginnt eine neue Analyse. Bevor ihr mit dem Code loslegt, bietet es sich an, das Projekt und das Ziel kurz zu beschreiben. Füge also unter diesem Kommentar eine Art Einleitung für dein Projekt ein. Nutze dafür die verschiedenen Wege, den Text mithilfe von Markdown zu formatieren. Wenn du dieses Dokument knittest, kannst du deinen Fortschritt überprüfen. Beispiel Formatierungen: Überschriften, fett, kursiv, Listen, Links. Du kannst auch gerne die vorhandenen Überschriften verändern, sodass aus diesem Dokument dein eigender Report wird. -->
@@ -50,5 +56,4 @@ Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet s
 - Setze deinen eigenen Titel
 - Füge ein Inhaltsverzeichnis ein mithilfe der `toc: TRUE` Option
 - Pro: schaffst du es, das Inhaltsverzeichnis an der Seite schweben zu lassen? (klappt nur, wenn der Output "html_document" ist) 
-
 -->
