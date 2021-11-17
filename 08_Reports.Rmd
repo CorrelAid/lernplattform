@@ -155,6 +155,8 @@ quiz(caption = NULL,
 )
 ```
 
+Wenn Ihr noch ein bisschen üben wollt, wie Ihr Text mit Hilfe von der Markdown Syntax formatieren könnt, gibt es hier ein [10-minutes interaktives Tutorial in englischer Sprache](https://commonmark.org/help/), welches wir sehr empfehlen können.
+
 #### 2. R Code Blöcke (Chunks)
 Code Blöcke werden in Eurem RMDs **grau hinterlegt**. Ihr könnt sie mit
 
