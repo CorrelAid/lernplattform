@@ -1,47 +1,5 @@
 ## Reports in R Markdown
 
-<!-- Frie: hier wird es wahrscheinlich schwer die übung auf der platform direkt zu machen?  -->
-
-<!-- Nina: Hier nochmal den Unterschied PDF und HTML zeigen - da gibt es bestimmt Fragen zu (Was sind die Vorteile/Nachteile? Wie genau sieht das im Vergleich aus? Wie kann ich das Teilen?)  -->
-
-<!--
-### Aufbau Video
-
-1.  Kurze Einführung/Wiederholung: Was ist R-Markdown?\
-
-2.  Wofür ist es nützlich?
-
-    1.  --\> unter anderem Reporting (Export Möglichkeiten von RMarkdown)\
-    2.  --\> Exercise 1: Explore R-Markdown Gallery, post your fav in slack channel\
-
-3.  Struktur von RMarkdown
-
-    1.  YAML Header\
-    2.  Inhalte\
-    3.  Knitr Code Chunks\
-
-4.  Inhalte
-
-    1.  Überschriften\
-    2.  Text\
-    3.  Listen\
-    4.  Links\
-    5.  Bilder\
-    6.  --\> Exercise mit [Tutorial](https://commonmark.org/help/tutorial/)
-
-5.  Code Chunks (wurde evtl schon abgedeckt? Nina: Nein, gerne da ganz ausführlich sein! :) 
-
-    1.  Tabellen einfügen\
-    2.  Plots darstellen\
-
-6.  YAML Header
-
-    1.  Basic Funktionen\
-    2.  Advanced Optionen
-    3.  Params Parameter\
-    4.  --\> Exercises: wähle ein theme aus, füge ein Inhaltsverzeichnis ein, toggle sichtbarkeit von chunks
-    
--->
 ![*Video: Reports in RMarkdown (30min)*](https://youtu.be/YWFLSovbha0)
 
 ### Kernaussagen
@@ -225,7 +183,7 @@ output: <br>
   html_document <br>
 \---
 
-Die **Grundeinstellungen** geben Titel, Autor:in, Datum und Outputformat des geknitteten Dokuments an. Darüber hinaus gibt es aber noch mehr Möglichkeiten. So könnt Ihr dort beispielsweise das Layoutformat anpassen. Mit dem `prettydoc`-Package könnt Ihr Euren YAML-Header nutzen, um Euer Dokumentenlayout zu adaptieren:
+Die **Grundeinstellungen** geben Titel, Autor:in, Datum und Outputformat des geknitteten Dokuments an. Darüber hinaus gibt es aber noch mehr Möglichkeiten. So könnt Ihr dort beispielsweise das Layoutformat anpassen. Wenn Ihr Euch mit HTML und CSS auskennt, könnt Ihr sogenannte Stylesheets anlegen und auf diese verweisen. Die leichteste Option ist es allerdings vorgefertigte Themes zu nutzen. So könnt Ihr mit dem `prettydoc`-Package Euren YAML-Header nutzen, um Euer Dokumentenlayout zu adaptieren:
 
 ```{r reports_install, exercise = TRUE}
 # install.packages("prettydoc")
