@@ -10,6 +10,7 @@ output:
 ---
 
 ```{r, echo=FALSE}
+# Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und gg. gegen Euer Logo austauschen
 htmltools::img(src = "logo.png", 
                alt = 'The CorrelAid logo: the letter C consisting of over 10 geometric shapes in various shades of green and blue. Below the C, the caption says "CorrelAid" and on a new line "Good causes. Better Effects"', 
                width = '150px',
@@ -17,6 +18,7 @@ htmltools::img(src = "logo.png",
 ```
 
 ```{css, echo=FALSE}
+# Einfügen eines Logos über CSS über dem Inhaltsverzeichnis und Änderung der Schriftart und -Größe - das müsst Ihr nur nachvollziehen und gg. gegen Euer Logo austauschen
  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 body {
     font-family: 'Roboto', sans-serif;

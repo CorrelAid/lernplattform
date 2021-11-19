@@ -138,6 +138,6 @@ Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet s
 - Füge mithilfe der `toc: TRUE` Option ein Inhaltsverzeichnis ein.
 
 ### Übung 7: Finalisierung
-Löscht nun die Anleitungstexte für die Übungen und werdet kreativ. Was würdet Ihr noch verändern, um einen schön gestalteten Report zu erzeugen? Welche Überschriften braucht es noch? Welche Tabellen und Graphiken der letzten Wochen könnten für den Report spannend sein? 
+Löscht nun die Anleitungstexte für die Übungen und werdet kreativ. Was würdet Ihr noch verändern, um einen schön gestalteten Report zu erzeugen? Welche Überschriften braucht es noch? Welche Daten, Tabellen und Graphiken der letzten Wochen könnten für den Report spannend sein? 
 
-Bettet doch am Ende des Reports noch das Bild von der Sammelaktion ein (https://camo.githubusercontent.com/e571cad1e53d23d5a8fbc452989601fdd98de550e5ce165762a8cc290f2d3bb4/68747470733a2f2f7777772e627265616b6672656566726f6d706c61737469632e6f72672f77702d636f6e74656e742f75706c6f6164732f323031392f30382f6865616465725f626666705f32303139772e6a7067)
+Bettet doch am Ende des Reports noch das Bild von der Sammelaktion ein (https://camo.githubusercontent.com/e571cad1e53d23d5a8fbc452989601fdd98de550e5ce165762a8cc290f2d3bb4/68747470733a2f2f7777772e627265616b6672656566726f6d706c61737469632e6f72672f77702d636f6e74656e742f75706c6f6164732f323031392f30382f6865616465725f626666705f32303139772e6a7067)!
