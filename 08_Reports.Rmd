@@ -5,54 +5,56 @@
 <!--
 ### Aufbau Video
 
-Intro (5min)
-1. Vorstellung
-2. Motivation für R-Markdown Reports
-  - keine Copy und Paste Fehler beim kopieren der Ergebnisse
-  - automatisieren möglich (Bsp. CFE)
-  - viele Outputs möglich
-3. Lernziele
-  - Woche 1 Modularprinzip: Grundkenntnisse R Markdown
-  - Woche 2 Reportfabrik: Reports Automatisieren
-  - generell Überblick: was ist alles möglich?
+Intro (5min)  
+1. Vorstellung  
+2. Motivation für R-Markdown Reports  
+  - keine Copy und Paste Fehler beim kopieren der Ergebnisse  
+  - automatisieren möglich (Bsp. CFE)  
+  - viele Outputs möglich  
+3. Lernziele  
+  - Woche 1 Modularprinzip: Grundkenntnisse R Markdown  
+  - Woche 2 Reportfabrik: Reports Automatisieren  
+  - generell Überblick: was ist alles möglich?   
   
 Inhalt
 1.  Kurze Einführung/Wiederholung: Was ist R-Markdown?\
-    1. Zitate
-    2. Zusammenfassung
-    3. Gallery + Tabellenwettbewerb Beispiel
-
+    1. Zitate  
+    2. Zusammenfassung  
+    3. Gallery + Tabellenwettbewerb Beispiel  
+ 
 2.  Struktur von RMarkdown: Wie sind die Komponenten aufgebaut?  
-    1.  YAML Header\
-    2.  Inhalte\
-    3.  Knitr Code Chunks\
+    1.  YAML Header\  
+    2.  Inhalte\  
+    3.  Knitr Code Chunks\  
 
-4.  Inhalte: Wie kann ich den Text formatieren?  
-    1.  Überschriften\
-    2.  Text\
-    3.  Listen\
-    4.  Links\
-    5.  Bilder\
+2.1  Komponente 1 - Inhalte: Wie kann ich den Text formatieren?  
+    1.  Überschriften\  
+    2.  Text, Listen, Links, Fett, kursiv, Kommentare  
+    3.  Hilfe finden: RStudio Help Page und Visual Mode  
+    4.  Logo einfügen  
 
-5.  Code Chunks 
-    1. 
+2.2  Komponente 2 - Code Chunks   
+    1.  Code Block einfügen  
+    2.  Code laufen lassen  
+    3.  Tabellen einfügen\
+    4.  Plots darstellen\
+    5. Code Block Argumente
 
-    1.  Tabellen einfügen\
-    2.  Plots darstellen\
-
-6.  YAML Header
-
-    1.  Basic Funktionen\
-    2.  Advanced Optionen
-    3.  Params Parameter\
-    4.  --\> Exercises: wähle ein theme aus, füge ein Inhaltsverzeichnis ein, toggle sichtbarkeit von chunks
-    
+2.3  Komponente 3 - YAML Header  
+    1.  strikte Struktur
+    2.  Inhaltsverzeichnis einfügen
+    3.  df_print
+    4.  theme: "yeti"
+    5.  verschiedene Outputs generieren
 -->
-![*Video: Reports in RMarkdown (30min)*](https://youtu.be/YWFLSovbha0)
+
+![*Video: Reports in R Markdown (45min)*](https://youtu.be/YWFLSovbha0)
 
 ### Kernaussagen
-- R Markdown ist ein **Framework**, das es ermöglicht, **reproduzierbare Reports** mit R Code zu schreiben\
-- R Markdown ist so beliebt, weil es ermöglicht **alle Schritte einer Datenanalyse an einem Ort** zu sammeln:
+
+-   R Markdown ist ein **Framework**, das es ermöglicht, **reproduzierbare Reports** mit R Code zu schreiben\
+
+-   R Markdown ist so beliebt, weil es ermöglicht **alle Schritte einer Datenanalyse an einem Ort** zu sammeln:
 
     -   Einleitung und Fragestellung (Text)\
     -   Daten importieren, bereinigen & analysieren (Code)\
@@ -60,16 +62,22 @@ Inhalt
     -   Ergebnisse interpretieren (Text)\
     -   Zusammenfassung (Text)\
 
-- Mit **Code, Code Output (z.B. Tabellen oder Plots) und formatierbarem Text** an einem Ort wird es leichter, anderen Menschen die eigene Arbeit zu vermitteln, aber auch Ihr Selbst werdet Euch über Anmerkungen und Erklärungen zu Eurer Analyse freuen, wenn Ihr nach einiger Zeit zu der Datei zurückkehrt\
-- Die **Code Chunks**, in den Code steht und die Code Output erzeugen, sind in RMDs **grau** hinterlegt, während der **Markdown-Teil weiß** hinterlegt ist
-- In den formatierten Text Eures Reports könnt Ihr außerdem **berechnete Kennzahlen** integrieren, die bei der Aktualisierung der Daten wie der restliche Code Output automatisch geupdatet werden
--  Zudem ist es durch R Markdown leichter Eure Reports auf vielfältige Art und Weise mit anderen zu **teilen**: Der Export in PDFs, HTML und Word ist möglich \
-- Wenn Ihr **statische Reports** erstellen wollt, ist das PDF die richtige Wahl, für mehr Optionen ist eine **HTML**-Datei, die auch im Browser geöffnet werden kann, besser geeignet
--   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"} zu vielen Themen rund um R Markdown in englischer Sprache an - unter anderem ein tolles Einführungsvideo (1min)\
-- Daneben gibt es auch noch diesen [**Schummelzettel (dt.)**](https://correlaid.org/material/Schummelblatt_rmarkdown.pdf){target="_blank"}, diesen [**Schummelzettel (engl.)**](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf){target="_blank"} und dieses tolle [**Nachschlagewerk (engl.)**](https://correlaid.org/material/RMarkdownGuideline.pdf){target="_blank"}
+-   Mit **Code, Code Output (z.B. Tabellen oder Plots) und formatierbarem Text** an einem Ort wird es leichter, anderen Menschen die eigene Arbeit zu vermitteln, aber auch Ihr Selbst werdet Euch über Anmerkungen und Erklärungen zu Eurer Analyse freuen, wenn Ihr nach einiger Zeit zu der Datei zurückkehrt\
 
+-   Die **Code Chunks**, in den Code steht und die Code Output erzeugen, sind in Rmds **grau** hinterlegt, während der **Markdown-Teil weiß** hinterlegt ist
+
+-   In den formatierten Text Eures Reports könnt Ihr außerdem **berechnete Kennzahlen** integrieren, die bei der Aktualisierung der Daten wie der restliche Code Output automatisch geupdatet werden
+
+-   Zudem ist es durch R Markdown leichter Eure Reports auf vielfältige Art und Weise mit anderen zu **teilen**: Der Export in PDFs, HTML und Word ist möglich\
+
+-   Wenn Ihr **statische Reports** erstellen wollt, ist das PDF die richtige Wahl, für mehr Optionen ist eine **HTML**-Datei, die auch im Browser geöffnet werden kann, besser geeignet
+
+-   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"} zu vielen Themen rund um R Markdown in englischer Sprache an - unter anderem ein tolles Einführungsvideo (1min)\
+
+-   Daneben gibt es auch noch diesen [**Schummelzettel (dt.)**](https://correlaid.org/material/Schummelblatt_rmarkdown.pdf){target="_blank"}, diesen [**Schummelzettel (engl.)**](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf){target="_blank"} und dieses tolle [**Nachschlagewerk (engl.)**](https://correlaid.org/material/RMarkdownGuideline.pdf){target="_blank"}
 
 ### Interaktive Übung
+
 ```{r 08quiz_reports_allg}
 quiz(caption = NULL,
   question("Welche diese Beschreibungen treffen zu? R Markdown ist... ",
@@ -94,56 +102,58 @@ quiz(caption = NULL,
 )
 ```
 
-#### 1. Markdown (Inhalt)  
+#### 1. Markdown (Inhalt)
+
 In R Markdown Dateien steht das **md** in der Dateiendung `meine_datei.Rmd` für **Markdown.** Markdown (ohne R) ist eine einfache Möglichkeit, Text zu formatieren, der auf jedem Gerät gut aussieht. Auch unsere Lernplattform basiert auf Markdown. Alle Überschriften, Text in *italics* oder **bold**, das Einfügen von Bildern und Links funktioniert über Markdown.
 
-Die Formatierung funktioniert nur dem **weiß hinterlegten Teil** des RMDs, dem Textteil. Mit wenigen Zeichen könnt Ihr dort folgende Formatierungen vornehmen: 
+Die Formatierung funktioniert nur dem **weiß hinterlegten Teil** des Rmds, dem Textteil. Mit wenigen Zeichen könnt Ihr dort folgende Formatierungen vornehmen:
 
+**H5 Überschrift**
 
-##### H5 Überschrift
-erstellt mit: \#\#\#\#\# H5 Überschrift 
-Anmerkung: H1 Überschriften benötigen nur ein #, H2 zwei ##, usw.
+erstellt mit: `##### H5 Überschrift`
 
-_________________________________________________________________
+*\*Anmerkung: H1 Überschriften benötigen nur ein #, H2 zwei ##, usw.*
 
-*Text in italics* <br>
-erstellt mit: \*Text in italics\*
+------------------------------------------------------------------------
 
-_________________________________________________________________
+**Trennlinie**
 
-**Text in bold** <br>
-erstellt mit: \*\*Text in bold\*\*
+erstellt mit: `---`
 
-_________________________________________________________________
+\*\* Anmerkung: auf ausreichend Zeilenumbrüche davor und danach achten, häufige Fehlerquelle.
 
-##### Einfügen eines Bildes
-![Bild: Logo CorrelAid](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg){#id .class width=10% height=10%} <br>
-erstellt mit:
-```{r, reportformatpic, exercise = TRUE}
-'
-![Bildbeschriftung](Link zum Bild){#id .class width=10% height=10%}
-'
-```
-*Anmerkung: Damit unsere Lernplattform den Code nicht interpretiert, haben wir ihn hier in einem Code Chunk auskommentiert. Den Snippet könnt Ihr (ohne '') kopieren und in den weiß hinterlegten Teil Eures RMDs einpflegen. Mit "!" könnt Ihr das Bild einbetten. Breite und Höhe werden hier relativ angegeben.*
+------------------------------------------------------------------------
 
-_________________________________________________________________
+**Text**
 
-##### Einfügen eines Hyperlinks:
-[Hyperlink: Webseite CorrelAid](www.correlaid.org){target="_blank"}<br>
-erstellt mit:
-```{r, reportformatlink, exercise = TRUE}
-'
-[Hyperlinkname](Link){target="_blank"}
-'
-```
-*Anmerkung: Mit {target="\_blank"} könnt Ihr festlegen, dass ein neuer Tab geöffnet wird.*
- 
- _________________________________________________________________
+-   `*Text in italics*` wird zu *Text in italics*
+-   `**Text in bold** wird zu` **Text in bold**
 
- 
-Praktisch sind auch **Umbrüche**, die mit "\<br\>" eingefügt werden. Diese Notation stammt übrigens aus HTML - ebenso praktisch sind die Notationen "\<center\>", "\<left\>" und "\<right\>" zur **Positionierung**. <br>
+------------------------------------------------------------------------
 
-Soll RMD diese mit Bedeutung belegten Sonderzeichen mal ignorieren, könnt Ihr vor sie einen **Backslash** einfügen.
+**Einfügen eines Bildes**
+
+erstellt mit: `![Bildbeschriftung](Link zum Bild){width=10% height=10%}`
+
+![Bild: Logo CorrelAid](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg){width="10%" height="10%"}
+
+------------------------------------------------------------------------
+
+**Einfügen eines Hyperlinks**
+
+erstellt mit: `[Hyperlinkname](Link){target="_blank"}`
+
+[Hyperlink: Webseite CorrelAid](www.correlaid.org){target="_blank"}
+
+*\*Anmerkung: Mit {target="\_blank"} könnt Ihr festlegen, dass ein neuer Tab geöffnet wird.*
+
+------------------------------------------------------------------------
+
+**Zeilenumbrüche**
+
+Praktisch sind auch **Umbrüche**, die mit "\<br>" eingefügt werden. Diese Notation stammt übrigens aus HTML - ebenso praktisch sind die Notationen "\<center>", "\<left>" und "\<right>" zur **Positionierung**. <br>
+
+Soll Rmd diese mit Bedeutung belegten Sonderzeichen mal ignorieren, könnt Ihr vor sie einen **Backslash** `\` einfügen.
 
 ```{r 08quiz_reports_markdown}
 quiz(caption = NULL,
@@ -164,34 +174,31 @@ quiz(caption = NULL,
 Wenn Ihr noch ein bisschen üben wollt, wie Ihr Text mit Hilfe von der Markdown Syntax formatieren könnt, gibt es hier ein [10-minutes interaktives Tutorial in englischer Sprache](https://commonmark.org/help/), welches wir sehr empfehlen können.
 
 #### 2. R Code Blöcke (Chunks)
-Code Blöcke werden in Eurem RMDs **grau hinterlegt**. Ihr könnt sie mit
 
-- der Tastenkombination Strg + Alt + I (OS X: Cmd + Wahl + I) oder
-- dem Befehl `Chunk hinzufügen` in der Symbolleiste des Editors (grünes C+)
+Code Blöcke werden in Eurem Rms's **grau hinterlegt**. Ihr könnt sie mit
 
-in Eure RMD-Datei einfügen.
+-   der Tastenkombination Strg + Alt + I (OS X: Cmd + Wahl + I) oder
+-   dem Befehl `Chunk hinzufügen` in der Symbolleiste des Editors (grünes C+)
 
-Je nachdem wie Ihr Euer RMD gestalten wollt, müsst Ihr die Code Block **Argumente** setzen. Dazu setzt Ihr im Code Chunk innerhalb der geschwungenen Klammer ein Argument und ergänzt dann auf der rechten Seite die richtige Einstellung. Mehrere Argumente werden durch Kommata (",") getrennt. <br>
+in Eure Rmd-Datei einfügen.
 
-\```{r, argument1 = gewünschte_einstellung, ...} <br>
-Dein Code hier <br>
-\``` <br>
+Je nachdem wie Ihr Euer Rmd gestalten wollt, müsst Ihr die Code Block **Argumente** setzen. Dazu setzt Ihr im Code Chunk innerhalb der geschwungenen Klammer ein Argument und ergänzt dann auf der rechten Seite die richtige Einstellung. Mehrere Argumente werden durch Kommata (",") getrennt. <br>
+
+\`\`\`{r, argument1 = gewünschte_einstellung, ...} <br> Dein Code hier <br> \`\`\` <br>
 
 Grundsätzlich wird in Eurem Outputformat **aller Code, sämtlicher Code Output, alle Nachrichten und Warnungen** integriert. Nicht immer ist das gewünscht. Die wichtigsten Argumente findet Ihr deshalb hier:
 
-- `include = FALSE` definiert, dass **Code und Code Output** in der fertigen Datei **nicht erscheinen**. R Markdown führt den Code weiterhin im Chunk aus und die Ergebnisse können von anderen Chunks verwendet werden.
-- `echo = FALSE` definiert, dass **Code nicht angezeigt wird**, aber Code Output (wie Tabellen und Plots) in der fertigen Datei erscheinen. Dies ist eine nützliche Methode zum **Einbetten von Abbildungen**.
-- `message = FALSE` verhindert, dass **Nachrichten**, die bei der Ausführung des Codes generiert werden, in der fertigen Datei erscheinen.
-- `warning = FALSE` verhindert, dass **Warnungen**, die bei der Ausführung des Codes generiert werden, im Report erscheinen.
-- `fig.cap = "..."` fügt den grafischen Ergebnissen eine **Beschriftung** hinzu.
+-   `include = FALSE` definiert, dass **Code und Code Output** in der fertigen Datei **nicht erscheinen**. R Markdown führt den Code weiterhin im Chunk aus und die Ergebnisse können von anderen Chunks verwendet werden.
+-   `echo = FALSE` definiert, dass **Code nicht angezeigt wird**, aber Code Output (wie Tabellen und Plots) in der fertigen Datei erscheinen. Dies ist eine nützliche Methode zum **Einbetten von Abbildungen**.
+-   `message = FALSE` verhindert, dass **Nachrichten**, die bei der Ausführung des Codes generiert werden, in der fertigen Datei erscheinen.
+-   `warning = FALSE` verhindert, dass **Warnungen**, die bei der Ausführung des Codes generiert werden, im Report erscheinen.
+-   `fig.cap = "..."` fügt den grafischen Ergebnissen eine **Beschriftung** hinzu.
 
 Um eine Option für alle Code Blocks festzulegen, kann sie **global im ersten Setup Code Block** mit der Funktion `knitr::opts_chunk$set(argument = ...)` gesetzt werden. <br>
 
-\```{r setup, include=FALSE} <br>
-knitr::opts_chunk$set(argument1 = gewünschte_einstellung, ...) <br>
-\``` <br>
+\`\`\`{r setup, include=FALSE} <br> knitr::opts_chunk\$set(argument1 = gewünschte_einstellung, ...) <br> \`\`\` <br>
 
-Knitr behandelt jede Option, die an knitr::opts_chunk$set übergeben wurde, als globalen Standard, der **in einzelnen Chunk-Headern überschrieben** werden kann.
+Knitr behandelt jede Option, die an knitr::opts_chunk\$set übergeben wurde, als globalen Standard, der **in einzelnen Chunk-Headern überschrieben** werden kann.
 
 ```{r 08quiz_reports_codechunksettings}
 quiz(caption = NULL,
@@ -219,34 +226,29 @@ quiz(caption = NULL,
 ```
 
 #### 3. YAML Kopfzeile
+
 In der YAML Kopfzeile können verschiedene Meta-Parameter festgelegt werden, die für die Verarbeitung der R Markdown Datei wichtig sind.
 
 Der YAML Abschnitt ist für gewöhnlich ganz oben in R Markdown Dateien zu finden und daran zu erkennen, dass er mit `---` umschlossen ist:
 
-\--- <br>
-title: "Euer Titel" <br>
-author: "Autor:in" <br>
-date: "Datum" <br>
-output: <br>
-  html_document <br>
-\---
+    ---
+    title: "Euer Titel"
+    date: "Datum"
+    output: html_document
+    ---
 
-Die **Grundeinstellungen** geben Titel, Autor:in, Datum und Outputformat des geknitteten Dokuments an. Darüber hinaus gibt es aber noch mehr Möglichkeiten. So könnt Ihr dort beispielsweise das Layoutformat anpassen. Mit dem `prettydoc`-Package könnt Ihr Euren YAML-Header nutzen, um Euer Dokumentenlayout zu adaptieren:
+Die **Grundeinstellungen** geben Titel, Autor:in, Datum und Outputformat des geknitteten Dokuments an. Darüber hinaus gibt es aber noch mehr Möglichkeiten. So könnt Ihr dort beispielsweise das Layoutformat anpassen. Wenn Ihr Euch mit HTML und CSS auskennt, könnt Ihr sogenannte Stylesheets anlegen und auf diese verweisen. Die leichteste Option ist es allerdings vorgefertigte Themes zu nutzen.
 
-```{r reports_install, exercise = TRUE}
-# install.packages("prettydoc")
-```
+Im untenstehenden YAML Code wird eimes der Standard Themes von R Markdown namens "Flatly" definiert. Weitere Themes findest du in dieser [R Markdown Theme Gallery](https://www.datadreaming.org/post/r-markdown-theme-gallery/).
 
-
-\--- <br>
-title: "Euer Titel" <br>
-author: "Autor:in" <br>
-date: "Datum" <br>
-output: <br>
-  prettydoc::html_pretty: <br>
-    theme: cayman <br>
-    highlight: github <br>
-\---
+    ---
+    title: "Euer Titel"
+    date: "Datum"
+    output: 
+      html_document:
+        theme: "flatly"
+        highlight: github
+    ---
 
 ```{r 08quiz_reports_yaml}
 quiz(caption = NULL,
@@ -257,7 +259,7 @@ quiz(caption = NULL,
     answer("Dateiformat", correct = TRUE),
     answer("Layout", correct = TRUE),
     answer("...und vieles mehr!", correct = TRUE),
-    correct = "Richtig! Der YAML-Header übernimmt in RMDs zahlreiche Funktionen rund um Styling und Layout.",
+    correct = "Richtig! Der YAML-Header übernimmt in Rmds zahlreiche Funktionen rund um Styling und Layout.",
     incorrect = "Leider falsch: Alles davon kann im YAML-Header festgelegt werden!",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -266,5 +268,6 @@ quiz(caption = NULL,
 ```
 
 ### Und jetzt Ihr
-1. **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html) und stöbert durch einige Beispielrports, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Word-Dokumenten wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
-2. Bearbeite lokal die [Übung](){target="_blank"} zu R Markdown, die wir für Euch vorbereitet haben.
+
+1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html) und stöbert durch einige Beispielreports, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
+2.  Bearbeite lokal die [Übung](){target="_blank"} zu R Markdown, die wir für Euch vorbereitet haben.
