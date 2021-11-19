@@ -60,7 +60,7 @@ Wir zeigen Euch, auf wieviele Arten Ihr Daten in RStudio laden könnt - **manuel
 Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das **tidyverse** der Datenbereinigung in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung!
 
 #### Woche 9 und 10 (Livetermine 26.11. und 03.12.21): Reportautomatisierung
-In der vorletzten Phase des Datenkurses lernt Ihr, wie Ihr mit **RMarkdown** automatische Reports erstellen könnt, die Ihr als **PDF- oder HTML-Dokument** teilen könnt. Ihr sucht Euch die passenden Funktionen aus "Erste Analysen in R" heraus und erstellt damit einen ersten Report.
+In der vorletzten Phase des Datenkurses lernt Ihr, wie Ihr mit **RMarkdown** reproduzierbare Reports erstellen könnt, die Ihr als **PDF- oder HTML-Dokument** teilen könnt. Ihr sucht Euch passende Kennzahlen, Tabellen und Graphiken heraus und erstellt damit einen ersten Report.
 
 #### Woche 11 und 12 (Livetermine 10. und 17.12.21): Interaktive Visualisierung 
 In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer interaktiven Visualisierung teilen könnt. Wir programmieren mit Euch im Kurs eine erste **Shiny-App**, erklären, wie so eine Applikation funktioniert und wie Ihr sie hosten könnt. Ihr übertragt das Gelernte auf Eure eigenen Daten. 

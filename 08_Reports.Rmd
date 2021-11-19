@@ -1,6 +1,6 @@
 ## Reports in R Markdown
 
-![*Video: Reports in RMarkdown (30min)*](https://youtu.be/YWFLSovbha0)
+![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
 
 ### Kernaussagen
 - R Markdown ist ein **Framework**, das es ermöglicht, **reproduzierbare Reports** mit R Code zu schreiben\
