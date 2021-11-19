@@ -1,58 +1,6 @@
 ## Reports in R Markdown
 
-<<<<<<< HEAD
 ![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
-=======
-<!-- Nina: Hier nochmal den Unterschied PDF und HTML zeigen - da gibt es bestimmt Fragen zu (Was sind die Vorteile/Nachteile? Wie genau sieht das im Vergleich aus? Wie kann ich das Teilen?)  -->
-
-<!--
-### Aufbau Video
-
-Intro (5min)  
-1. Vorstellung  
-2. Motivation für R-Markdown Reports  
-  - keine Copy und Paste Fehler beim kopieren der Ergebnisse  
-  - automatisieren möglich (Bsp. CFE)  
-  - viele Outputs möglich  
-3. Lernziele  
-  - Woche 1 Modularprinzip: Grundkenntnisse R Markdown  
-  - Woche 2 Reportfabrik: Reports Automatisieren  
-  - generell Überblick: was ist alles möglich?   
-  
-Inhalt
-1.  Kurze Einführung/Wiederholung: Was ist R-Markdown?\
-    1. Zitate  
-    2. Zusammenfassung  
-    3. Gallery + Tabellenwettbewerb Beispiel  
- 
-2.  Struktur von RMarkdown: Wie sind die Komponenten aufgebaut?  
-    1.  YAML Header\  
-    2.  Inhalte\  
-    3.  Knitr Code Chunks\  
-
-2.1  Komponente 1 - Inhalte: Wie kann ich den Text formatieren?  
-    1.  Überschriften\  
-    2.  Text, Listen, Links, Fett, kursiv, Kommentare  
-    3.  Hilfe finden: RStudio Help Page und Visual Mode  
-    4.  Logo einfügen  
-
-2.2  Komponente 2 - Code Chunks   
-    1.  Code Block einfügen  
-    2.  Code laufen lassen  
-    3.  Tabellen einfügen\
-    4.  Plots darstellen\
-    5. Code Block Argumente
-
-2.3  Komponente 3 - YAML Header  
-    1.  strikte Struktur
-    2.  Inhaltsverzeichnis einfügen
-    3.  df_print
-    4.  theme: "yeti"
-    5.  verschiedene Outputs generieren
--->
-
-![*Video: Reports in R Markdown (45min)*](https://youtu.be/YWFLSovbha0)
->>>>>>> 8a53057eb567ac4d68b85fc73884fdd0601c32c8
 
 ### Kernaussagen
 
