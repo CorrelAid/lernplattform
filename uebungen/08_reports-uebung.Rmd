@@ -1,79 +1,180 @@
 ---
-title: "R Markdown Reports"
-author: "Lisa Reiber"
-date: "Nov 26, 2021"
+title: ""
+author: "Dein Name"
+date: "19. Nov. 2021"
 output:
   html_document:
-    df_print: "kable"
+#    df_print: kable
+#    toc: TRUE
+#    toc_float: TRUE
+#    code_folding: "hide"
+#    theme: "yeti"
+#    self_contained: TRUE
+  pdf_document: 
+      pandoc_args: ["--extract-media", "./media"]
 ---
 
 ```{r setup, include=FALSE}
+# setze hier die Code Block Argumente die du für alle Code Blöcke als Default festlegen möchtest
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
+# R-Pakete laden
 pacman::p_load(
   tidyverse,
-  tidylog
+  rio
 )
+
 # Hier Euer Set-up Code!
 ```
 
-<!-- ganz praktisch sehe ich schon die Fragen nach Logo und CI kommen. latex und css sind natuerlich bitchesss aber how do we deal with this? :D bin kein fan davor, leute nicht zumindest vorzuwarnen, dass in der realität sowas auch noch auf sie zukommt.  -->
+[![CorrelAid Logo](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg "CorrelAid Logo"){width="20%"}](correlaid.org)
 
-<!-- Nina: Vielleicht können wir Logo im Header und Änderung vom Styling aber auch über den YAML-Header abfangen. Dafür muss man nicht direkt das alles rund um Latex und HTML verstehen. Die Klassiker sind in der Regel (gerne ergänzen): Logo oben links, mitte, rechts und Schriftart und Größe ändern.  (siehe https://bookdown.org/yihui/rmarkdown-cookbook/latex-variables.html und https://bookdown.org/yihui/rmarkdown-cookbook/latex-logo.html)  -->
+<!-- Findest du den untenstehenden Titel gut? Finde einen anderen falls du ihn ändern möchtest -->
+# Break Free From Plastic Report
 
-Nina: Inline Code - Kennzahl einfügen
+<!-- dieser untertitel ist zu groß geraten: könnt Ihr ihn auf Level 5 setzen damit er kleiner wird? -->
+# Auswertung für Europa
 
-### Schritt 1: Markdown Texte
+von `füge deinen Namen hier ein` 
+
+<!-- Hier findest du ein Stück Inline Code, welches automatisch das aktuelle Datum einfügt, wenn der Report generiert wird -->
+*zuletzt generiert: `r lubridate::today()`*
+<!-- kannst du die zweite Anmerkung auch kursiv machen und beide Punkte als Liste darstellen? -->
+Anmerkung (kursiv): Mehr Informationen zu Break Free From Plastic finden Sie unter diesem Link (als Hyperlink einfügen, https://www.breakfreefromplastic.org/).
+
+---
 
 <!-- Stellt euch vor, ihr beginnt eine neue Analyse. Bevor ihr mit dem Code loslegt, bietet es sich an, das Projekt und das Ziel kurz zu beschreiben. Füge also unter diesem Kommentar eine Art Einleitung für dein Projekt ein. Nutze dafür die verschiedenen Wege, den Text mithilfe von Markdown zu formatieren. Wenn du dieses Dokument knittest, kannst du deinen Fortschritt überprüfen. Beispiel Formatierungen: Überschriften, fett, kursiv, Listen, Links. Du kannst auch gerne die vorhandenen Überschriften verändern, sodass aus diesem Dokument dein eigender Report wird. -->
+**Zielsetzung**:\
+Für den Kontinent Europa wollen wir: Lorem ipsum dolor sit amet, ex saepe euismod quo, error constituto ius ex, cu mei facilisis delicatissimi. Quo cu enim dicant, pri nobis detracto ut. An veritus reprimique conclusionemque eos, ex laudem definitionem vim. Sit ut dicta solet, cu cum tale complectitur, ex sea partem doming tibique.
 
-### Schritt 2: Code Chunks
+No usu impetus quaeque inimicus. Ne delenit oportere constituam sit. Pri te commune senserit scriptorem, duo ad justo libris. Etiam soluta eam eu, elit dicant vix in.
 
-<!-- Als nächstes ladet Ihr den Datensatz `plastics`, den Ihr inzwischen schon gut kennt. Nutze dafür deinen Code aus vorherigen Sessions. -->
+<!-- Das erste Kapitel des Reports, nun beginnt die Datenanalyse für dieses Kapitel -->
+## 1. Engagement im Projekt
 
+<!-- Beschreibt, was Ihr zuerst analysieren oder herausfinden wollt -->
 
+Lorem ipsum dolor sit amet, ex saepe euismod quo, error constituto ius ex, cu mei facilisis delicatissimi. Quo cu enim dicant, pri nobis detracto ut. An veritus reprimique conclusionemque eos, ex laudem definitionem vim. Sit ut dicta solet, cu cum tale complectitur, ex sea partem doming tibique.
 
-```{r}
-plastics19_eu <- plastics19_by_continent %>% 
-  filter(continent == "Europe")
+<!--  Die nächsten drei Code Chunks laden Daten (1) erstellen Subset der Top/ Ländern basierend auf der Anzahl an Freiwilligen (2) und lassen diese als Output ausgeben (3). Beachte, wie die Code Labels dir Aufschluss darüber geben, was im jeweiligen Block passiert. 
+
+- Führe die Code Blöcke nacheinander aus. Schaue dir die Daten in jedem Schritt am. Kannst du nachverfolgen was passiert? 
+- Probiere mithilfe der Code Block Argumente die Blöcke an sich nicht im Report anzeigen zu lassen. Eine Übersicht zu den Code Chunks findest du bei dieser R-Studio Website: (https://rmarkdown.rstudio.com/lesson-3.html).
+-->
+```{r import-data}
+community19_by_country <- 
+  rio::import(
+    here::here("daten/community19_by_country.rds")
+  ) %>%
+  dplyr::filter(continent == "Europe")
 ```
 
-<!-- die nächsten Code Chunk geben verschiedene Outputs deines Datensatzes aus. Probiere dich nun in den Code Chunk Optionen aus, die du diese Woche kennengelernt hast. Was passiert, wenn du eval = FALSE setzt? was wenn du show = FALSE setzt? Eine Übersicht zu den Code Chunks findest du hier #TODO. Jetzt kannst du entscheiden. Möchtest du, dass deine Code Chunks mit in dem Report angezeigt werden, oder sollen lieber nur die Ergebnisse und deine Beschreibungen dazu zu sehen sein? Probiere beides aus und entscheide was dir besser gefällt. -->
-
-```{r tabelle}
-head(plastics)
+```{r wrangle-top7-freiwillige, include = FALSE}
+top7_volunteers <- community19_by_country %>% 
+  # Top 10 filtern
+  dplyr::slice_max(
+    n = 7, 
+    order_by = n_volunteers
+    ) %>% 
+  # Spalten auswählen
+  dplyr::select(
+    country,
+    anzahl_freiwillige = n_volunteers
+    )
 ```
 
-```{r grafik}
-plastics_agg_by_continent %>% 
-  filter(continent == "Europe") %>% 
-  ggplot(
-    aes(x = rel_freq, y = fct_reorder(plastic_type, rel_freq), fill = plastic_type)
+```{r print-top7-freiwillige, echo=FALSE}
+top7_volunteers
+```
+
+<!-- Nun ist es an der Zeit ein paar Ergebnisse festzuhalten: 
+- Schaffst du es die Information auch für das Land mit den wenigsten Freiwilligen einzufügen?
+-->
+> --\> Das Land mit den **meisten Freiwilligen** ist `r top7_volunteers %>% head(1) %>% pull(country)` mit insgesamt `r top7_volunteers %>% head(1) %>% pull(anzahl_freiwillige)` Freiwilligen in 2019.\
+
+Für den Kontinent Europa wollen wir: Lorem ipsum dolor sit amet, ex saepe euismod quo, error constituto ius ex, cu mei facilisis delicatissimi. Quo cu enim dicant, pri nobis detracto ut. An veritus reprimique conclusionemque eos, ex laudem definitionem vim. Sit ut dicta solet, cu cum tale complectitur, ex sea partem doming tibique.
+
+<!-- Zeit für einen Plot. 
+Du kannst unterschiedliche Abschnitte im Code highlighten und ausführen um Schritt für Schritt nachverolgen zu können was der Code in der Abbildung bewirkt. Die Abschnitte enden immer mit der geschlossenen Klammer vor dem `+`. 
+
+Beispiel erster Abschnitt: 
+```
+top7_volunteers %>%
+  # definiere die Variablen in den aesthetics
+  ggplot2::ggplot(
+    aes(
+      x = anzahl_freiwillige,
+      y = fct_reorder(country, anzahl_freiwillige)
+      )
+    )
+```
+
+Beispiel zweiter Abschnitt: 
+```
+top7_volunteers %>%
+  # definiere die Variablen in den aesthetics
+  ggplot2::ggplot(
+    aes(
+      x = anzahl_freiwillige,
+      y = fct_reorder(country, anzahl_freiwillige)
+      )
+    ) + # ab hier ist neu
+  # definiere dass die Daten als Balkendiagramm zum Plot hinzugefügt werden sollen 
+  ggplot2::geom_col(
+    width = 0.5, fill = "darkblue"
+    )
+```
+-->
+
+```{r bar-chart-top7-volunteers}
+top7_volunteers %>%
+  # definiere die Variablen in den aesthetics
+  ggplot2::ggplot(
+    aes(
+      x = anzahl_freiwillige,
+      y = fct_reorder(country, anzahl_freiwillige)
+      )
     ) +
-  geom_col(width = 0.5) +
-  theme_light() +
-  labs(title = "Wie häufig kommen verschiedene Plastikarten vor?",
-       x = "Relativer Anteil", y = "") +
-  scale_x_continuous(labels = scales::percent) +
-  theme(
-    legend.position = "none",
+  # definiere dass die Daten als Balkendiagramm zum Plot hinzugefügt werden sollen 
+  ggplot2::geom_col(
+    width = 0.5, fill = "darkblue"
+    ) +
+  # definiere die Labels der Abbildung
+  ggplot2::labs(
+    title = "Anzahl der Freiwilligen pro Land (Top 7 Europe)",
+    x = "", 
+    y = ""
+    ) +
+  # definiere den Style der Abbildung
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.title.position = "plot",
     panel.grid.minor.y = element_blank(),
     panel.grid.major.y = element_blank()
     )
 ```
 
-# Schritt 3: YAML Kopfzeile
 
-```{=html}
 <!--
+Probiere, die gleiche Analyse für die Anzahl der Events in den Ländern zu erstellen
+-->
 
-Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet sich die YAML Kopfzeile an.
-- Ändere das Format des Outputs von PDF zu Word und schließlich zu html.
-- Ändere die definierte Autorin
+
+
+<!-- Last But not Least: Die YAML Kopfzeile!
+Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet sich die YAML Kopfzeile (ganz oben) an.
+Einige mögliche YAML Key: Value Paare sind schon formuliert, aber noch mit einer Raute `#` auskommentiert.
+- Ändere das Format des Outputs von PDF wieder schließlich zu html.
 - Ändere die Darstellung von Tabellen mit der Option df_print: "paged", probiere es danach mit df_print: "kable". Schaue dir jeweils den Tabellen Output an: Was gefällt dir besser?
-- Pro: schaffst du es das aktuelle Datum einzufügen?
 - Setze deinen eigenen Titel
 - Füge ein Inhaltsverzeichnis ein mithilfe der `toc: TRUE` Option
 - Pro: schaffst du es, das Inhaltsverzeichnis an der Seite schweben zu lassen? (klappt nur, wenn der Output "html_document" ist) 
+- Pro: schaffst du es die Tabelle ud die Grafik in nebeneinanderstehenden Tabs darzustellen? (html_document). Eine Anleitung dafür findest du hier: https://bookdown.org/yihui/rmarkdown/html-document.html
 -->
-```
+
+
+<!--und nun?
+Löscht nun die Anleitungstexte für die Übungen und werdet kreativ. Was würdet Ihr noch verändern, um einen schön gestalteten Report zu erzeugen? Welche Überschriften braucht es noch? Welche Tabellen und Graphiken der letzten Wochen könnten für den Report spannend sein?  -->
+
+<!-- Bettet doch am Ende des Reports noch das Bild von der Sammelaktion ein (https://camo.githubusercontent.com/e571cad1e53d23d5a8fbc452989601fdd98de550e5ce165762a8cc290f2d3bb4/68747470733a2f2f7777772e627265616b6672656566726f6d706c61737469632e6f72672f77702d636f6e74656e742f75706c6f6164732f323031392f30382f6865616465725f626666705f32303139772e6a7067) -->
