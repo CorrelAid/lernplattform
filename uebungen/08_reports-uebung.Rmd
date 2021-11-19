@@ -10,6 +10,10 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
+pacman::p_load(
+  tidyverse,
+  tidylog
+)
 # Hier Euer Set-up Code!
 ```
 
@@ -27,25 +31,40 @@ Nina: Inline Code - Kennzahl einfügen
 
 <!-- Als nächstes ladet Ihr den Datensatz `plastics`, den Ihr inzwischen schon gut kennt. Nutze dafür deinen Code aus vorherigen Sessions. -->
 
-```{r datenimport}
-# plastics <- # Hier Euer Code! #TODO for now
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+
+
+```{r}
+plastics19_eu <- plastics19_by_continent %>% 
+  filter(continent == "Europe")
 ```
 
-
 <!-- die nächsten Code Chunk geben verschiedene Outputs deines Datensatzes aus. Probiere dich nun in den Code Chunk Optionen aus, die du diese Woche kennengelernt hast. Was passiert, wenn du eval = FALSE setzt? was wenn du show = FALSE setzt? Eine Übersicht zu den Code Chunks findest du hier #TODO. Jetzt kannst du entscheiden. Möchtest du, dass deine Code Chunks mit in dem Report angezeigt werden, oder sollen lieber nur die Ergebnisse und deine Beschreibungen dazu zu sehen sein? Probiere beides aus und entscheide was dir besser gefällt. -->
-
 
 ```{r tabelle}
 head(plastics)
 ```
 
-
 ```{r grafik}
-#TODO
+plastics_agg_by_continent %>% 
+  filter(continent == "Europe") %>% 
+  ggplot(
+    aes(x = rel_freq, y = fct_reorder(plastic_type, rel_freq), fill = plastic_type)
+    ) +
+  geom_col(width = 0.5) +
+  theme_light() +
+  labs(title = "Wie häufig kommen verschiedene Plastikarten vor?",
+       x = "Relativer Anteil", y = "") +
+  scale_x_continuous(labels = scales::percent) +
+  theme(
+    legend.position = "none",
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank()
+    )
 ```
 
 # Schritt 3: YAML Kopfzeile
+
+```{=html}
 <!--
 
 Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet sich die YAML Kopfzeile an.
@@ -57,3 +76,4 @@ Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet s
 - Füge ein Inhaltsverzeichnis ein mithilfe der `toc: TRUE` Option
 - Pro: schaffst du es, das Inhaltsverzeichnis an der Seite schweben zu lassen? (klappt nur, wenn der Output "html_document" ist) 
 -->
+```

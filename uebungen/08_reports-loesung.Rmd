@@ -1,7 +1,7 @@
 ---
-title: "R Markdown Reports"
+title: "Correlaid Report"
 author: "Lisa Reiber"
-date: "Nov 26, 2021"
+date: "Nov 26, 2021"  
 output: html_document
 ---
 
@@ -10,3 +10,9 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 #TODO sobald die Übung fertig ist
 ```
+
+```{r, out.width = "100px", fig.align="right", echo=FALSE, fig.alt="correlaid-logo"}
+knitr::include_graphics(
+  "https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg")
+```
+
