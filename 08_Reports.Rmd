@@ -127,7 +127,7 @@ erstellt mit: `---`
 **Text**
 
 -   `*Text in italics*` wird zu *Text in italics*
--   `**Text in bold** wird zu` **Text in bold**
+-   `**Text in bold**` wird zu **Text in bold**
 
 ------------------------------------------------------------------------
 
@@ -269,5 +269,5 @@ quiz(caption = NULL,
 
 ### Und jetzt Ihr
 
-1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html) und stöbert durch einige Beispielreports, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
+1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html) und stöbert durch einige Beispiele, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
 2.  Bearbeite lokal die [Übung](){target="_blank"} zu R Markdown, die wir für Euch vorbereitet haben.
