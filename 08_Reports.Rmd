@@ -95,7 +95,7 @@ erstellt mit: `![Bildbeschriftung](Link zum Bild){width=10% height=10%}`
 
 erstellt mit: `[Hyperlinkname](Link){target="_blank"}`
 
-[Hyperlink: Webseite CorrelAid](www.correlaid.org){target="_blank"}
+[Hyperlink: Webseite CorrelAid](https://correlaid.org/){target="_blank"}
 
 *Anmerkung: Mit {target="\_blank"} könnt Ihr festlegen, dass ein neuer Tab geöffnet wird.*
 
@@ -191,7 +191,7 @@ Der YAML Abschnitt ist für gewöhnlich ganz oben in R Markdown Dateien zu finde
 
 Die **Grundeinstellungen** geben Titel, Autor:in, Datum und Outputformat des geknitteten Dokuments an. Darüber hinaus gibt es aber noch mehr Möglichkeiten. So könnt Ihr dort beispielsweise das Layoutformat anpassen. Wenn Ihr Euch mit HTML und CSS auskennt, könnt Ihr sogenannte Stylesheets anlegen und auf diese verweisen. Die leichteste Option ist es allerdings vorgefertigte Themes zu nutzen.
 
-Im untenstehenden YAML Code wird eimes der Standard Themes von R Markdown namens "Flatly" definiert. Weitere Themes findest du in dieser [R Markdown Theme Gallery](https://www.datadreaming.org/post/r-markdown-theme-gallery/).
+Im untenstehenden YAML Code wird eimes der Standard Themes von R Markdown namens "Flatly" definiert. Weitere Themes findest du in dieser [R Markdown Theme Gallery](https://www.datadreaming.org/post/r-markdown-theme-gallery/){target="_blank"}.
 
     ---
     title: "Euer Titel"
@@ -221,5 +221,5 @@ quiz(caption = NULL,
 
 ### Und jetzt Ihr
 
-1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html) und stöbert durch einige Beispiele, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
+1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html){target="_blank"} und stöbert durch einige Beispiele, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
 2.  Bearbeite lokal die [Übung 08_Reports](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} zu R Markdown, die wir für Euch vorbereitet haben.
