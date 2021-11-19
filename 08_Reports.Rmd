@@ -1,35 +1,41 @@
 ## Reports in R Markdown
 
-<!-- Frie: hier wird es wahrscheinlich schwer die übung auf der platform direkt zu machen?  -->
-
 <!-- Nina: Hier nochmal den Unterschied PDF und HTML zeigen - da gibt es bestimmt Fragen zu (Was sind die Vorteile/Nachteile? Wie genau sieht das im Vergleich aus? Wie kann ich das Teilen?)  -->
 
 <!--
 ### Aufbau Video
 
+Intro (5min)
+1. Vorstellung
+2. Motivation für R-Markdown Reports
+  - keine Copy und Paste Fehler beim kopieren der Ergebnisse
+  - automatisieren möglich (Bsp. CFE)
+  - viele Outputs möglich
+3. Lernziele
+  - Woche 1 Modularprinzip: Grundkenntnisse R Markdown
+  - Woche 2 Reportfabrik: Reports Automatisieren
+  - generell Überblick: was ist alles möglich?
+  
+Inhalt
 1.  Kurze Einführung/Wiederholung: Was ist R-Markdown?\
+    1. Zitate
+    2. Zusammenfassung
+    3. Gallery + Tabellenwettbewerb Beispiel
 
-2.  Wofür ist es nützlich?
-
-    1.  --\> unter anderem Reporting (Export Möglichkeiten von RMarkdown)\
-    2.  --\> Exercise 1: Explore R-Markdown Gallery, post your fav in slack channel\
-
-3.  Struktur von RMarkdown
-
+2.  Struktur von RMarkdown: Wie sind die Komponenten aufgebaut?  
     1.  YAML Header\
     2.  Inhalte\
     3.  Knitr Code Chunks\
 
-4.  Inhalte
-
+4.  Inhalte: Wie kann ich den Text formatieren?  
     1.  Überschriften\
     2.  Text\
     3.  Listen\
     4.  Links\
     5.  Bilder\
-    6.  --\> Exercise mit [Tutorial](https://commonmark.org/help/tutorial/)
 
-5.  Code Chunks (wurde evtl schon abgedeckt? Nina: Nein, gerne da ganz ausführlich sein! :) 
+5.  Code Chunks 
+    1. 
 
     1.  Tabellen einfügen\
     2.  Plots darstellen\
