@@ -1,8 +1,21 @@
-## Aufbau Video
+---
+params: 
+  datum: "26.11.2021"
+---
+
+## Automatisierte Reports
+
+<!-- 
 
 1.  Recap letzter Woche?
 
-2.  Parameter definieren
+2.  Parameter 
+
+    1. Was sind Parameter? 
+    
+    2. Parameter definieren
+    
+    3. Parameter im Code benutzen
 
     1.  Radio Button
 
@@ -19,65 +32,63 @@ Idee: Vielleicht könnte man hier eine Beobachtung einpflegen, die dann in Graph
 
 Frie: weiß nicht ob das zu weit geht und zu technisch wird aber was ist mit child documents? https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html
 
-## Topic 1
+-->
 
-### Exercise
+![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
 
-Write the R code required to add two plus two:
+### Kernaussagen
 
-```{r two-plus-two, exercise=TRUE}
+#### Parametrisierte Berichte  
+Sie ermöglichen es, einen oder mehrere Parameter anzugeben, um die R Markdown Analyse anzupassen. Dies ist zum Beispiel nützlich, um eine Reportvorlage in mehreren ähnlichen Szenarien wiederverwenden zu können. Beispiele können sein:
 
+  - Steuern des Verhaltens von knitr (z. B. angeben, ob der Code angezeigt werden soll oder nicht).
+  - Ergebnisse für bestimmte Subsets der Daten zu generieren.
+  - Mehrfaches Ausführen einer einzelnen Analyse für verschiedene Annahmen.
+
+#### Parameter setzen  
+Parameter werden in dem YAML-Abschnitt des R Markdown Dokumentes definiert. Wir können mit jedem Key: Value Paar in einer neuen Zeile einen oder mehrere Parameter angeben. Als Beispiel wird hier der Parameter `datum` definiert:
+
+```yaml
+---
+title: Mein Report
+output: html_document
+params:
+  datum: "26.11.2021"
+---
 ```
 
-### Exercise with Code
+#### Parameter einbinden  
+Parameter die in dem YAML-Abschnitt definiert wurden stehen als Liste namens `params` zur Verfügung. Um auf einen Parameter im Code zuzugreifen, benutzt Ihr `params$parametername`. Als Beispiel seht ihr ein Stück Markdown Text mit inline R Code der den Parameter `datum` aufruft. 
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
-
-Now write a function that adds any two numbers and then call it:
-
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
+```
+Das heutige Datum ist: `r knitr::inline_expr('params$datum')` 
 ```
 
-## Topic 2
+Daraus wird:  
+Das heutige Datum ist: `r params$datum`
 
-### Exercise with Hint
 
-*Here's an exercise where the chunk is pre-evaluated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+#### Parameter und Code Blöcke
+Parameter können nicht nur in den Text einfließen. Sie können auch genutzt werden, um Argumente in Code Blöcken zentral zu definieren. Es ist zum Beispiel möglich, eine Parameter `params$print_code` zu definieren um damit an bestimmten Stellen das `echo` Argument von Code Blöcken zu steuern. Ist der Parameter auf `print_code: TRUE` gesetzt werden die Code Blöcke in den Report eingebunden. Ist der Parameter auf `print_code: FALSE` werden die Code Blöcke nicht in den Report eingefügt. 
 
-Modify the following code to limit the number of rows printed to 5:
+<!-- Hier könnte noch das gleiche nur mit eval erklärt werden. dass dann manche Codeböcke nur ausgeführt werden wenn der Parameter true ist -->
 
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
+
+
+```yaml
+---
+title: Mein Report
+output: html_document
+params:
+  print_code: FALSE
+---
 ```
 
-```{r print-limit-hint}
-head(mtcars)
+
+````
+```{r, setup, include=FALSE}`r ''`
+knitr::opts_chunk$set(echo = params$printcode)
 ```
+````
 
-### Quiz
-
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
-
-Some questions to verify that you understand the purposes of various base and recommended R packages:
-
-```{r quiz}
-quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
-  )
-)
-```
