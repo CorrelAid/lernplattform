@@ -1,11 +1,25 @@
 ---
-title: "Untitled"
-author: "Lisa Reiber"
-date: "26.11.2021"
-output: html_document
+title: "Beispieltitel"
+author: "unbekannte:r Autor:in"
+date: "18.11.2021"
+output:
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# Notwendige Packages laden
+library(tidyverse)
 ```
 
+<!-- Anleitung einfügen -->
+
+# Schritt 1: rmarkdown::render() Funktion
+
+
+# Schritt x: Parameter setzen
+
+<!-- Im Folgenden nutzen wir den bisher erstellten Report. In dieser Übung geht es darum, Parameter in diesem Report zu definieren und in den Report einzufügen. Damit erreichen wir, dass wir bestimmte Verhaltensweisen durch die Parameter automatisiert verändern können, ohne im Dokument selbst etwas ändern zu müssen. Denn dafür haben wir die Parameter als Platzhalter dienen. -->
+
+Füge einen neuen Parameter im YAML-Abschnitt

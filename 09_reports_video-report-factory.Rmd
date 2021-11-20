@@ -1,0 +1,91 @@
+---
+title: "Report Fabrik"
+# params werden dann später hinzugefügt! und dann auf den report übertragen :)
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(
+  glue,
+  tidyverse,
+  rmarkdown,
+  lubridate
+)
+```
+
+# Willkommen in der Report Fabrik
+
+# Schritt 1: Input festlegen
+```{r define-input}
+set_date <- lubridate::today()
+set_author <- "LR"
+set_report_name <- "09_reports_video-example.Rmd"
+```
+
+
+# Schritt 2: Dokumentnamen bauen
+```{r build-document-name}
+output_file <- glue::glue("{set_date}_Mein-Report-Name_{set_author}")
+```
+
+
+# Reports herstellen
+
+## einen einzelnen Report
+
+```{r render-one}
+rmarkdown::render(
+  input = here::here(set_report_name),
+  output_file = output_file
+  )
+```
+
+## mehrere Reports
+
+# render alle Formate, die im YAML des Dokuments definiert sind
+
+```{r render-many-all}
+rmarkdown::render(
+  input = here::here("09_reports_video-example.Rmd"),
+  output_file = output_file,
+  output_format = "all"
+)
+```
+
+```{r render-many-list}
+rmarkdown::render(
+  input = here::here("09_reports_video-example.Rmd"),
+  output_file = output_file,
+  output_format = c("html_document", "pdf_document")
+)
+```
+
+# rendern für mehrere Inputs
+
+```{r}
+reports_list <- c("09_reports_fake-report1.Rmd",
+                  "09_reports_fake-report2.Rmd")
+
+
+purrr::walk(
+  .x = reports_list,
+  .f = ~ rmarkdown::render(
+    input = here::here(.x)
+    )
+  )
+
+```
+
+```{r}
+purrr::walk(
+  .x = reports_list,
+  .f = ~ rmarkdown::render(
+    input = here::here(.x),
+    output_file = glue::glue("{set_date}_{.x}_{set_author}")
+  )
+)
+```
+
