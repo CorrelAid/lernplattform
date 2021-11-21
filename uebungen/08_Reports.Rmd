@@ -28,47 +28,72 @@ library(tidyverse)
 # Schritt 2: Daten laden
 ```{r datenimport}
 ### Daten laden
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- readr::read_csv(
+    file = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv"
+    )
 ```
 
 # Schritt 3: Daten bereinigen
 ```{r datenbereinigung}
 ### Daten bereinigen
-# Country name cleaning: 
+# Country name cleaning:
   # United Kingdom of Great Britain & Northern Ireland sowie für die USA
 plastics_prep <- plastics %>%
   # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
-  filter(year==2019) %>%
-  mutate(country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
-         country = str_replace(country, "United States of America", "United States"),
-         country = str_to_title(country) ) %>% #um z.B.: ECUADOR etc case ändern
-  #Continent und Country Code anspielen
-  mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
-         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
-  mutate(continent=replace_na(continent, "Unknown"),
-         countrycode=replace_na(countrycode, "Unknown"))
-
-### Community Datensatz erstellen
-community<- plastics_prep %>%
-  select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
-  group_by(country, year) %>%
-  filter(row_number()==1)
-
-# Audit Plastik Datensatz erstellen
-audit_plastic<- plastics_prep %>%
-  # nur grandtotal zeile behalten
-  filter(parent_company=="Grand Total") %>%
-  select(-c(parent_company, num_events, volunteers, empty)) %>%
-  #NA zu 0
-  mutate(
-    across(everything(), ~replace_na(.x, 0))
+  dplyr::filter(year == 2019) %>%
+  dplyr::mutate(
+    country = stringr::str_replace(
+      country,
+      "United Kingdom of Great Britain & Northern Ireland",
+      "United Kingdom"
+    ),
+    country = stringr::str_replace(country, "United States of America", "United States"),
+    # convert strings um z.B.: ECUADOR etc case zu ändern
+    country = stringr::str_to_title(country)
+  ) %>% 
+  # Continent und Country Code anspielen
+  dplyr::mutate(
+    continent =   countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "continent"),
+    countrycode = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "iso3c")
+  ) %>%
+  # NA zu Unknown
+  dplyr::mutate(
+    continent = tidyr::replace_na(continent, "Unknown"),
+    countrycode = tidyr::replace_na(countrycode, "Unknown")
   )
 
+### Community Datensatz erstellen
+community <- plastics_prep %>%
+  dplyr::select(country,
+                year,
+                num_events,
+                volunteers,
+                grand_total,
+                continent,
+                countrycode) %>%
+  dplyr::group_by(country, year) %>%
+  dplyr::filter(dplyr::row_number() == 1)
+
+# Audit Plastik Datensatz erstellen
+audit_plastic <- plastics_prep %>%
+  # nur grandtotal zeile behalten
+  dplyr::filter(parent_company == "Grand Total") %>%
+  dplyr::select( -c(parent_company,
+                    num_events, 
+                    volunteers, 
+                    empty)) %>%
+  # NA zu 0
+  dplyr::mutate(across(everything(), ~ tidyr::replace_na(.x, 0)))
+
 # EU-Asien Audit Plastik Datensatz erstellen
-audit_plastic_eu_asia<- audit_plastic %>%
-  filter(continent == "Europe" | continent == "Asia") %>%
-  group_by(country) %>%
-  mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
+audit_plastic_eu_asia <- audit_plastic %>%
+  dplyr::filter(continent == "Europe" | continent == "Asia") %>%
+  dplyr::group_by(country) %>%
+  dplyr::mutate(n_types = sum(c(hdpe, ldpe, o, pet, pp, ps, pvc) != 0))
 ```
 
 # Schritt 4: Übersicht verschaffen
@@ -99,33 +124,51 @@ Nach der Datenbereinigung verblieben noch insgesamt `r nrow(plastics_prep)` Beob
 # Schritt 5: Visuelle Exploration
 ```{r scatterplot}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
-ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen
-  geom_point(position = position_jitter(width = 0.3),
-             size = 3,
-             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
-  coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
+community %>% 
+  # Initialisierung des ggplots mit Variablen
+  ggplot2::ggplot(aes(x = continent, y = volunteers)) + 
+  # Hinzufügen der Datenpunkte (Scatterplot) 
+  geom_point(
+    # Stylingoptionen zur Positionierung
+    position = position_jitter(width = 0.3),
+    # Punktegröße
+    size = 3,
+    #Transparenz
+    alpha = 0.6
+    ) + 
+  # Festlegung der Achsenlänge der y-Achse
+  coord_cartesian(ylim = c(0, 10000)) + 
+  # Festlegung der Labels
   labs(
-    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
+    # Titel
+    title = "Die Beteiligung an 'Break Free From Plastic' ...",
+    # Untertitel
     subtitle = "... unterscheidet sich nach Kontinent.",
+    # Achsenbezeichungen
     y = "Anzahl Freiwilliger",
     x = "Kontinent",
+    # Anmerkung
     caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() # Festlegung des Layout-Designs
+    ) + 
+   # Festlegung des Layout-Designs
+  theme_minimal()
 ```
 
 # Schritt 6: Statistische Kennzahlen
 ```{r dplyruebung}
 # Berechnung der Länder- und Freiwilligenanzahl je Kontinent
 overview_community <- community %>% # Bezug zum Datensatz
-  group_by(continent) %>% # Gruppierung pro Kontinent
-  summarize( # Initialisierung der Berechnung
+  dplyr::group_by(continent) %>% # Gruppierung pro Kontinent
+  # Initialisierung der Berechnung
+  dplyr::summarize(
     # Anzahl beteiligter Länder
     länder_anzahl = n(),
     # Teilnahmezahl der Freiwilligen
     freiwillige_anzahl = sum(volunteers))
+
 # Gestaltung des Tabellenlayouts mit Beschriftung
-knitr::kable(overview_community, caption = "Übersicht über Events und Freiwillige")
+overview_community %>% 
+  knitr::kable(caption = "Übersicht über Events und Freiwillige")
 ```
 
 ### Übung 5: YAML Kopfzeile
