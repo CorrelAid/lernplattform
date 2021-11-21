@@ -69,8 +69,6 @@ rmarkdown::render(
 ```{r}
 reports_list <- c("09_reports_fake-report1.Rmd",
                   "09_reports_fake-report2.Rmd")
-
-
 purrr::walk(
   .x = reports_list,
   .f = ~ rmarkdown::render(
@@ -86,6 +84,20 @@ purrr::walk(
   .f = ~ rmarkdown::render(
     input = here::here(.x),
     output_file = glue::glue("{set_date}_{.x}_{set_author}")
+  )
+)
+```
+
+# rendern für mehrere Params
+
+```{r}
+purrr::walk(
+  .x = c(TRUE, FALSE),
+  .f = ~ rmarkdown::render(
+    input = "Mein-Report.Rmd",
+    # maybe check out if_else statement here
+    output_file = glue::glue("{set_date}_Mein-Report-Name_{set_author}_Code{.x}"),
+    params = list(include_code = .x)
   )
 )
 ```
