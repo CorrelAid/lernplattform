@@ -4,7 +4,7 @@ params:
   print_code: TRUE
 ---
 
-## Automatisierte Reports
+## Reportautomatisierung
 
 <!-- 
 Slides: https://docs.google.com/presentation/d/1x6u3QD3Hah6MzUN_XF90naQY1KAr1k8s56nBX8RPN00/edit?usp=sharing (commenting rights)
@@ -32,7 +32,7 @@ Frie: weiß nicht ob das zu weit geht und zu technisch wird aber was ist mit chi
 
 -->
 
-![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
+![*Video: Reportautomatisierung (30min)*](https://youtu.be/VUQseeP65t8)
 
 ### Kernaussagen
 
@@ -114,14 +114,14 @@ Es gibt drei Möglichkeiten, parameterisierte Reports zu generieren und die Para
 
 1.  Der R-Studio Knit-Button (Wollknäuel): Mit dem ausführen der R Markdown Datei mit dem Knit-Button werden die Parameter verwendet, die in dem YAML Abschnitt des R Markdown Dokumentes definiert sind.
 
-2. In einem Graphical User Interface in R-Studio. Neben dem Knit-Button findet sich ein Menü, in dem auf "Knit with paramters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine grafische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können. Hier ein Beispiel für das interface der beiden hier besprochenen Parameter: 
+2. In einem Graphical User Interface in R-Studio. Neben dem Knit-Button findet sich ein Menü, in dem auf "Knit with parameters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine grafische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können. Hier ein Beispiel für das Interface der beiden hier besprochenen Parameter: 
 
 ```{r, include = FALSE}
 # TODO add GUI screenshot to git repo
 # knitr::include_graphics(here::here("daten/abbildungen/TODO"))
 ```
 
-3.  Mit dem `params` Argument der `rmarkdown::render()` Funktion. Hier folgt der Beipielcode, um die oben besprochenen Paramter per Funktion zu definieren:  
+3.  Mit dem `params` Argument der `rmarkdown::render()` Funktion. Hier folgt der Beipielcode, um die oben besprochenen Parameter per Funktion zu definieren:  
 
 ```r
 rmarkdown::render(

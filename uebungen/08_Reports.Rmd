@@ -88,12 +88,6 @@ audit_plastic <- plastics_prep %>%
                     empty)) %>%
   # NA zu 0
   dplyr::mutate(across(everything(), ~ tidyr::replace_na(.x, 0)))
-
-# EU-Asien Audit Plastik Datensatz erstellen
-audit_plastic_eu_asia <- audit_plastic %>%
-  dplyr::filter(continent == "Europe" | continent == "Asia") %>%
-  dplyr::group_by(country) %>%
-  dplyr::mutate(n_types = sum(c(hdpe, ldpe, o, pet, pp, ps, pvc) != 0))
 ```
 
 # Schritt 4: Übersicht verschaffen
