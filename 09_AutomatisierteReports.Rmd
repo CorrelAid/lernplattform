@@ -1,83 +1,152 @@
-## Aufbau Video
+---
+params: 
+  datum: "26.11.2021"
+  print_code: TRUE
+---
 
-1.  Recap letzter Woche?
+## Automatisierte Reports
 
-2.  Parameter definieren
+<!-- 
+Slides: https://docs.google.com/presentation/d/1x6u3QD3Hah6MzUN_XF90naQY1KAr1k8s56nBX8RPN00/edit?usp=sharing (commenting rights)
 
-    1.  Radio Button
-
-    2.  Liste
-
-    3.  Range
-
-3.  Parameter per Hand eingeben
-
-4.  Parameter mit code "eingeben"
+Intro (5 min)
+    1. Recap letzter Woche
+    2. Motivation
+    3. Lernziele
+1.  die rmarkdown::render() Funktion (10min)
+    1. einen Report rendern
+    2. output_file: den Output Namen anpassen mit glue
+    3. output_format: zwei Output formate auf einmal generieren
+2.  Parameter (10min)
+    1. Was sind Parameter? (Platzhalter)
+    2. Parameter definieren
+    3. Parameter im Code benutzen
+    4. Parameter per Hand/GUI eingeben
+4.  rmarkdown::render() + Parameter: Parameter mit code "eingeben" (5min)
+5.  rmarkdown::render() + Parameter + walk: mehrere Parameter mit code "eingeben" (10min)
 
 Frie: hier müsste man ggf. for loops einführen oder purrr::walk - das ist in den bisherigen lektionen noch nicht drin oder? (+1 Nina)
 Idee: Vielleicht könnte man hier eine Beobachtung einpflegen, die dann in Graphiken, Tabellen und Text immer mit dem Rest verglichen wird.
 
-Frie: weiß nicht ob das zu weit geht und zu technisch wird aber was ist mit child documents? https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html
+Frie: weiß nicht ob das zu weit geht und zu technisch wird aber was ist mit child documents? https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html (Lisa: ja, ist jetzt schon echt viel finde ich)
 
-## Topic 1
+-->
 
-### Exercise
+![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+### Kernaussagen
 
-Write the R code required to add two plus two:
+#### rmardown::render()
 
-```{r two-plus-two, exercise=TRUE}
+- Ihr könnt die `rmarkdown::render()` Funktion nutzen, um automatisiert R Markdown Reports zu generieren. Der Code um ein Beispiel R Markdown Dokument `mein-report.Rmd" ohne den Knit-Button zu rendern sieht so aus:
 
+```r
+rmarkdown::render("Mein-Report.Rmd")
 ```
 
-### Exercise with Code
+TODO hier fehlen noch die Beschreibungen, wie z.B. der Output File Name angepasst werden kann. 
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+Option1: Füge ein Kürzel zu dem Dokumentennamen des Berichtes hinzu
+Option2: Füge dem Dokumentennamen das aktuelle Datum hinzu.
+Option3: Generiere mehrere Outputarten auf einmal.
+Option4: Generiere verschiedene Reports mit dem gleichen Kürzel
 
-Now write a function that adds any two numbers and then call it:
+#### Parameterisierte Berichte
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
+Parameterisierte Berichte ermöglichen es, einen oder mehrere Parameter zu definieren, um die R Markdown Analyse anzupassen. Dies ist zum Beispiel nützlich, um eine Reportvorlage in mehreren ähnlichen Szenarien wiederverwenden zu können. Beispiele können sein:
+
+-   Steuern des Verhaltens von `knitr` (z. B. angeben, ob der Code angezeigt werden soll oder nicht).
+-   Ergebnisse für bestimmte Subsets der Daten zu generieren.
+-   Mehrfaches Ausführen einer einzelnen Analyse für verschiedene Annahmen.
+
+#### Parameter definieren
+
+Parameter werden in dem YAML-Abschnitt des R Markdown Dokumentes definiert. Wir können mit jedem Key: Value Paar in einer neuen Zeile einen oder mehrere Parameter angeben. Als Beispiel wird hier in der vierten Zeile des YAML-Abschnitts der Parameter Datum `datum: "26.11.2021"` als Key:Value Paar definiert:
+
+``` yaml
+---
+title: Mein Report
+output: html_document
+params:
+  datum: "26.11.2021"
+---
 ```
 
-## Topic 2
+#### Parameter einbinden
 
-### Exercise with Hint
+Parameter die in dem YAML-Abschnitt definiert wurden stehen als Liste namens `params` zur Verfügung. Um auf einen Parameter im Code zuzugreifen, benutzt Ihr `params$parameter-key`. Das Beispiel zeigt ein Stück Markdown Text mit inline R Code der den Parameter `datum` aufruft.
 
-*Here's an exercise where the chunk is pre-evaluated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+````
+Das heutige Datum ist: `r knitr::inline_expr('params$datum')` 
+````
 
-Modify the following code to limit the number of rows printed to 5:
+Beim rendern des R Markdowns wird dann der Platzhalter `params$datum` durch das Datum ersetzt, welches im YAML-Abschnitt definiert wurde. Aus dem Code wird also:\
 
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
+Das heutige Datum ist: `r params$datum`
+
+#### Parameter und Code Blöcke
+
+Parameter können nicht nur in den Text einfließen. Sie können auch genutzt werden, um Argumente in Code Blöcken zentral zu definieren. Es ist zum Beispiel möglich, eine Parameter `params$print_code` zu definieren um damit an bestimmten Stellen das `echo` Argument von Code Blöcken zu steuern. Ist der Parameter auf `print_code: TRUE` gesetzt werden die Code Blöcke in den Report eingebunden. Ist der Parameter auf `print_code: FALSE` werden die Code Blöcke nicht in den Report eingefügt.
+
+<!-- Hier könnte noch das gleiche nur mit eval erklärt werden. dass dann manche Codeböcke nur ausgeführt werden wenn der Parameter true ist -->
+
+``` yaml
+---
+title: Mein Report
+output: html_document
+params:
+  datum: "26.11.2021"
+  print_code: FALSE
+---
 ```
 
-```{r print-limit-hint}
-head(mtcars)
+<!-- [einfügen von verbatim Code Chunks](https://themockup.blog/posts/2021-08-27-displaying-verbatim-code-chunks-in-xaringan-presentations/?panelset=r) -->
+
+````r
+```{r, setup, include=FALSE}`r ''`
+knitr::opts_chunk$set(echo = params$print_code)
+```
+````
+
+#### einen parameterisierten Report erstellen
+
+Es gibt drei Möglichkeiten, parameterisierte Reports zu generieren und die Parameter zu bestimmen, die im Knitting Prozess verwendet werden:
+
+1.  Der R-Studio Knit-Button (Wollknäuel): Mit dem ausführen der R Markdown Datei mit dem Knit-Button werden die Parameter verwendet, die in dem YAML Abschnitt des R Markdown Dokumentes definiert sind.
+
+2. In einem Graphical User Interface in R-Studio. Neben dem Knit-Button findet sich ein Menü, in dem auf "Knit with paramters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine grafische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können. Hier ein Beispiel für das interface der beiden hier besprochenen Parameter: 
+
+```{r, include = FALSE}
+# TODO add GUI screenshot to git repo
+# knitr::include_graphics(here::here("daten/abbildungen/TODO"))
 ```
 
-### Quiz
+3.  Mit dem `params` Argument der `rmarkdown::render()` Funktion. Hier folgt der Beipielcode, um die oben besprochenen Paramter per Funktion zu definieren:  
 
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
-
-Some questions to verify that you understand the purposes of various base and recommended R packages:
-
-```{r quiz}
-quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
+```r
+rmarkdown::render(
+  "Mein-Report.Rmd", 
+  params = list(
+    datum = "26.11.2021", 
+    print_code = FALSE
+    )
   )
-)
 ```
+
+*\*Anmerkung: Falls die definierten Werte für einen Parameter sowohl im YAML-Abschnitt, als auch durch die `rmarkdown::render()` Funktion definiert werden und an beiden Orten unterschiedliche Werte definiert wurden, wird der Wert gerendered, der durch die `rmarkdown::render()` Funktion in dem `params` Argument definiert wurde.*
+
+#### Reportfabrik
+
+TODO purr::walk() beschreiben und Vorgang beschreiben wie zwei Parameter mit walk an die render Funktion übergeben werden und daraus 2 Reports entstehen.
+
+
+#### weiterführende Literatur  
+-   [Website - R-Studio](https://rmarkdown.rstudio.com/lesson-6.html)\
+-   [Book - R Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html)
+-   [Book - R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html)
+
+
+### Und jetzt Ihr
+Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der rmarkdown::render() Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut Euch das [**R Markdown: 09_AutomatisierteReports**](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+
+TODO update Link

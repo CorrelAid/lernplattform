@@ -25,15 +25,19 @@ library(httr)
 library(purrr)
 library(RSQLite)
 library(DBI)
+
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-gradethis::gradethis_setup(pass = "Gut gemacht!", 
-                           fail = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
-                           code_correct = "Gut gemacht!", 
-                           code_incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
-                           maybe_code_feedback = FALSE,
-                           fail.hint = FALSE,
-                           grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
-                           )
+
+gradethis::gradethis_setup(
+  pass = "Gut gemacht!",
+  fail = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
+  code_correct = "Gut gemacht!",
+  code_incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
+  maybe_code_feedback = FALSE,
+  fail.hint = FALSE,
+  grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
+)
+
 ### Daten laden
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
@@ -45,10 +49,10 @@ wb_areas <- WDI::WDI(
   end = 2018, # Auswahl Zeithorizont: Ende
   language = "en" #Sprachauswahl
 ) 
-data_wb <- wb_areas %>% 
+
+data_wb <- wb_areas %>%
   dplyr::select(country_code = 'iso2c',
-                protected_area = 'ER.PTD.TOTL.ZS'
-                )
+                protected_area = 'ER.PTD.TOTL.ZS')
 
 # Einlesen der Shapefiles
 polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
@@ -89,68 +93,90 @@ waste_geo <- waste_list %>%
 
 ### Daten bereinigen
 # Country name cleaning: 
-  # United Kingdom of Great Britain & Northern Ireland sowie für die USA
 plastics_prep <- plastics %>%
   # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
-  filter(year==2019) %>%
-  mutate(country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
-         country = str_replace(country, "United States of America", "United States"),
-         country = str_to_title(country) ) %>% #um z.B.: ECUADOR etc case ändern
+  dplyr::filter(year == 2019) %>%
+  # United Kingdom of Great Britain & Northern Ireland sowie für die USA
+  dplyr::mutate(
+    country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
+    country = str_replace(country, "United States of America", "United States"),
+    country = str_to_title(country)  # um z.B.: ECUADOR etc case ändern
+    ) %>%
   #Continent und Country Code anspielen
-  mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
-         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
-  mutate(continent=replace_na(continent, "Unknown"),
-         countrycode=replace_na(countrycode, "Unknown"))
+  dplyr::mutate(
+    continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
+    countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")
+    ) %>%
+  dplyr::mutate(
+    continent = replace_na(continent, "Unknown"),
+    countrycode = replace_na(countrycode, "Unknown")
+    )
 
 ### Community Datensatz erstellen
-community<- plastics_prep %>%
-  select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
-  group_by(country, year) %>%
-  filter(row_number()==1)
+community <- plastics_prep %>%
+  dplyr::select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
+  dplyr::group_by(country, year) %>%
+  dplyr::filter(row_number() == 1)
 #write.csv(community, here::here("daten/community_perspective.csv"), row.names = FALSE)
 
 # Audit Plastik Datensatz erstellen
-audit_plastic<- plastics_prep %>%
+audit_plastic <- plastics_prep %>%
   # nur grandtotal zeile behalten
-  filter(parent_company=="Grand Total") %>%
-  select(-c(parent_company, num_events, volunteers, empty)) %>%
+  dplyr::filter(parent_company == "Grand Total") %>%
+  dplyr::select(-c(parent_company, num_events, volunteers, empty)) %>%
   #NA zu 0
-  mutate(
+  dplyr::mutate(
     across(everything(), ~replace_na(.x, 0))
   )
+
 #write.csv(audit_plastic, here::here("daten/audit_perspective.csv"), row.names = FALSE)
 
 # EU-Asien Audit Plastik Datensatz erstellen
-audit_plastic_eu_asia<- audit_plastic %>%
-  filter(continent == "Europe" | continent == "Asia") %>%
-  group_by(country) %>%
-  mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
+audit_plastic_eu_asia <- audit_plastic %>%
+  dplyr::filter(continent == "Europe" | continent == "Asia") %>%
+  dplyr::group_by(country) %>%
+  dplyr::mutate(n_types = sum(c(hdpe, ldpe, o, pet, pp, ps, pvc) != 0))
 
 # Datensätze für 2019 & 2020 & reduziert
-plastics_2019 <- plastics %>%
-  dplyr::filter(year == "2019") 
-plastics_2020 <- plastics %>%
-  dplyr::filter(year == "2020") 
-plastics_reduced <- plastics_2019 %>%
-  dplyr::select(-grand_total)
+plastics_2019 <- plastics %>% dplyr::filter(year == "2019") 
+
+plastics_2020 <- plastics %>% dplyr::filter(year == "2020") 
+
+plastics_reduced <- plastics_2019 %>% dplyr::select(-grand_total)
+
 reduced_2019 <- plastics_2019 %>%
-  dplyr::filter(parent_company != "Grand Total" 
-                & country != "EMPTY") %>%
+  dplyr::filter(
+    parent_company != "Grand Total" &
+    country != "EMPTY"
+    ) %>%
   dplyr::group_by(country) %>%
-  dplyr::summarize(grand_total = sum(grand_total),
-                   num_events = mean(num_events),
-                   volunteers = mean(volunteers))
+  dplyr::summarize(
+    grand_total = sum(grand_total),
+    num_events = mean(num_events),
+    volunteers = mean(volunteers)
+    )
+
 reduced_2020 <- plastics_2020 %>%
-  dplyr::filter(parent_company != "Grand Total"
-                & country != "EMPTY") %>%
+  dplyr::filter(
+    parent_company != "Grand Total" &
+    country != "EMPTY"
+    ) %>%
   dplyr::group_by(country) %>%
-  dplyr::summarize(grand_total = sum(grand_total),
-                   num_events = mean(num_events),
-                   volunteers = mean(volunteers))
+  dplyr::summarize(
+    grand_total = sum(grand_total),
+    num_events = mean(num_events),
+    volunteers = mean(volunteers)
+    )
+
 data_no_na <- na.omit(reduced_2020)
+
 data_2019 <- reduced_2019
-data_2019$country_code <- countrycode::countrycode(data_2019$country, origin = 'country.name',
-                                                   destination = 'iso2c')
+
+data_2019$country_code <- data_2019$country %>% 
+  countrycode::countrycode(
+    origin = 'country.name',
+    destination = 'iso2c'
+    )
 
 
 # Mini-Datensätze für NA's
@@ -160,30 +186,35 @@ df <- tibble::tribble(
   "Person 2",         3,   NA,           -99,
   "Person 3",         NA,  0.76,         -1.6
   )
-df2 <- df %>% 
-  dplyr::na_if(-99)
+
+df2 <- df %>% dplyr::na_if(-99)
 
 # Exportieren der Datensets in CSV für DB
 # Country Codes
 country_db <- community %>%
-  ungroup() %>%
-  select(countrycode, country, continent)
+  dplyr::ungroup() %>%
+  dplyr::select(countrycode, country, continent)
 #write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
 
 # Community
 community_db <- community %>%
-  ungroup() %>%
-  select(countrycode, year, num_events, volunteers)
+  dplyr::ungroup() %>%
+  dplyr::select(countrycode, year, num_events, volunteers)
 #write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
 
 # Audit Plastic
 audit_db <- plastics_prep %>%
-  filter(parent_company != "Grand Total") %>% 
-  ungroup() %>%
-  select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
-  pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
-  filter(parent_company != "Grand Total")
-write.csv(audit_db, here::here("daten/audit_plastics.csv"), row.names = FALSE)
+  dplyr::filter(parent_company != "Grand Total") %>% 
+  dplyr::ungroup() %>%
+  dplyr::select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
+  tidyr::pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
+  dplyr::filter(parent_company != "Grand Total")
+
+audit_db %>% 
+  write.csv(
+    here::here("daten/audit_plastics.csv"),
+    row.names = FALSE
+    )
 ``` 
 
 
@@ -242,10 +273,9 @@ out <- knitr::knit_child("08_Reports.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Reportautomatisierungen
 ```{r results='asis'}
-#out <- knitr::knit_child("09_AutomatisierteReports", quiet = TRUE)
-#cat(out, sep = '')
+# out <- knitr::knit_child("09_AutomatisierteReports", quiet = TRUE)
+# cat(out, sep = '')
 ```
 
 ## Datenvisualisierung

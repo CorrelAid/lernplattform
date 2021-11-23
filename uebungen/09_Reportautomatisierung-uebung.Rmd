@@ -1,0 +1,47 @@
+---
+title: "Beispieltitel"
+author: "unbekannte:r Autor:in"
+date: "18.11.2021"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Notwendige Packages laden
+library(tidyverse)
+```
+
+<!-- Anleitung einfügen -->
+
+# Schritt 1: rmarkdown::render() Funktion
+
+Rendert ein .Rmd deiner Wahl mit der `rmarkdown::render()` Funktion anstatt des 🧶 Knit-Buttons.
+Ihr könnt dafür dieses Dokument als Report-Factory benutzen, wo ihr den Code schreibt, der dann die Reports generiert. 
+
+*\*Anmerkung: Falls du die render Funktion nachschlagen möchstest, kannst du den Namen der Funktion entweder im Help-Abschnitt von R-Studio eingeben oder die Funktion um Script highlighten und dann F1 drücken. Ein weiterer Weg ist es `?render` in der Console auszuführen*
+
+```{r}
+# hier dein Code um einen Report mit rmarkdown::render() zu generieren
+```
+
+
+
+
+
+## generiere einen Report
+
+```{r}
+report_name <- "mein-report.Rmd"
+
+report_name
+```
+
+### Szenario 1:
+
+# Schritt x: Parameter setzen
+
+<!-- Im Folgenden nutzen wir den bisher erstellten Report. In dieser Übung geht es darum, Parameter in diesem Report zu definieren und in den Report einzufügen. Damit erreichen wir, dass wir bestimmte Verhaltensweisen durch die Parameter automatisiert verändern können, ohne im Dokument selbst etwas ändern zu müssen. Denn dafür haben wir die Parameter als Platzhalter dienen. -->
+
+Füge einen neuen Parameter im YAML-Abschnitt

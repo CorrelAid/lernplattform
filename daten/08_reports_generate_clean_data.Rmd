@@ -15,7 +15,6 @@ pacman::p_load(
 ```
 
 ```{r import-data}
-# plastics <- # Hier Euer Code! #TODO for now
 plastics_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
