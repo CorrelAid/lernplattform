@@ -1,20 +1,51 @@
 ## Datenvisualisierung
 
-In dieser Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche XX XX ansehen.
+![](VIDEO)
 
-Nina: Video vielleicht zu den Inhalten: warum visualisieren, welche Viz für welchen Sachverhalt, erste Codesnippets zeigen, eventuell Matching zum Schaubild mit verschiedenen Graphen bei GGPlot?
+# Kernaussagen
 
-# Ggplot
+**Nina: Video vielleicht zu den Inhalten: warum visualisieren, welche Viz für welchen Sachverhalt, erste Codesnippets zeigen, eventuell Matching zum Schaubild mit verschiedenen Graphen bei GGPlot?**
+
+Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche XX XX ansehen. 
+
+- Warum visualsieren, für welchen Sachverhalt nehme ich VIZ
+
+Bevor es losgeht noch einmal eine kurze Wiederholung:
+
+```{r 10visualisierung}
+quiz(caption = NULL,
+  question("Wofür kann man Datenvisualisierung nutzen?",
+    answer("dplyr", correct = TRUE),
+    answer("shiny"),
+    answer("ggplot2", correct = TRUE),
+    answer("readr", correct = TRUE),
+    answer("haven"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+
+# Visualisierung mit `ggplot2`
+
+<left>
+![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
+</left>
+<br>
+
 
 - Wiederholung von der vorherigen Sitzung
 - Was kann man noch mit dem Plot machen? (ein paar Veränderungen zeigen)
 
-Nina: plus verschiedene Graphtypen vielleicht? (simpel gehalten, aber so dass man die wichtigsten mal gesehen hat)
-kleine Ergänzung: könntest du ggsave irgendwo einführen?
+**Nina: plus verschiedene Graphtypen vielleicht? (simpel gehalten, aber so dass man die wichtigsten mal gesehen hat)
+kleine Ergänzung: könntest du ggsave irgendwo einführen?**
 
 # Visualisierung von Karten 
 
-Die Daten bieten aber auch eine wunderbare Möglichkeit eine Weltkarte zu visualisieren! 
+Die Daten bieten aber auch eine wunderbare Möglichkeit, eine Weltkarte zu visualisieren! 
 
 ![]() Abbildung
 
@@ -32,6 +63,19 @@ Nina: Leaflet finde ich gut, eventuell müssen wir hier noch auf das Konzept von
 # Noch mehr Visualisierungen
 
 - Zusatz zu Ninas Nachfrage reinbringen
+
+# Visualisierungen speichern
+
+Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu liefert das Package `ggplot2` eine Funktion, die es ganz leicht macht: `ggplot2::ggsave`.
+
+Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, wo Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die ihr generiert habt.)
+
+```{r ggsave, eval = FALSE}
+ggplot2::ggsave(filename = "euer_wunderschoener_plot.png") # Ohne Pfad
+ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png") # Mit Pfad
+ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png", plot = "euer_plot") # Mit explizitem Aufruf der Abbildung
+```
+
 
 ## Weitere Ressourcen
 - https://geocompr.robinlovelace.net/adv-map.html

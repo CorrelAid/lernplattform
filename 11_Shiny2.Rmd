@@ -1,6 +1,14 @@
 ## Interaktive Visualisierungen
 
-Frie: würde von Shiny sprechen als framework. shinyapps ist ja nur der hosting service von rstudio? bzw. dann Shiny App schreiben. oder Shiny-App. ShinyApp wirkt so als wäre das ein feststehender Name (ist es ja auch ,a ber halt nur als hosting platform?)
+![](VIDEO)
+
+# Kernaussagen 
+-
+-
+-
+-
+
+**Frie: würde von Shiny sprechen als framework. shinyapps ist ja nur der hosting service von rstudio? bzw. dann Shiny App schreiben. oder Shiny-App. ShinyApp wirkt so als wäre das ein feststehender Name (ist es ja auch ,a ber halt nur als hosting platform?)**
 
 Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen oder XX gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid ihr bei ShinyApps genau richtig! 
 
@@ -86,11 +94,14 @@ Wir haben letzte Woche den `select` Button kennen gelernt,
 
 - Weitere Aufgaben in der App
 
+# Hosten von ShinyApps
 - ShinyApps hosten
+
+
 
 - Ggf. Automatisierte Reports in der App als Ausblick??
 
-Nina: Da kannst du ganz flexibel sein - lass dich gerne von den Beispielen von learnR inspirieren!
+**Nina: Da kannst du ganz flexibel sein - lass dich gerne von den Beispielen von learnR inspirieren!**
 
 ## Weitere Ressourcen
   - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
