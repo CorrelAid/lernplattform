@@ -1,22 +1,35 @@
 ---
-title: "Eine explorative Datenanalyse von #breakfreefromplastic"
+title: 'Eine explorative Datenanalyse von #breakfreefromplastic'
 author: "Nina Hauser"
 date: "18.11.2021"
 output:
   html_document:
     theme: yeti
-    toc: true
-    toc_float: true
+    toc: yes
+    toc_float: yes
+params:
+  highlight_continent: "Asia"
 ---
 
-```{r, echo=FALSE}
-# Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und gg. gegen Euer Logo austauschen
-htmltools::img(src = "logo.png", 
-               alt = 'The CorrelAid logo: the letter C consisting of over 10 geometric shapes in various shades of green and blue. Below the C, the caption says "CorrelAid" and on a new line "Good causes. Better Effects"', 
-               width = '150px',
-               style = 'position:absolute; top:0; right:0; padding:10px;')
+```{r setup, include=FALSE}
+# Schritt 1: Infrastruktur
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+# Notwendige Packages laden
+pacman::p_load(
+  tidyverse
+  )
 ```
 
+```{r correlaid-logo, echo=FALSE}
+# Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und gg. gegen Euer Logo austauschen
+htmltools::img(
+  src = "media/logo.png", 
+  alt = 'The CorrelAid logo: the letter C consisting of over 10 geometric shapes in various shades of green and blue. Below the C, the caption says "CorrelAid" and on a new line "Good causes. Better Effects"', 
+  width = '150px',
+  style = 'position:absolute; top:0; right:0; padding:10px;'
+  )
+```
 ```{css, echo=FALSE}
 # Einfügen eines Logos über CSS über dem Inhaltsverzeichnis und Änderung der Schriftart und -Größe - das müsst Ihr nur nachvollziehen und gg. gegen Euer Logo austauschen
  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -39,48 +52,41 @@ body {
 
 \newpage
 
-
-### Vorwort
+### Vorwort  
 Im Folgenden soll der Datensatz der **Break Free From Plastic** Bewegung für das Jahr 2019 und 2020 explorativ erkundet werden. Der Datensatz enthält 13.380 Beobachtungen zu Plastiksammelaktionen in 69 Ländern. Enthalten sind die Variablen  (als Stichpunkte): Land, Jahr, Hersteller des Produktes, Art des gesammelten Plastiks sowie die Anzahl an durchgeführten Events und der Anzahl teilnehmender Freiwilliger.
 
 *Anmerkung: Mehr Informationen zu Break Free From Plastic finden Sie unter diesem [Link](https://www.breakfreefromplastic.org/)*.
 \newpage
 
-```{r setup, include=FALSE}
-# Schritt 1: Infrastruktur
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
-
-# Notwendige Packages laden
-library(tidyverse)
-```
-
 ```{r datenimport, include = FALSE}
 # Schritt 2: Daten laden
-### Daten laden
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- rio::import(
+  file = 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'
+  )
 ```
 
-```{r datenbereinigung, include = FALSE}
+```{r datenbereinigung, include = FALSE, error = FALSE}
 # Schritt 3: Daten bereinigen
-### Daten bereinigen
-# Country name cleaning: 
+ 
 plastics_prep <- plastics %>%
   # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
   dplyr::filter(year == 2019) %>%
   # Country name cleaning:
   dplyr::mutate(
     # United Kingdom of Great Britain & Northern Ireland sowie für die USA
-    country = stringr::str_replace(string = country,
-                                   pattern = "United Kingdom of Great Britain & Northern Ireland",
-                                   replacement = "United Kingdom"
-                                   ),
-    country = stringr::str_replace(string = country,
-                                   pattern = "United States of America",
-                                   replacement = "United States"
-                                   ),
+    country = stringr::str_replace(
+      string = country,
+      pattern = "United Kingdom of Great Britain & Northern Ireland",
+      replacement = "United Kingdom"
+    ),
+    country = stringr::str_replace(
+      string = country,
+      pattern = "United States of America",
+      replacement = "United States"
+    ),
     # um z.B.: ECUADOR etc case ändern
     country = stringr::str_to_title(country)
-    ) %>%
+  ) %>%
   # Zeilen ohne Land ausschließen
   dplyr::filter(country != "Empty") %>%
   # Continent und Country Code anspielen
@@ -115,7 +121,7 @@ audit_plastic <- plastics_prep %>%
   # nur grandtotal zeile behalten
   dplyr::filter(parent_company == "Grand Total") %>%
   dplyr::select(-c(parent_company, num_events, volunteers, empty)) %>%
-  # NA zu 0
+  #NA zu 0
   dplyr::mutate(
     across(everything(), ~replace_na(.x, 0))
   )
@@ -142,28 +148,34 @@ Insgesamt wurden weltweit auf `r sum(community$num_events)` Events mit durchschn
 <center>
 ```{r dplyruebung, echo = FALSE}
 # Berechnung der Länder- und Freiwilligenanzahl je Kontinent
-
-overview_community <- community %>%
-  # Gruppierung pro Kontinent
-  group_by("Kontinent" = continent) %>% 
-  # Initialisierung der Berechnung
-  summarize( 
+overview_community <- community %>% # Bezug zum Datensatz
+  group_by("Kontinent" = continent) %>% # Gruppierung pro Kontinent
+  summarize( # Initialisierung der Berechnung
     # Anzahl beteiligter Länder
     "Anzahl Länder" = n(),
     # Teilnahmezahl der Freiwilligen
     "Anzahl Freiwilliger" = sum(volunteers),
     # Anzahl Plastikstücke
-    "Anzahl Plastikstücke" = sum(grand_total))
+    "Anzahl Plastikstücke" = sum(grand_total)
+    )
 
 overview_community %>% 
   knitr::kable(caption = "Übersicht über Events und Freiwillige")
 ```
 
+# Highlight Kontinent: `r params$highlight_continent`
+
 ```{r scatterplot, echo = FALSE}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
 community %>% 
-  # Initialisierung des ggplots mit Variablen
-  ggplot2::ggplot(aes(x = continent, y = volunteers)) + 
+  ggplot2::ggplot(
+    # Initialisierung des ggplots mit Variablen
+    aes(
+      x = continent, 
+      y = volunteers,
+      color = continent == params$highlight_continent
+      )
+    ) + 
   # Hinzufügen der Datenpunkte (Scatterplot) 
   ggplot2::geom_point(
     # Stylingoptionen zur Positionierung
@@ -173,20 +185,24 @@ community %>%
     # und Transparenz
     alpha = 0.6
     ) + 
-  # Festlegung der Achsenlänge der y-Achse
+   # Festlegung der Achsenlänge der y-Achse
   ggplot2::coord_cartesian(
     ylim = c(0, 10000)
     ) +
-  # Festlegung der Achsenbezeichungen, 
   ggplot2::labs(
-    # Überschriften und Untertitel
     title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
-    subtitle = "... unterscheidet sich nach Kontinent.",
+    subtitle = paste0("... mit Fokus auf ", params$highlight_continent),
     y = "Anzahl Freiwilliger",
-    x = "Kontinent",
+    x = "",
     caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  ) + 
-  ggplot2::theme_minimal() # Festlegung des Layout-Designs
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  # Festlegung des Layout-Designs
+  ggplot2::theme_minimal() + 
+  # ausblenden der Legende
+  ggplot2::theme(legend.position = "none") +
+  # Farben definieren
+  ggplot2::scale_colour_manual(values = c("darkgrey", "red"))
+
 ```
 </center>
 
@@ -194,5 +210,5 @@ community %>%
 
 ### Eindrücke
 <center>
-![Bild von einer Sammelaktion](Titelbild.jpg)
+![Bild von einer Sammelaktion](Media/Titelbild.jpg)
 </center>

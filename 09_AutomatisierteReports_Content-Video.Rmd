@@ -1,0 +1,181 @@
+---
+title: "Report Fabrik"
+editor_options: 
+  chunk_output_type: console
+---
+
+# Willkommen in der Report Fabrik
+
+
+# rmarkdown::render() ----------------------------------------------------------
+--------------------------------------------------------------------------------
+
+## Schritt 1: Einen Report erstellen
+
+input Argument
+```{r}
+rmarkdown::render(input = "plastic_report.Rmd")
+```
+
+## Schritt 2:  Output Datei umbenennen
+
+output_file argument
+```{r}
+rmarkdown::render(
+  input = "plastic_report.Rmd",
+  output_file = "2021-11-26_Plastik-Report_LR"
+  )
+```
+
+Aber dann müsst ihr immernoch von Hand das Datum ändern, oder den Namen wenn ihr einen anderen Report rendern wollt. 
+
+--> Input von der Ausführung trennen
+
+# Schritt 3: Input vom Code trennen
+
+## Input Definition
+```{r define-input}
+set_rmd_name <- "plastic_report.Rmd"
+
+# Einzelteile des Output Namens
+set_date <- lubridate::today()
+set_author <- "LR"
+set_report_name <- "Plastik-Report"
+```
+
+## Dokumentnamen bauen
+```{r build-document-name}
+output_file_name <- glue::glue("{set_date}_{set_report_name}_{set_author}")
+```
+
+## Code für einen Report
+```{r render-one}
+rmarkdown::render(
+  input = here::here(set_rmd_name),
+  output_file = output_file_name
+  )
+```
+
+# Schritt 4: YAML Optionen ändern 
+
+output_format Argument
+```{r render-many-all}
+rmarkdown::render(
+  input = here::here(set_rmd_name),
+  output_file = output_file,
+  output_format = "html_document"
+)
+```
+
+```{r render-many-list}
+rmarkdown::render(
+  input = here::here("09_reports_fake-report1.Rmd"),
+  output_file = output_file,
+  output_format = c("html_document", "pdf_document")
+)
+```
+```{r render-many-list}
+rmarkdown::render(
+  input = here::here("09_reports_fake-report1.Rmd"),
+  output_file = output_file,
+  output_format = c("all")
+)
+```
+
+
+# YAML Parameter ---------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+# Schritt 1: YAML zeigen
+
+---
+params: 
+  test_message: "Hi"
+---
+
+# Schritt 2: Highlight in Report einfügen (Europe)
+
+Beispiel Highlight Abschnitt in Report einfügen
+---
+params:
+  highlight_continent: "Europe"
+---
+
+<!-- Plot ändern -->
+# Highlight Kontinent: `r params$highlight_continent`
+subtitle = glue::glue("... mit Fokus auf {params$highlight_continent}"),
+
+ggplot: color = continent == params$highlight_continent
+
+
+# Schritt 3: Highlight mit GUI
+
+---
+params: 
+  highlight_continent: 
+    label: "Ausgewählte Region:"
+    value: Asia
+    input: select
+    choices: [Africa, Americas, Asia, Europe, Oceania]
+---
+
+# Schritt 3: Highlight mit GUI
+
+# Schritt 4: rendern mit code
+
+```{r}
+rmarkdown::render(
+  input = here::here(set_rmd_name),
+  output_file = output_file_name,
+  output_format = c("html_document"),
+  # neu
+  params = list(highlight_continent = "Europe")
+)
+```
+
+# Reportfabrik -----------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+# rendern für mehrere Params
+
+Kontinente extrahieren
+```{r}
+continent_names <- plastics_prep %>% 
+  distinct(continent) %>% 
+  pull(continent)
+```
+
+```{r}
+purrr::walk(
+  .x = continent_names,
+  .f = ~ rmarkdown::render(
+    input = here::here(set_rmd_name),
+    # maybe check out if_else statement here
+    output_file = glue::glue("{set_date}_{set_report_name}_hl-{.x}"),
+    params = list(highlight_continent = .x)
+  )
+)
+```
+
+# Extra: rendern für mehrere Inputs
+```{r}
+reports_list <- c("09_reports_fake-report1.Rmd",
+                  "09_reports_fake-report2.Rmd")
+purrr::walk(
+  .x = reports_list,
+  .f = ~ rmarkdown::render(
+    input = here::here(.x)
+    )
+  )
+```
+
+```{r}
+purrr::walk(
+  .x = reports_list,
+  .f = ~ rmarkdown::render(
+    input = here::here(.x),
+    output_file = glue::glue("{set_date}_{.x}_{set_author}")
+  )
+)
+```
+
