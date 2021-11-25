@@ -16,12 +16,13 @@ params:
 - So können...
   a) Reports leicht **aktualisiert**,
   b) **verschiedene Layoutformate** gleichzeitig und
-  c) **eine hohe Anzahl** von Berichten pro **Ausprägung einer Entität** (z.B. Länder und Zeiträume) und **Annahmen** erstellt werden
+  c) **eine hohe Anzahl** von Berichten pro **Ausprägung einer Entität** (z.B. Länder und Zeiträume) erstellt werden
 - In dieser **Flexibilität** von R Markdowns liegt auch ihr Mehrwert
 - Technisch ist dafür zumeist das Verwenden von **Parameters** (zu dt. auch Übergabewerte) notwendig
-- Diese Übergabewerte sind Variablen, die in Computerprogrammen **verschiedene Ausprägungen** annehmen können und für die Art und Weise der **Verarbeitung** von Informationen in Routinen relevant sind (z.B. kann so definiert werden, ob Code grundsätzlich mit geknitted werden soll oder eben nicht)
-- Parameter werden im **YAML-Header** von R Markdowns, zum Teil in Verbindung mit der **Menü-Option** `Knit -> Knit with parameters`, oder innerhalb der **Renderfunktion**`rmarkdown::render("MyDocument.Rmd", params = ...)` definiert
-- Für Nutzer:innen kann zudem die Auswahl über **interaktive Menüs** ermöglicht werden
+- Parameter sind Variablen, die in Computerprogrammen **verschiedene Ausprägungen** annehmen können und für die Art und Weise der **Verarbeitung** von Informationen in Routinen relevant sind (z.B. wenn individuelle Reports für verschiedene Beobachtungen erstellt werden)
+- Parameter werden im **YAML-Header** von R Markdowns definiert
+- Sie können über eine Anpassung des YAML-Header selbst oder innerhalb der **Renderfunktion**`rmarkdown::render("MyDocument.Rmd", params = ...)` adaptiert werden
+- Für Nutzer:innen kann zudem die Auswahl über **interaktive Menüs** ermöglicht werden (**Menü-Option** `Knit -> Knit with parameters` oder `rmarkdown::render(input = ..., params = "ask")`)
 - Innerhalb des R Markdowns kann auf die selbst benannten Parameter über `params$parameter_name` **zugegriffen** werden
 - Möglich ist die Festlegung von Parametern von den folgenden **Typen**: `character` (Text), `integer` (ganze Zahl), `numeric` (Zahl), `logical` (logischer Ausdruck) und Ausdrücke in R
 
@@ -32,7 +33,6 @@ quiz(caption = NULL,
     answer("sie leicht aktualisiert werden können.", correct = TRUE),
     answer("in verschiede Layoutformate übertragen werden können.", correct = TRUE),
     answer("sie für verschiedene Variablenausprägunge erstellt werden können.", correct = TRUE),
-    answer("sie für verschiedene Hypothesen erstellt werden können.", correct = TRUE),
     answer("problemlos auf völlig andere Daten übertragen werden können."),
     correct = "Richtig!",
     incorrect = "Leider falsch: Die Operationen, die Ihr auf Basis von Daten durchführt, sind - je nach Datensatz - völlig andere. Die Struktur der Daten muss deshalb konstant sein, insbesondere wenn Ihr den Bericht parametrisieren wollt.",
@@ -56,12 +56,12 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Wie können Parameter definiert werden?",
+  question("Wie können Parameter gesetzt werden?",
     answer("Über den YAML-Header, optional: Mit GUI", correct = TRUE),
     answer("In einer beliebigen Stelle im Code"),
     answer("Über die Render-Funktion, optional: Mit GUI", correct = TRUE),
     correct = "Richtig! Dann kann es ja losgehen...",
-    incorrect = "Leider falsch: Parameter werden über den YAML-Header oder die Render-Funktion definiert.",
+    incorrect = "Leider falsch: Parameter werden über den YAML-Header oder die Render-Funktion gesetzt.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
@@ -73,10 +73,10 @@ Zunächst ist es wichtig, die richtige Infrastruktur für Eure Reports zu schaff
 - einem **Reporttemplate in R Markdown**, in dem die default (zu dt. Standard) Parameter im YAML-Header definiert werden (reporttemplate.Rmd)
 - einem **Ausführungsskript**, das die render-Funktion zur Parametrisierung mit den notwendigen Inputvariablen definiert (render.R oder render.Rmd)
 
-Eingebettet sollten die beiden Codeskripte in einem **R-Projekt** sein. Wie bereits im Kapitel "Einführung in R(Studio)" erklärt, helfen diese als metaphorischer Umzugskarton unsere Infrastruktur zusammenzuhalten. Da die Nutzung von Parametern voraussetzt, dass die Parameter der Codeskripte in einem Environment (zu dt. Arbeitsumgebung) gespeichert werden, erleichtert ein R-Projekt, das alle enthaltenen Dateien einbettet, die Übergabe der Werte zwischen den Dateien. Nützlich sind zudem die **Ordner "daten"**, in dem alle Daten hinterlegt sind, sowie der **Ordner "out"**, in dem alle erzeugten Reports gespeichert werden.
+Eingebettet sollten die beiden Codeskripte in einem **R-Projekt** sein. Wie bereits im Kapitel "Einführung in R(Studio)" erklärt, helfen diese als metaphorischer Umzugskarton unsere Infrastruktur zusammenzuhalten. Ein R-Projekt, das alle enthaltenen Dateien einbettet, erleichtert die Übergabe der Werte zwischen den Dateien. Nützlich sind zudem die **Ordner "daten"**, in dem alle Daten hinterlegt sind, sowie der **Ordner "out"**, in dem alle erzeugten Reports gespeichert werden.
 
-#### Schritt 1: Default-Parameter definieren
-Um Parameter zu nutzen, müssen diese **immer** im YAML-Header mit Standardwerten hinterlegt werden. Der folgende YAML-Header legt als Titel "Mein Report", als Autor:in "Maxi Mustermensch", als Datum den heutigen Tag (`r params$heute`) fest und als Output HTML fest. Darüber hinaus legen wir noch eigene Parameter (params) fest. Jede Zeile folgt der Logik eines **Key-Value-Paares** (zu dt. Schlüssel-Wert-Paar). Die Bezeichnung des Wertes steht also vor dem Doppelpunkt, der Wert danach (`parameter_name(key): parameter_wert(value)`). Wir können mit jedem Key-Value-Paar in einer neuen Zeile einen oder mehrere Parameter angeben:
+#### Schritt 1: Parameter definieren (und ggf. Standardwert setzen)
+Um Parameter zu nutzen, müssen diese **immer** im YAML-Header definiert werden. Der folgende YAML-Header legt als Titel "Mein Report", als Autor:in "Maxi Mustermensch", als Datum den heutigen Tag (`r params$heute`) und als Output HTML fest. Darüber setzen wir noch eigene Parameter (params). Jede Zeile folgt der Logik eines **Key-Value-Paares** (zu dt. Schlüssel-Wert-Paar). Die Bezeichnung des Wertes steht also vor dem Doppelpunkt, der Wert danach (`parameter_name(key): parameter_wert(value)`). Dieser Wert ist Euer Standardwert bei der Ausführung des Codeskripts. Wenn der Wert frei bleibt, wird er automatisch auf `NULL` gesetzt.
 
     ---
     title: "Mein Report"
@@ -93,10 +93,10 @@ Um Parameter zu nutzen, müssen diese **immer** im YAML-Header mit Standardwerte
 
 Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den aktuellen Tag), Daten, Start- und Enddatum und einen Parameter mit diversen Ausprägungen (Kontinente), da dies Weichenstellungen sind, die wir bei der Erstellung und Aktualisierung von Reports häufig austauschen.
 
-*Anmerkung: Obacht bei der Nutzung von R-Funktionen in den allgemeinen YAML-Headereinstellungen und den Parametern. Der Syntax unterscheidet sich (siehe oben).* 
+*Anmerkung: Achtung bei der Nutzung von R-Funktionen in den allgemeinen YAML-Headereinstellungen und den Parametern. Die Syntax unterscheidet sich (siehe oben).* 
     
 #### Schritt 2: Parameter einbinden
-Parameter, die im YAML-Abschnitt definiert wurden, stehen als **Liste namens `params`** innerhalb einer Arbeitsumgebung zur Verfügung. Das kann also innerhalb eines R Markdowns oder aber auch zwischen zwei R Markdowns in einem R-Projekt sein. Um auf einen Parameter im Code zuzugreifen, benutzt Ihr `params$parameter_key`. Auf den Parameterwert könnt Ihr sowohl in Code Chunks als auch im Inhalt des R Markdowns zugreifen. Schauen wir uns das mal am Beispiel des Parameter "heute" an:
+Parameter, die im YAML-Abschnitt definiert wurden, stehen als **Liste namens `params`** zur Verfügung. Um auf einen Parameter im Code zuzugreifen, benutzt Ihr `params$parameter_key`. Auf den Parameterwert könnt Ihr sowohl in Code Chunks als auch im Inhalt des R Markdowns zugreifen. Schauen wir uns das mal am Beispiel des Parameter "heute" an:
 
 ````
 Das heutige Datum ist: `r knitr::inline_expr('params$heute')` 
@@ -203,6 +203,7 @@ Falls Ihr den Report lediglich semi-automatisch ausführen wollt, könnt Ihr die
 Neben dem Knit-Button findet sich ein Menü, in dem "Knit with parameters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine graphische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können. 
 
 ![*Knitting mit Parametern - Standard*](https://correlaid.org/material/knitwithparameters.png){#id .class width=25% height=25%}
+
 Das Layout der Parametereingabe könnt Ihr über den YAML-Header sogar
 gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards (nützlich für Daten), Slider (für numeriswche Werte oder Datumsangaben) und ein Dropdown-Menü zur Auswahl von Optionen. Außerdem könnt Ihr den Eingabefeldern individuelle Namen, ein Minimum und Maximum zuweisen. 
 
@@ -234,7 +235,7 @@ gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards
 
 
 ##### Option B1: Die Render-Funktion mit GUI (begrenzt praktikabel)
-Die letzte Option, die wir Euch nicht vorenthalten möchten, ist das Starten des GUI über die `rmarkdown::render()`-Funktion. Ansonsten funktionier hier alles analog zu Option A2.
+Die andere Option, die wir Euch nicht vorenthalten möchten, ist das Starten des GUI über die `rmarkdown::render()`-Funktion. Ansonsten funktionier hier alles analog zu Option A2.
 ```r
 rmarkdown::render("reporttemplate.Rmd", params = "ask")
 ```
@@ -249,14 +250,12 @@ rmarkdown::render(
   output_format = "html_document", # Hier legt Ihr das Outputformat fest
   output_file = paste0(Sys.Date(), "_Report_", "NH"), # Hier legt Ihr den Outputnamen fest
   output_dir = "out" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
-  params = list(start = "2019-01-01", ...) # Hier könnt Ihr die Parameterliste definieren
+  params = list(start = "2019-01-01", ...) # Hier könnt Ihr die Parameterliste setzen
   )
 ```
 
-*Anmerkung: Falls die definierten Werte für einen Parameter sowohl im YAML-Abschnitt, als auch durch die `rmarkdown::render()` Funktion definiert werden und an beiden Orten unterschiedliche Werte definiert wurden, wird der Wert gerendered, der durch die `rmarkdown::render()` Funktion in dem `params` Argument definiert wurde.*
-
 ### Exkurs: Die Reportfabrik
-Wollen wir viele Reports auf einmal erstellen, müssen wir die Render-Funktion in etwas einbetten, das definiert, dass der Report für die verschiedenen Werte in einer Liste gerendert werden soll. Wir nutzen dazu die `purr::walk`-Funktion. Sie bedeutet: FÜr jedes Element der Liste, wende die Funktion an, die hier definiert wird:
+Wollen wir viele Reports auf einmal erstellen, müssen wir die Render-Funktion in etwas einbetten, das definiert, dass der Report für die verschiedenen Werte in einer Liste gerendert werden soll. Wir nutzen dazu die `purrr::walk`-Funktion. Sie bedeutet: Für jedes Element der Liste, wende die Funktion an, die hier definiert wird:
 
 ```r
 purrr::walk(liste, function(listenelement) {
@@ -264,7 +263,7 @@ purrr::walk(liste, function(listenelement) {
 })
 ```
 
-Wir wollen für den [Report Ausblick (08_reports-uebung_NH_Ausblick.Rmd)](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR), der bereits den Trick mit "Alle Kontinente" enthält nun ein `render.R`-Skript erstellen, das auch zulässt, das wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Plastics-Datensatz und erstellen - analog zum Report -  den Plastics-Prep Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
+Wir wollen für den [Report Ausblick (08_reports-uebung_NH_Ausblick.Rmd)](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR), der bereits den Trick mit "Alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Plastics-Datensatz und erstellen - analog zum Report -  den Plastics-Prep Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
 
 ```r
 # Liste mit Kontinenten erstellen
@@ -280,7 +279,7 @@ purrr::walk(kontinent_liste, function(kontinent) {
     output_format = "html_document", # Hier legt Ihr das Outputformat fest
     output_file = paste0(Sys.Date(), "_Report_", kontinent, "_Kürzel"), # Hier legt Ihr den Outputnamen fest, der nun den Kontinent beinhaltet
     output_dir = "out" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird (vergesst nicht ihn anzulegen!)
-    params = list(kontinent = kontinent) # Hier könnt Ihr die Parameterliste definieren: Wir ändern nur den Parameter "Kontinent"
+    params = list(kontinent = kontinent) # Hier könnt Ihr die Parameterliste setzen: Wir ändern nur den Parameter "Kontinent"
   )
 ```
 
@@ -292,12 +291,7 @@ if (!dir.exists(output_dir)) {
 }
 ```
 
-*Tipp 2: Testet Euer Script, indem Ihr die Parameter aus der Arbeitsumgebung mit `rm(params)` löscht und nach der Entwicklung nochmal durchlaufen lasst.*
-```r
-rm(params)
-```
-
-*Tipp 3: Ihr wollt die Reports ganz automatisch ohne Euer Zutun erzeugen? Dafür nutzen wir CronJobs, die zeitbasiert Prozesse für uns ausführen. Wie üblich gibt es zum vereinfachten Management ein Package in R: [cron R Dokumentation](https://cran.r-project.org/web/packages/cronR/cronR.pdf){target="_blank"}*
+*Tipp 2: Ihr wollt die Reports ganz automatisch ohne Euer Zutun erzeugen, z.B. auf einem Server? Dafür nutzen wir CronJobs, die zeitbasiert Prozesse für uns ausführen. Wie üblich gibt es zum vereinfachten Management ein Package in R: [cron R Dokumentation](https://cran.r-project.org/web/packages/cronR/cronR.pdf){target="_blank"}*
 
 Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}, in den englischsprachigen Büchern [Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} und [R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html){target="_blank"} und bei unserem Partner [Dataquest](https://app.dataquest.io/course/intermediate-r){target="_blank"}. In dem verlinkten Kapitel findet Ihr insbesondere weitere Hilfestellungen zu Wenn-Dann-Bedingungen, Funktionen und Iterationen.
 

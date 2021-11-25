@@ -2,7 +2,11 @@
 title: "Eine explorative Datenanalyse von #breakfreefromplastic"
 author: "Nina Hauser"
 date: "`r format(Sys.Date(), '%d. %B %Y')`"
-output: html_document
+output: 
+  html_document:
+    theme: yeti
+    toc: true
+    toc_float: true
 params:
   heute: !r format(Sys.Date(), '%d. %B %Y')
   daten: 
@@ -21,6 +25,7 @@ params:
     value: "Alle Kontinente"
     input: select
     choices: ["Americas", "Asia", "Africa", "Europe", "Oceania", "Unknown" ]
+toc: TRUE
 ---
 
 ```{r, echo=FALSE}
@@ -64,18 +69,6 @@ library(tidyverse)
 # Schritt 2: Daten laden
 ### Plastics-Daten laden
 plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
-
-# Daten der World Bank mit R-Package ziehen
-wb_protectedareas <- WDI::WDI(
-  country = "all", # Auswahl der Länder
-  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
-  start = 2018, # Auswahl Zeithorizont: Anfang
-  end = 2018, # Auswahl Zeithorizont: Ende
-  language = "en" # Sprachauswahl
-) 
-
-# Daten mit dem SDGsR-Package laden (optional)
-sdg_daten1251 <- SDGsR::get_indicator_data(indicator = "12.5.1")
 ```
 
 ```{r datenbereinigung, include = FALSE}
@@ -117,21 +110,11 @@ audit_plastic<- plastics_prep %>%
   mutate(
     across(everything(), ~replace_na(.x, 0))
   )
-
-# Filtern der SDG-Daten für die letzte Eintragung
-sdg_daten1251_clean <- sdg_daten1251 %>%
-  dplyr::filter(seriesDescription == "Municipal waste recycled (Tonnes)") %>%
-  dplyr::select(c("geoAreaName", "timePeriodStart", "value")) %>% # Auswahl relevanter Spalten
-  dplyr::arrange(geoAreaName, desc(timePeriodStart)) %>% # Sortierung nach geographischer Lage und Erhebungszeitraum
-  dplyr::group_by(geoAreaName) %>% # Gruppierung nach geographischer Lage
-  dplyr::slice_head(n = 1) # Filtern der nach Zeit sortierten Werte ("Nimm den ersten"), sodass der aktuellste Wert pro geographischer Lage erhalten bleibt
 ```
 
 ```{r ueberblick, include = FALSE}
 # Schritt 4: Übersicht verschaffen
 dplyr::glimpse(plastics_prep)
-dplyr::glimpse(wb_protectedareas)
-dplyr::glimpse(sdg_daten1251_clean)
 ```
 
 ### Vorwort
@@ -163,8 +146,6 @@ leaflet::leaflet(karten_daten$geometry) %>%
   leaflet::addProviderTiles(providers$CartoDB.Positron) %>% # Layout wählen - wir empfehlen die Layouts von CartoDB (auch verfügbar ohne Labels und in schwarz)
   leaflet::addPolygons(color = "#4E97AC", weight = 1, smoothFactor = 0.5, opacity = 1.0, fillOpacity = 0.5, popup = karten_daten$country)
 ```
-
-
 
 \newpage
 
@@ -200,7 +181,7 @@ ggplot2::ggplot(data = top10_parentcompany, aes(x = parent_company, y = grand_to
 </center>
 
 ### Wirkung
-Insgesamt wurden auf den `r sum(community$num_events)` Events mit durchschnittlich `r round(mean(community$volunteers),0)` Freiwilligen `r round(mean(community$grand_total),0)` Plastikstücke gesammelt. Das entspricht `r as.integer(sum(community$grand_total))` Plastikstücken. 
+Insgesamt wurden auf den `r sum(community$num_events)` Events mit durchschnittlich `r as.integer(round(mean(community$volunteers),0))` Freiwilligen `r round(mean(community$grand_total),0)` Plastikstücke gesammelt. Das entspricht `r as.integer(sum(community$grand_total))` Plastikstücken. 
 
 <center>
 ```{r dplyruebung, echo = FALSE}
