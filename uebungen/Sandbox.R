@@ -43,7 +43,7 @@ kontinent_liste <- unique(plastics_prep$continent)
 # für jedes Land rendern wir den Report. hierzu verwenden wir die walk Funktion aus dem purrr Package
 # welche durch alle Elemente eines Vektors durchgeht und eine Funktion anwendet
 purrr::walk(kontinent_liste, function(kontinent) {
-  rmarkdown::render(input = "uebungen/08_reports-uebung_NH_Ausblick.Rmd", 
+  rmarkdown::render(input = "08_reports-uebung_NH_Ausblick.Rmd", 
                     output_format = "html_document",
                     output_file = paste0(Sys.Date(), "_Report_", kontinent, "_NH"),
                     output_dir = output_dir,
