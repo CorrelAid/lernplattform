@@ -215,6 +215,15 @@ audit_db %>%
     here::here("daten/audit_plastics.csv"),
     row.names = FALSE
     )
+
+# Parameter (nur zum Zeigen)
+params <- list()
+params$heute <- format(Sys.time(), '%d. %B %Y')
+params$daten <- "daten/plastics.csv"
+params$start <- as.Date("2019-01-01")
+params$ende <- as.Date("2019-12-31")
+params$land <- "Argentina"
+params$kontinent <- "Alle Kontinente"
 ``` 
 
 
@@ -274,8 +283,8 @@ cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-# out <- knitr::knit_child("09_AutomatisierteReports", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("09_AutomatisierteReports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Datenvisualisierung

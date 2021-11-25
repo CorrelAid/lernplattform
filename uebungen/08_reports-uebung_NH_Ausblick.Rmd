@@ -1,12 +1,26 @@
 ---
 title: "Eine explorative Datenanalyse von #breakfreefromplastic"
 author: "Nina Hauser"
-date: "18.11.2021"
-output:
-  html_document:
-    theme: yeti
-    toc: true
-    toc_float: true
+date: "`r format(Sys.Date(), '%d. %B %Y')`"
+output: html_document
+params:
+  heute: !r format(Sys.Date(), '%d. %B %Y')
+  daten: 
+    label: "Daten hochladen (CSV-Format):"
+    value: "daten/plastics.csv"
+    input: file
+  start: !r as.Date("2019-01-01")
+  ende: 
+    label: "Enddatum auswählen:"
+    value: !r as.Date("2019-12-31")
+    input: slider
+    min: !r as.Date("2019-12-31")
+    max: !r as.Date("2020-12-31")
+  kontinent: 
+    label: "Kontinent auswählen:"
+    value: "Alle Kontinente"
+    input: select
+    choices: ["Americas", "Asia", "Africa", "Europe", "Oceania", "Unknown" ]
 ---
 
 ```{r, echo=FALSE}
@@ -81,7 +95,12 @@ plastics_prep <- plastics %>%
          countrycode=replace_na(countrycode, "Unknown"))
 
 ### Filter für parametrisierte Reports einfügen
-  # %>% filter(continent == ...)  hier Parameter einfügen
+if (params$kontinent == "Alle Kontinente") {
+  plastics_prep <- plastics_prep
+} else {
+  plastics_prep <- plastics_prep %>%
+    filter(continent == params$kontinent)
+}
 
 ### Community Datensatz erstellen
 community<- plastics_prep %>%

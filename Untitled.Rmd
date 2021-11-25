@@ -1,0 +1,30 @@
+---
+title: "Mein Report"
+author: "Maxi Mustermensch"
+date: "`r format(Sys.Date(), '%d. %B %Y')`"
+output: html_document
+params:
+  heute: !r format(Sys.Date(), '%d. %B %Y')
+  daten: "daten/plastics.csv"
+  start: !r as.Date("2019-01-01")
+  ende: !r as.Date("2019-12-31")
+  land: "Argentina"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+```{r}
+print(params$heute)
+```
+
+```{r}
+rmarkdown::render(input = "Untitled2.Rmd",
+                  params = list("start" = as.Date("2020-01-01"),
+                                "ende" = as.Date("2020-12-31"),
+                                "land" = "China"),
+                  envir = new.env())
+```
+

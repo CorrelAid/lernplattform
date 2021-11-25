@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+author: "Nina Hauser"
+date: "11/24/2021"
+output: html_document
+---
+
+```{r}
+print(params$start)
+print(params$ende)
+print(params$land)
+```
+
+```{r}
+# Daten mit Parameter laden
+plastics <- rio::import(here::here(params$daten), fill=TRUE)
+
+# Filtern des Plastics-Datensatzes für 2019 und Argentinien
+tabelle <- plastics %>%
+  dplyr::filter((year >= format(params$start, format="%Y")) & (year <= format(params$ende, format="%Y"))) %>%
+  dplyr::filter(country == params$land)
+
+print(tabelle)
+```
+
