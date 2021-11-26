@@ -1,22 +1,30 @@
 ---
 title: 'Eine explorative Datenanalyse von #breakfreefromplastic'
 author: "Nina Hauser"
-date: "18.11.2021"
+date: !r lubridate::today()
 output:
   html_document:
     theme: yeti
     toc: yes
     toc_float: yes
 params:
-  highlight_continent: "Asia"
+  highlight_continent: 
+    label: "Ausgewählte Region:"
+    value: Asia
+    input: select
+    choices: [Africa, Americas, Asia, Europe, Oceania]
+  include_code: FALSE
 ---
 
 ```{r setup, include=FALSE}
 # Schritt 1: Infrastruktur
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = params$include_code)
 
 # Notwendige Packages laden
 pacman::p_load(
+  here,
+  lubridate,
+  rio,
   tidyverse
   )
 ```
@@ -24,7 +32,7 @@ pacman::p_load(
 ```{r correlaid-logo, echo=FALSE}
 # Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und gg. gegen Euer Logo austauschen
 htmltools::img(
-  src = "media/logo.png", 
+  src = here::here("uebungen/logo.png"), 
   alt = 'The CorrelAid logo: the letter C consisting of over 10 geometric shapes in various shades of green and blue. Below the C, the caption says "CorrelAid" and on a new line "Good causes. Better Effects"', 
   width = '150px',
   style = 'position:absolute; top:0; right:0; padding:10px;'
@@ -210,5 +218,5 @@ community %>%
 
 ### Eindrücke
 <center>
-![Bild von einer Sammelaktion](Media/Titelbild.jpg)
+![Bild von einer Sammelaktion](here::here("uebungen/Titelbild.jpg")
 </center>
