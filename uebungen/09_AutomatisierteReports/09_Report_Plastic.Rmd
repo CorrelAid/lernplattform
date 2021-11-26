@@ -1,7 +1,7 @@
 ---
 title: 'Eine explorative Datenanalyse von #breakfreefromplastic'
 author: "Nina Hauser"
-date: !r lubridate::today()
+date: "`r lubridate::today()`"
 output:
   html_document:
     theme: yeti
@@ -10,7 +10,7 @@ output:
 params:
   highlight_continent: 
     label: "Ausgewählte Region:"
-    value: Asia
+    value: Europe
     input: select
     choices: [Africa, Americas, Asia, Europe, Oceania]
   include_code: FALSE
@@ -18,7 +18,11 @@ params:
 
 ```{r setup, include=FALSE}
 # Schritt 1: Infrastruktur
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = params$include_code)
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  echo = params$include_code
+  )
 
 # Notwendige Packages laden
 pacman::p_load(
@@ -32,7 +36,7 @@ pacman::p_load(
 ```{r correlaid-logo, echo=FALSE}
 # Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und gg. gegen Euer Logo austauschen
 htmltools::img(
-  src = here::here("uebungen/logo.png"), 
+  src = here::here("media/logo.png"), 
   alt = 'The CorrelAid logo: the letter C consisting of over 10 geometric shapes in various shades of green and blue. Below the C, the caption says "CorrelAid" and on a new line "Good causes. Better Effects"', 
   width = '150px',
   style = 'position:absolute; top:0; right:0; padding:10px;'
@@ -66,14 +70,14 @@ Im Folgenden soll der Datensatz der **Break Free From Plastic** Bewegung für da
 *Anmerkung: Mehr Informationen zu Break Free From Plastic finden Sie unter diesem [Link](https://www.breakfreefromplastic.org/)*.
 \newpage
 
-```{r datenimport, include = FALSE}
+```{r datenimport}
 # Schritt 2: Daten laden
 plastics <- rio::import(
   file = 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'
   )
 ```
 
-```{r datenbereinigung, include = FALSE, error = FALSE}
+```{r datenbereinigung, echo = FALSE}
 # Schritt 3: Daten bereinigen
  
 plastics_prep <- plastics %>%
@@ -141,7 +145,7 @@ audit_plastic_eu_asia <- audit_plastic %>%
   dplyr::mutate(n_types = sum(c(hdpe, ldpe, o, pet, pp, ps, pvc) != 0))
 ```
 
-```{r ueberblick, include = FALSE}
+```{r ueberblick, include=FALSE}
 # Schritt 4: Übersicht verschaffen
 dplyr::glimpse(plastics_prep)
 ```
@@ -154,7 +158,7 @@ Im Jahr 2020 konnten nur wenige Events durchgeführt werden. Nach Betrachtung de
 Insgesamt wurden weltweit auf `r sum(community$num_events)` Events mit durchschnuttlich `r round(mean(community$volunteers),0)` Freiwilligen `r round(mean(community$grand_total),0)` Plastikstücke gesammelt. Insbesondere in Asien konnte viel Plastik gesammelt werden. Am wenigsten präsent ist die Organisation in den beiden Amerikas. Die Beteiligung flukturiert in unterschiedlichen Ländern stark.
 
 <center>
-```{r dplyruebung, echo = FALSE}
+```{r dplyruebung}
 # Berechnung der Länder- und Freiwilligenanzahl je Kontinent
 overview_community <- community %>% # Bezug zum Datensatz
   group_by("Kontinent" = continent) %>% # Gruppierung pro Kontinent
@@ -173,7 +177,7 @@ overview_community %>%
 
 # Highlight Kontinent: `r params$highlight_continent`
 
-```{r scatterplot, echo = FALSE}
+```{r scatterplot}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
 community %>% 
   ggplot2::ggplot(
@@ -218,5 +222,5 @@ community %>%
 
 ### Eindrücke
 <center>
-![Bild von einer Sammelaktion](here::here("uebungen/Titelbild.jpg")
+![Bild von einer Sammelaktion](here::here("media/Titelbild.jpg")
 </center>
