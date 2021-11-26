@@ -18,10 +18,10 @@ params:
   b) **verschiedene Layoutformate** gleichzeitig und
   c) **eine hohe Anzahl** von Berichten pro **Ausprägung einer Entität** (z.B. Länder und Zeiträume) erstellt werden
 - In dieser **Flexibilität** von R Markdowns liegt auch ihr Mehrwert
-- Technisch ist dafür zumeist das Verwenden von **Parameters** (zu dt. auch Übergabewerte) notwendig
+- Technisch ist dafür zumeist das Verwenden von **Parametern** (zu dt. auch Übergabewerte) notwendig
 - Parameter sind Variablen, die in Computerprogrammen **verschiedene Ausprägungen** annehmen können und für die Art und Weise der **Verarbeitung** von Informationen in Routinen relevant sind (z.B. wenn individuelle Reports für verschiedene Beobachtungen erstellt werden)
-- Parameter werden im **YAML-Header** von R Markdowns definiert
-- Sie können über eine Anpassung des YAML-Header selbst oder innerhalb der **Renderfunktion**`rmarkdown::render("MyDocument.Rmd", params = ...)` adaptiert werden
+- Parameter werden im **YAML-Abschnitt** von R Markdown Dokumenten definiert
+- Sie können über eine Anpassung des YAML-Abschnitt selbst oder innerhalb der **Renderfunktion** `rmarkdown::render("MyDocument.Rmd", params = ...)` adaptiert werden
 - Für Nutzer:innen kann zudem die Auswahl über **interaktive Menüs** ermöglicht werden (**Menü-Option** `Knit -> Knit with parameters` oder `rmarkdown::render(input = ..., params = "ask")`)
 - Innerhalb des R Markdowns kann auf die selbst benannten Parameter über `params$parameter_name` **zugegriffen** werden
 - Möglich ist die Festlegung von Parametern von den folgenden **Typen**: `character` (Text), `integer` (ganze Zahl), `numeric` (Zahl), `logical` (logischer Ausdruck) und Ausdrücke in R
@@ -29,34 +29,34 @@ params:
 ### Interaktive Übung
 ```{r 09quiz_reportauto}
 quiz(caption = NULL,
-  question("R Markdowns sind reproduzierbar. Das bedeutet, dass...",
+  question("R Markdowns sind reproduzierbar. Das hat den Vorteil, dass...",
     answer("sie leicht aktualisiert werden können.", correct = TRUE),
     answer("in verschiede Layoutformate übertragen werden können.", correct = TRUE),
-    answer("sie für verschiedene Variablenausprägunge erstellt werden können.", correct = TRUE),
+    answer("sie für verschiedene Szenarien erstellt werden können.", correct = TRUE),
     answer("problemlos auf völlig andere Daten übertragen werden können."),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Die Operationen, die Ihr auf Basis von Daten durchführt, sind - je nach Datensatz - völlig andere. Die Struktur der Daten muss deshalb konstant sein, insbesondere wenn Ihr den Bericht parametrisieren wollt.",
+    incorrect = "Leider falsch: Die Operationen, die Ihr auf Basis von Daten durchführt, sind in den meisten Fällen auf den Datensatz angestimmt. Daher ist es shr wahrscheinlich, dass der gleiche Code nicht mit einem völlig anderen Datengrundlage funktioniert. Die Struktur der Daten sollte deshalb konstant sein, insbesondere wenn Ihr den Bericht parametrisieren wollt.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Der Mehrwert von R Markdowns liegt in...",
-    answer("der leichten Anpassungsfähigkeit ihrer Designs."),
-    answer("ihrer Reproduzierbarkeit.", correct = TRUE),
-    answer("ihrem niedrigschwelligen User Interface für nicht so tech-affine Nutzer:innen."),
-    correct = "Richtig! Glücklicherweise gibt es tolle Layouttemplates und die Möglichkeit der interaktiven Parametrisierung, die es uns vereinfachen, Reports anschaulich und nutzerinnenfreundlich zu gestalten.",
-    incorrect = "Leider falsch: Das Layout von R Markdowns muss oft in HTML und CSS codiert werden. Deshalb nutzen wir in der Regel Templates. Teilen wir außerdem R Markdowns direkt (also nicht das Outputformat) ist auch die Nutzung in RStudio gar nicht so leicht - wie Ihr ja bereits wisst. Da müssen wir also Zeit in das Set-up und die gute Erklärung des Tools stecken.",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  ),
+  # question("Der Mehrwert von R Markdowns liegt in...",
+  #   answer("der leichten Anpassungsfähigkeit ihrer Designs.", correct = TRUE),
+  #   answer("ihrer Reproduzierbarkeit.", correct = TRUE),
+  #   answer("ihrem niedrigschwelligen User Interface für nicht so tech-affine Nutzer:innen.", correct = TRUE),
+  #   correct = "Richtig! Glücklicherweise gibt es tolle Layouttemplates und die Möglichkeit der interaktiven Parametrisierung, die es uns vereinfachen, Reports anschaulich und nutzerinnenfreundlich zu gestalten.",
+  #   incorrect = "Leider falsch: Das Layout von R Markdowns muss oft in HTML und CSS codiert werden. Deshalb nutzen wir in der Regel Templates. Teilen wir außerdem R Markdowns direkt (also nicht das Outputformat) ist auch die Nutzung in RStudio gar nicht so leicht - wie Ihr ja bereits wisst. Da müssen wir also Zeit in das Set-up und die gute Erklärung des Tools stecken.",
+  #   allow_retry = TRUE,
+  #   try_again_button = "Nochmal versuchen"
+  # ),
   question("Parameter sind...",
-    answer("Übergabewerte, die bestimmen, was in Routinen wie verarbeitet werden soll.", correct = TRUE),
+    answer("Platzhalter, die es ermöglichen einen Wert einmal zu definieren, und ihn an verschiedenen Stellen im Code zu übergeben.", correct = TRUE),
     answer("eine Maßeinheit der Performance in der Computerwissenschaft."),
     correct = "Richtig! Glücklicherweise müssen wir in der Computerwissenschaft keine 100 Parameter-Sprints laufen.",
     incorrect = "Leider falsch: Glücklicherweise müssen wir in der Computerwissenschaft keine 100 Parameter-Sprints laufen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Wie können Parameter gesetzt werden?",
+  question("Wie können Parameter gesetzt und übergeben werden?",
     answer("Über den YAML-Header, optional: Mit GUI", correct = TRUE),
     answer("In einer beliebigen Stelle im Code"),
     answer("Über die Render-Funktion, optional: Mit GUI", correct = TRUE),
@@ -67,11 +67,12 @@ quiz(caption = NULL,
   )
 )
 ```
-#### Schritt 0: Set-up
+
+#### Schritt 0: Set-up  
 Zunächst ist es wichtig, die richtige Infrastruktur für Eure Reports zu schaffen. Eine Reportautomatisierung besteht aus:
 
-- einem **Reporttemplate in R Markdown**, in dem die default (zu dt. Standard) Parameter im YAML-Header definiert werden (reporttemplate.Rmd)
-- einem **Ausführungsskript**, das die render-Funktion zur Parametrisierung mit den notwendigen Inputvariablen definiert (render.R oder render.Rmd)
+- einem **Reporttemplate in R Markdown**, in dem der Inhalt des Reports, der Code, und die Parameter im YAML-Abschnitt definiert werden (reporttemplate.Rmd)
+- einem **Ausführungsskript**, das die render-Funktion zur automatischen Erstellung der Reports enthält. Hier können verschiedene Optionen für den Prozess der Reportgenerierung eingestellt werden. Außerdem können Parameter Werte definiert werden, die dann über die Platzhalter Parameter sogar in den Code des R Markdown Dokuments einfließen können und somit den generierten Report beeinflussen. (diese Dateien werden oft render.R oder render.Rmd genannt. Wir verwenden report_factory.Rmd)
 
 Eingebettet sollten die beiden Codeskripte in einem **R-Projekt** sein. Wie bereits im Kapitel "Einführung in R(Studio)" erklärt, helfen diese als metaphorischer Umzugskarton unsere Infrastruktur zusammenzuhalten. Ein R-Projekt, das alle enthaltenen Dateien einbettet, erleichtert die Übergabe der Werte zwischen den Dateien. Nützlich sind zudem die **Ordner "daten"**, in dem alle Daten hinterlegt sind, sowie der **Ordner "out"**, in dem alle erzeugten Reports gespeichert werden.
 
@@ -273,13 +274,19 @@ kontinent_liste <- unique(plastics_prep$continent)
 Im Anschluss kombinieren wir die `purrr::walk()`-Funktion mit der `rmarkdown::render()`-Funktion.
 
 ```r
-purrr::walk(kontinent_liste, function(kontinent) {
-  rmarkdown::render(
-    input = here::here("08_reports-uebung_NH_Ausblick.Rmd"), # Hier kommt Euer Reporttemplate hin
-    output_format = "html_document", # Hier legt Ihr das Outputformat fest
-    output_file = paste0(Sys.Date(), "_Report_", kontinent, "_Kürzel"), # Hier legt Ihr den Outputnamen fest, der nun den Kontinent beinhaltet
-    output_dir = "out" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird (vergesst nicht ihn anzulegen!)
-    params = list(kontinent = kontinent) # Hier könnt Ihr die Parameterliste setzen: Wir ändern nur den Parameter "Kontinent"
+purrr::walk(
+    .x = kontinent_liste, 
+    .f = ~rmarkdown::render(
+    # Hier kommt Euer Reporttemplate hin
+    input = here::here("08_reports-uebung_NH_Ausblick.Rmd"), 
+    # Hier legt Ihr das Outputformat fest
+    output_format = "html_document",
+    # Hier legt Ihr den Outputnamen fest, der nun den Kontinent beinhaltet
+    output_file = glue::glue("{lubridate::today()}_Report_{.x}_Kürzel"),
+    # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
+    output_dir = "out"
+    # Hier könnt Ihr die Parameterliste setzen: Wir ändern nur den Parameter "Kontinent"
+    params = list(kontinent = kontinent) 
   )
 ```
 
