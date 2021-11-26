@@ -1,31 +1,39 @@
 ---
-title: "Eine explorative Datenanalyse von #breakfreefromplastic"
+title: 'Eine explorative Datenanalyse von #breakfreefromplastic'
 author: "Nina Hauser"
 date: "`r format(Sys.Date(), '%d. %B %Y')`"
-output: 
+output:
+  word_document:
+    toc: yes
   html_document:
     theme: yeti
-    toc: true
-    toc_float: true
+    toc: yes
+    toc_float: yes
 params:
   heute: !r format(Sys.Date(), '%d. %B %Y')
-  daten: 
-    label: "Daten hochladen (CSV-Format):"
-    value: "daten/plastics.csv"
+  daten:
+    label: 'Daten hochladen (CSV-Format):'
+    value: daten/plastics.csv
     input: file
   start: !r as.Date("2019-01-01")
-  ende: 
-    label: "Enddatum auswählen:"
+  ende:
+    label: 'Enddatum auswählen:'
     value: !r as.Date("2019-12-31")
     input: slider
     min: !r as.Date("2019-12-31")
     max: !r as.Date("2020-12-31")
-  kontinent: 
-    label: "Kontinent auswählen:"
-    value: "Alle Kontinente"
+  kontinent:
+    label: 'Kontinent auswählen:'
+    value: Alle Kontinente
     input: select
-    choices: ["Americas", "Asia", "Africa", "Europe", "Oceania", "Unknown" ]
-toc: TRUE
+    choices:
+    - Americas
+    - Asia
+    - Africa
+    - Europe
+    - Oceania
+    - Unknown
+toc: yes
 ---
 
 ```{r, echo=FALSE}
@@ -68,7 +76,7 @@ library(tidyverse)
 ```{r datenimport, include = FALSE}
 # Schritt 2: Daten laden
 ### Plastics-Daten laden
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- readr::read_csv('daten/plastics.csv')
 ```
 
 ```{r datenbereinigung, include = FALSE}

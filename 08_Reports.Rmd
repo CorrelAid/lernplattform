@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 ## Reports in R Markdown
 
 ![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
