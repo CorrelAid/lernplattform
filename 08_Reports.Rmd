@@ -165,12 +165,12 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   ),
   question("Ausnahmsweise soll nun einmal der Code gezeigt werden. Was müsst Ihr tun?",
-    answer("Im betroffenen Code Chunk setzen wir das Argument echo auf TRUE"),
+    answer("Im betroffenen Code Chunk setzen wir das Argument echo auf TRUE", correct = TRUE),
     answer("Im betroffenen Code Chunk setzen wir das Argument echo auf FALSE"),
     answer("Im betroffenen Code Chunk setzen wir das Argument include auf FALSE"),
-    answer("Im betroffenen Code Chunk setzen wir das Argument include auf TRUE", correct = TRUE),
+    answer("Im betroffenen Code Chunk setzen wir das Argument include auf TRUE"),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Mit dem Argument include wird definiert, ob Code und Code Output in das Outputdokument integriert werden sollen. Dieses muss auf TRUE gestellt werden, wenn das geschehen soll, und auf auf FALSE, wenn es nicht geschehen soll.",
+    incorrect = "Leider falsch: Wir müssen das Argument echo muss auf TRUE gestellt werden. Mit dem Argument include wird übrigens definiert, ob Code und Code Output in das Outputdokument integriert werden sollen. Dieses muss auf TRUE gestellt werden, wenn das geschehen soll, und auf auf FALSE, wenn es nicht geschehen soll.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
