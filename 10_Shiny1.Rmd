@@ -1,4 +1,9 @@
-## Datenvisualisierung
+# Datenvisualisierung
+
+```{r prep, eval=TRUE, include=FALSE}
+
+```
+
 
 ![](VIDEO)
 
@@ -36,12 +41,124 @@ quiz(caption = NULL,
 </left>
 <br>
 
+Die zwei "g" im Packagenamen `ggplot2` stehen für "grammar of graphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
 
-- Wiederholung von der vorherigen Sitzung
-- Was kann man noch mit dem Plot machen? (ein paar Veränderungen zeigen)
+```{r simple, eval = FALSE}
+Daten + 
+    Ästhetische Verortung  +
+    Lagen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist)
+```
 
-**Nina: plus verschiedene Graphtypen vielleicht? (simpel gehalten, aber so dass man die wichtigsten mal gesehen hat)
-kleine Ergänzung: könntest du ggsave irgendwo einführen?**
+Man kann es aber auch komplexer gestalten und erweitern:
+
+```{r complex, eval =FALSE}
+Daten + 
+    Ästhetische Verortung  +
+    Lagen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist) +
+    Skalen +
+    Koordinatensystem +
+    Ggf. Gruppierung der Graphen  +
+    Visuelle Anpassung der Darstellungsform (Thema)
+```
+
+**Achtung**: Anders als beim "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
+
+Erinnert ihr euch noch an eure Visualisierung aus der 5. Sitzung? Wie das funktioniert könnt ihr schön an dieser Visualisierung sehen:
+
+```{r, out.width='100%', out.height='100%'}
+knitr::include_url("daten/flip_for_correlaid/flip_for_correlaid.html")
+```
+
+Wenn ihr euch durch die Folien (über die Pfeiltasten) klickt, seht ihr, wie sich eine Visualisierung nach und nach aufbaut.
+
+**Achtung**: Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn ihr eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
+
+Für diese Lektion benötigt Ihr also `ggplot2`.
+```{r package prep, exercise = TRUE}
+# install.packages("ggplot2")
+library(ggplot2)
+```
+
+**Verweis auf CheatSheet**
+
+# Verschiedene Visualisierungsformen
+
+`ggplot2` bietet eine Vielzahl an verschiedenen Visualisierungsmöglichkeiten. Das schöne an der `ggplot2` Logik ist, dass man einzelne Komponenten einfach austauschen kann. Das habt ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
+
+![](daten/abbildungen/plot_ggplot.png)
+<details><summary>Code mit Kommentaren</summary>
+```{r code example, eval =FALSE}
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
+  geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
+```
+</details>
+
+Wenn ihr zum Beispiel lieber ein Balkendiagramm statt einer Punktewolke (Englisch: "scatter plot") möchtet, ersetzt ihr `geom_point()` durch `geom_col()`. 
+
+``` {r geom_col, exercise = TRUE}
+# Visualisierung eines Balkendiagrams
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
+  geom_point() # Hinzufügen der Datenpunkte (ändert diesen Codepart um ein Balkendiagramm zu erhalten)
+```
+
+# Was kann man noch mit `ggplot2` machen?
+
+Einer ähnlichen Logik folgend könnt ihr mit `ggplot2` eure Plots auch individuell gestalten. Wie ihr in Sitzung 5 schon gesehen habt, kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber viel mehr! Ihr könnt eure Visualisierung individuell gestalten und Farben oder auch Darstellungstypen leicht ändern.
+
+**ADD SOME CONTENT HERE**
+
+
+Und jetzt seid ihr dran! Visualisiert mit Hilfe von `ggplot2` und seinen Funktionen zunächst ein Balkendiagramm.
+
+``` {r geom_scatter, exercise = TRUE}
+# Visualisierung eines Balkendiagrams
+
+```
+
+Nutzt das [CheatSheet]() um einen Boxplot zu erstellen.
+
+``` {r geom_boxplot, exercise = TRUE}
+# Visualisierung eines Boxplots
+
+```
+
+
+# Facets
+
+Wie ihr auf dem Schummelzettel seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut euch die Fehlermeldung an. **Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass ihr ein aussagekräftiges Histogram erhaltet.
+
+```{r geom_histogram, exercise = TRUE}
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
+  geom_histogram()
+```
+
+<details><summary>Es führen immer mehrere Wege zum Ziel - hier findet ihr eine mögliche Lösung</summary>
+```{r geom_histogram, exercise = TRUE}
+ggplot2::ggplot(data = community, aes(x = volunteers)) +
+  geom_histogram()
+```
+</details>
+
+Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht ihr in den Folien (nutzt wieder die Pfeiltasten, um euch durchzuklicken):
+
+```{r, out.width='100%', out.height='100%'}
+knitr::include_url("daten/flip_for_correlaid_facet/flip_for_correlaid_facet.html")
+```
+
+Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`.
+
+**Sollen wir hier noch eine Übung machen?**
+
+# Farben
+
+Nutzt den Code von oben (bereits im Code Chunk) und ändert die Farbe der Punkte abhängig von den Kontinenten. D.h. wir möchten für jeden einzelnen Kontinent eine andere Farbe erhalten.
+
+**TBC**
+``` {r geom_scatter_loesung, exercise = TRUE}
+# Visualisierung einer Punktewolke
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
+  geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
+```
 
 # Visualisierung von Karten 
 
@@ -76,8 +193,14 @@ ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png") # Mit Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png", plot = "euer_plot") # Mit explizitem Aufruf der Abbildung
 ```
 
+# Und jetzt seid ihr dran
+Schaut euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die ihr mit euren Daten gerne nachbauen würdet. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die ihr kopieren und auf eure Daten anwenden könnt.
+
+**ggf. noch einen Screenshot mit Navigation auf der Seite einbauen**
 
 ## Weitere Ressourcen
+- CHEATSHEET
+- https://www.r-graph-gallery.com/
 - https://geocompr.robinlovelace.net/adv-map.html
 - https://rstudio.github.io/leaflet/
 - https://r-spatial.org/r/2018/10/25/ggplot2-sf-2.html
