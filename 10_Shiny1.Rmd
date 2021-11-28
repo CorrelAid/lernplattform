@@ -1,19 +1,33 @@
 # Datenvisualisierung
 
+Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
+
 ```{r prep, eval=TRUE, include=FALSE}
 
 ```
 
+Im Video bekommt ihr ein bisschen Hintergrund zur Datenvisualisierung und seht ihr erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
 
-![](VIDEO)
+*Pest in London als Beispiel für Intro warum data viz*
+*dann ein paar Beispiele zeigen*
 
-# Kernaussagen
+![](Intro-Video) (ca. 5-10 Minuten)
+
+## Kernaussagen
+- Warum nutzen wir Visualisierung?
+  - **leichte (und intuitive) Vermittlung von Inhalten**
+  - man kann ggf. Muster leichter erkennen
+  - wird auch im [Datenjournalismus genutzt](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/)
+- Welche Visualisierung für welchen Sachverhalt?
+  - Diese Entscheidung kann sehr individuell sein
+  - Man kann beispielsweise abhängig von der Art der Variablen (kontinuierlich oder diskret) entscheiden
+  - Oder aber auch abhängig von der Botschaft (ggf. ist eine Karte intuitiver als ein Balkendiagramm)
+  - Die Webseite [Data to Viz](https://www.data-to-viz.com) bietet einen hervorragenden Ausgangspunkt, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code Snippets zur Anwendung
+- Wie können wir in R visualisieren?
+  - eine Vielzahl an Möglichkeiten über verschiedenste Packages (z.B. `ggplot2` oder `leaflet`)
 
 **Nina: Video vielleicht zu den Inhalten: warum visualisieren, welche Viz für welchen Sachverhalt, erste Codesnippets zeigen, eventuell Matching zum Schaubild mit verschiedenen Graphen bei GGPlot?**
-
-Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche XX XX ansehen. 
-
-- Warum visualsieren, für welchen Sachverhalt nehme ich VIZ
+**Cosima: Ich bin nicht ganz sicher, was du mit dem Matching hier meinst. Ich hab es aber mal versucht umzusetzen**
 
 Bevor es losgeht noch einmal eine kurze Wiederholung:
 
@@ -36,25 +50,37 @@ quiz(caption = NULL,
 
 # Visualisierung mit `ggplot2`
 
+Im nächsten Video lernt ihr eines der wichtigsten Visualisierungspackages in R näher kennen: `ggplot2`
+![](Video zu ggplot2) *Hier wird ggplot2 gerecapped + weitergeführt* (ca. 15 Minuten)
+
+## Kernaussagen
+- `ggplot2` 
+  - folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
+  - für einen ganz simplen Plot benötigen wir immer:
+    - `data` (der **Datensatz**)
+    - `aes()` (die **"ästhetischen Attribute"** wie beispielsweise die x- oder y-Achse)
+    - `geom_*()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform eure Daten dargestellt werden sollen (z.B. in einem Balkendiagramm oder Histogramm) 
+- **Wichtig**: die einzelne Bestandteile werden mit einem **"+" verknüpft** 
+
 <left>
 ![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
 </left>
 <br>
 
-Die zwei "g" im Packagenamen `ggplot2` stehen für "grammar of graphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
+Die zwei "g" im Packagenamen `ggplot2` stehen für "**g**rammar of **g**raphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
 
 ```{r simple, eval = FALSE}
 Daten + 
-    Ästhetische Verortung  +
-    Lagen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist)
+    Ästhetische Attribute  +
+    geometrische Formen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist)
 ```
 
 Man kann es aber auch komplexer gestalten und erweitern:
 
 ```{r complex, eval =FALSE}
 Daten + 
-    Ästhetische Verortung  +
-    Lagen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist) +
+    Ästhetische Attribute  +
+    geometrische Formen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist)
     Skalen +
     Koordinatensystem +
     Ggf. Gruppierung der Graphen  +
@@ -79,7 +105,7 @@ Für diese Lektion benötigt Ihr also `ggplot2`.
 library(ggplot2)
 ```
 
-**Verweis auf CheatSheet**
+Alle wichtigen `ggplot2` Befehle erhaltet ihr auch über diesen [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf).
 
 # Verschiedene Visualisierungsformen
 
@@ -105,8 +131,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 
 Einer ähnlichen Logik folgend könnt ihr mit `ggplot2` eure Plots auch individuell gestalten. Wie ihr in Sitzung 5 schon gesehen habt, kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber viel mehr! Ihr könnt eure Visualisierung individuell gestalten und Farben oder auch Darstellungstypen leicht ändern.
 
-**ADD SOME CONTENT HERE**
-
+**ADD SOME MORE CONTENT HERE**
 
 Und jetzt seid ihr dran! Visualisiert mit Hilfe von `ggplot2` und seinen Funktionen zunächst ein Balkendiagramm.
 
@@ -115,7 +140,7 @@ Und jetzt seid ihr dran! Visualisiert mit Hilfe von `ggplot2` und seinen Funktio
 
 ```
 
-Nutzt das [CheatSheet]() um einen Boxplot zu erstellen.
+Nutzt den [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf), um einen Boxplot zu erstellen.
 
 ``` {r geom_boxplot, exercise = TRUE}
 # Visualisierung eines Boxplots
@@ -133,7 +158,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 ```
 
 <details><summary>Es führen immer mehrere Wege zum Ziel - hier findet ihr eine mögliche Lösung</summary>
-```{r geom_histogram, exercise = TRUE}
+```{r geom_histogram_solution, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = volunteers)) +
   geom_histogram()
 ```
@@ -145,9 +170,14 @@ Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram`
 knitr::include_url("daten/flip_for_correlaid_facet/flip_for_correlaid_facet.html")
 ```
 
-Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`.
+Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. 
 
-**Sollen wir hier noch eine Übung machen?**
+Im nachfolgenden Code Chunk könnt ihr es selbst ausprobieren - gruppiert die Anzahl der Freiwilligen nach dem Land (`country`). 
+
+```{r geom_histogram_facet, exercise = TRUE}
+ggplot2::ggplot(data = community, aes(x = volunteers)) +
+  geom_histogram()
+```
 
 # Farben
 
@@ -162,24 +192,23 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 
 # Visualisierung von Karten 
 
-Die Daten bieten aber auch eine wunderbare Möglichkeit, eine Weltkarte zu visualisieren! 
+Wie bereits am Anfang erwähnt, hängt die Art der Visualisierung auch stark von eurer individuellen Präferenz und der Möglichkeit der Daten ab. Wir können die Daten zum Beispiel nutzen, um eine Weltkarte zu visualisieren! Dazu verwenden wir das R package `leaflet`. Die Programmierlogik in `Leaflet` ist ähnlich wie in `ggplot2` oder auch im `tidyverse` (woraus ihr auch zum Beispiel `dplyr` kennt). 
 
-![]() Abbildung
+Um einen ersten Überblick über das Package zu bekommen, schaut euch am besten das Video an:
+
+![](Video-zu-leaflet)
+
+## Kernaussagen
+
+
 
 ```{r karte, eval=FALSE}
 
 ```
 
-**oder**
-- Wie am besten? Leaflet
 
-Die Programmierlogik in `Leaflet` ist ähnlich wie in `ggplot`.
 
-Nina: Leaflet finde ich gut, eventuell müssen wir hier noch auf das Konzept von Geocodierungen verweisen, damit das klar ist
-
-# Noch mehr Visualisierungen
-
-- Zusatz zu Ninas Nachfrage reinbringen
+**Nina: Leaflet finde ich gut, eventuell müssen wir hier noch auf das Konzept von Geocodierungen verweisen, damit das klar ist**
 
 # Visualisierungen speichern
 
@@ -194,12 +223,14 @@ ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png", plot = "eue
 ```
 
 # Und jetzt seid ihr dran
-Schaut euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die ihr mit euren Daten gerne nachbauen würdet. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die ihr kopieren und auf eure Daten anwenden könnt.
+Schaut euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die ihr mit euren Daten gerne nachbauen würdet. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die ihr kopieren und auf eure Daten anwenden könnt. Das kurze Video zeigt euch am Beispiel von Histogrammen, wie ihr euch zum Beispiel durch die Seite navigieren könnt.
 
-**ggf. noch einen Screenshot mit Navigation auf der Seite einbauen**
+![](daten/screen_video/screen_record_data_to_viz.mov)
+*ggf. auf YouTube oder wo anders hochladen?*
 
 ## Weitere Ressourcen
-- CHEATSHEET
+- [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf)
+- [Schummelzettel zu `leaflet` (Englisch)](daten/cheat sheets/leaflet.pdf)
 - https://www.r-graph-gallery.com/
 - https://geocompr.robinlovelace.net/adv-map.html
 - https://rstudio.github.io/leaflet/
