@@ -186,12 +186,12 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
 knitr::include_url("daten/flip_for_correlaid_color/flip_for_correlaid_color.html")
 ```
 
-Wie Ihr gesehen habt, könnt ihr innerhalb des `aes()` Arguments zusätzliche Argumente hinzufügen: `color` und `fill`.
+Wie Ihr gesehen habt, könnt Ihr innerhalb des `aes()` Arguments zusätzliche Argumente hinzufügen: `color` und `fill`.
 
 - `color` erlaubt Euch zum Beispiel die Punkte einer Punktewolke zu färben
 - `fill` wird zustäzlich notwendig, wenn Ihr größere Flächen (wie beispielsweise in einem Histogramm oder einem Balkendigramm färben möchtet)
 
-Wenn Ihr euch unsicher seid, welches Argument ihr benötigt, könnt Ihr auch einfach ausprobieren und gegbenenfalls noch `fill` mit dazunehmen.
+Wenn Ihr Euch unsicher seid, welches Argument Ihr benötigt, könnt Ihr auch einfach ausprobieren und gegbenenfalls noch `fill` mit dazunehmen.
 
 Nutzt den Code im Code Chunk (das ist ein Code, den wir bereits vorher verwendet haben) und ändert die Farbe der Punkte abhängig von den Ländern (`country`). D.h. wir möchten für jedes einzelne Land eine andere Farbe erhalten.
 
@@ -205,9 +205,9 @@ Manchmal sieht das Ergebnis wild aus - wie in diesem Fall auch. Wie wir das ver�
 
 ## Themen
 
-Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie ihr es möchtet. Um `theme` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
+Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie Ihr es möchtet. Um `theme` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
 
-- Es gibt vordefinierte Themen, die ihr einfach anwenden könnt und so die visuelle Erscheinung Eurer Abbildungen zu verändern (z.B. `theme_minimal()` oder `theme_classic()`)
+- Es gibt vordefinierte Themen, die Ihr einfach anwenden könnt und so die visuelle Erscheinung Eurer Abbildungen zu verändern (z.B. `theme_minimal()` oder `theme_classic()`)
 - Ihr könnt über den Befehl `theme()` auch direkt einzelne Komponenten ansteuern und zum Beispiel Legenden anders positionieren oder zu entfernen. Wer neugierig ist: Eine weitergehende Einführung findet Ihr [hier](https://ggplot2-book.org/polishing.html) (auf Englisch).
 
 Wie das aussehen kann, seht Ihr Euch am besten noch einmal in Ruhe an diesen Beispielen an:
@@ -235,7 +235,7 @@ Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` e
 - `theme_excel()`: in Anlehnung an Excel
 - `theme_fivethirtyeight()`: in Anlehnung an den Data Blog [FiveThirtyEight](https://fivethirtyeight.com)
 
-und viele mehr -- lasst euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/)!
+und viele mehr -- lasst Euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/)!
 
 
 Probiert es doch am besten selbst aus! Ergänzt den folgenden Code durch ein Thema:
