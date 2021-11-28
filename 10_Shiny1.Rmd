@@ -51,6 +51,11 @@ quiz(caption = NULL,
 
 # Visualisierung mit `ggplot2`
 
+<left>
+![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
+</left>
+<br>
+
 Im nächsten Video lernt Ihr eines der wichtigsten Visualisierungspackages in R näher kennen: `ggplot2`
 ![](Video zu ggplot2) *Hier wird ggplot2 gerecapped + weitergeführt* (ca. 15 Minuten)
 
@@ -63,10 +68,6 @@ Im nächsten Video lernt Ihr eines der wichtigsten Visualisierungspackages in R 
     - `geom_*()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform Eure Daten dargestellt werden sollen (z.B. in einem Balkendiagramm oder Histogramm) 
 - **Wichtig**: die einzelne Bestandteile werden bei `ggplot2` mit einem **"+" verknüpft** 
 
-<left>
-![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
-</left>
-<br>
 
 Die zwei "g" im Packagenamen `ggplot2` stehen für "**g**rammar of **g**raphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
 
@@ -261,22 +262,50 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers, color = cou
   # theme(legend.position = "none") 
 ```
 
-# Visualisierung von Karten 
+# Exkurs: Visualisierung von Karten 
 
-Wie bereits am Anfang erwähnt, hängt die Art der Visualisierung auch stark von Eurer individuellen Präferenz und der Möglichkeit der Daten ab. Wir können die Daten zum Beispiel nutzen, um eine Weltkarte zu visualisieren! Dazu verwenden wir das R package `leaflet`. Die Programmierlogik in `Leaflet` ist ähnlich wie in `ggplot2` oder auch im `tidyverse` (woraus Ihr auch zum Beispiel `dplyr` kennt). 
+<left>
+![*echarts4r](https://echarts4r.john-coene.com/reference/figures/logo.png){#id .class width=20% height=100%}
+</left>
+<br>
+
+Wie bereits am Anfang erwähnt, hängt die Art der Visualisierung auch stark von Eurer individuellen Präferenz und der Möglichkeit der Daten ab. Wir können die Daten zum Beispiel nutzen, um eine Weltkarte zu visualisieren! 
+Dazu verwenden wir das R package `echarts4r`. Die Programmierlogik in `echarts4r` ist ähnlich wie in `ggplot2` oder auch im `tidyverse` (woraus Ihr auch zum Beispiel `dplyr` kennt). 
+
+Um das Package zu nutzen, müssen wir es zunächst installieren.
+
+```{r package prep echarts4r, exercise = TRUE}
+# install.packages("echarts4r")
+library(echarts4r)
+```
 
 Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten das Video an:
 
-![](Video-zu-leaflet) (ca. 15 Minuten)
+![](Video-zu-echarts4r) (ca. 15 Minuten)
 
 ## Kernaussagen
 **To be added**
 
-Hier findet Ihr alle Informationen auch noch einmal im [Schummelzettel zu `leaflet` (auf Englisch)](daten/cheat sheets/leaflet.pdf).
+Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wir drei Befehle aus `echarts4r`: 
 
-```{r karte, eval=FALSE}
+- `e_charts()`:
+- `e_map()`:
+- `e_visual_map()`:
 
+`echarts4r` nutzt hier also die englischsprachigen Ländernamen aus unserem Datensatz (gespeichert in `country`) und die Anzahl der Freiwilligen (gespeichert in `volunteers`) um die Informationen auf einer Weltkarte abzubilden.
+
+**An Nina: Ich bin nicht sicher, ob das abgebildet werden kann. Falls nicht, würde ich ein Screen video davon machen und es kurz zeigen**
+
+```{r karte, eval=TRUE}
+community %>% 
+  e_charts(country) %>% 
+  e_map(volunteers) %>% 
+  e_visual_map(volunteers)
 ```
+
+**Achtung:** Anders als in `ggplot2` nutzen wir jetzt wieder die "pipe" (`%>%`), um die einzelnen Befehle miteinander zu verbinden.
+
+Wie Ihr schon im Video gesehen habt, erlaubt Euch `echarts4r` sehr schnell visuell ansprechende Karten zu erstellen. Wenn Ihr Euren Cursor über die einzelnen Länder bewegt, seht Ihr, dass der Ländername eingeblendet wird. Die Farbskala zeigt Euch die absolute Anzahl der Freiwilligen. Wenn Ihr die Karte zum Erkunden der Daten nutzen möchtet, könnt Ihr die Darstellung über die Farbskala limitieren und Euch so nur Länder anzeigen lassen, die eine bestimmte Anzahl an Freiwilligen haben.
 
 # Visualisierungen speichern
 
@@ -322,7 +351,7 @@ Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch zum Beispi
 
 ## Weitere Ressourcen
 - [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf)
-- [Schummelzettel zu `leaflet` (Englisch)](daten/cheat sheets/leaflet.pdf)
+- [Mehr Informationen zu `echarts4r` (Englisch)](https://echarts4r.john-coene.com/index.html)
 - [Data to Viz](https://www.data-to-viz.com/)
 - [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/)
 - [Online-Version von "ggplot2: Elegant Graphics for Data Analysis" von Hadley Wickham (auf Englisch)](https://ggplot2-book.org/index.html)
