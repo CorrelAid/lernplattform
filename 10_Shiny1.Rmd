@@ -89,13 +89,13 @@ Daten +
 
 **Achtung**: Anders als beim "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
 
-Erinnert Ihr euch noch an Eure Visualisierung aus der 5. Sitzung? Wie das funktioniert könnt Ihr noch einmal schön an dieser Visualisierung sehen:
+Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Wie das funktioniert könnt Ihr noch einmal schön an dieser Visualisierung sehen:
 
 ```{r, out.width='100%', out.height='100%'}
 knitr::include_url("daten/flip_for_correlaid/flip_for_correlaid.html")
 ```
 
-Wenn Ihr euch durch die Folien (über die Pfeiltasten) klickt, seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
+Wenn Ihr Euch durch die Folien (über die Pfeiltasten) klickt, seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
 
 **Achtung**: Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
@@ -150,7 +150,7 @@ Nutzt den [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf), um ein
 
 # Facets
 
-Wie Ihr auf dem Schummelzettel seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
+Wie Ihr auf dem Schummelzettel seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
 
 ```{r geom_histogram, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
@@ -164,7 +164,7 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
 ```
 </details>
 
-Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um euch durchzuklicken):
+Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
 
 ```{r, out.width='100%', out.height='100%'}
 knitr::include_url("daten/flip_for_correlaid_facet/flip_for_correlaid_facet.html")
@@ -194,7 +194,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 
 Wie bereits am Anfang erwähnt, hängt die Art der Visualisierung auch stark von Eurer individuellen Präferenz und der Möglichkeit der Daten ab. Wir können die Daten zum Beispiel nutzen, um eine Weltkarte zu visualisieren! Dazu verwenden wir das R package `leaflet`. Die Programmierlogik in `Leaflet` ist ähnlich wie in `ggplot2` oder auch im `tidyverse` (woraus Ihr auch zum Beispiel `dplyr` kennt). 
 
-Um einen ersten Überblick über das Package zu bekommen, schaut euch am besten das Video an:
+Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten das Video an:
 
 ![](Video-zu-leaflet) (ca. 20 Minuten)
 
@@ -223,7 +223,7 @@ ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png", plot = "eue
 ```
 
 # Und jetzt seid Ihr dran
-Schaut euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt euch am Beispiel von Histogrammen, wie Ihr euch zum Beispiel durch die Seite navigieren könnt.
+Schaut Euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch zum Beispiel durch die Seite navigieren könnt.
 
 ![](daten/screen_video/screen_record_data_to_viz.mov)
 *ggf. auf YouTube oder wo anders hochladen?*
