@@ -267,7 +267,7 @@ Wie bereits am Anfang erwähnt, hängt die Art der Visualisierung auch stark von
 
 Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten das Video an:
 
-![](Video-zu-leaflet) (ca. 20 Minuten)
+![](Video-zu-leaflet) (ca. 15 Minuten)
 
 ## Kernaussagen
 **To be added**
