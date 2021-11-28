@@ -216,8 +216,24 @@ Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). I
 ```{r ggsave, eval = FALSE}
 ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
-ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = "euer_plot") # Mit explizitem Aufruf der Abbildung
+ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = euer_plot) # Mit explizitem Aufruf der Abbildung
 ```
+
+In der Praxis sieht der Ablauf dann beispielsweise so aus:
+
+```{r ggsave_example, eval = FALSE}
+# Wir erstellen unseren Plot mit `ggplot2` und speichern ihn in einem Objekt (`histogram_plot`)
+# über den assignment operator (`<-`)
+
+histogram_plot <- ggplot2::ggplot(data = community, aes(x = volunteers)) +
+  geom_histogram()
+
+# Im nächsten Schritt rufen wir das Objekt (`histogram_plot`) in der `ggplot2::ggsave` Funktion auf
+# und speichern es auf unserem Pfad
+
+ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = histogram_plot) # Mit explizitem Aufruf der Abbildung
+```
+
 
 # Und jetzt seid Ihr dran
 Schaut Euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch zum Beispiel durch die Seite navigieren könnt.
