@@ -18,12 +18,12 @@ Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht I
 - Warum nutzen wir Visualisierung?
   - **leichte (und intuitive) Vermittlung von Inhalten**
   - man kann ggf. Muster leichter erkennen
-  - wird auch im [Datenjournalismus genutzt](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/)
+  - wird auch im [Datenjournalismus genutzt](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
 - Welche Visualisierung für welchen Sachverhalt?
   - Diese Entscheidung kann sehr individuell sein
   - Man kann beispielsweise abhängig von der Art der Variablen (kontinuierlich oder diskret) entscheiden
   - Oder aber auch abhängig von der Botschaft (ggf. ist eine Karte intuitiver als ein Balkendiagramm)
-  - Die Webseite [Data to Viz](https://www.data-to-viz.com) bietet einen hervorragenden Ausgangspunkt, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code Snippets zur Anwendung
+  - Die Webseite [Data to Viz](https://www.data-to-viz.com){target="_blank"} bietet einen hervorragenden Ausgangspunkt, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code Snippets zur Anwendung
 - Wie können wir in R visualisieren?
   - eine Vielzahl an Möglichkeiten über verschiedenste Packages (z.B. `ggplot2` oder `leaflet`)
 
@@ -107,7 +107,7 @@ Für diese Lektion benötigt Ihr also `ggplot2`.
 library(ggplot2)
 ```
 
-Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf).
+Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}.
 
 # Verschiedene Visualisierungsformen
 
@@ -137,7 +137,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_point() # Hinzufügen der Datenpunkte (ändert diesen Codepart um ein Balkendiagramm zu erhalten)
 ```
 
-D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `geom_*`-Befehl austauscht. Probiert es einmal aus und visualisiert mit Hilfe von `ggplot2` und ändert das Balkendiagramm in einen Boxplot. Nutzt dazu auch gerne [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf) zum nachschlagen.
+D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `geom_*`-Befehl austauscht. Probiert es einmal aus und visualisiert mit Hilfe von `ggplot2` und ändert das Balkendiagramm in einen Boxplot. Nutzt dazu auch gerne [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} zum nachschlagen.
 
 ``` {r geom_boxplot, exercise = TRUE}
 # Visualisierung eines Boxplots
@@ -150,7 +150,7 @@ Einer ähnlichen Logik folgend könnt Ihr mit `ggplot2` Eure Plots auch individu
 
 ## Facets
 
-Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf) seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
+Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
 
 ```{r geom_histogram, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
@@ -209,7 +209,7 @@ Manchmal sieht das Ergebnis wild aus - wie in diesem Fall auch. Wie wir das ver�
 Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie Ihr es möchtet. Um `theme` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
 
 - Es gibt vordefinierte Themen, die Ihr einfach anwenden könnt und so die visuelle Erscheinung Eurer Abbildungen zu verändern (z.B. `theme_minimal()` oder `theme_classic()`)
-- Ihr könnt über den Befehl `theme()` auch direkt einzelne Komponenten ansteuern und zum Beispiel Legenden anders positionieren oder zu entfernen. Wer neugierig ist: Eine weitergehende Einführung findet Ihr [hier](https://ggplot2-book.org/polishing.html) (auf Englisch).
+- Ihr könnt über den Befehl `theme()` auch direkt einzelne Komponenten ansteuern und zum Beispiel Legenden anders positionieren oder zu entfernen. Wer neugierig ist: Eine weitergehende Einführung findet Ihr [hier](https://ggplot2-book.org/polishing.html){target="_blank"} (auf Englisch).
 
 Wie das aussehen kann, seht Ihr Euch am besten noch einmal in Ruhe an diesen Beispielen an:
 
@@ -230,13 +230,13 @@ Ihr könnt also ganz leicht die gesamte Erscheinung eurer Visualisierung ändern
 Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` ergänzen und so auch eine Visualsierung im Economist-Stil erzeugen!
 
 - `theme_tufte()`: minimalistisches Thema (inspiriert von Edward Tufte, der einen möglichst optimalen "Informations-Farb-Verhältnis" (data-ink ratio) anstrebt. Kurz gefasst bedeutet es, dass Graphen möglichst simpel gehalten werden sollten)
-- `theme_economist()`: inspiriert vom [Economist](https://www.economist.com)
+- `theme_economist()`: inspiriert vom [Economist](https://www.economist.com){target="_blank"}
 - `theme_stata()`: in Anlehnung an das Statistikprogramm
 - `theme_hc()`: in Anlehnung an das JavaScript Package Highcharts
 - `theme_excel()`: in Anlehnung an Excel
 - `theme_fivethirtyeight()`: in Anlehnung an den Data Blog [FiveThirtyEight](https://fivethirtyeight.com)
 
-und viele mehr -- lasst Euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/)!
+und viele mehr -- lasst Euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/){target="_blank"}!
 
 
 Probiert es doch am besten selbst aus! Ergänzt den folgenden Code durch ein Thema:
@@ -339,7 +339,7 @@ Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für int
 
 # Und jetzt seid Ihr dran
 
-1. Überlegt Euch, welche Visualisierung Ihr Euch mit den Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
+1. Überlegt Euch, welche Visualisierung Ihr Euch mit den Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
 
 2. Setzt die Visualisierung um. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt.
 
@@ -350,10 +350,10 @@ Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch zum Beispi
 **Cosima: ggf. auf YouTube oder wo anders hochladen? Oder ist es OK so?**
 
 ## Weitere Ressourcen
-- [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf)
-- [Mehr Informationen zu `echarts4r` (Englisch)](https://echarts4r.john-coene.com/index.html)
-- [Data to Viz](https://www.data-to-viz.com/)
-- [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/)
-- [Online-Version von "ggplot2: Elegant Graphics for Data Analysis" von Hadley Wickham (auf Englisch)](https://ggplot2-book.org/index.html)
-- [RStudios Tutorial zu leaflet (auf Englisch)](https://rstudio.github.io/leaflet/)
-- [Einblicke in den Datenjournmalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/)
+- [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}
+- [Mehr Informationen zu `echarts4r` (Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
+- [Data to Viz](https://www.data-to-viz.com/){target="_blank"}
+- [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/){target="_blank"}
+- [Online-Version von "ggplot2: Elegant Graphics for Data Analysis" von Hadley Wickham (auf Englisch)](https://ggplot2-book.org/index.html){target="_blank"}
+- [RStudios Tutorial zu leaflet (auf Englisch)](https://rstudio.github.io/leaflet/){target="_blank"}
+- [Einblicke in den Datenjournmalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
