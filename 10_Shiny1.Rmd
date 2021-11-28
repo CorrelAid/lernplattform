@@ -281,10 +281,7 @@ library(echarts4r)
 
 Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten das Video an:
 
-![](Video-zu-echarts4r) (ca. 15 Minuten)
-
-## Kernaussagen
-**To be added**
+![](Video-zu-echarts4r) (ca. 5-10 Minuten)
 
 Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wir drei Befehle aus `echarts4r`: 
 
