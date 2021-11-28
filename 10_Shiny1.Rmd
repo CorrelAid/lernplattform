@@ -89,7 +89,7 @@ Daten +
     Visuelle Anpassung der Darstellungsform (Thema)
 ```
 
-**Achtung**: Anders als beim sogenannten "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
+**Wichtig:** Anders als beim sogenannten "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
 
 Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung:
 
@@ -99,7 +99,7 @@ knitr::include_url("daten/flip_for_correlaid/flip_for_correlaid.html")
 
 Wenn Ihr Euch durch die Folien (am besten über die Pfeiltasten) klickt, seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
 
-**Achtung**: Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
+**Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
 Für diese Lektion benötigt Ihr also `ggplot2`.
 ```{r package prep, exercise = TRUE}
@@ -288,24 +288,71 @@ Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten 
 
 Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wir drei Befehle aus `echarts4r`: 
 
-- `e_charts()`:
-- `e_map()`:
-- `e_visual_map()`:
+- `e_charts()`: Initialisiert die Visualisierung (ähnliche wie `ggplot()` in `ggplot2()`)
+- `e_map()`: Definiert wie die Information abgebildet werden soll (hier nehmen wir die Karte, also `e_map`)
+- `e_visual_map()`: Bringt die Information und die Karte zusammen
 
 `echarts4r` nutzt hier also die englischsprachigen Ländernamen aus unserem Datensatz (gespeichert in `country`) und die Anzahl der Freiwilligen (gespeichert in `volunteers`) um die Informationen auf einer Weltkarte abzubilden.
 
 **An Nina: Ich bin nicht sicher, ob das abgebildet werden kann. Falls nicht, würde ich ein Screen video davon machen und es kurz zeigen**
 
-```{r karte, eval=TRUE}
+```{r karte_basic, eval=TRUE}
+# Wir rufen zunächst unsere Daten auf
 community %>% 
-  e_charts(country) %>% 
-  e_map(volunteers) %>% 
-  e_visual_map(volunteers)
+  # Initialisieren die Karte mit `e_charts` und bestimmen auch gleichzeitig 
+  # die geographische Ebene (`country`) über die `country`-Spalte in unseren
+  # Daten
+  echarts4r::e_charts(country) %>% 
+  # Wir bestimmen, wie wir die Information abbilden möchten 
+  # (als Karte, also `e_map`) und auch welche Information wir abbilden möchten 
+  # (die Anzahl der Freiwilligen über `volunteers`)
+  echarts4r::e_map(volunteers) %>%
+  # Zum Schluss bringen wir mit `e_visual_map` noch die Informationen über die 
+  # Freiwilligen und die Karte zusammen
+  echarts4r::e_visual_map(volunteers)
 ```
 
-**Achtung:** Anders als in `ggplot2` nutzen wir jetzt wieder die "pipe" (`%>%`), um die einzelnen Befehle miteinander zu verbinden.
+**Wichtig:** Anders als in `ggplot2` nutzen wir jetzt wieder die "pipe" (`%>%`), um die einzelnen Befehle miteinander zu verbinden.
 
 Wie Ihr schon im Video gesehen habt, erlaubt Euch `echarts4r` sehr schnell visuell ansprechende Karten zu erstellen. Wenn Ihr Euren Cursor über die einzelnen Länder bewegt, seht Ihr, dass der Ländername eingeblendet wird. Die Farbskala zeigt Euch die absolute Anzahl der Freiwilligen. Wenn Ihr die Karte zum Erkunden der Daten nutzen möchtet, könnt Ihr die Darstellung über die Farbskala limitieren und Euch so nur Länder anzeigen lassen, die eine bestimmte Anzahl an Freiwilligen haben.
+
+Wenn Ihr eine noch aussagekräftigere Karte haben möchtet, könnt Ihr noch mehr Informationen in die Kurzinfo (auf Englisch "tooltip") schreiben. In `echarts4r` ergänzt Ihr Euren Code durch eine Zeile (`echarts4r::e_tooltip(trigger = "item")`):
+
+```{r karte_tooltip, eval=TRUE}
+community %>% 
+  echarts4r::e_charts(country) %>% 
+  echarts4r::e_map(volunteers) %>% 
+  echarts4r::e_visual_map(volunteers) %>% 
+  # Dieser Befehl nimmt die Information aus der Spalte `volunteers`
+  # und schreibt sie in die Kurzinfo
+  echarts4r::e_tooltip(trigger = "item")
+```
+
+<!-- Wenn wir die Bezeichnung in der Kurzinfo weiter anpassen möchten, können wir das über eine Kombination aus `dplyr` und `echarts4r` machen. Aktuell steht in der Kurzinfo noch volunteers - das können wir einfach in `Freiwillige` ändern: -->
+
+<!-- ```{r karte_tooltip_advanced, eval=TRUE} -->
+
+<!-- var_label(iris) <- list(volunteers = "Freiwillige", Petal.Width = "Width of Petal") -->
+
+<!-- community %>%  -->
+<!--   dplyr::rename(Freiwillige = volunteers) %>%  -->
+<!--   echarts4r::e_charts(country) %>%  -->
+<!--   echarts4r::e_map(Freiwillige) %>%  -->
+<!--   echarts4r::e_visual_map(Freiwillige) %>%  -->
+<!--   echarts4r::e_tooltip(trigger = "item") -->
+<!-- ``` -->
+
+Ähnlich wie in `ggplot2` können wir auch hier sehr leicht das `theme` ändern und so die Darstellung der Karte anpassen. Ihr seht hier als Beispiel das `dark` Thema, es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}!
+
+```{r karte_theme, eval=TRUE}
+community %>% 
+  echarts4r::e_charts(country) %>% 
+  echarts4r::e_map(volunteers) %>% 
+  echarts4r::e_visual_map(volunteers) %>% 
+  echarts4r::e_tooltip(trigger = "item") %>% 
+  # Hier definieren wir das Thema
+  echarts4r::e_theme("dark")
+```
 
 # Visualisierungen speichern
 
@@ -319,7 +366,7 @@ ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = euer_plot) # Mit explizitem Aufruf der Abbildung
 ```
 
-In der Praxis sieht der Ablauf dann beispielsweise so aus:
+In der Praxis sieht der Ablauf dann zum Beispiel so aus:
 
 ```{r ggsave_example, eval = FALSE}
 # Wir erstellen unseren Plot mit `ggplot2` und speichern ihn in einem Objekt (`histogram_plot`)
@@ -335,15 +382,15 @@ histogram_plot <-
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = histogram_plot) # Mit explizitem Aufruf der Abbildung
 ```
 
-Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` erstellen Karten, bieten sich andere Formate wie `.html` an.
+Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` erstellen Karten, bieten sich andere Formate wie `.html` oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr nächste Woche!
 
 # Und jetzt seid Ihr dran
 
-1. Überlegt Euch, welche Visualisierung Ihr Euch mit den Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
+1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
 
 2. Setzt die Visualisierung um. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt.
 
-Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch zum Beispiel durch die Seite navigieren könnt.
+Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die Seite navigieren könnt.
 
 ![](daten/screen_video/screen_record_data_to_viz.mov)
 
