@@ -110,7 +110,15 @@ Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel]
 
 # Verschiedene Visualisierungsformen
 
-`ggplot2` bietet eine Vielzahl an verschiedenen Visualisierungsmöglichkeiten. Das schöne an der `ggplot2` Logik ist, dass man einzelne Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
+`ggplot2` bietet eine Vielzahl an Visualisierungsmöglichkeiten! Die bekanntesten (und wahrscheinlich auch häufigst genutzten) sind:
+
+- `geom_point()`: eine Punktewolke
+- `geom_col()`: Balkendiagramm
+- `geom_line()`: ein Liniendiagramm (vor allem bei Zeitreihendaten sinnvoll, d.h. Daten, die über mehrere Zeitpunkte abgedeckt werden)
+- `geom_histogramm()`: Histogramm (Verteilungsdiagramm)
+- `geom_boxplot()`: Boxplot
+
+Das schöne an der `ggplot2` Logik ist, dass man einzelne Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
 
 ![](daten/abbildungen/plot_ggplot.png)
 <details><summary>Code mit Kommentaren</summary>
@@ -128,25 +136,16 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_point() # Hinzufügen der Datenpunkte (ändert diesen Codepart um ein Balkendiagramm zu erhalten)
 ```
 
-# Was kann man noch mit `ggplot2` machen?
-
-Einer ähnlichen Logik folgend könnt Ihr mit `ggplot2` Eure Plots auch individuell gestalten. Wie Ihr in Sitzung 5 schon gesehen habt, kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr Farben oder auch Darstellungstypen ändert.
-
-**ADD SOME MORE CONTENT HERE**
-
-Und jetzt seid Ihr dran! Visualisiert mit Hilfe von `ggplot2` und seinen Funktionen zunächst ein Balkendiagramm.
-
-``` {r geom_scatter, exercise = TRUE}
-# Visualisierung eines Balkendiagrams
-
-```
-
-Nutzt den [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf), um einen Boxplot zu erstellen.
+D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `geom_*`-Befehl austauscht. Probiert es einmal aus und visualisiert mit Hilfe von `ggplot2` und ändert das Balkendiagramm in einen Boxplot. Nutzt dazu auch gerne [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf) zum nachschlagen.
 
 ``` {r geom_boxplot, exercise = TRUE}
 # Visualisierung eines Boxplots
 
 ```
+
+# Was kann man noch mit `ggplot2` machen?
+
+Einer ähnlichen Logik folgend könnt Ihr mit `ggplot2` Eure Plots auch individuell gestalten. Wie Ihr in Sitzung 5 schon gesehen habt, kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert.
 
 ## Facets
 
