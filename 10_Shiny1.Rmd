@@ -150,7 +150,7 @@ Nutzt den [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf), um ein
 
 ## Facets
 
-Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf) seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
+Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf) seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
 
 ```{r geom_histogram, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
@@ -184,7 +184,7 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
 `ggplot2` erlaubt es Euch auch einzelne Punkte farblich zu färben. Das kann sehr sinnvoll sein, wenn Ihr zusätzliche Informationen übermitteln möchtet. Wir könnten zum Beispiel die Kontinente zusätzlich noch farblich hervorheben. Wie das funktioniert, könnt Ihr Euch noch einmal anhand der folgenden Folien ansehen (nutzt am besten wieder die Pfeiltasten, um Euch durchzuklicken).
 
 ```{r, out.width='100%', out.height='100%'}
-knitr::include_url("daten/flip_for_correlaid/flip_for_correlaid_color.html")
+knitr::include_url("daten/flip_for_correlaid_color/flip_for_correlaid_color.html")
 ```
 
 Wie Ihr gesehen habt, könnt ihr innerhalb des `aes()` Arguments zusätzliche Argumente hinzufügen: `color` und `fill`.
@@ -196,17 +196,71 @@ Wenn Ihr euch unsicher seid, welches Argument ihr benötigt, könnt Ihr auch ein
 
 Nutzt den Code im Code Chunk (das ist ein Code, den wir bereits vorher verwendet haben) und ändert die Farbe der Punkte abhängig von den Ländern (`country`). D.h. wir möchten für jedes einzelne Land eine andere Farbe erhalten.
 
-``` {r geom_scatter_loesung, exercise = TRUE}
+``` {r geom_scatter_color_country, exercise = TRUE}
 # Visualisierung einer Punktewolke
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
 ```
 
+Manchmal sieht das Ergebnis wild aus - wie in diesem Fall auch. Wie wir das verändern können, erfahrt Ihr unter anderem im nächsten Schritt. 
+
 ## Themen
 
-Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern sind sogenannte `themes` in `ggplot2`. Die `themes` sind unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie ihr es möchtet. Um die `themes` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
+Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie ihr es möchtet. Um `theme` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
+
+- Es gibt vordefinierte Themen, die ihr einfach anwenden könnt und so die visuelle Erscheinung Eurer Abbildungen zu verändern (z.B. `theme_minimal()` oder `theme_classic()`)
+- Ihr könnt über den Befehl `theme()` auch direkt einzelne Komponenten ansteuern und zum Beispiel Legenden anders positionieren oder zu entfernen. Wer neugierig ist: Eine weitergehende Einführung findet Ihr [hier](https://ggplot2-book.org/polishing.html) (auf Englisch).
+
+Wie das aussehen kann, seht Ihr Euch am besten noch einmal in Ruhe an diesen Beispielen an:
+
+```{r, out.width='100%', out.height='100%'}
+knitr::include_url("daten/flip_for_correlaid_themes/flip_for_correlaid_themes.html")
+```
+
+Ihr könnt also ganz leicht die gesamte Erscheinung eurer Visualisierung ändern, indem Ihr `theme_*` am Ende Eurer Visualisierung aufruft. Standardmäßig gibt es in `ggplot2` folgende Themen:
+
+- `theme_gray()`: grauer Hintergrund
+- `theme_minimal()`: minimalistisches Thema
+- `theme_bw()`: schwarz-weiß
+- `theme_classic()`: eine klassisch gehaltene Visualisierung
+- `theme_dark()`: dunkles Thema
+- `theme_light()`: helles Thema
+- `theme_void()`: sehr minimalistisches Thema (keine x- und y-Achsen)
+
+Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` ergänzen und so auch eine Visualsierung im Economist-Stil erzeugen!
+
+- `theme_tufte()`: minimalistisches Thema (inspiriert von Edward Tufte, der einen möglichst optimalen "Informations-Farb-Verhältnis" (data-ink ratio) anstrebt. Kurz gefasst bedeutet es, dass Graphen möglichst simpel gehalten werden sollten)
+- `theme_economist()`: inspiriert vom [Economist](https://www.economist.com)
+- `theme_stata()`: in Anlehnung an das Statistikprogramm
+- `theme_hc()`: in Anlehnung an das JavaScript Package Highcharts
+- `theme_excel()`: in Anlehnung an Excel
+- `theme_fivethirtyeight()`: in Anlehnung an den Data Blog [FiveThirtyEight](https://fivethirtyeight.com)
+
+und viele mehr -- lasst euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/)!
 
 
+Probiert es doch am besten selbst aus! Ergänzt den folgenden Code durch ein Thema:
+
+``` {r theme_exercise, exercise = TRUE}
+# Visualisierung einer Punktewolke
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
+  geom_point() 
+# Ergänzt hier Euer gewähltes Thema
+```
+
+
+Dann gibt es noch die Möglichkeit über den `theme()` Befehl auch die Möglichkeit, die Legende auszublenden. Das kann zum Beispiel helfen, um einen Plot übersichtlicher zu machen. Diese Entscheidungen muss man natürlich immer Visualisierungsabhängig treffen. Wenn wir beispielsweise mit unserer Punktewolke aus dem vorherigen Beispiel zeigen möchten, dass es sich um verschiedene Länder auf den Kontinenten handelt, die explizite Nennung der einzelnen Länder an sich aber für uns nicht interessant ist, können wir das in diesem Fall mit dem zusätzlichen Befehl `theme(legend.position = "none")` machen. Übersetzt bedeutet der Befehl, dass wir der Legende keine Position zuweisen - sie erscheint also nicht. 
+
+Kommentiert im Code die Zeile aus, um einen Vergleich mit und ohne Legende zu sehen.
+
+``` {r geom_legend, exercise = TRUE}
+# Visualisierung einer Punktewolke mit und ohne Legende
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers, color = country)) +
+  geom_point()
+  # Um die Legende zu entfernen, kommentiert die folgende Zeile aus 
+  # und verbindet die Befehle mit einem `+`
+  # theme(legend.position = "none") 
+```
 
 # Visualisierung von Karten 
 
@@ -253,6 +307,8 @@ histogram_plot <-
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = histogram_plot) # Mit explizitem Aufruf der Abbildung
 ```
 
+Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` erstellen Karten, bieten sich andere Formate wie `.html` an.
+
 # Und jetzt seid Ihr dran
 
 1. Überlegt Euch, welche Visualisierung Ihr Euch mit den Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
@@ -270,5 +326,6 @@ Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch zum Beispi
 - [Schummelzettel zu `leaflet` (Englisch)](daten/cheat sheets/leaflet.pdf)
 - [Data to Viz](https://www.data-to-viz.com/)
 - [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/)
+- [Online-Version von "ggplot2: Elegant Graphics for Data Analysis" von Hadley Wickham (auf Englisch)](https://ggplot2-book.org/index.html)
 - [RStudios Tutorial zu leaflet (auf Englisch)](https://rstudio.github.io/leaflet/)
 - [Einblicke in den Datenjournmalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/)
