@@ -199,8 +199,7 @@ Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten 
 ![](Video-zu-leaflet) (ca. 20 Minuten)
 
 ## Kernaussagen
-
-
+**To be added**
 
 ```{r karte, eval=FALSE}
 
