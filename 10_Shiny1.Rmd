@@ -201,13 +201,11 @@ Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten 
 ## Kernaussagen
 **To be added**
 
+Hier findet Ihr alle Informationen auch noch einmal im [Schummelzettel zu `leaflet` (auf Englisch)](daten/cheat sheets/leaflet.pdf).
+
 ```{r karte, eval=FALSE}
 
 ```
-
-
-
-**Nina: Leaflet finde ich gut, eventuell müssen wir hier noch auf das Konzept von Geocodierungen verweisen, damit das klar ist**
 
 # Visualisierungen speichern
 
@@ -216,21 +214,23 @@ Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu 
 Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, wo Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die Ihr generiert habt.)
 
 ```{r ggsave, eval = FALSE}
-ggplot2::ggsave(filename = "euer_wunderschoener_plot.png") # Ohne Pfad
-ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png") # Mit Pfad
-ggplot2::ggsave(filename = "euer_pfad/euer_wunderschoener_plot.png", plot = "euer_plot") # Mit explizitem Aufruf der Abbildung
+ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
+ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
+ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = "euer_plot") # Mit explizitem Aufruf der Abbildung
 ```
 
 # Und jetzt seid Ihr dran
 Schaut Euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch zum Beispiel durch die Seite navigieren könnt.
 
 ![](daten/screen_video/screen_record_data_to_viz.mov)
-*ggf. auf YouTube oder wo anders hochladen?*
+
+**Cosima: ggf. auf YouTube oder wo anders hochladen? Oder ist es OK so?**
 
 ## Weitere Ressourcen
 - [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf)
 - [Schummelzettel zu `leaflet` (Englisch)](daten/cheat sheets/leaflet.pdf)
-- https://www.r-graph-gallery.com/
+- [Data to Viz](https://www.data-to-viz.com/)
+- [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/)
 - https://geocompr.robinlovelace.net/adv-map.html
 - https://rstudio.github.io/leaflet/
 - https://r-spatial.org/r/2018/10/25/ggplot2-sf-2.html
