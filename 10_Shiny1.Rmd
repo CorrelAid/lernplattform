@@ -3,15 +3,16 @@
 Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
 
 ```{r prep, eval=TRUE, include=FALSE}
-
+library(ggplot2)
+library(leaflet)
 ```
 
 Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht Ihr erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
 
+![](Intro-Video) (ca. 5-10 Minuten)
+*Notizen für mich*
 *Pest in London als Beispiel für Intro warum data viz*
 *dann ein paar Beispiele zeigen*
-
-![](Intro-Video) (ca. 5-10 Minuten)
 
 ## Kernaussagen
 - Warum nutzen wir Visualisierung?
@@ -147,8 +148,7 @@ Nutzt den [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf), um ein
 
 ```
 
-
-# Facets
+## Facets
 
 Wie Ihr auf dem Schummelzettel seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
 
@@ -179,11 +179,11 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
   geom_histogram()
 ```
 
-# Farben
+## Farben
 
 Nutzt den Code von oben (bereits im Code Chunk) und ändert die Farbe der Punkte abhängig von den Kontinenten. D.h. wir möchten für jeden einzelnen Kontinent eine andere Farbe erhalten.
 
-**TBC**
+**To be continued**
 ``` {r geom_scatter_loesung, exercise = TRUE}
 # Visualisierung einer Punktewolke
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
@@ -231,6 +231,5 @@ Schaut Euch auf [Data to Viz](https://www.data-to-viz.com/) um und wählt eine V
 - [Schummelzettel zu `leaflet` (Englisch)](daten/cheat sheets/leaflet.pdf)
 - [Data to Viz](https://www.data-to-viz.com/)
 - [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/)
-- https://geocompr.robinlovelace.net/adv-map.html
-- https://rstudio.github.io/leaflet/
-- https://r-spatial.org/r/2018/10/25/ggplot2-sf-2.html
+- [RStudios Tutorial zu leaflet (auf Englisch)](https://rstudio.github.io/leaflet/)
+- [Einblicke in den Datenjournmalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/)
