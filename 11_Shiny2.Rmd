@@ -25,7 +25,7 @@ Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! 
 <left>
 ![*Shiny](https://d33wubrfki0l68.cloudfront.net/d08c35bfe1ba68584788f5cdcad703d0c9d8263f/7969a/wp-content/uploads/2014/04/shiny.png){#id .class width=20% height=100%}
 
-R liefert ein eigenes Package, `Shiny`, um eine Shiny-App zu bauen. In dem Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App hat: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für Benutzeroberfläche) und **einen Server**.
+R liefert ein eigenes Package, `Shiny`, um eine Shiny-App zu bauen. Der [Schummelzettel](daten/cheat sheets/shiny_de.pdf) liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für Benutzeroberfläche) und **einen Server**. 
 
 ```{r 11ui}
 quiz(caption = NULL,
@@ -163,7 +163,7 @@ Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
 3. Überlegt Euch, wie Eure Shiny-App aussehen soll. Eine Shiny-App hat meist links eine Seitenleiste mit Auswahlmöglichkeiten, in der Mitte (dem `main`-Part) ist meist Text, eine Visualisierung oder aber auch eine Tabelle. Es kann helfen, wenn Ihr Euch das kurz auf einem Papier visuell skizziert: Welche Visualisierung möchtet Ihr in Eure Shiny-App einbinden? Was könnten Auswahlmöglichkeiten sein, die Ihr in der Seitenleiste ansteuern möchtet? Möchtet Ihr Text als Informationen mitliefern?
 
-4. Nehmt euren Code für die Visualisierung (wenn Ihr noch keinen Code habt erstellt zunächst eine Visualisierung mit `ggplot2` und nutzt diesen Code hier) und baut ihn in die `server.R`-Datei ein. Orientiert Euch hier an der Anleitung oben oder aber auch am [Schummelzettel]().
+4. Nehmt euren Code für die Visualisierung (wenn Ihr noch keinen Code habt erstellt zunächst eine Visualisierung mit `ggplot2` und nutzt diesen Code hier) und baut ihn in die `server.R`-Datei ein. Orientiert Euch hier an der Anleitung oben oder aber auch am [Schummelzettel](daten/cheat sheets/shiny_de.pdf).
 
 5. Im vorletzten Schritt verschönern wir das Aussehen eurer App in der `ui.R`-Datei: Baut die einzelnen Auswahlmöglichkeiten in die Seitenleiste ein und platziert Eure Visualisierung oder euren Text im `main`-Part. 
 
@@ -186,13 +186,13 @@ Todo
 
 
 ## Weitere Ressourcen
+  - [Schummelzettel Shiny-Apps (Deutsch)](daten/cheat sheets/shiny_de.pdf){target="_blank"}
   - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
   - [Hadley Wickham: Mastering Shiny](https://mastering-shiny.org){target="_blank"}
   - [Konstantin Gavras and Nick Baumann: Shiny Apps: Development and Deployment](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/shiny-apps/){target="_blank"} auf Methods Bites
   - [Julie Scholler: Intro to Shiny Web App](https://juliescholler.gitlab.io/files/M2/M2-CM3-Shiny.html#1){target="_blank"}
   - [Kaleen L. Medeiros: Introduction to Shiny](https://github.com/klmedeiros/rladies-tunisia-july2020-intro-shiny){target="_blank"}
   - [Garrett Grolemund: How to understand reactivity in R](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}
-  - [CheatSheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf){target="_blank"}
 - ShinyApps hosten
   - [Hosting and deployment](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
   - [Shinyapps.io - Schritt für Schritt Anleitung (auf Englisch)](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
