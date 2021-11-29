@@ -93,7 +93,7 @@ Daten +
 
 Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung:
 
-```{r, out.width='100%', out.height='100%'}
+```{r flip_plain, out.width='100%', out.height='100%'}
 knitr::include_url("daten/flip_for_correlaid/flip_for_correlaid.html")
 ```
 
@@ -166,7 +166,7 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
 
 Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
 
-```{r, out.width='100%', out.height='100%'}
+```{r flipbook_facet, out.width='100%', out.height='100%'}
 knitr::include_url("daten/flip_for_correlaid_facet/flip_for_correlaid_facet.html")
 ```
 
@@ -183,7 +183,7 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
 
 `ggplot2` erlaubt es Euch auch einzelne Punkte farblich zu färben. Das kann sehr sinnvoll sein, wenn Ihr zusätzliche Informationen übermitteln möchtet. Wir könnten zum Beispiel die Kontinente zusätzlich noch farblich hervorheben. Wie das funktioniert, könnt Ihr Euch noch einmal anhand der folgenden Folien ansehen (nutzt am besten wieder die Pfeiltasten, um Euch durchzuklicken).
 
-```{r, out.width='100%', out.height='100%'}
+```{r flipbook_color, out.width='100%', out.height='100%'}
 knitr::include_url("daten/flip_for_correlaid_color/flip_for_correlaid_color.html")
 ```
 
@@ -213,7 +213,7 @@ Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der s
 
 Wie das aussehen kann, seht Ihr Euch am besten noch einmal in Ruhe an diesen Beispielen an:
 
-```{r, out.width='100%', out.height='100%'}
+```{r flipbook_themes, out.width='100%', out.height='100%'}
 knitr::include_url("daten/flip_for_correlaid_themes/flip_for_correlaid_themes.html")
 ```
 
