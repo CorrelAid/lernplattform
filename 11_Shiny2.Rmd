@@ -171,20 +171,6 @@ Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
 7. Und jetzt kommt der spannendste Part: Lasst Eure Shiny-App laufen! Führt dazu `shinyApp(ui = ui, server = server)` in der Console aus und probiert Eure Shiny-App aus!
 
-Todo 
-
-- Code zum Herunterladen implementieren
-- Einfache Shiny-App
-    1. Shiny-App zum Laufen bringen
-    2. Kleinere Anpassungen (basierend auf dem anderen Kurs) vornehmen
-    3. ?? 
-
-
-- Ggf. Automatisierte Reports in der App als Ausblick??
-
-**Nina: Da kannst du ganz flexibel sein - lass dich gerne von den Beispielen von learnR inspirieren!**
-
-
 ## Weitere Ressourcen
   - [Schummelzettel Shiny-Apps (Deutsch)](daten/cheat sheets/shiny_de.pdf){target="_blank"}
   - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
