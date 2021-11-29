@@ -43,7 +43,7 @@ quiz(caption = NULL,
 )
 ```
 
-```{r 11ui}
+```{r 11server}
 quiz(caption = NULL,
   question("Wofür ist der Server in einer Shiny-App??",
     answer("Der Server ist in der Shiny-App für das Deployen zuständig."),
