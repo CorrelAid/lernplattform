@@ -1,6 +1,14 @@
 ## Interaktive Visualisierungen
 
-![](VIDEO)
+Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen oder auch hier auf dieser Lernplattform gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid ihr bei Shiny-Apps genau richtig! 
+
+Im Video erfahrt ihr, was es damit auf sich hat und wie es funktioniert.
+
+![](VIDEO) (ca. 15 Minuten) 
+*Notiz an mich: Slide mit Beispielen bringen; kurz Server und UI erklären*
+
+Nina: hier vielleicht eine kleine Preview und mündliche Erklärung des Textes unten? 
+**Cosima: genau das war der Plan :)**
 
 # Kernaussagen 
 -
@@ -8,26 +16,17 @@
 -
 -
 
-**Frie: würde von Shiny sprechen als framework. shinyapps ist ja nur der hosting service von rstudio? bzw. dann Shiny App schreiben. oder Shiny-App. ShinyApp wirkt so als wäre das ein feststehender Name (ist es ja auch ,a ber halt nur als hosting platform?)**
-
-Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen oder XX gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid ihr bei ShinyApps genau richtig! 
-
-Nina: hier vielleicht eine kleine Preview und mündliche Erklärung des Textes unten?
-
 # Was sind ShinyApps?
 
-- Beispiele bringen
-- Link zur Gallerie 
+Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (auf Englisch "application", daher auch "Shiny-App") zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Gallerie von RStudio](https://shiny.rstudio.com/gallery/) vorbei!
 
-Ihr seht also, Eurer Phantasie sind keine Grenzen gesetzt! Man kann ShinyApps zur Visualisierung, als Suchmaschine oder aber auch, um euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene App zu bauen.
-
-# Wie funktioniert eine ShinyApp genau? 
+# Wie funktioniert eine Shiny-App genau? 
 
 **Test - was ist Server, was ist UI**
 
 Ihr habt meist zwei Dateien, eine `ui.R`-Datei und eine `server.R`-Datei, die ihr dann mit `XXX` zusammenbringt. 
 
-<center>![](daten/abbildungen/brain.png){#id .class width=15% height=15%}</center>
+<center>![*Gehirn](daten/abbildungen/brain.png){#id .class width=15% height=15%}</center>
 
 Eine `server.R` Datei kann so aussehen:
 
@@ -35,9 +34,9 @@ Eine `server.R` Datei kann so aussehen:
 
 ```
 
-Die `server.R`-Datei erlaubt es euch, das "Gehirn" der ShinyApp zu programmieren. 
+Die `server.R`-Datei erlaubt es euch, das "Gehirn" der Shiny-App zu programmieren. 
 
-<center>![](daten/abbildungen/body.png){#id .class width=15% height=15%}</center>
+<center>![*Körper](daten/abbildungen/body.png){#id .class width=15% height=15%}</center>
 
 Die `ui.R` kann zum Beispiel so aussehen:
 ```{r ui, eval = FALSE}
@@ -45,9 +44,9 @@ Die `ui.R` kann zum Beispiel so aussehen:
 ```
 
 
-Eine `ui.R` Datei, die das *User Interface*, also die Benutzeroberfläche einer ShinyApp darstellt, ermöglicht es dem Nutzer die ShinyApp letztendlich zu bedienen. Im Video haben wir die `ui.R` Datei den "Körper" genannt und die `server.R`-Datei das Gehirn. Genauso kann man es sich auch vorstellen: Im Gehirn, also der `server.R`-Datei, findet die gesamte Berechnung im Hintergrund statt. Die `ui.R`-Datei zeigt dann hinterher das Ergebnis an :)
+Eine `ui.R` Datei, die das *User Interface*, also die Benutzeroberfläche einer Shiny-App darstellt, ermöglicht es dem Nutzer die Shiny-App letztendlich zu bedienen. Im Video haben wir die `ui.R` Datei den "Körper" genannt und die `server.R`-Datei das Gehirn. Genauso kann man es sich auch vorstellen: Im Gehirn, also der `server.R`-Datei, findet die gesamte Berechnung im Hintergrund statt. Die `ui.R`-Datei zeigt dann hinterher das Ergebnis an.
 
-Ihr könnt in einer ShinyApp eure bisherigen Kenntnisse anwenden. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
+Ihr könnt in einer Shiny-App eure bisherigen Kenntnisse anwenden. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
 
 ![]() Abbildung einfügen
 
@@ -57,7 +56,7 @@ Hier ist noch einmal der Code als Erinnerung dafür:
 # Code Snippet
 ```
 
-Wenn wir diese Abbildung in unsere ShinyApp integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Aber machen wir das doch einmal zusammen. 
+Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Aber machen wir das doch einmal zusammen. 
 
 Was haben wir? 
 
@@ -65,20 +64,12 @@ Was haben wir?
 2. 
 3. 
 
-# Und jetzt seid Ihr dran!
-
-Todo 
-
-- Code zum Herunterladen implementieren
-- Einfache ShinyApp
-    1. ShinyApp zum Laufen bringen
-    2. Kleinere Anpassungen (basierend auf dem anderen Kurs) vornehmen
-    3. ?? 
-
+### Exkurs: Reaktives Programmieren - das Geheimnis einer Shiny-App
 
 Das ganze Geheimnis hinter der App nennt sich *reactive programming*, oder auch *reaktives Programmieren*. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
 
-![](daten/abbildungen/reactivity.png) Video zur Reaktivität mit Brieftaube
+![](daten/abbildungen/reactivity.png)  (ca. 5 Minuten)
+*Video zur Reaktivität mit Brieftaube*
 
 In Kürze: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.^1  
 
@@ -95,13 +86,52 @@ Wir haben letzte Woche den `select` Button kennen gelernt,
 - Weitere Aufgaben in der App
 
 # Hosten von ShinyApps
-- ShinyApps hosten
+RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io). Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/) und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
 
+In jedem Fall sollte intern abgeklärt werden, ob diese Hosting-Option für euch in Frage kommt oder ob es nicht eine alternative über die IT-Abteilung gibt (z.B. bei sensiblen Daten).
+
+Sollte die RStudio-Lösung für euch eine Option sein, ist das Hosten denkbar einfach. Ihr müsst nur die folgenden Schritte befolgen:
+
+1. Alle Packages müssen installiert sein und nur über `library()` geladen werden. D.h. euer Code darf kein `install.packages()` enthalten.
+2. Dann müsst ihr `rsconnect` installieren (das macht ihr ganz einfach über die Console mit `install.packages("rsconnect")`)
+3. Danach erstellt ihr euch einen Account auf [ShinyApps.io](https://www.shinyapps.io) (es gibt verschiedene Optionen, wählt den aus, der am besten zu euren Bedürfnissen passt)
+4. Jetzt könnt ihr `rsconnect` konfigurieren. Dazu müsst ihr den Token, den euch [ShinyApps.io](https://www.shinyapps.io) zur Verfügung stellt, kopieren. Die Screenshots zeigen euch, wie ihr dahin kommt.
+
+Sobald ihr euch bei [ShinyApps.io](https://www.shinyapps.io)  eingeloggt habt, seht ihr folgendes Dashboard: 
+
+![](daten/abbildungen/shinyapps1.png)
+Dort klickt ihr auf euer Benutzerkonto (rechts oben) und dann auf "Tokens" und gelangt zu folgendem Fenster:
+
+![](daten/abbildungen/shinyapps2.png)
+
+Wenn ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und erscheint in der Auflistung. Um die Informationen zu bekommen, die ihr für eure Shiny-App braucht, klickt einfach auf "👁 Show". Dann öffnet sich ein kleines Pop-up Fenster mit allen wichtigen Infos, die ihr einfach kopieren könnt (klickt dazu auf "📎 Copy to clipboard").
+
+![](daten/abbildungen/shinyapps3.png)
+
+5. Nachdem ihr den Code kopiert habt, verknüpft eure Shiny-App mit [ShinyApps.io](https://www.shinyapps.io), indem ihr den Code in der Console einfügt und ausführt. 
+6. Ihr könnt eure Shiny-App noch vor dem finalen Deployen testen, indem ihr in der Console `runApp()` ausführt.
+7. Hat alles geklappt? Dann kommt das Deployen! Führt in der Console einfach `deployApp()` aus und wartet ein bisschen - eure Shiny-App ist nach ein bisschen Warten direkt online und kann über einen Link aufgerufen werden!
+
+# Und jetzt seid Ihr dran!
+Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das sollt ihr in dieser Übung mit euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - eurer Phantasie sind keine Grenzen gesetzt! Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
+Hier die Schritte, die ihr zum Erstellen einer Shiny-App befolgen solltet:
+
+1. Wählt euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit euren Daten aus
+2. 
+
+Todo 
+
+- Code zum Herunterladen implementieren
+- Einfache Shiny-App
+    1. Shiny-App zum Laufen bringen
+    2. Kleinere Anpassungen (basierend auf dem anderen Kurs) vornehmen
+    3. ?? 
 
 
 - Ggf. Automatisierte Reports in der App als Ausblick??
 
 **Nina: Da kannst du ganz flexibel sein - lass dich gerne von den Beispielen von learnR inspirieren!**
+
 
 ## Weitere Ressourcen
   - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
@@ -126,7 +156,7 @@ Wir haben letzte Woche den `select` Button kennen gelernt,
   - [Themes](https://github.com/nik01010/dashboardthemes){target="_blank"}
 
 - Optimieren von ShinyApps
-  - [Make your ShinyApp faster](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
+  - [Make your Shiny-App faster](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
   - [shiny.worker](https://www.r-bloggers.com/shiny-worker-speed-up-r-shiny-apps-by-offloading-heavy-calculations/){target="_blank"}
   
 [^1]: "Reactivity creates the illusion that changes in input values automatically flow to the plots, text, and tables that use the input—and cause them to update." (Garrett Grolemund) **LINK**
