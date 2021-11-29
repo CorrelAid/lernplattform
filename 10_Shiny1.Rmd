@@ -339,7 +339,7 @@ community %>%
 <!--   echarts4r::e_tooltip(trigger = "item") -->
 <!-- ``` -->
 
-Ähnlich wie in `ggplot2` können wir auch hier sehr leicht das `theme` ändern und so die Darstellung der Karte anpassen. Ihr seht hier als Beispiel das `dark` Thema, es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}!
+Ähnlich wie in `ggplot2` können wir auch hier sehr leicht das `theme` ändern und so die Darstellung der Karte anpassen. Der Befehl dafür heißt in `echarts4r` `echarts4r::e_theme`. Ihr seht hier als Beispiel das `dark` Thema, es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}!
 
 ```{r karte_theme, eval=TRUE}
 community %>% 
