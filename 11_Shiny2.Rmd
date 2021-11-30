@@ -1,16 +1,13 @@
-## Interaktive Visualisierungen
-
 Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen oder auch hier auf dieser Lernplattform gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig! 
 
 Im Video erfahrt Ihr, was es damit auf sich hat und wie es funktioniert.
 
 ![](VIDEO) (ca. 15 Minuten) 
-*Notiz an mich: Slide mit Beispielen bringen; kurz Server und UI erklären und erklären, wie sie zusammenhängen*
-*ich erkläre es im Text unten nochmal, da es ein so wichtiger und zentraler Bestandteil einer ShinyApp ist*
+*Notiz an mich: Slide mit Beispielen von Shiny-Apps bringen; kurz Server und UI erklären und erklären, wie sie zusammenhängen*
+*ich erkläre es im Text unten nochmal, da es ein so wichtiger und zentraler Bestandteil einer Shiny-App ist*
 
 Nina: hier vielleicht eine kleine Preview und mündliche Erklärung des Textes unten? 
 **Cosima: genau das war der Plan :)**
-
 
 ### Kernaussagen 
 - test
@@ -19,7 +16,7 @@ Nina: hier vielleicht eine kleine Preview und mündliche Erklärung des Textes u
 -
 
 
-### Was sind ShinyApps?
+### Was sind Shiny-Apps?
 
 Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (auf Englisch "application", daher auch "Shiny-App") zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Gallerie von RStudio](https://shiny.rstudio.com/gallery/) vorbei!
 
@@ -71,7 +68,7 @@ quiz(caption = NULL,
 
 In einer Shiny-App habt Ihr meist zwei separate Dateien, eine `ui.R`-Datei und eine `server.R`-Datei, die Ihr dann mit dem Befehl `shinyApp(ui = ui, server = server)` zusammenbringt und Eure Shiny-App zum Laufen bringt. Da die **UI** und der **Server** die zentralen Bestandteile der Shiny-App sind, hier noch einmal in Kürze das Wichtigste:
 
-<right>![*Gehirn](daten/abbildungen/brain.png){#id .class width=20% height=100%}</right>
+![*Gehirn](daten/abbildungen/brain.png){#id .class width=20% height=100%}
 
 Eine `server.R` Datei kann so aussehen:
 
@@ -81,24 +78,91 @@ Eine `server.R` Datei kann so aussehen:
 
 Die `server.R`-Datei erlaubt es Euch, das "Gehirn" der Shiny-App zu programmieren. 
 
-<right>![*Körper](daten/abbildungen/body.png){#id .class width=20% height=100%}</right>
+![*Körper](daten/abbildungen/body.png){#id .class width=20% height=100%}
 
 Die `ui.R` kann zum Beispiel so aussehen:
 ```{r ui, eval = FALSE}
 
 ```
 
-
 Eine `ui.R` Datei, die das *User Interface*, also die Benutzeroberfläche einer Shiny-App darstellt, ermöglicht es dem Nutzer die Shiny-App letztendlich zu bedienen. Im Video haben wir die `ui.R` Datei den "Körper" genannt und die `server.R`-Datei das Gehirn. Genauso kann man es sich auch vorstellen: Im Gehirn, also der `server.R`-Datei, findet die gesamte Berechnung im Hintergrund statt. Die `ui.R`-Datei zeigt dann hinterher das Ergebnis an.
 
 Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse anwenden. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
 
-![]() Abbildung einfügen
+```{r plot_full_to_print, echo = FALSE}
+# Wir definieren den Dateninput (`community`) 
+community %>%
+  # Datenbereinigung
+  dplyr::filter(continent != "Unknown") %>% 
+  # Überschreiben eine vorherrschende Gruppierung
+  ungroup() %>%
+  # Berechnen die absolute Anzahl an Freiwilligen
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  # Gruppieren nach Kontinent
+  group_by(continent) %>%
+  # Berechnen die relative Anzahl der Freiwilligen
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  # Behalten jeden Wert pro Kontinent nur einmal
+  distinct(continent, relative_anzahl)  %>%
+  # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
+  # und die y-Achse (relative Anzahl an Freiwillien)
+  # Zusätzlich legen wir die Farbe der Balken fest
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  # Definieren den Visualisierungsplot (Balkendiagramm)
+  geom_col() +
+    # Bezeichnung des Titels und des Untertitels
+  labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  # Farben der Balken festlegen (über das wesanderson Package)
+  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+  # Legen das Thema fest
+  ggthemes::theme_wsj() +
+  # Benennen die Legende um
+  # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
+  # der Festlegung des Themas geschieht
+  theme(legend.title = element_blank(),
+        text = element_text(size=7))
+```
 
-Hier ist noch einmal der Code als Erinnerung dafür:
+Hier ist noch einmal der Code als Erinnerung dafür - wir brauchen ihn gleich:
 
-```{r plot, eval = FALSE}
-# Code Snippet
+```{r plot_full, exercise = TRUE}
+# Wir definieren den Dateninput (`community`) 
+community %>%
+  # Datenbereinigung
+  dplyr::filter(continent != "Unknown") %>% 
+  # Überschreiben eine vorherrschende Gruppierung
+  ungroup() %>%
+  # Berechnen die absolute Anzahl an Freiwilligen
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  # Gruppieren nach Kontinent
+  group_by(continent) %>%
+  # Berechnen die relative Anzahl der Freiwilligen
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  # Behalten jeden Wert pro Kontinent nur einmal
+  distinct(continent, relative_anzahl)  %>%
+  # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
+  # und die y-Achse (relative Anzahl an Freiwillien)
+  # Zusätzlich legen wir die Farbe der Balken fest
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  # Definieren den Visualisierungsplot (Balkendiagramm)
+  geom_col() +
+    # Bezeichnung des Titels und des Untertitels
+  labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  # Farben der Balken festlegen (über das wesanderson Package)
+  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+  # Legen das Thema fest
+  ggthemes::theme_wsj() +
+  # Benennen die Legende um
+  # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
+  # der Festlegung des Themas geschieht
+  theme(legend.title = element_blank(),
+        text = element_text(size=7))
 ```
 
 Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Aber machen wir das doch einmal zusammen. 
@@ -109,16 +173,7 @@ Was haben wir?
 2. 
 3. 
 
-### Exkurs: Reaktives Programmieren - das Geheimnis einer Shiny-App
-
-Das ganze Geheimnis hinter der App nennt sich *reactive programming*, oder auch *reaktives Programmieren*. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
-
-![](daten/abbildungen/reactivity.png)  (ca. 5 Minuten)
-*Video zur Reaktivität mit Brieftaube*
-
-In Kürze: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.^1  
-
-**Quiz**
+*Idee hier: Teilnehmenden durch die Shiny-App guiden und den Bargraph implementieren*
 
 
 ### Welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?
@@ -127,8 +182,22 @@ Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir 
  
 - Weitere Buttons/Auswahloptionen vorstellen
 
-
 **Quiz - zwei bis drei Buttons - oder ist das blöd?**
+
+*Idee hier: Filter über Kontinente machen*
+
+### Exkurs: Reaktives Programmieren - das Geheimnis einer Shiny-App
+
+Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auch **reaktives Programmieren**. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
+
+![](daten/abbildungen/reactivity.png)  (ca. 5 Minuten)
+
+*Video zur Reaktivität mit Brieftaube*
+
+In Kürze: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.^1  
+
+**Quiz**
+
 
 ### Und jetzt seid Ihr dran!
 Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - eurer Phantasie sind keine Grenzen gesetzt! Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
