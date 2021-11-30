@@ -47,17 +47,61 @@ quiz(caption = NULL,
 </left>
 <br>
 
-Im nächsten Video lernt Ihr eines der wichtigsten Visualisierungspackages in R näher kennen: `ggplot2`
+In dieser Sitzung lernt Ihr verschiedene Visualisierungsformen- und möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher diese Visualisierung erstellen könnt:
 
-![](Video zu ggplot2) *Hier wird ggplot2 gerecapped + weitergeführt* (ca. 15 Minuten)
+```{r barplot_loesung, echo = FALSE}
+# Laden der Daten
+community <- read.csv(file = "daten/community_perspective.csv")
 
-### Kernaussagen
+# Installation der Packages
+library(ggplot2)
+library(ggthemes)
+library(wesanderson)
+
+# Wir definieren den Dateninput (`community`) 
+community %>%
+  # Datenbereinigung
+  dplyr::filter(continent != "Unknown") %>% 
+  # Überschreiben eine vorherrschende Gruppierung
+  ungroup() %>%
+  # Berechnen die absolute Anzahl an Freiwilligen
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  # Gruppieren nach Kontinent
+  group_by(continent) %>%
+  # Berechnen die relative Anzahl der Freiwilligen
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  # Behalten jeden Wert pro Kontinent nur einmal
+  distinct(continent, relative_anzahl)  %>%
+  # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
+  # und die y-Achse (relative Anzahl an Freiwillien)
+  # Zusätzlich legen wir die Farbe der Balken fest
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  # Definieren den Visualisierungsplot (Balkendiagramm)
+  geom_col() +
+    # Bezeichnung des Titels und des Untertitels
+  labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  # Farben der Balken festlegen (über das wesanderson Package)
+  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+  # Legen das Thema fest
+  ggthemes::theme_wsj() +
+  # Benennen die Legende um
+  # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
+  # der Festlegung des Themas geschieht
+  theme(legend.title = element_blank(),
+        text = element_text(size=7))
+```
+
+### Was Ihr bereits aus Sitzung 5 wisst
 - `ggplot2` 
   - folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
   - für einen ganz simplen Plot benötigen wir immer:
     - `data` (der **Datensatz**)
     - `aes()` (die **"ästhetischen Attribute"** wie beispielsweise die x- oder y-Achse)
     - `geom_*()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform Eure Daten dargestellt werden sollen (z.B. in einem Balkendiagramm oder Histogramm) 
+    
 - **Wichtig**: die einzelne Bestandteile werden bei `ggplot2` mit einem **"+" verknüpft** 
 
 
@@ -111,7 +155,7 @@ Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel]
 - `geom_histogramm()`: Histogramm (Verteilungsdiagramm)
 - `geom_boxplot()`: Boxplot
 
-Das schöne an der `ggplot2` Logik ist, dass man einzelne Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
+Das schöne an der `ggplot2` Logik ist, dass man einzelne `geom_*` Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
 
 ![](daten/abbildungen/plot_ggplot.png)
 Das ist der Code dazu:
@@ -128,45 +172,194 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_point() # Hinzufügen der Datenpunkte (ändert diesen Codepart um ein Balkendiagramm zu erhalten)
 ```
 
-D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `geom_*`-Befehl austauscht. Probiert es einmal aus und visualisiert mit Hilfe von `ggplot2` und ändert das Balkendiagramm in einen Boxplot. Nutzt dazu auch gerne [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} zum nachschlagen.
+D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `geom_*`-Befehl austauscht.
 
-``` {r geom_boxplot, exercise = TRUE}
-# Visualisierung eines Boxplots
+### Datenvorbereitung 
+
+Was Ihr seht, sind jetzt allerdings absolute Zahlen auf der y-Achse. Was müssen wir machen, damit wir prozentuale Werte, wie in unserer Visualisierung oben, bekommen? Richtig, wir müssen die Daten -- wie so oft -- vorbereiten! Welche Schritte würdet ihr vornehmen?
+
+
+```{r 10visualisierung}
+quiz(caption = NULL,
+  question("Was sind mögliche Schritte, die wir machen müssen, um unsere Daten vorzubereiten",
+    answer("Die Kategorie 'Unknown' löschen", correct = TRUE),
+    answer("Nur die Kontinente Europa und Afrika behalten"),
+    answer("Die Relative Anzahl der Freiwilligen pro Kontinent berechnen", correct = TRUE),
+    answer("Jeden prozentualen Wert pro Kontinent nur einmal behalten", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Und jetzt seid Ihr dran - wendet Euer Wissen aus den vorherigen Sitzungen an und bereitet die Daten Schritt für Schritt auf. 
+
+1. Filtert den Datensatz mit `dplyr::filter` so, dass die Kategorie "Unknown" nicht mehr Teil der Variable `continent` ist
+
+```{r data_cleaning1, exercise=TRUE}
+# Wir definieren den Dateninput (`community`) 
+community %>%
+  # Filtert den Datensatz mit `dplyr::filter` so, dass Unknown nicht mehr im Datensatz ist
 
 ```
+
+```{r data_cleaning1_loesung, exercise=TRUE}
+# Wir definieren den Dateninput (`community`) 
+community %>%
+  # Filtert den Datensatz mit `dplyr::filter` so, dass Unknown nicht mehr im Datensatz ist
+  dplyr::filter(continent != "Unknown") 
+```
+
+2. Jetzt berechnen wir die absolute Anzahl an Freiwilligen im gesamten Datensatz. Nutzt dazu zunächst den Befehl `ungroup` um gegebenenfalls eine bestehende Gruppierung zu überschreiben. Erstellt dann mit `dplyr::mutate` und `sum` eine neue Variable, die `absolute_anzahl` heißt.
+
+```{r data_cleaning2, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  # Überschreibt eine vorherrschende Gruppierung durch `ungroup`
+
+  # Berechnet die absolute Anzahl an Freiwilligen mit `sum`. Erstellt dazu eine neue Variable, die `absolute_anzahl` heißt
+  
+```
+
+```{r data_cleaning2_loesung, exercise=TRUE}
+community %>%
+  # Filtert den Datensatz mit `dplyr::filter` so, dass Unknown nicht mehr im Datensatz ist
+  dplyr::filter(continent != "Unknown") %>% 
+  # Überschreibt eine vorherrschende Gruppierung durch `ungroup`
+  ungroup() %>%
+  # Berechnet die absolute Anzahl an Freiwilligen mit `sum`. Erstellt dazu eine neue Variable, die `absolute_anzahl` heißt
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) 
+```
+
+3. Im nächsten Schritt berechnen wir die relative Anzahl der Freiwilligen. Gruppiert den Datensatz zunächst nach der Variable `continent`. Verwendet dann wieder `dplyr::mutate` und eure zuvor erstellte Variable `absolute_anzahl`, um die Variable `relative_anzahl` zu erstellen.
+
+```{r data_cleaning3, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  # Gruppiert den Datensatz nach Kontinent
+
+  # Berechnen die relative Anzahl der Freiwilligen
+
+```
+
+
+```{r data_cleaning3_loesung, exercise=TRUE}
+# Wir definieren den Dateninput (`community`) 
+community %>%
+  # Filtert den Datensatz mit `dplyr::filter` so, dass Unknown nicht mehr im Datensatz ist
+  dplyr::filter(continent != "Unknown") %>% 
+  # Überschreiben eine vorherrschende Gruppierung durch `ungroup`
+  ungroup() %>%
+  # Berechnet die absolute Anzahl an Freiwilligen mit `sum`. Erstellt dazu eine neue Variable, die `absolute_anzahl` heißt
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  # Gruppiert den Datensatz nach Kontinent
+  group_by(continent) %>%
+  # Berechnen die relative Anzahl der Freiwilligen
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) 
+```
+
+4. In diesem Schritt reduzieren wir den Datensatz noch und behalten nur die einzigartigen Werte für `continent` und `relative_anzahl`. Tipp: Schaut euch mal den Befehl `dplyr::distinct` dafür an.
+
+
+```{r data_cleaning4, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  # Behalten jeden Wert pro Kontinent nur einmal
+```
+
+```{r data_cleaning4_loesung, exercise=TRUE}
+# Wir definieren den Dateninput (`community`) 
+community %>%
+  # Filtert den Datensatz mit `dplyr::filter` so, dass Unknown nicht mehr im Datensatz ist
+  dplyr::filter(continent != "Unknown") %>% 
+  # Überschreiben eine vorherrschende Gruppierung durch `ungroup`
+  ungroup() %>%
+  # Berechnet die absolute Anzahl an Freiwilligen mit `sum`. Erstellt dazu eine neue Variable, die `absolute_anzahl` heißt
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  # Gruppiert den Datensatz nach Kontinent
+  group_by(continent) %>%
+  # Berechnen die relative Anzahl der Freiwilligen
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  # Behalten jeden Wert pro Kontinent nur einmal
+  dplyr::distinct(continent, relative_anzahl)
+```
+
+5. Und jetzt geht es endlich an die Visualisierung. Nutzt nun `ggplot2`, um ein Balkendiagramm zu erstellen.
+
+```{r data_cleaning5, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  # Erstellt ein Balkendiagramm mit ggplot2
+```
+
+```{r data_cleaning5_loesung, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
+  # und die y-Achse (relative Anzahl an Freiwillien)
+  # Zusätzlich legen wir die Farbe der Balken fest
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl)) +
+  # Definieren den Visualisierungsplot (Balkendiagramm)
+  geom_col()
+```
+
+6. Im letzten Schritt geben wir der Visualisierung noch kurz einen Titel und Untertitel. *Wir könnten auch die Achsen beschriften, allerdings lässt dies das gewählte Zielthema nicht zu und würde unsere Änderungen überschreiben. Daher lassen wir es an dieser Stelle.* Bezeichnet also hier die Abbildung mit `labs`. Wenn Ihr nicht genau wisst, wie das funktioniert, sucht Inspiration im [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}. Der Titel wird mit `title` definiert, der Untertitel mit `subtitle`.
+
+```{r data_cleaning6, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl)) +
+  geom_col()
+  # Bezeichnung des Titels und des Untertitels
+
+```
+
+
+```{r data_cleaning6_loesung, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl)) +
+  geom_col() +
+  # Bezeichnung des Titels und des Untertitels
+  labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) 
+```
+
+Wunderbar, ihr habt es geschafft! Das sieht doch unserer Zielvisualisierung schon viel ähnlicher. Wie Ihr seht, sind die Befehle aus dem `tidyverse` fundamentale Bestandteile eurer Datenvisualisierung -- ihr braucht sie also immer wieder, um eure Daten entsprechend vorzubereiten.
 
 ### Was kann man noch mit `ggplot2` machen?
 
-Einer ähnlichen Logik folgend könnt Ihr mit `ggplot2` Eure Plots auch individuell gestalten. Wie Ihr in Sitzung 5 schon gesehen habt, kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert.
-
-### Facets
-
-Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
-
-```{r geom_histogram, exercise = TRUE}
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
-  geom_histogram()
-```
-
-```{r geom_histogram_solution, exercise = TRUE}
-ggplot2::ggplot(data = community, aes(x = volunteers)) +
-  geom_histogram()
-```
-
-Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
-
-```{r flipbook_facet, out.width='100%', out.height='100%'}
-knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1")
-```
-
-Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. 
-
-Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren - gruppiert die Anzahl der Freiwilligen nach dem Land (`country`). 
-
-```{r geom_histogram_facet, exercise = TRUE}
-ggplot2::ggplot(data = community, aes(x = volunteers)) +
-  geom_histogram()
-```
+Wie Ihr in Sitzung 5 schon gesehen habt, kann man mit `ggplot2` die Visualisierung beliebig erweitern und verschönern. So kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert. Wie das funktioniert lernt ihr jetzt!
 
 ### Farben
 
@@ -181,17 +374,74 @@ Wie Ihr gesehen habt, könnt Ihr innerhalb des `aes()` Arguments zusätzliche Ar
 - `color` erlaubt Euch zum Beispiel die Punkte einer Punktewolke zu färben
 - `fill` wird zustäzlich notwendig, wenn Ihr größere Flächen (wie beispielsweise in einem Histogramm oder einem Balkendigramm färben möchtet)
 
-Wenn Ihr Euch unsicher seid, welches Argument Ihr benötigt, könnt Ihr auch einfach ausprobieren und gegbenenfalls noch `fill` mit dazunehmen.
+Wenn Ihr Euch unsicher seid, welches Argument Ihr benötigt, könnt Ihr auch einfach ausprobieren und gegebenenfalls `color` gegen `fill` austauschen.
 
-Nutzt den Code im Code Chunk (das ist ein Code, den wir bereits vorher verwendet haben) und ändert die Farbe der Punkte abhängig von den Ländern (`country`). D.h. wir möchten für jedes einzelne Land eine andere Farbe erhalten.
+Wir nehmen dazu wieder unsere vorbereiteten Daten und den Plot von oben. Verändert den Code so, dass jeder Kontinent eine andere Farbe hat.
 
-``` {r geom_scatter_color_country, exercise = TRUE}
-# Visualisierung einer Punktewolke
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
-  geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
+```{r plot_simple_color, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl)) +
+  geom_col() +
+    labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) 
 ```
 
-Manchmal sieht das Ergebnis wild aus - wie in diesem Fall auch. Wie wir das verändern können, erfahrt Ihr unter anderem im nächsten Schritt. 
+```{r plot_simple_color_loesung, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  geom_col() +
+    labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) 
+```
+
+Wenn Ihr Eure Visualisierung farbenfroh(er) gestalten möchtet, könnt Ihr entweder die Voreinstellungen von `ggplot2` nehmen (wie oben) oder euch an vordefinierten Farbpaletten bedienen. Ein paar Beispiele findet ihr hier:
+
+- [`wesanderson`](https://github.com/karthik/wesanderson)
+- [`fishualize`](https://nschiett.github.io/fishualize/index.html)
+- []()
+
+Für die Visualisierung unser Zielabbildung nutzen wir die Farbpalette `"Cavalcanti1"` aus dem Package `wesanderson`. Dazu installieren wir zunächst das Package.
+
+```{r prep_wesanderson, exercise=TRUE}
+# install.packages("wesanderson")
+library(wesanderson)
+```
+
+Wenn wir in `ggplot2` die Farben manuell ersetzen möchten, nehmen wir den Befehl `scale_fill_manual()` oder `scale_color_manual()`. Da wir die Farben in `aes()` über `fill` festlegen, verwenden wir hier `scale_fill_manual()` und fügen dort `wes_palette("Cavalcanti1")` ein. Lasst den folgenden Code laufen und schaut, wie sich das Ergebnis verändert:
+
+```{r plot_wesanderson, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  geom_col() +
+    labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  # Farben der Balken festlegen (über das wesanderson Package)
+  scale_fill_manual(values = wes_palette("Cavalcanti1"))
+```
 
 ### Themen
 
@@ -230,6 +480,7 @@ library(ggthemes)
 - `theme_hc()`: in Anlehnung an das JavaScript Package Highcharts
 - `theme_excel()`: in Anlehnung an Excel
 - `theme_fivethirtyeight()`: in Anlehnung an den Data Blog [FiveThirtyEight](https://fivethirtyeight.com)
+- `theme_wsj()`: in Anlehnung an das Wall Street Journal
 
 und viele mehr -- lasst Euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/){target="_blank"}!
 
@@ -243,8 +494,48 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 # Ergänzt hier Euer gewähltes Thema
 ```
 
+Übertragen wir das Ganze doch auf unsere Visualisierung von oben. Wir nutzen das Thema `ggthemes::theme_wsj()` aus dem `ggthemes` Package. Passt den Plot hier entsprechend an:
 
-Dann gibt es noch die Möglichkeit über den `theme()` Befehl auch die Möglichkeit, die Legende auszublenden. Das kann zum Beispiel helfen, um einen Plot übersichtlicher zu machen. Diese Entscheidungen muss man natürlich immer Visualisierungsabhängig treffen. Wenn wir beispielsweise mit unserer Punktewolke aus dem vorherigen Beispiel zeigen möchten, dass es sich um verschiedene Länder auf den Kontinenten handelt, die explizite Nennung der einzelnen Länder an sich aber für uns nicht interessant ist, können wir das in diesem Fall mit dem zusätzlichen Befehl `theme(legend.position = "none")` machen. Übersetzt bedeutet der Befehl, dass wir der Legende keine Position zuweisen - sie erscheint also nicht. 
+```{r theme_final_plot, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  geom_col() +
+    labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+  # Legt das Thema fest
+```
+
+```{r theme_final_plot_loesung, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  geom_col() +
+    labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+  # Legt das Thema fest
+  ggthemes::theme_wsj() 
+```
+
+Das sieht doch schon fast so aus, wie wir es möchten! Um die Feinheiten kümmern wir uns jetzt.
+
+Es gibt dann noch die Möglichkeit über den `theme()` Befehl auch die Möglichkeit, die Legende auszublenden. Das kann zum Beispiel helfen, um einen Plot übersichtlicher zu machen. Diese Entscheidungen muss man natürlich immer Visualisierungsabhängig treffen. Wenn wir beispielsweise mit unserer Punktewolke aus dem vorherigen Beispiel zeigen möchten, dass es sich um verschiedene Länder auf den Kontinenten handelt, die explizite Nennung der einzelnen Länder an sich aber für uns nicht interessant ist, können wir das in diesem Fall mit dem zusätzlichen Befehl `theme(legend.position = "none")` machen. Übersetzt bedeutet der Befehl, dass wir der Legende keine Position zuweisen - sie erscheint also nicht. 
 
 Kommentiert im Code die Zeile aus, um einen Vergleich mit und ohne Legende zu sehen.
 
@@ -255,6 +546,81 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers, color = cou
   # Um die Legende zu entfernen, kommentiert die folgende Zeile aus 
   # und verbindet die Befehle mit einem `+`
   # theme(legend.position = "none") 
+```
+
+Der `theme()`-Befehl kann aber noch mehr. Wenn ihr unsere aktuelle Visualisierung mit der Zielvisualisierung vergleicht, wird euch auffallen, dass in der Legende noch `continent` - diese Information brauchen wir eigentlich nicht. In `themes` können wir auch das ändern, indem wir `legend.title = element_blank()` einfügen. Übersetzt bedeutet dies, dass der Legendentitel leer sein soll. Außerdem ist die Überschrift der Visualisierung noch ein bisschen groß - das können wir auch in `themes` ändern, indem wir über `text = element_text(size=7)` die Schriftgröße ändern. Diese Ergänzungen können wir einfach in `theme()` durch ein Komma getrennt einfügen. Macht das doch einmal im folgenden Code:
+
+```{r plot_theme_exercise, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  geom_col() +
+    labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+  ggthemes::theme_wsj() 
+  # Benennt die Legende um und ändert die Schriftgröße in der Visualisierung
+  # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
+  # der Festlegung des Themas geschieht
+```
+
+```{r plot_theme_loesung, exercise=TRUE}
+community %>%
+  dplyr::filter(continent != "Unknown") %>% 
+  ungroup() %>%
+  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+  group_by(continent) %>%
+  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+  dplyr::distinct(continent, relative_anzahl) %>% 
+  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
+  geom_col() +
+    labs(
+    title = "Prozentuale Verteilung der Freiwilligen" ,
+    subtitle = "pro Kontinent",
+  ) +
+  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
+  ggthemes::theme_wsj() 
+  # Benennt die Legende um und ändert die Schriftgröße in der Visualisierung
+  # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
+  # der Festlegung des Themas geschieht
+  theme(legend.title = element_blank(),
+        text = element_text(size=7))
+```
+
+### Facets
+
+Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
+
+```{r geom_histogram, exercise = TRUE}
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
+  geom_histogram()
+```
+
+```{r geom_histogram_solution, exercise = TRUE}
+ggplot2::ggplot(data = community, aes(x = volunteers)) +
+  geom_histogram()
+```
+
+Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
+
+```{r flipbook_facet, out.width='100%', out.height='100%'}
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1")
+```
+
+Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. 
+
+Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren - gruppiert die Anzahl der Freiwilligen nach dem Land (`country`). 
+
+```{r geom_histogram_facet, exercise = TRUE}
+ggplot2::ggplot(data = community, aes(x = volunteers)) +
+  geom_histogram()
 ```
 
 ### Exkurs: Visualisierung von Karten 
@@ -350,12 +716,6 @@ Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu 
 
 Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, wo Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die Ihr generiert habt.)
 
-```{r ggsave, eval = FALSE, exercise=TRUE}
-ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
-ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
-ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = euer_plot) # Mit explizitem Aufruf der Abbildung
-```
-
 In der Praxis sieht der Ablauf dann zum Beispiel so aus:
 
 ```{r ggsave_example, eval = FALSE, exercise=TRUE}
@@ -370,6 +730,10 @@ histogram_plot <-
 # und speichern es auf unserem Pfad
 
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = histogram_plot) # Mit explizitem Aufruf der Abbildung
+
+# Alternativen
+ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
+ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 ```
 
 Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` oder `echarts4r` erstellen Karten, bieten sich andere Formate wie `.html` oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr nächste Woche!
