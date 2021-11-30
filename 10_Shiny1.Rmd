@@ -131,7 +131,7 @@ Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden 
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
 ```
 
-Wenn Ihr Euch durch die Folien klickt (am besten geht Ihr mit dem Cursor auf die Slides und nutzt die  Pfeiltasten zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
+Wenn Ihr Euch durch die Folien klickt (am besten geht Ihr mit dem Cursor auf die Slides und nutzt die  Pfeiltasten zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut. Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1){target="_blank"}.
 
 **Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
@@ -367,6 +367,8 @@ Wie Ihr in Sitzung 5 schon gesehen habt, kann man mit `ggplot2` die Visualisieru
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_color/flip_for_correlaid_color#1")
 ```
 
+Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_color/flip_for_correlaid_color#1){target="_blank"}.
+
 Wie Ihr gesehen habt, könnt Ihr innerhalb des `aes()` Arguments zusätzliche Argumente hinzufügen: `color` und `fill`.
 
 - `color` erlaubt Euch zum Beispiel die Punkte einer Punktewolke zu färben
@@ -453,6 +455,8 @@ Wie das aussehen kann, seht Ihr Euch am besten noch einmal in Ruhe an diesen Bei
 ```{r flipbook_themes, out.width='100%', out.height='100%'}
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_themes/flip_for_correlaid_themes#1")
 ```
+
+Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_themes/flip_for_correlaid_themes#1){target="_blank"}.
 
 Ihr könnt also ganz leicht die gesamte Erscheinung eurer Visualisierung ändern, indem Ihr `theme_*` am Ende Eurer Visualisierung aufruft. Standardmäßig gibt es in `ggplot2` folgende Themen:
 
@@ -615,6 +619,8 @@ Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram`
 ```{r flipbook_facet, out.width='100%', out.height='100%'}
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1")
 ```
+
+Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1){target="_blank"}.
 
 Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. 
 
