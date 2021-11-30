@@ -11,24 +11,26 @@ Im Video erfahrt Ihr, was es damit auf sich hat und wie es funktioniert.
 Nina: hier vielleicht eine kleine Preview und mündliche Erklärung des Textes unten? 
 **Cosima: genau das war der Plan :)**
 
-# Kernaussagen 
--
+
+### Kernaussagen 
+- test
 -
 -
 -
 
-# Was sind ShinyApps?
+
+### Was sind ShinyApps?
 
 Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (auf Englisch "application", daher auch "Shiny-App") zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Gallerie von RStudio](https://shiny.rstudio.com/gallery/) vorbei!
 
-# Wie funktioniert eine Shiny-App genau? 
+### Wie funktioniert eine Shiny-App genau? 
 
 <left>
 ![*Shiny](https://d33wubrfki0l68.cloudfront.net/d08c35bfe1ba68584788f5cdcad703d0c9d8263f/7969a/wp-content/uploads/2014/04/shiny.png){#id .class width=20% height=100%}
 
 R liefert ein eigenes Package, `shiny`, um eine Shiny-App zu bauen. Ehe wir starten, installieren wir das Package:
 
-```{r package prep shiny, exercise = TRUE}
+```{r package_prep_shiny, exercise = TRUE}
 # install.packages("shiny")
 library(shiny)
 ```
@@ -119,7 +121,7 @@ In Kürze: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutze
 **Quiz**
 
 
-## Welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?
+### Welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?
 
 Wir haben letzte Woche den `select` Button kennen gelernt,
 
@@ -128,7 +130,7 @@ Wir haben letzte Woche den `select` Button kennen gelernt,
 
 **Quiz - zwei bis drei Buttons - oder ist das blöd?**
 
-# Und jetzt seid Ihr dran!
+### Und jetzt seid Ihr dran!
 Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - eurer Phantasie sind keine Grenzen gesetzt! Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
 Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
@@ -152,7 +154,7 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit den se
 
 7. Und jetzt kommt der spannendste Part: Lasst Eure Shiny-App laufen! Führt dazu `shinyApp(ui = ui, server = server)` in der Console aus. Eure App wird sich in einem separaten Fenster öffnen und Ihr könnt sie direkt ausprobieren :-)
 
-# Hosten von ShinyApps
+### Hosten von ShinyApps
 RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io). Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/) und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
 
 In jedem Fall sollte intern abgeklärt werden, ob diese Hosting-Option für Euch in Frage kommt oder ob es nicht eine alternative über die IT-Abteilung gibt (z.B. bei sensiblen Daten).
@@ -184,7 +186,7 @@ Wenn Ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und ersc
 
 7. Hat alles geklappt? Dann kommt das Deployen! Führt in der Console einfach `deployApp()` aus und wartet ein bisschen - Eure Shiny-App ist nach ein bisschen Warten direkt online und kann über einen Link aufgerufen werden!
 
-## Weitere Ressourcen
+### Weitere Ressourcen
   - [Schummelzettel Shiny-Apps (Deutsch)](daten/cheat sheets/shiny_de.pdf){target="_blank"}
   - [R Studio tutorial](https://shiny.rstudio.com/tutorial/){target="_blank"}
   - [Hadley Wickham: Mastering Shiny](https://mastering-shiny.org){target="_blank"}

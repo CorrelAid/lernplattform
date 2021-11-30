@@ -10,8 +10,8 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-# remotes::install_github("rstudio/learnr")
-# remotes::install_github("rstudio/gradethis")
+#remotes::install_github("rstudio/learnr")
+#remotes::install_github("rstudio/gradethis")
 library(gradethis)
 library(learnr)
 library(rio)
@@ -289,14 +289,14 @@ cat(out, sep = '')
 
 ## Datenvisualisierung
 ```{r results='asis'}
-# out <- knitr::knit_child("10_Shiny1", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("10_Shiny1.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Interaktive Visualisierungen
 ```{r results='asis'}
-#out <- knitr::knit_child("11_Shiny2", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("11_Shiny2.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Und jetzt?

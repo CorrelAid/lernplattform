@@ -1,4 +1,4 @@
-# Datenvisualisierung
+## Datenvisualisierung
 
 Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
 
@@ -14,7 +14,7 @@ Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht I
 *Pest in London als Beispiel für Intro warum data viz*
 *dann ein paar Beispiele zeigen*
 
-## Kernaussagen
+### Kernaussagen
 - Warum nutzen wir Visualisierung?
   - **leichte (und intuitive) Vermittlung von Inhalten**
   - man kann ggf. Muster leichter erkennen
@@ -50,7 +50,7 @@ quiz(caption = NULL,
 ```
 
 
-# Visualisierung mit `ggplot2`
+### Visualisierung mit `ggplot2`
 
 <left>
 ![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
@@ -60,7 +60,7 @@ quiz(caption = NULL,
 Im nächsten Video lernt Ihr eines der wichtigsten Visualisierungspackages in R näher kennen: `ggplot2`
 ![](Video zu ggplot2) *Hier wird ggplot2 gerecapped + weitergeführt* (ca. 15 Minuten)
 
-## Kernaussagen
+### Kernaussagen
 - `ggplot2` 
   - folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
   - für einen ganz simplen Plot benötigen wir immer:
@@ -103,14 +103,14 @@ Wenn Ihr Euch durch die Folien (am besten über die Pfeiltasten) klickt, seht Ih
 **Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
 Für diese Lektion benötigt Ihr also `ggplot2`.
-```{r package prep, exercise = TRUE}
+```{r package_prep, exercise = TRUE}
 # install.packages("ggplot2")
 library(ggplot2)
 ```
 
 Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}.
 
-# Verschiedene Visualisierungsformen
+### Verschiedene Visualisierungsformen
 
 `ggplot2` bietet eine Vielzahl an Visualisierungsmöglichkeiten! Die bekanntesten (und wahrscheinlich auch häufigst genutzten) sind:
 
@@ -145,11 +145,11 @@ D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `ge
 
 ```
 
-# Was kann man noch mit `ggplot2` machen?
+### Was kann man noch mit `ggplot2` machen?
 
 Einer ähnlichen Logik folgend könnt Ihr mit `ggplot2` Eure Plots auch individuell gestalten. Wie Ihr in Sitzung 5 schon gesehen habt, kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert.
 
-## Facets
+### Facets
 
 Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
 
@@ -180,7 +180,7 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
   geom_histogram()
 ```
 
-## Farben
+### Farben
 
 `ggplot2` erlaubt es Euch auch einzelne Punkte farblich zu färben. Das kann sehr sinnvoll sein, wenn Ihr zusätzliche Informationen übermitteln möchtet. Wir könnten zum Beispiel die Kontinente zusätzlich noch farblich hervorheben. Wie das funktioniert, könnt Ihr Euch noch einmal anhand der folgenden Folien ansehen (nutzt am besten wieder die Pfeiltasten, um Euch durchzuklicken).
 
@@ -205,7 +205,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 
 Manchmal sieht das Ergebnis wild aus - wie in diesem Fall auch. Wie wir das verändern können, erfahrt Ihr unter anderem im nächsten Schritt. 
 
-## Themen
+### Themen
 
 Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie Ihr es möchtet. Um `theme` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
 
@@ -263,7 +263,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers, color = cou
   # theme(legend.position = "none") 
 ```
 
-# Exkurs: Visualisierung von Karten 
+### Exkurs: Visualisierung von Karten 
 
 <left>
 ![*echarts4r](https://echarts4r.john-coene.com/reference/figures/logo.png){#id .class width=20% height=100%}
@@ -275,7 +275,7 @@ Dazu verwenden wir das R package `echarts4r`. Die Programmierlogik in `echarts4r
 
 Um das Package zu nutzen, müssen wir es zunächst installieren.
 
-```{r package prep echarts4r, exercise = TRUE}
+```{r package_prep_echarts4r, exercise = TRUE}
 # install.packages("echarts4r")
 library(echarts4r)
 ```
@@ -352,7 +352,7 @@ community %>%
   echarts4r::e_theme("dark")
 ```
 
-# Visualisierungen speichern
+### Visualisierungen speichern
 
 Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu liefert das Package `ggplot2` eine Funktion, die es ganz leicht macht: `ggplot2::ggsave`.
 
@@ -382,7 +382,7 @@ ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = histogram_plot) # M
 
 Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` erstellen Karten, bieten sich andere Formate wie `.html` oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr nächste Woche!
 
-# Und jetzt seid Ihr dran
+### Und jetzt seid Ihr dran
 
 1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
 
@@ -394,7 +394,7 @@ Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die 
 
 **Cosima: ggf. auf YouTube oder wo anders hochladen? Oder ist es OK so?**
 
-## Weitere Ressourcen
+### Weitere Ressourcen
 - [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}
 - [Mehr Informationen zu `echarts4r` (Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
 - [Data to Viz](https://www.data-to-viz.com/){target="_blank"}
