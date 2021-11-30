@@ -22,9 +22,6 @@ Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht I
 - Wie können wir in R visualisieren?
   - eine Vielzahl an Möglichkeiten über verschiedenste Packages (z.B. `ggplot2` oder `echarts4r`)
 
-**Nina: Video vielleicht zu den Inhalten: warum visualisieren, welche Viz für welchen Sachverhalt, erste Codesnippets zeigen, eventuell Matching zum Schaubild mit verschiedenen Graphen bei GGPlot?**
-**Cosima: Ich bin nicht ganz sicher, was du mit dem Matching hier meinst. Ich hab es aber mal versucht umzusetzen**
-
 Bevor es losgeht noch einmal eine kurze Wiederholung:
 
 ```{r 10visualisierung}
@@ -51,6 +48,7 @@ quiz(caption = NULL,
 <br>
 
 Im nächsten Video lernt Ihr eines der wichtigsten Visualisierungspackages in R näher kennen: `ggplot2`
+
 ![](Video zu ggplot2) *Hier wird ggplot2 gerecapped + weitergeführt* (ca. 15 Minuten)
 
 ### Kernaussagen
