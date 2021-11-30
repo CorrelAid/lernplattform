@@ -133,7 +133,7 @@ Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden 
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
 ```
 
-Wenn Ihr Euch durch die Folien klickt (am besten geht ihr mit dem Cursor auf die Slides und nutzt die  Pfeiltasten zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
+Wenn Ihr Euch durch die Folien klickt (am besten geht Ihr mit dem Cursor auf die Slides und nutzt die  Pfeiltasten zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
 
 **Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
@@ -176,7 +176,7 @@ D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `ge
 
 ### Datenvorbereitung 
 
-Was Ihr seht, sind jetzt allerdings absolute Zahlen auf der y-Achse. Was müssen wir machen, damit wir prozentuale Werte, wie in unserer Visualisierung oben, bekommen? Richtig, wir müssen die Daten -- wie so oft -- vorbereiten! Welche Schritte würdet ihr vornehmen?
+Was Ihr seht, sind jetzt allerdings absolute Zahlen auf der y-Achse. Was müssen wir machen, damit wir prozentuale Werte, wie in unserer Visualisierung oben, bekommen? Richtig, wir müssen die Daten -- wie so oft -- vorbereiten! Welche Schritte würdet Ihr vornehmen?
 
 
 ```{r 10visualisierung}
@@ -233,7 +233,7 @@ community %>%
   dplyr::mutate(absolute_anzahl = sum(volunteers)) 
 ```
 
-3. Im nächsten Schritt berechnen wir die relative Anzahl der Freiwilligen. Gruppiert den Datensatz zunächst nach der Variable `continent`. Verwendet dann wieder `dplyr::mutate` und eure zuvor erstellte Variable `absolute_anzahl`, um die Variable `relative_anzahl` zu erstellen.
+3. Im nächsten Schritt berechnen wir die relative Anzahl der Freiwilligen. Gruppiert den Datensatz zunächst nach der Variable `continent`. Verwendet dann wieder `dplyr::mutate` und Eure zuvor erstellte Variable `absolute_anzahl`, um die Variable `relative_anzahl` zu erstellen.
 
 ```{r data_cleaning3, exercise=TRUE}
 community %>%
@@ -262,7 +262,7 @@ community %>%
   dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) 
 ```
 
-4. In diesem Schritt reduzieren wir den Datensatz noch und behalten nur die einzigartigen Werte für `continent` und `relative_anzahl`. Tipp: Schaut euch mal den Befehl `dplyr::distinct` dafür an.
+4. In diesem Schritt reduzieren wir den Datensatz noch und behalten nur die einzigartigen Werte für `continent` und `relative_anzahl`. Tipp: Schaut Euch mal den Befehl `dplyr::distinct` dafür an.
 
 
 ```{r data_cleaning4, exercise=TRUE}
@@ -355,11 +355,11 @@ community %>%
   ) 
 ```
 
-Wunderbar, ihr habt es geschafft! Das sieht doch unserer Zielvisualisierung schon viel ähnlicher. Wie Ihr seht, sind die Befehle aus dem `tidyverse` fundamentale Bestandteile eurer Datenvisualisierung -- ihr braucht sie also immer wieder, um eure Daten entsprechend vorzubereiten.
+Wunderbar, Ihr habt es geschafft! Das sieht doch unserer Zielvisualisierung schon viel ähnlicher. Wie Ihr seht, sind die Befehle aus dem `tidyverse` fundamentale Bestandteile eurer Datenvisualisierung -- Ihr braucht sie also immer wieder, um Eure Daten entsprechend vorzubereiten.
 
 ### Was kann man noch mit `ggplot2` machen?
 
-Wie Ihr in Sitzung 5 schon gesehen habt, kann man mit `ggplot2` die Visualisierung beliebig erweitern und verschönern. So kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert. Wie das funktioniert lernt ihr jetzt!
+Wie Ihr in Sitzung 5 schon gesehen habt, kann man mit `ggplot2` die Visualisierung beliebig erweitern und verschönern. So kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert. Wie das funktioniert lernt Ihr jetzt!
 
 ### Farben
 
@@ -410,7 +410,7 @@ community %>%
   ) 
 ```
 
-Wenn Ihr Eure Visualisierung farbenfroh(er) gestalten möchtet, könnt Ihr entweder die Voreinstellungen von `ggplot2` nehmen (wie oben) oder euch an vordefinierten Farbpaletten bedienen. Ein paar Beispiele findet ihr hier:
+Wenn Ihr Eure Visualisierung farbenfroh(er) gestalten möchtet, könnt Ihr entweder die Voreinstellungen von `ggplot2` nehmen (wie oben) oder Euch an vordefinierten Farbpaletten bedienen. Ein paar Beispiele findet Ihr hier:
 
 - [`wesanderson`](https://github.com/karthik/wesanderson)
 - [`fishualize`](https://nschiett.github.io/fishualize/index.html)
@@ -548,7 +548,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers, color = cou
   # theme(legend.position = "none") 
 ```
 
-Der `theme()`-Befehl kann aber noch mehr. Wenn ihr unsere aktuelle Visualisierung mit der Zielvisualisierung vergleicht, wird euch auffallen, dass in der Legende noch `continent` - diese Information brauchen wir eigentlich nicht. In `themes` können wir auch das ändern, indem wir `legend.title = element_blank()` einfügen. Übersetzt bedeutet dies, dass der Legendentitel leer sein soll. Außerdem ist die Überschrift der Visualisierung noch ein bisschen groß - das können wir auch in `themes` ändern, indem wir über `text = element_text(size=7)` die Schriftgröße ändern. Diese Ergänzungen können wir einfach in `theme()` durch ein Komma getrennt einfügen. Macht das doch einmal im folgenden Code:
+Der `theme()`-Befehl kann aber noch mehr. Wenn Ihr unsere aktuelle Visualisierung mit der Zielvisualisierung vergleicht, wird Euch auffallen, dass in der Legende noch `continent` - diese Information brauchen wir eigentlich nicht. In `themes` können wir auch das ändern, indem wir `legend.title = element_blank()` einfügen. Übersetzt bedeutet dies, dass der Legendentitel leer sein soll. Außerdem ist die Überschrift der Visualisierung noch ein bisschen groß - das können wir auch in `themes` ändern, indem wir über `text = element_text(size=7)` die Schriftgröße ändern. Diese Ergänzungen können wir einfach in `theme()` durch ein Komma getrennt einfügen. Macht das doch einmal im folgenden Code:
 
 ```{r plot_theme_exercise, exercise=TRUE}
 community %>%
@@ -700,7 +700,7 @@ community %>%
   echarts4r::e_theme("dark")
 ```
 
-Es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}, die ihr ausprobieren könnt! Lasst euch von den Themen inspirieren und probiert es einmal aus:
+Es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}, die Ihr ausprobieren könnt! Lasst Euch von den Themen inspirieren und probiert es einmal aus:
 
 ```{r karte_theme_uebung, eval=TRUE, exercise=TRUE}
 community %>% 
