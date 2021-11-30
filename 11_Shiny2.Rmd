@@ -165,7 +165,9 @@ community %>%
         text = element_text(size=7))
 ```
 
-Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Aber machen wir das doch einmal zusammen. 
+Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Ganz einfach, oder? Aber machen wir das doch einmal zusammen. 
+
+*Idee hier: Teilnehmenden durch die Shiny-App guiden und den Bargraph implementieren*
 
 Was haben wir? 
 
@@ -173,11 +175,11 @@ Was haben wir?
 2. 
 3. 
 
-*Idee hier: Teilnehmenden durch die Shiny-App guiden und den Bargraph implementieren*
+#### Wie erstellen wir den `main part` der Shiny-App?
 
+#### Welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?
 
-### Welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?
-
+Im nächsten Schritt 
 Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir nicht kennen gelernt, da Inhalt geschoben wurde**
  
 - Weitere Buttons/Auswahloptionen vorstellen
@@ -207,11 +209,11 @@ Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
 2. Öffnet RStudio und wählt dort eine neue Datei aus -- wählt dort "Shiny Web App". 
 
-![](daten/abbildungen/shiny_step1.png)
+![](daten/abbildungen/shiny_step1.png){#id .class width=50% height=50%}
 
 Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit den separaten Dateien ("Multiple File (ui.R/server.R)", d.h. es wird jeweils eine Datei für die UI (`ui.R`) und eine Datei für den Server (`server.R`) erstellt) aus. 
 
-![](daten/abbildungen/shiny_step2.png)
+![](daten/abbildungen/shiny_step2.png){#id .class width=50% height=50%}
 
 3. Überlegt Euch, wie Eure Shiny-App aussehen soll. Eine Shiny-App hat meist links eine Seitenleiste mit Auswahlmöglichkeiten, in der Mitte (dem `main`-Part) ist meist Text, eine Visualisierung oder aber auch eine Tabelle. Es kann helfen, wenn Ihr Euch das kurz auf einem Papier visuell skizziert: Welche Visualisierung möchtet Ihr in Eure Shiny-App einbinden? Was könnten Auswahlmöglichkeiten sein, die Ihr in der Seitenleiste ansteuern möchtet? Möchtet Ihr Text als Informationen mitliefern?
 
@@ -240,14 +242,15 @@ Sollte die RStudio-Lösung für Euch eine Option sein, ist das Hosten denkbar ei
 
 Sobald Ihr Euch bei [ShinyApps.io](https://www.shinyapps.io)  eingeloggt habt, seht Ihr folgendes Dashboard: 
 
-![](daten/abbildungen/shinyapps1.png)
+![](daten/abbildungen/shinyapps1.png){#id .class width=50% height=50%}
+
 Dort klickt Ihr auf Euer Benutzerkonto (rechts oben) und dann auf "Tokens" und gelangt zu folgendem Fenster:
 
-![](daten/abbildungen/shinyapps2.png)
+![](daten/abbildungen/shinyapps2.png){#id .class width=50% height=50%}
 
 Wenn Ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und erscheint in der Auflistung. Um die Informationen zu bekommen, die Ihr für Eure Shiny-App braucht, klickt einfach auf "👁 Show". Dann öffnet sich ein kleines Pop-up Fenster mit allen wichtigen Infos, die Ihr einfach kopieren könnt (klickt dazu auf "📎 Copy to clipboard").
 
-![](daten/abbildungen/shinyapps3.png)
+![](daten/abbildungen/shinyapps3.png){#id .class width=50% height=50%}
 
 5. Nachdem Ihr den Code kopiert habt, verknüpft Eure Shiny-App mit [ShinyApps.io](https://www.shinyapps.io), indem Ihr den Code in der Console einfügt und ausführt. 
 
