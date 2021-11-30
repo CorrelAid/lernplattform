@@ -85,13 +85,13 @@ Daten +
 
 **Wichtig:** Anders als beim sogenannten "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
 
-Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung:
+Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung funktioniert:
 
 ```{r flip_plain, out.width='100%', out.height='100%'}
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
 ```
 
-Wenn Ihr Euch durch die Folien (am besten über die Pfeiltasten) klickt, seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
+Wenn Ihr Euch durch die Folien klickt (am besten geht ihr mit dem Cursor auf die Slides und nutzt die  Pfeiltasten zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
 
 **Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
