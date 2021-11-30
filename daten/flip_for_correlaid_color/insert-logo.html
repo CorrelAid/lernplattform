@@ -1,0 +1,28 @@
+<style>
+.logo {
+  background-image: url(img/CorrelAid_Dach-zentriert_white-negativ.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1.2em;
+  right: 0.3em;
+  width: 90px;
+  height: 100px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
