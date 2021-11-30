@@ -2,9 +2,10 @@
 
 Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
 
-```{r prep, eval=TRUE, include=FALSE}
-library(ggplot2)
-library(echarts4r)
+```{r setup2, include=FALSE}
+library(learnr)
+library(flipbookr)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht Ihr erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
@@ -72,7 +73,7 @@ Im nächsten Video lernt Ihr eines der wichtigsten Visualisierungspackages in R 
 
 Die zwei "g" im Packagenamen `ggplot2` stehen für "**g**rammar of **g**raphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
 
-```{r simple, eval = FALSE}
+```
 Daten + 
     Ästhetische Attribute  +
     geometrische Formen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist)
@@ -80,7 +81,7 @@ Daten +
 
 Man kann es aber auch komplexer gestalten und erweitern:
 
-```{r complex, eval =FALSE}
+```
 Daten + 
     Ästhetische Attribute  +
     geometrische Formen (z.B. ob es ein Liniendiagramm oder Balkendiagramm ist)
@@ -124,7 +125,7 @@ Das schöne an der `ggplot2` Logik ist, dass man einzelne Komponenten einfach au
 
 ![](daten/abbildungen/plot_ggplot.png)
 <details><summary>Code mit Kommentaren</summary>
-```{r code example, eval =FALSE}
+```{r code example, eval =FALSE, exercise=TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
 ```
@@ -298,7 +299,7 @@ Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wi
 
 `echarts4r` nutzt hier also die englischsprachigen Ländernamen aus unserem Datensatz (gespeichert in `country`) und die Anzahl der Freiwilligen (gespeichert in `volunteers`) um die Informationen auf einer Weltkarte abzubilden.
 
-```{r karte_basic, eval=TRUE}
+```{r karte_basic, eval=TRUE, exercise=TRUE}
 # Wir rufen zunächst unsere Daten auf
 community %>% 
   # Initialisieren die Karte mit `e_charts` und bestimmen auch gleichzeitig 
@@ -376,7 +377,7 @@ Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu 
 
 Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, wo Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die Ihr generiert habt.)
 
-```{r ggsave, eval = FALSE, include=TRUE}
+```{r ggsave, eval = FALSE, exercise=TRUE}
 ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = euer_plot) # Mit explizitem Aufruf der Abbildung
@@ -411,8 +412,6 @@ Falls Eure Daten noch nicht in der gewünschten Form sind, könnt Ihr das
 Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die Seite navigieren könnt.
 
 ![](daten/screen_video/screen_record_data_to_viz.mov)
-
-**Cosima: ggf. auf YouTube oder wo anders hochladen? Oder ist es OK so?**
 
 ### Weitere Ressourcen
 - [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}

@@ -15,6 +15,7 @@ runtime: shiny_prerendered
 library(gradethis)
 library(learnr)
 library(flipbookr)
+library(echarts4r)
 library(rio)
 library(tidyverse)
 library(ggplot2)
