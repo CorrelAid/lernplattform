@@ -766,3 +766,4 @@ Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die 
 - [Online-Version von "ggplot2: Elegant Graphics for Data Analysis" von Hadley Wickham (auf Englisch)](https://ggplot2-book.org/index.html){target="_blank"}
 - [RStudios Tutorial zu leaflet (auf Englisch)](https://rstudio.github.io/leaflet/){target="_blank"}
 - [Einblicke in den Datenjournmalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
+- [Datenvisualisierung (Wieso, warum und wie?)](https://www.skala-campus.org/artikel/tipps-daten-visualisieren/146){target="_blank"}
