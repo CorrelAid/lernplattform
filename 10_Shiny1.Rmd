@@ -4,7 +4,7 @@ Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten ge
 
 ```{r prep, eval=TRUE, include=FALSE}
 library(ggplot2)
-library(leaflet)
+library(echarts4r)
 ```
 
 Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht Ihr erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
@@ -231,7 +231,10 @@ Ihr könnt also ganz leicht die gesamte Erscheinung eurer Visualisierung ändern
 Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` ergänzen und so auch eine Visualsierung im Economist-Stil erzeugen!
 
 Dazu installiert zunächst das Package:
-
+```{r package_prep, exercise = TRUE}
+# install.packages("ggthemes")
+library(ggthemes)
+```
 
 - `theme_tufte()`: minimalistisches Thema (inspiriert von Edward Tufte, der einen möglichst optimalen "Informations-Farb-Verhältnis" (data-ink ratio) anstrebt. Kurz gefasst bedeutet es, dass Graphen möglichst simpel gehalten werden sollten)
 - `theme_economist()`: inspiriert vom [Economist](https://www.economist.com){target="_blank"}
