@@ -1,5 +1,3 @@
-## Datenvisualisierung
-
 Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
 
 Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht Ihr erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
@@ -179,7 +177,7 @@ D.h. man kann in der Regel den Darstellungstyp leicht ändern, indem man den `ge
 Was Ihr seht, sind jetzt allerdings absolute Zahlen auf der y-Achse. Was müssen wir machen, damit wir prozentuale Werte, wie in unserer Visualisierung oben, bekommen? Richtig, wir müssen die Daten -- wie so oft -- vorbereiten! Welche Schritte würdet Ihr vornehmen?
 
 
-```{r 10visualisierung}
+```{r 10datacleaning}
 quiz(caption = NULL,
   question("Was sind mögliche Schritte, die wir machen müssen, um unsere Daten vorzubereiten",
     answer("Die Kategorie 'Unknown' löschen", correct = TRUE),
@@ -594,11 +592,13 @@ community %>%
         text = element_text(size=7))
 ```
 
-Und tadaa -- das ist der Plot, den wir erstellen wollten! Herzlichen Glückwunsch!
+Und tadaa -- das ist der Plot, den wir erstellen wollten! Herzlichen Glückwunsch - das sieht klasse aus!
 
 ### Facets
 
-Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
+Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? 
+
+Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
 
 ```{r geom_histogram, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
