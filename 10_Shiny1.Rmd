@@ -322,20 +322,6 @@ community %>%
   echarts4r::e_tooltip(trigger = "item")
 ```
 
-<!-- Wenn wir die Bezeichnung in der Kurzinfo weiter anpassen möchten, können wir das über eine Kombination aus `dplyr` und `echarts4r` machen. Aktuell steht in der Kurzinfo noch volunteers - das können wir einfach in `Freiwillige` ändern: -->
-
-<!-- ```{r karte_tooltip_advanced, eval=TRUE} -->
-
-<!-- var_label(iris) <- list(volunteers = "Freiwillige", Petal.Width = "Width of Petal") -->
-
-<!-- community %>%  -->
-<!--   dplyr::rename(Freiwillige = volunteers) %>%  -->
-<!--   echarts4r::e_charts(country) %>%  -->
-<!--   echarts4r::e_map(Freiwillige) %>%  -->
-<!--   echarts4r::e_visual_map(Freiwillige) %>%  -->
-<!--   echarts4r::e_tooltip(trigger = "item") -->
-<!-- ``` -->
-
 Ähnlich wie in `ggplot2` können wir auch hier sehr leicht das `theme` ändern und so die Darstellung der Karte anpassen. Der Befehl dafür heißt in `echarts4r` `echarts4r::e_theme`. Lasst den Code laufen, dann seht Ihr als Beispiel das `dark` Thema. 
 
 ```{r karte_theme, eval=TRUE, exercise=TRUE}
