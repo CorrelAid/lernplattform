@@ -594,6 +594,8 @@ community %>%
         text = element_text(size=7))
 ```
 
+Und tadaa -- das ist der Plot, den wir erstellen wollten! Herzlichen Glückwunsch!
+
 ### Facets
 
 Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel Histogramme (also Verteilungsdiagramme) erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. **Cosima: Sehen die Teilnehmenden die Fehlermeldung?** Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
