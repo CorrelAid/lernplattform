@@ -116,12 +116,11 @@ Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel]
 Das schöne an der `ggplot2` Logik ist, dass man einzelne Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
 
 ![](daten/abbildungen/plot_ggplot.png)
-<details><summary>Code mit Kommentaren</summary>
+Das ist der Code dazu:
 ```{r code_example, eval =FALSE, exercise=TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
 ```
-</details>
 
 Wenn Ihr zum Beispiel lieber ein Balkendiagramm statt einer Punktewolke (auf Englisch: "scatter plot") möchtet, ersetzt Ihr `geom_point()` durch `geom_col()`. 
 
@@ -151,12 +150,10 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_histogram()
 ```
 
-<details><summary>Es führen immer mehrere Wege zum Ziel - hier findet Ihr eine mögliche Lösung</summary>
 ```{r geom_histogram_solution, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = volunteers)) +
   geom_histogram()
 ```
-</details>
 
 Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
 
