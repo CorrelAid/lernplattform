@@ -27,7 +27,6 @@ Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht I
 
 Bevor es losgeht noch einmal eine kurze Wiederholung:
 
-<!-- Notiz: Der Test muss noch gefüllt werden :) Ich weiß noch nicht genau, was ich als Antowrtkategorien möchte -->
 ```{r 10visualisierung}
 quiz(caption = NULL,
   question("Wofür kann und sollte man Datenvisualisierung nutzen?",
