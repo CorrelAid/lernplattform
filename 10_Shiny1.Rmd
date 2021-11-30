@@ -125,7 +125,7 @@ Das schöne an der `ggplot2` Logik ist, dass man einzelne Komponenten einfach au
 
 ![](daten/abbildungen/plot_ggplot.png)
 <details><summary>Code mit Kommentaren</summary>
-```{r code example, eval =FALSE, exercise=TRUE}
+```{r code_example, eval =FALSE, exercise=TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
   geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
 ```
