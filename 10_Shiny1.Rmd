@@ -230,6 +230,9 @@ Ihr könnt also ganz leicht die gesamte Erscheinung eurer Visualisierung ändern
 
 Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` ergänzen und so auch eine Visualsierung im Economist-Stil erzeugen!
 
+Dazu installiert zunächst das Package:
+
+
 - `theme_tufte()`: minimalistisches Thema (inspiriert von Edward Tufte, der einen möglichst optimalen "Informations-Farb-Verhältnis" (data-ink ratio) anstrebt. Kurz gefasst bedeutet es, dass Graphen möglichst simpel gehalten werden sollten)
 - `theme_economist()`: inspiriert vom [Economist](https://www.economist.com){target="_blank"}
 - `theme_stata()`: in Anlehnung an das Statistikprogramm
@@ -314,9 +317,11 @@ community %>%
 
 Wie Ihr schon im Video gesehen habt, erlaubt Euch `echarts4r` sehr schnell visuell ansprechende Karten zu erstellen. Wenn Ihr Euren Cursor über die einzelnen Länder bewegt, seht Ihr, dass der Ländername eingeblendet wird. Die Farbskala zeigt Euch die absolute Anzahl der Freiwilligen. Wenn Ihr die Karte zum Erkunden der Daten nutzen möchtet, könnt Ihr die Darstellung über die Farbskala limitieren und Euch so nur Länder anzeigen lassen, die eine bestimmte Anzahl an Freiwilligen haben.
 
-Wenn Ihr eine noch aussagekräftigere Karte haben möchtet, könnt Ihr noch mehr Informationen in die Kurzinfo (auf Englisch "tooltip") schreiben. In `echarts4r` ergänzt Ihr Euren Code durch eine Zeile (`echarts4r::e_tooltip(trigger = "item")`):
+Wenn Ihr eine noch aussagekräftigere Karte haben möchtet, könnt Ihr noch mehr Informationen in die Kurzinfo (auf Englisch "tooltip") schreiben. In `echarts4r` ergänzt Ihr Euren Code durch eine Zeile (`echarts4r::e_tooltip(trigger = "item")`). 
 
-```{r karte_tooltip, eval=TRUE}
+Lasst einfach den folgenden Code laufen und schaut, was sich ändert.
+
+```{r karte_tooltip, eval=TRUE, exercise=TRUE}
 community %>% 
   echarts4r::e_charts(country) %>% 
   echarts4r::e_map(volunteers) %>% 
@@ -340,9 +345,9 @@ community %>%
 <!--   echarts4r::e_tooltip(trigger = "item") -->
 <!-- ``` -->
 
-Ähnlich wie in `ggplot2` können wir auch hier sehr leicht das `theme` ändern und so die Darstellung der Karte anpassen. Der Befehl dafür heißt in `echarts4r` `echarts4r::e_theme`. Ihr seht hier als Beispiel das `dark` Thema, es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}!
+Ähnlich wie in `ggplot2` können wir auch hier sehr leicht das `theme` ändern und so die Darstellung der Karte anpassen. Der Befehl dafür heißt in `echarts4r` `echarts4r::e_theme`. Lasst den Code laufen, dann seht Ihr als Beispiel das `dark` Thema. 
 
-```{r karte_theme, eval=TRUE}
+```{r karte_theme, eval=TRUE, exercise=TRUE}
 community %>% 
   echarts4r::e_charts(country) %>% 
   echarts4r::e_map(volunteers) %>% 
@@ -352,13 +357,25 @@ community %>%
   echarts4r::e_theme("dark")
 ```
 
+Es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}, die ihr ausprobieren könnt! Lasst euch von den Themen inspirieren und probiert es einmal aus:
+
+```{r karte_theme_uebung, eval=TRUE, exercise=TRUE}
+community %>% 
+  echarts4r::e_charts(country) %>% 
+  echarts4r::e_map(volunteers) %>% 
+  echarts4r::e_visual_map(volunteers) %>% 
+  echarts4r::e_tooltip(trigger = "item") %>% 
+  # Hier definieren wir das Thema
+  echarts4r::e_theme("") # Ergänzt hier Euer gewähltes Thema
+```
+
 ### Visualisierungen speichern
 
 Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu liefert das Package `ggplot2` eine Funktion, die es ganz leicht macht: `ggplot2::ggsave`.
 
 Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, wo Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die Ihr generiert habt.)
 
-```{r ggsave, eval = FALSE}
+```{r ggsave, eval = FALSE, include=TRUE}
 ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = euer_plot) # Mit explizitem Aufruf der Abbildung
@@ -366,7 +383,7 @@ ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = euer_plot) # Mit ex
 
 In der Praxis sieht der Ablauf dann zum Beispiel so aus:
 
-```{r ggsave_example, eval = FALSE}
+```{r ggsave_example, eval = FALSE, exercise=TRUE}
 # Wir erstellen unseren Plot mit `ggplot2` und speichern ihn in einem Objekt (`histogram_plot`)
 # über den assignment operator (`<-`)
 
@@ -385,6 +402,8 @@ Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für int
 ### Und jetzt seid Ihr dran
 
 1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
+
+Falls Eure Daten noch nicht in der gewünschten Form sind, könnt Ihr das 
 
 2. Setzt die Visualisierung um. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt.
 
