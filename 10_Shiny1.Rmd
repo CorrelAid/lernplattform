@@ -2,12 +2,6 @@
 
 Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
 
-```{r setup2, include=FALSE}
-library(learnr)
-library(flipbookr)
-knitr::opts_chunk$set(echo = FALSE)
-```
-
 Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht Ihr erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
 
 ![](Intro-Video) (ca. 5-10 Minuten)
@@ -18,7 +12,7 @@ Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht I
 ### Kernaussagen
 - Warum nutzen wir Visualisierung?
   - **leichte (und intuitive) Vermittlung von Inhalten**
-  - man kann ggf. Muster leichter erkennen
+  - man kann ggf. **Muster** leichter **erkennen**
   - wird auch im [Datenjournalismus genutzt](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
 - Welche Visualisierung für welchen Sachverhalt?
   - Diese Entscheidung kann sehr individuell sein
@@ -26,7 +20,7 @@ Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht I
   - Oder aber auch abhängig von der Botschaft (ggf. ist eine Karte intuitiver als ein Balkendiagramm)
   - Die Webseite [Data to Viz](https://www.data-to-viz.com){target="_blank"} bietet einen hervorragenden Ausgangspunkt, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code Snippets zur Anwendung
 - Wie können wir in R visualisieren?
-  - eine Vielzahl an Möglichkeiten über verschiedenste Packages (z.B. `ggplot2` oder `leaflet`)
+  - eine Vielzahl an Möglichkeiten über verschiedenste Packages (z.B. `ggplot2` oder `echarts4r`)
 
 **Nina: Video vielleicht zu den Inhalten: warum visualisieren, welche Viz für welchen Sachverhalt, erste Codesnippets zeigen, eventuell Matching zum Schaubild mit verschiedenen Graphen bei GGPlot?**
 **Cosima: Ich bin nicht ganz sicher, was du mit dem Matching hier meinst. Ich hab es aber mal versucht umzusetzen**
@@ -36,12 +30,11 @@ Bevor es losgeht noch einmal eine kurze Wiederholung:
 <!-- Notiz: Der Test muss noch gefüllt werden :) Ich weiß noch nicht genau, was ich als Antowrtkategorien möchte -->
 ```{r 10visualisierung}
 quiz(caption = NULL,
-  question("Wofür kann man Datenvisualisierung nutzen?",
-    answer("dplyr", correct = TRUE),
-    answer("shiny"),
-    answer("ggplot2", correct = TRUE),
-    answer("readr", correct = TRUE),
-    answer("haven"),
+  question("Wofür kann und sollte man Datenvisualisierung nutzen?",
+    answer("Zur interaktiven Informationsweitergabe", correct = TRUE),
+    answer("Um Stories zu untermauern", correct = TRUE),
+    answer("Um überfrachtete Graphiken zu präsentieren"),
+    answer("Um Muster zu erkennen", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
     allow_retry = TRUE,
@@ -96,7 +89,7 @@ Daten +
 Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung:
 
 ```{r flip_plain, out.width='100%', out.height='100%'}
-knitr::include_url("daten/flip_for_correlaid/flip_for_correlaid.html")
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
 ```
 
 Wenn Ihr Euch durch die Folien (am besten über die Pfeiltasten) klickt, seht Ihr, wie sich eine Visualisierung nach und nach aufbaut.
@@ -169,7 +162,7 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
 Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns einzelne Plots für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
 
 ```{r flipbook_facet, out.width='100%', out.height='100%'}
-knitr::include_url("daten/flip_for_correlaid_facet/flip_for_correlaid_facet.html")
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1")
 ```
 
 Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. 
@@ -186,7 +179,7 @@ ggplot2::ggplot(data = community, aes(x = volunteers)) +
 `ggplot2` erlaubt es Euch auch einzelne Punkte farblich zu färben. Das kann sehr sinnvoll sein, wenn Ihr zusätzliche Informationen übermitteln möchtet. Wir könnten zum Beispiel die Kontinente zusätzlich noch farblich hervorheben. Wie das funktioniert, könnt Ihr Euch noch einmal anhand der folgenden Folien ansehen (nutzt am besten wieder die Pfeiltasten, um Euch durchzuklicken).
 
 ```{r flipbook_color, out.width='100%', out.height='100%'}
-knitr::include_url("daten/flip_for_correlaid_color/flip_for_correlaid_color.html")
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_color/flip_for_correlaid_color#1")
 ```
 
 Wie Ihr gesehen habt, könnt Ihr innerhalb des `aes()` Arguments zusätzliche Argumente hinzufügen: `color` und `fill`.
@@ -216,7 +209,7 @@ Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der s
 Wie das aussehen kann, seht Ihr Euch am besten noch einmal in Ruhe an diesen Beispielen an:
 
 ```{r flipbook_themes, out.width='100%', out.height='100%'}
-knitr::include_url("daten/flip_for_correlaid_themes/flip_for_correlaid_themes.html")
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_themes/flip_for_correlaid_themes#1")
 ```
 
 Ihr könnt also ganz leicht die gesamte Erscheinung eurer Visualisierung ändern, indem Ihr `theme_*` am Ende Eurer Visualisierung aufruft. Standardmäßig gibt es in `ggplot2` folgende Themen:
@@ -399,7 +392,7 @@ histogram_plot <-
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png", plot = histogram_plot) # Mit explizitem Aufruf der Abbildung
 ```
 
-Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` erstellen Karten, bieten sich andere Formate wie `.html` oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr nächste Woche!
+Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` oder `echarts4r` erstellen Karten, bieten sich andere Formate wie `.html` oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr nächste Woche!
 
 ### Und jetzt seid Ihr dran
 
