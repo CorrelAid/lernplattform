@@ -123,8 +123,8 @@ In Kürze: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutze
 
 ### Welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?
 
-Wir haben letzte Woche den `select` Button kennen gelernt,
-
+Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir nicht kennen gelernt, da Inhalt geschoben wurde**
+ 
 - Weitere Buttons/Auswahloptionen vorstellen
 
 
