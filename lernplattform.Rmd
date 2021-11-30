@@ -14,6 +14,7 @@ runtime: shiny_prerendered
 #remotes::install_github("rstudio/gradethis")
 library(gradethis)
 library(learnr)
+library(flipbookr)
 library(rio)
 library(tidyverse)
 library(ggplot2)

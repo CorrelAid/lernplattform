@@ -103,7 +103,7 @@ Wenn Ihr Euch durch die Folien (am besten über die Pfeiltasten) klickt, seht Ih
 **Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
 Für diese Lektion benötigt Ihr also `ggplot2`.
-```{r package_prep, exercise = TRUE}
+```{r package_prep_ggplot2, exercise = TRUE}
 # install.packages("ggplot2")
 library(ggplot2)
 ```
