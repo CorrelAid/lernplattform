@@ -298,8 +298,6 @@ Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wi
 
 `echarts4r` nutzt hier also die englischsprachigen Ländernamen aus unserem Datensatz (gespeichert in `country`) und die Anzahl der Freiwilligen (gespeichert in `volunteers`) um die Informationen auf einer Weltkarte abzubilden.
 
-**An Nina: Ich bin nicht sicher, ob das abgebildet werden kann. Falls nicht, würde ich ein Screen video davon machen und es kurz zeigen**
-
 ```{r karte_basic, eval=TRUE}
 # Wir rufen zunächst unsere Daten auf
 community %>% 
