@@ -179,7 +179,7 @@ quiz(caption = NULL,
 )
 ```
 
-Umsetzen können wir die Option "Kein Filter" übrigens, indem wir beispielsweise in der Datenbereinigung diese Option einbauen:
+Umsetzen können wir die Option "Alle Kontinente" übrigens, indem wir beispielsweise in der Datenbereinigung diese Option einbauen:
 
 ```{r filter_trick, exercise = TRUE}
 ### Filter für parametrisierte Reports einfügen
@@ -203,7 +203,7 @@ Falls Ihr den Report lediglich semi-automatisch ausführen wollt, könnt Ihr die
 ##### Option A2: YAML-Header mit GUI (begrenzt praktikabel)
 Neben dem Knit-Button findet sich ein Menü, in dem "Knit with parameters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine graphische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können. 
 
-![*Knitting mit Parametern - Standard*](https://correlaid.org/material/knitwithparameters.png){#id .class width=25% height=25%}
+![*Knitting mit Parametern - Standard (Screenshot)*](https://correlaid.org/material/knitwithparameters.png){#id .class width=50% height=50%}
 
 Das Layout der Parametereingabe könnt Ihr über den YAML-Header sogar
 gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards (nützlich für Daten), Slider (für numeriswche Werte oder Datumsangaben) und ein Dropdown-Menü zur Auswahl von Optionen. Außerdem könnt Ihr den Eingabefeldern individuelle Namen, ein Minimum und Maximum zuweisen. 
@@ -232,7 +232,7 @@ gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards
         input: select
         choices: ["Americas", "Asia", "Africa", "Europe", "Oceania", "Unknown" ] #Layoutoption: Einfachauswahl
 
-![*Knitting mit Parametern - Menüoptionen, Screenshot*](https://correlaid.org/material/knitwithparametersoptions.png){#id .class width=25% height=25%}
+![*Knitting mit Parametern - Menüoptionen (Screenshot)*](https://correlaid.org/material/knitwithparametersoptions.png){#id .class width=50% height=50%}
 
 
 ##### Option B1: Die Render-Funktion mit GUI (begrenzt praktikabel)
