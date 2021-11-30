@@ -744,7 +744,7 @@ Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für int
 
 1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. 
 
-Falls Eure Daten noch nicht in der gewünschten Form sind, könnt Ihr das 
+Falls Eure Daten noch nicht in der gewünschten Form sind, könnt Ihr auch die **DATEN** nehmen. **An Nina: welche Daten meintest du nochmal?** 
 
 2. Setzt die Visualisierung um. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt.
 
