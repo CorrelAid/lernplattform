@@ -385,15 +385,9 @@ Wunderbar, Ihr habt es geschafft! Das sieht doch unserer Zielvisualisierung scho
 Wie Ihr in Sitzung 5 schon gesehen habt, kann man mit `ggplot2` die Visualisierung beliebig erweitern und verschönern. So kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert. Wie das funktioniert lernt Ihr jetzt!
 
 ##### Farben
-`ggplot2` erlaubt es Euch auch Farben für Eure Datenpunkte festzulegen. Das kann sehr sinnvoll sein, wenn Ihr **zusätzliche Informationen** übermitteln möchtet, aber auch einfach eine ästhetische Entscheidung sein. Wie das funktioniert, könnt Ihr Euch noch einmal anhand der folgenden Folien ansehen (nutzt am besten wieder die Pfeiltasten, um Euch durchzuklicken).
+`ggplot2` erlaubt es Euch auch Farben für Eure Datenpunkte festzulegen. Das kann sehr sinnvoll sein, wenn Ihr **zusätzliche Informationen** übermitteln möchtet, aber auch einfach eine ästhetische Entscheidung sein. 
 
-```{r flipbook_color, out.width='100%', out.height='100%'}
-knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_color/flip_for_correlaid_color#1")
-```
-
-Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_color/flip_for_correlaid_color#1){target="_blank"}.
-
-Wie Ihr gesehen habt, könnt Ihr zusätzliche Argumente hinzufügen: `color` und `fill`.
+Die Argumente dafür heißen `color` und `fill`:
 
 - `color` erlaubt Euch die Punkte einer Punktewolke zu färben
 - `fill` wird zustäzlich notwendig, wenn Ihr größere Flächen (wie beispielsweise in einem Histogramm oder einem Balkendigramm färben möchtet)
@@ -467,8 +461,7 @@ gradethis::grade_this_code()
 ###### Auswahl mehrer Farben (auf Basis einer Variable)
 Wollt Ihr die Farben analog zu einer Variable im Datensatz ändern (die entweder schon in der Graphik enthalten ist oder zusätzlich hinzugefügt werden soll), müsst Ihr die Farbe **innerhalb des `aes()` Arguments** bestimmen (`color` oder `fill` = variable)
 
-Wir nehmen dazu wieder unsere vorbereiteten Daten und den Plot von oben. Verändert den Code so, dass jeder Kontinent eine andere Farbe hat.
-
+Wir nehmen dazu wieder unsere vorbereiteten Daten und den Plot von oben. Verändert den Code so, dass jeder Kontinent eine andere Farbe hat:
 ```{r plot_simple_color, exercise=TRUE}
 community %>%
   dplyr::filter(continent != "Unknown") %>% 
@@ -527,7 +520,7 @@ Für die Visualisierung unser Zielabbildung nutzen wir die Farbpalette `"Cavalca
 library(wesanderson)
 ```
 
-Wenn wir nun in `ggplot2` die Farben manuell ersetzen möchten, nehmen wir den Befehl `scale_fill_manual()` oder `scale_color_manual()`. Da wir die Farben in `aes()` über **`fill`** festlegen, verwenden wir hier `scale_fill_manual()` und fügen dort `wes_palette("Cavalcanti1")` ein. Lasst den folgenden Code laufen und schaut, wie sich das Ergebnis verändert:
+Wenn wir nun in `ggplot2` die Farben für die Einfärbung auf Basis einer Variable manuell ersetzen möchten, nehmen wir den Befehl `scale_fill_manual()` oder `scale_color_manual()`. Da wir die Farben in `aes()` über **`fill`** festlegen, verwenden wir hier `scale_fill_manual()` und fügen dort `wes_palette("Cavalcanti1")` ein. Lasst den folgenden Code laufen und schaut, wie sich das Ergebnis verändert:
 
 ```{r plot_wesanderson, exercise=TRUE}
 community %>%
