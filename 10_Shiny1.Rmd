@@ -484,7 +484,7 @@ library(ggthemes)
 - `theme_hc()`: in Anlehnung an das JavaScript Package Highcharts
 - `theme_excel()`: in Anlehnung an Excel
 - `theme_fivethirtyeight()`: in Anlehnung an den Data Blog [FiveThirtyEight](https://fivethirtyeight.com)
-- `theme_wsj()`: in Anlehnung an das [Wall Street Journal](){target="_blank"}
+- `theme_wsj()`: in Anlehnung an das [Wall Street Journal](https://www.wsj.com){target="_blank"}
 
 und viele mehr -- lasst Euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/){target="_blank"}!
 
