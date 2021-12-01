@@ -412,11 +412,11 @@ community %>%
 
 Wenn Ihr Eure Visualisierung farbenfroh(er) gestalten möchtet, könnt Ihr entweder die Voreinstellungen von `ggplot2` nehmen (wie oben) oder Euch an vordefinierten Farbpaletten bedienen. Ein paar Beispiele findet Ihr hier:
 
-- [`wesanderson`](https://github.com/karthik/wesanderson)
-- [`fishualize`](https://nschiett.github.io/fishualize/index.html)
-- [`ghibli`](https://ewenme.github.io/ghibli/index.html)
-- [`rijkspalette`](https://vankesteren.github.io/rijkspalette/)
-- oder aber auch [colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3) wo Ihr nach verschiedenen Kriterien (z.B. kopier- oder farbenblindfreundlich) Eure eigenen Farbpaletten zusammenstellen könnt
+- [`wesanderson`](https://github.com/karthik/wesanderson){target="_blank"}
+- [`fishualize`](https://nschiett.github.io/fishualize/index.html){target="_blank"}
+- [`ghibli`](https://ewenme.github.io/ghibli/index.html){target="_blank"}
+- [`rijkspalette`](https://vankesteren.github.io/rijkspalette/){target="_blank"}
+- oder aber auch [colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3){target="_blank"} wo Ihr nach verschiedenen Kriterien (z.B. kopier- oder farbenblindfreundlich) Eure eigenen Farbpaletten zusammenstellen könnt
 
 Für die Visualisierung unser Zielabbildung nutzen wir die Farbpalette `"Cavalcanti1"` aus dem Package `wesanderson`. Dazu installieren wir zunächst das Package.
 
@@ -484,7 +484,7 @@ library(ggthemes)
 - `theme_hc()`: in Anlehnung an das JavaScript Package Highcharts
 - `theme_excel()`: in Anlehnung an Excel
 - `theme_fivethirtyeight()`: in Anlehnung an den Data Blog [FiveThirtyEight](https://fivethirtyeight.com)
-- `theme_wsj()`: in Anlehnung an das Wall Street Journal
+- `theme_wsj()`: in Anlehnung an das [Wall Street Journal](){target="_blank"}
 
 und viele mehr -- lasst Euch einfach [inspirieren](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/){target="_blank"}!
 
