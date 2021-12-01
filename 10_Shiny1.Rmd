@@ -1,6 +1,6 @@
 Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
 
-Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht Ihr erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
+Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht auch erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
 
 ![](Intro-Video) (ca. 5-10 Minuten)
 *Notizen für mich*
@@ -93,6 +93,17 @@ community %>%
 ```
 
 ### Was Ihr bereits aus Sitzung 5 wisst
+
+Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung funktioniert:
+
+```{r flip_plain, out.width='100%', out.height='100%'}
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
+```
+
+Wenn Ihr Euch durch die Folien klickt (am besten geht Ihr mit dem Cursor auf die Slides und nutzt die  Pfeiltasten zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut. Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1){target="_blank"}.
+
+Hier noch einmal alles wichtige zu `ggplot2` in Kürze:
+
 - `ggplot2` 
   - folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
   - für einen ganz simplen Plot benötigen wir immer:
@@ -102,8 +113,9 @@ community %>%
     
 - **Wichtig**: die einzelne Bestandteile werden bei `ggplot2` mit einem **"+" verknüpft** 
 
-
 Die zwei "g" im Packagenamen `ggplot2` stehen für "**g**rammar of **g**raphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
+
+**Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
 ```
 Daten + 
@@ -125,15 +137,6 @@ Daten +
 
 **Wichtig:** Anders als beim sogenannten "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
 
-Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung funktioniert:
-
-```{r flip_plain, out.width='100%', out.height='100%'}
-knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
-```
-
-Wenn Ihr Euch durch die Folien klickt (am besten geht Ihr mit dem Cursor auf die Slides und nutzt die  Pfeiltasten zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut. Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1){target="_blank"}.
-
-**Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
 Für diese Lektion benötigt Ihr also `ggplot2`.
 ```{r package_prep_ggplot2, exercise = TRUE}
