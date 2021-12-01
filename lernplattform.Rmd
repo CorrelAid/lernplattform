@@ -28,6 +28,7 @@ library(httr)
 library(purrr)
 library(RSQLite)
 library(DBI)
+library(ggthemes)
 
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
