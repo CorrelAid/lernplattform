@@ -416,6 +416,7 @@ Wenn Ihr Eure Visualisierung farbenfroh(er) gestalten möchtet, könnt Ihr entwe
 - [`fishualize`](https://nschiett.github.io/fishualize/index.html)
 - [`ghibli`](https://ewenme.github.io/ghibli/index.html)
 - [`rijkspalette`](https://vankesteren.github.io/rijkspalette/)
+- oder aber auch [colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3) wo Ihr nach verschiedenen Kriterien (z.B. kopier- oder farbenblindfreundlich) Eure eigenen Farbpaletten zusammenstellen könnt
 
 Für die Visualisierung unser Zielabbildung nutzen wir die Farbpalette `"Cavalcanti1"` aus dem Package `wesanderson`. Dazu installieren wir zunächst das Package.
 
