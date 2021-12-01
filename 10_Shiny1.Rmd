@@ -381,11 +381,8 @@ gradethis::grade_this_code()
 ```
 Wunderbar, Ihr habt es geschafft! Das sieht doch unserer Zielvisualisierung schon viel ähnlicher. Wie Ihr seht, sind die Befehle aus dem `tidyverse` fundamentale Bestandteile eurer Datenvisualisierung -- Ihr braucht sie also immer wieder, um Eure Daten entsprechend vorzubereiten.
 
-#### Weitere Formatierung des Layouts
-Wie Ihr in Sitzung 5 schon gesehen habt, kann man mit `ggplot2` die Visualisierung beliebig erweitern und verschönern. So kann man zum Beispiel die Beschriftungen ändern. `ggplot2` bietet aber noch viel mehr! Ihr könnt Eure Visualisierung individuell gestalten, indem Ihr die Visualisierungen gruppiert, Farben oder auch das Thema ändert. Wie das funktioniert lernt Ihr jetzt!
-
-##### Farben
-`ggplot2` erlaubt es Euch auch Farben für Eure Datenpunkte festzulegen. Das kann sehr sinnvoll sein, wenn Ihr **zusätzliche Informationen** übermitteln möchtet, aber auch einfach eine ästhetische Entscheidung sein. 
+#### Farben
+`ggplot2` erlaubt es Euch Farben für Eure Datenpunkte festzulegen. Das kann sehr sinnvoll sein, wenn Ihr **zusätzliche Informationen** übermitteln möchtet, aber auch einfach eine ästhetische Entscheidung sein. 
 
 Die Argumente dafür heißen `color` und `fill`:
 
@@ -394,7 +391,7 @@ Die Argumente dafür heißen `color` und `fill`:
 
 Wenn Ihr Euch unsicher seid, welches Argument Ihr benötigt, könnt Ihr auch einfach ausprobieren und gegebenenfalls `color` gegen `fill` austauschen. Ihr habt zwei Möglichkeiten:
 
-###### Auswahl einer Farbe
+**Auswahl einer Farbe**
 Um ein **einzelne Farbe** für Eure Graphik festzulegen, könnt Ihr diese innerhalb des `geom_...`-Arguments definieren. `color` und `fill` akzeptieren als Argumente **Hexcodes** (#...) und vordefinierte, **ausgeschriebene Farben** wie "violetred4". <br>
 *Tipp: Erstere könnt Ihr in der Regel Eurem Corporate Design Booklet entnehmen oder sie über einen "Colorpicker" ablesen. Letztere findet Ihr als Übersicht [hier](http://sape.inf.usi.ch/sites/default/files/ggplot2-colour-names.png){target="_blank"}.*
 ```{r farbegraph, exercise = TRUE}
@@ -458,7 +455,7 @@ community %>%
 gradethis::grade_this_code()
 ```
 
-###### Auswahl mehrer Farben (auf Basis einer Variable)
+**Auswahl mehrer Farben (auf Basis einer Variable)**
 Wollt Ihr die Farben analog zu einer Variable im Datensatz ändern (die entweder schon in der Graphik enthalten ist oder zusätzlich hinzugefügt werden soll), müsst Ihr die Farbe **innerhalb des `aes()` Arguments** bestimmen (`color` oder `fill` = variable)
 
 Wir nehmen dazu wieder unsere vorbereiteten Daten und den Plot von oben. Verändert den Code so, dass jeder Kontinent eine andere Farbe hat:
@@ -543,7 +540,7 @@ community %>%
   scale_fill_manual(values = wes_palette("Cavalcanti1"))
 ```
 
-##### Themes
+#### Themes
 Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie Ihr es möchtet. Um `theme` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
 
 - Es gibt **vordefinierte Themen**, die Ihr einfach anwenden könnt und so die visuelle Erscheinung Eurer Abbildungen zu verändern (z.B. `theme_minimal()` oder `theme_classic()`)
@@ -703,7 +700,7 @@ gradethis::grade_this_code()
 Und tadaa -- das ist der Plot, den wir erstellen wollten! Herzlichen Glückwunsch - das sieht klasse aus!
 
 
-### Facets
+#### Facets
 Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` aber noch viel mehr! Wir können zum Beispiel **Histogramme (also Verteilungsdiagramme)** erstellen. Hier bietet sich zum Beispiel eine Darstellung nach Kontinenten an. Dazu nutzen wir den Code von oben und ersetzen unseren `geom_*`-Befehl mit `geom_histogram`. Das müsste doch eigentlich so klappen, oder? 
 
 Lasst den Code Chunk laufen und schaut Euch die Fehlermeldung an. Was könnte das bedeuten? Nutzt die Information aus der Fehlermeldung und ändert den Code so, dass Ihr ein aussagekräftiges Histogram erhaltet.
