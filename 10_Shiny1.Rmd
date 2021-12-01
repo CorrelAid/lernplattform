@@ -590,7 +590,7 @@ community %>%
     subtitle = "pro Kontinent",
   ) +
   scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-  ggthemes::theme_wsj() 
+  ggthemes::theme_wsj() +
   # Benennt die Legende um und ändert die Schriftgröße in der Visualisierung
   # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
   # der Festlegung des Themas geschieht
