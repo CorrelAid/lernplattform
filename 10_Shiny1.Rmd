@@ -93,17 +93,6 @@ community %>%
 ```
 
 #### Wiederholung: `ggplot2`-Basics (Wenn Ihr noch fit seid, könnt Ihr diesen Teil überspringen)
-
-Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung funktioniert:
-
-```{r flip_plain, out.width='100%', out.height='100%'}
-knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
-```
-
-Wenn Ihr Euch durch die **Folien klickt** (am besten geht Ihr mit dem **Cursor auf die Slides** und nutzt die  **Pfeiltasten** zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut. Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1){target="_blank"}.
-
-Hier noch einmal alles wichtige zu `ggplot2` in Kürze:
-
 - `ggplot2` 
   - folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
   - für einen ganz simplen Plot benötigen wir immer:
@@ -138,7 +127,7 @@ Daten +
 **Wichtig:** Anders als beim sogenannten "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
 
 
-Für diese Lektion benötigt Ihr also `ggplot2`.
+Für diese Lektion benötigt Ihr also wieder `ggplot2`.
 ```{r package_prep_ggplot2, exercise = TRUE}
 # install.packages("ggplot2")
 library(ggplot2)
@@ -146,7 +135,7 @@ library(ggplot2)
 
 Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}.
 
-### Verschiedene Visualisierungsformen
+#### Visualisierungsarten
 
 `ggplot2` bietet eine Vielzahl an Visualisierungsmöglichkeiten! Die bekanntesten (und wahrscheinlich auch häufigst genutzten) sind:
 
@@ -857,7 +846,7 @@ community %>%
   echarts4r::e_theme("") # Ergänzt hier Euer gewähltes Thema
 ```
 
-### Visualisierungen speichern
+#### Visualisierungen speichern
 
 Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu liefert das Package `ggplot2` eine Funktion, die es ganz leicht macht: `ggplot2::ggsave`.
 
