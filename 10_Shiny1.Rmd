@@ -868,7 +868,7 @@ Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für int
 
 1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Falls Eure Daten noch nicht in der gewünschten Form sind, könnt Ihr auch weitere Visualisierungen für den Plastis-Datensatz erstellen.
 
-2. Setzt die Visualisierung um. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die Seite navigieren könnt.
+2. Setzt die Visualisierung um. [Data to Viz](https://www.data-to-viz.com/){target="_blank"} liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die Seite navigieren könnt.
 
 ![](daten/screen_video/screen_record_data_to_viz.mov)
 
