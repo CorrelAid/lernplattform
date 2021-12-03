@@ -1,8 +1,8 @@
-Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben -- denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann? Wir werden uns diese Woche verschiedene Visualisierungstypen ansehen. 
+Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben - denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann?
 
-Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht auch erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
+Im Video geben wir Euch Hintergrundwissen zu Datenvisualisierungen und zeigen Euch verschiedene Visualisierungstypen, die Ihr in R erstellen könnt.
 
-![](Intro-Video) (ca. 20 Minuten)
+![*Video: Datenvisualisierung (15min)*](https://youtu.be/LtjKZjCPijo)
 
 
 ### Kernaussagen
@@ -43,7 +43,7 @@ quiz(caption = NULL,
 </left>
 <br>
 
-In dieser Sitzung lernt Ihr verschiedene Visualisierungsformen- und möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher diese Visualisierung erstellen könnt:
+In dieser Sitzung lernt Ihr verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher diese Visualisierung erstellen könnt:
 
 ```{r barplot_loesung, echo = FALSE}
 # Laden der Daten
@@ -91,9 +91,15 @@ community %>%
 ```
 
 #### Wiederholung: `ggplot2`-Basics (Wenn Ihr noch fit seid, könnt Ihr diesen Teil überspringen)
-- `ggplot2` 
-  - folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
-  - für einen ganz simplen Plot benötigen wir immer:
+Erinnert Ihr Euch noch an Eure Visualisierung aus der 5. Sitzung? Die folgenden Folien zeigen Euch wie `ggplot2` anhand dieser Visualisierung funktioniert:
+
+```{r flip_plain, out.width='100%', out.height='100%'}
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1")
+```
+Wenn Ihr Euch durch die **Folien klickt** (am besten geht Ihr mit dem **Cursor auf die Slides** und nutzt die  **Pfeiltasten** zur Navigation), seht Ihr, wie sich eine Visualisierung nach und nach aufbaut. Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt Ihr auch hier auf die [Folien](https://cosimameyer.rbind.io/slides/flip_for_correlaid/flip_for_correlaid#1){target="_blank"} zugreifen.
+
+- `ggplot2` folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
+- Für einen ganz simplen Plot benötigen wir immer:
     - `data` (der **Datensatz**)
     - `aes()` (die **"ästhetischen Attribute"** wie beispielsweise die x- oder y-Achse)
     - `geom_*()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform Eure Daten dargestellt werden sollen (z.B. in einem Balkendiagramm oder Histogramm) 
@@ -135,7 +141,7 @@ Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel]
 
 #### Visualisierungsarten
 
-`ggplot2` bietet eine Vielzahl an Visualisierungsmöglichkeiten! Die bekanntesten (und wahrscheinlich auch häufigst genutzten) sind:
+`ggplot2` bietet eine Vielzahl an Visualisierungsmöglichkeiten! Die bekanntesten (und meist genutzten) sind:
 
 - `geom_point()`: eine Punktewolke
 - `geom_col()`: Balkendiagramm
@@ -143,7 +149,7 @@ Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel]
 - `geom_histogramm()`: Histogramm (Verteilungsdiagramm)
 - `geom_boxplot()`: Boxplot
 
-Das schöne an der `ggplot2` Logik ist, dass man einzelne `geom_*` Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
+Das Schöne an der `ggplot2` Logik ist, dass man einzelne `geom_*` Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
 
 ![](daten/abbildungen/plot_ggplot.png)
 Das ist der Code dazu:
@@ -171,7 +177,7 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
 gradethis::grade_this_code()
 ```
 
-D.h. man kann in der Regel den Darstellungstyp leicht ändern - einfach indem man den `geom_*`-Befehl austauscht.
+D.h. man kann in der Regel den Darstellungstyp leicht ändern - einfach, indem man den `geom_*`-Befehl austauscht.
 
 #### Datenvorbereitung 
 
@@ -385,7 +391,7 @@ Wunderbar, Ihr habt es geschafft! Das sieht doch unserer Zielvisualisierung scho
 Die Argumente dafür heißen `color` und `fill`:
 
 - `color` erlaubt Euch die Punkte einer Punktewolke zu färben
-- `fill` wird zustäzlich notwendig, wenn Ihr größere Flächen (wie beispielsweise in einem Histogramm oder einem Balkendigramm färben möchtet)
+- `fill` wird zusätzlich notwendig, wenn Ihr größere Flächen (wie beispielsweise in einem Histogramm oder einem Balkendigramm färben möchtet)
 
 Wenn Ihr Euch unsicher seid, welches Argument Ihr benötigt, könnt Ihr auch einfach ausprobieren und gegebenenfalls `color` gegen `fill` austauschen. Ihr habt zwei Möglichkeiten:
 
@@ -453,7 +459,7 @@ community %>%
 gradethis::grade_this_code()
 ```
 
-**Auswahl mehrer Farben (auf Basis einer Variable)**
+**Auswahl mehrerer Farben (auf Basis einer Variable)**
 Wollt Ihr die Farben analog zu einer Variable im Datensatz ändern (die entweder schon in der Graphik enthalten ist oder zusätzlich hinzugefügt werden soll), müsst Ihr die Farbe **innerhalb des `aes()` Arguments** bestimmen (`color` oder `fill` = variable)
 
 Wir nehmen dazu wieder unsere vorbereiteten Daten und den Plot von oben. Verändert den Code so, dass jeder Kontinent eine andere Farbe hat:
@@ -506,7 +512,7 @@ Damit Ihr nun auch in diesem Fall eigene Farben nutzen könnt, bedient Ihr Euch 
 - [`fishualize`](https://nschiett.github.io/fishualize/index.html){target="_blank"}
 - [`ghibli`](https://ewenme.github.io/ghibli/index.html){target="_blank"}
 - [`rijkspalette`](https://vankesteren.github.io/rijkspalette/){target="_blank"}
-- oder aber auch [colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3){target="_blank"} wo Ihr nach verschiedenen Kriterien (z.B. kopier- oder farbenblindfreundlich) Eure eigenen Farbpaletten zusammenstellen könnt
+- oder aber auch [colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3){target="_blank"}, mit dem Ihr nach verschiedenen Kriterien (z.B. kopier- oder farbenblindfreundlich) Eure eigenen Farbpaletten zusammenstellen könnt
 
 Für die Visualisierung unser Zielabbildung nutzen wir die Farbpalette `"Cavalcanti1"` aus dem Package `wesanderson`. Dazu installieren wir zunächst das Package.
 
@@ -539,7 +545,7 @@ community %>%
 ```
 
 #### Themes
-Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie Ihr es möchtet. Um `theme` komplett zu verstehen würden wir eine weitere Sitzung dazu benötigen. Daher hier die wichtigsten Informationen in Kürze:
+Eine weitere beliebte Möglichkeit Eure Visualisierung zu verschönern ist der sogenannte `theme` Befehl in `ggplot2`. `theme` ist unglaublich vielseitig und bieten Euch die Möglichkeit alles so anzupassen, wie Ihr es möchtet. Um `theme` komplett zu erklären, würden wir eine weitere Sitzung benötigen. Daher hier die wichtigsten Informationen in Kürze:
 
 - Es gibt **vordefinierte Themen**, die Ihr einfach anwenden könnt und so die visuelle Erscheinung Eurer Abbildungen zu verändern (z.B. `theme_minimal()` oder `theme_classic()`)
 - Ihr könnt über den Befehl `theme()` auch direkt **einzelne Komponenten** ansteuern und zum Beispiel Legenden anders positionieren oder zu entfernen. Wer neugierig ist: Eine weitergehende Einführung findet Ihr [hier](https://ggplot2-book.org/polishing.html){target="_blank"} (auf Englisch).
@@ -719,7 +725,7 @@ gradethis::grade_this_code()
 
 Was haben wir geändert? Die Fehlermeldung hat uns gesagt, dass `geom_histogram` nur eine x **oder** y Komponente haben kann (*"Error: stat_bin() can only have an x or y aesthetic."*). Deswegen mussten wir uns von einer Information trennen. In diesem Fall haben wir uns entschieden, dass die Verteilung der Kontinente nicht so spannend ist wie die Verteilung der freiwilligen Helfer und haben daher nur `volunteers` behalten. Soweit sieht unser Histogram schon einmal ganz gut aus. 
 
-Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns **einzelne Plots** für die jeweiligen Kontinente erstellt. Wie das funktioniert seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
+Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannte "facets" erstellen. D.h. wir ergänzen einen einzigen Befehl, der uns **einzelne Plots** für die jeweiligen Kontinente erstellt. Wie das funktioniert, seht Ihr in den Folien (nutzt wieder die Pfeiltasten, um Euch durchzuklicken):
 
 ```{r flipbook_facet, out.width='100%', out.height='100%'}
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1")
@@ -766,7 +772,7 @@ library(echarts4r)
 
 Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten das Video an:
 
-![](Video-zu-echarts4r) (ca. 8 Minuten)
+![*Video: Exkurs - Visualisierung von Karten mit echarts4r (10min)*](https://youtu.be/abl64M-XNws)
 
 Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wir drei Befehle aus `echarts4r`: 
 
@@ -860,22 +866,26 @@ ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 ```
 
-Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` oder `echarts4r` erstellen Karten, bieten sich andere Formate wie `.html` oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr nächste Woche!
+Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` oder `echarts4r` erstellen Karten, bieten sich andere Formate wie Rmd-Outputformate in `.html` oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr nächste Woche!
 
-### Und jetzt seid Ihr dran
+### Und jetzt Ihr (diese Woche optional)
 
-1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Falls Eure Daten noch nicht in der gewünschten Form sind, könnt Ihr auch weitere Visualisierungen für den Plastis-Datensatz erstellen.
+1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Alternativ könnt Ihr Euch für die von uns geladenen Daten (siehe Kapitel: Datenimport und APIs) eine Visualisierung überlegen.
 
 2. Setzt die Visualisierung um. [Data to Viz](https://www.data-to-viz.com/){target="_blank"} liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die Seite navigieren könnt.
 
-![](daten/screen_video/screen_record_data_to_viz.mov)
+![*Video: Screenrecording zu "Data to Viz" (1min)*](https://youtu.be/ZkkYgnhBQpY)
 
-### Weitere Ressourcen
+Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! 
+*Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen.*
+
+### Weitere Ressourcen im Überblick
+- Unser Partner Dataquest bietet auch einen [Kurs zu Datenvisualisierungen in R](https://app.dataquest.io/course/r-data-viz){target="_blank"} an
 - [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}
 - [Mehr Informationen zu `echarts4r` (Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
 - [Data to Viz](https://www.data-to-viz.com/){target="_blank"}
 - [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/){target="_blank"}
 - [Online-Version von "ggplot2: Elegant Graphics for Data Analysis" von Hadley Wickham (auf Englisch)](https://ggplot2-book.org/index.html){target="_blank"}
 - [RStudios Tutorial zu leaflet (auf Englisch)](https://rstudio.github.io/leaflet/){target="_blank"}
-- [Einblicke in den Datenjournmalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
+- [Einblicke in den Datenjournalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
 - [Datenvisualisierung (Wieso, warum und wie?)](https://www.skala-campus.org/artikel/tipps-daten-visualisieren/146){target="_blank"}
