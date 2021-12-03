@@ -165,7 +165,7 @@ community %>%
         text = element_text(size=7))
 ```
 
-Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Ganz einfach, oder? Aber machen wir das doch einmal zusammen. 
+Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in unsere `server.R`-Datei kopieren und leicht anpassen. Machen wir das doch einmal zusammen:
 
 *Idee hier: Teilnehmenden durch die Shiny-App guiden und den Bargraph implementieren*
 

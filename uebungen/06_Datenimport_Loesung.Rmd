@@ -20,9 +20,9 @@ library(httr)
 library(purrr)
 
 # Achtung: SDGsR muss über diesen Befehl installiert werden - 
-# devtools::install_github(“DrMattG/SDGsR”, dependencies = TRUE)
+# devtools::install_github("DrMattG/SDGsR", dependencies = TRUE)
 # Fall es dabei Fehler gibt, installiert getrennt "conquer", "RcppArmadillo" und "corrrplot"
-# Führt dann: devtools::install_github(“DrMattG/SDGsR”) aus 
+# Führt dann: devtools::install_github("DrMattG/SDGsR") aus 
 ```
 
 # Schritt 2: Daten laden

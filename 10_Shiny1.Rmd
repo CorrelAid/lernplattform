@@ -7,7 +7,7 @@ Im Video geben wir Euch Hintergrundwissen zu Datenvisualisierungen und zeigen Eu
 
 ### Kernaussagen
 - Visualisierungen **vereinfachen und beschleunigen** die Vermittlung von (komplexen) Inhalten, weil Menschen visuelle Zusammenhänge schneller begreifen können als Text
-- Sie erlauben uns in Daten **Muster** zu erkennen (z.B. zur Verteilung von und zu Beziehungen zwischen Variablenkann)
+- Sie erlauben uns in Daten **Muster** zu erkennen (z.B. zur Verteilung von und zu Beziehungen zwischen Variablen)
 - Auch **Fehler und Ausreißer** in den Daten können mit ihnen schnell identifiziert werden
 - Mit der Möglichkeit der interaktiven Gestaltung erlauben sie uns, **spannende Narrative** zu entwickeln (sog. Storytelling)
 - Nicht zuletzt werden sie deshalb auch häufig im [Datenjournalismus](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"} genutzt
@@ -102,13 +102,11 @@ Wenn Ihr Euch durch die **Folien klickt** (am besten geht Ihr mit dem **Cursor a
 - Für einen ganz simplen Plot benötigen wir immer:
     - `data` (der **Datensatz**)
     - `aes()` (die **"ästhetischen Attribute"** wie beispielsweise die x- oder y-Achse)
-    - `geom_*()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform Eure Daten dargestellt werden sollen (z.B. in einem Balkendiagramm oder Histogramm) 
+    - `geom_*()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform Eure Daten dargestellt werden sollen z.B. in einem Balkendiagramm oder Histogramm) 
     
-- **Wichtig**: die einzelne Bestandteile werden bei `ggplot2` mit einem **"+" verknüpft** 
+- **Wichtig**: Die einzelne Bestandteile werden bei `ggplot2` mit einem **"+" verknüpft**. Und auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
 Die zwei "g" im Packagenamen `ggplot2` stehen für "**g**rammar of **g**raphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
-
-**Wichtig:** Auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
 ```
 Daten + 
@@ -128,16 +126,13 @@ Daten +
     Visuelle Anpassung der Darstellungsform (Thema)
 ```
 
-**Wichtig:** Anders als beim sogenannten "pipen" mit `%>%` nutzt `ggplot2` ein `+` um verschiedene Befehle zu kommentieren.
-
-
 Für diese Lektion benötigt Ihr also wieder `ggplot2`.
 ```{r package_prep_ggplot2, exercise = TRUE}
 # install.packages("ggplot2")
 library(ggplot2)
 ```
 
-Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}.
+Alle wichtigen `ggplot2` Befehle findet Ihr in diesem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}.
 
 #### Visualisierungsarten
 
@@ -151,7 +146,11 @@ Alle wichtigen `ggplot2` Befehle erhaltet Ihr auch über diesen [Schummelzettel]
 
 Das Schöne an der `ggplot2` Logik ist, dass man einzelne `geom_*` Komponenten einfach austauschen kann. Das habt Ihr vorhin schon in den Folien gesehen. Wir nehmen das gleiche Beispiel und bauen darauf auf:
 
-![](daten/abbildungen/plot_ggplot.png)
+<center>
+![*Beispiel: Scatterplot*](https://correlaid.org/material/plot_ggplot.png){#id .class width=100% height=100%}
+</center>
+<br>
+
 Das ist der Code dazu:
 ```{r code_example, eval = FALSE, exercise=TRUE}
 # Erstellung eines Scatterplots
@@ -255,7 +254,7 @@ community %>%
   dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
   # Gruppiert den Datensatz nach Kontinent
 
-  # Berechnen die relative Anzahl der Freiwilligen
+  # Berechnet die relative Anzahl der Freiwilligen
 
 ```
 
@@ -270,7 +269,7 @@ community %>%
   dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
   # Gruppiert den Datensatz nach Kontinent
   group_by(continent) %>%
-  # Berechnen die relative Anzahl der Freiwilligen
+  # Berechnet die relative Anzahl der Freiwilligen
   dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) 
 ```
 
@@ -346,7 +345,7 @@ community %>%
 gradethis::grade_this_code()
 ```
 
-6. Im letzten Schritt geben wir der Visualisierung noch kurz einen **Titel und Untertitel**. Bezeichnet hier die Abbildung mit `labs`. Wenn Ihr nicht genau wisst, wie das funktioniert, sucht Inspiration im [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}. Der Titel ("Prozentuale Verteilung der Freiwilligen") wird mit `title` definiert, der Untertitel ("pro Kontinent") mit `subtitle`.
+6. Im letzten Schritt geben wir der Visualisierung noch kurz einen **Titel und Untertitel**. Bezeichnet hier die Abbildung mit `labs`. Wenn Ihr nicht genau wisst, wie das funktioniert, sucht Inspiration im [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}. Der Titel ("Prozentuale Verteilung der Freiwilligen") wird mit `title` definiert, der Untertitel ("pro Kontinent") mit `subtitle`. <br>
 *Hinweis: Wir könnten auch die Achsen beschriften. Das funktionier über `xlab` bzw. `ylab`.*
 
 ```{r data_cleaning6, exercise=TRUE}
@@ -395,7 +394,7 @@ Die Argumente dafür heißen `color` und `fill`:
 
 Wenn Ihr Euch unsicher seid, welches Argument Ihr benötigt, könnt Ihr auch einfach ausprobieren und gegebenenfalls `color` gegen `fill` austauschen. Ihr habt zwei Möglichkeiten:
 
-**Auswahl einer Farbe**
+**Auswahl einer Farbe** <br>
 Um ein **einzelne Farbe** für Eure Graphik festzulegen, könnt Ihr diese innerhalb des `geom_...`-Arguments definieren. `color` und `fill` akzeptieren als Argumente **Hexcodes** (#...) und vordefinierte, **ausgeschriebene Farben** wie "violetred4". <br>
 *Tipp: Erstere könnt Ihr in der Regel Eurem Corporate Design Booklet entnehmen oder sie über einen "Colorpicker" ablesen. Letztere findet Ihr als Übersicht [hier](http://sape.inf.usi.ch/sites/default/files/ggplot2-colour-names.png){target="_blank"}.*
 ```{r farbegraph, exercise = TRUE}
@@ -459,7 +458,7 @@ community %>%
 gradethis::grade_this_code()
 ```
 
-**Auswahl mehrerer Farben (auf Basis einer Variable)**
+**Auswahl mehrerer Farben (auf Basis einer Variable)** <br>
 Wollt Ihr die Farben analog zu einer Variable im Datensatz ändern (die entweder schon in der Graphik enthalten ist oder zusätzlich hinzugefügt werden soll), müsst Ihr die Farbe **innerhalb des `aes()` Arguments** bestimmen (`color` oder `fill` = variable)
 
 Wir nehmen dazu wieder unsere vorbereiteten Daten und den Plot von oben. Verändert den Code so, dass jeder Kontinent eine andere Farbe hat:
@@ -661,7 +660,7 @@ community %>%
   geom_col() +
     labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil") +
@@ -671,7 +670,7 @@ community %>%
   theme(legend.position = "none") 
 ```
 
-```{r plot_theme-solution}
+```{r plot_theme_exercise-solution}
 community %>%
   dplyr::filter(continent != "Unknown") %>% 
   ungroup() %>%
@@ -683,7 +682,7 @@ community %>%
   geom_col() +
     labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil") +
@@ -697,7 +696,7 @@ community %>%
         text = element_text(size=7))
 ```
 
-```{r plot_theme-check}
+```{r plot_theme_exercise-check}
 gradethis::grade_this_code()
 ```
 

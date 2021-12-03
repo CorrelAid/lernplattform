@@ -12,23 +12,31 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 #remotes::install_github("rstudio/learnr")
 #remotes::install_github("rstudio/gradethis")
-library(gradethis)
-library(learnr)
-library(flipbookr)
-library(echarts4r)
-library(wesanderson)
-library(rio)
-library(tidyverse)
-library(ggplot2)
-library(dplyr)
-library(janitor)
-library(countrycode)
-library(haven)
-library(httr)
-library(purrr)
-library(RSQLite)
-library(DBI)
-library(ggthemes)
+#install.packages("pacman")
+pacman::p_load(gradethis,
+              learnr,
+              flipbookr,
+              echarts4r,
+              wesanderson,
+              rio,
+              tidyverse,
+              ggplot2,
+              dplyr,
+              janitor,
+              countrycode,
+              haven,
+              httr,
+              purrr,
+              RSQLite,
+              DBI,
+              ggthemes,
+              BH,
+              anytime,
+              gtrendsR)
+
+#devtools::install_github("gadenbuie/xaringanExtra")
+#devtools::install_github("gadenbuie/countdown")
+#devtools::install_github("gadenbuie/xaringanthemer")
 
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
