@@ -2,10 +2,8 @@ Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten ge
 
 Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht auch erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
 
-![](Intro-Video) (ca. 5-10 Minuten)
-*Notizen für mich*
-*Pest in London als Beispiel für Intro warum data viz*
-*dann ein paar Beispiele zeigen*
+![](Intro-Video) (ca. 20 Minuten)
+
 
 ### Kernaussagen
 - Visualisierungen **vereinfachen und beschleunigen** die Vermittlung von (komplexen) Inhalten, weil Menschen visuelle Zusammenhänge schneller begreifen können als Text
@@ -727,7 +725,7 @@ Um doch noch die Kontinente als Informationen zu behalten, können wir sogenannt
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1")
 ```
 
-Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1){target="_blank"}.
+Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt Ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_facet/flip_for_correlaid_facet#1){target="_blank"}.
 
 Ihr sprecht im Befehl `facet_wrap()` über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns war das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
@@ -768,7 +766,7 @@ library(echarts4r)
 
 Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten das Video an:
 
-![](Video-zu-echarts4r) (ca. 5-10 Minuten)
+![](Video-zu-echarts4r) (ca. 8 Minuten)
 
 Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wir drei Befehle aus `echarts4r`: 
 
@@ -868,7 +866,7 @@ Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für int
 
 1. Überlegt Euch, welche Visualisierung Ihr Euch mit Euren Daten vorstellen könnt. Schaut Euch zur Inspiration auf [Data to Viz](https://www.data-to-viz.com/){target="_blank"} um und wählt eine Visualisierung, die Ihr mit Euren Daten gerne nachbauen würdet. Falls Eure Daten noch nicht in der gewünschten Form sind, könnt Ihr auch weitere Visualisierungen für den Plastis-Datensatz erstellen.
 
-2. Setzt die Visualisierung um. Data to Viz liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die Seite navigieren könnt.
+2. Setzt die Visualisierung um. [Data to Viz](https://www.data-to-viz.com/){target="_blank"} liefert neben einer guten Übersicht an Visualisierungsmöglichkeiten auch gleich Code Schnipsel, die Ihr kopieren und auf Eure Daten anwenden könnt. Das kurze Video zeigt Euch am Beispiel von Histogrammen, wie Ihr Euch durch die Seite navigieren könnt.
 
 ![](daten/screen_video/screen_record_data_to_viz.mov)
 
