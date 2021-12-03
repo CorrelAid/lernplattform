@@ -2,10 +2,8 @@ Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten ge
 
 Im Video bekommt Ihr ein bisschen Hintergrund zur Datenvisualisierung und seht auch erste Visualisierungsbeispiele, die man so auch in R erstellen kann.
 
-![](Intro-Video) (ca. 5-10 Minuten)
-*Notizen für mich*
-*Pest in London als Beispiel für Intro warum data viz*
-*dann ein paar Beispiele zeigen*
+![](Intro-Video) (ca. 20 Minuten)
+
 
 ### Kernaussagen
 - Visualisierungen **vereinfachen und beschleunigen** die Vermittlung von (komplexen) Inhalten, weil Menschen visuelle Zusammenhänge schneller begreifen können als Text
@@ -768,7 +766,7 @@ library(echarts4r)
 
 Um einen ersten Überblick über das Package zu bekommen, schaut Euch am besten das Video an:
 
-![](Video-zu-echarts4r) (ca. 5-10 Minuten)
+![](Video-zu-echarts4r) (ca. 8 Minuten)
 
 Um die Freiwilligen über alle Länder hinweg darstellen zu können, brauchen wir drei Befehle aus `echarts4r`: 
 
