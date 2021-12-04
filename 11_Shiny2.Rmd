@@ -205,7 +205,12 @@ community %>%
         text = element_text(size=7))
 ```
 
-Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Aber von Anfang an: Als erstes sollte man sich beim Entwerfen einer Shiny-App einen groben Plan zurechtlegen. Meine Erfahrung hat gezeigt, dass es am besten ist, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.
+Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es eine lokale Shiny-App zu bauen, die so aussehen wird:
+
+![]() **Add link to the app**
+
+
+Aber von Anfang an: Als erstes sollte man sich beim Entwerfen einer Shiny-App einen groben Plan zurechtlegen. Meine Erfahrung hat gezeigt, dass es am besten ist, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.
 
 #### 1. Shiny-App planen
 

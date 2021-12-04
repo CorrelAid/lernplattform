@@ -1,4 +1,6 @@
 
+
+
 # Wir laden zunächst die wichtigen Packages
 library(shiny)
 library(dplyr)
@@ -8,7 +10,8 @@ library(ggthemes)
 library(shinythemes)
 
 # Wir laden dann wieder die Daten
-community <- read.csv(file = "uebungen/shiny/daten/community_perspective.csv")
+community <-
+    read.csv(file = "uebungen/shiny/daten/community_perspective.csv")
 
 
 # Server ------------------------------------------------------------------
@@ -37,6 +40,8 @@ server <- function(input, output) {
             dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
             # Behalten jeden Wert pro Kontinent nur einmal
             distinct(continent, relative_anzahl)  %>%
+            # Als zusätzlichen Schritt müssen wir jetzt noch einen Filter einbauen
+            dplyr::filter(continent %in% input$continentSelection) %>%
             # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
             # und die y-Achse (relative Anzahl an Freiwillien)
             # Zusätzlich legen wir die Farbe der Balken fest
@@ -67,34 +72,36 @@ server <- function(input, output) {
 # UI ----------------------------------------------------------------------
 
 # Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
-# Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen 
+# Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen
 # die für uns relevanten Teile
 
 ui <- fluidPage(
-    
-    # Ändert das Thema 
+    # Ändert das Thema
     # Holt euch Inspiration hier: https://rstudio.github.io/shinythemes/
-    theme = shinytheme("united"),
+    theme = shinytheme("cerulean"),
     
     # Ändert den Titel
     titlePanel("Plastic Free"),
     
     # Definiert die Seitenleiste und den Input
-    sidebarLayout(
-        sidebarPanel(
-            selectInput("continent", "Wähle einen Kontinent",
-                        list(`Americas` = list("America"),
-                             `Africa` = list("Africa"),
-                             `Asia` = list("Asia"),
-                             `Europe` = list("Europe"),
-                             `Oceania` = list("Oceania"))
+    sidebarLayout(sidebarPanel(
+        checkboxGroupInput(
+            "continentSelection",
+            h4("Wähle einen Kontinent"),
+            choices = list(
+                "Americas" = "Americas",
+                "Africa" = "Africa",
+                "Asia" = "Asia",
+                "Europe" = "Europe",
+                "Oceania" = "Oceania"
             ),
-        # Ergänzt die Visualisierung
-        mainPanel(
-            plotOutput("balkendiagramm")
+            selected = "Americas"
         )
-    )
-)
+        
+    ),
+    
+    # Show a plot of the generated distribution
+    mainPanel(plotOutput("balkendiagramm")))
 )
 
 # Shiny-App zum Laufen bringen --------------------------------------------
