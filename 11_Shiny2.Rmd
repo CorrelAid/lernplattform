@@ -216,7 +216,7 @@ Aber von Anfang an: Als erstes sollte man sich beim Entwerfen einer Shiny-App ei
 
 Im ersten Schritt, planen wir die Shiny-App. In unserem Fall sollte sie in etwa so aussehen:
 
-![]() *add image of shinyapp (drawn)*
+![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/sketch_app.png?raw=true){#id .class width=70% height=70%} 
 
 Im Idealfall haben wir also die die Visualisierung des Balkendiagramms aus der letzten Woche in der Mitte und nutzen den linken Part der App für Auswahlmöglichkeiten.
 
@@ -254,7 +254,7 @@ Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu
 Im nächsten Schritt 
 Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir nicht kennen gelernt, da Inhalt geschoben wurde**
 
-```{r server_new_plot, exercise=TRUE}
+```{r ui_new_plot, exercise=TRUE}
 
 ```
 - Weitere Buttons/Auswahloptionen vorstellen
