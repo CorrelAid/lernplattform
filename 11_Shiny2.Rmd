@@ -210,7 +210,7 @@ Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir ein
 ![]() **Add link to the app**
 
 
-Aber von Anfang an: Als erstes sollte man sich beim Entwerfen einer Shiny-App einen groben Plan zurechtlegen. Meine Erfahrung hat gezeigt, dass es am besten ist, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.
+Aber von Anfang an: Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen groben Plan zurechtlegen. Meine Erfahrung hat gezeigt, dass es am besten ist, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.
 
 #### 1. Shiny-App planen
 
@@ -218,13 +218,17 @@ Im ersten Schritt, planen wir die Shiny-App. In unserem Fall sollte sie in etwa 
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/sketch_app.png?raw=true){#id .class width=70% height=70%} 
 
-Im Idealfall haben wir also die die Visualisierung des Balkendiagramms aus der letzten Woche in der Mitte und nutzen den linken Part der App für Auswahlmöglichkeiten.
+Im Idealfall haben wir also die die Visualisierung des Balkendiagramms aus der letzten Woche in der Mitte. In der linken Seitenleiste seht ihr Auswahlmöglichkeiten nach Kontinenten - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden Namen, z.B. "Break Free From Plastic".
+
+Nachdem wir unsere Shiny-App grob skizziert haben (ein Schritt, der wirklich hilfreich ist! Es hilft uns nicht nur unsere Idee zu visualisieren; es gibt uns auch eine "Bauanleitung", an der wir uns visuell orientieren und Lösungen suchen können!), bearbeiten wir das "Innere" der App: den **Server**, also den Ort, an dem die ganzen Berechnungen stattfinden, und die **UI**, also das Aussehen der Shiny-App.
+
+Da wir auf dieser Plattform keine Shiny-App direkt programmieren können, haben wir Euch hier die Code-Snippets zusammengestellt und erklären euch die einzelnen Schritte. Um die Shiny-App während der Sitzung mitzubauen, haben wir Euch die Datei `app.R` vorbereitet. **VERLINKEN** Die Datei könnt Ihr Euch wie einen "Lückentext" vorstellen, an dem Ihr an den entsprechenden Stellen den Code einfügt und abschließend Eure Shiny-App lokal laufen lasst! 
 
 <!--#### Wie erstellen wir den `main part` der Shiny-App?-->
 
 #### 2. Server ergänzen
 
-Hierfür können wir unseren Code in die `server.R`-Datei kopieren und leicht anpassen. Machen wir das doch einmal zusammen. Die Grundstruktur des Servers sieht so aus:
+Für den Server können wir unseren Code von oben in die `server.R`-Datei kopieren und entsprechend anpassen. Machen wir das doch einmal zusammen. Die Grundstruktur des Servers sieht so aus:
 
 ```{r server_new_plot, exercise=TRUE}
 # Der Server nimmt zwei Argumente: `input` und `output`. 
@@ -245,7 +249,7 @@ server <- function(input, output) {
 }
 ```
 
-Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt dort Code des Balkendiagramms im Server. 
+Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt dort Code des Balkendiagramms im Server. 
 
 #### 3. Die UI anpassen
 
