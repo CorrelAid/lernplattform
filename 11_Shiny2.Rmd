@@ -284,7 +284,7 @@ Bis hierhin haben wir schon 80% der Shiny-App geschafft - herzlichen Glückwunsc
 
 **Thema ändern**
 
-```{r, exercise=TRUE}
+```{r shinythemes, exercise=TRUE}
 # install.packages("shinythemes")
 library(shinythemes)
 ```
