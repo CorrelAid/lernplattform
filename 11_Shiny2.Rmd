@@ -248,9 +248,8 @@ Der Server nimmt zwei Argumente: `input` und `output`. Wichtig ist hier, dass wi
 
 Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist. 
 
-#### 3. Die UI anpassen
-
-<!-- #### Welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?-->
+#### 3. Die UI 
+<!--anpassen oder welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?-->
 
 Im nächsten Schritt 
 Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir nicht kennen gelernt, da Inhalt geschoben wurde**
@@ -264,10 +263,40 @@ Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir 
 
 *Idee hier: Filter über Kontinente machen*
 
+#### 4. Die Shiny-App zum Laufen bringen
+
+
+Lasst das gesamte Dokument einmal durchlaufen und probiert Eure Shiny-App auf Eurem Rechner aus. Was fällt Euch auf?
+
+**Quiz on filter**
+
+Richtig, Euer Filter scheint noch nicht richtig zu funktionieren. Das liegt daran, dass wir den `server` noch nicht mit der `ui` verbunden haben. Erinnert Ihr Euch an die Abbildung im Video, die Euch gezeigt hat, dass alles miteinander verbunden sein muss?
+
+![]() 
+
+Das holen wir jetzt nach. Dazu bauen wir einen Filter in unsere Visualisierungsfunktion im `server` ein.
+
+**add part on filter**
+
+#### 5. Verschönerungen Eurer Shiny-App
+
+Bis hierhin haben wir schon 80% der Shiny-App geschafft - herzlichen Glückwunsch! Sie läuft, zeigt uns zuverlässig über unseren vordefinierten Filter die Balken an, die wir sehen möchten und ist insgesamt auch schon recht professionell. Aber es wäre natürlich noch schön, wenn wir die Shiny-App noch ein bisschen verschönern könnten. Dazu gibt es verschiedene Möglichkeiten und auch oft schon vordefinierte Packages, die Ihr einfach nutzen könnt.
+
+**Thema ändern**
+
+```{r, exercise=TRUE}
+# install.packages("shinythemes")
+library(shinythemes)
+```
+
+
+**Titel ändern**
+
+
 
 ### Exkurs: Reaktives Programmieren - das Geheimnis einer Shiny-App
 
-Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auch **reaktives Programmieren**. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
+Im folgenden Abschnitt lernt ihr mehr über die Funktionsweise einer Shiny-App. Was ist genau der Algorithmus, der sie zum Laufen bringt? Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auch **reaktives Programmieren**. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/reactivity.png?raw=true){#id .class width=70% height=70%} 
 
