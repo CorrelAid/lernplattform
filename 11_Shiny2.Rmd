@@ -326,7 +326,7 @@ Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shiny_step1.png?raw=true){#id .class width=70% height=70%}
 
-Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit den separaten Dateien ("Multiple File (ui.R/server.R)", d.h. es wird jeweils eine Datei für die UI (`ui.R`) und eine Datei für den Server (`server.R`) erstellt) aus. 
+Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer Datei ("Single File (app.R)"), d.h.  es wird eine Datei sowohl für die UI (`ui.R`) als auch für den Server (`server.R`) erstellt) aus. 
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shiny_step2.png?raw=true){#id .class width=70% height=70%}
 

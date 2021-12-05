@@ -60,14 +60,13 @@ server <- function(input, output) {
             # Legen das Thema fest
             ggthemes::theme_wsj() +
             # Benennen die Legende um
-            # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach
-            # der Festlegung des Themas geschieht
+            # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, 
+            # dass es nach der Festlegung des Themas geschieht
             theme(legend.title = element_blank(),
                   text = element_text(size = 7))
         
     })
 }
-
 
 # UI ----------------------------------------------------------------------
 
@@ -78,10 +77,10 @@ server <- function(input, output) {
 ui <- fluidPage(
     # Ändert das Thema
     # Holt euch Inspiration hier: https://rstudio.github.io/shinythemes/
-    theme = shinytheme("cerulean"),
+    theme = shinytheme("superhero"),
     
     # Ändert den Titel
-    titlePanel("Plastic Free"),
+    titlePanel("Break Free From Plastic"),
     
     # Definiert die Seitenleiste und den Input
     sidebarLayout(sidebarPanel(
@@ -108,4 +107,7 @@ ui <- fluidPage(
 
 # Wir kombinieren mit dem folgenden Befehl die UI und den Server und bringen
 # die Shiny-App lokal zum Laufen :-)
+# Nutzt `shinyApp` mit den entsprechenden Argumenten (fügt also die `ui` und
+# den `server` ein) und lasst das gesamte Dokument durchlaufen 
+
 shinyApp(ui = ui, server = server)
