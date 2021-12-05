@@ -209,7 +209,6 @@ Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir ein
 
 ![]() **Add link to the app**
 
-
 Aber von Anfang an: Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen groben Plan zurechtlegen. Meine Erfahrung hat gezeigt, dass es am besten ist, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.
 
 #### 1. Shiny-App planen
@@ -226,17 +225,11 @@ Da wir auf dieser Plattform keine Shiny-App direkt programmieren können, haben 
 
 <!--#### Wie erstellen wir den `main part` der Shiny-App?-->
 
-#### 2. Server ergänzen
+#### 2. Den Server ausbauen
 
 Für den Server können wir unseren Code von oben in die `server.R`-Datei kopieren und entsprechend anpassen. Machen wir das doch einmal zusammen. Die Grundstruktur des Servers sieht so aus:
 
 ```{r server_new_plot, exercise=TRUE}
-# Der Server nimmt zwei Argumente: `input` und `output`. 
-# Wichtig ist hier, dass wir alle erzeugten Komponenten
-# der Shiny-App an `output` anhängen.
-# Wenn wir zum Beispiel eine Visualisierung erzeugen, können
-# wir es `output$balkendiagramm` nennen
-
 server <- function(input, output) {
 
     # Wir speichern unsere Visualisierung in `output$balkendiagramm`
@@ -250,7 +243,10 @@ server <- function(input, output) {
 }
 ```
 
-Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt dort Code des Balkendiagramms im Server. 
+
+Der Server nimmt zwei Argumente: `input` und `output`. Wichtig ist hier, dass wir alle erzeugten Komponenten der Shiny-App an `output` anhängen, um darauf später zugreifen zu können. Wenn wir zum Beispiel eine Visualisierung erzeugen, können wir es `output$balkendiagramm` nennen.
+
+Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist. 
 
 #### 3. Die UI anpassen
 
@@ -279,7 +275,7 @@ Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auc
 
 *Video zur Reaktivität mit Brieftaube*
 
-In Kürze: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.^1  
+**In Kürze**: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.^1  
 
 **Quiz**
 
