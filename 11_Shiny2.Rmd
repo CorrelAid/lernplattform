@@ -18,7 +18,7 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
   - Ihr definiert den **Server** und die **UI** separat und legt beides in verschiedenen Objekten (`server` und `ui`) ab
 - Wenn Ihr Eure Shiny-App zum Laufen bringen wollt, führt Ihr `ui` und `server` in folgender Funktion zusammen: `shinyApp(ui = ui, server = server)`
 
-Für weitere Infos zu Shiny-App, schaut Euch den [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"} an.
+Für weitere Infos zu Shiny-App, schaut Euch den [**Schummelzettel zu Shiny-Apps**](daten/cheat sheets/shiny_de.pdf){target="_blank"} an.
 
 Bevor es losgeht, noch ein paar kurze Fragen:
 
@@ -57,7 +57,7 @@ quiz(caption = NULL,
 
 ### Was sind Shiny-Apps?
 
-Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (auf Englisch "application", daher auch "Shiny-App") zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Gallerie von RStudio](https://shiny.rstudio.com/gallery/) vorbei!
+Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (auf Englisch "application", daher auch "Shiny-App") zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Gallerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
 ### Wie funktioniert eine Shiny-App genau? 
 
@@ -71,24 +71,31 @@ R liefert ein eigenes Package, `shiny`, um eine Shiny-App zu bauen. Bevor wir st
 library(shiny)
 ```
 
-Der [Schummelzettel](daten/cheat sheets/shiny_de.pdf) liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzeroberfläche") und **einen Server**. 
+Der [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzeroberfläche") und **einen Server**. 
 
-In einer Shiny-App habt Ihr meist zwei separate Dateien, eine `ui.R`-Datei und eine `server.R`-Datei, die Ihr dann mit dem Befehl `shinyApp(ui = ui, server = server)` zusammenbringt und Eure Shiny-App zum Laufen bringt. Da die **UI** und der **Server** die zentralen Bestandteile der Shiny-App sind, hier noch einmal in Kürze das Wichtigste:
+![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app7.png?raw=true){#id .class width=70% height=70%}</right>
+
+In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und einen `server`-Part, die Ihr dann mit dem Befehl **`shinyApp(ui = ui, server = server)`** zusammenbringt und Eure Shiny-App zum Laufen bringt. Da die **UI** und der **Server** die zentralen Bestandteile der Shiny-App sind, hier noch einmal in Kürze das Wichtigste:
 
 <right>![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100%}</right>
 
-Eine `server.R` Datei kann so aussehen:
+Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Der `server` Datei kann so aussehen:
 
 ```{r server, exercise=TRUE, context="server"}
-# Define server logic required to draw a histogram
+# Dieser Code definiert die Serverlogik, um ein Histogramm zu visualisieren
+# Der Server nimmt zwei Argumente `input` und `output`
 server <- function(input, output) {
 
+    # Wir speichern unsere Visualisierung in `output$distPlot` und werden `distPlot`
+    # später auch in der UI nutzen, um auf die Visualisierung zu referieren
     output$distPlot <- renderPlot({
-        # generate bins based on input$bins from ui.R
+      
+        # Im nächsten Schritt bereiten wir die Daten für das Histogramm vor
         x    <- faithful[, 2]
         bins <- seq(min(x), max(x), length.out = input$bins + 1)
 
-        # draw the histogram with the specified number of bins
+        # Und erstellen das Histogramm (wir können hier noch Farben bestimmen - das
+        # sind aber alles optionale Argumente)
         hist(x, breaks = bins, col = 'darkgray', border = 'white')
     })
 }
@@ -96,19 +103,20 @@ server <- function(input, output) {
 
 Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet.
 
-Die `server.R`-Datei erlaubt es Euch, das "Gehirn" der Shiny-App zu programmieren. 
+<!-- Der `server`-Part erlaubt es Euch, das "Gehirn" der Shiny-App zu programmieren.  -->
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/body.png?raw=true){#id .class width=20% height=100%}
 
-Die `ui.R` kann zum Beispiel so aussehen:
+Im nächsten Schritt könnt Ihr das Aussehen Eurer App bestimmen. Dazu nutzen wir die `ui`, die zum Beispiel so aussehen kann:
+
 ```{r ui, exercise=TRUE}
-# Define UI for application that draws a histogram
+# Hier bestimmen wir die UI
 ui <- fluidPage(
 
-    # Application title
+    # Ihr könnt Eurer App einen Titel geben
     titlePanel("Old Faithful Geyser Data"),
 
-    # Sidebar with a slider input for number of bins 
+    # Oder einen Slider einbauen
     sidebarLayout(
         sidebarPanel(
             sliderInput("bins",
@@ -118,7 +126,8 @@ ui <- fluidPage(
                         value = 30)
         ),
 
-        # Show a plot of the generated distribution
+        # Und letztlich integrieren wir noch Eure Visualiserung - 
+        # erinnert Ihr Euch noch an `distPlot`? Das kommt hier zum Einsatz :-)
         mainPanel(
            plotOutput("distPlot")
         )
@@ -126,7 +135,7 @@ ui <- fluidPage(
 )
 ```
 
-Eine `ui.R` Datei, die das *User Interface*, also die Benutzeroberfläche einer Shiny-App darstellt, ermöglicht es dem Nutzer die Shiny-App letztendlich zu bedienen. Im Video haben wir die `ui.R` Datei den "Körper" genannt und die `server.R`-Datei das Gehirn. Genauso kann man es sich auch vorstellen: Im Gehirn, also der `server.R`-Datei, findet die gesamte Berechnung im Hintergrund statt. Die `ui.R`-Datei zeigt dann hinterher das Ergebnis an.
+*Noch einmal in Kürze*: Die `ui`, oder auch *User Interface*, stellt die Benutzeroberfläche einer Shiny-App dar und ermöglicht es dem Nutzer die Shiny-App letztendlich zu bedienen. Im Video haben wir die `ui` den **Körper** genannt und den `server` das **Gehirn**. Genauso kann man es sich auch vorstellen: Im Gehirn, also dem `server`, findet die gesamte Berechnung im Hintergrund statt. Das `ui` zeigt dann hinterher das Ergebnis an und lässt Euch die Shiny-App bedienen..
 
 Und im letzten Schritt bringen wir die Shiny-App natürlich noch zusammen.
 
@@ -136,8 +145,11 @@ Und im letzten Schritt bringen wir die Shiny-App natürlich noch zusammen.
 shinyApp(ui = ui, server = server)
 ```
 
+Hier ist die Shiny-App für Euch - klickt auf den Link und schaut Euch an, was der Code generiert hat:
 
-Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse anwenden. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
+![](){target="_blank"} **Host app**
+
+Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel eine Visualisierung erstellen. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
 
 ```{r plot_full_to_print, echo = FALSE}
 # Wir definieren den Dateninput (`community`) 
@@ -217,7 +229,26 @@ community %>%
 
 Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es eine lokale Shiny-App zu bauen, die so aussehen wird:
 
-![]() **Add link to the app**
+![](){target="_blank"} **Add link to the app**
+
+Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App nach Kontinenten filtern und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige!
+
+```{r quizz_ap}
+quiz(caption = NULL,
+  question("Wie viele Freiwillige gibt es in Ozeanien (in %)?",
+    answer("ca. 0%"),
+    answer("ca. 20%"),
+    answer("ca. 0.007", correct = TRUE),
+    answer("ca. 2%"),
+    answer("ca. 0.0001%"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versucht es einfach nochmal oder schaut Euch die Shiny-App noch einmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
 
 Aber von Anfang an: Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen groben Plan zurechtlegen. Meine Erfahrung hat gezeigt, dass es am besten ist, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.
 
@@ -326,7 +357,7 @@ Sehr gut! Dann lasst uns doch die Auswahlmöglichkeit in unsere Shiny-App einbau
 | Einfachauswahl aus Liste                                 | `selectInput("id", "Beschreibung", auswahl)` In `auswahl` könnt Ihr entweder die Auswahl definieren (so wie wir es in Übung 2 machen) oder Ihr greift auf ein anderes Objekt (in diesem Fall ` auswahl` zu)     |
 | Checkbox (mit Mehrfachauswahl)                           | `checkboxGroupInput("id", "Beschreibung", auswahl)`                                                                                                                                                             |
 
-Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#inputs).
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#inputs){target="_blank"}.
 
 Wichtig ist, dass alle Auswahlmöglichkeiten nach einem ähnlichen Schema aufgebaut sind (die Komplexität variiert natürlich abhängig von der Auswahlmöglichkeit, die Ihr gewählt habt):
 
@@ -438,7 +469,7 @@ Wunderbar - unsere Seiteleiste steht jetzt und wir wenden uns jetzt dem `mainPan
 | Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  | `tableOutput()`          |
 | Eine Visualisierung                                               | `renderPlot({})`                | `plotOutput()`          |
 
-Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs).
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs){target="_blank"}.
 
 Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl für die `ui` aus, um eine Visualisierung (also einen "Plot") darzustellen. Unten seht Ihr wieder den Code, den Ihr auch in der `app.R` sehen solltet.
 
@@ -682,7 +713,7 @@ quiz(caption = NULL,
 ```
 
 ### Exkurs 2: Hosten von ShinyApps
-RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io). Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/) und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
+RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io){target="_blank"}. Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/){target="_blank"} und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
 
 In jedem Fall sollte intern abgeklärt werden, ob diese Hosting-Option für Euch in Frage kommt oder ob es nicht eine alternative über die IT-Abteilung gibt (z.B. bei sensiblen Daten).
 
@@ -692,11 +723,11 @@ Sollte die RStudio-Lösung für Euch eine Option sein, ist das Hosten denkbar ei
 
 2. Dann müsst Ihr `rsconnect` installieren (das macht Ihr ganz einfach über die Console mit `install.packages("rsconnect")`)
 
-3. Danach erstellt Ihr Euch einen Account auf [ShinyApps.io](https://www.shinyapps.io) (es gibt verschiedene Optionen, wählt den aus, der am besten zu euren Bedürfnissen passt)
+3. Danach erstellt Ihr Euch einen Account auf [ShinyApps.io](https://www.shinyapps.io){target="_blank"} (es gibt verschiedene Optionen, wählt den aus, der am besten zu euren Bedürfnissen passt)
 
-4. Jetzt könnt Ihr `rsconnect` konfigurieren. Dazu müsst Ihr den Token, den Euch [ShinyApps.io](https://www.shinyapps.io) zur Verfügung stellt, kopieren. Die Screenshots zeigen Euch, wie Ihr dahin kommt.
+4. Jetzt könnt Ihr `rsconnect` konfigurieren. Dazu müsst Ihr den Token, den Euch [ShinyApps.io](https://www.shinyapps.io){target="_blank"} zur Verfügung stellt, kopieren. Die Screenshots zeigen Euch, wie Ihr dahin kommt.
 
-Sobald Ihr Euch bei [ShinyApps.io](https://www.shinyapps.io)  eingeloggt habt, seht Ihr folgendes Dashboard: 
+Sobald Ihr Euch bei [ShinyApps.io](https://www.shinyapps.io){target="_blank"} eingeloggt habt, seht Ihr folgendes Dashboard: 
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shinyapps1.png?raw=true){#id .class width=70% height=70%}
 
@@ -708,7 +739,7 @@ Wenn Ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und ersc
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shinyapps3.png?raw=true){#id .class width=70% height=70%}
 
-5. Nachdem Ihr den Code kopiert habt, verknüpft Eure Shiny-App mit [ShinyApps.io](https://www.shinyapps.io), indem Ihr den Code in der Console einfügt und ausführt. 
+5. Nachdem Ihr den Code kopiert habt, verknüpft Eure Shiny-App mit [ShinyApps.io](https://www.shinyapps.io){target="_blank"}, indem Ihr den Code in der Console einfügt und ausführt. 
 
 6. Ihr könnt Eure Shiny-App noch vor dem finalen Deployen testen, indem Ihr in der Console `runApp()` ausführt.
 
@@ -733,11 +764,11 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
 
 3. Überlegt Euch, wie Eure Shiny-App aussehen soll. Eine Shiny-App hat meist links eine Seitenleiste mit Auswahlmöglichkeiten, in der Mitte (dem `main`-Part) ist meist Text, eine Visualisierung oder aber auch eine Tabelle. Es kann helfen, wenn Ihr Euch das kurz auf einem Papier visuell skizziert: Welche Visualisierung möchtet Ihr in Eure Shiny-App einbinden? Was könnten Auswahlmöglichkeiten sein, die Ihr in der Seitenleiste ansteuern möchtet? Möchtet Ihr Text als Informationen mitliefern?
 
-4. Nehmt euren Code für die Visualisierung (wenn Ihr noch keinen Code habt erstellt zunächst eine Visualisierung mit `ggplot2` und nutzt diesen Code hier) und baut ihn in die `server.R`-Datei ein. Orientiert Euch hier an der Anleitung oben oder aber auch am [Schummelzettel](daten/cheat sheets/shiny_de.pdf).
+4. Nehmt euren Code für die Visualisierung (wenn Ihr noch keinen Code habt erstellt zunächst eine Visualisierung mit `ggplot2` und nutzt diesen Code hier) und baut ihn in die `server.R`-Datei ein. Orientiert Euch hier an der Anleitung oben oder aber auch am [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"}.
 
 5. Im vorletzten Schritt verschönern wir das Aussehen eurer App in der `ui.R`-Datei: Baut die einzelnen Auswahlmöglichkeiten in die Seitenleiste ein und platziert Eure Visualisierung oder euren Text im `main`-Part. 
 
-6. Wenn Ihr möchtet, könnt Ihr Eure Shiny-App über ein `theme` noch weiter verschönern. [Hier](https://rstudio.github.io/shinythemes/) findet Ihr eine Liste an Auswahlmöglichkeiten. Um es umzusetzen, installiert `install.packages("shinythemes")` und fügt in die `fluidPage` Euer präferiertes Design hinzu (z.B. `fluidPage(theme = shinytheme("cerulean"), ...)`).
+6. Wenn Ihr möchtet, könnt Ihr Eure Shiny-App über ein `theme` noch weiter verschönern. [Hier](https://rstudio.github.io/shinythemes/){target="_blank"} findet Ihr eine Liste an Auswahlmöglichkeiten. Um es umzusetzen, installiert `install.packages("shinythemes")` und fügt in die `fluidPage` Euer präferiertes Design hinzu (z.B. `fluidPage(theme = shinytheme("cerulean"), ...)`).
 
 7. Und jetzt kommt der spannendste Part: Lasst Eure Shiny-App laufen! Führt dazu `shinyApp(ui = ui, server = server)` in der Console aus. Eure App wird sich in einem separaten Fenster öffnen und Ihr könnt sie direkt ausprobieren :-)
 
