@@ -664,9 +664,22 @@ Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. 
 
 *Video zur Reaktivität mit Brieftaube*
 
-**In Kürze**: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.^1  
+**In Kürze**: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.[^1] 
 
-**TODO: Quiz** 
+
+```{r reactivity_quiz}
+quiz(caption = NULL,
+  question("Welche Aussagen sind korrekt?",
+    answer("Die Reaktivität einer Shiny-App kann mit einer Brieftaube verglichen werden - sie fliegt nur los, wenn sie beauftragt wird.", correct = TRUE),
+    answer("Eine Shiny-App ruft die Ganze Zeit die Informationen ab und updated sich die Ganze Zeit im Hintergrund."),
+    answer("Die Reaktivität der Shiny-App generiert die Illusion, dass sich die Nutzereingabe automatisch kreiert - dabei handelt es sich in Wirklichkeit um ein Zusammenspiel zwischen Nutzerauswahl, Server und der Ausgabe im User Interface.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
 
 ### Exkurs 2: Hosten von ShinyApps
 RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io). Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/) und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
@@ -703,11 +716,12 @@ Wenn Ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und ersc
 
 **TODO: Quiz** 
 
-### Und jetzt seid Ihr dran!
+### Und jetzt seid Ihr dran! (diese Woche optional)
+
 Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - eurer Phantasie sind keine Grenzen gesetzt! Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
 Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
-1. Wählt Euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit euren Daten aus (idealerweise habt Ihr schon Code, den Ihr jetzt einfach wieder benutzen könnt - zum Beispiel aus der letzten Woche. Wenn Ihr keinen Code bereit habt, haben wir etwas für Euch vorbereitet **TODO: MUSS NOCH GEMACHT WERDEN - app.R Datei erstellen und eine Visualisierung einbauen**)
+1. Wählt Euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit euren Daten aus (idealerweise habt Ihr schon Code, den Ihr jetzt einfach wieder benutzen könnt - zum Beispiel aus der letzten Woche. Wenn Ihr keinen Code bereit habt, haben wir etwas für Euch vorbereitet **TODO: MUSS NOCH GEMACHT WERDEN - oder ist das zu viel? Ich würde eine app.R Datei erstellen und eine Visualisierung einbauen und die Teilnehmenden bauen dann darauf auf**)
 
 2. Öffnet RStudio und wählt dort eine neue Datei aus -- wählt dort "Shiny Web App". 
 
