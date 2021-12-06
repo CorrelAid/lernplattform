@@ -271,7 +271,7 @@ server <- function(input, output) {
 
 Als kurze Anmerkung: Wir haben hier `renderPlot` genommen, da wir einen Plot, also eine Visualisierung vornehmen. Wenn Ihr allerdings einen Text oder eine Tabelle einfügen wollt, müsst Ihr entsprechend eine andere Funktion nehmen. Die Tabelle stellt euch die wichtigsten Befehle gegenüber:
 
-| **Was möchtet Ihr darstellen?**                                       | **Befehl in R**                     |
+| **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**                     |
 |-------------------------------------------------------------------|---------------------------------|
 | Einen Text(block)                                                 | `renderText({})`              |
 | Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  |
@@ -284,9 +284,16 @@ Damit steht der `server` der App eigentlich schon und wir können uns dem **U**s
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
 
-Aber eins nach dem anderen. Fangen wir zuerst mit der linken Seitenleiste an. In der Datei `app.R` habt ihr unter `# 2. Aufgabe` wieder eine detaillierte Anleitung, was ihr machen müsst, um die App zu füllen. 
+Aber eins nach dem anderen. Fangen wir zuerst mit der linken Seitenleiste an. In der Datei `app.R` habt ihr unter `# 2. Aufgabe` wieder eine detaillierte Anleitung, was ihr machen müsst, um die App zu füllen. Es gibt wieder verschiedene Möglichkeiten, was Ihr als Auswahlmöglichkeiten wählt. Ihr könnt zum Beispiel "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzer Eurer Shiny-App eine Auswahl treffen zu lassen. 
 
-```{r ui_exercise, exercise=TRUE}
+Die Tabelle gibt Euch eine kurze Übersicht, über die wichtigsten Befehlsmöglichkeiten:
+
+Wichtig ist, dass 
+
+
+Wir vernachlässigen in diesem Schritt zunächst das `mainPanel()` - das kommt gleich :-) 
+
+```{r ui_exercise, exercise=TRUE, eval =FALSE}
 # UI ----------------------------------------------------------------------
 
 # Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
@@ -342,9 +349,19 @@ ui <- fluidPage(
 )
 ```
 
-Wir vernachlässigen in diesem Schritt zunächst das `mainPanel()` - das kommt gleich :-) Es gibt wieder verschiedene Möglichkeiten, 
+Die Tabelle sollte Euch bekannt vorkommen - wir haben sie an dieser Stelle nur um eine weitere Spalte ergänzt. Wenn Ihr Euch noch einmal an das Video zurückerinnert, haben wir dort gelernt, dass alles miteinander verbunden sein muss, damit die Shiny-App auch funktioniert. Das bezieht sich auf eine entsprechende Einbindung der im `server` generierten Texte, Tabellen oder Visualisierungen. In der dritten Spalte der Tabelle habt ihr das entsprechende Äquivalent, dass Ihr nutzen könnt, um den "Output" im `mainPanel()` der Shiny-App einzubinden.
 
-```{r, exercise=TRUE}
+| **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**    | **Befehl in R für die `ui` in mainPanel()** |
+|-------------------------------------------------------------------|---------------------------------|--------------------------|
+| Einen Text(block)                                                 | `renderText({})`              | `textOutput()`          |
+| Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  | `tableOutput()`          |
+| Eine Visualisierung                                               | `renderPlot({})`                | `plotOutput()`          |
+
+Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl für die `ui` aus, um eine Visualisierung (also einen "Plot") darzustellen. Unten seht Ihr wieder den Code, den Ihr auch in der `app.R` sehen solltet.
+
+Wir haben im `server` unser Balkendiagramm in `output$balkendiagramm` gespeichert - das ist hier eine wichtige Information, da wir es hier mit `"balkendiagramm"` direkt ansprechen und einbinden können. 
+
+```{r, exercise=TRUE, eval = FALSE}
 # UI ----------------------------------------------------------------------
 
 # Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
