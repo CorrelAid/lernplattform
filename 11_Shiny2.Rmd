@@ -427,7 +427,7 @@ Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englis
 
 Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl für die `ui` aus, um eine Visualisierung (also einen "Plot") darzustellen. Unten seht Ihr wieder den Code, den Ihr auch in der `app.R` sehen solltet.
 
-Wir haben im `server` unser Balkendiagramm in `output$balkendiagramm` gespeichert - das ist hier eine wichtige Information, da wir es hier mit `"balkendiagramm"` direkt ansprechen und einbinden können. 
+Wir haben im `server` unser Balkendiagramm in `output$balkendiagramm` gespeichert - das ist hier eine wichtige Information, da wir es hier mit `"balkendiagramm"` direkt ansprechen und einbinden können. Bearbeitet dazu Aufgabe 3 im Code in Eurer `app.R`-Datei.
 
 ```{r, exercise=TRUE, eval = FALSE}
 # UI ----------------------------------------------------------------------
@@ -477,14 +477,59 @@ ui <- fluidPage(
 
 #### 4. Die Shiny-App zum Laufen bringen
 
+Im letzten Schritt bringen wir in Eurer Shiny-App den `server` und die `ui` zusammen - erinnert Ihr euch noch, wie das ging? 
 
-Lasst das gesamte Dokument einmal durchlaufen und probiert Eure Shiny-App auf Eurem Rechner aus. Was fällt Euch auf?
+```{r 11shinyapp}
+quiz(caption = NULL,
+  question("Wie bringt man in der Shiny-App den `server` und die `ui` zusammen?",
+    answer("Mit `shinyApp(ui = ui, server = server)`", correct = TRUE),
+    answer("Gar nicht - wir müssen beide Funktionen einzeln ausführen und RStudio bringt sie dann zusammen"),
+    correct = "Richtig! Und genau das setzen wir jetzt auch um :-)",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau dir das Video noch einmal an",
+    allow_retry = TRUE,
+    try_again_button = "Versucht es nochmal"
+  )
+)
+```
 
-**Quiz on filter**
+Wunderbar - setzt es doch gleich in Aufgabe 4 (`# 4. Aufgabe` in der `app.R`-Datei) um! Hier kurz zur Erinnerung wie der Code in der Datei aussehen sollte:
+
+```{r shinyapp_bring_it_together, exercise=TRUE}
+
+# Shiny-App zum Laufen bringen --------------------------------------------
+
+##########################################################################
+# 4. Aufgabe:
+# Wir kombinieren mit dem folgenden Befehl die UI und den Server und bringen
+# die Shiny-App lokal zum Laufen :-)
+# Nutzt `shinyApp` mit den entsprechenden Argumenten (fügt also die `ui` und
+# den `server` ein in die "XXX" ein) und lasst das gesamte Dokument 
+# durchlaufen 
+##########################################################################
+
+shinyApp(ui = XXX, server = XXX)
+
+```
+
+Jetzt sind wir endlich soweit -- lasst das gesamte Dokument einmal durchlaufen und probiert Eure Shiny-App auf Eurem Rechner aus. Was fällt Euch auf?
+
+
+```{r 11shinyapp_does_filter_work}
+quiz(caption = NULL,
+  question("Was fällt Euch auf, wenn Ihr Euch die Shiny-App lokal genauer anschaut?",
+    answer("Gar nichts - es läuft doch alles wunderbar!"),
+    answer("Der Filter scheint nicht zu reagieren", correct = TRUE),
+    correct = "Richtig! Und genau das beheben wir jetzt im Code :-)",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder dir die Shiny-App noch einmal genauer an",
+    allow_retry = TRUE,
+    try_again_button = "Versucht es nochmal"
+  )
+)
+```
 
 Richtig, Euer Filter scheint noch nicht richtig zu funktionieren. Das liegt daran, dass wir den `server` noch nicht mit der `ui` verbunden haben. Erinnert Ihr Euch an die Abbildung im Video, die Euch gezeigt hat, dass alles miteinander verbunden sein muss?
 
-![]() 
+![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app5.png?raw=true){#id .class width=70% height=70%}
 
 Das holen wir jetzt nach. Dazu bauen wir einen Filter in unsere Visualisierungsfunktion im `server` ein.
 
