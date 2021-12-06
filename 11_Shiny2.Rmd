@@ -58,7 +58,7 @@ quiz(caption = NULL,
     correct = "Richtig!",
     incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
+    try_again_button = "Versucht es nochmal"
   )
 )
 ```
@@ -243,7 +243,6 @@ server <- function(input, output) {
 }
 ```
 
-
 Der Server nimmt zwei Argumente: `input` und `output`. Wichtig ist hier, dass wir alle erzeugten Komponenten der Shiny-App an `output` anhängen, um darauf später zugreifen zu können. Wenn wir zum Beispiel eine Visualisierung erzeugen, können wir es `output$balkendiagramm` nennen.
 
 Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist. In der `app.R`-Datei sieht es so aus:
@@ -277,8 +276,9 @@ Als kurze Anmerkung: Wir haben hier `renderPlot` genommen, da wir einen Plot, al
 | Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  |
 | Eine Visualisierung                                               | `renderPlot({})`                |
 
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs).
+
 #### 3. Die UI 
-<!--anpassen oder welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?-->
 
 Damit steht der `server` der App eigentlich schon und wir können uns dem **U**ser **I**nterface (also der UI) der Shiny-App widmen. Das machen wir auch im nächsten Schritt. Eine UI ist eigentlich immer nach dem gleichen Prinzip aufgebaut: Wir haben zunächst allgemeine Informationen wie das **Thema** oder den **Titel** der Shiny-App (dazu erfahrt ihr später mehr). Dann wird die linke Seitenleiste der Shiny-App programmiert (in `sidebarLayout(sidebarPanel())`) und anschließend werden die Komponenten aus dem Server entsprechend im `mainPanel()` definiert. Das Ganze seht Ihr auch noch einmal an der Visualisierung aus dem Video:
 
@@ -286,12 +286,78 @@ Damit steht der `server` der App eigentlich schon und wir können uns dem **U**s
 
 Aber eins nach dem anderen. Fangen wir zuerst mit der linken Seitenleiste an. In der Datei `app.R` habt ihr unter `# 2. Aufgabe` wieder eine detaillierte Anleitung, was ihr machen müsst, um die App zu füllen. Es gibt wieder verschiedene Möglichkeiten, was Ihr als Auswahlmöglichkeiten wählt. Ihr könnt zum Beispiel "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzer Eurer Shiny-App eine Auswahl treffen zu lassen. 
 
-Die Tabelle gibt Euch eine kurze Übersicht, über die wichtigsten Befehlsmöglichkeiten:
+Wenn Ihr Euch die Shiny-App noch einmal live anschaut, könnt Ihr sicher die folgende Frage beantworten:
 
-Wichtig ist, dass 
+```{r 11filter}
+quiz(caption = NULL,
+  question("Welche Auswahlmöglichkeiten (oder auch Filteroptionen) habt ihr in der Shiny-App?",
+    answer("Man kann nach Ländern filtern"),
+    answer("Man kann nach Jahren filtern"),
+    answer("Man kann nach Kontinenten filtern", correct = TRUE),
+    answer("Man kann nach Plastik und Freiwilligen filtern"),
+    correct = "Richtig! Und genau das setzen wir jetzt auch um :-)",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau dir noch einmal die Shiny-App genauer an",
+    allow_retry = TRUE,
+    try_again_button = "Versucht es nochmal"
+  )
+)
+```
 
+Sehr gut! Dann lasst uns doch die Auswahlmöglichkeit in unsere Shiny-App einbauen. Die Tabelle gibt Euch eine kurze Übersicht, über die wichtigsten Befehls- und Auswahlmöglichkeiten:
 
-Wir vernachlässigen in diesem Schritt zunächst das `mainPanel()` - das kommt gleich :-) 
+| Was möchtet Ihr dem Nutzer als Auswahlmöglichkeit geben? | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                    |
+|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Einen kurzen Freitext                                    | `textInput("id", "Beschreibung")`                                                                                                                                                                               |
+| Einen langen Freitext                                    | `textAreaInput("id", "Beschreibung", rows = 3)` Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                      |
+| Eine Zahl                                                | `numericInput("id", "Beschreibung", value = 0, min = 0, max = 100)` Mit `value` bestimmen wir den Standardwert, der immer angezeigt wird. Mit ` min` und `max` legen wir die Mindest- und die Maximalwerte fest |
+| Eine Zahl (aber mit "Slider-Auswahl")                    | `sliderInput("id", "Beschreibung", value = 0, min = 0, max = 100)`                                                                                                                                              |
+| Einfachauswahl aus Liste                                 | `selectInput("id", "Beschreibung", auswahl)` In `auswahl` könnt Ihr entweder die Auswahl definieren (so wie wir es in Übung 2 machen) oder Ihr greift auf ein anderes Objekt (in diesem Fall ` auswahl` zu)     |
+| Checkbox (mit Mehrfachauswahl)                           | `checkboxGroupInput("id", "Beschreibung", auswahl)`                                                                                                                                                             |
+
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#inputs).
+
+Wichtig ist, dass alle Auswahlmöglichkeiten nach einem ähnlichen Schema aufgebaut sind (die Komplexität variiert natürlich abhängig von der Auswahlmöglichkeit, die Ihr gewählt habt):
+
+```
+checkboxGroupInput(
+
+      # Hier definiert Ihr eine "id" (das ist wichtig, um den `server` mit der 
+      # `ui`) später zu verbinden
+      "continentSelection", 
+                            
+      # hier wird die Beschreibung eingefügt
+      
+      "Wählt einen Kontinent aus", 
+      
+      # Der nächste Schritt ist wichtig - hier definieren wir, was der
+      # Nutzer auswählen kann. 
+      # Dieser Schritt variiert von Auswahlmöglichkeit zu Auswahlmöglichkeit.
+      # Die Logik ist, dass wir eine Liste (`list`) an Möglichkeiten in 
+      # `choiches` speichern. Wir möchten hier alle Kontinente auswählen. 
+      # Dazu müssen wir jeden Kontinent sein Anzeigeäquivalent (linke Seite) 
+      # und seine Bezeichnung im Datensatz (rechte Seite) geben
+
+      choices = list(
+                "Nord- und Südamerika" = "Americas",
+                "Afrika" = "Africa",
+                "Asien" = "Asia",
+                "Europa" = "Europe",
+                "Ozeanien" = "Oceania"
+      ),
+      
+      # Oft gibt es dann auch die Möglichkeit eine Vorauswahl zu treffen, die 
+      # der Nutzer immer angezeigt bekommt - hier nehemn wir `"Americas"` 
+      # (also den Namen im Datensatz) :-)
+
+      selected = "Americas"
+    )
+```
+
+Wichtig ist, dass die `id` (hier `continentSelection`) nur einmal vergeben wird, damit wir es später im Server eindeutig zuordnen können.
+
+Und jetzt wenden wir es in der `# 2. Aufgabe` in unserer Shiny-App an! Geht dazu wieder zur `app.R` Datei.
+
+Eine kurze Anmerkung: Wir vernachlässigen in diesem Schritt zunächst das `mainPanel()` - das kommt gleich :-) 
 
 ```{r ui_exercise, exercise=TRUE, eval =FALSE}
 # UI ----------------------------------------------------------------------
@@ -323,7 +389,7 @@ ui <- fluidPage(
       # und zum Beispiel "Wähle einen Kontinent" umfassen oder aber auch 
       # ausführlicher sein - hier seid ihr vollkommen frei in eurer 
       # Auswahl :-))
-      h4(""),
+      "",
       
       # Der nächste Schritt ist wichtig - hier definieren wir, was der
       # Nutzer auswählen kann. Die Logik ist, dass wir eine Liste (`list`)
@@ -349,13 +415,15 @@ ui <- fluidPage(
 )
 ```
 
-Die Tabelle sollte Euch bekannt vorkommen - wir haben sie an dieser Stelle nur um eine weitere Spalte ergänzt. Wenn Ihr Euch noch einmal an das Video zurückerinnert, haben wir dort gelernt, dass alles miteinander verbunden sein muss, damit die Shiny-App auch funktioniert. Das bezieht sich auf eine entsprechende Einbindung der im `server` generierten Texte, Tabellen oder Visualisierungen. In der dritten Spalte der Tabelle habt ihr das entsprechende Äquivalent, dass Ihr nutzen könnt, um den "Output" im `mainPanel()` der Shiny-App einzubinden.
+Wunderbar - unsere Seiteleiste steht jetzt und wir wenden uns jetzt dem `mainPanel()` zu. Die Tabelle sollte Euch bekannt vorkommen - wir haben sie an dieser Stelle nur um eine weitere Spalte ergänzt. Wenn Ihr Euch noch einmal an das Video zurückerinnert, haben wir dort gelernt, dass alles miteinander verbunden sein muss, damit die Shiny-App auch funktioniert. Das bezieht sich auf eine entsprechende Einbindung der im `server` generierten Texte, Tabellen oder Visualisierungen. In der dritten Spalte der Tabelle habt ihr das entsprechende Äquivalent, dass Ihr nutzen könnt, um den "Output" im `mainPanel()` der Shiny-App einzubinden.
 
 | **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**    | **Befehl in R für die `ui` in mainPanel()** |
 |-------------------------------------------------------------------|---------------------------------|--------------------------|
 | Einen Text(block)                                                 | `renderText({})`              | `textOutput()`          |
 | Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  | `tableOutput()`          |
 | Eine Visualisierung                                               | `renderPlot({})`                | `plotOutput()`          |
+
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs).
 
 Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl für die `ui` aus, um eine Visualisierung (also einen "Plot") darzustellen. Unten seht Ihr wieder den Code, den Ihr auch in der `app.R` sehen solltet.
 
@@ -406,16 +474,6 @@ ui <- fluidPage(
 )
 ```
 
-Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir nicht kennen gelernt, da Inhalt geschoben wurde**
-
-```{r ui_new_plot, exercise=TRUE}
-
-```
-- Weitere Buttons/Auswahloptionen vorstellen
-
-**Quiz - zwei bis drei Buttons - oder ist das blöd?**
-
-*Idee hier: Filter über Kontinente machen*
 
 #### 4. Die Shiny-App zum Laufen bringen
 

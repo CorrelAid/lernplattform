@@ -97,7 +97,7 @@ ui <- fluidPage(
       # und zum Beispiel "Wähle einen Kontinent" umfassen oder aber auch 
       # ausführlicher sein - hier seid ihr vollkommen frei in eurer 
       # Auswahl :-))
-      h4(""),
+      "",
       
       # Der nächste Schritt ist wichtig - hier definieren wir, was der
       # Nutzer auswählen kann. Die Logik ist, dass wir eine Liste (`list`)
