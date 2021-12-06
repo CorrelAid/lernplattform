@@ -498,7 +498,7 @@ quiz(caption = NULL,
 
 Perfekt - setzt es doch gleich in Aufgabe 4 (`# 4. Aufgabe` in der `app.R`-Datei) um! Hier kurz zur Erinnerung wie der Code in der Datei aussehen sollte:
 
-```{r shinyapp_bring_it_together, exercise=TRUE}
+```{r shinyapp_bring_it_together, exercise=TRUE, eval = FALSE}
 
 # Shiny-App zum Laufen bringen --------------------------------------------
 
