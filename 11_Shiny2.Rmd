@@ -282,7 +282,7 @@ Als kurze Anmerkung: Wir haben hier `renderPlot` genommen, da wir einen Plot, al
 
 Damit steht der `server` der App eigentlich schon und wir können uns dem **U**ser **I**nterface (also der UI) der Shiny-App widmen. Das machen wir auch im nächsten Schritt. Eine UI ist eigentlich immer nach dem gleichen Prinzip aufgebaut: Wir haben zunächst allgemeine Informationen wie das **Thema** oder den **Titel** der Shiny-App (dazu erfahrt ihr später mehr). Dann wird die linke Seitenleiste der Shiny-App programmiert (in `sidebarLayout(sidebarPanel())`) und anschließend werden die Komponenten aus dem Server entsprechend im `mainPanel()` definiert. Das Ganze seht Ihr auch noch einmal an der Visualisierung aus dem Video:
 
-![]()
+![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
 
 Aber eins nach dem anderen. Fangen wir zuerst mit der linken Seitenleiste an. In der Datei `app.R` habt ihr unter `# 2. Aufgabe` wieder eine detaillierte Anleitung, was ihr machen müsst, um die App zu füllen. 
 
