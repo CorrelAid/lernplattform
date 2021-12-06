@@ -433,7 +433,7 @@ Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl 
 
 Wir haben im `server` unser Balkendiagramm in `output$balkendiagramm` gespeichert - das ist hier eine wichtige Information, da wir es hier mit `"balkendiagramm"` direkt ansprechen und einbinden können. Bearbeitet dazu Aufgabe 3 im Code in Eurer `app.R`-Datei.
 
-```{r, exercise=TRUE, eval = FALSE}
+```{r ui_exercise_choices, exercise=TRUE, eval = FALSE}
 # UI ----------------------------------------------------------------------
 
 # Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
@@ -628,7 +628,7 @@ Lasst Eure Shiny-App noch einmal lokal laufen und schaut, wie schnell sich die O
 
 Im letzten Schritt geben wir unserer Shiny-App noch einen schönen Titel, zum Beispiel "Break Free From Plastic". Das ergänzen wir auch in der `ui` (in `# 7. Aufgabe` seht Ihr, wo ihr es ergänzen müsst):
 
-```{r}
+```{r ui_title, exercise=TRUE}
 ui <- fluidPage(
   
   ##########################################################################
