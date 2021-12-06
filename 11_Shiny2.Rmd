@@ -246,12 +246,149 @@ server <- function(input, output) {
 
 Der Server nimmt zwei Argumente: `input` und `output`. Wichtig ist hier, dass wir alle erzeugten Komponenten der Shiny-App an `output` anhängen, um darauf später zugreifen zu können. Wenn wir zum Beispiel eine Visualisierung erzeugen, können wir es `output$balkendiagramm` nennen.
 
-Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist. 
+Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist. In der `app.R`-Datei sieht es so aus:
+
+```{r aufgabe_1, exercise=TRUE}
+server <- function(input, output) {
+  
+  # Wir speichern unsere Visualisierung in `output$balkendiagramm`
+  # Nutzt die geeignete Funktion (in diesem Fall renderPlot, da wir einen
+  # Plot darstellen möchten), um den Output zu generieren
+  
+  output$balkendiagramm <- renderPlot({
+    
+    ##########################################################################
+    # 1. Aufgabe:
+    # Innerhalb von `renderPlot()` kreieren wir unseren ggplot2
+    # Hierfür können wir unseren Code kopieren, den wir in der letzten
+    # Sitzung erstellt haben
+    ##########################################################################
+    
+    
+  })
+}
+```
+
+Als kurze Anmerkung: Wir haben hier `renderPlot` genommen, da wir einen Plot, also eine Visualisierung vornehmen. Wenn Ihr allerdings einen Text oder eine Tabelle einfügen wollt, müsst Ihr entsprechend eine andere Funktion nehmen. Die Tabelle stellt euch die wichtigsten Befehle gegenüber:
+
+| **Was möchtet Ihr darstellen?**                                       | **Befehl in R**                     |
+|-------------------------------------------------------------------|---------------------------------|
+| Einen Text(block)                                                 | `renderText({})`              |
+| Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  |
+| Eine Visualisierung                                               | `renderPlot({})`                |
 
 #### 3. Die UI 
 <!--anpassen oder welche Möglichkeiten habt Ihr zur Auswahl in der Seitenleiste?-->
 
-Im nächsten Schritt 
+Damit steht der `server` der App eigentlich schon und wir können uns dem **U**ser **I**nterface (also der UI) der Shiny-App widmen. Das machen wir auch im nächsten Schritt. Eine UI ist eigentlich immer nach dem gleichen Prinzip aufgebaut: Wir haben zunächst allgemeine Informationen wie das **Thema** oder den **Titel** der Shiny-App (dazu erfahrt ihr später mehr). Dann wird die linke Seitenleiste der Shiny-App programmiert (in `sidebarLayout(sidebarPanel())`) und anschließend werden die Komponenten aus dem Server entsprechend im `mainPanel()` definiert. Das Ganze seht Ihr auch noch einmal an der Visualisierung aus dem Video:
+
+![]()
+
+Aber eins nach dem anderen. Fangen wir zuerst mit der linken Seitenleiste an. In der Datei `app.R` habt ihr unter `# 2. Aufgabe` wieder eine detaillierte Anleitung, was ihr machen müsst, um die App zu füllen. 
+
+```{r ui_exercise, exercise=TRUE}
+# UI ----------------------------------------------------------------------
+
+# Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
+# Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen
+# die für uns relevanten Teile
+
+ui <- fluidPage(
+  
+  titlePanel(""), # Den Titel lassen wir an dieser Stelle noch ungefüllt
+   
+  # Definiert die Seitenleiste und den Input
+  sidebarLayout(sidebarPanel(
+    ##########################################################################
+    # 2. Aufgabe
+    # Wir verwenden hier den `checkboxGroupInput`
+    # Das erlaubt uns, ein Input-Menü zu erstellen, bei dem 
+    # wir über "Check-Boxen" die Kontinente auswählen
+    
+    checkboxGroupInput(
+      
+      # Gebt dieser Auswahl einen Namen (wir werden den Namen später
+      # nutzen, um auf dieses Auswahlmenü zuzugreifen)
+      
+      "",
+      
+      # Gebt eine Anleitung für den Nutzer ein (das kann sehr kurz sein
+      # und zum Beispiel "Wähle einen Kontinent" umfassen oder aber auch 
+      # ausführlicher sein - hier seid ihr vollkommen frei in eurer 
+      # Auswahl :-))
+      h4(""),
+      
+      # Der nächste Schritt ist wichtig - hier definieren wir, was der
+      # Nutzer auswählen kann. Die Logik ist, dass wir eine Liste (`list`)
+      # an Möglichkeiten in `choiches` speichern. Wir möchten hier alle
+      # Kontinente auswählen. Dazu müssen wir jeden Kontinent sein
+      # Anzeigeäquivalent (linke Seite) und seine Bezeichnung im 
+      # Datensatz (rechte Seite) geben
+
+      choices = list(
+      ),
+      
+      # Wir können jetzt noch im letzten Schritt eine Standardvorauswahl 
+      # treffen - hier nehemn wir `"Americas"` (also den Namen im Daten-
+      # satz) :-)
+
+      selected = ""
+    )
+    ##########################################################################
+    
+  ),
+  
+  mainPanel() # das mainPanel lassen wir an dieser Stelle noch ungefüllt
+)
+```
+
+Wir vernachlässigen in diesem Schritt zunächst das `mainPanel()` - das kommt gleich :-) Es gibt wieder verschiedene Möglichkeiten, 
+
+```{r, exercise=TRUE}
+# UI ----------------------------------------------------------------------
+
+# Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
+# Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen
+# die für uns relevanten Teile
+
+ui <- fluidPage(
+
+  titlePanel(""),
+  
+  # Definiert die Seitenleiste und den Input (das haben wir bereits im letzten Schritt getan)
+  sidebarLayout(sidebarPanel(
+    checkboxGroupInput(
+      "",
+      h4(""),
+      choices = list(
+      ),
+      selected = ""
+    )
+
+  ),
+  
+  ##########################################################################
+  # 3. Aufgabe:
+  
+  # Fügt das Balkendiagramm in `mainPanel()` ein
+  # Dazu müsst ihr zwei Dinge beachten
+  
+  # 1) Wählt eine geeignete Output-Funktion (hier erhaltet ihr Inspiration 
+  # (https://mastering-shiny.org/basic-ui.html#outputs) oder
+  # schaut auf der Lernplattform in der Übersicht - es handelt sich hierbei um
+  # einen "plot", den wir darstellen möchten)
+  
+  # 2) Fügt das unten generierte "balkendiagramm" ein (es ist wichtig, dass es
+  # in Anführungszeichen steht)
+  
+  # Für die Intuition: Wir greifen hier auf das Objekt ("balkendiagramm") zu, 
+  # das ihr zuvor im `server` generiert habt und lassen es uns ausgeben :-)
+  ##########################################################################
+  
+  mainPanel()
+)
+```
+
 Wir haben letzte Woche den `select` Button kennen gelernt, **AENDERN: haben wir nicht kennen gelernt, da Inhalt geschoben wurde**
 
 ```{r ui_new_plot, exercise=TRUE}
