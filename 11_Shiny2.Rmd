@@ -226,9 +226,13 @@ Nachdem wir unsere Shiny-App grob skizziert haben (ein Schritt, der wirklich hil
 
 Da wir auf dieser Plattform keine Shiny-App direkt programmieren können, haben wir Euch hier die Code-Snippets zusammengestellt und erklären euch die einzelnen Schritte. Um die Shiny-App während der Sitzung mitzubauen, haben wir Euch die Datei `app.R` vorbereitet. **Cosima: VERLINKEN - sollen wir auch gleich auf app_loesung als Fallback-Option hinweisen?** Die Datei könnt Ihr Euch wie einen "Lückentext" vorstellen, an dem Ihr an den entsprechenden Stellen den Code einfügt und abschließend Eure Shiny-App lokal laufen lasst! 
 
-#### 2. Den Server ausbauen
+#### 2. Der Server
 
 Für den Server können wir unseren Code von oben in die `server.R`-Datei kopieren und entsprechend anpassen. Machen wir das doch einmal zusammen. Die Grundstruktur des Servers sieht so aus:
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app4.png?raw=true){#id .class width=70% height=70%}
+
+Angewandt auf unseren Code wäre das wiefolgt:
 
 ```{r server_new_plot, exercise=TRUE}
 server <- function(input, output) {
@@ -244,7 +248,7 @@ server <- function(input, output) {
 }
 ```
 
-Der Server nimmt zwei Argumente: `input` und `output`. Wichtig ist hier, dass wir alle erzeugten Komponenten der Shiny-App an `output` anhängen, um darauf später zugreifen zu können. Wenn wir zum Beispiel eine Visualisierung erzeugen, können wir es `output$balkendiagramm` nennen.
+Der Server nimmt zwei Argumente: `input` und `output`. Wichtig ist hier, dass wir alle erzeugten Komponenten der Shiny-App an `output` anhängen, um darauf später in der `ui` darauf zugreifen zu können. Wenn wir zum Beispiel eine Visualisierung erzeugen, können wir es `output$balkendiagramm` nennen.
 
 Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist. In der `app.R`-Datei sieht es so aus:
 
@@ -279,7 +283,7 @@ Als kurze Anmerkung: Wir haben hier `renderPlot` genommen, da wir einen Plot, al
 
 Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs).
 
-#### 3. Die UI 
+#### 3. Das UI (User Interface) 
 
 Damit steht der `server` der App eigentlich schon und wir können uns dem **U**ser **I**nterface (also der UI) der Shiny-App widmen. Das machen wir auch im nächsten Schritt. Eine UI ist eigentlich immer nach dem gleichen Prinzip aufgebaut: Wir haben zunächst allgemeine Informationen wie das **Thema** oder den **Titel** der Shiny-App (dazu erfahrt ihr später mehr). Dann wird die linke Seitenleiste der Shiny-App programmiert (in `sidebarLayout(sidebarPanel())`) und anschließend werden die Komponenten aus dem Server entsprechend im `mainPanel()` definiert. Das Ganze seht Ihr auch noch einmal an der Visualisierung aus dem Video:
 
