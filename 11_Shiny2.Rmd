@@ -77,7 +77,9 @@ In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und ein
 
 <right>![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100%}</right>
 
-Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Der `server` Datei kann so aussehen:
+Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet. Wenn Ihr die Shiny-App in Aktion sehen wollt, könnt Ihr sie euch [**hier**](https://cosima-meyer.shinyapps.io/example_app/){target="_blank"} ansehen.
+
+Die `server` Datei dafür kann so aussehen:
 
 ```{r server, exercise=TRUE, context="server"}
 # Dieser Code definiert die Serverlogik, um ein Histogramm zu visualisieren
@@ -98,8 +100,6 @@ server <- function(input, output) {
     })
 }
 ```
-
-Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet.
 
 <!-- Der `server`-Part erlaubt es Euch, das "Gehirn" der Shiny-App zu programmieren.  -->
 
@@ -227,7 +227,7 @@ community %>%
 
 Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es eine lokale Shiny-App zu bauen, die so aussehen wird:
 
-![](){target="_blank"} **Add link to the app**
+![](https://cosima-meyer.shinyapps.io/break_free_from_plastic/){target="_blank"} 
 
 Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern** und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige!
 
@@ -260,7 +260,7 @@ Wir möchten das **Balkendiagramms** aus der letzten Woche in eine App übersetz
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/sketch_app.png?raw=true){#id .class width=70% height=70%} 
 </center>
 
-Da wir auf dieser Plattform keine Shiny-App direkt programmieren können, haben wir Euch hier die Code-Snippets zusammengestellt und erklären Euch die einzelnen Schritte. Um die Shiny-App während der Sitzung mitzubauen, haben wir Euch die Datei `app.R` vorbereitet. **Cosima: VERLINKEN - sollen wir auch gleich auf app_loesung als Fallback-Option hinweisen? (Nina: Ja)** Die Datei könnt Ihr Euch wie einen "Lückentext" vorstellen, an dem Ihr an den entsprechenden Stellen den Code einfügt und abschließend Eure Shiny-App lokal laufen lasst! 
+*Anmerkung: Solltet Ihr mal nicht weiterkommen, haben wir auch eine `app_loesung.R`-Datei für Euch vorbereitet.*
 
 #### Schritt 2: Der Server
 Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten. 
@@ -638,7 +638,13 @@ library(shinythemes)
 
 Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Klickt Euch durch die Folien, um eine Idee zu bekommen, wir Eure Shiny-App aussehen könnte: 
 
-**TODO: add "flipbook" (doesn't work for shiny-app) or slide show with different themes**
+```{r flipbook_themes, out.width='100%', out.height='100%'}
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_shinythemes/dsee_slides_shinythemes#1")
+```
+
+Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt Ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_shinythemes/dsee_slides_shinythemes#1){target="_blank"}.
+
+Wenn Ihr mehr Inspirationen möchtet, schaut einfach [hier](https://rstudio.github.io/shinythemes/){target="_blank"} vorbei.
 
 Wählt jetzt ein Thema aus, das Euch gefällt und ergänzt es in Aufgabe 6 (`# 6.Aufgabe` in der `app.R`-Datei):
 
@@ -718,7 +724,7 @@ Sollte die RStudio-Lösung für Euch eine Option sein, ist das Hosten denkbar ei
 
 2. Dann müsst Ihr `rsconnect` installieren (das macht Ihr ganz einfach über die Console mit `install.packages("rsconnect")`)
 
-3. Danach erstellt Ihr Euch einen Account auf [ShinyApps.io](https://www.shinyapps.io){target="_blank"} (es gibt verschiedene Optionen, wählt den aus, der am besten zu euren Bedürfnissen passt)
+3. Danach erstellt Ihr Euch einen Account auf [ShinyApps.io](https://www.shinyapps.io){target="_blank"} (es gibt verschiedene Optionen, wählt den Account aus, der am besten zu euren Bedürfnissen passt)
 
 4. Jetzt könnt Ihr `rsconnect` konfigurieren. Dazu müsst Ihr den Token, den Euch [ShinyApps.io](https://www.shinyapps.io){target="_blank"} zur Verfügung stellt, kopieren. Die Screenshots zeigen Euch, wie Ihr dahin kommt.
 
@@ -740,7 +746,22 @@ Wenn Ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und ersc
 
 7. Hat alles geklappt? Dann kommt das Deployen! Führt in der Console einfach `deployApp()` aus und wartet ein bisschen - Eure Shiny-App ist nach ein bisschen Warten direkt online und kann über einen Link aufgerufen werden!
 
-**TODO: Quiz** 
+
+```{r 11deployment}
+quiz(caption = NULL,
+  question("Was sind die wichtigen Schritte, die Ihr beim Deployen Eurer Shiny-App beachten müsst?",
+    answer("Ihr solltet sowohl `install.packages` als auch `library` Aufrufe in Eurer `app.R`-Datei haben."),
+    answer("Es dürfen keine `install.packages`-Funktionen in Eurer `app.R`-Datei sein.", correct = TRUE),
+    answer("Ihr braucht ein sogenanntes Token von shinyapps.io.", correct = TRUE),
+    answer("Ihr müsst eine Verbindung zwischen shinyapps.io und RStudio mit Hilfe von `rsconnect` herstellen.", correct = TRUE),
+    answer("Ihr müsst eigentlich nichts weiter beachten oder einstellen - es reicht, wenn Ihr `deployApp()` laufen lasst."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder lest Euch noch einmal die Beschreibung durch.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
 
 ### Und jetzt seid Ihr dran! (diese Woche optional)
 
