@@ -143,10 +143,6 @@ Und im letzten Schritt bringen wir die Shiny-App natürlich noch zusammen.
 shinyApp(ui = ui, server = server)
 ```
 
-Hier ist die Shiny-App für Euch - klickt auf den Link und schaut Euch an, was der Code generiert hat:
-
-![](https://cosima-meyer.shinyapps.io/break_free_from_plastic/)){target="_blank"}
-
 Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel eine Visualisierung erstellen. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
 
 ```{r plot_full_to_print, echo = FALSE}
@@ -225,9 +221,7 @@ community %>%
         text = element_text(size=7))
 ```
 
-Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es eine lokale Shiny-App zu bauen, die so aussehen wird:
-
-![](https://cosima-meyer.shinyapps.io/break_free_from_plastic/){target="_blank"} 
+Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es, gemeinsam eine lokale Shiny-App zu bauen, die so ([klick hier!](https://cosima-meyer.shinyapps.io/break_free_from_plastic/){target="_blank"}) aussehen soll.
 
 Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern** und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige! Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} herunterladen
 
@@ -339,7 +333,7 @@ Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
 </center>
 
 Die Grundstruktur dieses Layouts sieht so aus:
-```{r ui_exercise, exercise=TRUE, eval =FALSE}
+```{r ui_exercise1, exercise=TRUE, eval =FALSE}
 ui <- fluidPage(
   
   titlePanel(""), # Hier können wir den Titel festlegen
@@ -397,7 +391,7 @@ der interne Name des Filters ("id"), mit dem Ihr die Werte an den Server überge
 In der `# 2. Aufgabe` richten wir nun den Filter für die Kontinente im `sidebarPanel()` ein Geht dazu wieder zur `app.R` Datei.
 *Eine kurze Anmerkung: Wir vernachlässigen in diesem Schritt zunächst das `mainPanel()` - das kommt gleich!*
 
-```{r ui_exercise, exercise=TRUE, eval =FALSE}
+```{r ui_exercise2, exercise=TRUE, eval =FALSE}
 # UI ----------------------------------------------------------------------
 
 # Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
@@ -630,7 +624,7 @@ library(shinythemes)
 
 Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Klickt Euch durch die Folien, um eine Idee zu bekommen, wir Eure Shiny-App aussehen könnte: 
 
-```{r flipbook_themes, out.width='100%', out.height='100%'}
+```{r flipbook_shinythemes, out.width='100%', out.height='100%'}
 knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_shinythemes/dsee_slides_shinythemes#1")
 ```
 
