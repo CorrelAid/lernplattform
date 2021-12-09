@@ -55,7 +55,7 @@ quiz(caption = NULL,
 
 #### Was sind Shiny-Apps?
 
-Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (auf Englisch "application", daher auch "Shiny-App") zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Gallerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
+Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (*engl. application, daher auch Shiny-App*) zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Galerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
 #### Wie funktioniert eine Shiny-App genau? 
 
@@ -124,7 +124,7 @@ ui <- fluidPage(
                         value = 30)
         ),
 
-        # Und letztlich integrieren wir noch Eure Visualiserung - 
+        # Und letztlich integrieren wir noch Eure Visualisierung - 
         # erinnert Ihr Euch noch an `distPlot`? Das kommt hier zum Einsatz :-)
         mainPanel(
            plotOutput("distPlot")
@@ -133,7 +133,7 @@ ui <- fluidPage(
 )
 ```
 
-*Noch einmal in Kürze*: Die `ui`, oder auch *User Interface*, stellt die Benutzeroberfläche einer Shiny-App dar und ermöglicht es dem Nutzer die Shiny-App letztendlich zu bedienen. Im Video haben wir die `ui` den **Körper** genannt und den `server` das **Gehirn**. Genauso kann man es sich auch vorstellen: Im Gehirn, also dem `server`, findet die gesamte Berechnung im Hintergrund statt. Das `ui` zeigt dann hinterher das Ergebnis an und lässt Euch die Shiny-App bedienen..
+*Noch einmal in Kürze*: Die `ui`, oder auch *User Interface*, stellt die Benutzeroberfläche einer Shiny-App dar und ermöglicht es dem Nutzer die Shiny-App letztendlich zu bedienen. Im Video haben wir die `ui` **Körper** und den `server` **Gehirn** genannt. Genauso kann man es sich auch vorstellen: Im Gehirn, also dem `server`, findet die gesamte Berechnung im Hintergrund statt. Das `ui` zeigt dann hinterher das Ergebnis an und lässt Euch die Shiny-App bedienen..
 
 Und im letzten Schritt bringen wir die Shiny-App natürlich noch zusammen.
 
@@ -154,21 +154,21 @@ Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel
 community %>%
   # Datenbereinigung
   dplyr::filter(continent != "Unknown") %>% 
-  # Überschreiben eine vorherrschende Gruppierung
+  # Überschreibe eine vorherrschende Gruppierung
   ungroup() %>%
-  # Berechnen die absolute Anzahl an Freiwilligen
+  # Berechne die absolute Anzahl an Freiwilligen
   dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
-  # Gruppieren nach Kontinent
+  # Gruppiere nach Kontinent
   group_by(continent) %>%
-  # Berechnen die relative Anzahl der Freiwilligen
+  # Berechne die relative Anzahl der Freiwilligen
   dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
-  # Behalten jeden Wert pro Kontinent nur einmal
+  # Behaltn jeden Wert pro Kontinent nur einmal
   distinct(continent, relative_anzahl)  %>%
-  # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
-  # und die y-Achse (relative Anzahl an Freiwillien)
+  # Initialisiere `ggplot2` und bestimme die x-Achse (Kontinente)
+  # und die y-Achse (relative Anzahl an Freiwilligen)
   # Zusätzlich legen wir die Farbe der Balken fest
   ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
-  # Definieren den Visualisierungsplot (Balkendiagramm)
+  # Definiere den Visualisierungsplot (Balkendiagramm)
   geom_col() +
     # Bezeichnung des Titels und des Untertitels
   labs(
@@ -179,7 +179,7 @@ community %>%
   scale_fill_manual(values = wes_palette("Cavalcanti1")) +
   # Legen das Thema fest
   ggthemes::theme_wsj() +
-  # Benennen die Legende um
+  # Benenne die Legende um
   # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
   # der Festlegung des Themas geschieht
   theme(legend.title = element_blank(),
@@ -204,7 +204,7 @@ community %>%
   # Behalten jeden Wert pro Kontinent nur einmal
   distinct(continent, relative_anzahl)  %>%
   # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
-  # und die y-Achse (relative Anzahl an Freiwillien)
+  # und die y-Achse (relative Anzahl an Freiwilligen)
   # Zusätzlich legen wir die Farbe der Balken fest
   ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
   # Definieren den Visualisierungsplot (Balkendiagramm)
@@ -264,7 +264,7 @@ Wir möchten das **Balkendiagramms** aus der letzten Woche in eine App übersetz
 Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten. 
 
 1. `server <- function(input, output) {}` definiert eine **Funktion**, die `input` und `output`-Argumente annimmt. Der `ìnput` stellt das dar, was unsere **Nutzer:innen in der UI** bei den interaktiven Elementen der App **eingeben**. Der `output` definiert, was die **App zurückgeben** soll, also was die Nutzer:innen sehen sollen.
-2. Die Erzeugung des Outputformats erfolgt auch hier über eine **Renderfunktion**: `render...({})`. Dieser Funktionstyp erzeugt also überall im R-Unversum benötigte Outputs. Allerdings ist es wichtig, die **richtige Renderfunktion** für den gewünschten Output zu nutzen - es passt also nicht jede Renderfunktion zu jedem Output (dazu später mehr). Innerhalb der Renderfunktion wird dann der Output programmiert.
+2. Die Erzeugung des Outputformats erfolgt auch hier über eine **Renderfunktion**: `render...({})`. Dieser Funktionstyp erzeugt also überall im R-Universum benötigte Outputs. Allerdings ist es wichtig, die **richtige Renderfunktion** für den gewünschten Output zu nutzen - es passt also nicht jede Renderfunktion zu jedem Output (dazu später mehr). Innerhalb der Renderfunktion wird dann der Output programmiert.
 3. Der Output, den die `render`-Funktion erzeugt, wird ein **Objektname** zugewiesen (`output$name <- render...({})`), auf den wir dann in der UI verweisen können.
 
 <center>
@@ -440,7 +440,7 @@ ui <- fluidPage(
       ),
       
       # Wir können jetzt noch im letzten Schritt eine Standardvorauswahl 
-      # treffen - hier nehemn wir `"Americas"` (also den Namen im Daten-
+      # treffen - hier nehmen wir `"Americas"` (also den Namen im Daten-
       # satz) :-)
 
       selected = ""
@@ -453,7 +453,7 @@ ui <- fluidPage(
 )
 ```
 
-Wunderbar - unsere Seiteleiste steht. Wir wenden uns dem `mainPanel()` zu. Die Tabelle sollte Euch bekannt vorkommen - wir haben sie an dieser Stelle um eine weitere Spalte ergänzt. Wenn Ihr Euch noch einmal an das Video zurückerinnert, haben wir dort gelernt, dass alles **miteinander verbunden** sein muss, damit die Shiny-App auch funktioniert. Das bezieht sich auf eine entsprechende Einbindung der im `server` generierten Texte, Tabellen oder Visualisierungen. In der dritten Spalte der Tabelle habt Ihr das entsprechende Äquivalent, dass Ihr nutzen könnt, um den "Output" im `mainPanel()` der Shiny-App einzubinden.
+Wunderbar - unsere Seitenleiste steht. Wir wenden uns dem `mainPanel()` zu. Die Tabelle sollte Euch bekannt vorkommen - wir haben sie an dieser Stelle um eine weitere Spalte ergänzt. Wenn Ihr Euch noch einmal an das Video zurückerinnert, haben wir dort gelernt, dass alles **miteinander verbunden** sein muss, damit die Shiny-App auch funktioniert. Das bezieht sich auf eine entsprechende Einbindung der im `server` generierten Texte, Tabellen oder Visualisierungen. In der dritten Spalte der Tabelle habt Ihr das entsprechende Äquivalent, dass Ihr nutzen könnt, um den "Output" im `mainPanel()` der Shiny-App einzubinden.
 
 | **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**    | **Befehl in R für die `ui` in mainPanel()** |
 |-------------------------------------------------------------------|---------------------------------|--------------------------|
@@ -567,7 +567,7 @@ Richtig, Euer Filter scheint noch nicht richtig zu funktionieren. Das liegt dara
 
 Das holen wir jetzt nach. Dazu bauen wir einen Filter in unsere Visualisierungsfunktion im `server` ein. Dazu gehen wir in die Funktion, die wir vorher einfach in unseren `server` reinkopiert haben.
 
-Nach der Bearbeitung der Daten und vor der Erstellung der Visualisierung mit `ggplot2` haben wir die Möglichkeit noch einen zusätzlichen Filter einzubauen. Im Code wäre das an der gekennzeichnenten Stelle:
+Nach der Bearbeitung der Daten und vor der Erstellung der Visualisierung mit `ggplot2` haben wir die Möglichkeit noch einen zusätzlichen Filter einzubauen. Im Code wäre das an der gekennzeichneten Stelle:
 
 ```{r make_function_work, exercise=TRUE}
         community %>%
@@ -611,7 +611,7 @@ Das ist auch schon unsere 5. Aufgabe in der App - fügt den Code an der entsprec
     # Als zusätzlichen Schritt müssen wir jetzt noch einen Filter 
     # einbauen, in dem wir auf unsere Auswahl in der `ui` zugreifen
     # Hierfür könnt Ihr den Code aus der Lernplattform nehmen und ihn einfügen
-    # (Ihr seht in der Lernplattform wo es sinnvoll wäre)
+    # (Ihr seht in der Lernplattform, wo es sinnvoll wäre)
     ##########################################################################
 ```
 
@@ -695,7 +695,7 @@ Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. 
 quiz(caption = NULL,
   question("Welche Aussagen sind korrekt?",
     answer("Die Reaktivität einer Shiny-App kann mit einer Brieftaube verglichen werden - sie fliegt nur los, wenn sie beauftragt wird.", correct = TRUE),
-    answer("Eine Shiny-App ruft die Ganze Zeit die Informationen ab und updated sich die Ganze Zeit im Hintergrund."),
+    answer("Eine Shiny-App ruft die ganze Zeit die Informationen ab und updatet sich die ganze Zeit im Hintergrund."),
     answer("Die Reaktivität der Shiny-App generiert die Illusion, dass sich die Nutzereingabe automatisch kreiert - dabei handelt es sich in Wirklichkeit um ein Zusammenspiel zwischen Nutzerauswahl, Server und der Ausgabe im User Interface.", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
