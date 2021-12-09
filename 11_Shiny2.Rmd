@@ -777,7 +777,7 @@ quiz(caption = NULL,
 Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - eurer Phantasie sind keine Grenzen gesetzt! Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
 Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
-1. Wählt Euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit euren Daten aus (idealerweise habt Ihr schon Code, den Ihr jetzt einfach wieder benutzen könnt - zum Beispiel aus der letzten Woche. Wenn Ihr keinen Code bereit habt, haben wir etwas für Euch vorbereitet **TODO: MUSS NOCH GEMACHT WERDEN - oder ist das zu viel? Ich würde eine app.R Datei erstellen und eine Visualisierung einbauen und die Teilnehmenden bauen dann darauf auf**)
+1. Wählt Euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit euren Daten aus (idealerweise habt Ihr schon Code, den Ihr jetzt einfach wieder benutzen könnt - zum Beispiel aus der letzten Woche. Wenn Ihr keinen Code bereit habt, haben wir zwei mögliche Visualisierungen (eine Punktewolke und eine Karte) für Euch vorbereitet, die Ihr nutzen könnt und damit die folgenden Schritte üben könnt.)
 
 2. Öffnet RStudio und wählt dort eine neue Datei aus -- wählt dort "Shiny Web App". 
 
