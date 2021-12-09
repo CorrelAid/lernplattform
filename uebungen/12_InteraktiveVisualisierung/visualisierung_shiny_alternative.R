@@ -1,7 +1,7 @@
 # Alternative Visualisierung für Eure Shiny-App
 
 # Wenn Ihr noch keine Visualisierung mit Euren Daten habt, aber gerne jetzt schon
-# Eure eigene Shiny-App bauen möchtet, könnt ihr den Code zur Visualisierung nutzen
+# Eure eigene Shiny-App bauen möchtet, könnt Ihr den Code zur Visualisierung nutzen
 
 # Tipp: Macht Euch zunächst mit dem Code vertraut, indem Ihr die Kommentare lest und
 # Ihn erst einmal durchlaufen lasst :-) Ihr könnt zum Beispiel in Eurer Shiny-App
