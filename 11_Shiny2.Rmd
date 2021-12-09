@@ -7,7 +7,6 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
 *ich erkläre es im Text unten nochmal, da es ein so wichtiger und zentraler Bestandteil einer Shiny-App ist*
 
 ### Kernaussagen 
-
 - **Shiny-Apps** sind Webapplikationen
   - Man kann damit **Daten**, **Visualisierungen**, oder auch allgemein **Informationen** "verpacken" und so interaktiv für andere Nutzer zur Verfügung stellen
   - Eine Shiny-App kann man später leicht **hosten** und so auch **ohne Code zugänglich** machen
@@ -54,11 +53,10 @@ quiz(caption = NULL,
 ```
 
 #### Was sind Shiny-Apps?
-
 Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (*engl. application, daher auch Shiny-App*) zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Galerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
-#### Wie funktioniert eine Shiny-App genau? 
 
+#### Wie funktioniert eine Shiny-App genau? 
 <left>
 ![*Shiny](https://d33wubrfki0l68.cloudfront.net/d08c35bfe1ba68584788f5cdcad703d0c9d8263f/7969a/wp-content/uploads/2014/04/shiny.png){#id .class width=20% height=100%}
 
@@ -223,7 +221,7 @@ community %>%
 
 Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es, gemeinsam eine lokale Shiny-App zu bauen, die so ([klick hier!](https://cosima-meyer.shinyapps.io/break_free_from_plastic/){target="_blank"}) aussehen soll.
 
-Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern** und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige! Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} herunterladen
+Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern** und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige! Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} herunterladen.
 
 ```{r quizz_ap}
 quiz(caption = NULL,
@@ -242,8 +240,8 @@ quiz(caption = NULL,
 ```
 *Tipp: Es ist am besten, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.*
 
-#### Schritt 1: Shiny-App planen
 
+#### Schritt 1: Shiny-App planen
 Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen **Plan** zurechtlegen. Hierbei ist es sehr hilfreich, die App grob zu skizzieren (gerne auch ganz klassisch auf Papier).
 
 Wir möchten das **Balkendiagramms** aus der letzten Woche in eine App übersetzen. In der linken Seitenleiste seht Ihr **Auswahlmöglichkeiten nach Kontinenten** - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden **Namen**, z.B. "Break Free From Plastic":
@@ -253,6 +251,7 @@ Wir möchten das **Balkendiagramms** aus der letzten Woche in eine App übersetz
 </center>
 
 *Anmerkung: Solltet Ihr mal nicht weiterkommen, haben wir auch eine `app_loesung.R`-Datei für Euch vorbereitet.*
+
 
 #### Schritt 2: Der Server
 Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten. 
@@ -313,6 +312,7 @@ server <- function(input, output) {
 ```
 
 *Tipp: Genauso wie wir es hier gemacht haben, ist es oft leichter zunächst in einer `Rmd.-Datei` notwendige Packages zu laden, die Daten zu importieren, zu bereinigen und zu Tabellen, Diagrammen und anderen Formaten zu verarbeiten. Im Anschluss könnt Ihr den dort funktionierenden Code in eine Shiny Web App übertragen. Auch zur Fehlerbehebung ist dieses Vorgehen gut geeignet.**
+
 
 #### Schritt 3: Das UI (User Interface) 
 Damit steht der `server` der App in den Grundzügen und wir können uns dem (**G**raphical) **U**ser **I**nterface (also der UI, manchmal auch: GUI) der Shiny-App widmen. 
@@ -609,8 +609,8 @@ Das ist auch schon unsere 5. Aufgabe in der App - fügt den Code an der entsprec
     ##########################################################################
 ```
 
-#### 5. Verschönerung Eurer Shiny-App
 
+#### 5. Verschönerung Eurer Shiny-App
 Bis hierhin haben wir schon 80% der Shiny-App geschafft - herzlichen Glückwunsch! Sie läuft, zeigt uns zuverlässig über unseren vordefinierten Filter die Balken an, die wir sehen möchten und ist insgesamt auch schon recht professionell. Es wäre natürlich noch schön, wenn wir die Shiny-App noch ein bisschen weiter verschönern könnten. Dazu gibt es verschiedene Möglichkeiten und auch oft schon vordefinierte Packages, die Ihr einfach nutzen könnt.
 
 **Thema ändern**
@@ -672,8 +672,8 @@ ui <- fluidPage(
 
 Und jetzt lassen wir sie noch einmal final erstellen - markiert dazu wieder den ganzen Code in der `app.R`-Datei und lasst sie durchlaufen. Herzlichen Glückwünsch zu eurer ersten Shiny-App! Das sieht klasse aus!
 
-### Exkurs 1: Reaktives Programmieren - das Geheimnis einer Shiny-App
 
+### Exkurs 1: Reaktives Programmieren - das Geheimnis einer Shiny-App
 Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. Was ist genau der Algorithmus, der sie zum Laufen bringt? Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auch **reaktives Programmieren**. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/reactivity.png?raw=true){#id .class width=70% height=70%} 
@@ -698,6 +698,7 @@ quiz(caption = NULL,
   )
 )
 ```
+
 
 ### Exkurs 2: Hosten von ShinyApps
 RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io){target="_blank"}. Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/){target="_blank"} und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
@@ -748,6 +749,7 @@ quiz(caption = NULL,
   )
 )
 ```
+
 
 ### Und jetzt seid Ihr dran! (diese Woche optional)
 Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - Eurer Phantasie sind keine Grenzen gesetzt! Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
