@@ -20,8 +20,7 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
 
 Für weitere Infos zu Shiny-App, schaut Euch den [**Schummelzettel zu Shiny-Apps**](daten/cheat sheets/shiny_de.pdf){target="_blank"} an.
 
-Bevor es losgeht, noch ein paar kurze Fragen:
-
+### Interaktive Übung
 ```{r 11ui}
 quiz(caption = NULL,
   question("Was macht das UI (user interface) einer Shiny-App?",
@@ -54,12 +53,11 @@ quiz(caption = NULL,
 )
 ```
 
-
-### Was sind Shiny-Apps?
+#### Was sind Shiny-Apps?
 
 Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (auf Englisch "application", daher auch "Shiny-App") zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Gallerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
-### Wie funktioniert eine Shiny-App genau? 
+#### Wie funktioniert eine Shiny-App genau? 
 
 <left>
 ![*Shiny](https://d33wubrfki0l68.cloudfront.net/d08c35bfe1ba68584788f5cdcad703d0c9d8263f/7969a/wp-content/uploads/2014/04/shiny.png){#id .class width=20% height=100%}
@@ -231,14 +229,14 @@ Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir ein
 
 ![](){target="_blank"} **Add link to the app**
 
-Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App nach Kontinenten filtern und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige!
+Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern** und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige!
 
 ```{r quizz_ap}
 quiz(caption = NULL,
   question("Wie viele Freiwillige gibt es in Ozeanien (in %)?",
     answer("ca. 0%"),
     answer("ca. 20%"),
-    answer("ca. 0.007", correct = TRUE),
+    answer("ca. 0.007%", correct = TRUE),
     answer("ca. 2%"),
     answer("ca. 0.0001%"),
     correct = "Richtig!",
@@ -250,28 +248,32 @@ quiz(caption = NULL,
 ```
 
 
-Aber von Anfang an: Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen groben Plan zurechtlegen. Meine Erfahrung hat gezeigt, dass es am besten ist, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.
+*Tipp: Es ist am besten, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.*
 
-#### 1. Shiny-App planen
+#### Schritt 1: Shiny-App planen
 
-Im ersten Schritt, planen wir die Shiny-App. In unserem Fall sollte sie in etwa so aussehen:
+Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen **Plan** zurechtlegen. Hierbei ist es sehr hilfreich, die App grob zu skizzieren (gerne auch ganz klassisch auf Papier).
 
+Wir möchten das **Balkendiagramms** aus der letzten Woche in eine App übersetzen. In der linken Seitenleiste seht Ihr **Auswahlmöglichkeiten nach Kontinenten** - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden **Namen**, z.B. "Break Free From Plastic":
+
+<center>
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/sketch_app.png?raw=true){#id .class width=70% height=70%} 
+</center>
 
-Im Idealfall haben wir also die die Visualisierung des Balkendiagramms aus der letzten Woche in der Mitte. In der linken Seitenleiste seht Ihr Auswahlmöglichkeiten nach Kontinenten - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden Namen, z.B. "Break Free From Plastic".
+Da wir auf dieser Plattform keine Shiny-App direkt programmieren können, haben wir Euch hier die Code-Snippets zusammengestellt und erklären Euch die einzelnen Schritte. Um die Shiny-App während der Sitzung mitzubauen, haben wir Euch die Datei `app.R` vorbereitet. **Cosima: VERLINKEN - sollen wir auch gleich auf app_loesung als Fallback-Option hinweisen? (Nina: Ja)** Die Datei könnt Ihr Euch wie einen "Lückentext" vorstellen, an dem Ihr an den entsprechenden Stellen den Code einfügt und abschließend Eure Shiny-App lokal laufen lasst! 
 
-Nachdem wir unsere Shiny-App grob skizziert haben (ein Schritt, der wirklich hilfreich ist! Es hilft uns nicht nur unsere Idee zu visualisieren; es gibt uns auch eine "Bauanleitung", an der wir uns visuell orientieren und Lösungen suchen können!), bearbeiten wir das "Innere" der App: den **Server**, also den Ort, an dem die ganzen Berechnungen stattfinden, und die **UI**, also das Aussehen der Shiny-App.
+#### Schritt 2: Der Server
+Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten. 
 
-Da wir auf dieser Plattform keine Shiny-App direkt programmieren können, haben wir Euch hier die Code-Snippets zusammengestellt und erklären Euch die einzelnen Schritte. Um die Shiny-App während der Sitzung mitzubauen, haben wir Euch die Datei `app.R` vorbereitet. **Cosima: VERLINKEN - sollen wir auch gleich auf app_loesung als Fallback-Option hinweisen?** Die Datei könnt Ihr Euch wie einen "Lückentext" vorstellen, an dem Ihr an den entsprechenden Stellen den Code einfügt und abschließend Eure Shiny-App lokal laufen lasst! 
+1. `server <- function(input, output) {}` definiert eine **Funktion**, die `input` und `output`-Argumente annimmt. Der `ìnput` stellt das dar, was unsere **Nutzer:innen in der UI** bei den interaktiven Elementen der App **eingeben**. Der `output` definiert, was die **App zurückgeben** soll, also was die Nutzer:innen sehen sollen.
+2. Die Erzeugung des Outputformats erfolgt auch hier über eine **Renderfunktion**: `render...({})`. Dieser Funktionstyp erzeugt also überall im R-Unversum benötigte Outputs. Allerdings ist es wichtig, die **richtige Renderfunktion** für den gewünschten Output zu nutzen - es passt also nicht jede Renderfunktion zu jedem Output (dazu später mehr). Innerhalb der Renderfunktion wird dann der Output programmiert.
+3. Der Output, den die `render`-Funktion erzeugt, wird ein **Objektname** zugewiesen (`output$name <- render...({})`), auf den wir dann in der UI verweisen können.
 
-#### 2. Der Server
-
-Für den Server können wir unseren Code von oben in die `server.R`-Datei kopieren und entsprechend anpassen. Machen wir das doch einmal zusammen. Die Grundstruktur des Servers sieht so aus:
-
+<center>
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app4.png?raw=true){#id .class width=70% height=70%}
+</center>
 
-Angewandt auf unseren Code wäre das wiefolgt:
-
+Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `server.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf das Schummelblatt!) und benennen. In unserer App ergibt das:
 ```{r server_new_plot, exercise=TRUE}
 server <- function(input, output) {
 
@@ -279,16 +281,23 @@ server <- function(input, output) {
     output$balkendiagramm <- renderPlot({
       
     # Innerhalb von `renderPlot()` kreieren wir unseren ggplot2
-    # Ergänzt den Code unseres Balkendiagramms hier
       
       
     })
 }
 ```
 
-Der Server nimmt zwei Argumente: `input` und `output`. Wichtig ist hier, dass wir alle erzeugten Komponenten der Shiny-App an `output` anhängen, um darauf später in der `ui` darauf zugreifen zu können. Wenn wir zum Beispiel eine Visualisierung erzeugen, können wir es `output$balkendiagramm` nennen.
+Das Rendern erfolgt mit `renderPlot`, da wir einen Plot, also eine Visualisierung darstellen. Wenn Ihr allerdings einen Text oder eine Tabelle einfügen wollt, müsst Ihr entsprechend eine andere Funktion nehmen. Die Tabelle stellt Euch die wichtigsten Befehle gegenüber:
 
-Nehmt den Code von oben und ergänzt ihn an der angegebenen Stelle im Server. Da wir in dieser Umgebung keine Shiny-App programmieren können, nutzen wir dazu eine lokale R-Datei. Öffnet dafür die Datei `app.R`. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist. In der `app.R`-Datei sieht es so aus:
+| **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**                     |
+|-------------------------------------------------------------------|---------------------------------|
+| Einen Text(block)                                                 | `renderText({})`              |
+| Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  |
+| Eine Visualisierung                                               | `renderPlot({})`                |
+
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs). Insbesondere wenn Ihr **Shiny-Erweiterungen** nutzt, müsst Ihr innerhalb der Erweiterung nach der richtigen Renderfunktion suchen. Schließlich benennen wir unseren Output `output$balkendiagramm`. 
+
+Kopiert nun den Code des Balkendiagramms und ergänzt ihn in Eurer lokalen Datei `app.R`an der angegebenen Stelle im Server. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist:
 
 ```{r aufgabe_1, exercise=TRUE}
 server <- function(input, output) {
@@ -311,23 +320,42 @@ server <- function(input, output) {
 }
 ```
 
-Als kurze Anmerkung: Wir haben hier `renderPlot` genommen, da wir einen Plot, also eine Visualisierung vornehmen. Wenn Ihr allerdings einen Text oder eine Tabelle einfügen wollt, müsst Ihr entsprechend eine andere Funktion nehmen. Die Tabelle stellt Euch die wichtigsten Befehle gegenüber:
+*Tipp: Genauso wie wir es hier gemacht haben, ist es oft leichter zunächst in einer `Rmd.-Datei` notwendige Packages zu laden, die Daten zu importieren, zu bereinigen und zu Tabellen, Diagrammen und anderen Formaten zu verarbeiten. Im Anschluss könnt Ihr den dort funktionierenden Code in eine Shiny Web App übertragen. Auch zur Fehlerbehebung ist dieses Vorgehen gut geeignet.**
 
-| **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**                     |
-|-------------------------------------------------------------------|---------------------------------|
-| Einen Text(block)                                                 | `renderText({})`              |
-| Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  |
-| Eine Visualisierung                                               | `renderPlot({})`                |
+#### Schritt 3: Das UI (User Interface) 
+Damit steht der `server` der App in den Grundzügen und wir können uns dem (**G**raphical) **U**ser **I**nterface (also der UI, manchmal auch: GUI) der Shiny-App widmen. 
+ 
+Eine UI ist immer nach dem gleichen Prinzip aufgebaut: 
 
-Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs).
+- Die Funktion `fluidPage()` bettet das **gesamte Layout** ein und akzeptiert als Argumente die Elemente, die dargestellt werden sollen, Titel und Themes
+- Die Elemente werden in vorgegebene **Layoutformaten** eingefügt: `sidebarLayout()` teilt die App in eine Seitenleiste und einen Hauptbereich, bei `fluidRow()` seid Ihr völlig flexibel
+- Im Layout finden sich dann **verschiedene, angeordnete Panels** (zu dt. Felder). Für das `sidebarLayout()` sind das beispielsweise ein `sidebarPanel`, das die Elemente der Seitenleiste bündelt, und ein `mainPanel()`, das Hauptfeld, in dem in der Regel die Outputs angeordnet werden. Dieses kann auch aus mehreren Tabs (zu dt. Seiten) bestehen: `mainPanel(tabPanel(), tabPanel(),...)`
 
-#### 3. Das UI (User Interface) 
+<center>
+![*Bild: Skizzierung des Sidebaylayouts*](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9wkYS-4dRuL9jBo2u01LpaQVgQzGzqbYnKw&usqp=CAU)
+</center>
 
-Damit steht der `server` der App eigentlich schon und wir können uns dem **U**ser **I**nterface (also der UI) der Shiny-App widmen. Das machen wir auch im nächsten Schritt. Eine UI ist eigentlich immer nach dem gleichen Prinzip aufgebaut: Wir haben zunächst allgemeine Informationen wie das **Thema** oder den **Titel** der Shiny-App (dazu erfahrt Ihr später mehr). Dann wird die linke Seitenleiste der Shiny-App programmiert (in `sidebarLayout(sidebarPanel())`) und anschließend werden die Komponenten aus dem Server entsprechend im `mainPanel()` definiert. Das Ganze seht Ihr auch noch einmal an der Visualisierung aus dem Video:
+Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
+<center>
+![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
+</center>
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
+Die Grundstruktur dieses Layouts sieht so aus:
+```{r ui_exercise, exercise=TRUE, eval =FALSE}
+ui <- fluidPage(
+  
+  titlePanel(""), # Hier können wir den Titel festlegen
+   
+  # Definiert das Layout: Seitenleiste mit Hauptpanel
+  sidebarLayout(sidebarPanel( # Hier werden alle Elemente der Seitenleiste eingefügt
+  ),
+  
+  mainPanel( # Hier werden alle Elemente des Hauptpanels eingefügt
+  )
+)
+```
 
-Aber eins nach dem anderen. Fangen wir zuerst mit der linken Seitenleiste an. In der Datei `app.R` habt Ihr unter `# 2. Aufgabe` wieder eine detaillierte Anleitung, was Ihr machen müsst, um die App zu füllen. Es gibt wieder verschiedene Möglichkeiten, was Ihr als Auswahlmöglichkeiten wählt. Ihr könnt zum Beispiel "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzer Eurer Shiny-App eine Auswahl treffen zu lassen. 
+Nun füllen wir die **linke Seitenleiste** mit Elementen. Bei uns soll dort der Filter erscheinen. Nicht nur für die Applikation selbst auch für die Filter habt Ihr diverse Layoutoptionen. Ihr könnt zum Beispiel "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzer Eurer Shiny-App eine Auswahl treffen zu lassen. 
 
 Wenn Ihr Euch die Shiny-App noch einmal live anschaut, könnt Ihr sicher die folgende Frage beantworten:
 
@@ -346,9 +374,9 @@ quiz(caption = NULL,
 )
 ```
 
-Sehr gut! Dann lasst uns doch die Auswahlmöglichkeit in unsere Shiny-App einbauen. Die Tabelle gibt Euch eine kurze Übersicht, über die wichtigsten Befehls- und Auswahlmöglichkeiten:
+Die Tabelle gibt Euch eine kurze Übersicht, über die wichtigsten **Auswahlmöglichkeiten**:
 
-| Was möchtet Ihr dem Nutzer als Auswahlmöglichkeit geben? | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                    |
+| Layoutoption | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                    |
 |----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Einen kurzen Freitext                                    | `textInput("id", "Beschreibung")`                                                                                                                                                                               |
 | Einen langen Freitext                                    | `textAreaInput("id", "Beschreibung", rows = 3)` Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                      |
@@ -359,45 +387,12 @@ Sehr gut! Dann lasst uns doch die Auswahlmöglichkeit in unsere Shiny-App einbau
 
 Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#inputs){target="_blank"}.
 
-Wichtig ist, dass alle Auswahlmöglichkeiten nach einem ähnlichen Schema aufgebaut sind (die Komplexität variiert natürlich abhängig von der Auswahlmöglichkeit, die Ihr gewählt habt):
+Die Auswahlmöglichkeiten folgen einem Schema, das je nach Auswahl komplexer wird. Die Hauptargumente sind:
 
-```
-checkboxGroupInput(
+der interne Name des Filters ("id"), mit dem Ihr die Werte an den Server übergebt, der externe Name des Filters,
 
-      # Hier definiert Ihr eine "id" (das ist wichtig, um den `server` mit der 
-      # `ui`) später zu verbinden
-      "continentSelection", 
-                            
-      # hier wird die Beschreibung eingefügt
-      
-      "Wählt einen Kontinent aus", 
-      
-      # Der nächste Schritt ist wichtig - hier definieren wir, was der
-      # Nutzer auswählen kann. 
-      # Dieser Schritt variiert von Auswahlmöglichkeit zu Auswahlmöglichkeit.
-      # Die Logik ist, dass wir eine Liste (`list`) an Möglichkeiten in 
-      # `choiches` speichern. Wir möchten hier alle Kontinente auswählen. 
-      # Dazu müssen wir jeden Kontinent sein Anzeigeäquivalent (linke Seite) 
-      # und seine Bezeichnung im Datensatz (rechte Seite) geben
-
-      choices = list(
-                "Nord- und Südamerika" = "Americas",
-                "Afrika" = "Africa",
-                "Asien" = "Asia",
-                "Europa" = "Europe",
-                "Ozeanien" = "Oceania"
-      ),
-      
-      # Oft gibt es dann auch die Möglichkeit eine Vorauswahl zu treffen, die 
-      # der Nutzer immer angezeigt bekommt - hier nehemn wir `"Americas"` 
-      # (also den Namen im Datensatz) :-)
-
-      selected = "Americas"
-    )
-```
-
-- **`id`**: Wichtig ist, dass die `id` (hier `continentSelection`) nur einmal vergeben wird, damit wir es später im Server eindeutig zuordnen können.
-- **Beschreibung**: Hier seid Ihr absolut frei und könnt eine Beschreibung auswählen, die Euch für den Nutzer passend erscheint
+- **`inputId`**: Der **interne Name** des Filters, mit dem Ihr die Werte an den Server übergebt. Wichtig ist, dass Ihr jede `id` (hier `continentSelection`) nur einmal vergebt.
+- **label**: Der **externe Name** des Filters, mit dem Ihr
 - **Auswahlmöglichkeiten**: Unter `choices` definieren wir hier zum Beispiel eine Liste (`list`), die uns die einzelnen Kontinente im Datensatz auswählen lässt (wenn Ihr es noch einmal überprüfen möchtet, könnt Ihr Sie Euch mit `table(community$continent)` anzeigen lassen). Was sehr praktisch ist, ist hier die Möglichkeit der Benennung innerhalb der Shiny-App (also was der Nutzer in der Shiny-App sieht). Was wir hier zum Beispiel als Möglichkeit nutzen können, um deutschsprachige Labels zu vergeben!
 - **`selected`**: Im letzten Schritt können wir optional eine Standardauswahl für den Nutzer festlegen (wir wählen hier `Americas` (also den Namen, der für den Kontinent im Datensatz vergeben ist))
 
@@ -521,7 +516,7 @@ ui <- fluidPage(
 ```
 
 
-#### 4. Die Shiny-App zum Laufen bringen
+#### Schritt 4: Funktionalität testen & Server und UI verbinden
 
 Im letzten Schritt bringen wir in Eurer Shiny-App den `server` und die `ui` zusammen - erinnert Ihr Euch noch, wie das ging? 
 
