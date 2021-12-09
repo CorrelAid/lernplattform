@@ -643,7 +643,13 @@ library(shinythemes)
 
 Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Klickt Euch durch die Folien, um eine Idee zu bekommen, wir Eure Shiny-App aussehen könnte: 
 
-**TODO: add "flipbook" (doesn't work for shiny-app) or slide show with different themes**
+```{r flipbook_themes, out.width='100%', out.height='100%'}
+knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_shinythemes/dsee_slides_shinythemes#1")
+```
+
+Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt Ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_shinythemes/dsee_slides_shinythemes#1){target="_blank"}.
+
+Wenn Ihr mehr Inspirationen möchtet, schaut einfach [hier](https://rstudio.github.io/shinythemes/){target="_blank"} vorbei.
 
 Wählt jetzt ein Thema aus, das Euch gefällt und ergänzt es in Aufgabe 6 (`# 6.Aufgabe` in der `app.R`-Datei):
 
