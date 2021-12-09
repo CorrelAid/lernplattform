@@ -346,7 +346,7 @@ gradethis::grade_this_code()
 ```
 
 6. Im letzten Schritt geben wir der Visualisierung noch kurz einen **Titel und Untertitel**. Bezeichnet hier die Abbildung mit `labs`. Wenn Ihr nicht genau wisst, wie das funktioniert, sucht Inspiration im [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}. Der Titel ("Prozentuale Verteilung der Freiwilligen") wird mit `title` definiert, der Untertitel ("pro Kontinent") mit `subtitle`. <br>
-*Hinweis: Wir könnten auch die Achsen beschriften. Das funktionier über `xlab` bzw. `ylab`.*
+*Hinweis: Wir könnten auch die Achsen beschriften. Das funktioniert über `xlab` bzw. `ylab`.*
 
 ```{r data_cleaning6, exercise=TRUE}
 community %>%
@@ -375,7 +375,7 @@ community %>%
   # Bezeichnung des Titels und des Untertitels
   labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) 
 ```
 
@@ -410,7 +410,7 @@ community %>%
   geom_col(fill = "#D2B83E") +
   labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil")
@@ -429,7 +429,7 @@ community %>%
   geom_col(fill = "#D2B83E") +
   labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil")
@@ -448,7 +448,7 @@ community %>%
   geom_col(fill = "violetred4") +
   labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil")
@@ -475,7 +475,7 @@ community %>%
   geom_col() +
     labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil")
@@ -494,7 +494,7 @@ community %>%
   geom_col() +
     labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil")
@@ -535,7 +535,7 @@ community %>%
   geom_col() +
     labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil") +
@@ -598,7 +598,7 @@ community %>%
   geom_col() +
     labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil") +
@@ -618,7 +618,7 @@ community %>%
   geom_col() +
     labs(
     title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
+    subtitle = "pro Kontinent"
   ) +
   xlab("Kontinent") +
   ylab("Prozentualer Anteil") +

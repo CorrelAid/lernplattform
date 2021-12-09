@@ -2,9 +2,7 @@ Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleic
 
 Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funktioniert.
 
-![](VIDEO) (ca. 15-20 Minuten) 
-*Notiz an mich: Slide mit Beispielen von Shiny-Apps bringen; kurz Server und UI erklären und erklären, wie sie zusammenhängen*
-*ich erkläre es im Text unten nochmal, da es ein so wichtiger und zentraler Bestandteil einer Shiny-App ist*
+![*Video: Interaktive Visualisierungen in RShiny (10min)*](https://youtu.be/nAX2Ss3Nsk8) 
 
 ### Kernaussagen 
 - **Shiny-Apps** sind Webapplikationen
@@ -75,7 +73,7 @@ In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und ein
 
 <right>![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100%}</right>
 
-Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet. Wenn Ihr die Shiny-App in Aktion sehen wollt, könnt Ihr sie euch [**hier**](https://cosima-meyer.shinyapps.io/example_app/){target="_blank"} ansehen.
+Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet. Wenn Ihr die Shiny-App in Aktion sehen wollt, könnt Ihr sie Euch [**hier**](https://cosima-meyer.shinyapps.io/example_app/){target="_blank"} ansehen.
 
 Die `server` Datei dafür kann so aussehen:
 
@@ -676,14 +674,13 @@ Und jetzt lassen wir sie noch einmal final erstellen - markiert dazu wieder den 
 ### Exkurs 1: Reaktives Programmieren - das Geheimnis einer Shiny-App
 Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. Was ist genau der Algorithmus, der sie zum Laufen bringt? Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auch **reaktives Programmieren**. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
 
+![*Video: Reaktivität in Web Applikationen (5min)*](https://youtu.be/g8wDaNY-o9U)
+
+Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer **Brieftaube** vorstellen. Dieses schöne Bild stammt von [*Garrett Grolemund*](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.
+
+<center>
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/reactivity.png?raw=true){#id .class width=70% height=70%} 
-
-(ca. 10 Minuten)
-
-*Video zur Reaktivität mit Brieftaube*
-
-**In Kürze**: Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer Brieftaube vorstellen. Dieses schöne Bild stammt von Garrett Grolemund, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.[^1] 
-
+</center>
 
 ```{r reactivity_quiz}
 quiz(caption = NULL,
@@ -797,5 +794,3 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
 - Optimieren von ShinyApps
   - [Make your Shiny-App faster (auf Englisch) (auf Englisch)](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
   - [shiny.worker](https://www.r-bloggers.com/shiny-worker-speed-up-r-shiny-apps-by-offloading-heavy-calculations/){target="_blank"}
-  
-[^1]: ["Reactivity creates the illusion that changes in input values automatically flow to the plots, text, and tables that use the input—and cause them to update." (Garrett Grolemund)](https://shiny.rstudio.com/articles/understanding-reactivity.html)
