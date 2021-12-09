@@ -11,7 +11,7 @@ library(shinythemes)
 
 # Wir laden dann wieder die Daten
 community <-
-  read.csv(file = "uebungen/shiny/daten/community_perspective.csv")
+  read.csv(file = here::here("daten/community_perspective.csv"))
 
 
 # Server ------------------------------------------------------------------
@@ -117,7 +117,7 @@ ui <- fluidPage(
     )
     ##########################################################################
     
-  ),
+  )),
   
   ##########################################################################
   # 3. Aufgabe:
