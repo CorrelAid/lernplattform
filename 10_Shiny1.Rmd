@@ -1,3 +1,5 @@
+## Datenvisualisierung
+
 Diese Sitzung soll Euch noch mehr Einblicke in die Visualisierungen von Daten geben - denn was sind die schönsten Daten, wenn man damit keine Informationen vermitteln kann?
 
 Im Video geben wir Euch Hintergrundwissen zu Datenvisualisierungen und zeigen Euch verschiedene Visualisierungstypen, die Ihr in R erstellen könnt.
