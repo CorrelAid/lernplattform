@@ -1,0 +1,236 @@
+---
+title: "Report Fabrik"
+editor_options: 
+  chunk_output_type: console
+params:
+  set_date: !r lubridate::today()
+  set_report_name: "Plastik-Report"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(
+  glue,
+  here,
+  lubridate,
+  rmarkdown,
+  tidyverse
+  )
+```
+
+# Willkommen in der Report Fabrik
+
+Im Folgenden nutzen wir den bisher erstellten Report aus der letzen Woche. In dieser Übung geht es darum, diesen Report auf verschiedene Weise zu generieren ohne dabei den Knit-Button per Hand zu drücken. Damit erreichen wir, dass wir bestimmte Verhaltensweisen durch sogenannte Parameter automatisiert verändern können, ohne im Dokument selbst etwas ändern zu müssen. Denn dafür haben wir die Parameter als Platzhalter dienen.
+
+Let's go!
+
+
+# Schritt 1 Einen Report erstellen
+
+# Schritt 1: rmarkdown::render() Funktion
+
+Rendert ein .Rmd Eurer Wahl mit der `rmarkdown::render()` Funktion, anstatt des 🧶 Knit-Buttons. Ihr könnt den Code dafür in diesem Dokument sammeln. Hier ist sozusagen Eure Report-Factory, in der ihr den Code schreibt, der dann die Reports generiert. 
+
+*\*Anmerkung: Falls Ihr die render Funktion nachschlagen möchtet, könnt Ihr den Namen der Funktion entweder im Help-Abschnitt von R-Studio eingeben oder die Funktion im Script highlighten und dann F1 drücken. Ein weiterer Weg ist es, `?render` in der Console auszuführen*
+
+```{r}
+# hier dein Code um einen Report mit rmarkdown::render() zu generieren
+rmarkdown::render(input = "09_Report_Plastic.Rmd")
+```
+
+## Schritt 2:  Output Datei umbenennen
+
+Probiert Euch nun an dem `output_file` argument der rmarkdown::render Funktion:  
+- setzt dort den Namen fest, den Eurer Report später haben soll  
+```{r}
+rmarkdown::render(
+  input = "09_Report_Plastic.Rmd",
+  output_file = "2021-11-26_Plastik-Report"
+  )
+```
+
+# Schritt 3: Input vom Code trennen
+
+Automatisiert die Erstellung des Output Namens Eures Reports mit Hilfe der `glue::glue()` Funktion. Überlegt Euch welche Teile des Report-Namens sich eventuell oft ändern können (zum Beispiel das Datum). 
+
+Passt den untenstehenden Code eventuell an, damit er mit Euren Reports funktioniert.
+
+## 3.1 Input definieren
+```{r define-input}
+set_rmd_name <- "09_Report_Plastic.Rmd"
+
+# Einzelteile des Report Namens
+set_date <- lubridate::today()
+set_report_name <- "Plastik-Report"
+```
+
+## 3.2 Dokumentnamen bauen
+```{r build-document-name}
+output_file_name <- glue::glue("{set_date}_{set_report_name}")
+```
+
+alternativ können die Inputs auf in den Parametern definiert werden. Dann kann auf den define-input code chunk verzichtet werden.  
+```{r build-document-name-params}
+output_file_name <- glue::glue("{params$set_date}_{params$set_report_name}")
+```
+
+## 3.3 Report mit Namen erstellen 
+Generiere nun einen Report mit automatisierter Benennung, den du in der Input-Abschnitt der Report-Factory festgelegt hast:
+```{r render-one}
+rmarkdown::render(
+  input = here::here(set_rmd_name),
+  output_file = output_file_name
+  )
+```
+
+# Schritt 4: YAML Optionen ändern 
+Nun geht es weiter mit dem `output_format` argument. Könnt ihr den untenstehenden Code so anpassen, dass ein PDF Dokument anstatt einer Website generiert wird?  
+
+*\*Anmerkung: Falls Ihr die render Funktion nachschlagen möchtet, könnt Ihr den Namen der Funktion entweder im Help-Abschnitt von R-Studio eingeben oder die Funktion im Script highlighten und dann F1 drücken. Ein weiterer Weg ist es, `?render` in der Console auszuführen*
+
+```{r}
+rmarkdown::render(
+  input = set_rmd_name,
+  output_file = output_file_name,
+  output_format = "pdf_document"
+)
+```
+
+Was passiert wenn du das Argument `output_dir` verwendest? Schaue im Hilfe-Abschnitt der render Funktion nach diesem Argument und probiere es dann mit dem untenstehenden Code Block selbst aus. Was spassiert, wenn ihr das `output_dir` Argument etwas ändert?
+
+> der generierte Report wird jetzt nicht mehr im Haupt-Ordner des R-Projektes erstellt, sondern in einem von uns durch die `output_dir` definierten Ordner. In diesem Falle heißt der Ordner `output`.
+
+```{r}
+rmarkdown::render(
+  input = set_rmd_name,
+  output_file = output_file_name,
+  output_dir = "output",           # diese Zeile ist neu!
+  output_format = "html_document"
+)
+```
+
+# Schritt 5: Parameter kennenlernen
+Schaut in den Beispiel Report `09_Report-Plastic.Rmd` und finde die Stelle, an der die Parameter definiert werden. 
+
+
+> Die Stelle ist ganz oben im Skript zu finden.  
+
+Welche Parameter könnt Ihr dort entdecken? 
+
+*\*Anmerkung: Erinnert Euch, Parameter bestehen immer aus Key: Value Paaren - übersetzt Schlüssel: Wert Paaren. Dabei steht der Schlüssel vor dem Doppelpunkt und der Wert folgt danach.*
+
+> Dort finden wir die Parameter: `highlight_continent` und `include_code`
+
+# Schritt 6: Parameter nutzen
+
+Führt die Folgenden beiden Code Blöcke aus und vergleicht die erstellten Reports.
+
+- Könnt ihr die Stelle im Code in diesem Dokument finden, die zu dem Unterschied geführt hat? 
+
+> Einmal ist der Parameter `include_code` als TRUE definiert und einmal FALSE. Dadurch ändert sich die Art und Weise wie der Report gerendert wird. EInmal wird der Code abgedruckt und einmal nicht. 
+
+- Findet ihr auch die Stelle im R Markdown Dokument, der zu dem Ergebnis beigetragen hat?
+
+> im R-Markdown Dokument wird der Parameter den wir verändert haben in Zeile 16 im YAML Abschnitt definiert und dann in Zeile 24 im setup Code-Chunk eingesetzt. 
+Der Parameter dient dort als Platzhalter, um die Option `echo` entweder auf TRUE oder FALSE zu setzen. Das hat dann eine Auswirkung darauf, ob der Code im fertigen Report mit ausgegeben wird (echo = TRUE) oder nicht (echo = FALSE)
+
+```{r example-no-code}
+rmarkdown::render(
+  input = here::here("09_Report_Plastic.Rmd"),
+  output_file = "Übungsreport-Europe-kein_Code",
+  output_format = "html_document",
+  params = list(highlight_continent = "Europe",
+                include_code = FALSE)
+  )
+```
+
+```{r example-with-code}
+rmarkdown::render(
+  input = here::here("09_Report_Plastic.Rmd"),
+  output_file = "Übungsreport-Europe-mit_Code",
+  output_format = "html_document",
+  params = list(highlight_continent = "Europe",
+                include_code = TRUE)
+  )
+```
+
+
+# Schritt 6: Parameter recyclen
+
+Nun ist es soweit, wir wollen Reports erstellen die jeweils einen anderen Kontinent hervorheben. Führe dafür die folgenden Code Blöcke aus
+
+1. Kontinente extrahieren
+```{r}
+continent_names <- plastics_prep %>% 
+  dplyr::distinct(continent) %>% 
+  dplyr::pull(continent)
+```
+
+An den Kontinenten in `continent_names` "laufen" wir entlang und übergeben den Kontinentnamen an unsere render Funktion (siehe .x). Noch genauer übergeben wir sie an die Stelle in der render Funktion an der die Parameter für das R Markdown Dokument festgelegt werden können.
+```{r}
+purrr::walk(
+  .x = continent_names,
+  .f = ~ rmarkdown::render(
+    input = here::here(set_rmd_name),
+    output_file = glue::glue("{set_date}_{set_report_name}_hl-{.x}"),
+    output_format = "pdf_document",
+    params = list(highlight_continent = .x) # hier wird der Kontinentname übergeben
+  )
+)
+```
+
+Probiere mit dem gleichen Prinzip, zwei Reportsversionen für das Anzeigen von Code zu generieren, dass durch den Parameter `include_code` gesteuert wird. Schreibe also Code der an den verschiedenen Optionen für den Parameter `include_code` entlang "laufen" wird.
+
+```{r}
+# hier wird ein Objekt der die verschiedenen Optionen enthällt erstellt
+code_option_names <- c(TRUE, FALSE)
+```
+
+```{r}
+purrr::walk(
+  .x = code_option_names,
+  .f = ~ rmarkdown::render(
+    input = here::here(set_rmd_name),
+    output_file = glue::glue("{set_date}_{set_report_name}_code-{.x}"),
+    output_format = "pdf_document",
+    params = list(include_code = .x) # hier werden die beiden Optionen übergeben
+  )
+)
+```
+
+## Extra Factory Fun
+
+Was, wenn wir Reports für alle Varianten von Kontinent-Highlights und jeweils mit und ohne Code erstellen wollen? Auch das geht:
+
+zuerst erstellen wir einen Vektor der alle Kombinationen aus unseren beiden Options-Listen enthält (einmal Kontinente und TRUE/FALSE)
+
+```{r}
+option_combinations <- tidyr::expand_grid(
+  continent_option = continent_names,
+  code_option = code_option_names
+)
+
+option_combinations
+```
+
+Das ist quasi die Anleitung für unsere factory, welche Reports mit welchen Optionen generiert werden sollen. An dieser Anleitung "läuft" unser code wieder entlang, siehe die walk-Funktion:
+
+Diesmal nutzen wir allerdings `pwalk`. Mit dieser Funktion können wir mehrere Argumente gleichzeitig übergeben. Diese Argumente haben wir in unserem Objekt `option_combinations` vorbereitet. 
+
+Wo welche Option eingesetzt wird bestimmen wir mit `.x` und `.y`. Dabei steht `.x` in unserem Fall für `continent_option` und `.y` für `code_option`
+
+```{r}
+purrr::pwalk(
+  .l = option_combinations,
+  .f = ~ rmarkdown::render(
+    input = here::here(set_rmd_name),
+    output_file = glue::glue("{set_date}_{set_report_name}_hl-{.x}_code-{.y}"),
+    output_format = "html_document",
+    params = list(
+      highlight_continent = .x, # hier wird der Kontinentname übergeben
+      include_code = .y) # hier werden die beiden Optionen übergeben
+  )
+)
+```
+
