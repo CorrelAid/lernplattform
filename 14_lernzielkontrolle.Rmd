@@ -1,8 +1,9 @@
 ## Lernzielkontrolle
 
-Hier kannst Du deinen **Wissensstand überprüfen**. Für die Bearbeitung solltest Du 1,5 Stunden Zeit (**90min**) einplanen. Viel Glück!
+Hier kannst Du deinen **Wissensstand überprüfen**. Für die Bearbeitung solltest Du zwei Stunden Zeit (**120min**) einplanen. Viel Glück!
 
-### Theoretischer Teil (40 Fragen - 45min Zeit)
+
+### Theoretischer Teil (40 Fragen - 60min Zeit)
 In diesem Teil fragen wir Euer theoretisches Wissen ab. Ein Großteil der Fragen setzt sich aus den Quiz der Lektionen in den vergangenen Wochen zusammen. Dort könnt Ihr auch nochmal nachlesen, wenn Ihr nicht verstanden habt, warum Eure Antwort nicht richtig war.
 ```{r quiz_lernzielkontrolle}
 quiz(caption = NULL,
@@ -421,7 +422,7 @@ question("Was macht das UI (user interface) einer Shiny-App?",
 ```
 
 
-### Praktischer Teil
+### Praktischer Teil (10 Aufgaben - 60min Zeit)
 
 #### Schritt 1: Packages installieren und laden
 Installiert hier das Package "tidyverse".
@@ -467,37 +468,158 @@ plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidyt
 grade_this_code()
 ```
 
+Wie viele Zeilen und Variablen sind im Datensatz enthalten? Lasst es Euch im Codeeditor ausgeben.
+
+```{r quiz_lskpraxis, echo=FALSE}
+quiz(caption = NULL,
+     
+  question("Wie viele Variablen sind im Datensatz enthalten?",
+    answer("16.643 Zeilen und 8 Variablen"),
+    answer("13.380 Zeilen und 14 Variablen", correct = TRUE),
+    answer("14 Zeilen und 13.380 Variablen"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Mit ncol(), nrow() und dim() könnt Ihr Euch die richtigen Werte anzeigen lassen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+```{r exercise_explore, exercise = TRUE}
+# Euer Code hier
+```
+
 #### Schritt 3: Daten bereinigen
-Filtert
-```{r exercise_class, exercise = TRUE}
+Filtert aus dem `plastics`-Datensatz Zeilen heraus, wo statt dem Land "EMPTY" steht.
+```{r exercise_filter, exercise = TRUE}
 # Euer Code hier
 ```
 
-```{r exercise_class-solution}
+```{r exercise_filter-solution}
 # Datenformate überprüfen wir mit "class()"
-class(plastics)
+plastics %>%
+  dplyr::filter(country != "EMPTY")
 ```
-
-```{r exercise_class-check}
+```{r exercise_filter-check}
 grade_this_code()
 ```
 
-```{r exercise_class, exercise = TRUE}
+Ersetzt mit der `mutate`-Funktion alle Herstellernamen, sodass nur der erste Buchstabe groß geschrieben wird.
+*Tipp: Schaut Euch die Funktion `stringr::str_to_title` an.*
+```{r exercise_capitalize, exercise = TRUE}
 # Euer Code hier
 ```
 
-```{r exercise_class-solution}
-# Datenformate überprüfen wir mit "class()"
-class(plastics)
+```{r exercise_capitalize-solution}
+# Hersteller mit großem Anfangsbuchstaben
+plastics %>% 
+  dplyr::mutate(parent_company = stringr::str_to_title(parent_company))
 ```
-
-```{r exercise_class-check}
+```{r exercise_capitalize-check}
 grade_this_code()
 ```
 
-Datentyp
-Datenimport
-Dplyr
-Datenviz
-Funktionen fpr b
 
+#### Schritt 4: Daten explorieren
+Gebt hier die Anzahl an Events aus, die pro Land pro Jahr veranstaltet wurden.
+*Tipp: Der Datensatz ist sehr messy. Die Events und Volunteers stehen in jeder Zeile (und sind damit Duplikate). Ihr müsst dazu also erstmal die Spalte Land, Jahr und Events auswählen und einzigartige Einträge mit der Funktion `unique()` herausfiltern.*
+```{r exercise_events, exercise = TRUE}
+# Euer Code hier
+```
+
+```{r exercise_events-solution}
+# Filtern der einzigartigen Werte für Events
+plastics %>%
+  select(country, year, num_events) %>%
+  unique()
+```
+```{r exercise_events-check}
+grade_this_code()
+```
+
+Ergänzt Euren Code von oben und berechnet mit den Funktionen `group_by()` und `summarise()`, wie viele Events pro Land in 2019 und 2020 insgesamt veranstaltet wurden.
+```{r exercise_groupby, exercise = TRUE}
+# Filtern der einzigartigen Werte für Events
+plastics %>%
+  select(country, year, num_events) %>%
+  unique() %>%
+# Euer Code hier
+```
+
+```{r exercise_groupby-solution}
+# Filtern der einzigartigen Werte für Events
+plastics %>%
+  select(country, year, num_events) %>%
+  unique() %>%
+# Gruppierung Berechnung des Mittelwerts
+  group_by(country) %>%
+  summarise(anzahl_events = sum(num_events))
+```
+
+```{r exercise_groupby-check}
+grade_this_code()
+```
+
+Visualisiert die Anzahl an Events pro Land in einem einfachen Boxplot.
+```{r exercise_ggplot, exercise = TRUE}
+# Filtern der einzigartigen Werte für Events
+plastics %>%
+  select(country, year, num_events) %>%
+  unique() %>%
+# Gruppierung Berechnung des Mittelwerts
+  group_by(country) %>%
+  summarise(anzahl_events = sum(num_events)) %>%
+# Euer Code hier
+```
+
+```{r exercise_ggplot-solution}
+# Filtern der einzigartigen Werte für Events
+plastics %>%
+  select(country, year, num_events) %>%
+  unique() %>%
+# Gruppierung Berechnung des Mittelwerts
+  group_by(country) %>%
+  summarise(anzahl_events = sum(num_events)) %>%
+# Erstellung des ggplots
+  ggplot(aes(anzahl_events)) +
+  geom_boxplot()
+```
+
+```{r exercise_ggplot-check}
+grade_this_code()
+```
+
+Nutzt nun `theme_economist()` um den Plot optisch aufzuwerten.
+
+```{r exercise_theme, exercise = TRUE}
+# Filtern der einzigartigen Werte für Events
+plastics %>%
+  select(country, year, num_events) %>%
+  unique() %>%
+# Gruppierung Berechnung des Mittelwerts
+  group_by(country) %>%
+  summarise(anzahl_events = sum(num_events)) %>%
+# Erstellung des ggplots
+  ggplot(aes(anzahl_events)) +
+  geom_boxplot() +
+# Euer Code hier
+```
+
+```{r exercise_theme-solution}
+# Filtern der einzigartigen Werte für Events
+plastics %>%
+  select(country, year, num_events) %>%
+  unique() %>%
+# Gruppierung Berechnung des Mittelwerts
+  group_by(country) %>%
+  summarise(anzahl_events = sum(num_events)) %>%
+# Erstellung des ggplots
+  ggplot(aes(anzahl_events)) +
+  geom_boxplot() +
+# Theme
+  theme_economist()
+```
+
+```{r exercise_theme-check}
+grade_this_code()
+```

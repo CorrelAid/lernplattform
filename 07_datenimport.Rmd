@@ -43,6 +43,7 @@ Textdatei     | allgemeine Textdateien                                          
 "
 cat(tabelle)
 ```
+
 ### Quiz
 ```{r quiz_datenimport, echo=FALSE}
 quiz(caption = NULL,
