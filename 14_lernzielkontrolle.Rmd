@@ -348,10 +348,10 @@ question("Welche Faktoren spielen bei der Entscheidung für einen Visualisierung
   ),
 
   question("Der Mehrwert von R Markdowns liegt in...",
-    answer("der leichten Anpassungsfähigkeit ihrer Designs.", correct = TRUE),
+    answer("der leichten Anpassungsfähigkeit ihrer Designs."),
      answer("ihrer Reproduzierbarkeit.", correct = TRUE),
-     answer("ihrem niedrigschwelligen User Interface für nicht so tech-affine Nutzer:innen.", correct = TRUE),
-     correct = "Richtig! Glücklicherweise gibt es tolle Layouttemplates und die Möglichkeit der interaktiven Parametrisierung, die es uns vereinfachen, Reports anschaulich und nutzerinnenfreundlich zu gestalten.",
+     answer("ihrem niedrigschwelligen User Interface für nicht so tech-affine Nutzer:innen."),
+     correct = "Richtig! Glücklicherweise gibt es tolle Layouttemplates und die Möglichkeit der interaktiven Parametrisierung durch GUIs, die es uns vereinfachen, Reports anschaulich und nutzerinnenfreundlich zu gestalten.",
      incorrect = "Leider falsch: Das Layout von R Markdowns muss oft in HTML und CSS codiert werden. Deshalb nutzen wir in der Regel Templates. Teilen wir außerdem R Markdowns direkt (also nicht das Outputformat) ist auch die Nutzung in RStudio gar nicht so leicht - wie Ihr ja bereits wisst. Da müssen wir also Zeit in das Set-up und die gute Erklärung des Tools stecken.",
      allow_retry = TRUE,
      try_again_button = "Nochmal versuchen"
@@ -376,6 +376,7 @@ question("Welche Faktoren spielen bei der Entscheidung für einen Visualisierung
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
+
   question("Wie können Parameter gesetzt und übergeben werden?",
     answer("Über den YAML-Header, optional: Mit GUI", correct = TRUE),
     answer("In einer beliebigen Stelle im Code"),
@@ -435,7 +436,7 @@ Installiert hier das Package "tidyverse".
 install.packages("tidyverse")
 ```
 
-```{r exercise_class-check}
+```{r exercise_install-check}
 grade_this_code()
 ```
 
@@ -504,7 +505,7 @@ plastics %>%
 grade_this_code()
 ```
 
-Ersetzt mit der `mutate`-Funktion alle Herstellernamen, sodass nur der erste Buchstabe groß geschrieben wird.
+Ersetzt mit der `mutate`-Funktion alle Herstellernamen, sodass der erste Buchstabe jeden Wortes groß geschrieben wird (z.B. The Coca Cola Company).
 *Tipp: Schaut Euch die Funktion `stringr::str_to_title` an.*
 ```{r exercise_capitalize, exercise = TRUE}
 # Euer Code hier
@@ -522,7 +523,7 @@ grade_this_code()
 
 #### Schritt 4: Daten explorieren
 Gebt hier die Anzahl an Events aus, die pro Land pro Jahr veranstaltet wurden.
-*Tipp: Der Datensatz ist sehr messy. Die Events und Volunteers stehen in jeder Zeile (und sind damit Duplikate). Ihr müsst dazu also erstmal die Spalte Land, Jahr und Events auswählen und einzigartige Einträge mit der Funktion `unique()` herausfiltern.*
+*Tipp: Der Datensatz ist sehr messy. Die Events und Volunteers stehen in jeder Zeile (und sind damit Duplikate). Schaut Euch mal an, ob die Funktion `dplyr::distics()` zu der Herausforderung passt.*
 ```{r exercise_events, exercise = TRUE}
 # Euer Code hier
 ```
@@ -530,8 +531,7 @@ Gebt hier die Anzahl an Events aus, die pro Land pro Jahr veranstaltet wurden.
 ```{r exercise_events-solution}
 # Filtern der einzigartigen Werte für Events
 plastics %>%
-  select(country, year, num_events) %>%
-  unique()
+ dplyr::distinct(country, year, num_events)
 ```
 ```{r exercise_events-check}
 grade_this_code()
