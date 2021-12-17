@@ -245,33 +245,33 @@ cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("02_datenprojekte.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("02_datenprojekte.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("03_datenstrategie.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("03_datenstrategie.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("04_datenschutz.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("04_datenschutz.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("05_rstudio.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("05_rstudio.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("06_ersteanalyseninr.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("06_ersteanalyseninr.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("07_datenimport.Rmd", quiet = TRUE) 
-cat(out, sep = '')
+#out <- knitr::knit_child("07_datenimport.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
@@ -285,41 +285,41 @@ cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("08_datenbereinigung.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("08_datenbereinigung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("09_datenvisualisierung.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("09_datenvisualisierung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 ```{r results='asis'}
-out <- knitr::knit_child("99_glossar.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("99_glossar.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```

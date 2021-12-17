@@ -434,6 +434,7 @@ question("Was macht das UI (user interface) einer Shiny-App?",
 
 #### Schritt 1: Packages installieren und laden
 Installiert hier das Package "tidyverse".
+*Hinweis: Sobald da "Gut gemacht!" steht, ist Euer Code richtig, die Error-Message könnt Ihr ignorieren. Sie resultiert aus dem Set-up der Lernplattform.*
 ```{r exercise_install, exercise = TRUE}
 # Euer Code hier
 ```
