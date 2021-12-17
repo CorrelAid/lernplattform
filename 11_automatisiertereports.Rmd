@@ -26,7 +26,7 @@ params:
 - Innerhalb des R Markdowns kann auf die selbst benannten Parameter über `params$parameter_name` **zugegriffen** werden
 - Möglich ist die Festlegung von Parametern von den folgenden **Typen**: `character` (Text), `integer` (ganze Zahl), `numeric` (Zahl), `logical` (logischer Ausdruck) und Ausdrücke in R
 
-### Interaktive Übung
+### Quiz
 ```{r 09quiz_reportauto}
 quiz(caption = NULL,
   question("R Markdowns sind reproduzierbar. Das hat den Vorteil, dass...",
@@ -67,6 +67,8 @@ quiz(caption = NULL,
   )
 )
 ```
+
+### Interaktive Übung
 
 #### Schritt 0: Set-up  
 Zunächst ist es wichtig, die richtige Infrastruktur für Eure Reports zu schaffen. Eine Reportautomatisierung besteht aus:

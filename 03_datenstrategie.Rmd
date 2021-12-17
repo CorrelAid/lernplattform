@@ -151,6 +151,6 @@ Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. 
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Data Use Case (30min*)](https://app.mural.co/template/30ab410c-eb5a-4e49-925d-5b7aab7df3f9/da36b450-75bc-4c75-ab5f-158171ca5cc3){target="_blank"}
+[*Template: Data Use Case (30min*)](https://app.mural.co/invitation/room/1639476138454?code=eb8798d4aa4e4b76ad1246b05b89945a&sender=ninah9635){target="_blank"}
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.

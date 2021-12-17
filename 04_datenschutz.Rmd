@@ -103,8 +103,7 @@ Letztere das Bayrische Hochschulgesetz (BayHSchG). Grundsätzlich ermitteln wir 
     try_again_button = "Nochmal versuchen"
     ),
 
-  question("Welche zwei Prinzipien gelten bei der Anwendung von
-Datenschutzrichtlinien mit demselben Schutzbereich?",
+  question("Welche zwei Prinzipien gelten bei der Anwendung von Datenschutzrichtlinien mit demselben Schutzbereich?",
     answer("Offenkundigkeitsprinzip, Traditionsprinzip"),
     answer("Grundrechtsprinzip, Traditionsprinzip"),
     answer("Subsidiaritätsprinzip, Normenhierarchie", correct = TRUE),

@@ -19,7 +19,7 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
 
 Für weitere Infos zu Shiny-App, schaut Euch den [**Schummelzettel zu Shiny-Apps**](daten/cheat sheets/shiny_de.pdf){target="_blank"} an.
 
-### Interaktive Übung
+### Quiz
 ```{r 11ui}
 quiz(caption = NULL,
   question("Was macht das UI (user interface) einer Shiny-App?",
@@ -32,13 +32,9 @@ quiz(caption = NULL,
     incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-  )
-)
-```
-
-```{r 11server}
-quiz(caption = NULL,
-  question("Wofür ist der Server in einer Shiny-App??",
+  ), 
+  
+  question("Wofür ist der Server in einer Shiny-App zuständig?",
     answer("Der Server ist in der Shiny-App für das Deployen zuständig."),
     answer("Der Server legt fest, wo welche Komponente der Shiny-App dargestellt wird"),
     answer("Im Server wird der Code (z.B. zur Visualisierung) abgelegt.", correct = TRUE),
@@ -52,7 +48,7 @@ quiz(caption = NULL,
 )
 ```
 
-#### Was sind Shiny-Apps?
+### Interaktive Übung
 Wie Ihr im Video gesehen habt, sind Eurer Phantasie sind keine Grenzen gesetzt! Man kann Shiny-App zur Visualisierung, als Suchmaschine oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (*engl. application, daher auch Shiny-App*) zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Galerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
 

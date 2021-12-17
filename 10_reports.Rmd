@@ -33,8 +33,7 @@ output:
 
 -   Daneben gibt es auch noch diesen [**Schummelzettel (dt.)**](https://correlaid.org/material/Schummelblatt_rmarkdown.pdf){target="_blank"}, diesen [**Schummelzettel (engl.)**](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf){target="_blank"} und dieses tolle [**Nachschlagewerk (engl.)**](https://correlaid.org/material/RMarkdownGuideline.pdf){target="_blank"}
 
-### Interaktive Übung
-
+### Quiz
 ```{r 08quiz_reports_allg}
 quiz(caption = NULL,
   question("Welche diese Beschreibungen treffen zu? R Markdown ist... ",
@@ -58,6 +57,8 @@ quiz(caption = NULL,
   )
 )
 ```
+
+### Interaktive Übung
 
 #### 1. Markdown (Inhalt)
 

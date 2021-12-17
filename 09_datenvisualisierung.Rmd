@@ -187,13 +187,13 @@ Was Ihr seht, sind jetzt allerdings absolute Zahlen auf der y-Achse. Was müssen
 
 ```{r 10datacleaning}
 quiz(caption = NULL,
-  question("Was sind mögliche Schritte, die wir machen müssen, um unsere Daten vorzubereiten",
-    answer("Die Kategorie 'Unknown' löschen", correct = TRUE),
+  question("Was sind Schritte, die wir machen müssen, um unsere Daten vorzubereiten",
+    answer("Die Kategorie 'Unknown' löschen"),
     answer("Nur die Kontinente Europa und Afrika behalten"),
     answer("Die Relative Anzahl der Freiwilligen pro Kontinent berechnen", correct = TRUE),
     answer("Jeden prozentualen Wert pro Kontinent nur einmal behalten", correct = TRUE),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    incorrect = "Leider falsch: Wir können Kategorieren zwar ausschließen, sollten uns dafür aber sehr bewusst entscheiden. Letztlich geht so nämlich Information verloren.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
