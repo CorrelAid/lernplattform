@@ -623,3 +623,6 @@ plastics %>%
 ```{r exercise_theme-check}
 grade_this_code()
 ```
+
+#### Schritt 5: Ergebnisse teilen
+Probiert nun selbst, ob Ihr aus den generierten Ergebnissen lokal ein Rmarkdown oder eine Shiny Web App generieren könnt. Die theoretischen Vorkenntnisse habt Ihr bereits unter Beweis gestellt. Viel Glück!
