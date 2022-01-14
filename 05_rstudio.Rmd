@@ -184,7 +184,7 @@ str(plastics)
 ```
 
 
-### Exkurs (optional): Syntax in R
+#### Grundlagen: Syntax in R
 Neben dem sog. Variable Assignment über "<-" sind noch einige weitere **Syntaxregeln, Operatoren und Ausdrücke** in R wichtig. Diese lernt man in der Regel durch wiederholte Praxis. Damit Ihr die wichtigsten Formen nachschauen könnt, haben wir für Euch diesen Exkurs erstellt. Einen Überblick über die Grundlagen in R erhaltet Ihr zudem in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}.
 
 ``` {r zuweisung, exercise = TRUE}
@@ -215,6 +215,18 @@ Mit **logischen Ausdrücken** könnt Ihr u.a. Datensätze filtern und Wenn-Dann-
 (1 + 1 == 2) | (2 + 2 == 5) # oder
 ```
 
+Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **`c()`** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
+``` {r slicing1, exercise = TRUE}
+# Auslesen der Spalte 'country'
+plastics$country 
+plastics[c('country', 'year')]
+```
+
+``` {r slicing2, exercise = TRUE}
+# Erstellung eines Subsets auf Basis von Bedingungen
+subset(plastics, country == "Argentina" & year == 2020)
+```
+
 Falls Code nur unter bestimmten Bedingungen ausgeführt werden soll, wird er in **Wenn-Dann-Bedingungen** integriert. Dazu sind logische Ausdrücke (*innerhalb der runden Klammern*) sehr hilfreich. Welcher Text (*Operation innerhalb der geschwungenen Klammern*) wird hier gedruckt?
 ``` {r ausdruck, exercise = TRUE}
 # Wenn-Dann-Ausdrücke
@@ -229,19 +241,29 @@ if (2 + 2 == 5) {
     }
 ```
 
-Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **`c()`** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
-``` {r slicing1, exercise = TRUE}
-# Auslesen der Spalte 'country'
-plastics$country 
-plastics[c('country', 'year')]
+Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert. Neben **Maschinellem Lernen** sind solche regelbasierten Systeme übrigens eine wichtige Form von allen Technologien, die unter das Modewort **Künstliche Intelligenz** fallen. Die zugehörigen Regeln werden in komplexeren Systemen von Expert:innen verfasst und erst nach und nach, wenn es möglich ist, durch modernere Technologien ersetzt. Ein gutes Beispiel dafür sind Verfahren zur Verarbeitung von Sprache (siehe [hier](https://aclanthology.org/D13-1079.pdf){target="_blank"}). Ihr könnt Euch aber auch einfach ein regelbasiertes System vorstellen, das automatisch bei der Erreichung einer bestimmen Spendensumme eine Dankesnachricht an alle Spender:innen versendet.
+
+Neben der Ausführung von Aktionen unter bestimmten Bedingungen können wir durch technische Implementierungen **Aktionen mehrfach ausführen**. Um bei unserem Beispiel zu bleiben: Nach der Erreichung der Spendensumme soll eine Dankesnachricht an alle Spender:innen gesendet werden. In der Programmierung bezeichnet man diese iterierenden Verfahren als **Loop** (zu dt. Schleife). Sind alle Spender:innen bekannt (die Liste der Elemente also bekannt), nutzt man einen **For Loop** (zu dt. Für-Schleife). 
+
+```{r fuerschleife, exercise = TRUE}
+# Schleifen auf Basis einer bekannten Anzahl an Wiederholungen (hier drei Elemente der Liste)
+for (spender in list("Phil", "Frie", "Nina")) {
+  print(paste("Danke,", spender, "!"))
+}
 ```
 
-``` {r slicing2, exercise = TRUE}
-# Erstellung eines Subsets auf Basis von Bedingungen
-subset(plastics, country == "Argentina" & year == 2020)
+Soll die Aktion ausgeführt werden, bis eine Bedingung eintritt, z.B. weil alle Spender:innen kontaktiert wurden, dann nutzt man einen **While Loop** (zu dt. Solange-Schleife).
+```{r solangeschleife, exercise = TRUE}
+# Schleifen auf Basis einer Bedingung (und somit unbekannten Anzahl)
+spenderliste <- list("Phil", "Frie", "Nina")
+i <- 1
+while (i <= length(spenderliste)) {
+  print(paste("Danke,", spenderliste[[i]], "!"))
+  i = i + 1
+}
 ```
 
-Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt**. Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf [**Stack Overflow**](https://stackoverflow.com/){target="_blank"} und in der [**R-Online Community**](https://community.rstudio.com/){target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
+Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch dann angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt** (sog. Fehlermeldung). Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf [**Stack Overflow**](https://stackoverflow.com/){target="_blank"} und in der [**R-Online Community**](https://community.rstudio.com/){target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
 
 
 ### Und jetzt Ihr
@@ -250,3 +272,10 @@ Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und...
 1. Installiert und ladet das Package "rio".
 2. Lest den Datensatz über den Hyperlink oder lokal ein. Ihr findet ihn unter diesem [Link]('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'){target="_blank"} und könnt ihn dort auch herunterladen, wenn Ihr Euch für die zweite Variante entscheidet.
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.
+
+### Zusätzliche Ressourcen
+- Schummelblatt zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} (engl.)
+- [Introduction to Programming in R (engl.)](https://app.dataquest.io/course/intro-to-r-rewrite){target="_blank"} von Dataquest
+- [Data Structures in R (engl.)](https://app.dataquest.io/course/datastructure-in-r-rewrite){target="_blank"} von Dataquest
+- [Control Flow, Iteration and Functions in R (engl.)](https://app.dataquest.io/course/intermediate-r){target="_blank"} von Dataquest
+- [R Studio Learn: Programming Basics](https://rstudio.cloud/learn/primers/1.2){target="_blank"}

@@ -20,7 +20,7 @@ Als kleine Vorschau auf das, was wir auf der Lernplattform für Euch vorbereitet
 ![*Promovideo R Lernen - Der Datenkurs von und für die Zivilgesellschaft (1min)](https://youtu.be/avH7Yn86SrU){target="_blank"}
 
 ### Was Euch diese Woche erwartet
-Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/zt-w48ffomc-Prt7AYgC1q0Pak8t_ttRPw){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/87628401718?pwd=UzN2a3FNV21VR1FkUmlVa1dFbnRLZz09){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 1.10.21 um 12 Uhr**, nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/t/correlaid9916/m/correlaid9916/1632400701137/ed434bcae77ad54de53d24722eb1aafad39484a7?sender=ninah9635){target="_blank"}. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 
+Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/enQtMjg4NTk0NTA3NjIxNS03OTBjMmFmY2I3Yzk0ZDQ2NjZjYWU3YzMzOGVkYmY0NzM0MjZhMWViMjA4ZmJjOTM5NjZjMGYyYjk4ZDY5MjI5){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/81762778614?pwd=K1pCbGIvT0ZvdnNCSTFmT2IzcmVlUT09&from=addon){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 7.1.22 um 12 Uhr**, nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/t/correlaid9916/m/correlaid9916/1639476740061/679b128309b8014d3f20152ec4f816c5ddb4d6e0?sender=ninah9635){target="_blank"}. Gerne könnt Ihr Euch dort schon eintragen. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 
 
 Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Nina (nina.h@correlaid.org) bitte rechtzeitig mit.
 
@@ -31,7 +31,7 @@ Materialien der Lernplattform sind unter **CC-BY 4.0** lizensiert (Open Source m
 ### Eckdaten 
 - 7.1.22 - 31.3.22, Aufwand: 2-4h/Woche
 - Blended-Learning mit Lernplattform
-- Jeden Freitag live von 12 - 13 Uhr  [(Klick hier!)](https://us02web.zoom.us/j/87628401718?pwd=UzN2a3FNV21VR1FkUmlVa1dFbnRLZz09){target="_blank"}
+- Jeden Freitag live von 12 - 13 Uhr  [(Klick hier!)](https://us02web.zoom.us/j/81762778614?pwd=K1pCbGIvT0ZvdnNCSTFmT2IzcmVlUT09&from=addon#success){target="_blank"}
 - Mit und von Datenprofis
 
 ### Wochenplan
@@ -88,7 +88,7 @@ In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer
 ### Kontakt
 Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org. 
 
-Die Hauptkommunikation findet in unserem **Slack-Channel** statt. Zusätzlich habt Ihr die Möglichkeit Euch dort untereinander auszutauschen. Ihr erhaltet die Einladung zu Slack per **E-Mail**, könnt aber auch über diesen [Link](https://join.slack.com/share/enQtMjgyNDE3ODUwODU5OS04NDI1ZjUyOTI2ZGFiNjVjNzkzNTJjMWZjYzYwOWQ2YTZhODJkNTM1YzQ0M2ExMWNmN2Q2YjUxZmI0ZTY0OTY4){target="_blank"} beitreten (Achtung: Der Link ist nur 14 Tage lang gültig).
+Die Hauptkommunikation findet in unserem **Slack-Channel** statt. Zusätzlich habt Ihr die Möglichkeit Euch dort untereinander auszutauschen. Ihr erhaltet die Einladung zu Slack per **E-Mail**, könnt aber auch über diesen [Link](https://join.slack.com/share/enQtMjg4NTk0NTA3NjIxNS03OTBjMmFmY2I3Yzk0ZDQ2NjZjYWU3YzMzOGVkYmY0NzM0MjZhMWViMjA4ZmJjOTM5NjZjMGYyYjk4ZDY5MjI5){target="_blank"} beitreten (Achtung: Der Link ist nur 14 Tage lang gültig).
 
 Alle weiteren Angebot von CorrelAid e.V. erhaltet Ihr jeden Monat in unserem [Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}.
 

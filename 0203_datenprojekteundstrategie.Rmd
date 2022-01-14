@@ -1,5 +1,14 @@
-## Grundlagen der Datenstrategie
+## Datenprojekte für die Zivilgesellschaft
 
+<!-- TO-DOS: -->
+<!-- - Lernvideos modifizieren und kombinieren (neue Lektion: Grundlagen der Statistik) -->
+
+### Lernvideo Teil 1: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft
+![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (30min)*](https://youtu.be/w7wbIHQg7cs)
+
+Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/){target="_blank"}, in unserem [Blog](https://correlaid.org/blog/){target="_blank"} und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast){target="_blank"}.
+
+### Lernvideo Teil 2: Grundlagen der Datenstrategie
 ![*Video: Grundlagen der Datenstrategie - Planung von Datenprojekten (30min)*](https://youtu.be/hOhf1Uc_8Tc)
 
 Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
@@ -7,6 +16,9 @@ Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: W
 Für die Entwicklung einer Datenstrategie über diesen Kurs hinaus bieten wir eine digitale Bestandsaufnahme Eures Datenreifegrads an: Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/){target="_blank"} heraus! 
 
 ### Kernaussagen
+- Datenprojekte von und für die Zivilgesellschaft gibt es in allen **Farben und Formen**
+- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](https://correlaid.org/nonprofits/projects/){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **CorrelCon (jedes Jahr im November) und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**
+- Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}** vor
 - Daten sind **formalisierte, idealerweise durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können
 - Daneben verstehen wir **Datenwissenschaft** auch als **Denkweise** ("Wie gehen wir an Herausforderungen heran?") und **Kompetenzbereich** ("Welche analytischen, technischen und fachlichen Fähigkeiten sind notwendig?")
 - Ohne Daten treffen wir **Entscheidungen auf Basis von Hypothesen**, die wir noch gar nicht überprüft haben, und lassen **Potenziale der Digitalisierung** für **effektive und effiziente** Arbeitsweisen ungenutzt
@@ -113,6 +125,21 @@ quiz(caption = NULL,
 ```
 
 ### Interaktive Übung
+Derzeit sind 20 Data4Good-Projekte bei CorrelAid e.V. aktiv. Aber wie viele Projekte hat CorrelAid e.V. bereits abgeschlossen (Stand 2021)? Ersetzt in dem Codebeispiel unten den Wert für die Variable "abgeschlossene_projekte" mit der richtigen Zahl 44 und führt den Code aus.
+
+```{r projekte, exercise=TRUE}
+# Hier definieren wir die Variable "aktive_projekte" mit dem Wert 20
+aktive_projekte <- 20
+
+# An dieser Stelle dürft Ihr den Code angepassen
+abgeschlossene_projekte <- 0
+
+# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind. %d formatiert den Tag, %m den Monat und %y das Jahr. Als Trennungszeichen haben wir uns für "." entschieden.
+datum <- format(Sys.Date(),"%d.%m.%y")
+
+paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
+```
+
 Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
 
 Mit der Funktion **class(Euer Objekt)** könnt Ihr überprüfen, welches Datenformat bei Eurem Objekt vorliegt. Testet die Funktion in Zeile 15 für Datumsformate und führt den Code aus.
@@ -137,7 +164,27 @@ typeof(datum)
 
 Anmerkung: Wie in Excel könnt Ihr auch in R mit Datumsformaten Rechenoperationen durchführen.
 
-### Und jetzt Ihr: Eigenen Data Use Case entwickeln
+### Und jetzt Ihr
+
+#### Teil 1: Erste Ideen entwickeln
+Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
+
+<center>
+![*Template: Ideenfindung*](https://correlaid.org/material/Ideenfindung.png){#id .class width=100% height=100%}
+
+
+</center>
+<br>
+
+Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
+
+Hier geht es zum
+[*Template: Ideenfindung (20min)*](https://app.mural.co/invitation/room/1639476138454?code=eb8798d4aa4e4b76ad1246b05b89945a&sender=ninah9635){target="_blank"}.
+
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf){target="_blank"}.
+
+
+#### Teil 2: Eigenen Data Use Case entwickeln
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
 
 Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen. Es ist zudem ausreichend, wenn Ihr allein bis Sektion 5 kommt. Ihr könnt im Verlauf des Kurses immer wieder auf das Template zurückgreifen und insbesondere die Sektionen 6-8 werden zu einem späteren Zeitpunkt leichter zu beantworten sein.
@@ -155,10 +202,3 @@ Hier geht es zum
 [*Template: Data Use Case (30min*)](https://app.mural.co/invitation/room/1639476138454?code=eb8798d4aa4e4b76ad1246b05b89945a&sender=ninah9635){target="_blank"}
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.
-
-### Zusätzliche Ressourcen
-- [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"}
-- [Skalacampus](https://www.skala-campus.org/){target="_blank"}
-- [Datenreifegradrechner Elmo](https://correlaid.shinyapps.io/datamaturitymodel/){target="_blank"}
-- [Bernard Marr: Data Strategy: How to Profit from a World of Big Data, Analytics and the Internet of Things](https://bernardmarr.com/books/){target="_blank"}
-- [Haus des Stiftens: Digital-Report 2020](https://www.hausdesstiftens.org/wp-content/uploads/Digital-Report-2020.pdf){target="_blank"}

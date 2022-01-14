@@ -44,6 +44,12 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **JSON** = textbasiertes, strukturiertes Dateiformat
 
+**Künstliche Intelligenz** = Wenn Maschinen eine Aufgabe auf Basis von bestimmten Regeln (Algorithmen) bzw. auf Basis von Informationen erledigen, wird dieses intelligente Verhalten als Künstliche Intelligenz bezeichnet. Unterfälle von Künstlicher Intelligenz sind *regelbasierte Systeme* und *maschinelles Lernen*.
+
+**Loop (zu dt. Schleife)** = Iteration über Instanzen zur wiederholten Ausführung einer Tätigkeit. Es gibt *For Loops* (zu dt. Für-Schleife) für eine bekannte Menge an Instanzen und *While Loops* (zu dt. Solange-Schleifen), die eine Aktion ausführen, bis eine Bedingung erreicht wurde.
+
+**Maschinelles Lernen** = Als Machine Learning werden solche Regeln bezeichnet, die sich durch mehr Erfahrung bzw. Informationen verbessern.
+
 **Median** = robuster "Mittelpunkt" mehrerer Zahlen (50% der Ausprägungen sind kleiner oder größer)
 
 **Mittelwert** = Durchschnittswert einer Menge aus mehreren Zahlen
@@ -81,6 +87,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 **Statuscode** = Antwort eines Servers auf HTTP-Anfragen (über APIs)
 
 **Subsets** = Teilmenge des Datensatzes
+
+**Regelbasierte Systeme** = Systeme, die Aufgaben auf Basis von bestimmten, manuell festgesetzten Regeln erledigen. Diese Regeln werden häufig von Expert:innen festgesetzt.
 
 **Tidyverse** = Sammlung an Packages zur Datenbereinigung, die aufeinander abgestimmt sind und dabei der selben Logik folgen
 

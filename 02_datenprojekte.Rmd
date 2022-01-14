@@ -1,4 +1,3 @@
-
 ## Datenprojekte aus der Zivilgesellschaft
 ![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (30min)*](https://youtu.be/w7wbIHQg7cs)
 
@@ -6,10 +5,36 @@ Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webse
 
 ### Kernaussagen
 - Datenprojekte von und für die Zivilgesellschaft gibt es in allen **Farben und Formen**
-- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](https://correlaid.org/nonprofits/projects/){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **CorrelCon (jedes Jahr im November) und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**
+- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](https://correlaid.org/nonprofits/projects/){target="_blank"} und [DSSG](https://www.solveforgood.org/proj/){target="_blank"}** und auf Konferenzen wie der **CorrelCon (jedes Jahr im November) und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**
 - Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}** vor
 
 ### Quiz
+```{r quiz_datenprojekte}
+quiz(
+  caption = NULL,
+  question(
+    "Datenprojekte sind...",
+    answer("je nach Anforderung und Zielstellung sehr vielfältig.", correct = TRUE),
+    answer("unterscheiden sich in ihrem analytischen Reifegrad.", correct = TRUE),
+    answer("sollten nützlich sein.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Auf Datenprojekte treffen alle diese Aussagen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question(
+    "Es ist wichtig, sich immer wieder neu - z.B. von anderen Datenprojekten - inspirieren zu lassen...",
+    answer("Wahr", correct = TRUE),
+    answer("Unwahr"),
+    correct = "Richtig! Technolgie entwickelt sich beständig weiter. Manchmal ist heute etwas noch nicht umsetzbar, was nächstes Jahr schon möglich ist.",
+    incorrect = "Leider falsch: Technolgie entwickelt sich beständig weiter. Manchmal ist heute etwas noch nicht umsetzbar, was nächstes Jahr schon möglich ist.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+### Interaktive Übung
 Derzeit sind 20 Data4Good-Projekte bei CorrelAid e.V. aktiv. Aber wie viele Projekte hat CorrelAid e.V. bereits abgeschlossen (Stand 2021)? Ersetzt in dem Codebeispiel unten den Wert für die Variable "abgeschlossene_projekte" mit der richtigen Zahl 44 und führt den Code aus.
 
 ```{r projekte, exercise=TRUE}
@@ -25,7 +50,7 @@ datum <- format(Sys.Date(),"%d.%m.%y")
 paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
 ```
 
-### Übung: Erste Ideen entwickeln
+### Und jetzt Ihr: Erste Ideen entwickeln
 Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
 
 <center>
@@ -41,3 +66,10 @@ Hier geht es zum
 [*Template: Ideenfindung (20min)*](https://app.mural.co/invitation/room/1639476138454?code=eb8798d4aa4e4b76ad1246b05b89945a&sender=ninah9635){target="_blank"}.
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf){target="_blank"}.
+
+### Zusätzliche Ressourcen
+- [CorrelAids Webseite](https://correlaid.org/projects/){target="_blank"}
+- [CorrelAids Blog](https://correlaid.org/blog/){target="_blank"}
+- [CorrelAids Podcast](https://soundcloud.com/correlaid_podcast){target="_blank"}
+- [AI for Good Konferenz](https://aiforgood.itu.int/programme/){target="_blank"}
+- [DSSGs Solve for Good](https://www.solveforgood.org/proj/){target="_blank"}
