@@ -229,6 +229,9 @@ audit_db %>%
     row.names = FALSE
     )
 
+# Testergebnisse Simulation
+testergebnisse <- c(50, 45, 60, 55, 100, 100, 20, 30, 50, 50)
+
 # Parameter (nur zum Zeigen)
 params <- list()
 params$heute <- format(Sys.time(), '%d. %B %Y')
@@ -259,8 +262,8 @@ cat(out, sep = '')
 
 ## Datenschutz und Datenethik
 ```{r results='asis'}
-#out <- knitr::knit_child("04_datenschutz.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("04_datenschutz.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Einführung in RStudio

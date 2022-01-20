@@ -185,7 +185,7 @@ str(plastics)
 
 
 #### Grundlagen: Syntax in R
-Neben dem sog. Variable Assignment über "<-" sind noch einige weitere **Syntaxregeln, Operatoren und Ausdrücke** in R wichtig. Diese lernt man in der Regel durch wiederholte Praxis. Damit Ihr die wichtigsten Formen nachschauen könnt, haben wir für Euch diesen Exkurs erstellt. Einen Überblick über die Grundlagen in R erhaltet Ihr zudem in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}.
+Neben dem sog. Variable Assignment über "<-" sind noch einige weitere **Syntaxregeln, Operatoren und Ausdrücke** in R wichtig. Diese lernt man in der Regel durch wiederholte Praxis. Damit Ihr die wichtigsten Formen nachschauen könnt, haben wir für Euch diese kleine Lektion erstellt. Einen Überblick über die Grundlagen in R erhaltet Ihr zudem in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}.
 
 ``` {r zuweisung, exercise = TRUE}
 # Variablenzuweisung
@@ -237,7 +237,7 @@ if (2 + 2 == 5) {
   } else if (2 + 2 >= 5) {
   print("Oh nein!")
   } else {
-  print("Puh...")
+  print("Puh, nicht verrechnet...")
     }
 ```
 
@@ -274,6 +274,7 @@ Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und...
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.
 
 ### Zusätzliche Ressourcen
+- Schummelblatt zu den [Grundlagen in R](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"} (dt.)
 - Schummelblatt zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} (engl.)
 - [Introduction to Programming in R (engl.)](https://app.dataquest.io/course/intro-to-r-rewrite){target="_blank"} von Dataquest
 - [Data Structures in R (engl.)](https://app.dataquest.io/course/datastructure-in-r-rewrite){target="_blank"} von Dataquest

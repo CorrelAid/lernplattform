@@ -230,7 +230,7 @@ correct = "Richtig! Darüber hinaus gibt es aber noch wesentlich mehr Möglichke
 ```
 
 ### Interaktive Übung
-Wenn Ihr (personenbezogene) Daten verarbeitet, speichert Ihr diese in (exportierten) Excel-Tabellen, intern und externen Datenbanken oder unstrukturiert. Auch in R gibt es spezifische Lösungen zur Speicherung von **strukturierten und unstrukturierten Daten**: **Data Frames** (zu dt. Datenrahmen, ein tabellarisches Format) bzw. **Listen**. In Data Frames und Listen werden einzelne Beobachtungen und Variablen in **Objekten** zusammengefasst. Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit **class()** überprüfen. Testet die Funktion in Zeile 8 für die Liste und den Data Frame, indem Ihr den Code ausführt.
+Wenn Ihr (personenbezogene) Daten verarbeitet, speichert Ihr diese in (exportierten) Excel-Tabellen, intern und externen Datenbanken oder unstrukturiert. Auch in R gibt es spezifische Lösungen zur Speicherung von **strukturierten und unstrukturierten Daten**: **Data Frames** (zu dt. Datenrahmen, ein tabellarisches Format) bzw. **Listen**. In Data Frames und Listen werden einzelne Beobachtungen und Variablen in **Objekten** zusammengefasst. Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit der Funktion `class()` überprüfen. Testet die Funktion in Zeile 8 für die Liste und den Data Frame, indem Ihr den Code ausführt.
 
 ```{r objekte, exercise=TRUE}
 # Eine Liste kann aus verschiedenen Datenformaten bestehen

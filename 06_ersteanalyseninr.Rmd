@@ -48,7 +48,7 @@ library(ggplot2)
 ```
 
 ### Quiz
-```{r quiz}
+```{r quiz_ersteanalyseninr}
 quiz(caption = NULL,
   question("Welche Aussagen sind wahr?",
     answer("Es ist ausreichend statistische Kennzahlen zu berechnen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
@@ -121,7 +121,7 @@ sd(testergebnisse)
 
 Ihr rechnet den Durchschnitt aus: `r mean(testergebnisse)`. Im Durchschnitt mit ein paar Punkten Puffer bestanden! Ziemlich gut und kein Grund zur Sorge... Oder? 
 
-Wenn wir uns den Median anschauen, der die wahre Mitte einer Verteilung angibt und robust gegen Ausreißer ist, fällt uns auf: `r median(testergebnisse)` - so viel Puffer gab es gar nicht. Am Häufigsten gab es die Punktzahl 50 (Modalwert) und die Streuung um den Mittelwert ist recht groß: Im Mittel weichen Noten um `r round(sd(testergebnisse),0)` Punkte ab und schwanken über eine Spannbreite von `r max(testergebnisse) - min(testergebnisse)` - fast über die gesamtmögliche Breite. Zwar gab es zwei hohe Punktzahlen, aber der Rest der Klasse hat nicht so gut abgeschnitten. Immerhin sind sogar 30 Prozent der Schüler:innen durch die Prüfung gefallen! Da würden wir uns definitiv Sorgen machen.
+Wenn wir uns den Median anschauen, der die wahre Mitte einer Verteilung angibt und robust gegen Ausreißer ist, fällt uns auf: `r median(testergebnisse)` - so viel Puffer gab es gar nicht. Am Häufigsten gab es die Punktzahl 50 (Modalwert) und die Streuung um den Mittelwert ist recht groß: Im Mittel weichen Noten um `r round(sd(testergebnisse),0)` Punkte ab und schwanken über eine Spannbreite von `r max(testergebnisse) - min(testergebnisse)` - fast über die gesamtmögliche Breite. Zwar gab es zwei hohe Punktzahlen, aber der Rest der Klasse hat nicht so gut abgeschnitten. Immerhin sind sogar 30 Prozent der Schüler:innen durch die Prüfung gefallen!
 
 *Bonusfrage: Warum arbeiten wir hier mit Testergebnissen und nicht der Übersetzung in Schulnoten von 1 bis 6?*
 
@@ -407,6 +407,7 @@ audit_plastic %>%
     menge_mittelwert = mean(grand_total),
     # Standardabweichung
     menge_standardabweichung = sd(grand_total)
+    # Hier Euer Code
   )
 ```
 
@@ -525,42 +526,47 @@ quiz(
 )
 ```
 
+Auf Basis dieses ersten Eindrucks der Stichprobe könnten wir uns fragen, ob Asien über mehr Plastikarten als Europa verfügt. Um dies statistisch zu überprüfen nutzen wir einen **Hypothesentest**. Bei dieser Methode haben wir immer das Ziel, die Hypothese zu widerlegen. Demnach könnte unsere Hypothese lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikante Unterschiede in der Anzahl der Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden, es also nicht nur in unserer Stichprobe sondern in der Realität Unterschiede bei der Anzahl von Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, andere sein müssten.
 
-```{r}
+Es gibt viele verschiedene Hypothesentests, die unterschiedlichen Zwecken dienen. Der bekannteste ist wohl der **t-Test**, mit dem überprüft wird, ob die Mittelwerte zweier unabhängiger, normalverteilter Stichproben gleich sind. So könnt man beispielsweise auch überprüfen, ob es einen Unterschied zwischen Begünstigten und einer Vergleichsgruppe gibt. Prüfen wir zunächst einmal die Voraussetzungen für den t-Test:
+
+```{r ttestprerequisites, exercise = TRUE}
 # Voraussetzung 1: Sind die Stichproben unabhängig?
+### Mengen bilden
 europe <- audit_plastic_eu_asia %>%
   dplyr::filter(continent == "Europe")
-
 asia <- audit_plastic_eu_asia %>%
   dplyr::filter(continent == "Asia")
 
+### Schnittmenge bilden 
 intersect <- intersect(europe, asia)
 
-# Voraussetzung 2: Gibt es Extremwerte?
-outlier <- audit_plastic_eu_asia %>%
-  dplyr::group_by(continent) %>%
-  rstatix::identify_outliers(n_types)
-
-# Voraussetzung 3: Sind die Stichproben normalverteilt?
-normality_europe <- shapiro.test(europe$n_types)
-normality_asia <- shapiro.test(asia$n_types)
-
-# Ergebnisse
-### Unabhängigkeit
+### Ergebnisse drucken (hier logischerweise 0 - Länder werden schließlich nur einem Kontinent zugeordnet)
 if (nrow(intersect) == 0) {
   print("Voraussetzung 1 (Unabhängigkeit): Keine Beobachtung taucht in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist erfüllt.")
 } else {
   print(cat("Voraussetzung 1 (Unabhängigkeit):", nrow(intersect), "Beobachtungen tauchen in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist nicht erfüllt."))
 }
 
-### Extremwerte
+# Voraussetzung 2: Gibt es Extremwerte?
+### Extremwerte identifizieren
+outlier <- audit_plastic_eu_asia %>%
+  dplyr::group_by(continent) %>%
+  rstatix::identify_outliers(n_types)
+
+### Ergebnisse drucken
 if (nrow(outlier) == 0) {
   print("Voraussetzung 2 (Extremwerte): Es liegen in den Beobachtungen keine Extremwerte vor, die vor der Anwendung des Testverfahrens bereinigt werden müssten")
 } else {
   print(cat("Voraussetzung 2 (Extremwerte): Es liegen in den Beobachtungen", nrow(outlier), "Extremwerte vor, die vor der Anwendung des Testverfahrens bereinigt werden müssen"))
 }
 
-### Normalverteilung
+# Voraussetzung 3: Sind die Stichproben normalverteilt?
+### Shapiro-Wilk-Test für Normalität
+normality_europe <- shapiro.test(europe$n_types)
+normality_asia <- shapiro.test(asia$n_types)
+
+### Ergebnisse drucken (Beim Shapiro-Wilk-Test wird die Normalverteilung angenommen, wenn der p-Wert größer oder gleich 0.05 ist)
 if ((normality_asia$p.value >= 0.05) & (normality_europe$p.value >= 0.05)) {
   print("Voraussetzung 3 (Normalverteilung): Die Verteilungen beider Gruppen folgen einer Normalverteilung. Die Bedingung der Normalverteilung zur Anwendung des Testverfahrens ist gegeben.")
 } else {
@@ -568,16 +574,22 @@ if ((normality_asia$p.value >= 0.05) & (normality_europe$p.value >= 0.05)) {
 }
 ```
 
-Auf Basis dieses ersten Eindrucks der Stichprobe könnten wir uns fragen, ob Asien über mehr Plastikarten als Europa verfügt. Um dies statistisch zu überprüfen nutzen wir einen **Hypothesentest**. Bei dieser Methode haben wir immer das Ziel, die Hypothese zu widerlegen. Demnach könnte unsere Hypothese lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikante Unterschiede in der Anzahl der Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden, es also nicht nur in unserer Stichprobe sondern in der Realität Unterschiede bei der Anzahl von Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, andere sein müssten.
+Pech gehabt - t-Tests sind ohne Normalverteilung in kleinen Stichprobengrößen nicht sehr robust. Wir hätten unsere Hypothese allerdings sowieso nicht verwerfen können. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. Kurzum: Wir hätten **keinen robusten statistischen Unterschied** feststellen können. In unserem Beispiel würde dies bedeuten, dass die beobachteten Unterschiede in der durchschnittlichen Anzahl an Plastikarten in Europa und Asien potentiell nur Eigenschaften der Stichproben aber nicht der Grundgesamtheiten sind. 
 
-So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen **zweiseitigen t-Test** durchführt.
-  
 ```{r ttest, exercise = TRUE}
-# Test-Statistik zur Anzahl der Plastikarten je Kontinent
-t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent)
+# Nur zu Demonstrationszwecken: t-Test-Statistik
+t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent, alternative = "two.sided")
+t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent, alternative = "greater")
 ```  
 
-Wir können unsere Hypothese nicht verwerfen. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. Kurzum: Wir können **keinen robusten statistischen Unterschied** feststellen. In unserem Beispiel bedeutet dies, dass die beobachteten Unterschiede in der durchschnittlichen Anzahl an Plastikarten in Europa und Asien potentiell nur Eigenschaften der Stichproben aber nicht der Grundgesamtheiten sind. 
+Als Ausweichmöglichkeit käme hier übrigens der **Mann-Whitney/Wilcoxon-Rank-Sum-Test** (kurz: MWW-Test) für unabhängige, nicht-normalverteilte Stichproben in Frage (der übrigens gerne mit dem Wilcoxon-Test für vorher-nachher Simulationen und somit nicht-unabhängige Stichproben verwechselt wird). Aber auch hier finden wir **keinen robusten statistischen Unterschied**.
+```{r mwwtest, exercise = TRUE}
+# Mann-Whitney/Wilcoxon-Rank-Sum-Test-Statistik (kurz. MWW-Test-Statistik)
+wilcox.test(asia$n_types, europe$n_types, alternative = "two.sided", paired = FALSE)
+wilcox.test(asia$n_types, europe$n_types, alternative = "greater", paired = FALSE)
+```
+
+Falls Euch nun wie uns vor Testnamen und -Anwendungen die Ohren schwirren: Die beste Übersicht, die wir zu Hypothesentests finden konnten, gibt es - überraschenderweise als Blogartikel - [hier](https://towardsdatascience.com/hypothesis-tests-explained-8a070636bd28){target="_blank"}.
 
 ### Und jetzt Ihr
 Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne mit zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
@@ -595,3 +607,4 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 - Stocker T. C. und Steinke I. (2017): Statistik – Grundlagen und Methodik [verfügbar z.B. hier](https://www.beck-shop.de/stocker-steinke-de-gruyter-studium-statistik/product/32926361){target="_blank"}
 - [R for Data Science (engl.)](https://r4ds.had.co.nz/){target="_blank"}
 - [Basic Statistics](https://www.coursera.org/learn/basic-statistics){target="_blank"} auf Coursera (engl.)
+- [Lernvideos](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} zur Inferenzstatistik (dt.)
