@@ -5,7 +5,7 @@
 
 ### Kernaussagen
 #### Grundlagen der Datenanalyse
-- Konzeptionell sollten wir uns dabei von **Fragen zur Exploration, möglichen Plausibilitätschecks und Fallentscheidungen** leiten lassen, die während der Analyse beantwortet werden
+- Konzeptionell sollten wir uns von **Fragen zur Exploration, möglichen Plausibilitätschecks und Fallentscheidungen** leiten lassen, die während der Analyse beantwortet werden
 - Bei einer Datenanalyse nutzen wir zunächst niedrigschwellige **tabellarische Formate** wie `summary()` und `str()`, um uns einen Überblick über die Daten zu verschaffen
 - Danach helfen uns **einfache Datenvisualisierungen**, die Ausprägungen von Variablen zu untersuchen (und Extremwerte zu identifizieren)
 - Um weitere Operationen durchführen zu können, berechnen wir im Anschluss **statistische Kennzahlen**, Lage- und Verteilungsparameter, die für uns spannende Informationen enthalten und die Grundlage für weitere Analysen bilden
@@ -26,10 +26,10 @@ Im Kapitel "Datenvisualisierung" lernt Ihr noch mehr Optionen zur Datenvisualisi
     - `min()`: **minimale Ausprägung** einer Variablen
     - `max()`: **maximalen Ausprägung** einer Variablen
     - `median()`: **Median**, der "wahre" Mittelpunkt (50% der Ausprägungen sind kleiner oder größer)
-    - `mean()`: arithmetische Mittel, oder schlicht **Mittelwert** oder Durchschnitt
+    - `mean()`: arithmetische Mittel, Durchschnitt oder schlicht **Mittelwert**
     - `var()`: **Varianz**, die Streuung um den Mittelwert
     - `sd()`: **Standardabweichung**, ein standardisiertes Maß für die Streuung um den Mittelwert (auch: mittlere Abweichung)
-    - `n()`: **Anzahl**/ absolute Häufigkeiten der Ausprägungen
+    - `n()`: **Anzahl** bzw. absolute Häufigkeiten der Ausprägungen
     - `sum()`: **Summe** numerischer Variablen.
 - Darüber hinaus möchten wir schon folgende **`tidyverse`** folgende Operationen hervorheben:
     - `dplyr::summarize()` - **Zusammenfassung von Werten** zur Vereinfachung des Informationsgehalts
@@ -52,11 +52,11 @@ library(ggplot2)
 quiz(caption = NULL,
   question("Welche Aussagen sind wahr?",
     answer("Es ist ausreichend statistische Kennzahlen zu berechnen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
-    answer("Es ist Visualisierungen zu erstellen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
+    answer("Es ist ausreichend Visualisierungen zu erstellen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
     answer("Kontext ist bei rigoroser Datenanalyse nicht so wichtig."),
-    answer("Die Berechnung statistischer Kennzahlen, die Visualisierung und die Kontextualisierung sind eine wichtige Grundlage (!) für die Interpretation von Daten.", correct = TRUE),
+    answer("Die Berechnung statistischer Kennzahlen, die Visualisierung und die Kontextualisierung sind eine wichtige Grundlage (!) für die Interpretation von Daten und komplexere Analysen.", correct = TRUE),
     correct = "Richtig!",
-    incorrect = "Leider falsch. Die Berechnung statistischer Kennzahlen, die Visualisierung und die Kontextualisierung sind eine wichtige Grundlage (!) für die Interpretation von Daten.",
+    incorrect = "Leider falsch. Die Berechnung statistischer Kennzahlen, die Visualisierung und die Kontextualisierung sind eine wichtige Grundlage (!) für die Interpretation von Daten und komplexere Analysen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
@@ -105,29 +105,31 @@ quiz(caption = NULL,
 #### Vorwort: Warum die Kombination von verschiedenen Methoden so wichtig ist
 Die Berechnung von Lage- und Streungsparametern bildet die Grundlage für zahlreiche statistische Analysen. Lageparameter wie Modus, Median und Mittelwert geben die **zentrale Lage** der Beobachtungen an. Streuungsparameter wie Spannweite, Varianz und Standardabweichung sind ein Maß dafür, wie stark unsere Beobachtungen **um die zentrale Lage herum schwanken**.
 
-Warum diese statistischen Kennzahlen so nützlich sind, lässt sich anhand eines einfachen Beispiels verdeutlichen: Als Lehrer:in schreibt Ihr mit Eurer Klassen einen Test, bei dem Eure Schüler:innen maximal 100 Punkte erreichen und mit 50 bestehen konnten. Die Noten verteilen sich so:
+Warum diese statistischen Kennzahlen so nützlich sind, lässt sich anhand eines einfachen Beispiels verdeutlichen: Als Lehrer:in schreibt Ihr mit Eurer Klassen einen Test, bei dem Eure Schüler:innen maximal 100 Punkte erreichen und mit 50 bestehen konnten. Die Ergebnisse verteilen sich so:
 
-```{r schulnoten, exercise = TRUE}
+```{r testergebnisse, exercise = TRUE}
 # Ergebnisse speichern
-schulnoten <- c(50, 45, 40, 50, 100, 100, 20, 30, 50, 50)
+testergebnisse <- c(50, 45, 60, 55, 100, 100, 20, 30, 50, 50)
 
 # Lage- und Streuungsparameter bestimmen
-mean(schulnoten)
-median(schulnoten)
-max(schulnoten) - min(schulnoten)
-var(schulnoten)
-sd(schulnoten)
+mean(testergebnisse)
+median(testergebnisse)
+max(testergebnisse) - min(testergebnisse)
+var(testergebnisse)
+sd(testergebnisse)
 ```
 
-Ihr rechnet - wie es so üblich ist - den Durchschnitt aus: `r mean(schulnoten)`. Im Durchschnitt mit ein paar Punkten Puffer bestanden! Ziemlich gut und kein Grund zur Sorge... Oder? 
+Ihr rechnet den Durchschnitt aus: `r mean(testergebnisse)`. Im Durchschnitt mit ein paar Punkten Puffer bestanden! Ziemlich gut und kein Grund zur Sorge... Oder? 
 
-Wenn wir uns den Median anschauen, der die wahre Mitte einer Verteilung angibt und robust gegen Ausreißer ist, fällt uns auf: `r median(schulnoten)` - so viel Puffer gab es gar nicht. Am Häufigsten gab es die Punktzahl 50 (Modalwert) und die Streuung um den Mittelwert ist recht groß: Im Mittel weichen Noten um `r round(sd(schulnoten),0)` Punkte ab und schwanken über eine Spannbreite von `r max(schulnoten) - min(schulnoten)` - fast über die gesamtmögliche Breite. Zwar gab es zwei hohe Punktzahlen, aber der Rest der Klasse hat nicht so gut abgeschnitten. Immerhin sind sogar 40 Prozent der Schüler:innen durch die Prüfung gefallen! Da würden wir uns definitiv Sorgen machen.
+Wenn wir uns den Median anschauen, der die wahre Mitte einer Verteilung angibt und robust gegen Ausreißer ist, fällt uns auf: `r median(testergebnisse)` - so viel Puffer gab es gar nicht. Am Häufigsten gab es die Punktzahl 50 (Modalwert) und die Streuung um den Mittelwert ist recht groß: Im Mittel weichen Noten um `r round(sd(testergebnisse),0)` Punkte ab und schwanken über eine Spannbreite von `r max(testergebnisse) - min(testergebnisse)` - fast über die gesamtmögliche Breite. Zwar gab es zwei hohe Punktzahlen, aber der Rest der Klasse hat nicht so gut abgeschnitten. Immerhin sind sogar 30 Prozent der Schüler:innen durch die Prüfung gefallen! Da würden wir uns definitiv Sorgen machen.
+
+*Bonusfrage: Warum arbeiten wir hier mit Testergebnissen und nicht der Übersetzung in Schulnoten von 1 bis 6?*
 
 <center>
 ![*Bild: Schematische Darstellung der Lage- und Streuungsparameter*](https://correlaid.org/material/Statistik.png){#id .class width=100% height=100%}
 </center>
 
-Um **Fehlschlüsse aus statistischen Kennzahlen zu vermeiden**, solltet Ihr also **verschiedene Lage- und Streuungsparameter bestimmen**, die **Verteilung** Eurer Daten genauer anschauen und die Daten in den richtigen **Kontext** setzen. Und das machen wir jetzt - für einen Datensatz aus dem echten Leben.
+Um **Fehlschlüsse aus statistischen Kennzahlen zu vermeiden**, solltet Ihr zunächst die **Voraussetzungen** für die Anwendung statistischer Verfahren prüfen, die **Verteilung** Eurer Daten genauer anschauen, dann erst **verschiedene Lage- und Streuungsparameter bestimmen** und die Daten in den richtigen **Kontext** setzen. Und das machen wir jetzt - für einen Datensatz aus dem echten Leben.
 
 #### Vorbereitung: Überblick über die Daten gewinnen
 
@@ -523,6 +525,49 @@ quiz(
 )
 ```
 
+
+```{r}
+# Voraussetzung 1: Sind die Stichproben unabhängig?
+europe <- audit_plastic_eu_asia %>%
+  dplyr::filter(continent == "Europe")
+
+asia <- audit_plastic_eu_asia %>%
+  dplyr::filter(continent == "Asia")
+
+intersect <- intersect(europe, asia)
+
+# Voraussetzung 2: Gibt es Extremwerte?
+outlier <- audit_plastic_eu_asia %>%
+  dplyr::group_by(continent) %>%
+  rstatix::identify_outliers(n_types)
+
+# Voraussetzung 3: Sind die Stichproben normalverteilt?
+normality_europe <- shapiro.test(europe$n_types)
+normality_asia <- shapiro.test(asia$n_types)
+
+# Ergebnisse
+### Unabhängigkeit
+if (nrow(intersect) == 0) {
+  print("Voraussetzung 1 (Unabhängigkeit): Keine Beobachtung taucht in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist erfüllt.")
+} else {
+  print(cat("Voraussetzung 1 (Unabhängigkeit):", nrow(intersect), "Beobachtungen tauchen in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist nicht erfüllt."))
+}
+
+### Extremwerte
+if (nrow(outlier) == 0) {
+  print("Voraussetzung 2 (Extremwerte): Es liegen in den Beobachtungen keine Extremwerte vor, die vor der Anwendung des Testverfahrens bereinigt werden müssten")
+} else {
+  print(cat("Voraussetzung 2 (Extremwerte): Es liegen in den Beobachtungen", nrow(outlier), "Extremwerte vor, die vor der Anwendung des Testverfahrens bereinigt werden müssen"))
+}
+
+### Normalverteilung
+if ((normality_asia$p.value >= 0.05) & (normality_europe$p.value >= 0.05)) {
+  print("Voraussetzung 3 (Normalverteilung): Die Verteilungen beider Gruppen folgen einer Normalverteilung. Die Bedingung der Normalverteilung zur Anwendung des Testverfahrens ist gegeben.")
+} else {
+  print("Voraussetzung 3 (Normalverteilung): Mindestens eine Verteilung der beiden Gruppen folgt nicht einer Normalverteilung. Die Bedingung der Normalverteilung zur Anwendung des Testverfahrens ist nicht gegeben.")
+}
+```
+
 Auf Basis dieses ersten Eindrucks der Stichprobe könnten wir uns fragen, ob Asien über mehr Plastikarten als Europa verfügt. Um dies statistisch zu überprüfen nutzen wir einen **Hypothesentest**. Bei dieser Methode haben wir immer das Ziel, die Hypothese zu widerlegen. Demnach könnte unsere Hypothese lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikante Unterschiede in der Anzahl der Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden, es also nicht nur in unserer Stichprobe sondern in der Realität Unterschiede bei der Anzahl von Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, andere sein müssten.
 
 So viel zur ganz knappen theoretischen Einordnung einer Zeile R Code, die einen **zweiseitigen t-Test** durchführt.
@@ -550,4 +595,3 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 - Stocker T. C. und Steinke I. (2017): Statistik – Grundlagen und Methodik [verfügbar z.B. hier](https://www.beck-shop.de/stocker-steinke-de-gruyter-studium-statistik/product/32926361){target="_blank"}
 - [R for Data Science (engl.)](https://r4ds.had.co.nz/){target="_blank"}
 - [Basic Statistics](https://www.coursera.org/learn/basic-statistics){target="_blank"} auf Coursera (engl.)
-- Die sehr leicht verständliche Zusammenfassung zu Lageparameter und Streuungsmaßen auf [Scribbr](https://www.scribbr.de/statistik/deskriptive-statistik/){target="_blank"}

@@ -15,5 +15,8 @@ Alternativ kann der Link zur Quelle auch als Hyperlink dem Titel hinzugefügt we
 
 Code in `.R` und `.Rmd` Dateien ist lizensiert unter der MIT Lizenz.
 
+## Daten
+Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet Ihr [hier](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26). Vielen Dank an das Team von Tidy Tuesday und Break Free From Plastics!
+
 ## Inhaltlicher Input
 Die Lernplattform basiert auf dem CRAN [learnr-Package](https://cran.r-project.org/web/packages/learnr/learnr.pdf) sowie dem im Entwicklungsstadium befindlichen [gradethis-Package](https://github.com/rstudio/gradethis). Über die Datei lernplattform.Rmd werden die Kapitel der Lernplattform gerendered ("Run Document"). Der Inhalt der einzelnen Kapitel findet sich in den jeweiligemn Rmds. Hinzu kommen notwendige Daten (Ordner: daten), inklusive Abbildungen und Cheat Sheets, und Übungen für Teilnehmende (Ordner: uebungen).
