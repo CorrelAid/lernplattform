@@ -48,7 +48,7 @@ quiz(caption = NULL,
 In dieser Sitzung lernt Ihr verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher diese Visualisierung erstellen könnt:
 
 ```{r barplot_loesung, echo = FALSE}
-# Laden der Daten
+# Laden der bereinigten Daten
 community <- read.csv(file = "daten/community_perspective.csv")
 
 # Installation der Packages

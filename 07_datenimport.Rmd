@@ -12,7 +12,7 @@ Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um dami
 - Um Dateien richtig importieren zu können, ist es wichtig herauszufinden, welches **Dateiformat** die Datei hat
 - **Windows-User** können sich die Dateiendung über die Multifunktionsleiste auf der Registerkarte "Ansicht" anzeigen lassen: Aktiviert dort das Feld "Dateinamenerweiterungen" im Abschnitt "Ein-/Ausblenden"
 - **Mac-User** navigieren zu ihrem Schreibtisch und können sich dort die Dateiendung über "Finder" -> "Erweitert" -> Alle Dateinamensuffixe einblenden" anzeigen lassen
-- Der Import von CSV-, XLSX-, SPSS-, SAS und Stata-Dateien kann in RStudio **ohne Code** über "File" -> "Import Dataset erfolgen
+- Der Import von CSV-, XLSX-, SPSS-, SAS und Stata-Dateien kann in RStudio **ohne Code** über "File" -> "Import Dataset" erfolgen
 - Damit Ihr Fehler beim Importieren von Daten von Anfang an vorbeugt, solltet Ihr die **Datei vorab in einem Texteditor öffnen** (nicht immer möglich) und die folgende Checkliste beachten:
 
     1) In welchem **Dateiformat** liegt die Datei vor?
