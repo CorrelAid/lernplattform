@@ -30,6 +30,9 @@ library(countrycode)
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
+
+
+
 # Schritt 3: Daten bereinigen (diesen Teil müsst Ihr noch nicht nachvollziehen)
 ```{r datenbereinigung}
 ### Daten bereinigen
@@ -103,7 +106,16 @@ ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung
 In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **Community Perspektive** gewidmet. Nun blicken wir auf die **Audit Perspektive**: Wie viel Plastik wurde wo für "Break Free From Plastic" gesammelt? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die **Anzahl der gesammelten Plastikstücke** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen.
 
 ```{r}
-#Euer Code hier
+ggplot(data = audit_plastic, aes(x= continent, y= grand_total)) +
+    geom_point(position = position_jitter(width = 0.3),
+             size = 3,
+             alpha = 0.6)  # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
+
+  
+  
+  
+  
+  
 ```
 
 ### Übung 3 - Lösung:
