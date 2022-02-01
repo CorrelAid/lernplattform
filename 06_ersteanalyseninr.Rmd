@@ -102,34 +102,34 @@ quiz(caption = NULL,
 ```
 
 ### Interaktive Übung
-#### Vorwort: Warum die Kombination von verschiedenen Methoden so wichtig ist
-Die Berechnung von Lage- und Streungsparametern bildet die Grundlage für zahlreiche statistische Analysen. Lageparameter wie Modus, Median und Mittelwert geben die **zentrale Lage** der Beobachtungen an. Streuungsparameter wie Spannweite, Varianz und Standardabweichung sind ein Maß dafür, wie stark unsere Beobachtungen **um die zentrale Lage herum schwanken**.
+<!-- #### Vorwort: Warum die Kombination von verschiedenen Methoden so wichtig ist -->
+<!-- Die Berechnung von Lage- und Streungsparametern bildet die Grundlage für zahlreiche statistische Analysen. Lageparameter wie Modus, Median und Mittelwert geben die **zentrale Lage** der Beobachtungen an. Streuungsparameter wie Spannweite, Varianz und Standardabweichung sind ein Maß dafür, wie stark unsere Beobachtungen **um die zentrale Lage herum schwanken**. -->
 
-Warum diese statistischen Kennzahlen so nützlich sind, lässt sich anhand eines einfachen Beispiels verdeutlichen: Als Lehrer:in schreibt Ihr mit Eurer Klassen einen Test, bei dem Eure Schüler:innen maximal 100 Punkte erreichen und mit 50 bestehen konnten. Die Ergebnisse verteilen sich so:
+<!-- Warum diese statistischen Kennzahlen so nützlich sind, lässt sich anhand eines einfachen Beispiels verdeutlichen: Als Lehrer:in schreibt Ihr mit Eurer Klassen einen Test, bei dem Eure Schüler:innen maximal 100 Punkte erreichen und mit 50 bestehen konnten. Die Ergebnisse verteilen sich so: -->
 
-```{r testergebnisse, exercise = TRUE}
-# Ergebnisse speichern
-testergebnisse <- c(50, 45, 60, 55, 100, 100, 20, 30, 50, 50)
+<!-- ```{r testergebnisse, exercise = TRUE} -->
+<!-- # Ergebnisse speichern -->
+<!-- testergebnisse <- c(50, 45, 60, 55, 100, 100, 20, 30, 50, 50) -->
 
-# Lage- und Streuungsparameter bestimmen
-mean(testergebnisse)
-median(testergebnisse)
-max(testergebnisse) - min(testergebnisse)
-var(testergebnisse)
-sd(testergebnisse)
-```
+<!-- # Lage- und Streuungsparameter bestimmen -->
+<!-- mean(testergebnisse) -->
+<!-- median(testergebnisse) -->
+<!-- max(testergebnisse) - min(testergebnisse) -->
+<!-- var(testergebnisse) -->
+<!-- sd(testergebnisse) -->
+<!-- ``` -->
 
-Ihr rechnet den Durchschnitt aus: `r mean(testergebnisse)`. Im Durchschnitt mit ein paar Punkten Puffer bestanden! Ziemlich gut und kein Grund zur Sorge... Oder? 
+<!-- Ihr rechnet den Durchschnitt aus: `r mean(testergebnisse)`. Im Durchschnitt mit ein paar Punkten Puffer bestanden! Ziemlich gut und kein Grund zur Sorge... Oder?  -->
 
-Wenn wir uns den Median anschauen, der die wahre Mitte einer Verteilung angibt und robust gegen Ausreißer ist, fällt uns auf: `r median(testergebnisse)` - so viel Puffer gab es gar nicht. Am Häufigsten gab es die Punktzahl 50 (Modalwert) und die Streuung um den Mittelwert ist recht groß: Im Mittel weichen Noten um `r round(sd(testergebnisse),0)` Punkte ab und schwanken über eine Spannbreite von `r max(testergebnisse) - min(testergebnisse)` - fast über die gesamtmögliche Breite. Zwar gab es zwei hohe Punktzahlen, aber der Rest der Klasse hat nicht so gut abgeschnitten. Immerhin sind sogar 30 Prozent der Schüler:innen durch die Prüfung gefallen!
+<!-- Wenn wir uns den Median anschauen, der die wahre Mitte einer Verteilung angibt und robust gegen Ausreißer ist, fällt uns auf: `r median(testergebnisse)` - so viel Puffer gab es gar nicht. Am Häufigsten gab es die Punktzahl 50 (Modalwert) und die Streuung um den Mittelwert ist recht groß: Im Mittel weichen Noten um `r round(sd(testergebnisse),0)` Punkte ab und schwanken über eine Spannbreite von `r max(testergebnisse) - min(testergebnisse)` - fast über die gesamtmögliche Breite. Zwar gab es zwei hohe Punktzahlen, aber der Rest der Klasse hat nicht so gut abgeschnitten. Immerhin sind sogar 30 Prozent der Schüler:innen durch die Prüfung gefallen! -->
 
-*Bonusfrage: Warum arbeiten wir hier mit Testergebnissen und nicht der Übersetzung in Schulnoten von 1 bis 6?*
+<!-- *Bonusfrage: Warum arbeiten wir hier mit Testergebnissen und nicht der Übersetzung in Schulnoten von 1 bis 6?* -->
 
-<center>
-![*Bild: Schematische Darstellung der Lage- und Streuungsparameter*](https://correlaid.org/material/Statistik.png){#id .class width=100% height=100%}
-</center>
+<!-- <center> -->
+<!-- ![*Bild: Schematische Darstellung der Lage- und Streuungsparameter*](https://correlaid.org/material/Statistik.png){#id .class width=100% height=100%} -->
+<!-- </center> -->
 
-Um **Fehlschlüsse aus statistischen Kennzahlen zu vermeiden**, solltet Ihr zunächst die **Voraussetzungen** für die Anwendung statistischer Verfahren prüfen, die **Verteilung** Eurer Daten genauer anschauen, dann erst **verschiedene Lage- und Streuungsparameter bestimmen** und die Daten in den richtigen **Kontext** setzen. Und das machen wir jetzt - für einen Datensatz aus dem echten Leben.
+<!-- Um **Fehlschlüsse aus statistischen Kennzahlen zu vermeiden**, solltet Ihr zunächst die **Voraussetzungen** für die Anwendung statistischer Verfahren prüfen, die **Verteilung** Eurer Daten genauer anschauen, dann erst **verschiedene Lage- und Streuungsparameter bestimmen** und die Daten in den richtigen **Kontext** setzen. Und das machen wir jetzt - für einen Datensatz aus dem echten Leben. -->
 
 #### Vorbereitung: Überblick über die Daten gewinnen
 
@@ -528,25 +528,27 @@ quiz(
 
 Auf Basis dieses ersten Eindrucks der Stichprobe könnten wir uns fragen, ob Asien über mehr Plastikarten als Europa verfügt. Um dies statistisch zu überprüfen nutzen wir einen **Hypothesentest**. Bei dieser Methode haben wir immer das Ziel, die Hypothese zu widerlegen. Demnach könnte unsere Hypothese lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikante Unterschiede in der Anzahl der Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden, es also nicht nur in unserer Stichprobe sondern in der Realität Unterschiede bei der Anzahl von Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, andere sein müssten.
 
-Es gibt viele verschiedene Hypothesentests, die unterschiedlichen Zwecken dienen. Der bekannteste ist wohl der **t-Test**, mit dem überprüft wird, ob die Mittelwerte zweier unabhängiger, normalverteilter Stichproben gleich sind. So könnt man beispielsweise auch überprüfen, ob es einen Unterschied zwischen Begünstigten und einer Vergleichsgruppe gibt. Prüfen wir zunächst einmal die Voraussetzungen für den t-Test:
+Es gibt viele verschiedene Hypothesentests, die unterschiedlichen Zwecken dienen. Der bekannteste ist wohl der **t-Test**, mit dem überprüft wird, ob die Mittelwerte zweier unabhängiger, normalverteilter Stichproben gleich sind. So könnt man beispielsweise auch überprüfen, ob es einen Unterschied zwischen Begünstigten und einer Vergleichsgruppe gibt. Die statistische Unabhängigkeit von Stichproben ist ein theoretisches Konstrukt, das sich nur schwer in testen lässt. Die räumliche Trennung legt nahe, dass wir von Unabhängigkeit ausgehen können. Wann wären Stichrproben abhängig von einander?, fragt ihr euch jetzt vielleicht. In unserem Beispiel: die Stichproben aus Asien in mehreren aufeinander folgenden Jahren. 
+
+Die anderen beiden Voraussetzungen lassen sich jedoch überprüfen:
 
 ```{r ttestprerequisites, exercise = TRUE}
-# Voraussetzung 1: Sind die Stichproben unabhängig?
-### Mengen bilden
-europe <- audit_plastic_eu_asia %>%
-  dplyr::filter(continent == "Europe")
-asia <- audit_plastic_eu_asia %>%
-  dplyr::filter(continent == "Asia")
-
-### Schnittmenge bilden 
-intersect <- intersect(europe, asia)
-
-### Ergebnisse drucken (hier logischerweise 0 - Länder werden schließlich nur einem Kontinent zugeordnet)
-if (nrow(intersect) == 0) {
-  print("Voraussetzung 1 (Unabhängigkeit): Keine Beobachtung taucht in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist erfüllt.")
-} else {
-  print(cat("Voraussetzung 1 (Unabhängigkeit):", nrow(intersect), "Beobachtungen tauchen in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist nicht erfüllt."))
-}
+# # Voraussetzung 1: Sind die Stichproben unabhängig?
+# ### Mengen bilden
+# europe <- audit_plastic_eu_asia %>%
+#   dplyr::filter(continent == "Europe")
+# asia <- audit_plastic_eu_asia %>%
+#   dplyr::filter(continent == "Asia")
+# 
+# ### Schnittmenge bilden 
+# intersect <- intersect(europe, asia)
+# 
+# ### Ergebnisse drucken (hier logischerweise 0 - Länder werden schließlich nur einem Kontinent zugeordnet)
+# if (nrow(intersect) == 0) {
+#   print("Voraussetzung 1 (Unabhängigkeit): Keine Beobachtung taucht in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist erfüllt.")
+# } else {
+#   print(cat("Voraussetzung 1 (Unabhängigkeit):", nrow(intersect), "Beobachtungen tauchen in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist nicht erfüllt."))
+# }
 
 # Voraussetzung 2: Gibt es Extremwerte?
 ### Extremwerte identifizieren
