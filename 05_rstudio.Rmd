@@ -241,7 +241,8 @@ if (2 + 2 == 5) {
     }
 ```
 
-Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert. Neben **Maschinellem Lernen** sind solche regelbasierten Systeme übrigens eine wichtige Form von allen Technologien, die unter das Modewort **Künstliche Intelligenz** fallen. Die zugehörigen Regeln werden in komplexeren Systemen von Expert:innen verfasst und erst nach und nach, wenn es möglich ist, durch modernere Technologien ersetzt. Ein gutes Beispiel dafür sind Verfahren zur Verarbeitung von Sprache (siehe [hier](https://aclanthology.org/D13-1079.pdf){target="_blank"}). Ihr könnt Euch aber auch einfach ein regelbasiertes System vorstellen, das automatisch bei der Erreichung einer bestimmten Spendensumme eine Dankesnachricht an alle Spender:innen versendet.
+Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert. Neben **Maschinellem Lernen** sind solche regelbasierten Systeme übrigens eine wichtige Form von allen Technologien, die unter das Modewort **Künstliche Intelligenz** fallen. Die zugehörigen Regeln werden in komplexeren Systemen von Expert:innen verfasst und erst nach und nach, wenn es möglich ist, durch alternative Technologien ersetzt. 
+Ein gutes Beispiel dafür sind Verfahren zur Verarbeitung von Sprache (siehe [hier](https://aclanthology.org/D13-1079.pdf){target="_blank"}). Ihr könnt Euch aber auch einfach ein regelbasiertes System vorstellen, das automatisch bei der Erreichung einer bestimmten Spendensumme eine Dankesnachricht an alle Spender:innen versendet.
 
 Neben der Ausführung von Aktionen unter bestimmten Bedingungen können wir durch technische Implementierungen **Aktionen mehrfach ausführen**. Um bei unserem Beispiel zu bleiben: Nach der Erreichung der Spendensumme soll eine Dankesnachricht an alle Spender:innen gesendet werden. In der Programmierung bezeichnet man diese iterierenden Verfahren als **Loop** (zu dt. Schleife). Sind alle Spender:innen bekannt (und somit die Liste der Elemente, über die man iteriert), nutzt man einen **For Loop** (zu dt. Für-Schleife). 
 
@@ -254,7 +255,7 @@ for (spenderin in list("Phil", "Frie", "Nina")) {
 
 Soll die Aktion ausgeführt werden, bis eine Bedingung eintritt, z.B. weil alle Spender:innen kontaktiert wurden, dann nutzt man einen **While Loop** (zu dt. Solange-Schleife).
 ```{r solangeschleife, exercise = TRUE}
-# Schleifen auf Basis einer Bedingung (und somit unbekannten Anzahl)
+# Schleifen auf Basis einer Bedingung (und einer somit unbekannten Anzahl)
 spenderinnenliste <- list("Phil", "Frie", "Nina")
 i <- 1
 while (i <= length(spenderinnenliste)) {

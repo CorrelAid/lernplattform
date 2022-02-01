@@ -591,12 +591,20 @@ wilcox.test(asia$n_types, europe$n_types, alternative = "greater", paired = FALS
 
 Falls Euch nun wie uns vor Testnamen und -Anwendungen die Ohren schwirren: Die beste Übersicht, die wir zu Hypothesentests finden konnten, gibt es - überraschenderweise als Blogartikel - [hier](https://towardsdatascience.com/hypothesis-tests-explained-8a070636bd28){target="_blank"}.
 
+
+*Anmerkung: Auch Verfechter:innen der bayesianischen Testverfahren kämen hier zu keinem anderen Ergebnis. Ein Bayes-Faktor zwischen 1/3 und 1 spiegelt lediglich einen anekdotischen Zusammenhang wider. *
+```{r bayesttest, exercise = TRUE}
+# Berechnung des Bayes-Faktors (bayesianische Prüfgröße)
+BayesFactor::ttestBF(asia$n_types, europe$n_types)
+```
+
+
 ### Und jetzt Ihr
 Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne mit zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
 
 1. Überlegt: Welche **Fragen** möchtet Ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
 
-2. Versucht, das zugehörige [**R Markdown: 05_ErsteDatenanalysenInR **](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} zum Laufen zu bringen und es nachzuvollziehen.
+2. Versucht, das zugehörige [**R Markdown: 05_ErsteDatenanalysenInR **](https://correlcloud.org/index.php/s/56cTMCbMPbYLEya){target="_blank"} zum Laufen zu bringen und es nachzuvollziehen.
 
 3. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **Community Perspektive** gewidmet. Nun blicken wir auf die **Audit Perspektive**: Wie viel Plastik wurde wo für "Break Free From Plastic" gesammelt? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die **Anzahl der gesammelten Plastikstücke** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen.
 

@@ -30,7 +30,7 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **DSGVO** = verfassungsrechtlich verankertes Grundrecht, das personenbezogene Daten vor Missbrauch schützt (Art. 1 Abs. 1 und Art. 2 Abs. 1 GG, Art. 1 - 4 ff. DSGVO)
 
-**Environment (RStudio** = Ort der IDE RStudio, in dem Objekte gespeichert werden 
+**Environment (RStudio)** = Ort der IDE RStudio, in dem Objekte gespeichert werden 
 
 **Framework** = Grundgerüst zur Programmierung von Applikationen
 
@@ -49,6 +49,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 **Loop (zu dt. Schleife)** = Iteration über Instanzen zur wiederholten Ausführung einer Tätigkeit. Es gibt *For Loops* (zu dt. Für-Schleife) für eine bekannte Menge an Instanzen und *While Loops* (zu dt. Solange-Schleifen), die eine Aktion ausführen, bis eine Bedingung erreicht wurde.
 
 **Maschinelles Lernen** = Als Machine Learning werden solche Regeln bezeichnet, die sich durch mehr Erfahrung bzw. Informationen verbessern.
+
+**Monitoring & Evaluation (M&E)** = Anwendungsgebiet der Datenwissenschaft im Dritten Sektor, das sich fortlaufend mit dem Projektfortschritt auseinandersetzt (Monitoring) und die Wirkung von Interventionen in Programmen und Projekten evaluiert (Evaluation)
 
 **Median** = robuster "Mittelpunkt" mehrerer Zahlen (50% der Ausprägungen sind kleiner oder größer)
 

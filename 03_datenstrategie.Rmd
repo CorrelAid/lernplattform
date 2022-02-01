@@ -47,19 +47,19 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Welche der folgenden Fragestellungen können mit Daten beantwortet werden:",
-    answer("Was macht unsere gesellschaftliche Herausforderung aus?", correct = TRUE),
-    answer("Wie können wir bessere Entscheidungen treffen?", correct = TRUE),
-    answer("Wie können wir effizienter und effektiver arbeiten?", correct = TRUE),
-    correct = "Richtig! Darüber hinaus fallen Euch vielleicht auch noch eigene Fragen ein.",
-    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
+  question("Daten helfen uns...",
+    answer("festzustellen, was unsere gesellschaftliche Herausforderung ausmacht.", correct = TRUE),
+    answer("...bessere Entscheidungen zu treffen.", correct = TRUE),
+    answer("...effizienter und effektiver zu arbeiten.", correct = TRUE),
+    correct = "Richtig! Vielleicht habt Ihr aber auch noch ganz eigene Daten, wobei Daten Euch helfen können.",
+    incorrect = "Leider falsch: Alle diese Aussagen treffen zu.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
     question("Datenwissenschaft ist ein interdisziplinäres Feld. Eine Person, die in diesem Bereich tätig ist, sollte...",
     answer("analytische Fähigkeiten haben.", correct = TRUE),
     answer("technische Fähigkeiten besitzen.", correct = TRUE),
-    answer("sich mit der Domain (zu dt. Bereich) auskennen.", correct = TRUE),
+    answer("sich mit dem Themenfeld (engl. Domain) auskennen.", correct = TRUE),
     answer("Keins davon"),
     correct = "Richtig!",
     incorrect = "Leider falsch: Alle diese Aussagen treffen zu.",
@@ -113,15 +113,16 @@ quiz(caption = NULL,
 ```
 
 ### Interaktive Übung
-Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
+R ist verwirrt, wenn wir Buchstaben in eine Funktion stecken, die Zahlen erwartet. Da Daten in verschiedenen Formaten vorliegen, ist es wichtig, dass Ihr überprüfen könnt, welches Datenformat vorliegt.
 
-Mit der Funktion **class(Euer Objekt)** könnt Ihr überprüfen, welches Datenformat bei Eurem Objekt vorliegt. Testet die Funktion in Zeile 15 für Datumsformate und führt den Code aus.
+Mit der Funktion `class(Euer Objekt)` könnt Ihr überprüfen, zu welcher Kategorie an Datenformaten Euer Objekt gehört (Klasse des Objekts). Testet die Funktion für Datumsformate und führt den Code aus.
 
 ```{r datentypen, exercise=TRUE}
 # Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
 class("Hallo")
 
 # 20.5 ist eine Zahl - bei R bezeichnet man Zahlen als "numeric". Manchmal wird auch noch zwischen ganzen Zahlen - "integer" - und Zahlen mit Nachkommastellen - "double" unterschieden.
+class(20.5)
 class(20)
 
 # Bei der Datenanalyse kommen häufig Vergleiche zum Einsatz, z.B. "zeige nur alle Mitglieder, die **älter sind als** 20". Es werden dann nur alle Beobachtungen angezeigt für die dieser Vergleich wahr ist. Solche Vergleiche und andere "Tests" werden als logische ("logical") Variablen abgebildet - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
@@ -132,10 +133,17 @@ class(alter > 20)
 # Bei Datumsformaten geht R besonders klug vor. Testet die Funktion "class()" mit dem Datum. Was fällt Euch auf?
 datum <- Sys.Date()
 typeof(datum)
+Sys.Date() - 3 # Welches Datum war heute vor drei Tagen?
 # Hier Euer Code
 ```
+*Anmerkung: Die Klasse von Datumsformaten ist zwar Date, aber der genaue Datentyp, den wir mit `typeof()` bestimmt haben, ist numerisch. Deshalb könnt Ihr - wie in Excel -  auch in R mit Datumsformaten Rechenoperationen durchführen.*
 
-*Anmerkung: Wie in Excel könnt Ihr auch in R mit Datumsformaten Rechenoperationen durchführen.*
+Wir merken uns die **drei praxisrelevantesten Klassen** mit den darin vorkommenden Datentypen:
+- numeric und integer (dt. numerisch, Zahlen inkl. Datumsformate): double, integer und Date für mathematische Operationen
+- character (dt. Text) für Textverarbeitungen
+- logical (dt. logisch): wahr (TRUE) oder falsch (FALSE) für das Prüfen von Bedingungen
+
+Da Eure Daten oft in größeren Strukturen, z.B. Tabellen (in R: data frames), gespeichert werden, könnt Ihr mit der selben Funktion `class()` auch diese identifizieren, um zu schauen, was für Eigenschaften Euer Objekt hat und welche Funktionen Ihr auf es anwenden könnt. Das testen wir im nächsten Kapitel.
 
 ### Und jetzt Ihr: Eigenen Data Use Case entwickeln
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
