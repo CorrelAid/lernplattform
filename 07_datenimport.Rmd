@@ -346,3 +346,9 @@ Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Anso
 2. Ladet den "Plastics"-Datensatz über einen [**Hyperlink**](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
 3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
 4. In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um. 
+
+### Zusätzliche Ressourcen
+- [Cheat Sheet: Data import](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} (engl.)
+- [APIs in R](https://app.dataquest.io/course/apis-in-r){target="_blank"} auf DataQuest (engl.)
+- [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
+- [Web Scraping in R](https://app.dataquest.io/course/scraping-in-r){target="_blank"} auf DataQuest (engl.)

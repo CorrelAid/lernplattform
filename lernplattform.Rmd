@@ -272,10 +272,10 @@ out <- knitr::knit_child("05_rstudio.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Erste Datenanalysen in R
+<!-- ## Erste Datenanalysen in R -->
 ```{r results='asis'}
-#out <- knitr::knit_child("06_ersteanalyseninr.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("06_ersteanalyseninr.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Datenimport und APIs

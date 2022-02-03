@@ -530,25 +530,25 @@ Auf Basis dieses ersten Eindrucks der Stichprobe könnten wir uns fragen, ob Asi
 
 Es gibt viele verschiedene Hypothesentests, die unterschiedlichen Zwecken dienen. Der bekannteste ist wohl der **t-Test**, mit dem überprüft wird, ob die Mittelwerte zweier unabhängiger, normalverteilter Stichproben gleich sind. So könnt man beispielsweise auch überprüfen, ob es einen Unterschied zwischen Begünstigten und einer Vergleichsgruppe gibt. Die statistische Unabhängigkeit von Stichproben ist ein theoretisches Konstrukt, das sich nur schwer in testen lässt. Die räumliche Trennung legt nahe, dass wir von Unabhängigkeit ausgehen können. Wann wären Stichrproben abhängig von einander?, fragt ihr euch jetzt vielleicht. In unserem Beispiel: die Stichproben aus Asien in mehreren aufeinander folgenden Jahren. 
 
-Die anderen beiden Voraussetzungen lassen sich jedoch überprüfen:
+Die anderen beiden Voraussetzungen lassen sich jedoch überprüfen: Führt hier den Code dafür aus.
 
 ```{r ttestprerequisites, exercise = TRUE}
-# # Voraussetzung 1: Sind die Stichproben unabhängig?
-# ### Mengen bilden
-# europe <- audit_plastic_eu_asia %>%
-#   dplyr::filter(continent == "Europe")
-# asia <- audit_plastic_eu_asia %>%
-#   dplyr::filter(continent == "Asia")
-# 
-# ### Schnittmenge bilden 
-# intersect <- intersect(europe, asia)
-# 
-# ### Ergebnisse drucken (hier logischerweise 0 - Länder werden schließlich nur einem Kontinent zugeordnet)
-# if (nrow(intersect) == 0) {
-#   print("Voraussetzung 1 (Unabhängigkeit): Keine Beobachtung taucht in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist erfüllt.")
-# } else {
-#   print(cat("Voraussetzung 1 (Unabhängigkeit):", nrow(intersect), "Beobachtungen tauchen in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist nicht erfüllt."))
-# }
+# Voraussetzung 1: Sind die Stichproben unabhängig?
+### Mengen bilden
+europe <- audit_plastic_eu_asia %>%
+  dplyr::filter(continent == "Europe")
+asia <- audit_plastic_eu_asia %>%
+  dplyr::filter(continent == "Asia")
+
+### Schnittmenge bilden 
+intersect <- intersect(europe, asia)
+
+### Ergebnisse drucken (hier logischerweise 0 - Länder werden schließlich nur einem Kontinent zugeordnet)
+if (nrow(intersect) == 0) {
+  print("Voraussetzung 1 (Unabhängigkeit): Keine Beobachtung taucht in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist erfüllt.")
+} else {
+  print(cat("Voraussetzung 1 (Unabhängigkeit):", nrow(intersect), "Beobachtungen tauchen in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist nicht erfüllt."))
+}
 
 # Voraussetzung 2: Gibt es Extremwerte?
 ### Extremwerte identifizieren
@@ -616,5 +616,5 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 - Die kostenlosen Kurse des [Statistischen Bundesamts](https://www.destatis.de/DE/Service/Statistik-Campus/E-Learning/eLearning-statistik.html;jsessionid=63AE25DDABD8853990FBE83F354C8911.live722?nn=206328){target="_blank"}
 - Stocker T. C. und Steinke I. (2017): Statistik – Grundlagen und Methodik [verfügbar z.B. hier](https://www.beck-shop.de/stocker-steinke-de-gruyter-studium-statistik/product/32926361){target="_blank"}
 - [R for Data Science (engl.)](https://r4ds.had.co.nz/){target="_blank"}
-- [Basic Statistics](https://www.coursera.org/learn/basic-statistics){target="_blank"} auf Coursera (engl.)
+- [Statistics Fundamentals in R](https://app.dataquest.io/course/statistics-fundamentals-r){target="_blank"} auf DataQuest (engl.)
 - [Lernvideos](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} zur Inferenzstatistik (dt.)
