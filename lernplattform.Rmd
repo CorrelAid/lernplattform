@@ -10,34 +10,41 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
+#install.packages("pacman")
+#install.packages("devtools")
+#install.packages("remotes")
+#TODO why is this once with remotes, and once with devtools?
 #remotes::install_github("rstudio/learnr")
 #remotes::install_github("rstudio/gradethis")
-#install.packages("pacman")
-pacman::p_load(gradethis,
-              learnr,
-              flipbookr,
-              echarts4r,
-              wesanderson,
-              rio,
-              tidyverse,
-              ggplot2,
-              dplyr,
-              janitor,
-              rstatix,
-              countrycode,
-              haven,
-              httr,
-              purrr,
-              RSQLite,
-              DBI,
-              ggthemes,
-              BH,
-              anytime,
-              gtrendsR)
-
 #devtools::install_github("gadenbuie/xaringanExtra")
 #devtools::install_github("gadenbuie/countdown")
 #devtools::install_github("gadenbuie/xaringanthemer")
+
+#TODO group packages by function? e.g. data viz packages / data cleaning
+pacman::p_load(
+  anytime,          #TODO add short description
+  BH,               #TODO add short description
+  countrycode,      #TODO add short description
+  DBI,              #TODO add short description
+  dplyr,            # data wrangling package
+  echarts4r,        # data viz package
+  flipbookr,        #TODO add short description
+  ggplot2,          # data viz package
+  ggthemes,         # data viz package
+  gradethis,        # learnr package
+  gtrendsR,         #TODO add short description
+  haven,            # data import/export swiss-army knife
+  httr,             #TODO add short description
+  janitor,          # data cleaning package
+  learnr,           # learnplattform package
+  lintr,            # code styling package
+  purrr,            # for loops package
+  rio,              # data import/export package
+  RSQLite,          # database package
+  rstatix,          #TODO add short description
+  wesanderson,      # data viz package
+  tidyverse         #TODO add short description
+)
 
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
