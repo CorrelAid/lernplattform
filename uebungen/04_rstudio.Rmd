@@ -1,5 +1,5 @@
 ---
-title: "03_EinfuehrungRStudio_Uebung"
+title: "04_EinfuehrungRStudio_Uebung"
 author: "Nina Hauser"
 date: "9/30/2021"
 output: html_document
@@ -7,11 +7,11 @@ output: html_document
 
 Das hier ist ein Set-up-Code Chunk, in dem Ihr global (= also für das gesamte Dokument) Einstellungen vornehmen könnt.
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, include = TRUE)
 
-# Installation und Laden des Packages "readr"
-#install.packages("readr")
-library(readr)
+# Installation und Laden des Packages "rio"
+#install.packages("rio")
+library(rio)
 ```
 
 # Hier steht eine Überschrift
@@ -23,16 +23,16 @@ Das ist beispielhafter Text - in **fett** und *kursiv*.
 
 ``` {r einlesen}
 # Laden des Datensatzes, der als CSV vorliegt, über einen Link mit dem Package "rio"
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', fill = TRUE)
 
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
-rio::import(here::here('daten/plastics.csv'))
+# rio::import(here::here('daten/plastics.csv'), fill = TRUE)
 ```
 
 
 ```{r view}
 # Datensatz anschauen
-View(plastics)
+#View(plastics)
 ```
 
 ``` {r head}
@@ -63,7 +63,7 @@ dim(plastics)
 summary(plastics)
 ```
 
-``` {r summary}
+``` {r structure}
 # Erkundung der Datenstruktur mit str()
 str(plastics)
 ```

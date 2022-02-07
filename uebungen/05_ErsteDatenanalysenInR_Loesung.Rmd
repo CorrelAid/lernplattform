@@ -50,7 +50,7 @@ plastics_prep <- plastics %>%
   mutate(continent=replace_na(continent, "Unknown"),
          countrycode=replace_na(countrycode, "Unknown"))
 
-### Community Datensatz erstellen
+# Community Datensatz erstellen
 community<- plastics_prep %>%
   select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
   group_by(country, year) %>%
@@ -72,6 +72,23 @@ audit_plastic_eu_asia<- audit_plastic %>%
   group_by(country) %>%
   mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
 ```
+
+Falls das Datenladen oder die Datenbereinigung bei Euch zu Problemen führt könnt Ihr die bereinigten Datensätze hiermit direkt laden:
+
+```{r alternativesladen}
+# Community Datensatz erstellen
+community<-rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/community_perspective.csv')
+
+# Audit Plastik Datensatz erstellen
+audit_plastic<- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/audit_perspective.csv')
+
+# EU-Asien Audit Plastik Datensatz erstellen
+audit_plastic_eu_asia<- audit_plastic %>%
+  filter(continent == "Europe" | continent == "Asia") %>%
+  group_by(country) %>%
+  mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
+```
+
 
 # Schritt 4: Übersicht verschaffen
 ```{r datenueberblick}
