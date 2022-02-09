@@ -2,7 +2,7 @@
 # https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
 on:
   schedule:
-    - cron: */15 * * * *
+    - cron: '*/15 * * * *'
  # push:
  # branches:
   # - main
@@ -26,7 +26,7 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
       
-      - name: Instally shinytest
+      - name: Install shinytest
         run: |
           install.packages('shinytest')
         shell: Rscript {0}
