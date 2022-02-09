@@ -4,7 +4,7 @@ library(shinytest)
 app <- shinytest::ShinyDriver$new("https://correlaid.shinyapps.io/lernplattform/")
 app_state <- app$.__enclos_env__$private$state
 if (app_state == "running"){
-  # Alles ok
+  quit(status=1)
 } else {
   quit(status=1)
 }
