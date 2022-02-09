@@ -24,8 +24,6 @@ jobs:
         with:
           r-version: 'release'
           rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"
-
-      - uses: r-lib/actions/setup-pandoc@v1
       
       - name: Install httr
         run: |
