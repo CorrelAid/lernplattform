@@ -27,9 +27,9 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
       
-      - name: Install shinytest
+      - name: Install httr
         run: |
-          install.packages('shinytest')
+          install.packages('httr')
         shell: Rscript {0}
 
       - name: Restore R package cache
