@@ -51,6 +51,8 @@ gradethis::gradethis_setup(
   grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
 )
 
+tutorial_options(exercise.timelimit = 15)
+
 ### Daten laden
 plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
