@@ -1,13 +1,13 @@
 name: lernplattform
-title:
+title: lernplattform
 username:
 account: correlaid
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4572281
-bundleId: 5560498
+bundleId: 5560679
 url: https://correlaid.shinyapps.io/lernplattform/
-when: 1644404187.53744
-lastSyncTime: 1644404187.53745
+when: 1644408232.64849
+lastSyncTime: 1644408232.64851
 asMultiple: FALSE
 asStatic: FALSE
