@@ -281,7 +281,7 @@ Zum Abschluss des Abschnitts zur visuellen Exploration würde es sich jetzt anbi
 Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten: <br>
   1. Wie viel Plastik wurde insgesamt gesammelt? <br>
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? (Analyse innerhalb der Kontinente) <br>
-  3. Wie viel Plastikarten wurden gesammelt? <br>
+  3. Wie viele Plastikarten wurden gesammelt? <br>
 
 Ihr kennt nun bereits den Befehl **`dplyr::glimpse()`**, mit dem Ihr Euch die Kurzstatistik des Datensatzes anzeigen lassen könnt. Nutzt ihn hier, um die folgenden Fragen zu beantworten.
 
