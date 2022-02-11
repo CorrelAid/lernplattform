@@ -46,8 +46,11 @@ pacman::p_load(
   tidyverse         #TODO add short description
 )
 
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
 
+# gradethis optionen konfigurieren
 gradethis::gradethis_setup(
   pass = "Gut gemacht!",
   fail = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
@@ -56,42 +59,55 @@ gradethis::gradethis_setup(
   maybe_code_feedback = FALSE,
   fail.hint = FALSE,
   grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
-)
+  )
 
 ### Daten laden
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- rio::import(file = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 
 # Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
-  country = "all", # Auswahl der Länder
-  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
-  start = 2018, # Auswahl Zeithorizont: Anfang
-  end = 2018, # Auswahl Zeithorizont: Ende
+  country = "all",
+  # Auswahl der Länder
+  indicator = "ER.PTD.TOTL.ZS",
+  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  start = 2018,
+  # Auswahl Zeithorizont: Anfang
+  end = 2018,
+  # Auswahl Zeithorizont: Ende
   language = "en" #Sprachauswahl
-) 
+)
 
 data_wb <- wb_areas %>%
-  dplyr::select(country_code = 'iso2c',
-                protected_area = 'ER.PTD.TOTL.ZS')
+  dplyr::select(country_code = "iso2c",
+                protected_area = "ER.PTD.TOTL.ZS")
 
 # Einlesen der Shapefiles
-polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
-polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
+polygons_welt <- sf::st_read(
+  here::here("daten/geospatial/ne_50m_admin_0_countries.shp")
+  )
+polygons_deutschland <- sf::st_read(
+  here::here("daten/geospatial/1000_NUTS1.shp")
+  )
 
 # Initialisierung eines temporären Ordners
-tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
-download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
-con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
+# Identifizierung der SQLite-DB über das Suffix "sqlite"
+tmpfile <- tempfile(fileext = "sqlite")
+# Herunterladen der temporären Datei
+download.file(url = "https://correlaid.github.io/lernplattform/daten/plastics.sqlite",
+              destfile = tmpfile)
+# Aufbau der Verbindung
+con <- dbConnect(RSQLite::SQLite(), tmpfile)
 
 # API
 basis_url <- "https://unstats.un.org/" # Haupt-URL
-initiale_anfrage <- httr::GET( # Initialisierung
-  basis_url, # URL verlinken
-  path = "/SDGAPI/v1/sdg/Series/Data", # Route definieren
-  query = list(
-    seriescode = "EN_REF_WASCOL"
+initiale_anfrage <- httr::GET(
+  # Initialisierung
+  basis_url,
+  # URL verlinken
+  path = "/SDGAPI/v1/sdg/Series/Data",
+  # Route definieren
+  query = list(seriescode = "EN_REF_WASCOL")
   )
-)
 
 # Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
 content <- httr::content(initiale_anfrage)
@@ -108,35 +124,61 @@ waste_list <- waste_data$data
 
 # Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
 waste_geo <- waste_list %>%
-  purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
-  filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
+  #TODO possibly this can be achieved with pluck?
+  purrr::map_df(
+    .x = .,
+    .f = `[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")
+    ) %>%
+  # Duplikate entfernen, die aus der Datenstruktur resultieren
+  filter(dimensions != "G")
 
 ### Daten bereinigen
-# Country name cleaning: 
+# Country name cleaning:
 plastics_prep <- plastics %>%
   # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
   dplyr::filter(year == 2019) %>%
   # United Kingdom of Great Britain & Northern Ireland sowie für die USA
   dplyr::mutate(
-    country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
-    country = str_replace(country, "United States of America", "United States"),
-    country = str_to_title(country)  # um z.B.: ECUADOR etc case ändern
-    ) %>%
-  #Continent und Country Code anspielen
+    country = stringr::str_replace(
+      string = country,
+      pattern = "United Kingdom of Great Britain & Northern Ireland",
+      replacement = "United Kingdom"
+    ),
+    country = stringr::str_replace(
+      string = country,
+      pattern = "United States of America",
+      replacement = "United States"),
+    # um z.B.: ECUADOR etc case ändern
+    country = stringr::str_to_title(country)
+  ) %>%
+  # Kontinent und Country Code anspielen
   dplyr::mutate(
-    continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
-    countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")
-    ) %>%
+    continent = countrycode::countrycode(
+      country,
+      origin = "country.name",
+      destination = "continent"
+      ),
+    countrycode = countrycode::countrycode(
+      country,
+      origin = "country.name",
+      destination = "iso3c"
+      )
+  ) %>%
   dplyr::mutate(
-    continent = replace_na(continent, "Unknown"),
-    countrycode = replace_na(countrycode, "Unknown")
-    )
+    continent = tidyr::replace_na(continent, "Unknown"),
+    countrycode = tidyr::replace_na(countrycode, "Unknown")
+  )
 
 ### Community Datensatz erstellen
 community <- plastics_prep %>%
-  dplyr::select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
+  dplyr::select(
+    country, year, num_events,
+    volunteers, grand_total,
+    continent, countrycode
+    ) %>%
   dplyr::group_by(country, year) %>%
   dplyr::filter(row_number() == 1)
+
 #write.csv(community, here::here("daten/community_perspective.csv"), row.names = FALSE)
 
 # Audit Plastik Datensatz erstellen
@@ -158,10 +200,8 @@ audit_plastic_eu_asia <- audit_plastic %>%
   dplyr::mutate(n_types = sum(c(hdpe, ldpe, o, pet, pp, ps, pvc) != 0))
 
 # Datensätze für 2019 & 2020 & reduziert
-plastics_2019 <- plastics %>% dplyr::filter(year == "2019") 
-
-plastics_2020 <- plastics %>% dplyr::filter(year == "2020") 
-
+plastics_2019 <- plastics %>% dplyr::filter(year == "2019")
+plastics_2020 <- plastics %>% dplyr::filter(year == "2020")
 plastics_reduced <- plastics_2019 %>% dplyr::select(-grand_total)
 
 reduced_2019 <- plastics_2019 %>%
@@ -192,17 +232,17 @@ data_no_na <- na.omit(reduced_2020)
 
 data_2019 <- reduced_2019
 
-data_2019$country_code <- data_2019$country %>% 
+data_2019$country_code <- data_2019$country %>%
   countrycode::countrycode(
-    origin = 'country.name',
-    destination = 'iso2c'
+    origin = "country.name",
+    destination = "iso2c"
     )
 
 
 # Mini-Datensätze für NA's
 df <- tibble::tribble(
-  ~name,              ~x,  ~y,           ~z,  
-  "Person 1",         1,   -99,          6.7, 
+  ~name,              ~x,  ~y,           ~z,
+  "Person 1",         1,   -99,          6.7,
   "Person 2",         3,   NA,           -99,
   "Person 3",         NA,  0.76,         -1.6
   )
@@ -224,13 +264,13 @@ community_db <- community %>%
 
 # Audit Plastic
 audit_db <- plastics_prep %>%
-  dplyr::filter(parent_company != "Grand Total") %>% 
+  dplyr::filter(parent_company != "Grand Total") %>%
   dplyr::ungroup() %>%
   dplyr::select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
   tidyr::pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
   dplyr::filter(parent_company != "Grand Total")
 
-audit_db %>% 
+audit_db %>%
   write.csv(
     here::here("daten/audit_plastics.csv"),
     row.names = FALSE
@@ -241,7 +281,7 @@ testergebnisse <- c(50, 45, 60, 55, 100, 100, 20, 30, 50, 50)
 
 # Parameter (nur zum Zeigen)
 params <- list()
-params$heute <- format(Sys.time(), '%d. %B %Y')
+params$heute <- format(Sys.time(), "%d. %B %Y")
 params$daten <- "daten/plastics.csv"
 params$start <- as.Date("2019-01-01")
 params$ende <- as.Date("2019-12-31")
@@ -252,65 +292,65 @@ params$kontinent <- "Alle Kontinente"
 <!-- ## Willkommen -->
 ```{r results='asis'}
 out <- knitr::knit_child("01_intro.Rmd", quiet = TRUE)
-cat(out, sep = '')
+cat(out, sep = "")
 ```
 
 <!-- ## Datenprojekte aus der Zivilgesellschaft -->
 ```{r results='asis'}
 out <- knitr::knit_child("02_datenprojekte.Rmd", quiet = TRUE)
-cat(out, sep = '')
+cat(out, sep = "")
 ```
 
 <!-- ## Grundlagen der Datenstrategie -->
 ```{r results='asis'}
 out <- knitr::knit_child("03_datenstrategie.Rmd", quiet = TRUE)
-cat(out, sep = '')
+cat(out, sep = "")
 ```
 
 <!-- ## Datenschutz und Datenethik -->
 ```{r results='asis'}
 out <- knitr::knit_child("04_datenschutz.Rmd", quiet = TRUE)
-cat(out, sep = '')
+cat(out, sep = "")
 ```
 
 <!-- ## Einführung in RStudio -->
 ```{r results='asis'}
 out <- knitr::knit_child("05_rstudio.Rmd", quiet = TRUE)
-cat(out, sep = '')
+cat(out, sep = "")
 ```
 
 <!-- ## Erste Datenanalysen in R -->
 ```{r results='asis'}
 out <- knitr::knit_child("06_ersteanalyseninr.Rmd", quiet = TRUE)
-cat(out, sep = '')
+cat(out, sep = "")
 ```
 
 ## Datenimport und APIs
 ```{r results='asis'}
-#out <- knitr::knit_child("07_datenimport.Rmd", quiet = TRUE) 
-#cat(out, sep = '')
+#out <- knitr::knit_child("07_datenimport.Rmd", quiet = TRUE)
+#cat(out, sep = "")
 ```
 
 ```{r results='asis'}
-#out <- knitr::knit_child("07_datenimport_exkursapi.Rmd", quiet = TRUE) 
-#cat(out, sep = '')
+#out <- knitr::knit_child("07_datenimport_exkursapi.Rmd", quiet = TRUE)
+#cat(out, sep = "")
 ```
 
 ```{r results='asis'}
-#out <- knitr::knit_child("07_datenimport_exkurssql.Rmd", quiet = TRUE) 
-#cat(out, sep = '')
+#out <- knitr::knit_child("07_datenimport_exkurssql.Rmd", quiet = TRUE)
+#cat(out, sep = "")
 ```
 
 ## Datenbereinigung
 ```{r results='asis'}
 #out <- knitr::knit_child("08_datenbereinigung.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+#cat(out, sep = "")
 ```
 
 ## Datenvisualisierung
 ```{r results='asis'}
 #out <- knitr::knit_child("09_datenvisualisierung.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+#cat(out, sep = "")
 ```
 
 ## Reports in R Markdown
@@ -346,5 +386,5 @@ cat(out, sep = '')
 <!-- ## Glossar -->
 ```{r results='asis'}
 out <- knitr::knit_child("99_glossar.Rmd", quiet = TRUE)
-cat(out, sep = '')
+cat(out, sep = "")
 ```
