@@ -1,0 +1,52 @@
+"continent","country","n_pieces","n_volunteers","n_events"
+"Africa","Benin",4988,2328,1
+"Africa","Burkina Faso",5818,235,1
+"Africa","Cameroon",8595,387,10
+"Africa","Cote D_ivoire",53,1500,1
+"Africa","Ghana",578,1100,3
+"Africa","Kenya",9494,1560,5
+"Africa","Nigeria",80570,1648,14
+"Africa","Rwanda",413,82,2
+"Africa","South Africa",905,511,2
+"Africa","Tanzania",1263,103,21
+"Africa","Tunisia",40,32,1
+"Americas","Argentina",2668,243,4
+"Americas","Brazil",4734,419,3
+"Americas","Canada",1,9,1
+"Americas","Colombia",856,5253,1
+"Americas","Ecuador",12715,455,1
+"Americas","Mexico",638,48,7
+"Americas","United States",4314,740,42
+"Asia","Bangladesh",16,100,1
+"Asia","Bhutan",3500,5300,1
+"Asia","China",3459,1439,48
+"Asia","Cyprus",24,30,1
+"Asia","Hong Kong",3708,67,7
+"Asia","India",2066,88,4
+"Asia","Indonesia",13309,6850,32
+"Asia","Japan",84,1293,35
+"Asia","Malaysia",4880,300,1
+"Asia","Maldives",26,2,1
+"Asia","Philippines",37016,3751,20
+"Asia","Sri Lanka",3871,48,2
+"Asia","Taiwan_ Republic Of China (Roc)",120646,31318,2
+"Asia","Thailand",369,374,5
+"Asia","Turkey",178,312,4
+"Asia","United Arab Emirates",12,3,1
+"Asia","Vietnam",10887,400,4
+"Europe","Bulgaria",8,15,1
+"Europe","France",15,13,1
+"Europe","Germany",281,15,2
+"Europe","Ireland",1,1,1
+"Europe","Italy",690,175,9
+"Europe","Latvia",2623,13,1
+"Europe","Luxembourg",1,21,1
+"Europe","Montenegro",4642,563,1
+"Europe","Netherlands",5067,827,2
+"Europe","Portugal",1004,43,2
+"Europe","Slovenia",914,9,1
+"Europe","Spain",1991,330,12
+"Europe","Switzerland",7501,327,6
+"Europe","Ukraine",4838,114,7
+"Europe","United Kingdom",3,21,1
+"Oceania","Australia",3,5,1
