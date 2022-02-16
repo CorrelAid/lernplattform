@@ -153,13 +153,13 @@ community19_by_country %>%
 Die Herausforderung, die Break Free From Plastic lösen möchte, ist eng verknüpft mit dem **zwölften Ziel für nachhaltige Entwicklung, den Sustainable Development Goals** (kurz: SDGs). Ziel 12 setzt sich für "Verantwortungsvolle Konsum- und Produktionsmuster" ein. Konkret geht es insbesondere in Punkt 12.5 um die Reduktion von Abfall durch Prävention, Reduktion, Recycling und Wiederverwendung. Indikator 12.5.1 stellt dabei die nationalen Recyclingraten in Prozent dar. Besonders Plastik ist in der derzeitigen Konsumlandschaft ein immenses Problem: Als oftmals nur einmalig genutztes und langlebiges Abfallprodukt mit niedrigen Recyclingquoten verschmutzt es die Welt zu Land und zu Wasser und nimmt dort erheblichen **Einfluss auf die Flora und Fauna**. Weltweit sind 73 Prozent des Strandmülls Plastikprodukte, während im Meer schätzungsweise mehr als 5 Trillionen Plastikstücke schwimmen. Deren Anzahl wächst mit der Produktion von Plastik exponentiell: Bis 2015 betrug die Produktion mehr als 6.3 Milliarden Tonnen, von denen nur 9 Prozent recycelt wurden. Davon wurden 2015 406 Millionen produziert, 1950 waren es noch 2.1 und 1950 147 Millionen ([Quelle: National Geographic UK](https://www.nationalgeographic.co.uk/10-shocking-facts-about-plastic)). Wollen wir unsere Umwelt erhalten, müssen wir die Pflanz- und Tierwelt vor Produkten schützen, deren Zersetzung zu Mikroplastik 450 Jahre (und mehr) beträgt. Ein vollständiger Abbau ist nicht grundsätzlich möglich. Umso wichtiger, dass die bereits in der freien Natur vorkommenden Plastikstücke gesammelt und ordnungsgemäß entsorgt werden. In welchem Umfang Break Free From Plastic  beitragen konnte, soll hier vorgestellt werden.
 
 ### Aktivitäten
-Help: Bestimmte Hersteller werden ausgeschlossen (siehe The Coca-Cola Company)
+
 ```{r top10hersteller, include = FALSE}
 top10_parentcompany <- plastics19_by_country_and_company %>%
     dplyr::ungroup() %>% # Gruppierung aufheben um Operation zu ermöglichen
   dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
   dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
-  dplyr::summarise(total_pieces = sum(n_pieces)) %>%
+  dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
   dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>% # Unpassende Werte Filtern
   dplyr::slice_max(total_pieces, n = 10) %>% # die Top Ten abschneiden
   dplyr::arrange(desc(total_pieces))
@@ -206,12 +206,10 @@ knitr::kable(overview_community, caption = "Übersicht über Events und Freiwill
 ```{r top_performers, echo = FALSE}
 # Land mit den meisten Volunteers
 volunteer_max <- community19_by_country %>%
-  ungroup() %>% #Gruppierung aufheben um Operation zu ermöglichen
   slice_max(n_volunteers, n = 1)
 
 # Land mit den meisten Plastikstücken
 grandtotal_max <- community19_by_country %>%
-  ungroup() %>% #Gruppierung aufheben um Operation zu ermöglichen
   slice_max(n_pieces, n = 1)
 ```
 
