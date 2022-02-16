@@ -826,7 +826,7 @@ community %>%
   echarts4r::e_visual_map(volunteers) %>% 
   echarts4r::e_tooltip(trigger = "item") %>% 
   # Hier definieren wir das Thema
-  echarts4r::e_theme("dark")
+  echarts4r::e_theme("gray")
 ```
 
 Es gibt aber noch eine [Vielzahl an weiteren Möglichkeiten](https://echarts4r.john-coene.com/articles/themes.html){target="_blank"}, die Ihr ausprobieren könnt! Lasst Euch von den Themen inspirieren und probiert es einmal aus:
@@ -840,6 +840,7 @@ community %>%
   # Hier definieren wir das Thema
   echarts4r::e_theme("") # Ergänzt hier Euer gewähltes Thema
 ```
+*Anmerkungen: Eigene Themes könnte Ihr in dem [Themebuilder](https://echarts.apache.org/en/theme-builder.html){target="_blank"} von eCharts erstellen*
 
 #### Visualisierungen speichern
 

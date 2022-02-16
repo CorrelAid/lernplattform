@@ -1,0 +1,227 @@
+---
+title: 'Eine explorative Datenanalyse von #breakfreefromplastic'
+author: "Nina Hauser"
+date: "`r format(Sys.Date(), '%d. %B %Y')`"
+output:
+  word_document:
+    toc: yes
+  html_document:
+    theme: yeti
+    toc: yes
+    toc_float: yes
+params:
+  heute: !r format(Sys.Date(), '%d. %B %Y')
+  daten:
+    label: 'Daten hochladen (CSV-Format):'
+    value: daten/plastics.csv
+    input: file
+  start: !r as.Date("2019-01-01")
+  ende:
+    label: 'Enddatum auswählen:'
+    value: !r as.Date("2019-12-31")
+    input: slider
+    min: !r as.Date("2019-12-31")
+    max: !r as.Date("2020-12-31")
+  kontinent:
+    label: 'Kontinent auswählen:'
+    value: Alle Kontinente
+    input: select
+    choices:
+    - Americas
+    - Asia
+    - Africa
+    - Europe
+    - Oceania
+    - Unknown
+toc: yes
+---
+
+```{r, echo=FALSE}
+# Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und ggf. gegen Euer Logo/Wunschbild austauschen
+htmltools::img(src = "/media/BFFP_Logo.png", 
+               width = '150px',
+               style = 'position:absolute; top:0; right:0; padding:10px;')
+```
+
+```{css, echo=FALSE}
+# Einfügen eines Logos über CSS über dem Inhaltsverzeichnis und Änderung der Schriftart und -Größe - das müsst Ihr nur nachvollziehen und ggf. gegen Euer Logo/Wunschbild austauschen
+ @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+#TOC::before {
+  content: "";
+  display: block;
+  height: 100px;
+  margin: 20px 20px 40px 20px;
+  background-image: url("https://www.aqc-asso.ch/images/SDGs/E_INVERTED_SDG_goals_icons-individual-RGB-12.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+```
+
+\newpage
+
+```{r setup, include=FALSE}
+# Schritt 1: Infrastruktur
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+# Notwendige Packages laden
+library(tidyverse)
+```
+
+```{r datenimport, include = FALSE}
+# Schritt 2: Daten laden
+### Plastics-Daten laden
+community19_by_country <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/community19_by_country.csv')
+
+plastics19_by_country_and_company <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/plastics19_by_country_and_company.csv')
+```
+
+```{r datenbereinigung, include = FALSE}
+# Schritt 3: Daten bereinigen: extern erledigt!
+```
+
+```{r ueberblick, include = FALSE}
+# Schritt 4: Übersicht verschaffen
+dplyr::glimpse(community19_by_country)
+dplyr::glimpse(plastics19_by_country_and_company)
+```
+
+### Vorwort
+Im Folgenden soll der Datensatz der **Break Free From Plastic** Bewegung für das Jahr 2019 und 2020 explorativ erkundet werden. Der Datensatz enthält 13.380 Beobachtungen zu Plastiksammelaktionen in 69 Ländern. Enthalten sind die Variablen  (als Stichpunkte): Land, Jahr, Hersteller des Produktes, Art des gesammelten Plastiks sowie die Anzahl an durchgeführten Events und der Anzahl teilnehmender Freiwilliger.
+
+*Anmerkung: Mehr Informationen zu Break Free From Plastic finden Sie unter diesem [Link](https://www.breakfreefromplastic.org/)*.
+\newpage
+
+### Datenbereinigung
+Im Jahr 2020 konnten nur wenige Events durchgeführt werden. Nach Betrachtung der Datenlage wurde das Jahr 2020 deshalb von der Analyse ausgeschlossen. Auch wurde der Datensatz in zwei Tabellen aufgeteilt: Daten zum Plastikaudit und Daten aus der Gemeinschaft rund um die Bewegung. Nach der Datenbereinigung verblieben noch Daten aus `r length(unique(plastics19_by_country_and_company$country))` Ländern und zu `r length(unique(plastics19_by_country_and_company$parent_company))` Herstellern im Datensatz.
+
+```{r kartendaten, include = FALSE}
+library(leaflet)
+# Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
+polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
+
+# Rename Countycodes
+names(polygons_welt)[names(polygons_welt) == 'ADM0_A3'] <- 'countrycode'
+
+# Kartendaten vorbereiten
+karten_daten <- community %>%
+  dplyr::select(country, countrycode) %>%
+  dplyr::group_by(country, countrycode) %>%
+  dplyr::left_join(polygons_welt, by = "countrycode")
+```
+```{r karte, echo = FALSE}
+# Karte mit aktiven Ländern erstellen
+leaflet::leaflet(karten_daten$geometry) %>%
+  leaflet::addProviderTiles(providers$CartoDB.Positron) %>% # Layout wählen - wir empfehlen die Layouts von CartoDB (auch verfügbar ohne Labels und in schwarz)
+  leaflet::addPolygons(color = "#4E97AC", weight = 1, smoothFactor = 0.5, opacity = 1.0, fillOpacity = 0.5, popup = karten_daten$country)
+```
+
+\newpage
+
+### Thematische Einordnung
+Die Herausforderung, die Break Free From Plastic lösen möchte, ist eng verknüpft mit dem **zwölften Ziel für nachhaltige Entwicklung, den Sustainable Development Goals** (kurz: SDGs). Ziel 12 setzt sich für "Verantwortungsvolle Konsum- und Produktionsmuster" ein. Konkret geht es insbesondere in Punkt 12.5 um die Reduktion von Abfall durch Prävention, Reduktion, Recycling und Wiederverwendung. Indikator 12.5.1 stellt dabei die nationalen Recyclingraten in Prozent dar. Besonders Plastik ist in der derzeitigen Konsumlandschaft ein immenses Problem: Als oftmals nur einmalig genutztes und langlebiges Abfallprodukt mit niedrigen Recyclingquoten verschmutzt es die Welt zu Land und zu Wasser und nimmt dort erheblichen **Einfluss auf die Flora und Fauna**. Weltweit sind 73 Prozent des Strandmülls Plastikprodukte, während im Meer schätzungsweise mehr als 5 Trillionen Plastikstücke schwimmen. Deren Anzahl wächst mit der Produktion von Plastik exponentiell: Bis 2015 betrug die Produktion mehr als 6.3 Milliarden Tonnen, von denen nur 9 Prozent recycelt wurden. Davon wurden 2015 406 Millionen produziert, 1950 waren es noch 2.1 und 1950 147 Millionen ([Quelle: National Geographic UK](https://www.nationalgeographic.co.uk/10-shocking-facts-about-plastic)). Wollen wir unsere Umwelt erhalten, müssen wir die Pflanz- und Tierwelt vor Produkten schützen, deren Zersetzung zu Mikroplastik 450 Jahre (und mehr) beträgt. Ein vollständiger Abbau ist nicht grundsätzlich möglich. Umso wichtiger, dass die bereits in der freien Natur vorkommenden Plastikstücke gesammelt und ordnungsgemäß entsorgt werden. In welchem Umfang Break Free From Plastic  beitragen konnte, soll hier vorgestellt werden.
+
+### Aktivitäten
+```{r top10hersteller, include = FALSE}
+top10_parentcompany <- plastics_prep %>%
+  dplyr::select(parent_company, grand_total) %>% # Spalten auswählen
+  dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
+  dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>% # Unpassende Werte Filtern
+  dplyr::ungroup() %>% # Gruppierung aufheben um Operation zu ermöglichen
+  dplyr::slice_max(grand_total, n = 10) %>% # die Top Ten abschneiden
+  dplyr::arrange(desc(grand_total))
+```
+
+2019 führte Break Free From Plastics `r sum(community$num_events)` Events mit `r as.integer(sum(community$volunteers))` Freiwilligen durch, kategorisierte die verschiedenen Plastikstücke und sorgte im Anschluss für ihre fachgerechte Entsorgung. Besonders häufig waren Plastikstücke der Firmen `r top10_parentcompany[1,]$parent_company`, `r top10_parentcompany[2,]$parent_company` und `r top10_parentcompany[3,]$parent_company`.
+<center>
+```{r geombar, echo = FALSE}
+# Erstellung eines Barplots zu den Herstellern von Plastik
+ggplot2::ggplot(data = top10_parentcompany, aes(x = parent_company, y = grand_total)) + # Plot auf Basis der bearbeiteten Daten inititalisieren
+    geom_bar(stat = "identity", fill = "#4E97AC") + # Initialisierung eines Barplots mit absoluten Werten (stat = "identity") in der Farbe blau (#4E97AC)
+    labs(
+      title = "Prominente Firmen aus aller Welt ..." ,
+      subtitle = "... stellen die gefundenen Plastikverpackungen her.",
+      x = "Hersteller",
+      y = "Anzahl an Plastikstücken"
+    ) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) # Positionierung der Herstellernamen
+```
+</center>
+
+### Wirkung
+Insgesamt wurden auf den `r sum(community$num_events)` Events mit durchschnittlich `r as.integer(round(mean(community$volunteers),0))` Freiwilligen `r round(mean(community$grand_total),0)` Plastikstücke gesammelt. Das entspricht `r as.integer(sum(community$grand_total))` Plastikstücken. 
+
+<center>
+```{r dplyruebung, echo = FALSE}
+# Berechnung der Länder- und Freiwilligenanzahl je Kontinent
+overview_community <- community %>% # Bezug zum Datensatz
+  group_by("Kontinent" = continent) %>% # Gruppierung pro Kontinent
+  summarize( # Initialisierung der Berechnung
+    # Anzahl beteiligter Länder
+    "Anzahl Länder" = n(),
+    # Teilnahmezahl der Freiwilligen
+    "Anzahl Freiwilliger" = sum(volunteers),
+    # Anzahl Plastikstücke
+    "Anzahl Plastikstücke" = sum(grand_total))
+knitr::kable(overview_community, caption = "Übersicht über Events und Freiwillige")
+```
+</center>
+
+```{r top_performers, echo = FALSE}
+# Land mit den meisten Volunteers
+volunteer_max <- community %>%
+  ungroup() %>% #Gruppierung aufheben um Operation zu ermöglichen
+  slice_max(volunteers, n = 1)
+
+# Land mit den meisten Plastikstücken
+grandtotal_max <- community %>%
+  ungroup() %>% #Gruppierung aufheben um Operation zu ermöglichen
+  slice_max(grand_total, n = 1)
+```
+
+In `r volunteer_max$country` wurden die meisten Menschen zur Teilnahme bewegt (n = `r as.integer(volunteer_max$volunteers)`). Insbesondere in `r as.integer(grandtotal_max$country)` konnte viel Plastik (n = `r as.integer(grandtotal_max$grand_total)`) gesammelt werden. Die Beteiligung zwischen den Ländern sowie die Anzahl an gesammeltem Plastik fluktuiert stark.
+
+```{r scatterplot, echo = FALSE}
+# Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
+ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen
+  geom_point(position = position_jitter(width = 0.3),
+             size = 3,
+             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
+  geom_hline(aes(yintercept=mean(volunteers)), colour = "darkred") + # Mittelwert hinzufügen
+  coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
+  labs(
+    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl Freiwilliger",
+    x = "Kontinent",
+    caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+```
+</center>
+
+<center>
+```{r erstellungdiagramm, echo = FALSE}
+# Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
+ggplot(data = audit_plastic, aes(continent, grand_total)) + # Initialisierung des ggplots mit Variablen
+  geom_point(position = position_jitter(width = 0.3),
+             size = 3,
+             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
+  geom_hline(aes(yintercept=mean(grand_total)), colour = "darkred") + # Mittelwert hinzufügen
+  coord_cartesian(ylim = c(0, 15000)) + # Festlegung der Achsenlänge der y-Achse
+  labs(
+    title = "Beteiligung an 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl gefundener Plastikstücke",
+    x = "Kontinent",
+    caption = "In Nigeria, Philippinen und Taiwan wurden 19.841, 28.055 und \n120.646 Plastikstücke gesammelt. Diese Beoachtungen \nwurden zur Lesbarkeit ausgeklammert."
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+```
+</center>
