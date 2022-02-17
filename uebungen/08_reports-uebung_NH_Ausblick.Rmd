@@ -256,7 +256,7 @@ ggplot(data = community19_by_country, aes(x = continent, y = n_pieces, fill = co
 </center>
 
 ### Ausblick
-Für die Zukunft bedeutet das: Mehr Mobilisierung und Aufbau lokaler Gruppen. Mit mehr Menschen können näämlich auch mehr Plastikstücke gesammelt werden (Korrelation: `r cor(community19_by_country$n_volunteers, community19_by_country$n_pieces)`). 
+Die Anzahl der Events korreliert nur sehr schwach mit der Anzahl gesammelter Plastikstücke (Korrelation: `r cor(community19_by_country$n_events, community19_by_country$n_pieces)`). Mit **mehr Menschen** können allerdings **mehr Plastikstücke** gesammelt werden (starke Korrelation: `r cor(community19_by_country$n_volunteers, community19_by_country$n_pieces)`). Für die Zukunft bedeutet das: Mehr **Mobilisierung** und **Aufbau lokaler Gruppen** und Vergrößerung der Reichweite von Informations- und Werbekampagnen. Spannend könnte hier auch eine genauere Betrachtung der Arten sein, wie Menschen von den Events erfahren, und warum sie teilnehmen, um passgenauere Empfehlungen aussprechen zu können.
 
 <center>
 ```{r punktediagramm, echo = FALSE}
