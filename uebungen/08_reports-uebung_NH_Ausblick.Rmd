@@ -215,39 +215,38 @@ grandtotal_max <- community19_by_country %>%
 
 In `r volunteer_max$country` wurden die meisten Menschen zur Teilnahme bewegt (n = `r as.integer(volunteer_max$n_volunteers)`). Besonders viele Plastikstücke wurden in `r grandtotal_max$country` (n = `r as.integer(grandtotal_max$n_pieces)`) gesammelt. Die Beteiligung sowie die Anzahl an gesammeltem Plastik fluktuiert stark zwischen den Ländern.
 
-<center>
+
 ```{r scatterplot, echo = FALSE}
-# Erstellung eines Boxplots zu der Anzahl an Freiwilligen
-ggplot(data = community19_by_country, aes(x = continent, y = n_volunteers, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  geom_boxplot() + # Hinzufügen der Daten (Boxplot)
+# Erstellung eines Boxplots mit Punktewolke zu der Anzahl an Freiwilligen
+ggplot(data = community19_by_country, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
+    geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community19_by_country$n_volunteers) + 0.5 * sd(community19_by_country$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
     title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl Freiwilliger",
     x = "Kontinent",
-    caption = "Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community19_by_country)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
   scale_x_discrete(labels = c("Afrika", "Amerikas", "Asien", "Europa", "Ozeanien")) + # Labels umbennen
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
-</center>
 
 <center>
 ```{r erstellungdiagramm, echo = FALSE}
-# Optional: Erstellung eines Boxplots mit der Anzahl gesammelter Plastikstücke pro Kontinent
+# Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community19_by_country, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  geom_boxplot() + # Hinzufügen der Daten (Boxplot)
+  geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community19_by_country$n_pieces) + 0.5 * sd(community19_by_country$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
     title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = "Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community19_by_country)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
   scale_x_discrete(labels = c("Afrika", "Amerikas", "Asien", "Europa", "Ozeanien")) + # Labels umbennen
@@ -262,9 +261,7 @@ Die Anzahl der Events korreliert nur sehr schwach mit der Anzahl gesammelter Pla
 ```{r punktediagramm, echo = FALSE}
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community19_by_country, aes(n_volunteers, n_pieces)) + # Initialisierung des ggplots mit Variablen
-  geom_point(position = position_jitter(width = 0.3),
-             size = 3,
-             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
+  geom_point(position = position_jitter(seed = 1, width = .2), size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe
   stat_smooth(colour = "darkred", method = "lm") + # Trendlinie hinzufügen
   coord_cartesian(xlim = c(0, median(community19_by_country$n_volunteers) + 0.5 * sd(community19_by_country$n_volunteers)), ylim = c(0, median(community19_by_country$n_pieces) + 0.5 * sd(community19_by_country$n_pieces))) + # Festlegung der Achsenlänge der x- und y-Achse
   labs(
@@ -272,8 +269,7 @@ ggplot(data = community19_by_country, aes(n_volunteers, n_pieces)) + # Initialis
     subtitle = "... unterscheidet sich nach Kontinent.",
     x = "Freiwillige",
     y = "Anzahl gefundener Plastikstücke",
-    caption = "Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community19_by_country)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() # Festlegung des Layout-Designs
 ```
 </center>
