@@ -126,7 +126,7 @@ leaflet::leaflet(karten_daten$geometry) %>%
                        popup = glue::glue("{karten_daten$country}: {karten_daten$n_events} Events, {karten_daten$n_volunteers} Freiwillige, {karten_daten$n_pieces} gesammelte Plastikstücke"))
 ```
 
-```{r karte_theme, eval=TRUE, exercise=TRUE}
+```{r karte_theme, include = FALSE}
 # Erstellung einer Karte mit echarts4r
 community19_by_country %>% 
   dplyr::mutate("Anzahl gesammelter Plastikstücke" = n_pieces) %>%
@@ -183,7 +183,7 @@ ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(pa
 </center>
 
 ### Wirkung
-Insgesamt wurden auf den `r sum(community19_by_country$n_events)` Events mit durchschnittlich `r as.integer(round(mean(community19_by_country$n_volunteers),0))` Freiwilligen `r round(mean(community19_by_country$n_pieces),0)` Plastikstücke gesammelt. Das entspricht `r as.integer(sum(community19_by_country$n_pieces))` Plastikstücken. 
+Insgesamt wurden auf den **`r sum(community19_by_country$n_events)` Events** mit durchschnittlich **`r as.integer(round(mean(community19_by_country$n_volunteers),0))` Freiwilligen** `r round(mean(community19_by_country$n_pieces),2)` Plastikstücke gesammelt. Das entspricht **`r as.integer(sum(community19_by_country$n_pieces))` Plastikstücken**. 
 
 <center>
 ```{r dplyruebung, echo = FALSE}
@@ -213,10 +213,10 @@ grandtotal_max <- community19_by_country %>%
   slice_max(n_pieces, n = 1)
 ```
 
-In `r volunteer_max$country` wurden die meisten Menschen zur Teilnahme bewegt (n = `r as.integer(volunteer_max$n_volunteers)`). Besonders viele Plastikstücke wurden in `r grandtotal_max$country` (n = `r as.integer(grandtotal_max$n_pieces)`) gesammelt. Die Beteiligung sowie die Anzahl an gesammeltem Plastik fluktuiert stark zwischen den Ländern.
+In **`r volunteer_max$country`** wurden die meisten Menschen zur Teilnahme bewegt (n = `r as.integer(volunteer_max$n_volunteers)`). Besonders viele Plastikstücke wurden in `r grandtotal_max$country` (n = `r as.integer(grandtotal_max$n_pieces)`) gesammelt. Die Beteiligung sowie die Anzahl an gesammeltem Plastik fluktuiert stark zwischen den Ländern.
 
-
-```{r scatterplot, echo = FALSE}
+<center>
+```{r boxplot_freiwillige, echo = FALSE}
 # Erstellung eines Boxplots mit Punktewolke zu der Anzahl an Freiwilligen
 ggplot(data = community19_by_country, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
     geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
@@ -233,9 +233,7 @@ ggplot(data = community19_by_country, aes(x = continent, y = n_volunteers, fill 
   scale_x_discrete(labels = c("Afrika", "Amerikas", "Asien", "Europa", "Ozeanien")) + # Labels umbennen
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
-
-<center>
-```{r erstellungdiagramm, echo = FALSE}
+```{r boxplot_plastik, echo = FALSE}
 # Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community19_by_country, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
   geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
@@ -255,15 +253,16 @@ ggplot(data = community19_by_country, aes(x = continent, y = n_pieces, fill = co
 </center>
 
 ### Ausblick
-Die Anzahl der Events korreliert nur sehr schwach mit der Anzahl gesammelter Plastikstücke (Korrelation: `r cor(community19_by_country$n_events, community19_by_country$n_pieces)`). Mit **mehr Menschen** können allerdings **mehr Plastikstücke** gesammelt werden (starke Korrelation: `r cor(community19_by_country$n_volunteers, community19_by_country$n_pieces)`). Für die Zukunft bedeutet das: Mehr **Mobilisierung** und **Aufbau lokaler Gruppen** und Vergrößerung der Reichweite von Informations- und Werbekampagnen. Spannend könnte hier auch eine genauere Betrachtung der Arten sein, wie Menschen von den Events erfahren, und warum sie teilnehmen, um passgenauere Empfehlungen aussprechen zu können.
+Die Anzahl der Events korreliert nur sehr schwach mit der Anzahl gesammelter Plastikstücke (Korrelation: `r cor(community19_by_country$n_events, community19_by_country$n_pieces)`). Mit **mehr Menschen** können allerdings **mehr Plastikstücke** gesammelt werden (starke Korrelation: `r cor(community19_by_country$n_volunteers, community19_by_country$n_pieces)`). Für die Zukunft bedeutet das: Mehr **Mobilisierung** und **Aufbau lokaler Gruppen** und Vergrößerung der Reichweite von Informations- und Werbekampagnen. Spannend könnte hier auch eine genauere Betrachtung der Arten sein, wie Menschen von den Events erfahren, und warum sie teilnehmen, um passgenauere Empfehlungen aussprechen zu können. Es ist zudem auffällig, dass in einigen Ländern viele Freiwillige zusammenkamen, aber nur wenig Plastikstücke gesammelt wurden. Warum das so ist, sollte in Gesprächen mit Organisator:innen geprüft werden. In Betracht kommen hier Fehler beim Reporting, das für die politische Arbeit der Bewegung allerdings zentral ist, oder Events, in denen das Sammeln von Plastik nicht im Vordergrund stand (beispielsweise da sie der Aufklärung dienten).
 
 <center>
 ```{r punktediagramm, echo = FALSE}
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
-ggplot(data = community19_by_country, aes(n_volunteers, n_pieces)) + # Initialisierung des ggplots mit Variablen
-  geom_point(position = position_jitter(seed = 1, width = .2), size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe
+ggplot(data = community19_by_country, aes(n_volunteers, n_pieces, label = country)) + # Initialisierung des ggplots mit Variablen
+  geom_point(position = position_jitter(seed = 3), size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe
   stat_smooth(colour = "darkred", method = "lm") + # Trendlinie hinzufügen
   coord_cartesian(xlim = c(0, median(community19_by_country$n_volunteers) + 0.5 * sd(community19_by_country$n_volunteers)), ylim = c(0, median(community19_by_country$n_pieces) + 0.5 * sd(community19_by_country$n_pieces))) + # Festlegung der Achsenlänge der x- und y-Achse
+  geom_text(size = 2) + 
   labs(
     title = "Beteiligung an 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",

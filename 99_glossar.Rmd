@@ -198,6 +198,8 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 
 **Mittelwert, Median und Modus** = `mean()`/`median()`/`mode()`
 
+**Pivotierung** (Umformung des Datensatzes) = `tidyr::pivot_wider()`/`tidyr::pivot_longer()`
+
 **Sortierung von Zeilen** nach Kriterien = `dplyr::arrange()`
 
 **Spaltenanzahl** = `ncol()`
