@@ -881,7 +881,7 @@ Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für int
 Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! 
 *Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen.*
 
-### Weitere Ressourcen im Überblick
+### Zusätzliche Ressourcen
 - Unser Partner Dataquest bietet auch einen [Kurs zu Datenvisualisierungen in R](https://app.dataquest.io/course/r-data-viz){target="_blank"} an
 - [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}
 - [Mehr Informationen zu `echarts4r` (Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
@@ -890,4 +890,5 @@ Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr geler
 - [Online-Version von "ggplot2: Elegant Graphics for Data Analysis" von Hadley Wickham (auf Englisch)](https://ggplot2-book.org/index.html){target="_blank"}
 - [RStudios Tutorial zu leaflet (auf Englisch)](https://rstudio.github.io/leaflet/){target="_blank"}
 - [Einblicke in den Datenjournalismus (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
+- [Visual Inference with R](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/visinference/){target="_blank"}
 - [Datenvisualisierung (Wieso, warum und wie?)](https://www.skala-campus.org/artikel/tipps-daten-visualisieren/146){target="_blank"}

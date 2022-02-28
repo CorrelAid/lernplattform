@@ -603,4 +603,10 @@ plastics %>%
 ```
   
 ### Und jetzt Ihr
-Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datenbereinigung**](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datenbereinigung**](https://correlcloud.org/index.php/s/NjX2HNSeMmGtFD2){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+
+### Zusätzliche Ressourcen
+- [Schummelblatt: dplyr](https://correlaid.org/material/Schummelblatt_dplyr.pdf){target="_blank"} (engl.)
+- [Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning){target="_blank"} auf DataQuest (engl.)
+- [Advanced Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning-advanced){target="_blank"} auf DataQuest (engl.)
+- [Tidyverse: Tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html){target="_blank"} (engl.)
