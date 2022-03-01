@@ -773,8 +773,9 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
 
 ### Weitere Ressourcen
   - [Schummelzettel Shiny-Apps (auf Deutsch)](daten/cheat sheets/shiny_de.pdf){target="_blank"}
-  - [R Studio tutorial (auf Englisch)](https://shiny.rstudio.com/tutorial/){target="_blank"}
+  - [R Studio Tutorial (engl.)](https://shiny.rstudio.com/tutorial/){target="_blank"}
   - [Hadley Wickham: Mastering Shiny (auf Englisch)](https://mastering-shiny.org){target="_blank"}
+  - [CorrelTalk: Eine interaktive Weltkarte für erlassjahr.de](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
   - [Konstantin Gavras and Nick Baumann: Shiny Apps: Development and Deployment (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/shiny-apps/){target="_blank"} auf Methods Bites
   - [Julie Scholler: Intro to Shiny Web App (auf Englisch)](https://juliescholler.gitlab.io/files/M2/M2-CM3-Shiny.html#1){target="_blank"}
   - [Kaleen L. Medeiros: Introduction to Shiny (auf Englisch)](https://github.com/klmedeiros/rladies-tunisia-july2020-intro-shiny){target="_blank"}

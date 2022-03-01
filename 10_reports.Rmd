@@ -225,7 +225,15 @@ quiz(caption = NULL,
 )
 ```
 
+
 ### Und jetzt Ihr
 
 1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html){target="_blank"} und stöbert durch einige Beispiele, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
-2.  Bearbeite lokal die [Übung 08_Reports](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} zu R Markdown, die wir für Euch vorbereitet haben.
+2.  Bearbeitet lokal die [Übung 08_Reports](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} zu R Markdown, die wir für Euch vorbereitet haben.
+
+
+### Zusätzliche Ressourcen
+- [**Schummelzettel (dt.)**](https://correlaid.org/material/Schummelblatt_rmarkdown.pdf){target="_blank"}
+- [**Nachschlagewerk zu RMarkdown (engl.)**](https://correlaid.org/material/RMarkdownGuideline.pdf){target="_blank"}
+- R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"}
+- Templates für [PDF- und HTML-Dokumente](https://www.rstudio.com/blog/r-markdown-custom-formats/){target="_blank"}

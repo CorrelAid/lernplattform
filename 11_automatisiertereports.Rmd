@@ -307,3 +307,9 @@ Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](htt
 
 ### Und jetzt Ihr
 Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der rmarkdown::render() Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut Euch das [**R Markdown: 09_AutomatisierteReports**](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+
+### Zusätzliche Ressourcen
+- [**RStudio Webinar: Rethink Reporting with Automation)**](https://www.rstudio.com/resources/webinars/rethink-reporting-with-automation/){target="_blank"}
+- Yihui Xie et al. [**RMarkdown: The Definitive Guide**](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} (engl.)
+- RStudios [Hilfeseite](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}
+- [CorrelTalk: Automatisierte Reportgenerierung für die Weltläden](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
