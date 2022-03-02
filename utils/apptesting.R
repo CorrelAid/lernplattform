@@ -15,7 +15,7 @@ if (isTRUE(grep("^(4)|(5)[0-9]*", as.character(inititalrequest)))) {
 }
 
 # Wir warten nach dem initialen Anpingen 90 Sekunden, falls Eure Applikation im Ruhezustand ist, um Ressouren zu sparen, und noch laden muss (sleeping, HTTP-Code = 202)
-Sys.sleep(90)
+Sys.sleep(120)
 
 # Status erneut abfragen
 app_state <- httr::GET("https://correlaid.shinyapps.io/lernplattform")$status
