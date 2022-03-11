@@ -182,7 +182,7 @@ ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(pa
 ```
 </center>
 
-### Wirkung
+### Effekt
 Insgesamt wurden auf den **`r sum(community19_by_country$n_events)` Events** mit durchschnittlich **`r as.integer(round(mean(community19_by_country$n_volunteers),0))` Freiwilligen** `r round(mean(community19_by_country$n_pieces),2)` Plastikstücke gesammelt. Das entspricht **`r as.integer(sum(community19_by_country$n_pieces))` Plastikstücken**. 
 
 <center>

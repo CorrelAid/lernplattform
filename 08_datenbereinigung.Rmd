@@ -118,7 +118,7 @@ plastics %>%
 
 ```{r 07quiz_datenbereinigung3}
 quiz(caption = NULL,
-  question("In welchem Land gab es die größte Plastik-Sammelaktion?",
+  question("In welchem Land wurden die meisten Plastikstücke gesammelt?",
     answer("United States of America"),
     answer("Argentina"),
     answer("Taiwan_ Republic of China (ROC)", correct = TRUE),
@@ -609,4 +609,5 @@ Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R im
 - [Schummelblatt: dplyr](https://correlaid.org/material/Schummelblatt_dplyr.pdf){target="_blank"} (engl.)
 - [Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning){target="_blank"} auf DataQuest (engl.)
 - [Advanced Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning-advanced){target="_blank"} auf DataQuest (engl.)
+- Eine noch etwas holpriger Spielplatz, der zeigt, wie Eure Schritte in der Datenbereinigung aussehen: [Tidy Data Tutor](https://tidydatatutor.com){target="_blank"} (engl.)
 - [Tidyverse: Tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html){target="_blank"} (engl.)

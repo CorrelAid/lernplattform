@@ -17,7 +17,10 @@ paste("Schön, dass Du da bist,","Hier dein Name!")
 ```
 
 Als kleine Vorschau auf das, was wir auf der Lernplattform für Euch vorbereitet haben, könnt Ihr Euch gerne unser Promovideo ansehen:
-![*Promovideo R Lernen - Der Datenkurs von und für die Zivilgesellschaft (1min)](https://youtu.be/avH7Yn86SrU){target="_blank"}
+
+
+![*Promovideo R Lernen - Der Datenkurs von und für die Zivilgesellschaft (1min)*](https://youtu.be/avH7Yn86SrU)
+
 
 ### Was Euch diese Woche erwartet
 Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/enQtMjg4NTk0NTA3NjIxNS03OTBjMmFmY2I3Yzk0ZDQ2NjZjYWU3YzMzOGVkYmY0NzM0MjZhMWViMjA4ZmJjOTM5NjZjMGYyYjk4ZDY5MjI5){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/81762778614?pwd=K1pCbGIvT0ZvdnNCSTFmT2IzcmVlUT09&from=addon){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 7.1.22 um 12 Uhr**, nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/t/correlaid9916/m/correlaid9916/1639476740061/679b128309b8014d3f20152ec4f816c5ddb4d6e0?sender=ninah9635){target="_blank"}. Gerne könnt Ihr Euch dort schon eintragen. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 

@@ -883,7 +883,7 @@ Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr geler
 
 ### Zusätzliche Ressourcen
 - Unser Partner Dataquest bietet auch einen [Kurs zu Datenvisualisierungen in R](https://app.dataquest.io/course/r-data-viz){target="_blank"} an
-- [Schummelzettel zu `ggplot2`](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}
+- [Schummelzettel zu `ggplot2`](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"}
 - [Mehr Informationen zu `echarts4r` (Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
 - [Data to Viz](https://www.data-to-viz.com/){target="_blank"}
 - [R Graph Gallery (Übersicht über verschiedene Visualisierungen)](https://www.r-graph-gallery.com/){target="_blank"}

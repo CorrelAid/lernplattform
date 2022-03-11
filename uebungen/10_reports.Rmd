@@ -87,7 +87,9 @@ audit_plastic <- plastics_prep %>%
                     volunteers, 
                     empty)) %>%
   # NA zu 0
-  dplyr::mutate(across(everything(), ~ tidyr::replace_na(.x, 0)))
+  dplyr::mutate(
+    across(c(hdpe, ldpe, o, pet, pp, ps, pvc), ~replace_na(.x, 0))
+    )
 ```
 
 # Schritt 4: Übersicht verschaffen
