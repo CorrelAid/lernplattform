@@ -10,8 +10,8 @@ library(ggthemes)
 library(shinythemes)
 
 # Wir laden dann wieder die Daten
-community <-
-    read.csv(file = here::here("daten/community_perspective.csv"))
+community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_community_by_country.csv')
+audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_audit_by_country_and_company.csv')
 
 
 # Server ------------------------------------------------------------------
@@ -41,11 +41,11 @@ server <- function(input, output) {
             # Überschreiben eine vorherrschende Gruppierung
             ungroup() %>%
             # Berechnen die absolute Anzahl an Freiwilligen
-            dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
+            dplyr::mutate(absolute_anzahl = sum(n_volunteers)) %>%
             # Gruppieren nach Kontinent
             group_by(continent) %>%
             # Berechnen die relative Anzahl der Freiwilligen
-            dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
+            dplyr::mutate(relative_anzahl = (sum(n_volunteers) / absolute_anzahl) * 100) %>%
             # Behalten jeden Wert pro Kontinent nur einmal
             distinct(continent, relative_anzahl)  %>%
             
