@@ -87,7 +87,7 @@ ui <- fluidPage(
   
   # Titel einfügen
   titlePanel(fluidRow(
-    column(10, tags$h2("Eine explorative Datenanalyse von #breakfreefromplastic"), HTML('<h5><em>Eine Übung zum Erlernen von Shiny Web Apps mit echten Daten aus dem tidyverse von und für die Zivilgesellschaft mit CorrelAid e.V. Lizenziert nach CC-BY</h5></em>')),
+    column(10, tags$h2("Eine explorative Datenanalyse von #breakfreefromplastic"), HTML('<h5><em>Eine Übung zum Erlernen von Shiny Web Apps mit echten Daten aus dem tidyverse von und für die Zivilgesellschaft mit CorrelAid e.V. Lizenziert nach CC-BY 4.0. </h5></em>')),
     column(1, HTML('<center><img src="https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg" width="75"></center>'))
   )),
   
@@ -143,10 +143,10 @@ ui <- fluidPage(
     mainPanel(
       # Wir haben uns für das Layout mit Tabs (zu dt. Reitern) entschieden.
       tabsetPanel(
-        # Tab mit Karte einfügen. Wir nutzen das Package Leaflet.
-        tabPanel('Karte', leafletOutput('Karte')),
         # # Tab mit Community-Visualisierung einfügen. 
         tabPanel('Community', plotOutput('Community')),
+        # Tab mit Karte einfügen. Wir nutzen das Package Leaflet.
+        tabPanel('Karte', leafletOutput('Karte')),
         # Tab mit Hersteller-Visualisierung einfügen. Das Package plotly sorgt für die Interaktivität der Visualisierung.
         tabPanel('Hersteller', plotly::plotlyOutput('Hersteller')),
         # Tab mit Tabelle und allen Daten einfügen. Das Package DT macht die Datentabelle durchsuch- und navigierbar.
@@ -164,8 +164,8 @@ server <- function(input, output, session){
   
   # Anmerkung
   output$anmerkung <- renderUI({
-    HTML("<i> Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. 
-         \nDatenquelle: <a href='https://www.breakfreefromplastic.org/'> TidyTuesday und BFFP </a> </i>")
+    HTML("<i> Einige Ausreißer wurden zur Lesbarkeit der Boxplots ausgeklammert. 
+         <br> Datenquelle: <a href='https://www.breakfreefromplastic.org/'> TidyTuesday und BFFP </a> </i>")
     })
   
   # Bedienungshilfe
@@ -229,15 +229,6 @@ server <- function(input, output, session){
       leaflet::addProviderTiles(providers$CartoDB.Positron) %>% # Layout wählen - wir empfehlen die Layouts von CartoDB (auch verfügbar ohne Labels und in schwarz)
       leaflet::addPolygons(color = "#4E97AC", weight = 1, smoothFactor = 0.5, opacity = 1.0, fillOpacity = 0.5, 
                            popup = glue::glue("{karten_daten$country}: {karten_daten$n_events} Events, {karten_daten$n_volunteers} Freiwillige, {karten_daten$n_pieces} gesammelte Plastikstücke"))
-  })
-  
-  # Einfügen der Datentabelle in in die Applikation
-  output$Daten <- DT::renderDT({
-    if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
-      daten <- community %>% filter(continent == input$continent)
-    } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
-      daten <- community
-    }
   })
   
   # Visualisierung gestalten
@@ -323,9 +314,9 @@ server <- function(input, output, session){
   # Hersteller-Visualisierung gestalten
   hersteller <- reactive({ # Hier können wir unseren Output reaktiv gestalten.
     if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
-      daten <- community %>% filter(continent == input$continent)
+      daten <- audit %>% filter(continent == input$continent)
     } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
-      daten <- community
+      daten <- audit
     }
     
     # Top Ten Hersteller berechnen
@@ -353,6 +344,15 @@ server <- function(input, output, session){
   # Einfügen der Visualisierung in die Applikation
   output$Hersteller <- plotly::renderPlotly({
     hersteller()
+  })
+  
+  # Einfügen der Datentabelle in in die Applikation
+  output$Daten <- DT::renderDT({
+    if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
+      daten <- plastics_processed %>% filter(continent == input$continent)
+    } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
+      daten <- plastics_processed
+    }
   })
 }
 
