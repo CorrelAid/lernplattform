@@ -81,13 +81,13 @@ plastics19_by_country_and_company <- plastics_processed %>%
 ```
 
 ```{r export-data}
-community19_by_country %>% rio::export(here::here("daten/community19_by_country.rds"))
-plastics19_by_country_and_company %>% rio::export(here::here("daten/plastics19_long.rds"))
+community19_by_country %>% rio::export(here::here("daten/bffp2019_community_by_country.rds"))
+plastics19_by_country_and_company %>% rio::export(here::here("daten/bffp2019_audit_by_country_and_company.rds"))
 ```
 
 
 ```{r export-csv}
-write.csv(community19_by_country, here::here("daten/community19_by_country.csv"), row.names = FALSE)
-write.csv(plastics19_by_country_and_company, here::here("daten/plastics19_by_country_and_company.csv"), row.names = FALSE)
+write.csv(community19_by_country, here::here("daten/bffp2019_community_by_country.csv"), row.names = FALSE)
+write.csv(plastics19_by_country_and_company, here::here("daten/bffp2019_audit_by_country_and_company.csv"), row.names = FALSE)
 ```
 

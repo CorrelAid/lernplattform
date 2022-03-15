@@ -155,8 +155,7 @@ datum <- Sys.Date()
 typeof(datum)
 # Hier Euer Code
 ```
-
-Anmerkung: Wie in Excel könnt Ihr auch in R mit Datumsformaten Rechenoperationen durchführen.
+*Anmerkung: Wie in Excel könnt Ihr auch in R mit Datumsformaten Rechenoperationen durchführen.*
 
 ### Und jetzt Ihr
 

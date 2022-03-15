@@ -142,10 +142,12 @@ grade_this_code()
 
 Mit der Funktion **`head()`** könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden. Das Gegenteil von "head()" ist "tail()" - damit könnt Ihr die letzten fünf Beobachtungen erkunden.
 ``` {r head, exercise = TRUE}
+# Erste fünf Zeilen anzeigen lassen
 head(data_raw)
 ```
 Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion **`colnames()`** deren Namen anzeigen lassen.
 ``` {r variablen, exercise = TRUE}
+# Spaltennamen anzeigen lassen
 colnames(data_raw)
 ```
 
@@ -174,12 +176,14 @@ ncol(data_raw)
 
 Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **`summary()`** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
 ``` {r datenstruktur_summary, exercise = TRUE}
+# Überblick über Daten
 summary(data_raw)
 ```
 
 Alternativ gibt es auch die Funktion **`str()`**, die ähnlich wie **`summary()`** Grundeigenschaften von Datentabellen anzeigt. Welche Unterschiede findet Ihr zwischen den beiden Funktionen?
 
 ``` {r datenstruktur_str, exercise = TRUE}
+# Überblick über Daten
 str(data_raw)
 ```
 
@@ -241,8 +245,7 @@ if (2 + 2 == 5) {
     }
 ```
 
-Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert. Neben **Maschinellem Lernen** sind solche regelbasierten Systeme übrigens eine wichtige Form von allen Technologien, die unter das Modewort **Künstliche Intelligenz** fallen. Die zugehörigen Regeln werden in komplexeren Systemen von Expert:innen verfasst und erst nach und nach, wenn es möglich ist, durch alternative Technologien ersetzt. 
-Ein gutes Beispiel dafür sind Verfahren zur Verarbeitung von Sprache (siehe [hier](https://aclanthology.org/D13-1079.pdf){target="_blank"}). Ihr könnt Euch aber auch einfach ein regelbasiertes System vorstellen, das automatisch bei der Erreichung einer bestimmten Spendensumme eine Dankesnachricht an alle Spender:innen versendet.
+Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert. Neben **Maschinellem Lernen** sind solche regelbasierten Systeme übrigens eine wichtige Form von allen Technologien, die unter das Modewort **Künstliche Intelligenz** fallen. Die zugehörigen Regeln werden in komplexeren Systemen von Expert:innen verfasst und erst nach und nach, wenn es möglich ist, durch alternative Technologien ersetzt. Ein gutes Beispiel dafür sind Verfahren zur Verarbeitung von Sprache (siehe [hier](https://aclanthology.org/D13-1079.pdf){target="_blank"}). Ihr könnt Euch aber auch einfach ein regelbasiertes System vorstellen, das automatisch bei der Erreichung einer bestimmten Spendensumme eine Dankesnachricht an alle Spender:innen versendet.
 
 Neben der Ausführung von Aktionen unter bestimmten Bedingungen können wir durch technische Implementierungen **Aktionen mehrfach ausführen**. Um bei unserem Beispiel zu bleiben: Nach der Erreichung der Spendensumme soll eine Dankesnachricht an alle Spender:innen gesendet werden. In der Programmierung bezeichnet man diese iterierenden Verfahren als **Loop** (zu dt. Schleife). Sind alle Spender:innen bekannt (und somit die Liste der Elemente, über die man iteriert), nutzt man einen **For Loop** (zu dt. Für-Schleife). 
 

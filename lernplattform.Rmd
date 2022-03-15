@@ -57,10 +57,10 @@ tutorial_options(exercise.timelimit = 30)
 data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
 ### Community Datensatz laden
-community <- rio::import(paste0(here::here(),'/daten/bffp2019_community_by_country.csv'))
+community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
 
 ### Audit Datensatz laden
-audit <- rio::import(paste0(here::here(),'/daten/bffp2019_audit_by_country_and_company.csv'))
+audit <- rio::import(here::here('daten/bffp2019_audit_by_country_and_company.csv'))
 
 # Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
@@ -113,10 +113,12 @@ waste_geo <- waste_list %>%
   filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
 
 # EU-Asien Audit Plastik Datensatz erstellen
-audit_plastic_eu_asia <- audit_plastic %>%
+audit_eu_asia <- audit %>%
+  dplyr::filter(n_pieces != 0) %>%
   dplyr::filter(continent == "Europe" | continent == "Asia") %>%
-  dplyr::group_by(country) %>%
-  dplyr::mutate(n_types = sum(c(hdpe, ldpe, o, pet, pp, ps, pvc) != 0))
+  dplyr::distinct(continent, country, plastic_type) %>%
+  dplyr::group_by(continent, country) %>%
+  dplyr::summarise(n_types = n())
 
 # Mini-Datensätze für NA's
 df <- tibble::tribble(
@@ -170,15 +172,15 @@ cat(out, sep = '')
 
 <!-- ## Datenimport und APIs -->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport.Rmd", quiet = TRUE) 
-cat(out, sep = '')
+#out <- knitr::knit_child("06_datenimport.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
 ```
-
+<!-- ## Exkurs: APIs -->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
-cat(out, sep = '')
+#out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
 ```
-
+<!-- ## Exkurs: SQL -->
 ```{r results='asis'}
 #out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE) 
 #cat(out, sep = '')
@@ -186,26 +188,26 @@ cat(out, sep = '')
 
 <!-- ## Datenbereinigung -->
 ```{r results='asis'}
-out <- knitr::knit_child("07_datenbereinigung.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("07_datenbereinigung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 <!-- ## Datenvisualisierung -->
 ```{r results='asis'}
-out <- knitr::knit_child("09_datenvisualisierung.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("09_datenvisualisierung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 <!-- ## Reports in R Markdown -->
 ```{r results='asis'}
-out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 <!-- ## Reportautomatisierung -->
 ```{r results='asis'}
-out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 <!-- ## Interaktive Visualisierungen -->

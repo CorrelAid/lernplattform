@@ -77,10 +77,8 @@ library(tidyverse)
 
 ```{r datenimport, include = FALSE}
 # Schritt 2: Daten laden
-### Plastics-Daten laden
-community19_by_country <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/community19_by_country.csv')
-
-plastics19_by_country_and_company <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/plastics19_by_country_and_company.csv')
+community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_community_by_country.csv')
+audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_audit_by_country_and_company.csv')
 ```
 
 ```{r datenbereinigung, include = FALSE}
@@ -89,8 +87,8 @@ plastics19_by_country_and_company <- rio::import('https://raw.githubusercontent.
 
 ```{r ueberblick, include = FALSE}
 # Schritt 4: Übersicht verschaffen
-dplyr::glimpse(community19_by_country)
-dplyr::glimpse(plastics19_by_country_and_company)
+dplyr::glimpse(community)
+dplyr::glimpse(audit)
 ```
 
 ### Vorwort
@@ -100,7 +98,7 @@ Im Folgenden soll der Datensatz der **Break Free From Plastic** Bewegung für da
 \newpage
 
 ### Datenbereinigung
-Im Jahr 2020 konnten nur wenige Events durchgeführt werden. Nach Betrachtung der Datenlage wurde das Jahr 2020 deshalb von der Analyse ausgeschlossen. Auch wurde der Datensatz in zwei Tabellen aufgeteilt: Daten zum Plastikaudit und Daten aus der Gemeinschaft rund um die Bewegung. Nach der Datenbereinigung verblieben noch Daten aus `r length(unique(plastics19_by_country_and_company$country))` Ländern und zu `r length(unique(plastics19_by_country_and_company$parent_company))` Herstellern im Datensatz.
+Im Jahr 2020 konnten nur wenige Events durchgeführt werden. Nach Betrachtung der Datenlage wurde das Jahr 2020 deshalb von der Analyse ausgeschlossen. Auch wurde der Datensatz in zwei Tabellen aufgeteilt: Daten zum Plastikaudit und Daten aus der Gemeinschaft rund um die Bewegung. Nach der Datenbereinigung verblieben noch Daten aus `r length(unique(audit$country))` Ländern und zu `r length(unique(audit$parent_company))` Herstellern im Datensatz.
 
 <center>
 ```{r kartendaten, include = FALSE}
@@ -112,7 +110,7 @@ polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countri
 names(polygons_welt)[names(polygons_welt) == 'ADM0_A3'] <- 'countrycode'
 
 # Kartendaten vorbereiten
-karten_daten <- community19_by_country %>%
+karten_daten <- community %>%
   dplyr::mutate(countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>% # Countrycode erzeugen
   dplyr::group_by(country, countrycode) %>%
   dplyr::left_join(polygons_welt, by = "countrycode")
@@ -128,7 +126,7 @@ leaflet::leaflet(karten_daten$geometry) %>%
 
 ```{r karte_theme, include = FALSE}
 # Erstellung einer Karte mit echarts4r
-community19_by_country %>% 
+community %>% 
   dplyr::mutate("Anzahl gesammelter Plastikstücke" = n_pieces) %>%
   # Initialisierung
   echarts4r::e_charts(country) %>% 
@@ -155,7 +153,7 @@ Die Herausforderung, die Break Free From Plastic lösen möchte, ist eng verknü
 ### Aktivitäten
 
 ```{r top10hersteller, include = FALSE}
-top10_parentcompany <- plastics19_by_country_and_company %>%
+top10_parentcompany <- audit %>%
     dplyr::ungroup() %>% # Gruppierung aufheben um Operation zu ermöglichen
   dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
   dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
@@ -165,7 +163,7 @@ top10_parentcompany <- plastics19_by_country_and_company %>%
   dplyr::arrange(desc(total_pieces))
 ```
 
-2019 führte Break Free From Plastics `r sum(community19_by_country$n_events)` Events mit `r as.integer(sum(community19_by_country$n_volunteers))` Freiwilligen durch, kategorisierte die verschiedenen Plastikstücke und sorgte im Anschluss für ihre fachgerechte Entsorgung. Besonders häufig waren Plastikstücke der Firmen `r top10_parentcompany[1,]$parent_company`, `r top10_parentcompany[2,]$parent_company` und `r top10_parentcompany[3,]$parent_company`.
+2019 führte Break Free From Plastics `r sum(community$n_events)` Events mit `r as.integer(sum(community$n_volunteers))` Freiwilligen durch, kategorisierte die verschiedenen Plastikstücke und sorgte im Anschluss für ihre fachgerechte Entsorgung. Besonders häufig waren Plastikstücke der Firmen `r top10_parentcompany[1,]$parent_company`, `r top10_parentcompany[2,]$parent_company` und `r top10_parentcompany[3,]$parent_company`.
 
 <center>
 ```{r geombar, echo = FALSE}
@@ -183,12 +181,12 @@ ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(pa
 </center>
 
 ### Effekt
-Insgesamt wurden auf den **`r sum(community19_by_country$n_events)` Events** mit durchschnittlich **`r as.integer(round(mean(community19_by_country$n_volunteers),0))` Freiwilligen** `r round(mean(community19_by_country$n_pieces),2)` Plastikstücke gesammelt. Das entspricht **`r as.integer(sum(community19_by_country$n_pieces))` Plastikstücken**. 
+Insgesamt wurden auf den **`r sum(community$n_events)` Events** mit durchschnittlich **`r as.integer(round(mean(community$n_volunteers),0))` Freiwilligen** `r round(mean(community$n_pieces),2)` Plastikstücke gesammelt. Das entspricht **`r as.integer(sum(community$n_pieces))` Plastikstücken**. 
 
 <center>
 ```{r dplyruebung, echo = FALSE}
 # Berechnung der Länder- und Freiwilligenanzahl je Kontinent
-overview_community <- community19_by_country %>% # Bezug zum Datensatz
+overview_community <- community %>% # Bezug zum Datensatz
   group_by("Kontinent" = continent) %>% # Gruppierung pro Kontinent
   summarize( # Initialisierung der Berechnung
     # Anzahl beteiligter Länder
@@ -205,11 +203,11 @@ knitr::kable(overview_community, caption = "Übersicht über Events und Freiwill
 
 ```{r top_performers, echo = FALSE}
 # Land mit den meisten Volunteers
-volunteer_max <- community19_by_country %>%
+volunteer_max <- community %>%
   slice_max(n_volunteers, n = 1)
 
 # Land mit den meisten Plastikstücken
-grandtotal_max <- community19_by_country %>%
+grandtotal_max <- community %>%
   slice_max(n_pieces, n = 1)
 ```
 
@@ -218,16 +216,16 @@ In **`r volunteer_max$country`** wurden die meisten Menschen zur Teilnahme beweg
 <center>
 ```{r boxplot_freiwillige, echo = FALSE}
 # Erstellung eines Boxplots mit Punktewolke zu der Anzahl an Freiwilligen
-ggplot(data = community19_by_country, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
+ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
     geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
-  coord_cartesian(ylim = c(0, median(community19_by_country$n_volunteers) + 0.5 * sd(community19_by_country$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+  coord_cartesian(ylim = c(0, median(community$n_volunteers) + 0.5 * sd(community$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
     title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl Freiwilliger",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community19_by_country)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
   scale_x_discrete(labels = c("Afrika", "Amerikas", "Asien", "Europa", "Ozeanien")) + # Labels umbennen
@@ -235,16 +233,16 @@ ggplot(data = community19_by_country, aes(x = continent, y = n_volunteers, fill 
 ```
 ```{r boxplot_plastik, echo = FALSE}
 # Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
-ggplot(data = community19_by_country, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
+ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
   geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
-  coord_cartesian(ylim = c(0, median(community19_by_country$n_pieces) + 0.5 * sd(community19_by_country$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+  coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
     title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community19_by_country)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
   scale_x_discrete(labels = c("Afrika", "Amerikas", "Asien", "Europa", "Ozeanien")) + # Labels umbennen
@@ -253,22 +251,22 @@ ggplot(data = community19_by_country, aes(x = continent, y = n_pieces, fill = co
 </center>
 
 ### Ausblick
-Die Anzahl der Events korreliert nur sehr schwach mit der Anzahl gesammelter Plastikstücke (Korrelation: `r cor(community19_by_country$n_events, community19_by_country$n_pieces)`). Mit **mehr Menschen** können allerdings **mehr Plastikstücke** gesammelt werden (starke Korrelation: `r cor(community19_by_country$n_volunteers, community19_by_country$n_pieces)`). Für die Zukunft bedeutet das: Mehr **Mobilisierung** und **Aufbau lokaler Gruppen** und Vergrößerung der Reichweite von Informations- und Werbekampagnen. Spannend könnte hier auch eine genauere Betrachtung der Arten sein, wie Menschen von den Events erfahren, und warum sie teilnehmen, um passgenauere Empfehlungen aussprechen zu können. Es ist zudem auffällig, dass in einigen Ländern viele Freiwillige zusammenkamen, aber nur wenig Plastikstücke gesammelt wurden. Warum das so ist, sollte in Gesprächen mit Organisator:innen geprüft werden. In Betracht kommen hier Fehler beim Reporting, das für die politische Arbeit der Bewegung allerdings zentral ist, oder Events, in denen das Sammeln von Plastik nicht im Vordergrund stand (beispielsweise da sie der Aufklärung dienten).
+Die Anzahl der Events korreliert nur sehr schwach mit der Anzahl gesammelter Plastikstücke (Korrelation: `r cor(community$n_events, community$n_pieces)`). Mit **mehr Menschen** können allerdings **mehr Plastikstücke** gesammelt werden (starke Korrelation: `r cor(community$n_volunteers, community$n_pieces)`). Für die Zukunft bedeutet das: Mehr **Mobilisierung** und **Aufbau lokaler Gruppen** und Vergrößerung der Reichweite von Informations- und Werbekampagnen. Spannend könnte hier auch eine genauere Betrachtung der Arten sein, wie Menschen von den Events erfahren, und warum sie teilnehmen, um passgenauere Empfehlungen aussprechen zu können. Es ist zudem auffällig, dass in einigen Ländern viele Freiwillige zusammenkamen, aber nur wenig Plastikstücke gesammelt wurden. Warum das so ist, sollte in Gesprächen mit Organisator:innen geprüft werden. In Betracht kommen hier Fehler beim Reporting, das für die politische Arbeit der Bewegung allerdings zentral ist, oder Events, in denen das Sammeln von Plastik nicht im Vordergrund stand (beispielsweise da sie der Aufklärung dienten).
 
 <center>
 ```{r punktediagramm, echo = FALSE}
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
-ggplot(data = community19_by_country, aes(n_volunteers, n_pieces, label = country)) + # Initialisierung des ggplots mit Variablen
+ggplot(data = community, aes(n_volunteers, n_pieces, label = country)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(seed = 3), size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe
   stat_smooth(colour = "darkred", method = "lm") + # Trendlinie hinzufügen
-  coord_cartesian(xlim = c(0, median(community19_by_country$n_volunteers) + 0.5 * sd(community19_by_country$n_volunteers)), ylim = c(0, median(community19_by_country$n_pieces) + 0.5 * sd(community19_by_country$n_pieces))) + # Festlegung der Achsenlänge der x- und y-Achse
+  coord_cartesian(xlim = c(0, median(community$n_volunteers) + 0.5 * sd(community$n_volunteers)), ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der x- und y-Achse
   geom_text(size = 2) + 
   labs(
     title = "Beteiligung an 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     x = "Freiwillige",
     y = "Anzahl gefundener Plastikstücke",
-    caption = glue::glue("n = {nrow(community19_by_country)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() # Festlegung des Layout-Designs
 ```
 </center>

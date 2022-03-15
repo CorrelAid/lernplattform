@@ -102,34 +102,6 @@ quiz(caption = NULL,
 ```
 
 ### Interaktive Übung
-<!-- #### Vorwort: Warum die Kombination von verschiedenen Methoden so wichtig ist -->
-<!-- Die Berechnung von Lage- und Streungsparametern bildet die Grundlage für zahlreiche statistische Analysen. Lageparameter wie Modus, Median und Mittelwert geben die **zentrale Lage** der Beobachtungen an. Streuungsparameter wie Spannweite, Varianz und Standardabweichung sind ein Maß dafür, wie stark unsere Beobachtungen **um die zentrale Lage herum schwanken**. -->
-
-<!-- Warum diese statistischen Kennzahlen so nützlich sind, lässt sich anhand eines einfachen Beispiels verdeutlichen: Als Lehrer:in schreibt Ihr mit Eurer Klassen einen Test, bei dem Eure Schüler:innen maximal 100 Punkte erreichen und mit 50 bestehen konnten. Die Ergebnisse verteilen sich so: -->
-
-<!-- ```{r testergebnisse, exercise = TRUE} -->
-<!-- # Ergebnisse speichern -->
-<!-- testergebnisse <- c(50, 45, 60, 55, 100, 100, 20, 30, 50, 50) -->
-
-<!-- # Lage- und Streuungsparameter bestimmen -->
-<!-- mean(testergebnisse) -->
-<!-- median(testergebnisse) -->
-<!-- max(testergebnisse) - min(testergebnisse) -->
-<!-- var(testergebnisse) -->
-<!-- sd(testergebnisse) -->
-<!-- ``` -->
-
-<!-- Ihr rechnet den Durchschnitt aus: `r mean(testergebnisse)`. Im Durchschnitt mit ein paar Punkten Puffer bestanden! Ziemlich gut und kein Grund zur Sorge... Oder?  -->
-
-<!-- Wenn wir uns den Median anschauen, der die wahre Mitte einer Verteilung angibt und robust gegen Ausreißer ist, fällt uns auf: `r median(testergebnisse)` - so viel Puffer gab es gar nicht. Am Häufigsten gab es die Punktzahl 50 (Modalwert) und die Streuung um den Mittelwert ist recht groß: Im Mittel weichen Noten um `r round(sd(testergebnisse),0)` Punkte ab und schwanken über eine Spannbreite von `r max(testergebnisse) - min(testergebnisse)` - fast über die gesamtmögliche Breite. Zwar gab es zwei hohe Punktzahlen, aber der Rest der Klasse hat nicht so gut abgeschnitten. Immerhin sind sogar 30 Prozent der Schüler:innen durch die Prüfung gefallen! -->
-
-<!-- *Bonusfrage: Warum arbeiten wir hier mit Testergebnissen und nicht der Übersetzung in Schulnoten von 1 bis 6?* -->
-
-<!-- <center> -->
-<!-- ![*Bild: Schematische Darstellung der Lage- und Streuungsparameter*](https://correlaid.org/material/Statistik.png){#id .class width=100% height=100%} -->
-<!-- </center> -->
-
-<!-- Um **Fehlschlüsse aus statistischen Kennzahlen zu vermeiden**, solltet Ihr zunächst die **Voraussetzungen** für die Anwendung statistischer Verfahren prüfen, die **Verteilung** Eurer Daten genauer anschauen, dann erst **verschiedene Lage- und Streuungsparameter bestimmen** und die Daten in den richtigen **Kontext** setzen. Und das machen wir jetzt - für einen Datensatz aus dem echten Leben. -->
 
 #### Vorbereitung: Überblick über die Daten gewinnen
 
@@ -183,98 +155,6 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) + # Initia
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
-Nun bauen wir diese Graphik Schritt-für-Schritt nach. Wir beginnen mit dem Grundgerüst einer `ggplot`-Graphik: dem **Erstellen eines `ggplot`-Objekt und der Definition von ästhetischen Attributen**. Das sind die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code? Was passiert, wenn Ihr die Variablen vertauscht?
-
-```{r grahik1, exercise=TRUE}
-# Erstellung eines leeren Plots
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) # Initialisierung des Plots mit Variablen
-```
-
-Nun fügen wir dem Plot die **Datenpunkte** mit **`geom_point`** hinzu, um einen ersten Scatterplot zu erstellen. Diese Codezeile unterscheidet sich je nach gewählter Visualisierungsform. Theoretisch habt Ihr mit diesem Plot bereits einen Überblick über die Daten, wir werden den Plot im Folgenden aber noch etwas verfeinern.
-
-```{r geom-point1, exercise=TRUE}
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
-  geom_point() # Hinzufügen der Datenpunkte (Scatterplot)
-```
-
-Mit **Layoutoptionen** wie **`position = position_jitter()`** schaffen wir es, dass die Punkte sich nicht alle überlagern. Mit **`alpha = Wert`** ( zwischen 0 und 1) werden die Punkte etwas transparenter, mit **`size= Wert`** (Wert zwischen 0 und +∞) etwas größer und so auch einzeln besser sichtbar.
-
-```{r geom-point2,exercise=TRUE}
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
-  geom_point(position = position_jitter(width = 0.3),
-             size = 3,
-             alpha = 0.6) # Hinzufügen der Datenpunkte inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
-```
-
-Ein Land hatte besonders viele Volunteers. Findet heraus, welches Land hinter dem Extremwert steckt, indem Ihr diesen Code-Chunk ausführt:
-```{r extreme-beobachtung, exercise=TRUE}
-# Filterung des Community-Datensatzes auf Extremwerte über 20.000
-community %>%
-  dplyr::filter(volunteers > 20000)
-```
-Welche Möglichkeiten seht Ihr, **mit dieser Beobachtung umzugehen**? Würdet Ihr sie bei späteren Berechnungen und statistischen Verfahren ausschließen? Auch in Visualisierungen können wir **Extremwerte** exkludieren, wenn die Graphik sonst stark an Leserlichkeit verliert. In diesem Beispiel könnten wir mit **`coord_cartesian(ylim=c(0,10000))`** den Achsenausschnitt der y-Achse einschränken, sodass Extremwerte über 10.000  abgeschnitten werden. <br>
-*Hinweis: Nicht immer ist der Ausschluss von Extremwerten sinnvoll. Gerade bei der visuellen Exploration der Daten ist es sinnvoll sie zu inkludieren, da man sich dann bereits Gedanken über die Auswirkungen auf statistische Kennzahlen und Teststatistik machen kann.*
-
-```{r geom-point3,exercise=TRUE}
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
-  geom_point(position = position_jitter(width = 0.3),
-             size = 3,
-             alpha = 0.6) +
-  coord_cartesian(ylim = c(0, 10000)) # Festlegung der Achsenlänge der y-Achse
-```
-
-**Anmerkungen** sind ganz wesentliche Bestandteile einer Graphik. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf die Datenquelle sowie die nichtdargestellte Beobachtung sinnvoll. Dies lässt sich alles über **`labs()`** in die Graphik einfügen. Mit **"`\n`"** könnt Ihr händisch Zeilenumbrüche einfügen.
-
-```{r geom-point4,exercise=TRUE}
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
-  geom_point(position = position_jitter(width = 0.3),
-             size = 2,
-             alpha = 0.6) +
-  coord_cartesian(ylim = c(0, 10000)) +
-  labs(
-    title = "Die Beteiligung an 'Break Free From Plastik' ..." ,
-    subtitle = "... unterscheidet sich je nach Kontinent.",
-    y = "Anzahl Freiwilliger",
-    x = "Kontinent",
-    caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beobachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  )  # Festlegung der Achsenbezeichnungen, Überschriften und Titel
-```
-
-Mit **`theme_()`** geben wir unserem Plot-Layout den letzten Schliff: Hier entscheiden wir uns für `theme_minimal()`. Zudem können wir mit **`reorder()`** die Kontinente nach aufsteigender Teilnehmerzahl **sortieren**.
-
-Alle anderen Themes von ggplot2 findet Ihr unter diesem [Link](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}.
-
-```{r geom-point5,exercise=TRUE}
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) +
-  geom_point(position = position_jitter(width = 0.3),
-             size = 3,
-             alpha = 0.6) +
-  coord_cartesian(ylim = c(0, 10000)) +
-  labs(
-    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
-    subtitle = "... unterscheidet sich nach Kontinent.",
-    y = "Anzahl Freiwilliger",
-    x = "Kontinent",
-    caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beobachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  ) +
-  theme_minimal() # Festlegung des Layout-Designs
-```
-
-Jetzt kennt Ihr die **Grundfunktionen** von `ggplot`. Es ist ein sehr mächtiges Tool mit **vielen Stellschrauben**. Sobald Ihr die Grundlogik des Aufbaus verstanden habt, ist es eigentlich ganz leicht Codebausteine wiederzuverwenden. So könntet Ihr ein Balkendiagramm (engl. bar chart) mit den folgenden Schritten erstellen:
-
-```{r geombar,exercise=TRUE}
-ggplot2::ggplot(data = community, aes(x = volunteers, y = continent)) +
-  geom_bar(stat = "identity", fill = "#3863a2") + # Initialisierung eines Barplots mit absoluten Werten (stat = "identity") in der Farbe blau (#3863a2)
-  labs(
-    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
-    subtitle = "... unterscheidet sich je nach Kontinent.",
-    x = "Gesamtzahl an Freiwilligen",
-    y = "Kontinent"
-  ) +
-  theme_minimal()
-```
-
-Zum Abschluss des Abschnitts zur visuellen Exploration würde es sich jetzt anbieten, **Übung 3** zu machen. Da könnt Ihr Eure Visualisierungsskills auf die Probe stellen und auf den `audit_plastic`-Datensatzen anwenden. Diesen nutzen wir im kommenden Abschnitt. So könnt Ihr auch in der Lerneinheit das Credo "erst visualisieren, dann zusammenfassende Statistik" einhalten. 
 
 
 #### Statistische Kennzahlen 
