@@ -36,18 +36,14 @@ server <- function(input, output) {
         
         # Wir definieren den Dateninput (`community`)
         community %>%
-            # Datenbereinigung
-            dplyr::filter(continent != "Unknown") %>%
-            # Überschreiben eine vorherrschende Gruppierung
-            ungroup() %>%
             # Berechnen die absolute Anzahl an Freiwilligen
             dplyr::mutate(absolute_anzahl = sum(n_volunteers)) %>%
             # Gruppieren nach Kontinent
-            group_by(continent) %>%
+            dplyr::group_by(continent) %>%
             # Berechnen die relative Anzahl der Freiwilligen
             dplyr::mutate(relative_anzahl = (sum(n_volunteers) / absolute_anzahl) * 100) %>%
             # Behalten jeden Wert pro Kontinent nur einmal
-            distinct(continent, relative_anzahl)  %>%
+            dplyr::distinct(continent, relative_anzahl)  %>%
             
             # Wichtig! Der Filter lief noch nicht - wieso? 
             # Als zusätzlichen Schritt müssen wir jetzt noch einen Filter 
@@ -65,17 +61,20 @@ server <- function(input, output) {
             # Definieren den Visualisierungsplot (Balkendiagramm)
             geom_col() +
             # Bezeichnung des Titels und des Untertitels
-            labs(title = "Prozentuale Verteilung der Freiwilligen" ,
-                 subtitle = "pro Kontinent",) +
-            # Farben der Balken festlegen (über das wesanderson Package)
-            scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-            # Legen das Thema fest
-            ggthemes::theme_wsj() +
+            labs(
+                title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+                subtitle = "... unterscheidet sich nach Kontinent.",
+                y = "Anzahl gefundener Plastikstücke",
+                x = "Kontinent",
+                caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+            # Farben der Balken festlegen 
+            scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) +
+            # Festlegen des  Themas
+            theme_minimal() + 
             # Benennen die Legende um
             # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, 
             # dass es nach der Festlegung des Themas geschieht
-            theme(legend.title = element_blank(),
-                  text = element_text(size = 7))
+            theme(legend.title = element_blank())
         
     })
 }
@@ -88,8 +87,6 @@ server <- function(input, output) {
 
 ui <- fluidPage(
     # Ändert das Thema
-    # Holt euch Inspiration hier: https://rstudio.github.io/shinythemes/
-    theme = shinytheme("superhero"),
     
     # Ändert den Titel in `titelPanel`
     titlePanel("Break Free From Plastic"),
@@ -115,16 +112,16 @@ ui <- fluidPage(
             # Anzeigeäquivalent (linke Seite) und seine Bezeichnung im 
             # Datensatz (rechte Seite) geben
             choices = list(
-                "Nord- und Südamerika" = "Americas",
-                "Afrika" = "Africa",
-                "Asien" = "Asia",
-                "Europa" = "Europe",
-                "Ozeanien" = "Oceania"
+                "Nord- und Südamerika" = "Nord- und Südamerika",
+                "Afrika" = "Afrika",
+                "Asien" = "Asien",
+                "Europa" = "Europa",
+                "Ozeanien" = "Ozeanien"
             ),
             # Wir können jetzt noch im letzten Schritt eine Standardvorauswahl 
             # treffen - hier nehemn wir `"Americas"` (also den Namen im Daten-
             # satz) :-)
-            selected = "Americas"
+            selected = "Nord- und Südamerika"
         )
         
     ),
