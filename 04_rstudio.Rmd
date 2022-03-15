@@ -121,7 +121,7 @@ Mit der Notation **`package::funktion()`** kennzeichnen wir, woher eine Funktion
 Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **`here::here()`**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
 # plastics <- rio::import(here::here('daten/plastics.csv'))
 ```
@@ -133,7 +133,7 @@ plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidyt
 
 ```{r exercise_class-solution}
 # Datenformate überprüfen wir mit "class()"
-class(plastics)
+class(data_raw)
 ```
 
 ```{r exercise_class-check}
@@ -142,11 +142,11 @@ grade_this_code()
 
 Mit der Funktion **`head()`** könnt Ihr Euch die ersten fünf Beobachtungen anzeigen lassen, um den Datensatz zu erkunden. Das Gegenteil von "head()" ist "tail()" - damit könnt Ihr die letzten fünf Beobachtungen erkunden.
 ``` {r head, exercise = TRUE}
-head(plastics)
+head(data_raw)
 ```
 Um eine Übersicht über die Variablen zu bekommen, könnt Ihr Euch mit der Funktion **`colnames()`** deren Namen anzeigen lassen.
 ``` {r variablen, exercise = TRUE}
-colnames(plastics)
+colnames(data_raw)
 ```
 
 Die Funktionen **`nrow()`, `ncol()` und `dim()`** helfen Euch die **Dimensionen** Eures Datensatzes zu bestimmen. Mit help("Funktion") könnt Ihr Euch über RStudio in der Konsole die Erklärung zu den Funktionen anzeigen lassen. Nutzt das bisher Gelernte, um Euch die Spaltenanzahl (also die Anzahl an Variablen) ausgeben zu lassen.
@@ -156,7 +156,7 @@ Die Funktionen **`nrow()`, `ncol()` und `dim()`** helfen Euch die **Dimensionen*
 
 ```{r exercise_ncol-solution}
 # Mit ncol() könnt Ihr Euch die Anzahl an Spalten (eng. columns) anzeigen lassen
-ncol(plastics)
+ncol(data_raw)
 ```
 
 ```{r exercise_ncol-check}
@@ -174,13 +174,13 @@ ncol(plastics)
 
 Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **`summary()`** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
 ``` {r datenstruktur_summary, exercise = TRUE}
-summary(plastics)
+summary(data_raw)
 ```
 
 Alternativ gibt es auch die Funktion **`str()`**, die ähnlich wie **`summary()`** Grundeigenschaften von Datentabellen anzeigt. Welche Unterschiede findet Ihr zwischen den beiden Funktionen?
 
 ``` {r datenstruktur_str, exercise = TRUE}
-str(plastics)
+str(data_raw)
 ```
 
 
