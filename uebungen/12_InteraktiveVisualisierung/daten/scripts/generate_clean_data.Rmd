@@ -1,0 +1,103 @@
+---
+author: "Lisa Reiber"
+date: "19 11 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(
+  tidyverse,
+  rio,
+  tidylog
+)
+```
+
+```{r import-data}
+plastics_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+```
+
+```{r process-data}
+plastics_processed <- plastics_raw %>%
+  # drop empty countries
+  dplyr::filter(
+    country != "EMPTY",
+    parent_company != "Grand Total"
+    ) %>%
+  # clean country names
+  dplyr::mutate(
+    country =
+      dplyr::case_when(
+        country == "United Kingdom of Great Britain & Northern Ireland" ~ "United Kingdom",
+        country == "United States of America" ~ "United States",
+        TRUE ~ country
+      ),
+    # Strings to title um z.B.: ECUADOR etc case ändern
+    country = str_to_title(country),
+    #Continent und Country Code anspielen
+    continent = countrycode::countrycode(country,
+                                         origin = "country.name",
+                                         destination = "continent"),
+    continent = dplyr::case_when(continent == "Africa" ~ "Afrika",
+                                 continent == "Americas" ~ "Amerika",
+                                 continent == "Asia" ~ "Asien",
+                                 continent == "Europe" ~ "Europa",
+                                 continent == "Oceania" ~ "Ozeanien"),
+    countrycode = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "iso3c"),
+    country = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "country.name.de"),
+    # Replace NA's
+    continent = tidyr::replace_na(continent, "Unknown"),
+    countrycode = tidyr::replace_na(countrycode, "Unknown")
+    ) 
+```
+
+```{r reshape-data}
+# Community mit n_pieces, n_volunteers und n_events
+community19_by_country <- plastics_processed %>% 
+  dplyr::filter(year == 2019) %>% 
+  dplyr::group_by(continent, country) %>% 
+  dplyr::summarize(
+    n_pieces = sum(grand_total, na.rm = TRUE),
+    n_volunteers = unique(volunteers),
+    n_events = unique(num_events)
+  )
+
+# Plastics mit continent, country, parent_company, plastic_type, n_pieces
+plastics19_by_country_and_company <- plastics_processed %>%
+  filter(year == 2019) %>% 
+  tidyr::pivot_longer(
+    cols = c(hdpe, ldpe, o, pet, pp, ps, pvc),
+    names_to = "plastic_type",
+    values_to = "n_pieces"
+    ) %>%
+  dplyr::mutate(dplyr::across(
+    .cols = c(country, continent, year, plastic_type),
+    .fns = as_factor
+    )) %>%
+  dplyr::select(
+    continent,
+    country,
+    parent_company,
+    plastic_type,
+    n_pieces
+  )
+```
+
+```{r export-data}
+community19_by_country %>% rio::export(here::here("daten/bffp2019_community_by_country.rds"))
+plastics19_by_country_and_company %>% rio::export(here::here("daten/bffp2019_audit_by_country_and_company.rds"))
+plastics_processed %>% rio::export(here::here("daten/bffp2019_plastics_processed.rds"))
+```
+
+
+```{r export-csv}
+write.csv(community19_by_country, here::here("daten/bffp2019_community_by_country.csv"), row.names = FALSE)
+write.csv(plastics19_by_country_and_company, here::here("daten/bffp2019_audit_by_country_and_company.csv"), row.names = FALSE)
+write.csv(plastics_processed, here::here("daten/bffp2019_plastics_processed.csv"), row.names = FALSE)
+```
+

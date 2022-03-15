@@ -125,12 +125,18 @@ ui <- fluidPage(
     sidebarPanel(width = 3,
       # Drop-Down-Filter für den Kontinent
       selectInput('continent', 'Wähle den Kontinent aus:', choices = continent, selected = 'Alle Kontinente'),
-    
+      
       # Einfügen eines Download-Buttons
       downloadButton('downloadbutton', label = "Download"),
       
     # Einfügen eines Hilfefensters
-      actionButton("hilfe", "Hilfe")
+      actionButton("hilfe", "Hilfe"),
+    
+    hr(),
+    
+    # Anmerkung einfügen
+    htmlOutput("anmerkung")
+    
     ),
     
     # Hier kreiieren wir den Hauptteil der Applikation. 
@@ -156,9 +162,13 @@ ui <- fluidPage(
 ### Hier im Server berechnen wir Werte, filtern und hinterlegen ganz allgemein Anweisungen, was angezeigt werden soll - besonders wenn der Nutzer:innen Filter auswählt.
 server <- function(input, output, session){
   
+  # Anmerkung
+  output$anmerkung <- renderUI({
+    HTML("<i> Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. 
+         \nDatenquelle: <a href='https://www.breakfreefromplastic.org/'> TidyTuesday und BFFP </a> </i>")
+    })
+  
   # Bedienungshilfe
-  hilfe_text <- "Über die Auswahl der Kontinente könnt Ihr die Visualisierungen und die Datentabelle erforschen.
-      Bei Anmerkungen oder Fragen wendet Euch an: nina.h@correlaid.org"
   observeEvent(input$hilfe, {
     showModal(modalDialog(title = "Bedienungshilfe",
                           HTML("<b> Wie können wir den Filter ändern? </b>
@@ -237,6 +247,7 @@ server <- function(input, output, session){
     } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
       daten <- community
     }
+    
     # Tabelle kreiieren: Berechnung der Länder- und Freiwilligenanzahl je Kontinent
     overview_community <- daten %>% # Bezug zum Datensatz
       group_by("Kontinent" = continent) %>% # Gruppierung pro Kontinent
@@ -262,9 +273,10 @@ server <- function(input, output, session){
       geom_bar(stat="identity", width=1) + # Basislayout definieren (Hinweis: Das ist ein Barchart)
       coord_polar("y", start=45) + # Kuchendiagramm ausrichten
       theme_void() + # Grid entfernen
-      ggtitle('Kontinent') + # Titel hinzügen
+      ggtitle('Relative Anzahl pro Kontinent') + # Titel hinzügen
       scale_fill_brewer(palette='PuBuGn') + # Farbe festlegen
-      geom_text(aes(label = paste0(round(Prozent*100), "%")), position = position_stack(vjust = 0.5)) # Beschriftungen kreiieren
+      geom_text(aes(label = paste0(round(Prozent*100), "%")), position = position_stack(vjust = 0.5)) + # Beschriftungen kreiieren
+      theme(legend.position = "bottom", legend.title = element_blank())
     
     # Erstellung eines Boxplots mit Punktewolke zu der Anzahl an Freiwilligen
     plot_volunteers <- ggplot(data = daten, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
@@ -275,8 +287,7 @@ server <- function(input, output, session){
         title = "Beteiligung ..." ,
         subtitle = "... pro Kontinent.",
         y = "Anzahl Freiwilliger",
-        x = "Kontinent",
-        caption = glue::glue("n = {nrow(daten)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+        x = "Kontinent") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
       theme_minimal() + # Festlegung des Layout-Designs  
       theme(legend.position="none") + # Ausblenden der Legende
       scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
@@ -290,14 +301,15 @@ server <- function(input, output, session){
         title = "Anzahl gesammelter Plastikstücke ..." ,
         subtitle = "... pro Kontinent.",
         y = "Anzahl gefundener Plastikstücke",
-        x = "Kontinent",
+        x = "Kontinent") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
       theme_minimal() + # Festlegung des Layout-Designs  
       theme(legend.position="none") + # Ausblenden der Legende
       scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
     
     # Plots arrangieren
-    lay <- rbind(c(1,2,3), # Layout festlegen: Eine Zahl steht für eine Graphik (1 für die erste Graphik in grid.arrange)
-                 c(4,4,4))
+    lay <- rbind(c(1,1,2,2,3,3),
+                 c(1,1,2,2,3,3), # Layout festlegen: Eine Zahl steht für eine Graphik (1 für die erste Graphik in grid.arrange)
+                 c(4,4,4,4,4,4))
     
     p = grid.arrange(plot_continent, plot_plastik, plot_volunteers, tabelle, layout_matrix = lay) # Layout speichern
     print(p) # Layout drucken
@@ -311,10 +323,10 @@ server <- function(input, output, session){
   # Hersteller-Visualisierung gestalten
   hersteller <- reactive({ # Hier können wir unseren Output reaktiv gestalten.
     if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
-      daten <- audit %>% filter(continent == input$continent) 
+      daten <- community %>% filter(continent == input$continent)
     } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
-      daten <- audit
-    } 
+      daten <- community
+    }
     
     # Top Ten Hersteller berechnen
     top10_parentcompany <- daten %>%

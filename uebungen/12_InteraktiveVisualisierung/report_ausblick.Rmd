@@ -104,7 +104,7 @@ Im Jahr 2020 konnten nur wenige Events durchgeführt werden. Nach Betrachtung de
 ```{r kartendaten, include = FALSE}
 library(leaflet)
 # Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
-polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
+polygons_welt <- sf::st_read("https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/geospatial/ne_50m_admin_0_countries.shp")
 
 # Rename Countrycodes
 names(polygons_welt)[names(polygons_welt) == 'ADM0_A3'] <- 'countrycode'

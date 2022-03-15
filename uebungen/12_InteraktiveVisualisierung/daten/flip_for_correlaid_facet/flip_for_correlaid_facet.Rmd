@@ -1,0 +1,99 @@
+---
+title: "Wie funktioniert facet_wrap?"
+output:
+  xaringan::moon_reader:
+    includes:
+      in_header:
+        - 'toc.html'
+      after_body:
+        - 'insert-logo.html'
+    lib_dir: libs
+    css:
+      - "xaringan-themer.css"
+      - "correlaid-themer.css"
+      - "ninjutsu"
+      - "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+      - "hygge"
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>
+---
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE} 
+# devtools::install_github("rstudio/fontawesome")
+# remotes::install_github("gadenbuie/xaringanExtra")
+# remotes::install_github("gadenbuie/countdown")
+
+library(fontawesome)
+library(xaringanthemer)
+library(countdown)
+xaringanExtra::use_panelset()
+
+options(htmltools.dir.version = FALSE)
+
+style_mono_accent(
+  base_color = "#272822",
+  header_font_google = google_font("Roboto"),
+  text_font_google   = google_font("Roboto", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+
+
+```{r, include = F}
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+community <- read.csv("data/community_perspective.csv")
+```
+
+
+---
+
+`r chunk_reveal("my_plot")`
+
+```{r my_plot, include = FALSE}
+# Initialisieren dann `ggplot2`
+  ggplot(data = community) + #BREAK
+  # Fügen die volunteers hinzu
+  aes(x = volunteers) + #BREAK
+  # Erstellen unser Histogramm
+  geom_histogram() + #BREAK
+  # Und ergänzen unseren facet_wrap
+  facet_wrap(~continent)
+```
+
+
+<!-- adjust font size in this css code chunk, currently 80 -->
+
+```{css, eval = TRUE, echo = FALSE}
+.remark-code{line-height: 1.5; font-size: 80%}
+
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+
+code.r.hljs.remark-code{
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+code.r.hljs.remark-code:hover{
+  overflow-x:visible;
+  width: 500px;
+  border-style: solid;
+}
+```
+
+

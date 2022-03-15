@@ -40,7 +40,7 @@ toc: yes
 
 ```{r, echo=FALSE}
 # Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und ggf. gegen Euer Logo/Wunschbild austauschen
-htmltools::img(src = "media/BFFP_Logo.png", 
+htmltools::img(src = "https://pbs.twimg.com/profile_images/1196800299815636992/ffTZrl38_400x400.png", 
                width = '150px',
                style = 'position:absolute; top:0; right:0; padding:10px;')
 ```
