@@ -111,7 +111,7 @@ names(polygons_welt)[names(polygons_welt) == 'ADM0_A3'] <- 'countrycode'
 
 # Kartendaten vorbereiten
 karten_daten <- community %>%
-  dplyr::mutate(countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>% # Countrycode erzeugen
+  dplyr::mutate(countrycode = countrycode::countrycode(country, origin = "country.name.de", destination = "iso3c")) %>% # Countrycode erzeugen
   dplyr::group_by(country, countrycode) %>%
   dplyr::left_join(polygons_welt, by = "countrycode")
 ```
@@ -123,27 +123,6 @@ leaflet::leaflet(karten_daten$geometry) %>%
   leaflet::addPolygons(color = "#4E97AC", weight = 1, smoothFactor = 0.5, opacity = 1.0, fillOpacity = 0.5, 
                        popup = glue::glue("{karten_daten$country}: {karten_daten$n_events} Events, {karten_daten$n_volunteers} Freiwillige, {karten_daten$n_pieces} gesammelte Plastikstücke"))
 ```
-
-```{r karte_theme, include = FALSE}
-# Erstellung einer Karte mit echarts4r
-community %>% 
-  dplyr::mutate("Anzahl gesammelter Plastikstücke" = n_pieces) %>%
-  # Initialisierung
-  echarts4r::e_charts(country) %>% 
-  echarts4r::e_map(`Anzahl gesammelter Plastikstücke`) %>% 
-  echarts4r::e_visual_map(`Anzahl gesammelter Plastikstücke`, inRange = list(color = c("#C9DFE6", "#4E97AC", "#366978"))) %>% 
-  # Hier legen wir den Tooltip fest
-  echarts4r::e_tooltip(trigger = "item") %>% 
-  # Hier definieren wir das Thema
-  echarts4r::e_theme("macarons2") %>%
-  # Beschriftungen
-  echarts4r::e_title(text = "BFFP: Global gesammelte Plastikstücke pro Land", 
-          subtext = "Quelle: Break Free From Plastic", 
-          sublink = "https://www.breakfreefromplastic.org/",
-          left = "center"
-  )
-```
-</center>
 
 \newpage
 
@@ -180,8 +159,8 @@ ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(pa
 ```
 </center>
 
-### Effekt
-Insgesamt wurden auf den **`r sum(community$n_events)` Events** mit durchschnittlich **`r as.integer(round(mean(community$n_volunteers),0))` Freiwilligen** `r round(mean(community$n_pieces),2)` Plastikstücke gesammelt. Das entspricht **`r as.integer(sum(community$n_pieces))` Plastikstücken**. 
+### Effekte und Wirkungen
+Insgesamt wurden auf **`r sum(community$n_events)` Events** mit durchschnittlich **`r as.integer(round(mean(community$n_volunteers),0))` Freiwilligen** im Schnitt `r round(sum(community$n_pieces)/sum(community$n_events),0)` Plastikstücke gesammelt. Das entspricht insgesamt **`r as.integer(sum(community$n_pieces))` Plastikstücken**. 
 
 <center>
 ```{r dplyruebung, echo = FALSE}
@@ -191,7 +170,7 @@ overview_community <- community %>% # Bezug zum Datensatz
   summarize( # Initialisierung der Berechnung
     # Anzahl beteiligter Länder
     "Anzahl Länder" = n(),
-    # Anzahl Eventa
+    # Anzahl Events
     "Anzahl Events" = sum(n_events),
     # Teilnahmezahl der Freiwilligen
     "Anzahl Freiwilliger" = sum(n_volunteers),
