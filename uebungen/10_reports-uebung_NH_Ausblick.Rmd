@@ -262,8 +262,8 @@ ggplot(data = community, aes(n_volunteers, n_pieces, label = country)) + # Initi
   coord_cartesian(xlim = c(0, median(community$n_volunteers) + 0.5 * sd(community$n_volunteers)), ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der x- und y-Achse
   geom_text(size = 2) + 
   labs(
-    title = "Beteiligung an 'Break Free From Plastic' ..." ,
-    subtitle = "... unterscheidet sich nach Kontinent.",
+    title = "Anzahl gesammelter Plastiksstücke bei 'Break Free From Plastic' ..." ,
+    subtitle = "... ina Abhängigkeit von der Freiwilligenanzahl.",
     x = "Freiwillige",
     y = "Anzahl gefundener Plastikstücke",
     caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel

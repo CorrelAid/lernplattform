@@ -42,6 +42,9 @@ plastics_processed <- plastics_raw %>%
     countrycode = countrycode::countrycode(country,
                                            origin = "country.name",
                                            destination = "iso3c"),
+    country = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "country.name.de"),
     # Replace NA's
     continent = tidyr::replace_na(continent, "Unknown"),
     countrycode = tidyr::replace_na(countrycode, "Unknown")
