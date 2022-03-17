@@ -5,9 +5,9 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
-library(wesanderson)
+library(wesanderson) # benoetigt??
 library(ggthemes)
-library(shinythemes)
+library(shinythemes) # benoetigt??
 
 # Wir laden dann wieder die Daten
 community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_community_by_country.csv')
