@@ -66,7 +66,7 @@ server <- function(input, output) {
                 subtitle = "... unterscheidet sich nach Kontinent.",
                 y = "Anzahl gefundener Plastikstücke",
                 x = "Kontinent",
-                caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+                caption = glue::glue("n = {nrow(community)}\nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
             # Farben der Balken festlegen 
             scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) +
             # Festlegen des  Themas
