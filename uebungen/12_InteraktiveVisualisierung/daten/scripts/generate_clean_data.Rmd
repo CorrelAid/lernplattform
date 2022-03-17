@@ -40,7 +40,7 @@ plastics_processed <- plastics_raw %>%
                                          origin = "country.name",
                                          destination = "continent"),
     continent = dplyr::case_when(continent == "Africa" ~ "Afrika",
-                                 continent == "Americas" ~ "Amerika",
+                                 continent == "Americas" ~ "Nord- und Südamerika",
                                  continent == "Asia" ~ "Asien",
                                  continent == "Europe" ~ "Europa",
                                  continent == "Oceania" ~ "Ozeanien"),
