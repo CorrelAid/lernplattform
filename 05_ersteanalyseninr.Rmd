@@ -1,0 +1,371 @@
+## Erste Datenanalysen in R
+
+![*Video: Erste Datenanalysen in R (30min)*](https://youtu.be/58i2_o-zDug)
+*Empfehlung: Schaut Euch das Video in zwei Teilen an. Bis 18:42 geht es um Visualisierung, danach um statistische Kennzahlen.*
+
+### Kernaussagen
+#### Grundlagen der Datenanalyse
+- Konzeptionell sollten wir uns von **Fragen zur Exploration, möglichen Plausibilitätschecks und Fallentscheidungen** leiten lassen, die während der Analyse beantwortet werden
+- Bei einer Datenanalyse nutzen wir zunächst niedrigschwellige **tabellarische Formate** wie `summary()` und `str()`, um uns einen Überblick über die Daten zu verschaffen
+- Danach helfen uns **einfache Datenvisualisierungen**, die Ausprägungen von Variablen zu untersuchen (und Extremwerte zu identifizieren)
+- Um weitere Operationen durchführen zu können, berechnen wir im Anschluss **statistische Kennzahlen**, Lage- und Verteilungsparameter, die für uns spannende Informationen enthalten und die Grundlage für weitere Analysen bilden
+
+#### Visuelle Exploration
+- **`ggplot2`** ist ein Paket für vielseitige **Graphiken** in R
+- Die wichtigsten Schichten (Bestandteile) eines ggplots sind: 
+    1. `data` - der **Datensatz**
+    2. `aes()` - die **"ästhetischen Attribute"** wie die x- oder y-Achse und Darstellungsoptionen
+    3. `geom_*()` - die **geometrische Form**, mit welcher die Werte dargestellt werden, z.B. geom_point() für Punktediagramme oder geom_bar() für Bardiagramme
+- Einzelne Bestandteile werden mit einem **"+" verknüpft** 
+
+Im Kapitel "Datenvisualisierung" lernt Ihr noch mehr Optionen zur Datenvisualisierung in R kennen. 
+
+#### Statistische Kennzahlen
+- Mittels statistischer Kennzahlen lassen sich **Datensätze zusammenfassen** und Fragen an den Datensatz beantworten
+- Besonders oft werden folgende Funktionen genutzt: 
+    - `min()`: **minimale Ausprägung** einer Variablen
+    - `max()`: **maximalen Ausprägung** einer Variablen
+    - `median()`: **Median**, der "wahre" Mittelpunkt (50% der Ausprägungen sind kleiner oder größer)
+    - `mean()`: arithmetische Mittel, Durchschnitt oder schlicht **Mittelwert**
+    - `var()`: **Varianz**, die Streuung um den Mittelwert
+    - `sd()`: **Standardabweichung**, ein standardisiertes Maß für die Streuung um den Mittelwert (auch: mittlere Abweichung)
+    - `n()`: **Anzahl** bzw. absolute Häufigkeiten der Ausprägungen
+    - `sum()`: **Summe** numerischer Variablen.
+- Darüber hinaus möchten wir schon folgende **`tidyverse`** folgende Operationen hervorheben:
+    - `dplyr::summarize()` - **Zusammenfassung von Werten** zur Vereinfachung des Informationsgehalts
+    - `dplyr::group_by()` - **Gruppierung von Zielen** (Beobachtungen) nach Kriterien
+- Diese sind eine Art **Power-Duo**. Denn mit `dplyr::group_by()` & `dplyr::summarize()` können statistische Kennzahlen **pro Variablenkategorie** (z.B. Land) ausgegeben werden.
+- Verknüpft werden Operationen von *`dplyr`* mit dem **Pipe-Operator "%>%"** (zu dt. Rohrbetreiber), der eine ähnliche Funktion wie das "+" in `ggplot2` erfüllt.
+
+Im Kapitel "Datenbereinigung" lernt Ihr noch mehr Funktionen des tidyverse in R kennen. 
+
+Für diese Lektion benötigt Ihr also zwei Packages: `dplyr`und `ggplot2` (beide Teil des `tidyverse`)
+```{r pakete_ersteanalysen, exercise = TRUE}
+# install.packages("dplyr")
+# install.packages("ggplot2")
+library(dplyr)
+library(ggplot2)
+```
+
+### Quiz
+```{r quiz_ersteanalyseninr}
+quiz(caption = NULL,
+  question("Welche Aussagen sind wahr?",
+    answer("Es ist ausreichend statistische Kennzahlen zu berechnen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
+    answer("Es ist ausreichend Visualisierungen zu erstellen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
+    answer("Kontext ist bei rigoroser Datenanalyse nicht so wichtig."),
+    answer("Die Berechnung statistischer Kennzahlen, die Visualisierung und die Kontextualisierung sind eine wichtige Grundlage (!) für die Interpretation von Daten und komplexere Analysen.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch. Die Berechnung statistischer Kennzahlen, die Visualisierung und die Kontextualisierung sind eine wichtige Grundlage (!) für die Interpretation von Daten und komplexere Analysen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Lageparameter sind...",
+    answer("Modus - die am häufigsten beobachtete Ausprägung", correct = TRUE),
+    answer("Median - die wahre Mitte der Ausprägungen", correct = TRUE),
+    answer("Mittelwert - der Durchschnitt", correct = TRUE),
+    answer("Maximum - der höchste Wert"),
+    answer("Minimum - der niedrigste Wert"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Mit Maximum und Minimum berechnen wir lediglich die Spannbreite, die selbst ein Streuungsparameter ist.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Der Mittelwert ist robust gegen Ausreißer.",
+    answer("Wahr"),
+    answer("Unwahr", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Der Mittelwert kann durch Ausreißer stark verzerrt werden. Robuster ist der Median.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Der Mittelwert der Zufallsvariable betrögt 5, die Spannbreite 10 und die Standardabweichung 2. Um wie viel weichen Beobachtungen im Mittel von dem Wert 5 ab?",
+    answer("2", correct = TRUE),
+    answer("5"),
+    answer("10"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Die Standardabweichung sagt aus, um wie viel im Mittel eine Beobachtung von dem Mittelwert abweicht (hier 2).",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Mit dem Package ggplot2 können...",
+    answer("Daten visualisiert werden.", correct = TRUE),
+    answer("Statistische Kennzahlen und Übersichtstabellen berechnet werden."),
+    answer("Daten importiert werden."),
+    answer("Daten bereinigt werden."),
+    correct = "Richtig! Die Datenbereinigung und die Berechnung von statistischen Kennzahlen und Übersichtstabellen erfolgen mit dplyr. Für den Import gibt es ganz viele Möglichkeiten, aber dazu in späteren Kapiteln mehr...",
+    incorrect = "Leider falsch: Visualierungen erstellen wir u.a. mit ggplot2. Die Datenbereinigung und die Berechnung von statistischen Kennzahlen und Übersichtstabellen erfolgen mit dplyr. Für den Import gibt es ganz viele Möglichkeiten, aber dazu in späteren Kapiteln mehr...",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+### Interaktive Übung
+
+#### Vorbereitung: Überblick über die Daten gewinnen
+
+In der letzten Lektion habt Ihr bereits erfahren, dass wir in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: der Community Datensatz (als `community` hinterlegt) enthält alle Variablen, welche für Fragestellungen rundum die im Video angesprochene Community-Perspektive nützlich sind und der Audit Datensatz (als `audit_plastic` hinterlegt), umfasst jene Variablen, die für Fragen zur Audit-Perspektive nützlich sind. Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
+
+Insbesondere bei Datensätzen mit vielen Variablen kann die Funktion **`dplyr::glimpse()`** Euch helfen, zu verstehen, was im Datensatz überhaupt enthalten ist. Der `community` Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen:
+```{r exercise_community, exercise = TRUE}
+# Überblick über die Community verschaffen
+dplyr::glimpse(community)
+```
+
+Schaut Euch nun an, welche Variablen im `Audit`-Datensatz enthalten sind.
+```{r exercise_audit, exercise = TRUE}
+# Euer Code hier
+```
+
+```{r exercise_audit-solution}
+# Überblick über den Audit verschaffen
+dplyr::glimpse(audit_plastic)
+```
+
+```{r exercise_audit-check}
+grade_this_code()
+```
+Der **Audit-Datensatz** enthält also - wie der `Community`-Datensatz - die Gesamtplastikmenge, geographische und zeitliche Daten, aber keine Daten zu Veranstaltungen und Freiwilligen. Stattdessen findet Ihr hier Daten zu den Plastikarten.
+
+Nutzt an dieser Stelle gerne auch die anderen Funktionen, die Ihr in den letzten Lektionen kennengelernt habt, um Euch einen Überblick über die beiden bereinigten Datensätze zu verschaffen.
+
+```{r exercise_ueberblick, exercise = TRUE}
+# Euer Code hier
+```
+
+#### Visuelle Exploration 
+Zunächst nehmen wir die **Community-Perspektive** ein und fragen: Wo haben sich wie viele Freiwillige an *Break Free From Plastic* beteiligt?  Dafür visualisieren wir vom Datensatz `community` die `aes()`-Variablen continent und volunteer mit `geom_point` in einem Punktediagramm (englisch: Scatterplot).
+
+Wie sieht der Code für diesen **Scatterplot** aus? Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert.
+```{r geom-point-video, exercise=TRUE}
+# Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
+ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen
+  geom_point(position = position_jitter(width = 0.3),
+             size = 3,
+             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
+  coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
+  labs(
+    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl Freiwilliger",
+    x = "Kontinent",
+    caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beobachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
+  ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+```
+
+
+
+#### Statistische Kennzahlen 
+Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten: <br>
+  1. Wie viel Plastik wurde insgesamt gesammelt? <br>
+  2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? (Analyse innerhalb der Kontinente) <br>
+  3. Wie viele Plastikarten wurden gesammelt? <br>
+
+Ihr kennt nun bereits den Befehl **`dplyr::glimpse()`**, mit dem Ihr Euch die Kurzstatistik des Datensatzes anzeigen lassen könnt. Nutzt ihn hier, um die folgenden Fragen zu beantworten.
+
+```{r exercise_summary, exercise = TRUE}
+# Euer Code hier
+```
+
+```{r exercise_summary-solution}
+# Übersicht über Plastik-Audit verschaffen
+dplyr::glimpse(audit_plastic)
+```
+
+```{r exercise_summary-check}
+grade_this_code()
+```
+
+```{r quiz_kurzstatistik}
+quiz(
+  caption = "",
+  
+  question(
+    "Wie viele Variablen hat der `audit_plastic`-Datensatz?",
+    answer("Das kann man anhand des Outputs nicht sagen."),
+    answer("52"),
+    answer("12", correct = TRUE),
+    answer("7"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: 12 Variablen sind enthalten.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question(
+    "Wie viele Zeilen (Länder) sind im Datensatz?",
+    answer("Das kann man anhand des Outputs nicht sagen."),
+    answer("2019"),
+    answer("52", correct = TRUE),
+    answer("13"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: 52 Länder sind enthalten.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question(
+    "Wie viele Kontinente sind im Datensatz?",
+    answer("13"),
+    answer("3"),
+    answer("Das kann man anhand des Outputs nicht sagen.",
+      correct = TRUE
+    ),
+    answer("52"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Um das zu beurteilen, müssen wir noch mehr Rechenoperationen durchführen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  )
+)
+```
+
+Kennzahlen können mittels **`summarize`** auch **einzeln berechnet werden**. Dies hat den Vorteil, dass ein kompaktes R-Objekt entsteht (ein `tibble`), das wir abspeichern und weiterverwenden können. 
+
+```{r summarize_einfuhrung, exercise=TRUE}
+# Berechnung von Mittelwert der gesammelten Plastikmenge pro Kontinent
+audit_plastic %>%
+  dplyr::summarize(menge_mittelwert = mean(grand_total))
+```
+
+Eine sehr nützliche Kombination ist: **`dplyr::group_by()` und `dplyr::summarize()`**. Damit können wir erst Daten **gruppieren**, hier zum Beispiel nach Kontinenten, und dann Kennzahlen wie den Mittelwert und die Standardabweichung der gefundenen Plastikstücke pro Kontinent berechnen. 
+
+```{r gruppieren, exercise=TRUE}
+# Berechnung von Mittelwert und Standardabweichung pro Kontinent
+audit_plastic %>%
+  dplyr::group_by(continent) %>%
+  dplyr::summarize(
+    # Mittelwert
+    menge_mittelwert = mean(grand_total),
+    #Standardabweichung
+    menge_standardabweichung = sd(grand_total)
+  ) 
+```
+
+```{r quiz_kennzahlen, echo=FALSE}
+quiz(caption = NULL,
+     
+  question("Welcher Kontinent hat durchschnittlich am meisten Plastikstücke gesammelt?",
+    answer("Afrika"),
+    answer("Nord- und Südamerika"),
+    answer("Asien", correct = TRUE),
+    answer("Das kann nicht aus der Tabelle abgelesen werden."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Asien hat am meisten Plastikstücke gesammelt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question("Warum ist die Standardabweichung für Ozeanien (eng. Oceania) 'NA'?",
+    answer("Weil keine Plastikstücke gefunden wurden."),
+    answer("Weil Ozeanien nur drei Stück Plastik registriert hat."),
+    answer("Weil nur ein Land in Ozeanien mitgemacht hat.", correct = TRUE),
+    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: In Ozeanien hat nur ein Land mitgemacht, weshalb es zwischen einzelnen Beobachtungen auf Länderebene natürlich keine Standardabweichung geben kann.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  )
+)
+```
+
+Weitere interessante Kennzahlen sind: der **Median (`median()`)** der gesammelten Plastikstücke, die **Anzahl (`n()`)** der Länder und die **Summe (`sum()`)** aller gesammelten Plastikstücke. Ergänzt den Code um diese beiden Kennzahlen. 
+
+```{r gruppieren2, exercise=TRUE}
+# Berechnung von Mittelwert und Standardabweichung für Plastikmenge pro Kontinent
+audit_plastic %>%
+  dplyr::group_by(continent) %>%
+  dplyr::summarize(
+    # Mittelwert
+    menge_mittelwert = mean(grand_total),
+    # Standardabweichung
+    menge_standardabweichung = sd(grand_total)
+    # Hier Euer Code
+  )
+```
+
+```{r gruppieren2-solution}
+# Berechnung statistischer Kennzahlen pro Kontinent
+audit_plastic %>%
+  dplyr::group_by(continent) %>%
+  dplyr::summarize(
+    # Mittelwert
+    menge_mittelwert = mean(grand_total),
+    # Standardabweichung
+    menge_standardabweichung = sd(grand_total),
+    # Median
+    menge_median = median(grand_total),
+    # Anzahl beteiligter Länder
+    länder_anzahl = n(),
+    # Summe der Plastikmenge
+    menge_summe = sum(grand_total)
+  )
+```
+
+```{r quiz_kennzahlen2, echo=FALSE}
+quiz(
+  caption = NULL,
+  
+  question(
+    "Wie viele Länder haben sich in Asien beteiligt?",
+    answer("1"),
+    answer("11"),
+    answer("15"),
+    answer("17", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Es haben sich 17 Länder beteiligt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question(
+    "Warum ist der Median unter anderem in Asien so viel kleiner als der Mittelwert?",
+    answer("Weil in Asien die meisten Länder sich beteiligt haben."),
+    answer("Weil es einige wenige, extreme Beobachtungen gab.", correct = TRUE),
+    answer("Weil dies eine Eigenschaft des Medians ist."),
+    answer("Das kann eigentlich nicht sein - es deutet auf einen Fehler hin."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Der Mittelwert wird von Extremwerten stark beeinflusst. Der Median ist im Vergleich wesentlich robuster, weshalb er für Asien kleiner ausfällt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question(
+    "Wie viele Plastikstücke wurden in Europa sammelt?",
+    answer("204.051"),
+    answer("29.579", correct = TRUE),
+    answer("3.459"),
+    answer("17"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: 29.579 Plastikstücke wurden hier gefunden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+
+### Und jetzt Ihr
+Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne mit zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
+
+1. Überlegt: Welche **Fragen** möchtet Ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
+
+2. Versucht, das zugehörige [**R Markdown: 05_ErsteDatenanalysenInR **](https://correlcloud.org/index.php/s/56cTMCbMPbYLEya){target="_blank"} zum Laufen zu bringen und es nachzuvollziehen.
+
+3. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **Community Perspektive** gewidmet. Nun blicken wir auf die **Audit Perspektive**: Wie viel Plastik wurde wo für "Break Free From Plastic" gesammelt? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die **Anzahl der gesammelten Plastikstücke** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen.
+
+4. In der zweiten Einheit haben wir uns auf statistische Kennzahlen des `audit_plastic`-Datensatzes konzentriert. Nutzt nun den `community` Datensatz und erstellt eine **Tabelle**, welche die **Länder- und Freiwilligenanzahl je Kontinent** darstellt.
+
+### Zusätzliche Ressourcen
+- Die kostenlosen Kurse des [Statistischen Bundesamts](https://www.destatis.de/DE/Service/Statistik-Campus/E-Learning/eLearning-statistik.html;jsessionid=63AE25DDABD8853990FBE83F354C8911.live722?nn=206328){target="_blank"}
+- Stocker T. C. und Steinke I. (2017): Statistik – Grundlagen und Methodik [verfügbar z.B. hier](https://www.beck-shop.de/stocker-steinke-de-gruyter-studium-statistik/product/32926361){target="_blank"}
+- [R for Data Science (engl.)](https://r4ds.had.co.nz/){target="_blank"}
+- [Statistics Fundamentals in R](https://app.dataquest.io/course/statistics-fundamentals-r){target="_blank"} auf DataQuest (engl.)
+- [Lernvideos](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} zur Inferenzstatistik (dt.)

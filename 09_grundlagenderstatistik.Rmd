@@ -1,0 +1,220 @@
+## Grundlagen der Statistik
+Der t -Test und seine Anwendungen (Teil 1)
+Wir von CorrelAid e.V. setzen uns seit der Gründung 2015 für evidenzbasierte Entscheidungen in der Zivilgesellschaft ein. Deshalb unterstützen wir gemeinnützige Organisationen bei der Umsetzung von Datenprojekten. Uns fällt dabei oft eines auf: Bei der Beurteilung von Zusammenhängen wird in der Regel auf Datenvisualisierungen und statistische Kennzahlen zurückgegriffen, doch ob und warum Variablen tatsächlich unterschiedliche Ausprägungen haben, sollte vor einer strategischen Entscheidung nicht nur anhand von explorativer Statistik beurteilt werden. Heute sprechen wir deshalb über Methoden, mit denen Ihr die Validität Eurer Ergebnisse verifizieren könnt: Die Teststatistik.
+
+Schritt 1: Test auswählen
+In der Teststatistik wird mit Hilfe von statistischen Verfahren geprüft, ob anhand der Stichprobenverteilung Rückschlüsse auf die Grundgesamtheit gezogen werden können. In anderen Worten: Wenn wir bei einer repräsentativen Umfrage mit unseren Begünstigen Outcomeindikatoren erheben, dann lässt sich durch Teststatistik ermitteln, ob die Ausprägung in der befragten Gruppe zufällig ist. Wir erwarten durch unsere Intervention positive Veränderungen bei der Zielgruppe, die z.B. Ihr Bewusstsein verändert, Kompetenzen erschließt, ihr Handeln oder ihre Lebenslage verändert. So erwarten wir bei CorrelAid e.V. in unserer Wirkungslogik beispielsweise eine durchschnittlich höhere Data Literacy bei Partner:innen von Organisationen vor und nach der Zusammenarbeit (Pre-Post-Design). Alternativ könnten wir - wenn uns eine entsprechende Datengrundlage zur Verfügung steht - die Zielgruppe auch mit einer Kontrollgruppe, z.B. aus der Warteliste, vergleichen. Es liegt in unseren Anwendungsfällen besonders eine Testart nahe: Der 2-Stichproben-t -Test.
+
+Schritt 2: Voraussetzungen prüfen
+Mit dem 2-Stichproben-t -Test überprüfen wir also, ob ein Merkmal in zwei Stichproben signifikant voneinander abweicht. Es gelten folgende Voraussetzungen:
+Die beiden Stichproben sind einfache Zufallsstichproben und unabhängig voneinander erhoben worden
+Die Stichproben haben dieselbe Anzahl an Beobachtungen (n1 = n2)
+Das Merkmal ist normalverteilt  - die meisten Testverfahren (mit Ausnahme des F-Tests) sind gegen die Verletzung dieser Annahme bei ausreichender Größe (n > 30) sehr robust
+Die Varianzen (σ²) der zu vergleichenden Populationen sind gleich (Pflicht zur Überprüfung mit dem sog. F-Test)
+Mit der Abweichung von der Voraussetzung der Normalverteilung können wir theoretisch leben. Stellen wir bei der Berechnung der Varianzen (σ²) der beiden Stichproben jedoch unterschiedliche Ausprägungen fest, müssen wir mit dem F-Test überprüfen, ob die Varianzen (σ²) zwischen den beiden Stichproben zu unterschiedlich sind. Und für den nicht-robusten F-Test benötigen wir eine Normalverteilung. Vor der Anwendung des 2-Stichproben-t -Tests müssen also die Anzahl der Beobachtungen, die Normalverteilung des Merkmals und die Vergleichbarkeit der Stichprobenvarianz bestimmt werden.
+
+Von Äpfeln und Birnen
+Mit dieser Überprüfung bleibt Euch auch einer der häufigsten Fehler der Teststatistik erspart: Äpfel und Birnen zu vergleichen. Numerische Werte wie Teilnahmezahlen unterscheiden sich regional oft sehr stark, da die Bevölkerungsdichte und -Zusammensetzung, Infrastruktur und viele weitere Faktoren voneinander abweichen. Deshalb ist hier bei der Nutzung solcher Kennzahlen, beispielsweise für die Qualität des regionalen Angebots, Vorsicht geboten. Vergleicht Ihr ohne Vorprüfung im Rahmen eines 2-Stichproben-t -Tests die Teilnahmezahlen eines regionalen Ablegers ("Berlin") mit einem anderen ("Köln"), findet Ihr eventuell statistisch signifikante Unterschiede - die Stichproben sind aber gar nicht vergleichbar. Strategische Entscheidungen, die ohne "Sanity-Check" auf Basis dieser Daten getroffen werden, sind fehlgeleitet.
+
+Schritt 3: Hypothesen formulieren
+Habt Ihr alle Voraussetzungen beachtet, könnt Ihr Euch nun auf die Berechnung der Teststatistik stürzen. Die Nullhypothese geht bei 2-Stichproben-t -Tests immer davon aus, dass es keinen Unterschied zwischen den beiden Populationen gibt (H0:μ1 = μ2). Für die Alternativhypothese gibt drei Optionen: Es gibt (irgend-)einen Unterschied zwischen den Mittelwerten (H1:μ1≠μ2
+), der Unterschied ist linksseitig (H1:μ1<μ2) oder rechtsseitig (H1:μ1>μ2), also kleiner bzw. größer. Strategisch könnten wir hier zunächst prüfen, ob es einen Unterschied zwischen unseren Vergleichsgruppen gibt, und im Anschluss, welcher Art dieser Unterschied ist. In unserem Fall sollte die Data Literacy der Begünstigten höher sein als vor ihrer Teilnahme bei CorrelAids Projekten und Bildungsangeboten.
+
+
+Der t -Test und seine Anwendungen (Teil 2)
+Recap: Wir von CorrelAid e.V. setzen uns seit der Gründung 2015 für evidenzbasierte Entscheidungen in der Zivilgesellschaft ein. Deshalb unterstützen wir gemeinnützige Organisationen bei der Umsetzung von Datenprojekten. Uns fällt dabei oft eines auf: Bei der Beurteilung von Zusammenhängen wird in der Regel auf Datenvisualisierungen und statistische Kennzahlen zurückgegriffen, doch ob und warum Variablen tatsächlich unterschiedliche Ausprägungen haben, sollte vor einer strategischen Entscheidung nicht nur anhand von explorativer Statistik beurteilt werden. Heute sprechen wir deshalb über Methoden, mit denen Ihr die Validität Eurer Ergebnisse verifizieren könnt: Die Teststatistik. 
+Heute geht es nun zu Teil 2:
+
+Schritt 4: Signifikanzniveau
+Ein Grund, warum die Teststatistik so umstritten ist, ist der p-Wert (auch: empirisches Signifikanzniveau), den Ihr vielleicht noch aus Schule und Universität kennt. Über diesen wird der kritische Wert (t) bestimmt. In der Regel setzt man diesen auf alpha = 0,01 oder  alpha = 0,05 oder auch mal auf alpha = 0,1. Wenn Euch das jetzt ziemlich zufällig vorkommt, dann ist das auch so. In der Wissenschaft kursiert seit geraumer Zeit ein Diskurs darüber, wann etwas signifikant ist (hier dazu ein passender Artikel und eine Publikation). Keine Signifikanz bedeutet nämlich nicht gleich "Kein Effekt" - aber das wird häufig missverstanden:
+ 
+
+Quelle: V. Amrhein et al.
+
+Wir behalten das im Hinterkopf und entscheiden uns methodisch zunächst für ein  alpha = 0,1.
+
+Schritt 5: Ablehnungsbereich bestimmen
+Der kritische Wert kann aus der Wertetabelle für t-Verteilungen (hier findet Ihr eine solche Tabelle) abgelesen werden. Wichtig ist dabei noch die Bestimmung der Freiheitsgrade (df) mit der Formel: df = 2*n - 2, wobei n für die Anzahl von Beobachtungen in der Stichprobe steht. Wählt Ihr einen zweiseitigen Test aus, müsst Ihr beim Ablesen des Wertes darauf achten, das Signifikanzniveau durch zwei zu teilen. Machen wir einen einseitigen t-Test mit 50 Beobachtungen, lautet der kritische Wert also t = 1,291 (nächst kleineres df = 90, alpha = 0,1).
+Darüber hinaus sollten wir mit der errechneten Differenz (x), dem kritischen Wert (t), der Standardabweichung (s) und der Anzahl an Beobachtungen (n) ein Konfidenzintervall (KI) bestimmen:
+
+
+Schritt 6: Prüfgröße
+Anhand der Formel  bestimmen wir nun die sogenannte Prüfgröße, die von den von uns in der Stichprobe beobachteten Werten abhängt:
+
+Dazu setzen wir unsere Stichprobenwerte ein. Normalerweise würdet Ihr nun - je nachdem sich kritische Werte und Prüfgröße zueinander verhalten -  die Nullhypothese verwerfen (oder eben nicht). Und darin liegt auch das Problem.
+
+Schritt 7: Ergebnisse interpretieren
+Der Hauptpunkt der Kritik an der Teststatistik liegt nämlich in dieser Annahme oder Ablehnung der Nullhypothese: Die Welt ist nicht binär. Selbst wenn wir Versuche wiederholen, lassen sich p-Werte in wissenschaftlichen Studien kaum replizieren (sog. Replikationskrise der Wissenschaft!). Das bedeutet, dass eine Einteilung der Welt in "signifikante" und "nicht signifikante" Effekte auf Basis eines einzigen numerischen Werts der Lebensrealität kaum gerecht werden kann (Stichwort: "42"). Im Gegenteil: Es führt zur Verfälschung von Daten, sogenanntem p-Hacking (der Änderung des Settings bis der "richtige" p-Wert gefunden wurde) und einem Publikationsbias. Dass davon nun Abstand genommen wird, ist für Euch gut, denn es erlaubt Euch mehr Spielraum in der Präsentation Eurer Ergebnisse. Ihr gebt statt einem p-Wert nun bevorzugt das Konfidenzintervall an (nun auch als Kompatibilitätsintervall bezeichnet). Diese Spannbreite gibt die Wertmenge des wahren Parameters (hier die Differenz) an, mit der unsere Arbeitshypothese vereinbar ist (Ablehnung der Nullhypothese). Bestenfalls interpretiert Ihr dieses Intervall dann so:
+
+"Wenn der wahre Unterschied zwischen den Gruppen kleiner als die untere Grenze des Kompabilitätsintervalls ist, würden wir fast nie (bei einem zweiseitigen Test mit alpha = 0,1 in nur 5% in Fälle) einen (so großen) Unterschied in der beobachteten Größe erwarten. Somit widersprechen die hier analysierten Daten Differenzen unter der unteren Kompatibilitätsintervallgrenze. Analog würden wir fast nie einen (so kleinen) Unterschied in der beobachteten Größe erwarten, wenn der wahre Unterschied größer als die obere Grenze des Kompatibilitätsintervalls ist. Somit widersprechen die hier analysierten Daten höheren Differenzen."
+
+Es ist außerdem wichtig, dass Ihr die Annahmen, unter denen der Test durchgeführt wurde, genau beschreibt und evaluiert, warum der Unterschied existiert (und dabei nicht nur auf Eure Interventionen eingeht). Vergesst dabei nicht auch die Effektgröße kritisch zu beleuchten. Wie stark unterscheiden sich die Mittelwerte zweier Stichproben tatsächlich (Stichwort: Cohens d). Ist der Unterschied im richtigen Leben tatsächlich relevant?
+### Kernaussagen
+- Inferenzstatistik zielt darauf ab, Aussagen über eine **Grundgesamtheit** auf Basis einer Stichprobe zu treffen.
+- Sie ist nützlich, um von einer **Umfrage** auf die Grundgesamtheit zu schließen oder um bei der **Evaluation von Interventionen** reale Effekte von statistischen Artefakten unterscheiden zu können
+- Um Methoden der Inferenzstatistik nutzen zu können, müssen wir  - je nach Verfahren - andere **Voraussetzungen** prüfen
+- Dazu gehören: die **Art der Stichprobe** (unabhängig oder abhängig), das Vorhandensein von **Extremwerten** und die **Art der Verteilung** (häufig: Normal- oder t-Verteilung)
+- Falls Ihr die Theorie dazu nochmal vertiefen wollt, empfehlen wir dieses [Lernvideo](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} (und den gesamten Kanal!)
+
+#### Interaktive Übung
+Im Folgenden beschränken wir unsere Analyse auf Europa und Asien, wo sich am meisten Länder beteiligt haben. Hierfür haben wir bereits den `audit_plastic_eu_asia` Datensatz erstellt, der nur Europa und Asien enthält sowie eine neue Variable: `n_types`. Sie gibt an, wie viele unterschiedliche Plastikarten in den einzelnen Ländern gesammelt wurden. 
+```{r head_eu_asia, exercise = TRUE}
+# EU-Asien Audit Plastik Datensatz erstellen
+audit_eu_asia <- audit %>%
+  dplyr::filter(n_pieces != 0) %>%
+  dplyr::filter(continent == "Europe" | continent == "Asia") %>%
+  dplyr::distinct(continent, country, plastic_type) %>%
+  dplyr::group_by(continent, country) %>%
+  dplyr::summarise(n_types = n())
+```
+
+Vergewissern wir uns mit `head()`, wie dieser Datensatz aussieht.
+
+```{r head_eu_asia, exercise = TRUE}
+head(audit_eu_asia)
+```
+
+Wie viele unterschiedliche Plastikarten werden in den asiatischen und europäischen Ländern aufgesammelt? Wie groß war die Streuung je Kontinent?
+
+```{r durchschnitt, exercise = TRUE}
+audit_eu_asia  %>%
+  dplyr::group_by(continent) %>%
+  dplyr::summarize(n_types_mean = mean(n_types),
+            n_types_sd = sd(n_types))
+```
+
+
+```{r quiz_kennzahlen3, echo=FALSE}
+quiz(
+  caption = NULL,
+  
+  question(
+    "Wo wurden im Durchschnitt mehr Plastikarten gesammelt?",
+    answer("In Europa"),
+    answer("In Asien.", correct = TRUE),
+    answer("Beide sind gleich auf"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: In Asien wurden mehr Plastikarten gesammelt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question(
+    "Auf welchem Kontinent vermutet Ihr in den einzelnen Ländern auf Basis der Auswertung größere Abweichungen vom Mittelwert?",
+    answer("In Europa"),
+    answer("In Asien.", correct = TRUE),
+    answer("In beiden sind die Abweichungen gleich hoch."),
+    answer("Das kann auf Basis der Auswertung nicht beurteilt werden."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: In Asien gibt es einige Extremwerte.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Auf Basis dieses ersten Eindrucks der Stichprobe könnten wir uns fragen, ob Asien über mehr Plastikarten als Europa verfügt. Um dies statistisch zu überprüfen nutzen wir einen **Hypothesentest**. Bei dieser Methode haben wir immer das Ziel, die Hypothese zu widerlegen. Demnach könnte unsere Hypothese lauten: die Anzahl der Plastikarten ist in den beiden Regionen identisch. Wenn wir diese widerlegen, also signifikante Unterschiede in der Anzahl der Plastikarten in europäischen Ländern zu den asiatischen Ländern finden, dann könnte dies darauf hindeuten, dass sich die **Grundgesamtheiten in diesen beiden Regionen** unterscheiden, es also nicht nur in unserer Stichprobe sondern in der Realität Unterschiede bei der Anzahl von Plastikarten gibt. Ganz praktisch könnte das auch bedeuten, dass der Plastikmüll sich in den Regionen anders zusammensetzt und eben vielleicht auch die Lösungsansätze, um diesen zu bekämpfen, andere sein müssten.
+
+Es gibt viele verschiedene Hypothesentests, die unterschiedlichen Zwecken dienen. Der bekannteste ist wohl der **t-Test**, mit dem überprüft wird, ob die Mittelwerte zweier unabhängiger, normalverteilter Stichproben gleich sind. So könnt man beispielsweise auch überprüfen, ob es einen Unterschied zwischen Begünstigten und einer Vergleichsgruppe gibt. Die statistische Unabhängigkeit von Stichproben ist ein theoretisches Konstrukt, das sich nur schwer in testen lässt. Die räumliche Trennung legt nahe, dass wir von Unabhängigkeit ausgehen können. "Wann wären Stichrproben abhängig von einander?", fragt Ihr Euch jetzt vielleicht. In unserem Beispiel: die Stichproben aus Asien in mehreren aufeinander folgenden Jahren. 
+
+So könntet Ihr zeigen, dass Ihr die Voraussetzungen überprüft habt: Führt den Code einfach aus.
+
+```{r ttestprerequisites, exercise = TRUE}
+# Voraussetzung 1: Sind die Stichproben unabhängig?
+### Mengen bilden
+europe <- audit_plastic_eu_asia %>%
+  dplyr::filter(continent == "Europe")
+asia <- audit_plastic_eu_asia %>%
+  dplyr::filter(continent == "Asia")
+
+### Schnittmenge bilden 
+intersect <- intersect(europe, asia)
+
+### Ergebnisse drucken (hier logischerweise 0 - Länder werden schließlich nur einem Kontinent zugeordnet)
+if (nrow(intersect) == 0) {
+  print("Voraussetzung 1 (Unabhängigkeit): Keine Beobachtung taucht in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist erfüllt.")
+} else {
+  print(cat("Voraussetzung 1 (Unabhängigkeit):", nrow(intersect), "Beobachtungen tauchen in beiden Gruppen auf. Die Bedingung der Unabhängigkeit der beiden Stichproben ist nicht erfüllt."))
+}
+
+# Voraussetzung 2: Gibt es Extremwerte?
+### Extremwerte identifizieren
+outlier <- audit_plastic_eu_asia %>%
+  dplyr::group_by(continent) %>%
+  rstatix::identify_outliers(n_types)
+
+### Ergebnisse drucken
+if (nrow(outlier) == 0) {
+  print("Voraussetzung 2 (Extremwerte): Es liegen in den Beobachtungen keine Extremwerte vor, die vor der Anwendung des Testverfahrens bereinigt werden müssten")
+} else {
+  print(cat("Voraussetzung 2 (Extremwerte): Es liegen in den Beobachtungen", nrow(outlier), "Extremwerte vor, die vor der Anwendung des Testverfahrens bereinigt werden müssen"))
+}
+
+# Voraussetzung 3: Sind die Stichproben normalverteilt?
+### Shapiro-Wilk-Test für Normalität
+normality_europe <- shapiro.test(europe$n_types)
+normality_asia <- shapiro.test(asia$n_types)
+
+### Ergebnisse drucken (Beim Shapiro-Wilk-Test wird die Normalverteilung angenommen, wenn der p-Wert größer oder gleich 0.05 ist)
+if ((normality_asia$p.value >= 0.05) & (normality_europe$p.value >= 0.05)) {
+  print("Voraussetzung 3 (Normalverteilung): Die Verteilungen beider Gruppen folgen einer Normalverteilung. Die Bedingung der Normalverteilung zur Anwendung des Testverfahrens ist gegeben.")
+} else {
+  print("Voraussetzung 3 (Normalverteilung): Mindestens eine Verteilung der beiden Gruppen folgt nicht einer Normalverteilung. Die Bedingung der Normalverteilung zur Anwendung des Testverfahrens ist nicht gegeben.")
+}
+```
+
+Pech gehabt - t-Tests sind ohne Normalverteilung in kleinen Stichprobengrößen nicht sehr robust. Wir hätten unsere Hypothese allerdings sowieso nicht verwerfen können. Darauf deutet die niedrige t-Statistik, der p-Wert jenseits von .10 und das Konfidenzintervall, das die 0 umschließt, hin. Kurzum: Wir hätten **keinen robusten statistischen Unterschied** feststellen können. In unserem Beispiel würde dies bedeuten, dass die beobachteten Unterschiede in der durchschnittlichen Anzahl an Plastikarten in Europa und Asien potentiell nur Eigenschaften der Stichproben aber nicht der Grundgesamtheiten sind. 
+
+```{r ttest, exercise = TRUE}
+# Nur zu Demonstrationszwecken: t-Test-Statistik
+t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent, alternative = "two.sided")
+t.test(audit_plastic_eu_asia$n_types ~ audit_plastic_eu_asia$continent, alternative = "greater")
+```  
+
+Als Ausweichmöglichkeit käme hier übrigens der **Mann-Whitney/Wilcoxon-Rank-Sum-Test** (kurz: MWW-Test) für unabhängige, nicht-normalverteilte Stichproben in Frage (der übrigens gerne mit dem Wilcoxon-Test für vorher-nachher Simulationen und somit nicht-unabhängige Stichproben verwechselt wird). Aber auch hier finden wir **keinen robusten statistischen Unterschied**.
+```{r mwwtest, exercise = TRUE}
+# Mann-Whitney/Wilcoxon-Rank-Sum-Test-Statistik (kurz. MWW-Test-Statistik)
+wilcox.test(asia$n_types, europe$n_types, alternative = "two.sided", paired = FALSE)
+wilcox.test(asia$n_types, europe$n_types, alternative = "greater", paired = FALSE)
+```
+
+Falls Euch nun wie uns vor Testnamen und -Anwendungen die Ohren schwirren: Die beste Übersicht, die wir zu Hypothesentests finden konnten, gibt es - überraschenderweise als Blogartikel - [hier](https://towardsdatascience.com/hypothesis-tests-explained-8a070636bd28){target="_blank"}.
+
+
+### Exkurs: Bayesianische Testverfahren
+Mit Hilfe statistischer Verfahren werten wir Daten aus und interpretieren Zusammenhänge. In der Zivilgesellschaft stellen wir uns immer wieder die Frage: Tritt bei unserer Zielgruppe durch unsere Programme eine gewünschte Wirkung mit höherer Wahrscheinlichkeit ein? Grundlage für die Beantwortung dieser Frage ist das Verständnis von Wahrscheinlichkeit. Während in der frequentistischen Statistik (Stichwort: Hypothesentests) die Wahrscheinlichkeit eines Ereignisses als relative Häufigkeit definiert wird, deren Wert wir uns bei der Wiederholung von unabhängigen Zufallsexperimenten immer mehr annähern, basiert der  Wahrscheinlichkeitsbegriff der bayesianischen Statistik (Stichwort: Satz von Bayes) auf Erfahrungswerten für den Eintritt des Ereignisses. Deshalb wird  in diesem Kontext auch von objektiver und subjektiver Wahrscheinlichkeit gesprochen. Worin unterscheiden sich die beiden Glaubenslager in der Praxis?
+
+Der Satz von Bayes
+Als logische Schlussfolge der Definition der bedingten Wahrscheinlichkeit, die auch in der frequentistischen Statistik genutzt wird, gibt der Satz von Bayes folgende Tatsache wieder: Die Wahrscheinlichkeit, dass A eintritt, unter der Bedingung, dass B bereits eingetreten ist, entspricht dem Quotient aus der Wahrscheinlichkeit, dass B eintritt, wenn A bereits eingetreten ist, multipliziert mit der Wahrscheinlichkeit für A durch die Wahrscheinlichkeit für B:
+
+
+
+Der Bayes-Faktor
+Der Prüffaktor der bayesianischen Statistik ist - analog zum p-Wert - der Bayes-Faktor. Dieser wird über einen Quotienten auf Basis zweier Szenarien gebildet. Er evaluiert, wie gut unterschiedliche Modelle im Vergleich einen Ereignisfall abbilden (vgl. Cowles, 2013, S. 208), und ist damit unter Hinzunahme mit den Anwendungsfällen der frequentistischen Hypothesentests vergleichbar. Der Zähler (oben) bildet dabei die a-posteriori, der Nenner (unten) die a-priori-Wahrscheinlichkeiten ab.
+
+
+
+Wie in der frequentistischen Statistik gibt es auch hier übliche Grenzwerte, die ebenfalls mit Vorsicht zu nutzen sind:
+
+| Interpretation of Bayes Factor values.
+Dettweiler, Ulrich & Lauterbach, Gabriele & Mall, Christoph & Simon, Perikles. (2017). A Bayesian Mixed-Methods Analysis of Basic Psychological Needs Satisfaction through Outdoor Learning and Its Influence on Motivational Behavior in Science Class. Frontiers in Psychology. 8. 1-20. 10.3389/fpsyg.2017.02235. 
+
+Inferenz in der Praxis
+Wir bieten ein Mentoringprogramm für Kinder aus benachteiligten Familien an, mit dem wir die Wahrscheinlichkeit dafür erhöhen möchten, dass diese später ans Gymnasium kommen. Wir definieren unsere zu widerlegende Nullhypothese: Der Anteil der Kinder, die auf das Gymnasium kommen, ist in der Gruppe unserer Begünstigten und einer Vergleichsgruppe gleich hoch. Da zu diesem Thema bereits zahlreiche wissenschaftliche Studien existierten, finden wir über das Statistische Bundesamt Informationen zum Anteil der Gymnasiat:innen (2018: 40,5 Prozent) und über eine wissenschaftliche Publikation der Bundeszentrale für politische Bildung den Anteil der Gymnasiast:innen in benachteiligten Familien (2020: 14 bzw. 15 Prozent). Wir erheben zu unseren Begünstigten analog zu den Fragebogenitems der Studie sozio-demographische Merkmale und Daten zum Schulübergang über eine Zufallsstichprobe im Umfang einer höheren zweistelligen Anzahl.
+
+Möglichkeit 1
+In der frequentistischen Statistik bietet sich hier der Einstichproben-t-Test an. Als Nullhypothese bestimmen wir: Die Wahrscheinlichkeit, auf das Gymnasium zu kommen, beträgt trotz unserer Intervention p = 0.15. Als Alternative legen wir fest: Die Wahrscheinlichkeit, auf das Gymnasium zu kommen, ist bei unseren Begünstigten höher (p > 0.15). Wir prüfen die Voraussetzungen: Unabhängigkeit der Stichproben (keine Überschneidungen zwischen den beiden Gruppen), Fehlen von Extremwerten und Normalverteilung (über den Shapiro-Wilk-Test) und weichen ggf. auf den Mann-Whitney-Wilcoxon-Test aus. Im Anschluss legen wir die Prüfgröße fest und berechnen die Teststatistik für unsere Stichprobe. Wir fällen eine Entscheidung: Entweder wir konnten einen statistisch signifikanten Unterschied feststellen oder nicht. 
+
+Möglichkeit 2
+In der Bayesianischen Statistik führen wir uns zunächst vor Augen, was wir betrachten: Die Wahrscheinlichkeit dafür, dass Kinder auf das Gymnasium kommen P(A), mit der Wahrscheinlichkeit, dass Kinder auf das Gymnasium kommen, wenn sie aus benachteiligten Familien stammen P(A | B). Wir prüfen, dass unsere a-priori-Wahrscheinlichkeit aus glaubhaften Quellen kommt. Diese Prozentsätze können wir nun mit den bedingten Wahrscheinlichkeiten aus unseren Daten abgleichen und den Bayes-Faktor bestimmen und evaluieren. 
+
+Anmerkung: Wir nutzen in diesem Gedankenexperiment keine Vergleichsgruppe, da dieser Vergleichsgruppe gemeinnützige Interventionen vorenthalten werden müssten. Falls es zu einer Themenstellung keine Literatur gibt, empfiehlt es sich - soweit möglich - Wartelisten zu nutzen. Alternativ kann auf ein pre-post-Setting ausgewichen werden (Vorsicht: In der frequentistischen Statistik muss dann der Wilcoxon-Test zum Vergleich der Gruppen genutzt werden).
+
+Fazit
+In einigen Fällen führt die Anwendung der beiden Techniken zum selben Ergebnis. Aber Obacht: Hypothesentests folgen einem strengen Regelkatalog an Voraussetzungen, die in der Praxis leider oft vollkommen missachtet werden. Sie ignorieren zudem häufig den aktuellen Stand der Wissenschaft, der bei Bayes in der a-priori-Wahrscheinlichkeit seinen Einklang findet. Hier ist also bei der Nullhypothese darauf zu achten, dass diese sinnvoll gewählt wird. Gegen die Anwendung der Bayesianischen Statistik sprechen die gegebenenfalls komplexe Auswahl der a-priori Wahrscheinlichkeit und die Computing Power, die sich hinter einigen Modellierungen verbirgt. Letztlich ist bei rigoroser Beachtung der Voraussetzungen von Hypothesentests auch die frequentistische Statistik geeignet, Zusammenhänge zu beurteilen. Insbesondere in kleinen Stichproben, die wir in der Sozialwissenschaft häufig finden, ist die Bayesianische Statistik jedoch robuster (Vgl. Kruschke 2013) und zudem intuitiver (Rouder et al. 2009).
+
+*Anmerkung: Auch Verfechter:innen der bayesianischen Testverfahren kämen hier zu keinem anderen Ergebnis. Ein Bayes-Faktor zwischen 1/3 und 1 spiegelt lediglich einen anekdotischen Zusammenhang wider. *
+```{r bayesttest, exercise = TRUE}
+# Berechnung des Bayes-Faktors (bayesianische Prüfgröße)
+BayesFactor::ttestBF(asia$n_types, europe$n_types)
+```
