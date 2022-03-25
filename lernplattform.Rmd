@@ -54,7 +54,13 @@ gradethis::gradethis_setup(
 tutorial_options(exercise.timelimit = 30)
 
 ### Daten laden
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+
+### Community Datensatz laden
+community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
+
+### Audit Datensatz laden
+audit <- rio::import(here::here('daten/bffp2019_audit_by_country_and_company.csv'))
 
 # Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
@@ -106,93 +112,13 @@ waste_geo <- waste_list %>%
   purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
   filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
 
-### Daten bereinigen
-# Country name cleaning: 
-plastics_prep <- plastics %>%
-  # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
-  dplyr::filter(year == 2019) %>%
-  # United Kingdom of Great Britain & Northern Ireland sowie für die USA
-  dplyr::mutate(
-    country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
-    country = str_replace(country, "United States of America", "United States"),
-    country = str_to_title(country)  # um z.B.: ECUADOR etc case ändern
-    ) %>%
-  #Continent und Country Code anspielen
-  dplyr::mutate(
-    continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
-    countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")
-    ) %>%
-  dplyr::mutate(
-    continent = replace_na(continent, "Unknown"),
-    countrycode = replace_na(countrycode, "Unknown")
-    )
-
-### Community Datensatz erstellen
-community <- plastics_prep %>%
-  dplyr::select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
-  dplyr::group_by(country, year) %>%
-  dplyr::filter(row_number() == 1)
-#write.csv(community, here::here("daten/community_perspective.csv"), row.names = FALSE)
-
-# Audit Plastik Datensatz erstellen
-audit_plastic <- plastics_prep %>%
-  # nur grandtotal zeile behalten
-  dplyr::filter(parent_company == "Grand Total") %>%
-  dplyr::select(-c(parent_company, num_events, volunteers, empty)) %>%
-  #NA zu 0
-  dplyr::mutate(
-    across(c(hdpe, ldpe, o, pet, pp, ps, pvc), ~replace_na(.x, 0))
-  )
-
-#write.csv(audit_plastic, here::here("daten/audit_perspective.csv"), row.names = FALSE)
-
 # EU-Asien Audit Plastik Datensatz erstellen
-audit_plastic_eu_asia <- audit_plastic %>%
+audit_eu_asia <- audit %>%
+  dplyr::filter(n_pieces != 0) %>%
   dplyr::filter(continent == "Europe" | continent == "Asia") %>%
-  dplyr::group_by(country) %>%
-  dplyr::mutate(n_types = sum(c(hdpe, ldpe, o, pet, pp, ps, pvc) != 0))
-
-# Datensätze für 2019 & 2020 & reduziert
-plastics_2019 <- plastics %>% dplyr::filter(year == "2019") 
-
-plastics_2020 <- plastics %>% dplyr::filter(year == "2020") 
-
-plastics_reduced <- plastics_2019 %>% dplyr::select(-grand_total)
-
-reduced_2019 <- plastics_2019 %>%
-  dplyr::filter(
-    parent_company != "Grand Total" &
-    country != "EMPTY"
-    ) %>%
-  dplyr::group_by(country) %>%
-  dplyr::summarize(
-    grand_total = sum(grand_total),
-    num_events = mean(num_events),
-    volunteers = mean(volunteers)
-    )
-
-reduced_2020 <- plastics_2020 %>%
-  dplyr::filter(
-    parent_company != "Grand Total" &
-    country != "EMPTY"
-    ) %>%
-  dplyr::group_by(country) %>%
-  dplyr::summarize(
-    grand_total = sum(grand_total),
-    num_events = mean(num_events),
-    volunteers = mean(volunteers)
-    )
-
-data_no_na <- na.omit(reduced_2020)
-
-data_2019 <- reduced_2019
-
-data_2019$country_code <- data_2019$country %>% 
-  countrycode::countrycode(
-    origin = 'country.name',
-    destination = 'iso2c'
-    )
-
+  dplyr::distinct(continent, country, plastic_type) %>%
+  dplyr::group_by(continent, country) %>%
+  dplyr::summarise(n_types = n())
 
 # Mini-Datensätze für NA's
 df <- tibble::tribble(
@@ -203,36 +129,6 @@ df <- tibble::tribble(
   )
 
 df2 <- df %>% dplyr::na_if(-99)
-
-# Exportieren der Datensets in CSV für DB
-# Country Codes
-country_db <- community %>%
-  dplyr::ungroup() %>%
-  dplyr::select(countrycode, country, continent)
-#write.csv(country_db, here::here("daten/country.csv"), row.names = FALSE)
-
-# Community
-community_db <- community %>%
-  dplyr::ungroup() %>%
-  dplyr::select(countrycode, year, num_events, volunteers)
-#write.csv(community_db, here::here("daten/community.csv"), row.names = FALSE)
-
-# Audit Plastic
-audit_db <- plastics_prep %>%
-  dplyr::filter(parent_company != "Grand Total") %>% 
-  dplyr::ungroup() %>%
-  dplyr::select(-c(country, continent, num_events, volunteers, grand_total, empty)) %>%
-  tidyr::pivot_longer(c("hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc")) %>%
-  dplyr::filter(parent_company != "Grand Total")
-
-audit_db %>% 
-  write.csv(
-    here::here("daten/audit_plastics.csv"),
-    row.names = FALSE
-    )
-
-# Testergebnisse Simulation
-testergebnisse <- c(50, 45, 60, 55, 100, 100, 20, 30, 50, 50)
 
 # Parameter (nur zum Zeigen)
 params <- list()
@@ -250,74 +146,76 @@ out <- knitr::knit_child("01_intro.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Datenprojekte aus der Zivilgesellschaft -->
+## Datenprojekte aus der Zivilgesellschaft
 ```{r results='asis'}
-out <- knitr::knit_child("02_datenprojekte.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Grundlagen der Datenstrategie -->
-```{r results='asis'}
-out <- knitr::knit_child("03_datenstrategie.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Datenschutz und Datenethik -->
-```{r results='asis'}
-out <- knitr::knit_child("04_datenschutz.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Einführung in RStudio -->
-```{r results='asis'}
-out <- knitr::knit_child("05_rstudio.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Erste Datenanalysen in R -->
-```{r results='asis'}
-out <- knitr::knit_child("06_ersteanalyseninr.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Datenimport und APIs -->
-```{r results='asis'}
-out <- knitr::knit_child("07_datenimport.Rmd", quiet = TRUE) 
-cat(out, sep = '')
-```
-
-```{r results='asis'}
-out <- knitr::knit_child("07_datenimport_exkursapi.Rmd", quiet = TRUE) 
-cat(out, sep = '')
-```
-
-```{r results='asis'}
-#out <- knitr::knit_child("07_datenimport_exkurssql.Rmd", quiet = TRUE) 
+#out <- knitr::knit_child("02_datenprojekteundstrategie.Rmd", quiet = TRUE)
 #cat(out, sep = '')
 ```
 
-<!-- ## Datenbereinigung -->
+## Datenschutz und Datenethik
 ```{r results='asis'}
-out <- knitr::knit_child("08_datenbereinigung.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("03_datenschutz.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
-<!-- ## Datenvisualisierung -->
+## Einführung in RStudio
 ```{r results='asis'}
-out <- knitr::knit_child("09_datenvisualisierung.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
-<!-- ## Reports in R Markdown -->
+## Daten verstehen in R
 ```{r results='asis'}
-out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("05_ersteanalyseninr.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
-<!-- ## Reportautomatisierung -->
+## Datenimport und APIs
 ```{r results='asis'}
-out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
-cat(out, sep = '')
+#out <- knitr::knit_child("06_datenimport.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
+```
+
+<!-- ## Exkurs: APIs -->
+```{r results='asis'}
+#out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
+```
+
+<!-- ## Exkurs: SQL -->
+```{r results='asis'}
+#out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
+```
+
+## Datentransformation
+```{r results='asis'}
+#out <- knitr::knit_child("07_datentransformation.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
+
+## Datenvisualisierung
+```{r results='asis'}
+#out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
+
+## Grundlagen der Statistik
+```{r results='asis'}
+#out <- knitr::knit_child("09_grundlagenderstatistik.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
+
+## Reports in R Markdown
+```{r results='asis'}
+#out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
+#cat(out, sep = '')
+```
+
+## Reportautomatisierung
+```{r results='asis'}
+#out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
+#cat(out, sep = '')
 ```
 
 <!-- ## Interaktive Visualisierungen -->
