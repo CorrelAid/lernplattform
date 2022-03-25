@@ -326,16 +326,16 @@ out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Lernzielkontrolle
+<!-- ## Lernzielkontrolle -->
 ```{r results='asis'}
-#out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Und jetzt?
+<!-- ## Und jetzt? -->
 ```{r results='asis'}
-#out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Glossar -->

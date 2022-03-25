@@ -1,0 +1,13 @@
+name: lernplattformkomplett
+title: lernplattformkomplett
+username:
+account: correlaid
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5323665
+bundleId: 5726077
+url: https://correlaid.shinyapps.io/lernplattformkomplett/
+when: 1648206507.75565
+lastSyncTime: 1648206507.75566
+asMultiple: FALSE
+asStatic: FALSE
