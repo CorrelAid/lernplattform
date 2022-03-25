@@ -65,9 +65,9 @@ library(leaflet) # Das ermöglicht das Erstellen von Karten
 ### Alle Pfade beginnen dann in Eurem RProject-Ordner. 
 ### Übrigens: Mit sogenannten APIs könnt Ihr digital erhobene Daten ebenfalls in R laden. Schaut mal, ob das auch für Eure Umfragetools funktioniert!
 
-community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_community_by_country.csv')
-audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_audit_by_country_and_company.csv')
-plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_plastics_processed.csv')
+community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv')
+audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
+plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv')
 
 ############################################
 
@@ -83,7 +83,7 @@ continent <- c("Alle Kontinente", sort(unique(community$continent)))
 # 5) USER INTERFACE
 ### Hier definieren wir, was die Nutzer:innen (und wir) sehen.
 ### Hinweis: Nach jedem Element (textInput, textOutput, etc.) müsst Ihr ein Komma setzen.
-ui <- fluidPage(
+ui <- fluidPage(title = "Break Free From Plastic",
   
   # Titel einfügen
   titlePanel(fluidRow(
@@ -93,7 +93,7 @@ ui <- fluidPage(
   
   # HTML-Code für erweitertes Layout (für Fortgeschrittene)
   tags$head(
-    tags$link(rel = "icon", type = "image/png", sizes = "32x32", href = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fmobile.twitter.com%2Fbrkfreeplastic&psig=AOvVaw33U-6ri2qwSHjtM97QHl5r&ust=1647438058414000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMjAsKafyPYCFQAAAAAdAAAAABAD"),
+    tags$link(rel = "icon", type = "image/png", sizes = "32x32", href = "https://www.breakfreefromplastic.org/wp-content/uploads/2020/10/bffp-logo.png"),
     tags$style(
       HTML("
          .well {

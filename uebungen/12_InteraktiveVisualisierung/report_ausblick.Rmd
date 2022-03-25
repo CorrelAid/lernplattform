@@ -29,7 +29,7 @@ format_int <- function(value) {
 
 
 # Einfügen eines Logos rechts oben über HTML - das müsst Ihr nur nachvollziehen und ggf. gegen Euer Logo/Wunschbild austauschen
-htmltools::img(src = "https://pbs.twimg.com/profile_images/1196800299815636992/ffTZrl38_400x400.png", 
+htmltools::img(src = "https://www.breakfreefromplastic.org/wp-content/uploads/2020/10/bffp-logo.png", 
                width = '150px',
                style = 'position:absolute; top:0; right:0; padding:10px;')
 ```
@@ -73,8 +73,8 @@ library(leaflet) # für die Karte
 # Schritt 2: bereits bereinigte Daten laden
 # TODO: link anpassen sobald auf main gemergt!
 raw_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv') # für den Einführungstext
-community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_community_by_country.csv')
-audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_audit_by_country_and_company.csv')
+community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv')
+audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
 ```
 
 ```{r datenbereinigung, include = FALSE}
@@ -99,11 +99,7 @@ Im Jahr 2020 konnten nur wenige Events durchgeführt werden. Nach Betrachtung de
 <center>
 ```{r kartendaten, include = FALSE}
 # Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
-polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
-
-# # Variable umbenennen für Join später
-# polygons_welt <- polygons_welt %>% 
-#   dplyr::rename(countrycode = ADM0_A3)
+polygons_welt <- sf::st_read(paste0(getwd(), '/daten/geospatial/ne_50m_admin_0_countries.shp'))
 
 # Kartendaten vorbereiten
 karten_daten <- community %>%
