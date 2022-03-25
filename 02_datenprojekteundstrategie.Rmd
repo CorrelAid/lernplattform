@@ -1,8 +1,5 @@
 ## Datenprojekte für die Zivilgesellschaft
 
-<!-- TO-DOS: -->
-<!-- Struktur anpassen (neue Lektion: Grundlagen der Statistik) -->
-
 ![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (60min)*](https://youtu.be/6lGuBz7Cie0)
 
 Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/){target="_blank"}, in unserem [Blog](https://correlaid.org/blog/){target="_blank"} und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast){target="_blank"}. Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
@@ -48,8 +45,8 @@ quiz(caption = NULL,
     answer("Elemente, die Informationen formal darstellen.", correct = TRUE),
     answer("in der Regel binärcodiert.", correct = TRUE),
     answer("idealerweise maschinell lesbar.", correct = TRUE),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
+    correct = "Richtig! Es gibt auch immernoch Daten in analoger Form!",
+    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu. Es gibt auch immernoch Daten in analoger Form!",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
@@ -78,7 +75,7 @@ quiz(caption = NULL,
     answer("Neusten, technischen Möglichkeiten"),
     answer("Eurer Organisationsstrategie", correct = TRUE),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Datennutzung ist mit erheblichen Ressourcenaufwendungen verbunden.  Datenprojekte kosten Zeit und Geld und innerhalb Eurer Organisation müssen Veränderungsprozesse nicht nur in Euren Systemen sondern auch in Eurer Kultur verankert werden. Deshalb sollte die Datenstrategie auf strategischen Zielsetzungen aufbauen, sodass kostbare Ressourcen nicht an falscher Stelle verbraucht und Projekte umsichtig und inklusiv geplant werden.",
+    incorrect = "Leider falsch: Datennutzung ist mit erheblichen Ressourcenaufwendungen verbunden. Datenprojekte kosten Zeit und Geld und innerhalb Eurer Organisation müssen Veränderungsprozesse nicht nur in Euren Systemen sondern auch in Eurer Kultur verankert werden. Deshalb sollte die Datenstrategie auf strategischen Zielsetzungen aufbauen, sodass kostbare Ressourcen nicht an falscher Stelle verbraucht und Projekte umsichtig und inklusiv geplant werden.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
@@ -172,7 +169,7 @@ Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an 
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1639476138454?code=eb8798d4aa4e4b76ad1246b05b89945a&sender=ninah9635){target="_blank"}.
+[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1639481246350?code=da1fe041b8544e7a90be8acd5f485d61&sender=ninah9635){target="_blank"}.
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf){target="_blank"}.
 
@@ -189,10 +186,8 @@ Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. 
 </center>
 <br>
 
-Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir für Euch das Template bei der digitalen WhiteBoard-Plattform Mural erstellt. Dort könnt Ihr ein eigenes "Mural" aus dem Template erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
-
 Hier geht es zum
-[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1639476138454?code=eb8798d4aa4e4b76ad1246b05b89945a&sender=ninah9635){target="_blank"}
+[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1639481246350?code=da1fe041b8544e7a90be8acd5f485d61&sender=ninah9635){target="_blank"}
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.
 

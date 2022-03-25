@@ -10,7 +10,7 @@
 Hallo und herzlich willkommen bei "R Lernen - der Datenkurs von und für die Zivilgesellschaft"! 
 Hier findet Ihr alle Informationen zum Kurs, Lernziele und Methodik.
 
-Ersetzt in diesem Codeeditior den Teil mit "Hier dein Name!" mit Eurem Namen. Klickt nun auf "Code ausführen".
+Ersetzt in diesem Codeeditior den Teil mit "--hier dein Name--" mit Eurem Namen. Klickt nun auf "Code ausführen".
 
 ```{r paste, exercise=TRUE}
 paste("Schön, dass Du da bist, --hier dein Name-- !")
@@ -49,19 +49,19 @@ Wir stellen uns, Ihr Euch und wir die **Kursmodalitäten** vor.
 Wir präsentieren **Anwendungsbeispiele von Datenprojekten** aus unserem Arbeitsalltag und der Zivilgesellschaft, um einen Ausblick auf Mögliches zu geben. Außerdem verrraten wir unsere Tipps & Tricks, die es bei Datenprojekten zu beachten gilt. Ihr entwickelt erste Ideen für Euer eigenes Projekt.
 
 #### Woche 3 (Livetermin 15.04.22): Datenschutz & -Ethik für Anfänger:innen
-Wir führen Euch pragmatisch und lebensnah durch den **DSGVO-Dschungel**, sprechen über Tools und Datenethik. Ihr prüft Euer Projekt auf geltende Regelungen und hinterlegt in einem Datenverarbeitungsverzeichnis die personenbezogenen Daten an, die Ihr in Eurem Projekt nutzen wollt. 
+Wir führen Euch pragmatisch und lebensnah durch den **DSGVO-Dschungel**, sprechen über Tools und Datenethik. Ihr prüft Euer Projekt auf geltende Regelungen und hinterlegt in einem Datenverarbeitungsverzeichnis die personenbezogenen Daten, die Ihr in Eurem Projekt nutzen wollt. 
 
 #### Woche 4 (Livetermin 22.04.22): Einführung in RStudio
 Wir zeigen Euch, was in **RStudio** passiert, wo Ihr die erste Zeile Code schreiben dürft und was für spannende Funktionalitäten es in der Applikation so alles gibt. Ihr öffnet RStudio das erste Mal, probiert Euch aus und - bei Fragen rund um das Set-up - helfen wir Euch.
 
-#### Woche 5 (Livetermin 29.04.22): Erste Analysen in R
-Wir starten praktisch und zeigen Euch, wie wir in R Daten **visualisieren**, **statistische Kennwerte** berechnen und **Teststatistiken** erstellen. Ihr macht erste Codingexperimente (aufregend, oder?).
+#### Woche 5 (Livetermin 29.04.22): Daten mit R verstehen
+Datenkompetenz setzt voraus, dass Ihr aus Daten die richtigen Schlüsse zieht. Wir zeigen Euch, wie Ihr Daten- und Datenanalysen hinsichtlich ihrer Aussagekraft beurteilt und **Visualisierungen** und **statistische Kennzahlen** richtig interpretiert. Ihr macht erste Codingexperimente.
 
 #### Woche 6 (Livetermin 06.05.22): Datenimport
 Wir zeigen Euch, auf wieviele Arten Ihr Daten in RStudio laden könnt - **manuell**, aber vorallem auch **live** - und zeigen, wie wir mit **APIs** arbeiten. Ihr ladet Eure Daten.
 
-#### Woche 7 (Livetermin 13.05.22): Datenbereinigung
-Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das **tidyverse** der Datenbereinigung in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung und fangt an zu rechnen!
+#### Woche 7 (Livetermin 13.05.22): Datentransformation
+Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das **tidyverse** der Datentransformation in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung und fangt an statistische Kennzahlen zu berechnen!
 
 #### Woche 8 (Livetermin 20.05.22): Datenvisualiserung
 Wir klären, welcher **Diagrammtyp** für Euren Fall der richtige ist und was Ihr bei der Erstellung einer Visualisierung in R beachten solltet. Ihr wendet das Gerlernte an.

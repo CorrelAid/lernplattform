@@ -165,7 +165,8 @@ server <- function(input, output, session){
   # Anmerkung
   output$anmerkung <- renderUI({
     HTML("<i> Einige Ausreißer wurden zur Lesbarkeit der Boxplots ausgeklammert. 
-         <br> Datenquelle: <a href='https://www.breakfreefromplastic.org/'> TidyTuesday und BFFP </a> </i>")
+          <br> Es handelt sich um aggregierte Daten aus den Länderbüros.
+          <br> Datenquelle: <a href='https://www.breakfreefromplastic.org/'> TidyTuesday und BFFP </a> </i>")
     })
   
   # Bedienungshilfe

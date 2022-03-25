@@ -1,6 +1,6 @@
-## Datenbereinigung
+## Datentransformation
 
-![*Video: Datenbereinigung (30min)*](https://youtu.be/YWFLSovbha0)
+![*Video: Datentransformation (30min)*](https://youtu.be/YWFLSovbha0)
 
 ### Kernaussagen
 
