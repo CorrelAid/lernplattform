@@ -111,6 +111,19 @@ Insbesondere bei Datensätzen mit vielen Variablen kann die Funktion **`dplyr::g
 ```{r exercise_community, exercise = TRUE}
 # Überblick über die Community verschaffen
 dplyr::glimpse(community)
+base::summary(community$n_volunteers)
+```
+```{r Beteiligung in Europa}
+
+community %>%
+  filter(continent == "Europa") %>% summary()
+  
+
+community %>%
+  group_by(continent) %>% summarize(mean=mean(n_volunteers), 
+                                    sd_volunteers=sd(n_volunteers),
+                                    median = median(n_volunteers))
+
 ```
 
 Schaut Euch nun an, welche Variablen im `Audit`-Datensatz enthalten sind.
@@ -120,7 +133,7 @@ Schaut Euch nun an, welche Variablen im `Audit`-Datensatz enthalten sind.
 
 ```{r exercise_audit-solution}
 # Überblick über den Audit verschaffen
-dplyr::glimpse(audit_plastic)
+dplyr::glimpse(audit)
 ```
 
 ```{r exercise_audit-check}
@@ -140,11 +153,11 @@ Zunächst nehmen wir die **Community-Perspektive** ein und fragen: Wo haben sich
 Wie sieht der Code für diesen **Scatterplot** aus? Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert.
 ```{r geom-point-video, exercise=TRUE}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
-ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen
+ggplot2::ggplot(data = community, aes(x = continent, y = n_pieces)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(width = 0.3),
              size = 3,
              alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
-  coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
+  #coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
   labs(
     title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
@@ -155,7 +168,55 @@ ggplot2::ggplot(data = community, aes(x = continent, y = volunteers)) + # Initia
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
+```{r ggplot nur für Asien}
+ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(y = continent, x = n_pieces)) + # Initialisierung des ggplots mit Variablen
+  geom_point(position = position_jitter(width = 0.9),
+             size = 3,
+             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
+  #coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
+  labs(
+    title = "Die Beteiligung an 'Break Free From Plastic' in Asien" ,
+    x = "Anzahl Freiwilliger",
+    y = ""
+    ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+```
 
+
+```{r Verteilung als Histogram/ Dotplot}
+# Oder als histogram ?
+ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(x=n_pieces, fill=stat(x > median(community$n_pieces)))) + # Initialisierung des ggplots mit Variablen
+  ggdist::stat_dotsinterval( quantiles = 100) +
+ 
+ # geom_dotplot()  + #aes(y = ..density..)
+  #geom_density(color="red", line_type=1) +
+  labs(
+    title = "Verteilung der Beteiligung an 'Break Free From Plastic' in ..." ,
+    #subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Relative Häufigkeit",
+    x = "Anzahl Plastikstücke"
+    ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+
+```
+```{r Median einfärben}
+
+```
+
+```{r Boxplot}
+
+ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(x=n_pieces)) + # Initialisierung des ggplots mit Variablen
+  geom_boxplot()  + #aes(y = ..density..)
+  #geom_density(color="red", line_type=1) +
+  labs(
+    title = "Verteilung der Beteiligung an 'Break Free From Plastic' in Europa" ,
+    #subtitle = "... unterscheidet sich nach Kontinent.",
+    #y = "Absolute Häufigkeit",
+    x = "Anzahl Freiwilliger"
+    ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
+  theme_minimal() # Festlegung des Layout-Designs
+
+```
 
 #### Statistische Kennzahlen 
 Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten: <br>
@@ -171,7 +232,7 @@ Ihr kennt nun bereits den Befehl **`dplyr::glimpse()`**, mit dem Ihr Euch die Ku
 
 ```{r exercise_summary-solution}
 # Übersicht über Plastik-Audit verschaffen
-dplyr::glimpse(audit_plastic)
+dplyr::glimpse(audit)
 ```
 
 ```{r exercise_summary-check}
@@ -229,21 +290,21 @@ Kennzahlen können mittels **`summarize`** auch **einzeln berechnet werden**. Di
 
 ```{r summarize_einfuhrung, exercise=TRUE}
 # Berechnung von Mittelwert der gesammelten Plastikmenge pro Kontinent
-audit_plastic %>%
-  dplyr::summarize(menge_mittelwert = mean(grand_total))
+audit %>%
+  dplyr::summarize(menge_mittelwert = mean(n_pieces))
 ```
 
 Eine sehr nützliche Kombination ist: **`dplyr::group_by()` und `dplyr::summarize()`**. Damit können wir erst Daten **gruppieren**, hier zum Beispiel nach Kontinenten, und dann Kennzahlen wie den Mittelwert und die Standardabweichung der gefundenen Plastikstücke pro Kontinent berechnen. 
 
 ```{r gruppieren, exercise=TRUE}
 # Berechnung von Mittelwert und Standardabweichung pro Kontinent
-audit_plastic %>%
+audit %>%
   dplyr::group_by(continent) %>%
   dplyr::summarize(
     # Mittelwert
-    menge_mittelwert = mean(grand_total),
+    menge_mittelwert = mean(n_pieces),
     #Standardabweichung
-    menge_standardabweichung = sd(grand_total)
+    menge_standardabweichung = sd(n_pieces)
   ) 
 ```
 
@@ -293,19 +354,19 @@ audit_plastic %>%
 
 ```{r gruppieren2-solution}
 # Berechnung statistischer Kennzahlen pro Kontinent
-audit_plastic %>%
+community %>%
   dplyr::group_by(continent) %>%
   dplyr::summarize(
     # Mittelwert
-    menge_mittelwert = mean(grand_total),
+    menge_mittelwert = mean(n_pieces),
     # Standardabweichung
-    menge_standardabweichung = sd(grand_total),
+    menge_standardabweichung = sd(n_pieces),
     # Median
-    menge_median = median(grand_total),
+    menge_median = median(n_pieces),
     # Anzahl beteiligter Länder
     länder_anzahl = n(),
     # Summe der Plastikmenge
-    menge_summe = sum(grand_total)
+    menge_summe = sum(n_pieces)
   )
 ```
 
