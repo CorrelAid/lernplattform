@@ -103,81 +103,183 @@ quiz(caption = NULL,
 
 ### Interaktive Übung
 
-#### Vorbereitung: Überblick über die Daten gewinnen
+#### Schritt 1: Fragen stellen
 
-In der letzten Lektion habt Ihr bereits erfahren, dass wir in diesem Kurs mit einem [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** aus den Jahren 2019 und 2020 arbeiten. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: der Community Datensatz (als `community` hinterlegt) enthält alle Variablen, welche für Fragestellungen rundum die im Video angesprochene Community-Perspektive nützlich sind und der Audit Datensatz (als `audit_plastic` hinterlegt), umfasst jene Variablen, die für Fragen zur Audit-Perspektive nützlich sind. Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
+Am Anfang einer Datenanalyse steht etwas, dass zunächst gar nichts mit Daten zu tun haben muss: eure Frage. Was sind Fragen, die euch in eurer Organisation umtreiben?
+
+In dieser Einheit kehren wir zurück zu **"Break Free From Plastic"**. Diese Bewegung organisiert unter anderem einen [Brand audit](https://www.breakfreefromplastic.org/brandaudit2021/){target="_blank"} für den in vielen Ländern Freiwillige Plastikstücke sammeln und diese kategorisieren (nach Plastikart und Firma). Ziel ist es große Firmen in die Verantwortung zu nehmen, dass die Verschmutzung durch Plastik beendet wird und insbesondere Einwegplastik reduziert wird. In der Evaluation dieser Audits kommen sicherlich viele Fragen auf. In dieser Einheit möchten wir uns exemplarisch dieser Frage widmen: Wie erfolgreich war der Audit?
+
+
+#### Wie können wir diese Frage mit den Daten beantworten?
+
+Hierfür müssen wir unsere qualitative Frage in eine quantitative Frage umwandeln, die dann auch mit Daten beantwortbar ist. In dieser Einheit operationalisieren wir die Frage nach dem Erfolg so:
+
+  1. Wie viel Plastik wurde insgesamt gesammelt? <br>
+  2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? <br>
+  3. Welche Faktoren beeinflussen möglicherweise diese Unterschiede? <br>
+
+Dies sind Fragen, die wir anhand der Variablen im Datensatz beantworten können. Diese Fragen sind viel spezifischer und können natürlich nicht alle Facetten der urpsrünglichen Frage abdecken. Für eine umfangreiche Evaluation bräuchte es sicherlich noch weitere Fragen - welche fallen euch ein? Hierauf kommen wir in der Diskussion gern zurück. 
+
+Hier liegt der Datensatz nun schon vor und wir können direkt den einzelnen Fragen Variablen zuordnen. In eurer eigenen Arbeit wird es bei der Übersetzung eurer möglicherweise qualitativen Frage zu einer quantitativen Frage etwas Hin-und-Her geben, bis ein geeigneter Datensatz gefunden wurde.
+
+<!-- #### Vorbereitung: Überblick über die Daten gewinnen -->
+
+Der [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** stammt aus den Jahren 2019 und 2020. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: der Community Datensatz (als `community` hinterlegt) enthält alle Variablen, welche für Fragestellungen rundum Community-Perspektive nützlich sind und der Audit Datensatz (als `audit` hinterlegt), umfasst jene Variablen, die für Fragen zur Audit-Perspektive nützlich sind. Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
+
 
 Insbesondere bei Datensätzen mit vielen Variablen kann die Funktion **`dplyr::glimpse()`** Euch helfen, zu verstehen, was im Datensatz überhaupt enthalten ist. Der `community` Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen:
 ```{r exercise_community, exercise = TRUE}
 # Überblick über die Community verschaffen
 dplyr::glimpse(community)
-base::summary(community$n_volunteers)
-```
-```{r Beteiligung in Europa}
 
-community %>%
-  filter(continent == "Europa") %>% summary()
+```
+
+```{r quiz_kurzstatistik}
+quiz(
+  caption = "",
   
+  question(
+    "Wie viele Variablen hat der `community`-Datensatz?",
+    answer("Das kann man anhand des Outputs nicht sagen."),
+    answer("51"),
+    answer("5", correct = TRUE),
+    answer("7"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: 5 Variablen sind enthalten.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question(
+    "Welche Variablen gibt die Anzahl an gesammelten Plastikstücken an?",
+    answer("Das kann man anhand des Outputs nicht sagen."),
+    answer("n_volunteers"),
+    answer("n_pieces", correct = TRUE),
+    answer("n_events"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: n_pieces gibt die Anzahl an Plastikstücken, die in einem Land gesammelt wurden an.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  )
 
-community %>%
-  group_by(continent) %>% summarize(mean=mean(n_volunteers), 
-                                    sd_volunteers=sd(n_volunteers),
-                                    median = median(n_volunteers))
+  )
 
 ```
 
-Schaut Euch nun an, welche Variablen im `Audit`-Datensatz enthalten sind.
-```{r exercise_audit, exercise = TRUE}
-# Euer Code hier
+
+<!-- Schaut Euch nun zur Info an, welche Variablen im `audit`-Datensatz enthalten sind. -->
+<!-- ```{r exercise_audit, exercise = TRUE} -->
+<!-- # Euer Code hier -->
+<!-- ``` -->
+
+#### Datenexploration: Daten kennenlernen und plausibilisieren 
+
+Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind näherkennen lernen und sie plausibilisieren. Hier starten wir mit `base::summary()`.
+
+```{r summary_community}
+base::summary(community)
 ```
 
-```{r exercise_audit-solution}
-# Überblick über den Audit verschaffen
-dplyr::glimpse(audit)
+Wir sehen, dass die Variablen, die Spalten in unserem Datensatz unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie ein *nominal skalierte* Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind *metrisch skalierte* Variablen, wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch ordinal skalierte Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
+
+```{r quiz_plausibilisierung}
+quiz(
+  caption = "",
+  
+  question(
+    "Was ist der höchste Wert, den die Variable n_pieces annimmt?",
+    answer("Das kann man anhand des Outputs nicht sagen."),
+    answer("68.5"),
+    answer("1.0", correct = TRUE),
+    answer("120646.0"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: 1 Plastikstück ist der niedrigste Wert.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+  
+  question(
+    "Die Spannweite gibt die Differenz zwischen dem größten und dem kleinsten Wert einer Variable an. Wie plausibel findet ihr die Spannweite der Variable n_pieces?",
+    answer("Das kann man anhand des Outputs nicht sagen."),
+    answer("Viel zu groß."),
+    answer("Plausibel", correct = TRUE),
+    answer("Viel zu klein"),
+    correct = "Richtig! Wir sehen keine negativen Werte und auch die Größenordnung erscheint nicht unplausibel.",
+    incorrect = "Leider falsch: Die Spannweite erscheint plausibel: wir sehen keine negativen Werte und auch die Größenordnung ist vorstellbar ",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  )
+
+  )
+
 ```
 
-```{r exercise_audit-check}
-grade_this_code()
-```
-Der **Audit-Datensatz** enthält also - wie der `Community`-Datensatz - die Gesamtplastikmenge, geographische und zeitliche Daten, aber keine Daten zu Veranstaltungen und Freiwilligen. Stattdessen findet Ihr hier Daten zu den Plastikarten.
+Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir eine Punktediagramm (englisch: Scatterplot), indem wir die Variablen `continent` und `n_pieces` vom Datensatz `community` als `aes()`-Variablen eingeben und R bitten sie als `geom_point`, also als Punkte auszugeben. So sieht der Code für diesen **Scatterplot** aus. Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert. In der Lektion 8 *Datenvisualisierung* gehen wir noch genauer darauf ein, wie genau so eine Graphik erstellt wird, hier geht es erst einmal darum, R bei der DataVizMagie zu zusehen. Nehmt euch einen Moment und beschreibt die Graphik in euren Worten. Was fällt euch auf?
 
-Nutzt an dieser Stelle gerne auch die anderen Funktionen, die Ihr in den letzten Lektionen kennengelernt habt, um Euch einen Überblick über die beiden bereinigten Datensätze zu verschaffen.
-
-```{r exercise_ueberblick, exercise = TRUE}
-# Euer Code hier
-```
-
-#### Visuelle Exploration 
-Zunächst nehmen wir die **Community-Perspektive** ein und fragen: Wo haben sich wie viele Freiwillige an *Break Free From Plastic* beteiligt?  Dafür visualisieren wir vom Datensatz `community` die `aes()`-Variablen continent und volunteer mit `geom_point` in einem Punktediagramm (englisch: Scatterplot).
-
-Wie sieht der Code für diesen **Scatterplot** aus? Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert.
 ```{r geom-point-video, exercise=TRUE}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
 ggplot2::ggplot(data = community, aes(x = continent, y = n_pieces)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(width = 0.3),
              size = 3,
              alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
-  #coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
   labs(
-    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
+    title = "Die Anzahl an gesammelten Plastikstücken bei 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
-    y = "Anzahl Freiwilliger",
+    y = "Anzahl Plastikstücke",
     x = "Kontinent",
-    caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beobachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
+    caption = "Datenquelle: TidyTuesday und BFFP"
   ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
+
+```{r quiz_scatterplot}
+quiz(
+  caption = "",
+  
+  question(
+    "In welchen Kontinenten beobachten wir extreme Werte?",
+    answer("Afrika und Amerika"),
+    answer("Afrika und Eurpa"),
+    answer("Afrika und Asien", correct = TRUE),
+    answer("Afrika und Ozeanien"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: in Afrika und Asien sehen wir einige sehr große Werte.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  )
+
+  )
+
+```
+
+
+**Bis hier hin, bin ich gekommen mit dem skizzieren**
+
+Lasst uns in Asien etwas mehr hineinzoomen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen. 
 ```{r ggplot nur für Asien}
-ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(y = continent, x = n_pieces)) + # Initialisierung des ggplots mit Variablen
+
+# Min, Max und Median im Scatterplot einfärben -- !? Klappt noch nicht
+community<-community %>%
+  mutate(color = case_when(
+    (n_pieces == min(n_pieces) | n_pieces == max(n_pieces) | n_pieces == median(n_pieces) ) ~ "1",
+     TRUE ~ "0"
+  ))
+
+ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(y = continent, x = n_pieces, color=color)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(width = 0.9),
              size = 3,
              alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
-  #coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
   labs(
-    title = "Die Beteiligung an 'Break Free From Plastic' in Asien" ,
-    x = "Anzahl Freiwilliger",
-    y = ""
+    title = "Die Anzahl an gesammelten Plastikstücken bei 'Break Free From Plastic'" ,
+    x = "Plastikstücke",
+    y = "",
+    color = ""
     ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
   theme_minimal() # Festlegung des Layout-Designs
 ```
@@ -199,6 +301,7 @@ ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(x=n_pieces, 
   theme_minimal() # Festlegung des Layout-Designs
 
 ```
+
 ```{r Median einfärben}
 
 ```
@@ -217,6 +320,41 @@ ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(x=n_pieces))
   theme_minimal() # Festlegung des Layout-Designs
 
 ```
+
+
+
+```{r Beteiligung in Europa}
+
+community %>%
+  filter(continent == "Europa") %>% summary()
+  
+
+community %>%
+  group_by(continent) %>% summarize(mean=mean(n_volunteers), 
+                                    sd_volunteers=sd(n_volunteers),
+                                    median = median(n_volunteers))
+
+```
+
+
+
+```{r exercise_audit-solution}
+# Überblick über den Audit verschaffen
+dplyr::glimpse(audit)
+```
+
+```{r exercise_audit-check}
+grade_this_code()
+```
+Der **Audit-Datensatz** enthält also - wie der `Community`-Datensatz - die Gesamtplastikmenge, geographische und zeitliche Daten, aber keine Daten zu Veranstaltungen und Freiwilligen. Stattdessen findet Ihr hier Daten zu den Plastikarten.
+
+Nutzt an dieser Stelle gerne auch die anderen Funktionen, die Ihr in den letzten Lektionen kennengelernt habt, um Euch einen Überblick über die beiden bereinigten Datensätze zu verschaffen.
+
+```{r exercise_ueberblick, exercise = TRUE}
+# Euer Code hier
+```
+
+
 
 #### Statistische Kennzahlen 
 Nun nutzen wir statistischen Kennzahlen, um mit Hilfe des `audit_plastic`-Datensatz die folgenden Fragen zu beantworten: <br>
