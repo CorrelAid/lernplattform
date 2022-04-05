@@ -13,7 +13,7 @@ output:
 toc: yes
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
 # abhängig von Betriebssystem müssen wir die locale setzen, sodass auf Computern mit englischen Einstellungen Datumsangaben richtig formatiert werden (z.B. März und nicht March). siehe hier: https://stackoverflow.com/a/49154187/6276235
 if (.Platform$OS.type == "windows") {
   loc <- Sys.setlocale("LC_TIME", "German")
@@ -97,9 +97,10 @@ Im Folgenden soll der Datensatz der **Break Free From Plastic** Bewegung für da
 Im Jahr 2020 konnten nur wenige Events durchgeführt werden. Nach Betrachtung der Datenlage wurde das Jahr 2020 deshalb von der Analyse ausgeschlossen. Auch wurde der Datensatz in zwei Tabellen aufgeteilt: Daten zum Plastikaudit und Daten aus der Gemeinschaft rund um die Bewegung. Nach der Datenbereinigung verblieben noch Daten aus `r format_int(length(unique(audit$country)))` Ländern und zu `r format_int(length(unique(audit$parent_company)))` Herstellern im Datensatz, wobei eine Beobachtung im ersten Datensatz einem Land, im zweiten einer einzigartigen Land-Hersteller-Plastikart-Kombination entspricht. Es handelt sich somit stets um **aggregierte Daten** der Länderbüros.
 
 <center>
+
 ```{r kartendaten, include = FALSE}
 # Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
-polygons_welt <- sf::st_read(paste0(getwd(), '/daten/geospatial/ne_50m_admin_0_countries.shp'))
+polygons_welt <- sf::st_read(here::here('daten/geospatial/ne_50m_admin_0_countries.shp'))
 
 # Kartendaten vorbereiten
 karten_daten <- community %>%

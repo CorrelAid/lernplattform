@@ -20,7 +20,7 @@ Als kleine Vorschau auf das, was wir auf der Lernplattform für Euch vorbereitet
 
 ![*Promovideo R Lernen - Der Datenkurs von und für die Zivilgesellschaft (1min)*](https://youtu.be/avH7Yn86SrU)
 
-Am Ende des Kurses könnt Ihr zwei Arten von Datenprodukten erstellen: Einen **reproduzierbaren Bericht**, der automatisch Datenanalysen für mehrere Berichtinstanzen erstellt, und eine **interaktive Web Applikation** zur explorativen Erkundung von Daten. Damit Euch zwischendurch nicht die Puste ausgeht, ist jetzt ein guter Zeitpunkt die folgenden beiden Fragen zu beantworten:
+Am Ende des Kurses könnt Ihr zwei Arten von Datenprodukten erstellen: Einen **reproduzierbaren Bericht**, der automatisch Datenanalysen für mehrere Berichtinstanzen erstellt, und eine **interaktive Web Applikation** zur explorativen Erkundung von Daten. Neugierig? Hier findet Ihr die [App](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. Damit Euch zwischendurch nicht die Puste ausgeht, ist jetzt ein guter Zeitpunkt die folgenden beiden Fragen zu beantworten:
 
 - Was ist meine **Motivation** für die Teilnahme an dem Datenkurs "R Lernen"?
 - Wo in meinem **Wochenplan** kann ich zwei bis drei Stunden für das Selbststudium vormerken?

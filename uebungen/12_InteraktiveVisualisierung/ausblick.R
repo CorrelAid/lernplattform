@@ -193,12 +193,14 @@ server <- function(input, output, session){
     filename = paste0(format(Sys.Date(), '%d.%m.%Y'), '_BFFP2019_Bericht', '.html'),
     
     content = function(file) {
-      src <- normalizePath('report_ausblick.Rmd')
+      src1 <- normalizePath('report_ausblick.Rmd')
+      src2 <- normalizePath('daten')
       
       # Wechselt in ein temporäres Directory und definiert Zugangsberechtigungen
       owd <- setwd(tempdir())
       on.exit(setwd(owd))
-      file.copy(src, 'report_ausblick.Rmd', overwrite = TRUE)
+      file.copy(src1, 'report_ausblick.Rmd', overwrite = TRUE)
+      file.copy(src2, '.', overwrite = TRUE, recursive = TRUE)
       
       library(rmarkdown)
       out <- render('report_ausblick.Rmd', quiet = TRUE, params = list(continent = input$continent))

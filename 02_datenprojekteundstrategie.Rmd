@@ -1,6 +1,7 @@
 ## Datenprojekte für die Zivilgesellschaft
 
 ![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (60min)*](https://youtu.be/6lGuBz7Cie0)
+*Anmerkung: Der Begriff "Impact" ist hier mit "Effekt" zu übersetzen - nicht mit "Wirkung".*
 
 Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/){target="_blank"}, in unserem [Blog](https://correlaid.org/blog/){target="_blank"} und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast){target="_blank"}. Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
 
@@ -18,13 +19,13 @@ Für die Entwicklung einer organisationsweiten Datenstrategie über diesen Kurs 
 
 Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit Mehrwert für Eure Organisation und Euch solltet Ihr einige Punkte beachten:
 
-**Was wir beachten sollten:**
+**Was wir tun sollten:**
 
 - Projekte vom Zweck (und nicht von der Technologie aus) zu denken
 - Auch Technologien mit niedrigem analytischen Reifegrad in Erwägung zu ziehen
-- Quantiative und qualitative Forschungsmethoden zu nutzen
+- Quantitative und qualitative Forschungsmethoden zu nutzen
 - Externe und operationale Daten vor dem Beginn von Datenerhebungen zu evaluieren
-- Manuelle Prozesse mit menschlichen Fähigkeiten zu mappen, um passende Technolgien zu finden
+- Manuelle Prozesse mit menschlichen Fähigkeiten zu verknüpfen, um passende Technolgien zu finden
 - Mit Prototypen und agilem Arbeiten in Iterationen die Nützlichkeit von Projekten zu überprüfen
 
 **Was wir vermeiden sollten:**
@@ -43,10 +44,10 @@ Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit M
 quiz(caption = NULL,
   question("Daten sind...",
     answer("Elemente, die Informationen formal darstellen.", correct = TRUE),
-    answer("in der Regel binärcodiert.", correct = TRUE),
-    answer("idealerweise maschinell lesbar.", correct = TRUE),
-    correct = "Richtig! Es gibt auch immernoch Daten in analoger Form!",
-    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu. Es gibt auch immernoch Daten in analoger Form!",
+    answer("immer binärcodiert."),
+    answer("immer maschinell lesbar."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Es gibt auch immernoch Daten in analoger Form, z.B. Anwesenheitslisten auf Papier, die noch digitalisiert werden müssen. ",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
@@ -79,7 +80,15 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-      question("Automatisierungen haben generell einen höheren Mehrwert als explorative Analysen",
+    question("Daten geben ausschließlich Auskunft über die Vergangenheit und Gegenwart.",
+    answer("Korrekt"),
+    answer("Inkorrekt", correct = TRUE),
+    correct = "Richtig! Ein Beispiel für zukunftsorientierte Datenanalysen sind Prognosemodelle: Wie entwickeln sich Mitgliederzahlen oder die Nachfrage nach unserem Angebot in der nächsten Zeit?",
+    incorrect = "Leider falsch: Ein Beispiel für zukunftsorientierte Datenanalysen sind Prognosemodelle: Wie entwickeln sich Mitgliederzahlen oder die Nachfrage nach unserem Angebot in der nächsten Zeit?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+    question("Automatisierungen haben generell einen höheren Mehrwert als explorative Analysen",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
     correct = "Richtig!",
