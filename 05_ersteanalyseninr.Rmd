@@ -118,7 +118,7 @@ Hierfür müssen wir unsere qualitative Frage in eine quantitative Frage umwande
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? <br>
   3. Welche Faktoren beeinflussen möglicherweise diese Unterschiede? <br>
 
-Dies sind Fragen, die wir anhand der Variablen im Datensatz beantworten können. Diese Fragen sind viel spezifischer und können natürlich nicht alle Facetten der urpsrünglichen Frage abdecken. Für eine umfangreiche Evaluation bräuchte es sicherlich noch weitere Fragen - welche fallen euch ein? Hierauf kommen wir in der Diskussion gern zurück. 
+Dies sind Fragen, die wir anhand der Variablen im Datensatz beantworten können. Diese Fragen sind viel spezifischer und können natürlich nicht alle Facetten der urpsrünglichen Frage abdecken. Für eine umfangreiche Evaluation bräuchte es sicherlich noch weitere Fragen - welche fallen Euch ein? Hierauf kommen wir in der Diskussion gern zurück. 
 
 Hier liegt der Datensatz nun schon vor und wir können direkt den einzelnen Fragen Variablen zuordnen. In eurer eigenen Arbeit wird es bei der Übersetzung eurer möglicherweise qualitativen Frage zu einer quantitativen Frage etwas Hin-und-Her geben, bis ein geeigneter Datensatz gefunden wurde.
 
@@ -179,10 +179,17 @@ quiz(
 Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind näherkennen lernen und sie plausibilisieren. Hier starten wir mit `base::summary()`.
 
 ```{r summary_community}
+# Zusammenfassung anzeigen lassen
 base::summary(community)
 ```
 
 Wir sehen, dass die Variablen, die Spalten in unserem Datensatz unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie ein *nominal skalierte* Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind *metrisch skalierte* Variablen, wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch ordinal skalierte Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
+
+Nina: 
+- Finde es bisher richtig gut! Gerne das auch nochmal in Video erklären :)
+- Hier könnten wir noch die Entität ansprechen. "Neben der Skalenebene ist auch die Entitätenebene relevant: ... Wenn Daten aggregiert wurden, müssen wir das bei der Intepretation beachten."
+- Wollen wir noch etwas genauer auf den großen Unterschied zwischen Mean vs. Median eingehen oder kommt das später eventuell noch?
+- Auch die Quartile sind spannend - ist mir bisher selber noch gar nicht so genau aufgefallen
 
 ```{r quiz_plausibilisierung}
 quiz(
@@ -218,7 +225,7 @@ quiz(
 
 ```
 
-Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir eine Punktediagramm (englisch: Scatterplot), indem wir die Variablen `continent` und `n_pieces` vom Datensatz `community` als `aes()`-Variablen eingeben und R bitten sie als `geom_point`, also als Punkte auszugeben. So sieht der Code für diesen **Scatterplot** aus. Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert. In der Lektion 8 *Datenvisualisierung* gehen wir noch genauer darauf ein, wie genau so eine Graphik erstellt wird, hier geht es erst einmal darum, R bei der DataVizMagie zu zusehen. Nehmt euch einen Moment und beschreibt die Graphik in euren Worten. Was fällt euch auf?
+Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir eine Punktediagramm (englisch: Scatterplot), indem wir die Variablen `continent` und `n_pieces` vom Datensatz `community` als `aes()`-Variablen eingeben und R bitten sie als `geom_point`, also als Punkte auszugeben. So sieht der Code für diesen **Scatterplot** aus. Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert. In der Lektion 8 *Datenvisualisierung* gehen wir noch genauer darauf ein, wie genau so eine Graphik erstellt wird, hier geht es erst einmal darum, R bei der DataVizMagie zu zusehen. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Was fällt Euch auf?
 
 ```{r geom-point-video, exercise=TRUE}
 # Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
@@ -234,6 +241,27 @@ ggplot2::ggplot(data = community, aes(x = continent, y = n_pieces)) + # Initiali
     caption = "Datenquelle: TidyTuesday und BFFP"
   ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
   theme_minimal() # Festlegung des Layout-Designs
+```
+Nina: 
+- Können wir hier den Plot aus dem Report betrachten? Mit auskommentierter Achsenbegrenzung? Für unseren roten Faden!
+- Hier könnte man die Verknüpfung zwischen Spannweite (statistische Kennzahl) und der Visualisierung herstellen
+- Wozu macht man Scatterplots und warum machen wir es hier trotzdem?
+
+```{r}
+# Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
+ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
+  geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
+  #coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+  labs(
+    title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl gefundener Plastikstücke",
+    x = "Kontinent",
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs  
+  theme(legend.position="none") + # Ausblenden der Legende
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 
