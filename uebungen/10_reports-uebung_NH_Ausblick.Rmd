@@ -77,8 +77,8 @@ library(tidyverse)
 
 ```{r datenimport, include = FALSE}
 # Schritt 2: Daten laden
-community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_community_by_country.csv')
-audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/q2_review/daten/bffp2019_audit_by_country_and_company.csv')
+community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv')
+audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
 ```
 
 ```{r datenbereinigung, include = FALSE}
