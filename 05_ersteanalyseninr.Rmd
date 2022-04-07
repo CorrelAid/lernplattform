@@ -288,9 +288,7 @@ quiz(
 ```
 
 
-**Bis hier hin, bin ich gekommen mit dem skizzieren**
-
-Lasst uns in Asien etwas mehr hineinzoomen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen.
+Lasst uns Asien etwas genauer ansehen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen.
 
 
 ```{r ggplot nur für Asien}
@@ -374,21 +372,9 @@ asien_plot +
 
 ```
 
-
-```{r Boxplot}
-ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(x=n_pieces)) + # Initialisierung des ggplots mit Variablen
-  geom_boxplot()  + #aes(y = ..density..)
-  #geom_density(color="red", line_type=1) +
-  labs(
-    title = "Verteilung der Beteiligung an 'Break Free From Plastic' in Europa" ,
-    #subtitle = "... unterscheidet sich nach Kontinent.",
-    #y = "Absolute Häufigkeit",
-    x = "Anzahl Freiwilliger"
-    ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
-  theme_minimal() # Festlegung des Layout-Designs
-
-```
-
+** bis hier her gekommen **
+Nächstes To Do zu den Graphen ein Begleittext schreiben und ein paar Quizfragen einstellen
+Ziel: nach dem wir den Graphen für ein Land entpackt haben können wir die für alle Länder auch interpretieren 
 
 
 ```{r Beteiligung in Europa}
