@@ -181,15 +181,16 @@ Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen,
 ```{r summary_community}
 # Zusammenfassung anzeigen lassen
 base::summary(community)
+
 ```
 
 Wir sehen, dass die Variablen, die Spalten in unserem Datensatz unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie ein *nominal skalierte* Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind *metrisch skalierte* Variablen, wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch ordinal skalierte Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
 
-Nina: 
-- Finde es bisher richtig gut! Gerne das auch nochmal in Video erklären :)
-- Hier könnten wir noch die Entität ansprechen. "Neben der Skalenebene ist auch die Entitätenebene relevant: ... Wenn Daten aggregiert wurden, müssen wir das bei der Intepretation beachten."
-- Wollen wir noch etwas genauer auf den großen Unterschied zwischen Mean vs. Median eingehen oder kommt das später eventuell noch?
-- Auch die Quartile sind spannend - ist mir bisher selber noch gar nicht so genau aufgefallen
+<!-- Nina:  -->
+<!-- - Finde es bisher richtig gut! Gerne das auch nochmal in Video erklären :) -->
+<!-- - Hier könnten wir noch die Entität ansprechen. "Neben der Skalenebene ist auch die Entitätenebene relevant: ... Wenn Daten aggregiert wurden, müssen wir das bei der Intepretation beachten." -->
+<!-- - Wollen wir noch etwas genauer auf den großen Unterschied zwischen Mean vs. Median eingehen oder kommt das später eventuell noch? -->
+<!-- - Auch die Quartile sind spannend - ist mir bisher selber noch gar nicht so genau aufgefallen -->
 
 ```{r quiz_plausibilisierung}
 quiz(
@@ -227,41 +228,28 @@ quiz(
 
 Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir eine Punktediagramm (englisch: Scatterplot), indem wir die Variablen `continent` und `n_pieces` vom Datensatz `community` als `aes()`-Variablen eingeben und R bitten sie als `geom_point`, also als Punkte auszugeben. So sieht der Code für diesen **Scatterplot** aus. Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert. In der Lektion 8 *Datenvisualisierung* gehen wir noch genauer darauf ein, wie genau so eine Graphik erstellt wird, hier geht es erst einmal darum, R bei der DataVizMagie zu zusehen. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Was fällt Euch auf?
 
-```{r geom-point-video, exercise=TRUE}
-# Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
-ggplot2::ggplot(data = community, aes(x = continent, y = n_pieces)) + # Initialisierung des ggplots mit Variablen
-  geom_point(position = position_jitter(width = 0.3),
-             size = 3,
-             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
-  labs(
-    title = "Die Anzahl an gesammelten Plastikstücken bei 'Break Free From Plastic' ..." ,
-    subtitle = "... unterscheidet sich nach Kontinent.",
-    y = "Anzahl Plastikstücke",
-    x = "Kontinent",
-    caption = "Datenquelle: TidyTuesday und BFFP"
-  ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
-  theme_minimal() # Festlegung des Layout-Designs
-```
-Nina: 
-- Können wir hier den Plot aus dem Report betrachten? Mit auskommentierter Achsenbegrenzung? Für unseren roten Faden!
-- Hier könnte man die Verknüpfung zwischen Spannweite (statistische Kennzahl) und der Visualisierung herstellen
-- Wozu macht man Scatterplots und warum machen wir es hier trotzdem?
 
-```{r}
-# Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
-ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
-  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
+<!-- Nina:  -->
+<!-- - Können wir hier den Plot aus dem Report betrachten? Mit auskommentierter Achsenbegrenzung? Für unseren roten Faden! -->
+<!-- - Hier könnte man die Verknüpfung zwischen Spannweite (statistische Kennzahl) und der Visualisierung herstellen -->
+<!-- - Wozu macht man Scatterplots und warum machen wir es hier trotzdem? -->
+
+```{r geom_point_n_pieces_bericht}
+ggplot(data = community, aes(x = continent, y = n_pieces, fill=continent)) + # Initialisierung des ggplots mit Variablen
+  #geom_dotplot(binaxis = "y", position = position_nudge(x = 0.1)) +
+  geom_point(size = 3, alpha = 0.6, position = position_jitter(seed = 1, width = .1), aes(color=continent)) + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6,  width=.1, position = position_nudge(x = -0.25)) + # Hinzufügen des Boxplots
   #coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
     title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
-  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67"))+ # Anwendung der BFFP-Farben
+scale_color_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) #
 ```
 
 
@@ -270,18 +258,31 @@ quiz(
   caption = "",
   
   question(
-    "In welchen Kontinenten beobachten wir extreme Werte?",
+    "In welchen Kontinenten beobachten wir extreme Werte, 'Ausreißer'?",
     answer("Afrika und Amerika"),
     answer("Afrika und Eurpa"),
     answer("Afrika und Asien", correct = TRUE),
     answer("Afrika und Ozeanien"),
     correct = "Richtig!",
-    incorrect = "Leider falsch: in Afrika und Asien sehen wir einige sehr große Werte.",
+    incorrect = "Leider falsch: in Afrika und Asien sehen wir einige sehr große Werte, die weit von den anderen Datenpunkten entfernt sind.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ),
+
+    question(
+    "Aufsteigend von klein nach groß, wie schätzt ihr die Spannbreite der Plastikstückzahl über die Kontinente hinweg ein?",
+    answer(""),
+    answer("Ozeanien, Afrika, Amerika, Europa, Asien"),
+    answer("Ozeanien, Europa, Amerika, Afrika, Asien", correct = TRUE),
+    answer("Europa, Ozeanien, Amerika, Afrika, Asien"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch. die gesuchte Reihenfolge ist: Ozeanien, Europa, Amerika, Afrika, Asien.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   )
-
+  
   )
 
 ```
@@ -289,53 +290,92 @@ quiz(
 
 **Bis hier hin, bin ich gekommen mit dem skizzieren**
 
-Lasst uns in Asien etwas mehr hineinzoomen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen. 
+Lasst uns in Asien etwas mehr hineinzoomen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen.
+
+
 ```{r ggplot nur für Asien}
 
-# Min, Max und Median im Scatterplot einfärben -- !? Klappt noch nicht
-community<-community %>%
-  mutate(color = case_when(
-    (n_pieces == min(n_pieces) | n_pieces == max(n_pieces) | n_pieces == median(n_pieces) ) ~ "1",
-     TRUE ~ "0"
-  ))
+community<- community %>%
+  group_by(continent) %>%
+  mutate(n_pieces_q25 = quantile(n_pieces, .25),
+         n_pieces_median=median(n_pieces),
+         n_pieces_q75 = quantile(n_pieces, .75),
+         n_pieces_mean = mean(n_pieces),
+         n_pieces_sd = sd(n_pieces))
 
-ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(y = continent, x = n_pieces, color=color)) + # Initialisierung des ggplots mit Variablen
-  geom_point(position = position_jitter(width = 0.9),
-             size = 3,
-             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Layoutoptionen zur Positionierung, Punktegröße und Transparenz
+asien_plot<-ggplot(data = subset(community, continent=="Asien"), aes(x = n_pieces, y = continent)) + # Initialisierung des ggplots mit Variablen
+   geom_point(size = 3, alpha = 0.6, position = position_jitter(seed = 1, width = .1), color="#4E97AC") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   labs(
-    title = "Die Anzahl an gesammelten Plastikstücken bei 'Break Free From Plastic'" ,
-    x = "Plastikstücke",
-    y = "",
-    color = ""
-    ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
-  theme_minimal() # Festlegung des Layout-Designs
+    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    subtitle = "... in Asien.",
+    y = "Anzahl Plastikstücke",
+    x = "",
+    caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs  
+  theme(legend.position="none")  # Ausblenden der Legende
+asien_plot
+```
+
+```{r highlight_mean_sd}
+asien_plot +
+     #mean
+  geom_point(
+    aes(x = n_pieces_mean),
+    color = "red",
+    shape = 17,
+    size = 3
+  ) +
+    # sd
+  geom_linerange(
+    aes(xmin=n_pieces_mean-n_pieces_sd/2, xmax=n_pieces_mean+n_pieces_sd/2),
+    size=2,
+    color = "red",
+  ) 
+```
+
+```{r Median_einfärben}
+asien_plot +
+  # Median
+  geom_point(
+    aes(x = n_pieces_median),
+    shape = 17,
+    color = "black",
+    size = 3
+  ) 
+
+
+
 ```
 
 
-```{r Verteilung als Histogram/ Dotplot}
-# Oder als histogram ?
-ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(x=n_pieces, fill=stat(x > median(community$n_pieces)))) + # Initialisierung des ggplots mit Variablen
-  ggdist::stat_dotsinterval( quantiles = 100) +
- 
- # geom_dotplot()  + #aes(y = ..density..)
-  #geom_density(color="red", line_type=1) +
-  labs(
-    title = "Verteilung der Beteiligung an 'Break Free From Plastic' in ..." ,
-    #subtitle = "... unterscheidet sich nach Kontinent.",
-    y = "Relative Häufigkeit",
-    x = "Anzahl Plastikstücke"
-    ) + # Festlegung der Achsenbezeichnungen, Überschriften und Titel
-  theme_minimal() # Festlegung des Layout-Designs
+```{r q25_q75_einfärben}
+asien_plot +
+  #q25
+  geom_point(
+    aes(x = n_pieces_q25),
+    shape = 17,
+    color = "black",
+    size = 3
+  ) +
+    #q75
+  geom_point(
+    aes(x = n_pieces_q75),
+    shape = 17,
+    color = "black",
+    size = 3
+  ) 
+```
+
+
+```{r asien_boxplot}
+
+asien_plot +
+ geom_boxplot(alpha = 0.6,  width=.1, position = position_nudge(y = -0.5))  # Hinzufügen des Boxplot
 
 ```
 
-```{r Median einfärben}
-
-```
 
 ```{r Boxplot}
-
 ggplot2::ggplot(data = subset(community, continent == "Asien"), aes(x=n_pieces)) + # Initialisierung des ggplots mit Variablen
   geom_boxplot()  + #aes(y = ..density..)
   #geom_density(color="red", line_type=1) +
