@@ -288,11 +288,11 @@ quiz(
 ```
 
 
-Lasst uns Asien etwas genauer ansehen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen.
+Lasst uns Asien etwas genauer ansehen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen. Dafür vertauschen wir die Achsen. Die Anzahl an Plastikstückchen ist nun auf der x-Achse abgetragen. Wir tragen ebenso das arithmetische Mittel ein, er liegt bei 12003.
 
 
 ```{r ggplot nur für Asien}
-
+# Berechnung einiger statistischer Kennzahlen
 community<- community %>%
   group_by(continent) %>%
   mutate(n_pieces_q25 = quantile(n_pieces, .25),
@@ -306,46 +306,127 @@ asien_plot<-ggplot(data = subset(community, continent=="Asien"), aes(x = n_piece
   labs(
     title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... in Asien.",
-    y = "Anzahl Plastikstücke",
-    x = "",
+    x = "Anzahl Plastikstücke",
+    y = " ",
     caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none")  # Ausblenden der Legende
 asien_plot
 ```
 
-```{r highlight_mean_sd}
-asien_plot +
-     #mean
+```{r Mittelwert hinzufügen}
+asien_plot + 
+#Mittelwert
   geom_point(
     aes(x = n_pieces_mean),
-    color = "red",
+    color = "#366978",
+    shape = 17,
+    size = 3
+  ) 
+```
+
+```{r quiz_Mittelwert}
+quiz(
+  caption = "",
+  
+  question(
+    "Wie gut bring der Mittelwert die Verteilung der in den verschiedenen asiatischen Ländern gesammelten Plastikstücken auf den Punkt?",
+    answer("Gut, eine Zahl einfach zu interpretieren"),
+    answer("Gut, er passt visuell gut in die Punktewolke."),
+    answer("Nicht so gut, nur drei von 17 Beobachtungen sind größer, Ausreißerwerte haben eine großen Einfluss. ", correct = TRUE),
+    answer("Nicht so gut, genau 10247 Plastikstücke wurde in keinem Land gesammelt."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: der Mittelwert ist sehr getrieben von Ausreißern.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  ))
+```
+
+Das arithmetische Mittel ist also oft eher ungeeignet, um die Verteilung wirklich auf den Punkt zu bringen. Wir können aber eine weitere Kennzahl zu Rate ziehen: die Standardabweichung. Diese hat die gleiche Einheit wie unsere Variable (also 1 Plastikstück) und gibt die Streuung um den Mittelwert an. Für Asien ist sie 29424 Stück. Das ist ganz schön viel! Und zeigt uns auf, dass der Mittelwert sicherlich durch einige Ausreißer verzerrt wird. Für den visuellen Eindruck der Streuung, tragen wir je eine Standardabweichung rechts und links vom Mittelwert ab. 
+
+```{r highlight_mean_sd}
+asien_plot +
+  #Mittelwert
+  geom_point(
+    aes(x = n_pieces_mean),
+    color = "#366978",
     shape = 17,
     size = 3
   ) +
     # sd
   geom_linerange(
-    aes(xmin=n_pieces_mean-n_pieces_sd/2, xmax=n_pieces_mean+n_pieces_sd/2),
+    aes(xmin=n_pieces_mean-n_pieces_sd, xmax=n_pieces_mean+n_pieces_sd),
     size=2,
-    color = "red",
+    color = "#366978",
   ) 
+```
+
+```{r quiz_standardabweichung}
+quiz(
+  caption = "",
+ 
+ question("Warum würde R für die Standardabweichung für Ozeanien (eng. Oceania) 'NA' ausgeben?",
+    answer("Weil keine Plastikstücke gefunden wurden."),
+    answer("Weil Ozeanien nur drei Stück Plastik registriert hat."),
+    answer("Weil nur ein Land in Ozeanien mitgemacht hat.", correct = TRUE),
+    answer("Kann eigentlich nicht sein. Deutet auf einen Fehler hin."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: In Ozeanien hat nur ein Land mitgemacht, weshalb es zwischen einzelnen Beobachtungen auf Länderebene natürlich keine Standardabweichung geben kann.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen",
+    random_answer_order = TRUE
+  )
+)
 ```
 
 ```{r Median_einfärben}
+# Dotplot - aber die y-Achse ergibt kein Sinn :-)
+asien_plot2<-ggplot(data = subset(community, continent=="Asien"), aes(x = n_pieces)) + # Initialisierung des ggplots mit Variablen
+   geom_dotplot(
+     method= "histodot",
+     binwidth = 500,
+     dotsize = 4,
+     fill ="#4E97AC",
+    color="#4E97AC"
+    ) + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  labs(
+    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    subtitle = "... in Asien.",
+    x = "Anzahl Plastikstücke",
+    y = " ",
+    caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs
+  theme(legend.position="none")  # Ausblenden der Legende
+asien_plot2
+```
+
+Der Median, ist das statistische Maß, welches wirklich die Mitte der Verteilung trifft. Er ist gleichzeitig auch das 50%-Quantil. Um dieses Maß zu verstehen, stellt euch vor, ihr stellt die Punkte (also hier die einzelnen Länder mit ihrer Plastikstückanzahl) der Reihe nach aufsteigend auf. So wie es die Punktewolke auch in etwa visualisiert. Das 50%-Quantil, der Median, ist die Beobachtung, die diese Reihe genau in zwei Hälften teilt. In Asien haben 17 Länder an **Break Free From Plastic** teilgenommen. Die Anzahl an Plastikstücken des 9. Land in der imaginären Aufreihung ist also der Median. Hier beträgt er 3459 Plastikstücke, soviel wie in China gesammelt wurden. Wir können die Verteilung auch farblich einteilen in kleiner und größer als der Median, um die zwei Hälften der Verteilung zu visualiseren. 
+
+
+```{r Median_einfärben}
+
 asien_plot +
+  geom_point(aes(color=n_pieces>n_pieces_median),
+             size = 3, alpha = 0.6, position = position_jitter(seed = 1, width = .1)) +
   # Median
   geom_point(
-    aes(x = n_pieces_median),
+    aes(x = n_pieces_median, y=0.85),
     shape = 17,
     color = "black",
     size = 3
-  ) 
-
-
-
+  )
 ```
 
+Es gibt noch viele weitere Quantile. Besonders häufig kommen noch das 25%-Quantil und das 75%-Quantil zum Einsatz. 
 
+!?CONTINUE HERE
+vielleicht im Quiz das 25% und 75 quantile erfragen? Vielleicht in den Graphen noch Beschriftung hinzufügen für genau diese Länder 
+
+Dann zum Boxplot übergehen
+q25 - Japan 
+q50 - China
+q75 - Malaysia
 ```{r q25_q75_einfärben}
 asien_plot +
   #q25
