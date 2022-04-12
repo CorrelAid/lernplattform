@@ -1,27 +1,31 @@
 
 ## Datenschutz und Datenethik
-![*Video: Datenschutz und Datenethik (40min)*](https://youtu.be/16Un83i1YRY)
+![*Video: Datenschutz und Datenethik (60min)*](https://youtu.be/WlNjPFlNams)
 Als Lektüre empfehlen wir die [Publikation](https://www.b-b-e.de/fileadmin/Redaktion/06_Service/02_Publikationen/2021/2021-bbe-reihe-forum-3.pdf){target="_blank"} des Bundesnetzwerks Bürgerschaftliches Engagement (BBE) zu „Datenschutz und Datensicherheit“, insbesondere die Schritte 1-12 auf den Seiten 29ff. Darüber hinaus könnt Ihr bei der Stiftung Datenschutz zahlreiche [Webinare](https://stiftungdatenschutz.org/veranstaltungen/datenschutz-im-ehrenamt){target="_blank"} zum Thema besuchen.
 
 ### Kernaussagen
 #### Datenschutz
-- Die DSGVO ist ein verfassungsrechtlich verankertes **Grundrecht**, das **personenbezogene Daten** vor Missbrauch schützt (Art. 1 Abs. 1 und Art. 2 Abs. 1 GG, Art. 1 - 4 ff. DSGVO)
-- Auf Grund des **Subsidiaritätsprinzips** identifizieren wir geltende Regelungen nach dem Prinzip der kleinsten Instanz
-- Weil gleichzeitig aber auch die **Normenhierarchie** gilt, setzen diese Regelungen überwiegend wortlautgleich die DSGVO um, definieren aber für einzelne Paragraphen gegebenfalls erlaubte Abweichungen (bei Widersprüchen gilt die DSGVO)
-- Wer sich mit Datenschutz beschäftigt, muss auch die **aktuelle Rechtssprechung** kennen - z.B. indem man die Seite der Datenschutzbeauftragen der Bundesländer besucht und aktuelle Pressemitteilungen und Informationsblätter liest
-- Ihr seid zu der Einhaltung folgender *sieben* Kernpflichten verpflichtet: **Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Datenreduktion, Vertraulichkeit und Rechenschaft** (Art.5-7, 12-23 ff. DSGVO)
-- Die **Einwilligung** zur Datenverarbeitung kann von Betroffenen auch konkludent gegeben bzw. rechtlich vorgeschrieben sein, allerdings seid ihr rechtlich abgesichert, wenn ihr sie **explizit und schriftlich** einholt (formlos genügt, siehe Art. 7-8 ff. DSGVO)
+- Das Recht auf informationelle Selbstbestimmung ist ein Unterfall des verfassungsrechtlich verankerten **allgemeinen Persönlichkeitsrecht**  (Art. 1 Abs. 1 und Art. 2 Abs. 1 GG)
+- Die DSGVO schützt Bürger:innen und ihre **personenbezogenen Daten** vor Missbrauch
+- Wer sich mit Datenschutz beschäftigt, muss auch die **aktuelle Rechtssprechung** kennen - z.B. indem man die Seite der Datenschutzbeauftragen der Bundesländer besucht, die [Erwägungsgründe der DSGVO](https://dsgvo-gesetz.de/erwaegungsgruende/){target="_blank"} und aktuelle Pressemitteilungen und Informationsblätter liest
+- Bei der Arbeit mit Daten solltet Ihr Euch immer fragen, ob es sich hierbei um **personenbezogene Daten** handelt, Ihr eine **Rechtsgrundlage** für die Verarbeitung habt und die **Betroffenen** ausreichend **informiert** wurden
+- Personenbezogene Daten sind **Informationen**, mit denen **natürliche Personen**, also Menschen, **identifiziert** werden (können), z.B. Klarname, Geburtsdatum, Anschrift, Personalausweis- oder Passnummer, E-Mail, Username und IP-Adresse
+- Die Verarbeitung von personenbezogenen Daten unterliegt einem **Verbotsprinzip**: Nur wenn Ihr eine Berechtigung zur Datenverarbeitung habt, dürft Ihr dies auch tun
+- Rechtsgrundlagen bzw. **Erlaubnistatbestände** für die Datenverarbeitung sind: **Einwilligung**, **Vertragserfüllung** und **rechtliche Verpflichtung** zur Datenverarbeitung bzw. ein **lebenswichtiges Interesse der Betroffenen**, ein **öffentliches Interesse** oder ein **berechtigtes Interesse der datenverarbeitenden Partei** (Auslegungssache) daran, die Daten zu verarbeiten
+- Auf Grund Euer **Informationspflichten** (Art. 12-14 DSGVO) müsst Ihr bei der Datenerfassung auf **Rechtsgrundlage, Zweck, Speicherdauer, Kontaktdaten der Verantwortlichen, die Weitergabe an Dritte und Rechte der Betroffenen** hinweisen
+- Ihr seid zu der Einhaltung der folgenden **sieben** Kernpflichten verpflichtet: **Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Speicherbegrenzung, Vertraulichkeit und Rechenschaft** (Art.5-7, 12-23 ff. DSGVO)
 - Bei **Erlöschung des Zwecks** müssen personenbezogene Daten gem. §35 BDSG spätestens nach *drei Jahren* gelöscht werden - außer es handelt sich um steuerlich relevante oder Sozialdaten (Frist von 10 Jahren)
 - Alternativ zur Löschung können Daten auch **anonymisiert** werden, indem identifizierende Informationen wie Name, exakte Adresse oder E-Mail gelöscht werden, bis die Kombination von Merkmalsausprägungen wie Wohnort, Beruf und Geschlecht jeweils bei *min. drei Personen* vorhanden ist (oder bei keiner)
-- Da der **Datenschutz in Drittländern** (auch in den USA) nicht so ausgeprägt ist wie in der EU, solltet Ihr bei der Auswahl von datenverarbeitenden Tools darauf achten, wo sie ihren Hauptsitz und Server haben, und müsst ggf. eine Standardvertragsklausel (SCC) abschließen und zusätzliche Maßnahmen (z.B. Verschlüsselung) ergreifen
+- Da der **Datenschutz in Drittländern** (auch in den USA) nicht so ausgeprägt ist wie in der EU, solltet Ihr bei der Auswahl von datenverarbeitenden Tools darauf achten, wo sie ihren Hauptsitz und Server haben, und müsst ggf. zusätzliche Maßnahmen (z.B. rechtliche Vereinbarung, Passwortschutz, Verschlüsselung) ergreifen
 - Am Besten veröffentlicht Ihr auf Eurer Webseite Eure **Datenschutzerklärung sowie Kontaktdaten von Ansprechpartner:innen** und legt mit klar definierten **Verantwortlichen** ein **Verarbeitungsverzeichnis und Datenschutzmanagementsystem** an, das Ihr in festen Abständen **überprüft**
+- Möchtet Ihr im Rahmen Eurer Datenprojekte mit personenbezogenen Daten, z.B. Mitglieds- oder Spender:innen-Daten, arbeiten, müsst Ihr die **Rechtsgrundlage für die Verarbeitung** überprüfen und ggf. **Informationspflichten** wahrnehmen (Tipp: Schaut genau auf den angegebenen **Zweck der Datenverarbeitung** - lässt sich Eure Analyse darunter subsumieren?)
 
 #### Datenethik
 - Darüber hinaus solltet Ihr Euch auch mit Euren Anforderungen an Datenethik beschäftigen, denn nur weil etwas augenscheinlich legal ist, heißt es noch lange nicht, dass es auch moralisch ist  - eine Inspiration kann die **Charta der digitalen Grundrechte** sein
 - Prüft, ob Eure **Datengrundlage ausreicht**, um Sachverhalte zu bewerten, und diese Bewertung **sinnvoll ist**
 - Evaluiert Eure Datengrundlage und sucht gezielt nach **Verzerrungen** wie historischem Bias
 - Überlegt Euch, ob Eure Datenanalyse zu **struktureller Benachteiligung, Diskriminierung oder (negativer) Politisierung** von Menschen führen kann
-- Denkt bei der Programmierung von Algorithmen darüber nach, ob die zu treffende **Entscheidung** überhaupt **maschinell** anhand von sozio-demographischen Merkmalen und deren Proxies getroffen werden sollte - das gilt insbesondere bei Algorithmen, die über **Zugang zu essentiellen Bereichen** wie dem Arbeits- und Finanzmarkt entscheiden
+- Denkt bei der Programmierung von Algorithmen darüber nach, ob die zu treffende **Entscheidung** überhaupt **maschinell** anhand von sozio-demographischen Merkmalen und deren Proxies getroffen werden sollte - das gilt insbesondere bei Algorithmen, die über **Zugang zu essentiellen Bereichen** wie dem Arbeits- und Finanzmarkt oder auch über den Zugang zu **zivilgesellschaftlichen Programmen** entscheiden
 
 ### Quiz
 
@@ -38,7 +42,7 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   ),
   
-  question("Aus welchen Gründen fällt deutschen Unternehmen die Umsetzung der DSGVO schwer?",
+  question("Aus welchen Gründen fällt deutschen Unternehmen die Umsetzung der DSGVO schwer (Bitkom, Stand Sep. 20)?",
     answer("Anhaltende Rechtsunsicherheit", correct = TRUE),
     answer("Änderungen und Anpassungen bei der Auslegung", correct = TRUE),
     answer("Fehlende Umsetzungshilfen durch Aufsichtsbehörden", correct = TRUE),
@@ -51,15 +55,6 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   ), 
   
-  question("Wann wurde der Datenschutz in Deutschland erstmals eingeführt?",
-    answer(1945),
-    answer(1977, correct = TRUE),
-    answer(1989),
-    correct = "Richtig!",
-    incorrect = "Falsch! Richtig wäre 1977 – mit dem ersten Bundesdatenschutzgesetz.",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-    ),
   question("Seit wann gilt die DSGVO?",
     answer(2015),
     answer(2016),
@@ -76,51 +71,42 @@ quiz(caption = NULL,
     answer("Artikel 2 Abs. 1 – Jeder hat
 das Recht auf die freie Entfaltung seiner Persönlichkeit"),
     answer("Aus Artikel 1, Abs. 1, UND Artikel 2, Abs. 1", correct = TRUE),
-    correct = "Richtig!",
-    incorrect = "Leider falsch. Richtig ist: Art 1 I. – Die Würde des Menschen ist unantastbar – und Art 2 I. – Jeder hat das Recht auf die freie Entfaltung seiner Persönlichkeit, die zusammen das Allgemeine Persönlichkeitsrecht (APR) ergeben.",
+    correct = "Richtig! Das Recht auf informationelle Selbstbestimmung ergibt sich aus Art 1 I. – Die Würde des Menschen ist unantastbar – und Art 2 I. – Jeder hat das Recht auf die freie Entfaltung seiner Persönlichkeit, ist also Unterfall des Allgemeinen Persönlichkeitsrecht (APR).",
+    incorrect = "Leider falsch. Das Recht auf informationelle Selbstbestimmung ergibt sich aus Art 1 I. – Die Würde des Menschen ist unantastbar – und Art 2 I. – Jeder hat das Recht auf die freie Entfaltung seiner Persönlichkeit, ist also Unterfall des Allgemeinen Persönlichkeitsrecht (APR).",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-
-  question("Wie ist Datensicherheit definiert? Sie bezeichnet...",
-    answer("...die Festlegung von einem Regelkatalog im Umgang mit Daten in Organisationen."),
-    answer("...die Einführung von technischen Hürden bei Datenzugriffen."),
-    answer("...die praktische Umsetzung des Datenschutzes durch strukturelle Maßnahmen und funktionierende IT.", correct = TRUE),
-    correct = "Richtig!",
-    incorrect = "Leider falsch. Zur Umsetzung des verfassungsrechtlich garantierten Rechts auf Datenschutzes ist es notwendig sowohl organisatorische Maßnahmen, wie z.B. Vereinbarungen mit Mitarbeitenden, als auch technische Maßnahmen, wie z.B. Passwortschutz und Verwaltung von Zugriffsrechten, zu ergreifen. ",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-    ),
-
-  question("Welche Datenschutzrichtlinie gilt für die Katholische Stiftungshochschule in München im Gegensatz zur Technischen Universität München?",
-    answer("Für beide gilt das bayerische Datenschutzgesetz (BayDSG)"),
-    answer("Für beide gilt das Bayerische Hochschulgesetz (BayHSchG)"),
-    answer("Für Erstere gilt das Gesetz über den Kirchlichen Datenschutz (KDG), für Letztere das Bayrische Hochschulgesetz (BayHSchG).", correct = TRUE),
-    correct = "Richtig! Das war wirklich keine leichte Frage...",
-    incorrect = "Leider falsch! Das war wirklich keine leichte Frage... Für Erstere gilt das Gesetz über den Kirchlichen Datenschutz (KDG), für
-Letztere das Bayrische Hochschulgesetz (BayHSchG). Grundsätzlich ermitteln wir das geltende Gesetz von unten nach oben, fangen also mit der kleinstmöglichen Einheit, hier: der Hochschule, an. Allerdings haben die Kirchen in Deutschland die Möglichkeit zur Schaffung eigener Datenschutzgesetze genutzt, weshalb diese Gesetze nun für die Kirche (Achtung: Hier gibt es pro Konfession ein Gesetz!) und zugehörige Institutionen gelten. Beide Gesetze folgen in ihren Grundprinzipien der DSGVO.",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-    ),
-
-  question("Welche zwei Prinzipien gelten bei der Anwendung von Datenschutzrichtlinien mit demselben Schutzbereich?",
-    answer("Offenkundigkeitsprinzip, Traditionsprinzip"),
-    answer("Grundrechtsprinzip, Traditionsprinzip"),
-    answer("Subsidiaritätsprinzip, Normenhierarchie", correct = TRUE),
-    answer("Praktische Konkordanz, Grundrechtsprinzip"),
-    answer("Abstraktionsprinzip, Offenkundigkeitssprinzip"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Das Subsidiaritätsprinzip und die Normenhierarchie besagen, dass zwar grundsätzlich das speziellste Datenschutzgesetz anzuwenden ist, bei Auslegungsfragen oder (zu vermeidenden) Widersprüchen die DSGVO anzuwenden ist.",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-    ),
 
   question("Welche Daten werden von der DSGVO geschützt?",
     answer("Personenbezogene Daten", correct = TRUE),
     answer("Organisations-/Unternehmensdaten"),
     answer("Alle Daten"),
+    correct = "Richtig! Daten von nicht-natürlichen, also juristischen Personen, wie Vereinen und Unternehmen sind also nicht von der DSGVO geschützt. Hier gelten ggf. das Geschäftsgeheimnisgesetz (GeschGehG) sowie bilateral getroffene Vereinbarungen zur Datenverarbeitung.",
+    incorrect = "Leider falsch. Richtig wäre: Personenbezogene Daten. Daten von nicht-natürlichen, also juristischen Personen, wie Vereinen und Unternehmen sind also nicht von der DSGVO geschützt. Hier gelten ggf. das Geschäftsgeheimnisgesetz (GeschGehG) sowie bilateral getroffene Vereinbarungen zur Datenverarbeitung.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+
+ question("Nutzt die Definition von personenbezogenen Daten (Art. 4 DSGVO), um die Daten zu identifizieren, die unter den Schutzbereich der DSGVO fallen:",
+    answer("Name und Vorname", correct = TRUE),
+    answer("Privatanschrift", correct = TRUE),
+    answer("Ausweis-/Passnummer", correct = TRUE),
+    answer("Physische Merkmale (Geschlecht, Haarfarbe, etc.)", correct = TRUE),
+    answer("Standortdaten", correct = TRUE),
+    answer("Telefonnummer", correct = TRUE),
+    answer("IP-Adresse", correct = TRUE),
+    answer("Cookie-Kennung", correct = TRUE),
     correct = "Richtig!",
-    incorrect = "Richtig wäre: Personenbezogene Daten, also „alle Informationen, durch die eine natürlich ePerson, also Menschen, direkt oder indirekt identifiziert werden oder identifizierbar sind, also durch Merkmale, die Ausdruck der physischen, physiologischen, genetischen, psychischen, wirtschaftlichen, kulturellen oder sozialen Identität dieser natürlichen Person sind“. Daten von nicht-natürlichen, also juristischen Personen, wie Vereinen und Unternehmen sind also nicht von der DSGVO geschützt. Hier gelten ggf. das Geschäftsgeheimnisgesetz (GeschGehG) sowie bilateral getroffene Vereinbarungen zur Datenverarbeitung.",
+    incorrect = "Leider falsch. Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person (im Folgenden „betroffene Person“) beziehen; als identifizierbar wird eine natürliche Person angesehen, die direkt oder indirekt, insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu einer Kennnummer, zu Standortdaten, zu einer Online-Kennung oder zu einem oder mehreren besonderen Merkmalen, die Ausdruck der physischen, physiologischen, genetischen, psychischen, wirtschaftlichen, kulturellen oder sozialen Identität dieser natürlichen Person sind, identifiziert werden kann (Originalwortlaut Art 4 DSGVO).",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+
+question("Findet die DSGVO Anwendung auf den persönlichen oder familiären Bereich??",
+    answer("Ja"),
+    answer("Nein", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch. Die DSGVO gilt nicht für die Verarbeitung von personenbezogenen Daten, die von einer natürlichen Person zur Ausübung ausschließlich persönlicher oder familiärer Tätigkeiten und somit ohne Bezug zu einer beruflichen oder wirtschaftlichen Tätigkeit vorgenommen wird (Erwägungsgrund 18).",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     ),
@@ -131,6 +117,24 @@ question("Was versteht die DSGVO unter Datenverarbeitung? Das Erheben, Erfassen,
     answer("in automatisierten und nicht-automatisierten Vorgängen.", correct = TRUE),
     correct = "Richtig! Also im Grunde alle, was man mit Daten tun kann.",
     incorrect = "Leider falsch: Sowohl die menschliche als auch maschinelle Datenverarbeitung sind gemeint.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+
+question("Ist die Einwilligung die einzig mögliche Rechtsgrundlage für eine Datenverarbeitung?",
+    answer("Ja"),
+    answer("Nein", correct = TRUE),
+    correct = "Richtig! Art. 6 DSGVO kennt noch weitere Erlaubnistatbestände, insbesondere die Vertragserfüllung, die rechtliche Verpflichtung und das berechtigte Interesse.",
+    incorrect = "Leider falsch. Art. 6 DSGVO kennt noch weitere Erlaubnistatbestände, insbesondere die Vertragserfüllung, die rechtliche Verpflichtung und das berechtigte Interesse.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+
+question("Wo findet Ihr Eure Informationspflichten in der DSGVO?",
+    answer("Art. 6, Erwägungsgrund 32-33 und 43"),
+    answer("Art 12-14, Erwägungsgrund 60-62", correct = TRUE),
+    correct = "Richtig! Ihr findet Euch schon gut zurecht!",
+    incorrect = "Leider falsch. Schaut nochmal in den Gesetzestext, z.B. auf www.dsgvo-gesetz.de",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     ),
@@ -149,11 +153,12 @@ question("Welche Kernpflichten umfasst die DSGVO?",
     try_again_button = "Nochmal versuchen"
     ),
 
-question("Muss immer eine explizite Einwilligung in die Datenverarbeitung erfolgen?",
-    answer("Ja"),
-    answer("Nein", correct = TRUE),
-    correct = "Richtig! Auch konkludente Einwilligungen oder rechtliche Vorschriften können Gründe für Datenverarbeitungen sein. Trotzdem gilt: Wer dokumentieren will, dass er:sie auf der richtigen Seite steht, hat bei einer expliziten schriftlichen Einwilligung keine Schwierigkeit dies auch nachzuweisen.",
-    incorrect = "Leider falsch - auch konkludente Einwilligungen oder rechtliche Vorschriften können Gründe für Datenverarbeitungen sein.rotzdem gilt: Wer dokumentieren will, dass er:sie auf der richtigen Seite steht, hat bei einer expliziten schriftlichen Einwilligung keine Schwierigkeit dies auch nachzuweisen.",
+  question("Wie ist Datensicherheit definiert? Sie bezeichnet...",
+    answer("...die Festlegung von einem Regelkatalog im Umgang mit Daten in Organisationen."),
+    answer("...die Einführung von technischen Hürden bei Datenzugriffen."),
+    answer("...die praktische Umsetzung des Datenschutzes durch strukturelle Maßnahmen und funktionierende IT.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch. Zur Umsetzung des verfassungsrechtlich garantierten Rechts auf Datenschutzes ist es notwendig sowohl organisatorische Maßnahmen, wie z.B. Vereinbarungen mit Mitarbeitenden, als auch technische Maßnahmen, wie z.B. Passwortschutz und Verwaltung von Zugriffsrechten, zu ergreifen. ",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     ),
@@ -180,7 +185,7 @@ question("Weil Ihr den morgendlichen und bitter benötigten Kaffee über Euren 
     answer("Ja"),
     answer("Nein", correct = TRUE),
     correct = "Richtig! Die Datenpanne (Art. 4 DSGVO) könnt, müsst Ihr aber nicht unebdingt innerhalb der 72h der zuständigen Behörde melden, da das Risiko für Betroffene hier nicht sehr groß ist. Den Vorfall sowie Eure Überlegungen zur Meldepflicht solltet Ihr trotzdem dokumentieren.",
-    incorrect = " Leider falsch! Eure sieben Kernpflichten (Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Datenreduktion, Vertraulichkeit und Rechenschaft) beinhalten gem. Art. 5 DSGVO auch den Grundsatz der Vertraulichkeit. Damit seid Ihr verpflichtet Daten durch dem Risiko angemessene technische und organisatorische Maßnahmen vor Zugriff und Verlust zu sichern. Dass Endgeräte kaputtgehen, ist durchaus zu erwarten. Eine doppelte Datensicherung durch externe, digitale Speicher wie USB oder Cloud-Lösung ist notwendig. Die Datenpanne (Art. 4 DSGVO) könnt, müsst Ihr aber nicht unebdingt innerhalb der 72h der zuständigen Behörde melden, da das Risiko für Betroffene hier nicht sehr groß ist. Den Vorfall sowie Eure Überlegungen zur Meldepflicht solltet Ihr trotzdem dokumentieren.",
+    incorrect = " Leider falsch! Eure sieben Kernpflichten (Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Datenreduktion, Vertraulichkeit und Rechenschaft) beinhalten gem. Art. 5 DSGVO auch den Grundsatz der Vertraulichkeit. Damit seid Ihr verpflichtet Daten durch dem Risiko angemessene technische und organisatorische Maßnahmen vor Zugriff und Verlust zu sichern. Dass Endgeräte kaputtgehen, ist durchaus zu erwarten. Eine doppelte Datensicherung durch externe, digitale Speicher wie USB oder Cloud-Lösung ist notwendig. Die Datenpanne (Art. 4 DSGVO) könnt, müsst Ihr aber nicht unbedingt innerhalb von 72h der zuständigen Behörde melden, da das Risiko für Betroffene hier nicht sehr groß ist. Den Vorfall sowie Eure Überlegungen zur Meldepflicht solltet Ihr trotzdem dokumentieren.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     ), 
@@ -209,7 +214,7 @@ question("Eurer Projektpartner bittet Euch bei der geplanten Datenanalyse zur Po
     answer("Nein"),
     correct = "Richtig! Die Polizeiliche Kriminalstatistik enthält viele spannende Daten – allerdings kann die geplante Analyse – falls statistische signifikante Beobachtungen gemacht werden - leicht politisiert werden, z.B. um für die Ausweisung von Migrant:innen zu
 werben. Besonders kritisch ist hier auch, dass die Polizeistatistik neben den genannten Merkmalen wenig Informationen zu sonstigen demographischen Merkmalen enthält, weshalb sog. Confounding Variables (zu dt. Störfaktoren) wie Alter und Einkommen nicht identifiziert werden können.",
-    incorrect = " Leider falsch! Die Polizeiliche Kriminalstatistik enthält viele spannende Daten – allerdings kann die geplante Analyse – falls statistische signifikante Beobachtungen gemacht werden - leicht politisiert werden, z.B. um für die Ausweisung von Migrant:innen zu
+    incorrect = "Leider falsch! Die Polizeiliche Kriminalstatistik enthält viele spannende Daten – allerdings kann die geplante Analyse – falls statistische signifikante Beobachtungen gemacht werden - leicht politisiert werden, z.B. um für die Ausweisung von Migrant:innen zu
 werben. Besonders kritisch ist hier auch, dass die Polizeistatistik neben den genannten Merkmalen wenig Informationen zu sonstigen demographischen Merkmalen enthält, weshalb sog. Confounding Variables (zu dt. Störfaktoren) wie Alter und Einkommen nicht identifiziert werden können.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -242,6 +247,21 @@ df <- data.frame(Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im
                  Variable2_string = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
 
 # Euer Code hier
+
+# Data Frame drucken (zur Veranschaulichung)
+print(df)
+```
+
+```{r objekte-solution}
+# Eine Liste kann aus verschiedenen Datenformaten bestehen
+liste <- list("Text", 20, Sys.Date())
+class(liste)
+
+# In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert (wie in einer Excel Tabelle). Jede Spalte kann dabei nur Werte des gleichen Datentyps enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
+df <- data.frame(Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
+                 Variable2_string = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
+
+class(df)
 
 # Data Frame drucken (zur Veranschaulichung)
 print(df)

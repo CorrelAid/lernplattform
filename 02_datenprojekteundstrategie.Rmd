@@ -140,6 +140,19 @@ datum <- format(Sys.Date(),"%d.%m.%y")
 paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
 ```
 
+```{r projekte-solution}
+# Hier definieren wir die Variable "aktive_projekte" mit dem Wert 20
+aktive_projekte <- 20
+
+# An dieser Stelle dürft Ihr den Code angepassen
+abgeschlossene_projekte <- 44
+
+# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind. %d formatiert den Tag, %m den Monat und %y das Jahr. Als Trennungszeichen haben wir uns für "." entschieden.
+datum <- format(Sys.Date(),"%d.%m.%y")
+
+paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
+```
+
 Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
 
 Mit der Funktion **class(Euer Objekt)** könnt Ihr überprüfen, welches Datenformat bei Eurem Objekt vorliegt. Testet die Funktion in Zeile 15 für Datumsformate und führt den Code aus.
@@ -161,6 +174,25 @@ datum <- Sys.Date()
 typeof(datum)
 # Hier Euer Code
 ```
+
+```{r datentypen-solution}
+# Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
+class("Hallo")
+
+# 20.5 ist eine Zahl - bei R bezeichnet man Zahlen als "numeric". Manchmal wird auch noch zwischen ganzen Zahlen - "integer" - und Zahlen mit Nachkommastellen - "double" unterschieden.
+class(20)
+
+# Bei der Datenanalyse kommen häufig Vergleiche zum Einsatz, z.B. "zeige nur alle Mitglieder, die **älter sind als** 20". Es werden dann nur alle Beobachtungen angezeigt für die dieser Vergleich wahr ist. Solche Vergleiche und andere "Tests" werden als logische ("logical") Variablen abgebildet - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
+alter <- 22
+print(alter > 20)
+class(alter > 20)
+
+# Bei Datumsformaten geht R besonders klug vor. Testet die Funktion "class()" mit dem Datum. Was fällt Euch auf?
+datum <- Sys.Date()
+typeof(datum)
+class(datum)
+```
+
 *Anmerkung: Wie in Excel könnt Ihr auch in R mit Datumsformaten Rechenoperationen durchführen.*
 
 ### Und jetzt Ihr

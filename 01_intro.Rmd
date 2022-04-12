@@ -16,6 +16,9 @@ Ersetzt in diesem Codeeditior den Teil mit "--hier dein Name--" mit Eurem Namen.
 paste("Schön, dass Du da bist, --hier dein Name-- !")
 ```
 
+```{r paste-solution}
+paste("Schön, dass Du da bist, Nina !")
+```
 Als kleine Vorschau auf das, was wir auf der Lernplattform für Euch vorbereitet haben, könnt Ihr Euch gerne unser Promovideo ansehen:
 
 ![*Promovideo R Lernen - Der Datenkurs von und für die Zivilgesellschaft (1min)*](https://youtu.be/avH7Yn86SrU)
