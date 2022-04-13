@@ -404,7 +404,7 @@ quiz(
 
 ```
 
-Fassen wir kurz zusammen: Wir wissen nun, dass die Anzahl der gesammelten Plastikstücke zwischen den teilnehmenden Ländern stark variiert und im Datensatz einige Ausreißer enthalten sind. Daher müssen wir in der statistischen Zusammenfassung den Median und nicht das arithmetische Mittel nutzen und auf den Achsenabschnitten in graphischen Darstellungen die extremen Werte ausklammern. Bei der Interpretation der Daten müssen wir die Aggregationsebene betrachten: Wir können hier lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind, müssen wir noch herausfinden.
+Fassen wir kurz zusammen: Wir wissen nun, dass die Anzahl der gesammelten Plastikstücke zwischen den teilnehmenden Ländern stark variiert und im Datensatz einige Ausreißer enthalten sind. Daher müssen wir in der statistischen Zusammenfassung den Median und nicht das arithmetische Mittel nutzen und auf den Achsenabschnitten in graphischen Darstellungen die extremen Werte ausklammern. Bei der Interpretation der Daten müssen wir die Aggregationsebene betrachten: Wir können hier lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind und ob das auf Basis der Daten möglich ist, müssen wir noch herausfinden.
 
 
 #### Frage mit Daten beantworten
