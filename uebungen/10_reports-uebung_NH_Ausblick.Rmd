@@ -197,7 +197,7 @@ In **`r volunteer_max$country`** wurden die meisten Menschen zur Teilnahme beweg
 ```{r boxplot_freiwillige, echo = FALSE}
 # Erstellung eines Boxplots mit Punktewolke zu der Anzahl an Freiwilligen
 ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
-  geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community$n_volunteers) + 0.5 * sd(community$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
@@ -208,13 +208,13 @@ ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent))
     caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
-  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben 
 ```
 
 ```{r boxplot_plastik, echo = FALSE}
-# Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
+# Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(

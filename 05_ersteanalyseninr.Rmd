@@ -3,6 +3,7 @@
 ![*Video: Erste Datenanalysen in R (30min)*](https://youtu.be/58i2_o-zDug)
 *Empfehlung: Schaut Euch das Video in zwei Teilen an. Bis 18:42 geht es um Visualisierung, danach um statistische Kennzahlen.*
 
+<!-- Nina: Sollen wir hier die programmatischen Sachen rausnehmen und eher theoretische Ausführungen ergänzen? -->
 ### Kernaussagen
 #### Grundlagen der Datenanalyse
 - Konzeptionell sollten wir uns von **Fragen zur Exploration, möglichen Plausibilitätschecks und Fallentscheidungen** leiten lassen, die während der Analyse beantwortet werden
@@ -120,14 +121,14 @@ Hierfür müssen wir unsere qualitative Frage in eine quantitative Frage umwande
 
 Dies sind Fragen, die wir anhand der Variablen im Datensatz beantworten können. Diese Fragen sind viel spezifischer und können natürlich nicht alle Facetten der urpsrünglichen Frage abdecken. Für eine umfangreiche Evaluation bräuchte es sicherlich noch weitere Fragen - welche fallen Euch ein? Hierauf kommen wir in der Diskussion gern zurück. 
 
-Hier liegt der Datensatz nun schon vor und wir können direkt den einzelnen Fragen Variablen zuordnen. In eurer eigenen Arbeit wird es bei der Übersetzung eurer möglicherweise qualitativen Frage zu einer quantitativen Frage etwas Hin-und-Her geben, bis ein geeigneter Datensatz gefunden wurde.
+Hier liegt der Datensatz nun schon vor und wir können direkt den einzelnen Fragen Variablen zuordnen. In Eurer eigenen Arbeit wird es bei der Übersetzung Eurer möglicherweise qualitativen Frage zu einer quantitativen Frage etwas Hin-und-Her geben, bis ein geeigneter Datensatz gefunden wurde.
 
 <!-- #### Vorbereitung: Überblick über die Daten gewinnen -->
 
 Der [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** stammt aus den Jahren 2019 und 2020. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: der Community Datensatz (als `community` hinterlegt) enthält alle Variablen, welche für Fragestellungen rundum Community-Perspektive nützlich sind und der Audit Datensatz (als `audit` hinterlegt), umfasst jene Variablen, die für Fragen zur Audit-Perspektive nützlich sind. Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
 
 
-Insbesondere bei Datensätzen mit vielen Variablen kann die Funktion **`dplyr::glimpse()`** Euch helfen, zu verstehen, was im Datensatz überhaupt enthalten ist. Der `community` Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen:
+Mit der Funktion **`dplyr::glimpse()`** erhaltet Ihr einen Überblick über die Struktur des Datensatzes (Anzahl der Beobachtungen, Anzahl der Variablen, Name und Datentyp der Variablen). Der `community` Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen. Eine Zeile (auch: Beobachtung) entspricht einem Land.
 ```{r exercise_community, exercise = TRUE}
 # Überblick über die Community verschaffen
 dplyr::glimpse(community)
@@ -176,7 +177,7 @@ quiz(
 
 #### Datenexploration: Daten kennenlernen und plausibilisieren 
 
-Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind näherkennen lernen und sie plausibilisieren. Hier starten wir mit `base::summary()`.
+Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind besser verstehen. Dazu geben wir uns mit `base::summary()`` **erste (statistische) Eigenschaften** der Variablen aus.
 
 ```{r summary_community}
 # Zusammenfassung anzeigen lassen
@@ -184,7 +185,7 @@ base::summary(community)
 
 ```
 
-Wir sehen, dass die Variablen, die Spalten in unserem Datensatz unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie ein *nominal skalierte* Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind *metrisch skalierte* Variablen, wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch ordinal skalierte Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
+Wir sehen, dass die Variablen, die Spalten in unserem Datensatz unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie **nominal skalierte** Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind **metrisch skalierte** Variablen. Wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch **ordinal skalierte** Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
 
 <!-- Nina:  -->
 <!-- - Finde es bisher richtig gut! Gerne das auch nochmal in Video erklären :) -->
@@ -226,30 +227,31 @@ quiz(
 
 ```
 
-Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir eine Punktediagramm (englisch: Scatterplot), indem wir die Variablen `continent` und `n_pieces` vom Datensatz `community` als `aes()`-Variablen eingeben und R bitten sie als `geom_point`, also als Punkte auszugeben. So sieht der Code für diesen **Scatterplot** aus. Lasst den Code zunächst einfach durchlaufen und versucht zu verstehen, was passiert. In der Lektion 8 *Datenvisualisierung* gehen wir noch genauer darauf ein, wie genau so eine Graphik erstellt wird, hier geht es erst einmal darum, R bei der DataVizMagie zu zusehen. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Was fällt Euch auf?
-
+Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir ein Punktediagramm (*engl. Scatterplot*), genauer: Einen Beeswarmplot (*dt. Bienenschwarmdiagramm*). Diese Visualisierung stellt sowohl die Verteilung als auch die Häufigkeit von Beobachtungen über die Verteilung dar. Um den Bezug zu statistischen Kennzahlen herstellen zu kennen, legen wir darüber noch **Boxplots**, die die Verteilung von Variablen inklusiver wichtiger statistischer Eigenschaften darstellen. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Was fällt Euch auf?
+*Anmerkung: In der Lektion Datenvisualisierung erstellen wir diese Graphik dann gemeinsam.*
 
 <!-- Nina:  -->
 <!-- - Können wir hier den Plot aus dem Report betrachten? Mit auskommentierter Achsenbegrenzung? Für unseren roten Faden! -->
 <!-- - Hier könnte man die Verknüpfung zwischen Spannweite (statistische Kennzahl) und der Visualisierung herstellen -->
 <!-- - Wozu macht man Scatterplots und warum machen wir es hier trotzdem? -->
 
-```{r geom_point_n_pieces_bericht}
-ggplot(data = community, aes(x = continent, y = n_pieces, fill=continent)) + # Initialisierung des ggplots mit Variablen
-  #geom_dotplot(binaxis = "y", position = position_nudge(x = 0.1)) +
-  geom_point(size = 3, alpha = 0.6, position = position_jitter(seed = 1, width = .1), aes(color=continent)) + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
-  geom_boxplot(alpha = 0.6,  width=.1, position = position_nudge(x = -0.25)) + # Hinzufügen des Boxplots
-  #coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+
+<!-- Nina: Beeswarm Plot - auch in Report geändert :) -->
+```{r geom_point_n_pieces_bericht, exercise = TRUE}
+# Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
+ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
+  geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
+  # coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
     title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community)} \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
-  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67"))+ # Anwendung der BFFP-Farben
-scale_color_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) #
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 
@@ -287,86 +289,75 @@ quiz(
 
 ```
 
+<!-- Nina: Gefühl irgendwie nicht so gut nur einen Kontinent zu betrachten, aber liebe das Vorgehen hier -->
 
-Lasst uns Asien etwas genauer ansehen und die Verteilung von Plastikstücken, die in asiatischen Ländern gesammelt wurden näher kennenlernen. Dafür vertauschen wir die Achsen. Die Anzahl an Plastikstückchen ist nun auf der x-Achse abgetragen. Wir tragen ebenso das arithmetische Mittel ein, er liegt bei 12003.
+Zur Verbesserung der Lesbarkeit klammern wir die **Ausreißer** aus und fügen zur Verständlichkeit das **arithmetrische Mittel pro Kontinent** ein (als Dreieck gekennzeichnet):
 
-
-```{r ggplot nur für Asien}
-# Berechnung einiger statistischer Kennzahlen
-community<- community %>%
-  group_by(continent) %>%
-  mutate(n_pieces_q25 = quantile(n_pieces, .25),
-         n_pieces_median=median(n_pieces),
-         n_pieces_q75 = quantile(n_pieces, .75),
-         n_pieces_mean = mean(n_pieces),
-         n_pieces_sd = sd(n_pieces))
-
-asien_plot<-ggplot(data = subset(community, continent=="Asien"), aes(x = n_pieces, y = continent)) + # Initialisierung des ggplots mit Variablen
-   geom_point(size = 3, alpha = 0.6, position = position_jitter(seed = 1, width = .1), color="#4E97AC") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+```{r geom_point_n_pieces_bericht_zoom, exercise = TRUE}
+# Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
+ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
+  geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
+  geom_point(data = community %>% 
+      # Berechnung der Mittelwerte pro Kontinent
+      group_by(continent) %>% 
+      summarise(mean = mean(n_pieces)), 
+      # Zuordnung der Mittelwerte zu der gewünschten Darstellungsform
+      mapping = aes(x = continent, y = mean), 
+      size = 3, color = "#366978", shape = 17) + 
+  coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
-    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
-    subtitle = "... in Asien.",
-    x = "Anzahl Plastikstücke",
-    y = " ",
-    caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl gefundener Plastikstücke",
+    x = "Kontinent",
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
-  theme(legend.position="none")  # Ausblenden der Legende
-asien_plot
-```
-
-```{r Mittelwert hinzufügen}
-asien_plot + 
-#Mittelwert
-  geom_point(
-    aes(x = n_pieces_mean),
-    color = "#366978",
-    shape = 17,
-    size = 3
-  ) 
+  theme(legend.position="none") + # Ausblenden der Legende
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 ```{r quiz_Mittelwert}
 quiz(
-  caption = "",
-  
   question(
-    "Wie gut bring der Mittelwert die Verteilung der in den verschiedenen asiatischen Ländern gesammelten Plastikstücken auf den Punkt?",
-    answer("Gut, eine Zahl einfach zu interpretieren"),
-    answer("Gut, er passt visuell gut in die Punktewolke."),
-    answer("Nicht so gut, nur drei von 17 Beobachtungen sind größer, Ausreißerwerte haben eine großen Einfluss. ", correct = TRUE),
-    answer("Nicht so gut, genau 10247 Plastikstücke wurde in keinem Land gesammelt."),
+    "Wie gut bring der Mittelwert die Verteilung der in den verschiedenen Ländern gesammelten Plastikstücken auf den Punkt?",
+    answer("Gut: er ist einfach zu interpretieren"),
+    answer("Gut: er passt visuell gut in die Punktewolke."),
+    answer("Nicht so gut: nur wenige Beobachtungen sind größer, Ausreißerwerte haben eine großen Einfluss. ", correct = TRUE),
+    answer("Nicht so gut: genau die selbe Anzahl Plastikstücke wurde in keinem Land gesammelt."),
     correct = "Richtig!",
-    incorrect = "Leider falsch: der Mittelwert ist sehr getrieben von Ausreißern.",
+    incorrect = "Leider falsch: der Mittelwert wird stark von Ausreißern beeinflusst.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ))
 ```
 
-Das arithmetische Mittel ist also oft eher ungeeignet, um die Verteilung wirklich auf den Punkt zu bringen. Wir können aber eine weitere Kennzahl zu Rate ziehen: die Standardabweichung. Diese hat die gleiche Einheit wie unsere Variable (also 1 Plastikstück) und gibt die Streuung um den Mittelwert an. Für Asien ist sie 29424 Stück. Das ist ganz schön viel! Und zeigt uns auf, dass der Mittelwert sicherlich durch einige Ausreißer verzerrt wird. Für den visuellen Eindruck der Streuung, tragen wir je eine Standardabweichung rechts und links vom Mittelwert ab. 
+Obwohl er das wohl am häufigsten genutzte statistische Maß ist: Das arithmetische Mittel (auch: Mittelwert) darf **nur für metrisch skalierte Variablen** berechnet werden (!) und muss aufgrund der fehlenden **Robustheit gegenüber Ausreißern** oft genauer betrachtet werden, um aus den Daten keine falschen Schlüsse zu ziehen. Klarer wird das, wenn der Mittelwert mit anderen statistischen Kennzahlen betrachtet wird:
 
-```{r highlight_mean_sd}
-asien_plot +
-  #Mittelwert
-  geom_point(
-    aes(x = n_pieces_mean),
-    color = "#366978",
-    shape = 17,
-    size = 3
-  ) +
-    # sd
-  geom_linerange(
-    aes(xmin=n_pieces_mean-n_pieces_sd, xmax=n_pieces_mean+n_pieces_sd),
-    size=2,
-    color = "#366978",
-  ) 
+```{r ueberblick_statistische_kennzahlen, exercise = TRUE}
+# Tabelle mit statistischen Kennzahlen
+community %>%
+  group_by("Kontinent" = continent) %>%
+  summarise("Anzahl Beobachtungen" = n(),
+         "Anzahl Events" = sum(n_events),
+         "Anzahl Freiwillige" = sum(n_volunteers),
+         "Mittelwert" = mean(n_pieces),
+         "Standardabweichung" = sd(n_pieces),
+         "Median" = median(n_pieces),
+         "Quartil (25%)" = quantile(n_pieces, .25),
+         "Quartil (75%)" = quantile(n_pieces, .75),
+         "Interquartilsabstand (IQR)" = IQR(n_pieces),
+         "Spannweite" = max(n_pieces) - min(n_pieces))
 ```
+
+Der **Median** stellt die **wahre Mitte der Verteilung** dar. Er ist gleichzeitig auch das 50%-Quantil. Stellt Euch die Beobachtungen als Punkte (also die einzelnen Länder mit ihrer Plastikstückanzahl) der Reihe nach aufsteigend vor. Das 50%-Quantil, der Median, ist die Beobachtung, die diese Reihe genau in zwei Hälften teilt: In Asien haben 17 Länder an **Break Free From Plastic** teilgenommen. Die Anzahl an Plastikstücken des neunte Land in der imaginären Aufreihung ist der Median. Hier beträgt er 3.459 Plastikstücke, soviel wie in China gesammelt wurden. Bei hohen Unterschieden zwischen Mittelwert und Median ist davon auszugehen, dass Ausreißer die Werte verzerren.
+
+Die Standardabweichung hat die **gleiche Einheit** wie unsere Variable (also ein Plastikstück) und gibt die **Streuung um den Mittelwert** an. Hohe Werte weisen auf die Existenz von Ausreißern hin.
 
 ```{r quiz_standardabweichung}
 quiz(
-  caption = "",
- 
- question("Warum würde R für die Standardabweichung für Ozeanien (eng. Oceania) 'NA' ausgeben?",
+  question("Warum gibt R für die Standardabweichung für Ozeanien (eng. Oceania) 'NA' aus?",
     answer("Weil keine Plastikstücke gefunden wurden."),
     answer("Weil Ozeanien nur drei Stück Plastik registriert hat."),
     answer("Weil nur ein Land in Ozeanien mitgemacht hat.", correct = TRUE),
@@ -380,92 +371,29 @@ quiz(
 )
 ```
 
-```{r Median_einfärben}
-# Dotplot - aber die y-Achse ergibt kein Sinn :-)
-asien_plot2<-ggplot(data = subset(community, continent=="Asien"), aes(x = n_pieces)) + # Initialisierung des ggplots mit Variablen
-   geom_dotplot(
-     method= "histodot",
-     binwidth = 500,
-     dotsize = 4,
-     fill ="#4E97AC",
-    color="#4E97AC"
-    ) + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
-  labs(
-    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
-    subtitle = "... in Asien.",
-    x = "Anzahl Plastikstücke",
-    y = " ",
-    caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() + # Festlegung des Layout-Designs
-  theme(legend.position="none")  # Ausblenden der Legende
-asien_plot2
-```
+Besonders häufig wird zudem das **25%-Quantil** und das **75%-Quantil** genutzt. In Asien wäre das die Plastikstückanzahl von Japan, mit 84 Stücken dem fünften Land in aufsteigender Reihenfolge, und Malaysia, mit 4.880 Plastikstücken dem dreizehnten Land in der Reihe. In Asien fällt es besonders leicht Quantile zu erklären, da wir eine *ungerade* Anzahl an Beobachtungen haben sind das 25%, 50%, und 75%-Quantil die Ausprägungen von konkreten Beobachtungen. Hätten wir eine *gerade* Anzahl, zum Beispiel 18 Länder, dann wären diese Quantilswerte die Mittelwerte zwischen Beobachtungen. Für den Median zum Beispiel der Mittelwert aus dem Land an Position 9 und 10. 
 
-Der Median, ist das statistische Maß, welches wirklich die Mitte der Verteilung trifft. Er ist gleichzeitig auch das 50%-Quantil. Um dieses Maß zu verstehen, stellt euch vor, ihr stellt die Punkte (also hier die einzelnen Länder mit ihrer Plastikstückanzahl) der Reihe nach aufsteigend auf. So wie es die Punktewolke auch in etwa visualisiert. Das 50%-Quantil, der Median, ist die Beobachtung, die diese Reihe genau in zwei Hälften teilt. In Asien haben 17 Länder an **Break Free From Plastic** teilgenommen. Die Anzahl an Plastikstücken des 9. Land in der imaginären Aufreihung ist also der Median. Hier beträgt er 3459 Plastikstücke, soviel wie in China gesammelt wurden. Wir können die Verteilung auch farblich einteilen in kleiner und größer als der Median, um die zwei Hälften der Verteilung zu visualiseren. 
-
-
-```{r Median_einfärben}
-
-asien_plot +
-  geom_point(aes(color=n_pieces>n_pieces_median),
-             size = 3, alpha = 0.6, position = position_jitter(seed = 1, width = .1)) +
-  # Median
-  geom_point(
-    aes(x = n_pieces_median, y=0.85),
-    shape = 17,
-    color = "black",
-    size = 3
-  )
-```
-
-Es gibt noch viele weitere Quantile. Besonders häufig genutzt wird das 25%-Quantil und das 75%-Quantil, In unserem Fall wäre das die Plastikstückanzahl von Japan, dem 5. Land in der imaginären Aufreihung, mit 84 Stücken und Malaysia dem 13. Land in der Aufreihung, mit 4880 Plastikstücken. Diese Quantile tragen wir in unserer Graphik ab.
-
-In unserem Beispiel fällt es besonders leicht Quantile zu erklären, da wir eine *ungerade* Anzahl an Beobachtungen haben sind das 25%,50%, und 75%-Quantil die Ausprägungen von konkreten Beobachtungen. Hätten wir eine *gerade* Anzahl, zum Beispiel 18 Länder, dann wären diese Quantilswerte die Mittelwerte zwischen Beobachtungen. Für den Median zum Beispiel der Mittelwert aus dem Land an Position 9 und 10. 
-
-```{r q25_q75_einfärben}
-asien_plot +
-  #q25
-  geom_point(
-    aes(x = n_pieces_q25),
-    shape = 17,
-    color = "black",
-    size = 3
-  ) +
-    #q75
-  geom_point(
-    aes(x = n_pieces_q75),
-    shape = 17,
-    color = "black",
-    size = 3
-  ) +
- geom_boxplot(alpha = 0.6,  width=.1, position = position_nudge(y = -0.5))  # Hinzufügen des Boxplot
-```
-
-In der Graphik seht ihr ebenso das dazugehörige *Boxplot*. Es fasst 5-Punkte der Verteilung zusammen und gibt damit einen sehr guten Überblick. Die Außenkanten der Box sind das 25% und 50% Quantil. Die Box ist also der *Interquartilsabstand* (IQR) und erfasst die mittleren 50% der Beobachtungen. Der Strich innerhalb der Box markiert den Median. Die "Antennen" des Boxplots (Engl.: whiskers) erweitern die Box um das 1,5fache des Interquartilsabstand. In unserem Beispiel gibt es dann noch 3 Punkte, Ausreißer-Beobachtungen, die noch weiter gestreut sind.
+Der Boxplot fasst die fünf Punkte der Verteilung zusammen und gibt damit einen sehr guten Überblick über Daten: Die Außenkanten der Box sind das 25%- und 75%-Quantil. Die Box ist also der **Interquartilsabstand** (IQR) und enthält **50% der Beobachtungen**. Der Strich innerhalb der Box markiert den **Median**. Die **"Antennen" des Boxplots** (engl.: whiskers) erweitern die Box um das 1,5fache des Interquartilsabstand. Alle Punkte, die außerhalb der Whisker liegen, sind Ausreißer.
 
 ```{r quantile}
-
 quiz(
-  caption = "",
- 
  question("Was trifft nicht auf das 50%-Quantil zu?",
-    answer("Wird auch Median genannt."),
-    answer("Ist nicht so sensibel Ausreißerbeobachtungen gegenüber wie das arithmetische Mittel."),
+    answer("Auch als Median bekannt."),
+    answer("Nicht so sensibel Ausreißern gegenüber wie das arithmetische Mittel."),
     answer("Entspricht stets dem arithmetischem Mittel.", correct = TRUE),
-    answer("Der Wert, für den gilt, dass 50% aller Werte kleiner oder gleich sind als dieser Wert."),
+    answer("50% aller Werte sind kleiner (gleich) diesem Wert."),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Median und Mittelwert sind bei symmetrischen Verteilungen identisch sein, in der Regel unterscheiden sie sich.",
+    incorrect = "Leider falsch: Median und Mittelwert können bei symmetrischen Verteilungen identisch sein, in der Regel unterscheiden sie sich aber.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ),
  
-
  question("Was trifft auf Boxplots zu?",
-    answer("Der Mittelwert ist immer abgetragen."),
+    answer("Wir können daraus den Mittelwert ablesen."),
     answer("Alle Beobachtungen liegen innerhalb der 'Box'."),
     answer("Sie fassen 5 Punkte einer Verteilung zusammen.", correct = TRUE),
-    answer("Boxplots kann man auch auf nominalskalierte Variablen, wie Kontinente, anwenden."),
+    answer("Boxplots kann man auch auf nominalskalierte Variablen wie Kontinente anwenden."),
     correct = "Richtig!",
     incorrect = "Leider falsch: Boxplot ist nur auf mindestens ordinalskalierte Variablen anwendbar, zeigt das 25,50 und 75% Quantil. Ausreißer können auch außerhalb der Whisker abgetragen sein.",
     allow_retry = TRUE,
@@ -476,7 +404,8 @@ quiz(
 
 ```
 
-Fassen wir kurz zusammen: wir haben die Verteilung der Plastikstückanzahl in Asien sehr genau unter die Lupe genommen. Der primäre Fokus war diese Datenreihe zu plausibilisieren, dabei haben wir aber auch wichtige inhaltliche Erkenntnisse gewonnen. So wissen wir nun, dass es einige Ausreißerbeobachtungen gibt. Daher würden wir in der statistischen Zusammenfassung eher zum Median als zum arithmetischen Mittel greifen und die Achsenabschnitte bei einer graphischen Darstellung etwas anpassen, konkret die extrem Werte ausklammern. Mit diesem Wissen kehren wir nun zur ersten Graphik zurück und gehen in die nächste Phase über: der Interpretation.
+Fassen wir kurz zusammen: Wir wissen nun, dass die Anzahl der gesammelten Plastikstücke zwischen den teilnehmenden Ländern stark variiert und im Datensatz einige Ausreißer enthalten sind. Daher müssen wir in der statistischen Zusammenfassung den Median und nicht das arithmetische Mittel nutzen und auf den Achsenabschnitten in graphischen Darstellungen die extremen Werte ausklammern. Bei der Interpretation der Daten müssen wir die Aggregationsebene betrachten: Wir können hier lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind, müssen wir noch herausfinden.
+
 
 #### Frage mit Daten beantworten
 
@@ -486,6 +415,7 @@ So lautete unsere Daten-Frage. Diese können wir nun beantworten. Nach der Daten
 
 
 @Nina wie kommt es, dass du die Achse mit Median und SD festlegst? Ginge nicht auch mit Median und IQR? Oder mit Mean + 1SD oder so? 
+RE: Hier wäre Median + IQR wahrscheinlich am Saubersten
 
 ```{r geom_point_n_pieces_bericht}
 ggplot(data = community, aes(x = continent, y = n_pieces, fill=continent)) + # Initialisierung des ggplots mit Variablen

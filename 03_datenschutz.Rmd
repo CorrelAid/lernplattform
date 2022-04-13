@@ -1,7 +1,7 @@
 
 ## Datenschutz und Datenethik
 ![*Video: Datenschutz und Datenethik (60min)*](https://youtu.be/WlNjPFlNams)
-Als Lektüre empfehlen wir die [Publikation](https://www.b-b-e.de/fileadmin/Redaktion/06_Service/02_Publikationen/2021/2021-bbe-reihe-forum-3.pdf){target="_blank"} des Bundesnetzwerks Bürgerschaftliches Engagement (BBE) zu „Datenschutz und Datensicherheit“, insbesondere die Schritte 1-12 auf den Seiten 29ff. Darüber hinaus könnt Ihr bei der Stiftung Datenschutz zahlreiche [Webinare](https://stiftungdatenschutz.org/veranstaltungen/datenschutz-im-ehrenamt){target="_blank"} zum Thema besuchen.
+Als Lektüre empfehlen wir die [Publikation](https://www.b-b-e.de/fileadmin/Redaktion/06_Service/02_Publikationen/2021/2021-bbe-reihe-forum-3.pdf){target="_blank"} des Bundesnetzwerks Bürgerschaftliches Engagement (BBE) zu „Datenschutz und Datensicherheit“, insbesondere die Schritte 1-12 auf den Seiten 29ff. Darüber hinaus könnt Ihr bei der Stiftung Datenschutz zahlreiche [Webinare](https://stiftungdatenschutz.org/veranstaltungen/datenschutz-im-ehrenamt){target="_blank"} zum Thema besuchen. Ein Webinar zur DSGVO-konformen Nutzung von bestehenden Datenbeständen mit der Stiftung Datenschutz und uns findet Ihr [hier](https://stiftungdatenschutz.org/veranstaltungen/unsere-veranstaltungen-detailansicht/datenschutz-im-ehrenamt-datenbestaende-rechtskonform-nutzen-293){target="_blank"}.
 
 ### Kernaussagen
 #### Datenschutz

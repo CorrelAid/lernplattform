@@ -44,6 +44,7 @@ tinytex::install_tinytex()
 
 library(shiny) # Das RShiny Package.
 library(ggplot2) # Hiermit können wir schöne Plots generieren.
+library(ggbeeswarm) # Hiermit können wir Beeswarm Plots generieren.
 library(tidyr) # Hiermit kann man Daten bereinigen.
 library(dplyr) # Hiermit kann man Daten sehr gut filtern, gruppieren und modifizieren.
 library(knitr) # Hiermit knitten wir unseren Report.
@@ -274,7 +275,7 @@ server <- function(input, output, session){
     
     # Erstellung eines Boxplots mit Punktewolke zu der Anzahl an Freiwilligen
     plot_volunteers <- ggplot(data = daten, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
-      geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+      geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
       geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
       coord_cartesian(ylim = c(0, median(daten$n_volunteers) + 0.5 * sd(daten$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
       labs(
@@ -288,7 +289,7 @@ server <- function(input, output, session){
     
     # Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
     plot_plastik <- ggplot(data = daten, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-      geom_point(size = 3, alpha = 0.5, position = position_jitter(seed = 1, width = .2), color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+      geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
       geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
       coord_cartesian(ylim = c(0, median(daten$n_pieces) + 0.5 * sd(daten$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
       labs(
