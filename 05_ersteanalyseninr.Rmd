@@ -189,7 +189,7 @@ quiz(
   caption = "",
   
   question(
-    "Was ist der höchste Wert, den die Variable n_pieces annimmt?",
+    "Was ist der niedrigste Wert, den die Variable n_pieces annimmt?",
     answer("Das kann man anhand des Outputs nicht sagen."),
     answer("68.5"),
     answer("1.0", correct = TRUE),
@@ -218,16 +218,14 @@ quiz(
 
 ```
 
-Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir ein Punktediagramm (*engl. Scatterplot*), genauer: Einen Beeswarmplot (*dt. Bienenschwarmdiagramm*). Diese Visualisierung stellt sowohl die Verteilung als auch die Häufigkeit von Beobachtungen über die Verteilung dar. Um den Bezug zu statistischen Kennzahlen herstellen zu können, legen wir darüber noch **Boxplots**, die die Verteilung von Variablen inklusiver wichtiger statistischer Eigenschaften darstellen. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Was fällt Euch auf?
+Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir ein Punktediagramm (*engl. Scatterplot*), genauer: Einen Beeswarmplot (*dt. Bienenschwarmdiagramm*). Diese Visualisierung stellt sowohl die Verteilung als auch die Häufigkeit von Beobachtungen über die Verteilung dar. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Wo würdet Ihr den Mittelwert verorten? Markiert ihn gedanklich auf der Visualisierung.
 *Anmerkung: In der Lektion Datenvisualisierung erstellen wir diese Graphik dann gemeinsam. Heute geht es zunächst um die Interpretation.*
 
 
 ```{r geom_point_n_pieces_bericht, exercise = TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
-  #geom_boxplot(alpha = 0.6, width=.1, position = position_nudge(x = -0.25)) + # Hinzufügen des Boxplots
-  # coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+  ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   labs(
     title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
@@ -242,9 +240,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
 
 ```{r quiz_scatterplot}
 quiz(
-  caption = "",
-  
-  question(
+question(
     "In welchen Kontinenten beobachten wir extreme Werte, 'Ausreißer'?",
     answer("Afrika und Amerika"),
     answer("Afrika und Eurpa"),
@@ -275,21 +271,29 @@ quiz(
 ```
 
 
-Im ersten Schritt der Datenexploration fügen das **arithmetrische Mittel pro Kontinent** ein (als Dreieck gekennzeichnet):
+Fügen wir nun den **arithmetrische Mittel pro Kontinent** (als Dreieck gekennzeichnet) und die Standardabweichung (als Strich gekennzeichnet) in die Visualisierung ein. Hattet Ihr den Mittelwert an dieser Stelle erwartet? 
 
-```{r geom_point_n_pieces_bericht_mittelwert, exercise = TRUE}
+```{r geom_point_n_pieces_bericht_mittelwertsd, exercise = TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
-  #geom_boxplot(alpha = 0.6, width=.1, position = position_nudge(x = -0.25)) + # Hinzufügen des Boxplots
-  geom_point(data = community %>% 
+  ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen
+  # Mittelwert hinzufügen
+  ggplot2::geom_point(data = community %>% 
       # Berechnung der Mittelwerte pro Kontinent
-      group_by(continent) %>% 
-      summarise(mean = mean(n_pieces)), 
+      dplyr::group_by(continent) %>% 
+      dplyr::summarise(mean = mean(n_pieces)), 
       # Zuordnung der Mittelwerte zu der gewünschten Darstellungsform
       mapping = aes(x = continent, y = mean), 
       size = 3, color = "#366978", shape = 17) + 
-  #coord_cartesian(ylim = c(0, median(community$n_pieces) + 0.5 * sd(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+  # Standardabweichung hinzufügen
+  ggplot2::geom_errorbar(data = community %>% 
+      # Berechnung der Mittelwerte und Standardabweichung pro Kontinent
+      dplyr::group_by(continent) %>% 
+      dplyr::summarise(mean = mean(n_pieces), sd = sd(n_pieces)) %>%
+      dplyr::mutate(ymin = mean - sd, ymax = mean + sd), 
+      # Zuordnung der Standardabweichung zu der gewünschten Darstellungsform
+      mapping = aes(x = continent, ymin = ymin, ymax = ymax), 
+      color = "darkred") + 
   labs(
     title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
@@ -322,7 +326,7 @@ Obwohl er das wohl am häufigsten genutzte statistische Maß ist: Das arithmetis
 
 ```{r ueberblick_statistische_kennzahlen, exercise = TRUE}
 # Tabelle mit statistischen Kennzahlen
-summarystats<-community %>%
+community %>%
   group_by("Kontinent" = continent) %>%
   summarise("Anzahl Beobachtungen" = n(),
          "Anzahl Events" = sum(n_events),
@@ -334,8 +338,6 @@ summarystats<-community %>%
          "Quartil (75%)" = quantile(n_pieces, .75),
          "Interquartilsabstand (IQR)" = IQR(n_pieces),
          "Spannweite" = max(n_pieces) - min(n_pieces))
-
-summarystats
 ```
 
 Die Standardabweichung hat die **gleiche Einheit** wie unsere Variable (also ein Plastikstück) und gibt die **Streuung um den Mittelwert** an. Hohe Werte weisen auf die Existenz von Ausreißern hin. Für Asien ist die Standardabweichung beispielsweise mit 29424 doppelt so groß wie der Mittelwert. Ein klares Indiz dafür, dass es extreme Beobachtungswerte gibt.  
@@ -360,25 +362,23 @@ Der **Median** stellt die **wahre Mitte der Verteilung** dar. Er ist gleichzeiti
 
 Besonders häufig wird zudem das **25%-Quantil** und das **75%-Quantil** genutzt. In Asien wäre das die Plastikstückanzahl von Japan, mit 84 Stücken dem fünften Land in aufsteigender Reihenfolge, und Malaysia, mit 4.880 Plastikstücken dem dreizehnten Land in der Reihe. In Asien fällt es besonders leicht Quantile zu erklären, da wir eine *ungerade* Anzahl an Beobachtungen haben sind das 25%, 50%, und 75%-Quantil die Ausprägungen von konkreten Beobachtungen. Hätten wir eine *gerade* Anzahl, zum Beispiel 18 Länder, dann wären diese Quantilswerte die Mittelwerte zwischen Beobachtungen. Für den Median zum Beispiel der Mittelwert aus dem Land an Position 9 und 10. 
 
-Der Boxplot fasst die fünf Punkte der Verteilung zusammen und gibt damit einen sehr guten Überblick über Daten. Diesen fügen wir nun zum Graphen mit dazu: 
+**Boxplots** stellen die Verteilung von Variablen inklusiver wichtiger statistischer Eigenschaften dar. Sie fassen die fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum) zusammen und geben damit einen sehr guten Überblick über Daten. Deshalb fügen wir sie nun zum Graphen hinzu: 
 
-```{r graphik_bericht_inkl_boxplot}
+```{r graphik_bericht_inkl_boxplot, exercise = TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, aes(color = continent)) + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
-  geom_boxplot(alpha = 0.6, width=.1, position = position_nudge(x = -0.25)) + # Hinzufügen des Boxplots, seitliche Verschiebung, so dass es die Punktewolke nicht überlagert
-   coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+  geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
+  coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
     title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = glue::glue("N = {nrow(community)} \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichusngen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() + # Festlegung des Layout-Designs  
   theme(legend.position="none") + # Ausblenden der Legende
-  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67"))+ # Anwendung der BFFP-Farben
-  scale_color_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) #
-
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 Die Außenkanten der Box sind das 25%- und 75%-Quantil. Die Länge der Box gibt den **Interquartilsabstand** (IQR) an und enthält **50% der Beobachtungen**. Der Strich innerhalb der Box markiert den **Median**. Die **"Antennen" des Boxplots** (engl.: whiskers) erweitern die Box um das 1,5fache des Interquartilsabstand. Alle Punkte, die außerhalb der Whisker liegen, sind Ausreißer.
@@ -442,7 +442,7 @@ quiz(
     answer("Afrika"),
     answer("Nord- und Südamerika"),
     answer("Asien"),
-    answer("Europa, correct = TRUE"),
+    answer("Europa", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Europa hat im Mittel am wenigsten Plastikstücke gesammelt.",
     allow_retry = TRUE,
@@ -513,7 +513,7 @@ Der Korrelationskoeffizient bringt diesen statistischen Zusammenhang auf den Pun
 cor(community$n_pieces, community$n_volunteers)
 ```
 
-0.81 bestätigt, dass wir einen positiven und recht starken statischen Zusammenhang zwischen der Anzahl an Plastikstücken und Freiwilligen beobachten. Beachtet, der Korrelationskoeffizient bietet keinerlei Möglichkeit einer kausalen Aussage. Werder unser Diagramm noch die der Koeffizient lassen den Schluss zu, dass alleinig mehr Freiwillige zu mehr gesammelten Plastikstücken führen.
+0.81 bestätigt, dass wir einen positiven und recht starken statischen Zusammenhang zwischen der Anzahl an Plastikstücken und Freiwilligen beobachten. Beachtet, der Korrelationskoeffizient bietet keinerlei Möglichkeit einer kausalen Aussage. Weder unser Diagramm noch die der Koeffizient lassen den Schluss zu, dass alleinig mehr Freiwillige zu mehr gesammelten Plastikstücken führen.
 
 ```{r scatter_plot_n_events}
 
@@ -579,11 +579,12 @@ Kommen wir zum Schluss noch einmal zur allgemeinen Frage: Wie erfolgreich war de
 ### Und jetzt Ihr
 Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne mit zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
 
-1. Überlegt: Wie könnte man die Frage Wie erfolgreich war der Audit? noch operationalisieren und in Datenfragen umwandeln? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
+1. Überlegt: Mit welchen Daten und Datenanalysen könnte die Frage "Wie erfolgreich war der Audit?" noch beantwortet werden? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
 
 2. Versucht, das zugehörige [**R Markdown: 05_ErsteDatenanalysenInR **](https://correlcloud.org/index.php/s/56cTMCbMPbYLEya){target="_blank"} zum Laufen zu bringen und es nachzuvollziehen.
 
-3. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. Hinweis: versucht dazu im  RMarkdown in der finalen Version der Graphik die entsprechenden Variablen auszutauschen.
+3. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. 
+*Hinweis: Versucht dazu im  RMarkdown in der finalen Version der Graphik die entsprechenden Variablen auszutauschen (und sonst erstmal nichts).*
 
 4. Interpretiert die Graphik. Was nehmt ihr daraus mit?
 

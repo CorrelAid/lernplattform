@@ -277,7 +277,7 @@ server <- function(input, output, session){
     plot_volunteers <- ggplot(data = daten, aes(x = continent, y = n_volunteers, fill = continent)) +  # Initialisierung des ggplots mit Variablen
       geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
       geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
-      coord_cartesian(ylim = c(0, median(daten$n_volunteers) + 0.5 * sd(daten$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+      coord_cartesian(ylim = c(0, median(daten$n_volunteers) + 2 * IQR(daten$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
       labs(
         title = "Mobilisierung von Freiwilligen..." ,
         subtitle = "... pro Kontinent.",
@@ -291,7 +291,7 @@ server <- function(input, output, session){
     plot_plastik <- ggplot(data = daten, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
       geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
       geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
-      coord_cartesian(ylim = c(0, median(daten$n_pieces) + 0.5 * sd(daten$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+      coord_cartesian(ylim = c(0, median(daten$n_pieces) + 2 * IQR(daten$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
       labs(
         title = "Anzahl gesammelter Plastikstücke ..." ,
         subtitle = "... pro Kontinent.",
