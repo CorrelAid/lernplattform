@@ -238,6 +238,7 @@ Die Anzahl der Events korreliert nur sehr schwach mit der Anzahl gesammelter Pla
 ggplot(data = community, aes(n_events, n_pieces, label = country)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(seed = 3), size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe
   stat_smooth(colour = "darkred", method = "lm") + # Trendlinie hinzufügen
+  coord_cartesian(xlim = c(0, median(community$n_events) + 2 * IQR(community$n_events)), ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Interquartilabstand
   geom_text(size = 2) + 
   labs(
     title = "Anzahl gesammelter Plastiksstücke bei 'Break Free From Plastic' ..." ,
