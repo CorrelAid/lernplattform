@@ -1,4 +1,4 @@
-## Erste Datenanalysen in R
+## Daten verstehen in R
 
 ![*Video: Erste Datenanalysen in R (30min)*](https://youtu.be/58i2_o-zDug)
 *Empfehlung: Schaut Euch das Video in zwei Teilen an. Bis 18:42 geht es um Visualisierung, danach um statistische Kennzahlen.*
@@ -108,11 +108,11 @@ quiz(caption = NULL,
 ### Interaktive Übung
 
 #### Fragen
-Am Anfang jeder Datenanalyse steht etwas, dass zunächst gar nichts mit Daten zu tun haben muss: Fragen. Da Daten letztlich Informationen formalisieren, nutzen wir die Ergebnisse einer Datenanalyse in der Regel für den Erkenntnisgewinn. Möchten wir Daten erheben oder liegen uns diese bereits vor vor, hilft es, sich auf bestimmte Fragestellungen zu fokussieren, die sich aus strategischen Überlegungen ergeben.
+Am Anfang jeder Datenanalyse steht etwas, dass zunächst gar nichts mit Daten zu tun haben muss: Fragen. Da Daten letztlich Informationen formalisieren, nutzen wir die Ergebnisse einer Datenanalyse in der Regel für den **Erkenntnisgewinn**. Möchten wir Daten erheben oder liegen uns diese bereits vor vor, hilft es, sich auf bestimmte Fragestellungen zu fokussieren, die sich aus strategischen Überlegungen ergeben.
 
 Der [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** stammt aus den Jahren 2019 und 2020. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: der Community Datensatz (als `community` hinterlegt) enthält alle Variablen, welche für Fragestellungen rund um die Community-Perspektive nützlich sind und der Audit Datensatz (als `audit` hinterlegt) umfasst jene Variablen, die für Fragen zur Audit-Perspektive nützlich sind. Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
 
-Versetzen wir uns die Rolle der Organisator:innen: Sie fragen sich bestimmt, wie erfolgreich ihre Aktivitäten im Jahre 2019 waren:
+Versetzen wir uns die Rolle der Organisator:innen. Sie fragen sich bestimmt, wie erfolgreich ihre Aktivitäten im Jahre 2019 waren:
 
   1. Wie viel Plastik wurde insgesamt gesammelt? <br>
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? <br>
@@ -129,7 +129,7 @@ dplyr::glimpse(community)
 ```
 
 ```{r quiz_kurzstatistik}
-quiz(
+quiz(caption = NULL,
   question(
     "Wie viele Variablen hat der `community`-Datensatz?",
     answer("Das kann man anhand des Outputs nicht sagen."),
@@ -160,6 +160,7 @@ quiz(
 
 Wir sehen, dass die Variablen, die Spalten in unserem Datensatz, unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie **nominal skalierte** Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind **metrisch skalierte** Variablen. Wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch **ordinal skalierte** Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
 
+
 #### Erster Überblick
 Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind besser verstehen. Dazu geben wir uns mit `summary()` **erste (statistische) Eigenschaften** der Variablen aus.
 
@@ -170,7 +171,7 @@ summary(community)
 
 ```{r quiz_plausibilisierung}
 quiz(
-  caption = "",
+  caption = NULL,
   
   question(
     "Was ist der niedrigste Wert, den die Variable n_pieces annimmt?",
@@ -204,7 +205,7 @@ quiz(
 
 
 #### Datenvisualisierung
-Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir ein Punktediagramm (*engl. Scatterplot*), genauer: Einen Beeswarmplot (*dt. Bienenschwarmdiagramm*). Diese Visualisierung stellt sowohl die Verteilung als auch die Häufigkeit von Beobachtungen über die Verteilung dar. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Wo würdet Ihr den Mittelwert verorten? Markiert ihn gedanklich auf der Visualisierung.
+Ebenso zur Datenexploration gehört die Visualisierung der Rohdaten. Dafür erstellen wir ein Punktediagramm (*engl. Scatterplot*), genauer: Einen Beeswarmplot (*dt. Bienenschwarmdiagramm*). Diese Visualisierung stellt sowohl die Verteilung als auch die Häufigkeit von Beobachtungen über die Verteilung dar. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Wo würdet Ihr den Mittelwert verorten? Markiert ihn gedanklich auf der Visualisierung. <br>
 *Anmerkung: In der Lektion Datenvisualisierung erstellen wir diese Graphik dann gemeinsam. Heute geht es zunächst um die Interpretation.*
 
 ```{r geom_point_n_pieces_bericht, exercise = TRUE}
@@ -226,7 +227,8 @@ Frie: hier würde ich bei frage zwei einen Hinweis/reminder einfügen was die Sp
 
 
 ```{r quiz_scatterplot}
-quiz(
+quiz(caption = NULL,
+     
 question(
     "In welchen Kontinenten beobachten wir extreme Werte, sogenannte 'Ausreißer'?",
     answer("Afrika und Amerika"),
@@ -288,7 +290,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
 ```
 
 ```{r quiz_Mittelwert}
-quiz(
+quiz(caption = NULL,
   question(
     "Wie gut bringt der Mittelwert die Verteilung der in den verschiedenen Ländern gesammelten Plastikstücken auf den Punkt?",
     answer("Gut: er ist einfach zu interpretieren"),
@@ -328,7 +330,7 @@ Die Standardabweichung hat die **gleiche Einheit** wie unsere Variable (also ein
 (kommentar Frie: eine große standardabweichung kann ja auch einfach ein indiz für eine weit gestreute verteilung sein :) deshalb der edit)
 
 ```{r quiz_standardabweichung}
-quiz(
+quiz(caption = NULL,
   question("Warum gibt R für die Standardabweichung für Ozeanien (eng. Oceania) 'NA' aus?",
     answer("Weil keine Plastikstücke gefunden wurden."),
     answer("Weil Ozeanien nur drei Stück Plastik registriert hat."),
@@ -349,7 +351,7 @@ Besonders häufig wird zudem das **25%-Quantil** und das **75%-Quantil** genutzt
 
 
 #### Boxplots und ihre besondere Funktionsdualität
-**Boxplots** stellen die Verteilung von Variablen inklusiver wichtiger statistischer Eigenschaften dar. Sie fassen die fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum) zusammen und geben damit einen sehr guten Überblick über Daten. Deshalb fügen wir sie nun zum Graphen hinzu: 
+**Boxplots** stellen die Verteilung von Variablen inklusiver wichtiger statistischer Eigenschaften dar. Sie fassen die **fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum)** zusammen und geben damit einen sehr guten Überblick über Daten. Deshalb fügen wir sie nun zum Graphen hinzu: 
 
 ```{r graphik_bericht_inkl_boxplot, exercise = TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
@@ -372,7 +374,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
 Die Außenkanten der Box sind das 25%- und 75%-Quantil. Die Länge der Box gibt den **Interquartilsabstand** (IQR) an und enthält **50% der Beobachtungen**. Der Strich innerhalb der Box markiert den **Median**. Die **"Antennen" des Boxplots** (engl.: whiskers) erweitern die Box um das 1,5-fache des Interquartilsabstand. Alle Punkte, die außerhalb der Whisker liegen, sind Ausreißer.
 
 ```{r quantile}
-quiz(
+quiz(caption = NULL,
  question("Was trifft nicht auf das 50%-Quantil zu?",
     answer("Auch als Median bekannt."),
     answer("Nicht so sensibel Ausreißern gegenüber wie das arithmetische Mittel."),
@@ -425,7 +427,7 @@ Bei der Interpretation der Daten müssen wir die Aggregationsebene betrachten: W
 "Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?" - so lautete unsere Daten-Frage. Diese können wir nun beantworten. Nach der Datenexploration wissen wir unter anderem, dass wir dem allgemeinsprachlichen "durchschnittlich" mit einem Vergleich der Mediane begegnen werden. Betrachtet nun nochmals das Diagramm (Frie: welches???) oben und antwortet auf die Quizfragen. 
 
 ```{r inhaltliche_interpretation}
-quiz(
+quiz(caption = NULL,
   question("Welcher Kontinent hat im Mittel am meisten Plastikstücke gesammelt?",
     answer("Afrika"),
     answer("Nord- und Südamerika"),
@@ -477,14 +479,13 @@ quiz(
 
 ```
 
+Nina: eventuell in Grundlagen der Statistik (sehr lang sonst)
+
 #### Beziehungen zwischen Variablen
 Frie: ggf verschieben in Grundlagen der statistik.. ist schon sehr lang alles. :( 
 
 Bisher haben wir uns vorallem der **univariaten** (= eine Variable) Verteilung von Plastikstücken gewidmet. Nun möchten wir die Daten weiter nutzen, um **bivariat** (= zwei Variablen) herauszuarbeiten: Welche Faktoren beeinflussen möglicherweise die Unterschiede in der Anzahl an Plastikstücken, die gesammelt wurden? Vielleicht die Zahl an Events?
 
-Nina: hier der Plot
-Sylvi: lass uns den gern zeigen - ich würde aber vorschlagen, die Trendlinie mit einem alpha zu belegen, so dass sie den Graphen nicht zu sehr überlagert. - Habe das im Graphen direkt implementiert, was sagst du dazu?
-Nina: find ich super
 ```{r scatter_plot_n_events}
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(n_events, n_pieces, label = country)) + # Initialisierung des ggplots mit Variablen
@@ -507,7 +508,7 @@ ggplot(data = community, aes(n_events, n_pieces, label = country)) + # Initialis
 In diesem Scatterplot haben wir zwei Hilfslinien abgetragen, welche jeweils den Mittelwert erfassen. Durch die Hilflinien entstehen 4 Quadranten. Würden im Quadranten links unten und rechts oben die meisten Punkte liegen, würde ein positiver statistischer Zusammenhang vorliegen. Denn dies würde bedeuten: je größer die Anzahl an Events desto größer oftmals auch die Anzahl an gesammelten Plastikstücken. Im Graphen sehen allerdings, dass vor allem links unten recht viele Punkte geballt auftreten. Die meisten Länder haben tatsächlich nur ein oder zwei Events veranstaltet. Dies bedeutet auch, es gibt in der Variable `n_events` nur wenig Streuung/Variation. Der Korrelationskoeffizient, der den statistischen Zusammenhang zwischen zwei metrisch skalierten Variablen erfasst, beträgt `r cor(community$n_pieces, community$n_events)`. Er ist zwar positiv, aber sehr nah bei null. Die Trendlinie im Graphen ist nahezu waagerecht. 
 
 ```{r scatterplot_interpretation}
-quiz(
+quiz(caption = NULL,
   question("Welche Art Zusammenhang vermutet ihr?",
     answer("eindeutig kein Zusammenhang"),
     answer("eindeutig negativ"),
@@ -580,7 +581,7 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 3. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. 
 *Hinweis: Versucht dazu im  RMarkdown in der finalen Version der Graphik die entsprechenden Variablen auszutauschen (und sonst erstmal nichts).*
 
-4. Interpretiert die Graphik. Was nehmt ihr daraus mit?
+4. Interpretiert die Graphik. Was nehmt Ihr daraus mit?
 
 
 ### Zusätzliche Ressourcen
