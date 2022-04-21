@@ -38,9 +38,9 @@ Im Kapitel "Datenvisualisierung" lernt Ihr, wie ihr Graphen in R erstellen könn
       - `sum()`: **Summe** numerischer Variablen
 - Darüber hinaus möchten wir schon folgende **`tidyverse`** Operationen hervorheben:
     - `dplyr::summarize()` - **Zusammenfassung von Werten** zur Vereinfachung des Informationsgehalts
-    - `dplyr::group_by()` - **Gruppierung von Zielen** (Beobachtungen) nach Kriterien
+    - `dplyr::group_by()` - **Gruppierung von Zeilen** (Beobachtungen) nach Kriterien
 - Diese sind eine Art **Power-Duo**. Denn mit `dplyr::group_by()` & `dplyr::summarize()` können statistische Kennzahlen **pro Variablenkategorie** (z.B. Land) ausgegeben werden
-- Verknüpft werden Operationen von *`dplyr`* mit dem **Pipe-Operator "%>%"** (zu dt. Rohrbetreiber), der eine ähnliche Funktion wie das "+" in `ggplot2` erfüllt
+- Verknüpft werden Operationen von *`dplyr`* mit dem **Pipe-Operator "%>%"** (zu dt. Rohrbetreiber), der eine ähnliche Funktion wie das "+" in `ggplot2` erfüllt. Für den Anfang könnt ihr euch den **Pipe-Operator "%>%"** bildlich gesprochen als **"und-dann"** vorstellen. Nehme den Input (Datensatz) von links "und-dann" wende die Funktion auf der rechten Seite an.
 
 Im Kapitel "Datenbereinigung" lernt Ihr diese Funktionen des tidyverse in R noch ausführlicher kennen. 
 
@@ -65,7 +65,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Was sind alles Lagemaße einer Verteilung?",
+  question("Welche der folgenden sind Lagemaße einer Verteilung?",
     answer("25%-Quantil - 25% der Werte ver Verteilung sind kleiner, der Rest ist größer. ", correct = TRUE),
     answer("Median - die wahre Mitte der Ausprägungen", correct = TRUE),
     answer("Mittelwert - der Durchschnitt", correct = TRUE),
@@ -162,8 +162,11 @@ quiz(caption = NULL,
 
 Wir sehen, dass die Variablen, die Spalten in unserem Datensatz, unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie **nominal skalierte** Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind **metrisch skalierte** Variablen. Wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch **ordinal skalierte** Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
 
-Bei der Interpretation der Daten müssen wir zudem die **Aggregationsebene** betrachten. In der Datenwissenschaft verweist man auf die **Granularität der Daten**: Je aggregierter Daten vorliegen, desto schwerer wird es Zusammenhänge korrekt zu bestimmen. Idealerweise wäre in unserem Datensatz ein Event - und nicht ein Land - eine Beobachtung ("Zeile"). Wir können in unserem Datensatz also lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind, ob beide Zahlen von anderen Variablen (sog. Störfaktoren, engl. *confounding variables*) beeinflusst werden und ob eine Bewertung auf Basis der Daten möglich ist, müssen wir noch herausfinden.
+Bei der Interpretation der Daten müssen wir zudem die **Aggregationsebene** betrachten. In der Datenwissenschaft verweist man auf die **Granularität der Daten**: Je aggregierter Daten vorliegen, desto schwerer wird es Zusammenhänge korrekt zu bestimmen. Idealerweise wäre in unserem Datensatz ein Event - und nicht ein Land - eine Beobachtung ("Zeile"). Wir können in unserem Datensatz also lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind, ob beide Zahlen von anderen Variablen (sog. Störfaktoren, engl. *confounding variables*) beeinflusst werden und ob eine Bewertung auf Basis der Daten möglich ist, müssen wir noch herausfinden. 
 
+
+*Comment Phil:*Hier vielleicht noch ökologischer Fehlschluss anbringen, könnte interessant sein.
+Aber auch verständlich, wenn man es nicht zu sehr aufblasen will. Ein Schlagwort welches häuftig in Verbindung mit der Aggregation von Daten fällt, ist der **"Ökologische Fehlschluss**. Dieser beschreibt wie auf der Basis von Aggregatdaten unzulässigerweise auf die Individualebene geschlossen wird. Mehr dazu findet ihr natürlich auf [Wikipedia](https://de.wikipedia.org/wiki/%C3%96kologischer_Fehlschluss). 
 
 #### Erster Überblick
 Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind besser verstehen. Dazu geben wir uns mit `summary()` **erste (statistische) Eigenschaften** der Variablen aus.
@@ -305,7 +308,7 @@ quiz(caption = NULL,
 ```
 
 #### Häufige Fehler bei der Betrachtung von statistischen Kennzahlen
-Obwohl er das wohl am häufigsten genutzte statistische Maß ist: Das arithmetische Mittel (auch: Mittelwert) darf **nur für metrisch skalierte Variablen** berechnet werden (!) und muss aufgrund der **fehlenden Robustheit gegenüber Ausreißern** oft genauer betrachtet werden, um aus den Daten keine falschen Schlüsse zu ziehen. Klarer wird das, wenn der Mittelwert visualisiert oder mit anderen statistischen Kennzahlen betrachtet wird: Wie stark streuen die beobachteten Werte um den Mittelwert, wie hoch sind Standardabweichung und Varianz? Gibt es Ausreißer? Ihr solltet in Euren Analysen also verschiedene statistische Kennzahlen miteinander vergleichen. Nutzen wir nun das Power-Duo **`dplyr::group_by()` und `dplyr::summarize()`**, um mehr statistische Kennzahlen pro Kontintent zu berechnen.
+Obwohl er das wohl am häufigsten genutzte statistische Maß ist: Das arithmetische Mittel (auch: Mittelwert) darf **nur für metrisch skalierte Variablen** berechnet werden (!) und muss aufgrund der **fehlenden Robustheit gegenüber Ausreißern** oft genauer betrachtet werden, um aus den Daten keine falschen Schlüsse zu ziehen. Klarer wird das, wenn der Mittelwert visualisiert oder mit anderen statistischen Kennzahlen betrachtet wird: Wie stark streuen die beobachteten Werte um den Mittelwert, wie hoch sind Standardabweichung und Varianz? Gibt es Ausreißer? Ihr solltet in Euren Analysen also verschiedene statistische Kennzahlen miteinander vergleichen. Nutzen wir nun das Power-Duo **`dplyr::group_by()` und `dplyr::summarize()`**, um mehr statistische Kennzahlen pro Kontinent zu berechnen.
 
 ```{r ueberblick_statistische_kennzahlen, exercise = TRUE}
 # Tabelle mit statistischen Kennzahlen
@@ -347,10 +350,10 @@ quiz(caption = NULL,
 
 Besonders häufig wird zudem das **25%-Quantil** und das **75%-Quantil** genutzt, die gemeinsam den **Interquartilsabstand** (IQR) bilden: 50% der Beobachtungen liegen in diesem Bereich. In Asien wäre das 25%-Quantil die Plastikstückanzahl von Japan, mit 84 Stücken dem fünften Land in aufsteigender Reihenfolge, und das 75%-Quantil Malaysia, mit 4.880 Plastikstücken dem dreizehnten Land in der Reihe. In Asien fällt es besonders leicht Quantile zu erklären, da wir eine *ungerade* Anzahl an Beobachtungen haben sind das 25%, 50%, und 75%-Quantil die Ausprägungen von konkreten Beobachtungen. Hätten wir eine *gerade* Anzahl, zum Beispiel 18 Länder, dann wären diese Quantilswerte die Mittelwerte zwischen Beobachtungen. Für den Median zum Beispiel der Mittelwert aus dem Land an Position 9 und 10. 
 
-Die **Spannbreite** ist die Differenz aus Minimum und Maximum: 100% oder schlicht "alle" beobachten Werte liegen darin. Allein hat sie nur eine geringe Aussagekraft. Allerdings könnt Ihr über das Minimum und Maximum sehr gut die Datenqualität überprüfen. Gibt es negative Beobachtungen, obwohl die Variable einen natürlichen Nullpunkt hat? ISt das Maximum ein Wert wie "99999", der eventuell auf eine Codierung hinweist? Leider schleichen sich durch mit Zahlen codierte Werte, z.B.99999 für fehlende Werte, immer wieder Fehler in Analysen ein.
+Die **Spannbreite** ist die Differenz aus Minimum und Maximum: 100% oder schlicht "alle" beobachten Werte liegen darin. Allein hat sie nur eine geringe Aussagekraft. Allerdings könnt Ihr über das Minimum und Maximum sehr gut die Datenqualität überprüfen. Gibt es negative Beobachtungen, obwohl die Variable einen natürlichen Nullpunkt hat? Ist das Maximum ein Wert wie "99999", der eventuell auf eine Codierung hinweist? Leider schleichen sich durch mit Zahlen codierte Werte, z.B.99999 für fehlende Werte, immer wieder Fehler in Analysen ein.
 
 #### Boxplots und ihre besondere Funktionsdualität
-**Boxplots** stellen die Verteilung von Variablen inklusiver wichtiger statistischer Eigenschaften dar. Sie fassen die **fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum)** zusammen und geben damit einen sehr guten Überblick über Daten. Deshalb fügen wir sie nun zum Graphen hinzu: 
+**Boxplots** stellen die Verteilung von Variablen inklusive wichtiger statistischer Eigenschaften dar. Sie fassen die **fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum)** zusammen und geben damit einen sehr guten Überblick über Daten. Deshalb fügen wir sie nun zum Graphen hinzu: 
 
 ```{r boxplot_plastik, exercise = TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
@@ -369,7 +372,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
-Die Außenkanten der Box sind das 25%- und 75%-Quantil. Die Länge der Box gibt den **Interquartilsabstand** (IQR) an und enthält **50% der Beobachtungen**. Der Strich innerhalb der Box markiert den **Median**. Die **"Antennen" des Boxplots** (engl.: whiskers) erweitern die Box um das 1,5-fache des Interquartilsabstand. Alle Punkte, die außerhalb der Whisker liegen, sind Ausreißer. Wenn
+Die Außenkanten der Box sind das 25%- und 75%-Quantil. Die Länge der Box gibt den **Interquartilsabstand** (IQR) an und enthält **50% der Beobachtungen**. Der Strich innerhalb der Box markiert den **Median**. Die **"Antennen" des Boxplots** (engl.: whiskers) erweitern die Box um das 1,5-fache des Interquartilsabstand. Alle Punkte, die außerhalb der Whisker liegen, sind Ausreißer. 
 
 ```{r quantile}
 quiz(caption = NULL,
@@ -418,7 +421,7 @@ Fassen wir kurz zusammen: Wir wissen nun, dass im Datensatz einige Ausreißer en
 
 
 #### Beziehungen zwischen Variablen
-Bisher haben wir uns vorallem der **univariaten** (= eine Variable) Verteilung von Plastikstücken gewidmet. Nun möchten wir die Daten weiter nutzen, um **bivariat** (= zwei Variablen) herauszuarbeiten: Welche Faktoren beeinflussen möglicherweise die Unterschiede in der Anzahl an Plastikstücken, die gesammelt wurden? Vielleicht die Zahl an Events?
+Bisher haben wir uns vor allem der **univariaten** (= eine Variable) Verteilung von Plastikstücken gewidmet. Nun möchten wir die Daten weiter nutzen, um **bivariat** (= zwei Variablen) herauszuarbeiten: Welche Faktoren beeinflussen möglicherweise die Unterschiede in der Anzahl an Plastikstücken, die gesammelt wurden? Vielleicht die Zahl an Events?
 
 ```{r scatter_plot_n_events}
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
@@ -439,7 +442,7 @@ ggplot(data = community, aes(n_events, n_pieces, label = country)) + # Initialis
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
-In diesem Scatterplot haben wir zwei Hilfslinien abgetragen, welche jeweils den Mittelwert erfassen. Durch die Hilflinien entstehen vier Quadranten. Würden im Quadranten links unten und rechts oben die meisten Punkte liegen, würde ein **positiver statistischer Zusammenhang** vorliegen. Denn dies würde bedeuten: je größer die Anzahl an Events desto größer oftmals auch die Anzahl an gesammelten Plastikstücken. Im Graphen sehen allerdings, dass vor allem links unten recht viele Punkte geballt auftreten. Die meisten Länder haben tatsächlich nur ein oder zwei Events veranstaltet. Dies bedeutet auch, es gibt in der Variable `n_events` nur wenig Streuung/Variation.
+In diesem Scatterplot haben wir zwei Hilfslinien eingezogen, welche jeweils den Mittelwert erfassen. Durch die Hilflinien entstehen vier Quadranten. Würden im Quadranten links unten und rechts oben die meisten Punkte liegen, würde ein **positiver statistischer Zusammenhang** vorliegen. Denn dies würde bedeuten: je größer die Anzahl an Events desto größer oftmals auch die Anzahl an gesammelten Plastikstücken. Im Graphen sehen wir allerdings, dass vor allem links unten recht viele Punkte geballt auftreten. Die meisten Länder haben tatsächlich nur ein oder zwei Events veranstaltet. Dies bedeutet auch, es gibt in der Variable `n_events` nur wenig Streuung/Variation.
 
 Der Korrelationskoeffizient, der den statistischen Zusammenhang zwischen zwei metrisch skalierten Variablen erfasst, beträgt `r cor(community$n_pieces, community$n_events)`. 
 
@@ -456,7 +459,7 @@ Wert:           | Interpretation:
 cat(tabelle)
 ```
 
-Er ist zwar positiv, aber sehr nah bei null. Die Trendlinie im Graphen ist nahezu waagerecht. 
+Er ist zwar positiv, aber sehr nah bei Null. Die Trendlinie im Graphen ist nahezu waagerecht. 
 
 ```{r scatterplot_interpretation}
 quiz(caption = NULL,
@@ -486,14 +489,16 @@ quiz(caption = NULL,
 )
 ```
 
-Wenn wir uns das Punktediagramm, dass die Anzahl an Plastikstücken der Anzahl an Freiwilligen gegenüberstellt. Ist ein etwas deutlicherer Zusammenhang erkenntlich. Der Korrelationskoeffizient bringt diesen statistischen Zusammenhang auf den Punkt in einer Zahl. Berechnet ihn für diese beiden Variablen.
+Wenn wir uns das Punktediagramm ansehen, dass die Anzahl an Plastikstücken der Anzahl an Freiwilligen gegenüberstellt, ist ein etwas deutlicherer Zusammenhang erkenntlich. Der Korrelationskoeffizient bringt diesen statistischen Zusammenhang auf den Punkt in einer Zahl. Berechnet ihn für diese beiden Variablen.
 
 ```{r korrelation_pieces_volunteers, exercise=TRUE}
 # Berechnung Korrelation
 cor(community$n_pieces, community$n_volunteers)
 ```
 
-0.81 bestätigt, dass wir einen positiven und recht starken statischen Zusammenhang zwischen der Anzahl an Plastikstücken und Freiwilligen auf Länderebene beobachten. Aber Vorsicht: der Korrelationskoeffizient allein bietet **keinerlei Möglichkeit** einer **kausalen Aussage**. Weder unser Diagramm noch der Koeffizient lassen den Schluss zu, dass mehr Freiwillige zu mehr gesammelten Plastikstücken führen. Außerdem muss auch hier wieder beachtet werden, dass die Aussage nur auf Länderebene getroffen werden kann: es kann nicht geschlossen werden, dass Events mit mehr Freiwilligen mehr Plastikstücke sammeln.
+0.81 bestätigt, dass wir einen positiven und recht starken statistischen Zusammenhang zwischen der Anzahl an Plastikstücken und Freiwilligen auf Länderebene beobachten. Aber Vorsicht: der Korrelationskoeffizient allein bietet **keinerlei Möglichkeit** einer **kausalen Aussage**. Weder unser Diagramm noch der Koeffizient lassen den Schluss zu, dass mehr Freiwillige zu mehr gesammelten Plastikstücken führen. Außerdem muss auch hier wieder beachtet werden, dass die Aussage nur auf Länderebene getroffen werden kann: es kann nicht geschlossen werden, dass Events mit mehr Freiwilligen mehr Plastikstücke sammeln. 
+
+**Phil Comment**: Hier könnte man jetzt wieder anbringen: "Wir erinnern uns an das Stichwort "Ökologischer Fehlschluss" von oben.
 
 ```{r scatter_plot_n_volunteers}
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
@@ -513,11 +518,11 @@ ggplot(data = community, aes(n_volunteers, n_pieces, label = country)) + # Initi
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
-Was nehmen wir nehmen wir aus dieser bivariaten Analyse mit? Die Anzahl an Events korrelieren nur sehr schwach positiv mit der Anzahl gesammelter Plastikstücke. Die Anzahl der Freiwilligen korreliert stark positiv mit der Anzahl an gesammelten Plastikstücken. Für diesen Zusammenhang kann es aber auch andere Ursachen geben, die wir in unseren Daten überhaupt nicht betrachten, zum Beispiel die Bevölkerungsanzahl. Welche "Störfaktoren" fallen Euch noch ein?
+Was nehmen wir aus dieser bivariaten Analyse mit? Die Anzahl an Events korreliert nur sehr schwach positiv mit der Anzahl gesammelter Plastikstücke. Die Anzahl der Freiwilligen korreliert stark positiv mit der Anzahl an gesammelten Plastikstücken. Für diesen Zusammenhang kann es aber auch andere Ursachen geben, die wir in unseren Daten überhaupt nicht betrachten, zum Beispiel die Bevölkerungsanzahl. Welche "Störfaktoren" fallen Euch noch ein?
 
 
 ### Und jetzt Ihr
-Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne mit zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
+Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
 
 1. Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**: <br>
   - Wie viel Plastik wurde insgesamt gesammelt? <br>
@@ -528,7 +533,7 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 
 3. Versucht, das zugehörige [**R Markdown: 05_DatenVerstehenMitR **](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} zum Laufen zu bringen und es nachzuvollziehen.
 
-4. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. 
+4. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastic" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. 
 *Hinweis: Versucht dazu im  RMarkdown in der finalen Version der Graphik die entsprechenden Variablen auszutauschen (und sonst erstmal nichts).*
 
 5. Interpretiert die Graphik. Was könnt Ihr ablesen?
