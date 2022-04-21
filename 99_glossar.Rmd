@@ -40,6 +40,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Image Recognition** (zu dt. Bilderkennung) = Automatisierte Verarbeitung und Interpretation von Bilddateien 
 
+**Interquartilsabstand**: Im Interquartilsabstand (kurz IQR), der zwischen dem 25%- und 75%-Quantil verortet ist, liegen 50% aller Messwerte
+
 **Integrierte Entwicklungsumgebung** (kurz: IDE) = Umgebung für das Schreiben und die Interpretation von Code
 
 **JSON** = textbasiertes, strukturiertes Dateiformat
@@ -66,6 +68,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Pivoting** = Umformen eines rechteckigen Datensatzes zwischen long- und wide-Format
 
+**Quantil**: Anteil der Werte, die kleiner oder gleich einem bestimmten Wert sind (z.B. 25%-Quantil: 25% aller beobachteten Werte sind kleiner gleich dieser Wert)
+
 **Regex** (Regular Expressions) = Reguläre Ausdrücke zur Bestimmung von bestimmten Zeichen(folgen) 
 
 **Relative Häufigkeit** = Prozentualer Anteil der Ausprägungen in einer Gruppe
@@ -82,9 +86,11 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Slicing** = Zugriff auf bestimmte Daten in einem *Dataframe*
 
+**Spannweite** = Differenz zwischen der *minimalen Ausprägung* und der *maximalen Ausprägung* einer Variablen
+
 **SQL** (Structured Query Language, dt. Strukturierte Abfragesprache) = eine Sprache zur Definition, Bearbeitung und Abfrage von Daten aus Datenbanken
 
-**Standardabweichung** = standardisiertes Maß für die Streuung um den Mittelwert
+**Standardabweichung** = standardisiertes Maß für die Streuung um den Mittelwert in der selben Maßeinheit wie die Variable (auch: mittlere Abweichung), das der Wurzel aus der *Varianz* entspricht
 
 **Statuscode** = Antwort eines Servers auf HTTP-Anfragen (über APIs)
 

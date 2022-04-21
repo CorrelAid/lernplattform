@@ -4,11 +4,18 @@ author: "Nina Hauser"
 date: "10/20/2021"
 output: pdf_document
 ---
+### Übung 1
+Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**:
+- Wie viel Plastik wurde insgesamt gesammelt?
 
-### Übung 1: 
+- Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?
+
+- Welche Faktoren beeinflussen möglicherweise diese Unterschiede?
+
+### Übung 2: 
 Überlegt: Welche **Fragen** möchtet Ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
 
-### Übung 2:
+### Übung 3:
 Versucht, dieses RMarkdown zum Laufen zu bringen (Tipp: Run -> Run All) und es nachzuvollziehen.
 
 # Schritt 1: Infrastruktur
@@ -25,125 +32,73 @@ library(countrycode)
 ```
 
 # Schritt 2: Daten laden
-```{r}
-### Daten laden
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+```{r daten_laden}
+### Community Datensatz laden
+community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
+
+### Audit Datensatz laden
+audit <- rio::import(here::here('daten/bffp2019_audit_by_country_and_company.csv'))
 ```
 
-# Schritt 3: Daten bereinigen (diesen Teil müsst Ihr noch nicht nachvollziehen)
-```{r}
-### Daten bereinigen
-# Country name cleaning: 
-  # United Kingdom of Great Britain & Northern Ireland sowie für die USA
-plastics_prep <- plastics %>%
-  # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
-  filter(year==2019) %>%
-  mutate(country = str_replace(country, "United Kingdom of Great Britain & Northern Ireland", "United Kingdom"),
-         country = str_replace(country, "United States of America", "United States"),
-         country = str_to_title(country) ) %>% #um z.B.: ECUADOR etc case ändern
-  #Continent und Country Code anspielen
-  mutate(continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
-         countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")) %>%
-  mutate(continent=replace_na(continent, "Unknown"),
-         countrycode=replace_na(countrycode, "Unknown"))
+# Schritt 3: Daten bereinigen (hier für Euch schon erledigt)
+```{r daten_bereinigen}
 
-### Community Datensatz erstellen
-community<- plastics_prep %>%
-  select(country, year, num_events, volunteers, grand_total, continent, countrycode) %>%
-  group_by(country, year) %>%
-  filter(row_number()==1)
-
-# Audit Plastik Datensatz erstellen
-audit_plastic<- plastics_prep %>%
-  # nur grandtotal zeile behalten
-  filter(parent_company=="Grand Total") %>%
-  select(-c(parent_company, num_events, volunteers, empty)) %>%
-  #NA zu 0
-  mutate(
-    across(everything(), ~replace_na(.x, 0))
-  )
-
-# EU-Asien Audit Plastik Datensatz erstellen
-audit_plastic_eu_asia<- audit_plastic %>%
-  filter(continent == "Europe" | continent == "Asia") %>%
-  group_by(country) %>%
-  mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
-```
-
-Falls das Datenladen oder die Datenbereinigung bei Euch zu Problemen führt könnt Ihr die bereinigten Datensätze hiermit direkt laden:
-
-```{r alternativesladen}
-# Community Datensatz erstellen
-community<-rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/community_perspective.csv')
-
-# Audit Plastik Datensatz erstellen
-audit_plastic<- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/audit_perspective.csv')
-
-# EU-Asien Audit Plastik Datensatz erstellen
-audit_plastic_eu_asia<- audit_plastic %>%
-  filter(continent == "Europe" | continent == "Asia") %>%
-  group_by(country) %>%
-  mutate(n_types=sum(c(hdpe, ldpe, o, pet, pp, ps, pvc)!=0))
 ```
 
 # Schritt 4: Übersicht verschaffen
-```{r}
+```{r ueberblickcommunity}
 # Überblick über die Community verschaffen
 dplyr::glimpse(community)
 ```
 
-```{r}
+```{r ueberblickaudit}
 # Überblick über den Plastik-Audit verschaffen
-dplyr::glimpse(audit_plastic)
+dplyr::glimpse(audit)
 ```
 
 # Schritt 5: Visuelle Exploration
-```{r}
-# Erstellung eines Scatterplots zu der Anzahl an Freiwilligen
-ggplot(data = community, aes(x = continent, y = volunteers)) + # Initialisierung des ggplots mit Variablen
-  geom_point(position = position_jitter(width = 0.3),
-             size = 3,
-             alpha = 0.6) + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße und Transparenz
-  coord_cartesian(ylim = c(0, 10000)) + # Festlegung der Achsenlänge der y-Achse
+```{r boxplot}
+# Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
+ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
+  geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
+  coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
-    title = "Die Beteiligung an 'Break Free From Plastic' ..." ,
+    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
-    y = "Anzahl Freiwilliger",
+    y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = "In Taiwan haben sich 31.318 Freiwillige beteiligt. Diese Beoachtung \nwurde zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP"
-  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() # Festlegung des Layout-Designs
-```
-
-### Übung 3:
-In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **Community Perspektive** gewidmet. Nun blicken wir auf die **Audit Perspektive**: Wie viel Plastik wurde wo für "Break Free From Plastic" gesammelt? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `audit_plastic` für diese *Audit Perspektive*. Die Graphik soll `grand_total`, die **Anzahl der gesammelten Plastikstücke** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen.
-
-```{r}
-#Euer Code hier
-```
-
-# Schritt 6: Statistische Kennzahlen
-```{r}
-# Berechnung statistischer Kennzahlen pro Kontinent
-audit_plastic %>%
-  group_by(continent) %>%
-  summarize(
-    # Mittelwert
-    menge_mittelwert = mean(grand_total),
-    # Standardabweichung
-    menge_standardabweichung = sd(grand_total),
-    # Median
-    menge_median = median(grand_total),
-    # Anzahl beteiligter Länder
-    länder_anzahl = n(),
-    # Summe der Plastikmenge
-    menge_summe = sum(grand_total)
-  )
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs  
+  theme(legend.position="none") + # Ausblenden der Legende
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 ### Übung 4:
-In der zweiten Einheit haben wir uns auf statistische Kennzahlen des `audit_plastic`-Datensatzes konzentriert. Nutzt nun den `community` Datensatz und erstellt eine **Tabelle**, welche die **Länder- und Freiwilligenanzahl je Kontinent** darstellt.
+In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. <br> 
+*Hinweis: Kopiert den Code der Graphik oben, tauscht an relevanten Stellen die entsprechende Variable aus und passt die Beschriftungen an (und tut sonst erstmal nichts).*
 
-```{r}
+```{r loesung}
 #Euer Code hier
+```
+### Übung 5:
+Interpretiert die Graphik. Was könnt Ihr ablesen?
+
+# Schritt 6: Statistische Kennzahlen
+```{r tabelle}
+# Tabelle mit statistischen Kennzahlen
+community %>%
+  group_by("Kontinent" = continent) %>%
+  summarise("Anzahl Beobachtungen" = n(),
+         "Anzahl Events" = sum(n_events),
+         "Anzahl Freiwillige" = sum(n_volunteers),
+         "Anzahl Plastikstücke" = sum(n_pieces),
+         "Mittelwert" = mean(n_pieces),
+         "Standardabweichung" = sd(n_pieces),
+         "Varianz" = var(n_pieces),
+         "Median" = median(n_pieces),
+         "Quartil (25%)" = quantile(n_pieces, .25),
+         "Quartil (75%)" = quantile(n_pieces, .75),
+         "Interquartilsabstand (IQR)" = IQR(n_pieces),
+         "Spannweite" = max(n_pieces) - min(n_pieces))
 ```
