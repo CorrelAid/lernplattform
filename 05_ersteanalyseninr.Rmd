@@ -1,5 +1,7 @@
 ## Daten verstehen in R
 
+Nina: wir könnten den Code natürlich auch komplett verstecken und ihnen nur die Ergebnisse zeigen (Fokus: Interpretation). Dann sollte sich die Übung konsequenterweise auch um Interpretation drehen.
+
 ![*Video: Erste Datenanalysen in R (30min)*](https://youtu.be/58i2_o-zDug)
 *Empfehlung: Schaut Euch das Video in zwei Teilen an. Bis 18:42 geht es um Visualisierung, danach um statistische Kennzahlen.*
 
