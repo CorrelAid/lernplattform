@@ -162,11 +162,8 @@ quiz(caption = NULL,
 
 Wir sehen, dass die Variablen, die Spalten in unserem Datensatz, unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie **nominal skalierte** Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind **metrisch skalierte** Variablen. Wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch **ordinal skalierte** Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
 
-Bei der Interpretation der Daten müssen wir zudem die **Aggregationsebene** betrachten. In der Datenwissenschaft verweist man auf die **Granularität der Daten**: Je aggregierter Daten vorliegen, desto schwerer wird es Zusammenhänge korrekt zu bestimmen. Idealerweise wäre in unserem Datensatz ein Event - und nicht ein Land - eine Beobachtung ("Zeile"). Wir können in unserem Datensatz also lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind, ob beide Zahlen von anderen Variablen (sog. Störfaktoren, engl. *confounding variables*) beeinflusst werden und ob eine Bewertung auf Basis der Daten möglich ist, müssen wir noch herausfinden. 
+Bei der Interpretation der Daten müssen wir zudem die **Aggregationsebene** betrachten. In der Datenwissenschaft verweist man auf die **Granularität der Daten**: Je aggregierter Daten vorliegen, desto schwerer wird es Zusammenhänge korrekt zu bestimmen. Idealerweise wäre in unserem Datensatz ein Event - und nicht ein Land - eine Beobachtung ("Zeile"). Wir können in unserem Datensatz also lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind, ob beide Zahlen von anderen Variablen (sog. Störfaktoren, engl. *confounding variables*) beeinflusst werden und ob eine Bewertung auf Basis der Daten möglich ist, müssen wir noch herausfinden. Ein Schlagwort welches häuftig in Verbindung mit der Aggregation von Daten fällt, ist der **"Ökologische Fehlschluss**. Dieser beschreibt wie auf der Basis von Aggregatdaten unzulässigerweise auf die Individualebene geschlossen wird. Mehr dazu findet ihr natürlich auf [Wikipedia](https://de.wikipedia.org/wiki/%C3%96kologischer_Fehlschluss).
 
-
-*Comment Phil:*Hier vielleicht noch ökologischer Fehlschluss anbringen, könnte interessant sein.
-Aber auch verständlich, wenn man es nicht zu sehr aufblasen will. Ein Schlagwort welches häuftig in Verbindung mit der Aggregation von Daten fällt, ist der **"Ökologische Fehlschluss**. Dieser beschreibt wie auf der Basis von Aggregatdaten unzulässigerweise auf die Individualebene geschlossen wird. Mehr dazu findet ihr natürlich auf [Wikipedia](https://de.wikipedia.org/wiki/%C3%96kologischer_Fehlschluss). 
 
 #### Erster Überblick
 Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind besser verstehen. Dazu geben wir uns mit `summary()` **erste (statistische) Eigenschaften** der Variablen aus.
@@ -328,8 +325,6 @@ community %>%
          "Spannweite" = max(n_pieces) - min(n_pieces))
 ```
 
-Der **Median** stellt die **wahre Mitte der Verteilung** dar. Er ist gleichzeitig auch das 50%-Quantil. Stellt Euch die Beobachtungen als Punkte (also die einzelnen Länder mit ihrer Plastikstückanzahl) der Reihe nach aufsteigend vor. Das 50%-Quantil, der Median, ist die Beobachtung, die diese Reihe genau in zwei Hälften teilt: In Asien haben 17 Länder an **Break Free From Plastic** teilgenommen. Die Anzahl an Plastikstücken des neunte Land in der imaginären Aufreihung ist der Median. Hier beträgt er 3.459 Plastikstücke, soviel wie in China gesammelt wurden. Bei hohen Unterschieden zwischen Mittelwert und Median ist davon auszugehen, dass Ausreißer die Werte verzerren.
-
 Varianz und Standardabweichung geben die **Streuung um den Mittelwert** an, wobei die Standardabweichung  leichter zu interpretieren ist, da sie die **gleiche Einheit** wie unsere Variable (also ein Plastikstück) hat. Hohe Werte können auf eine weit gestreute Verteilung aber auch auf die Existenz von Ausreißern hinweisen. Das solltet Ihr unbedingt immer überprüfen! Für Asien ist die Standardabweichung mit 29424 doppelt so groß wie der Mittelwert. Dies liegt in diesem Fall an den Ausreißern, die wir bereits in der Visualisierung sehen konnten.
 
 ```{r quiz_standardabweichung}
@@ -348,6 +343,8 @@ quiz(caption = NULL,
 )
 ```
 
+Der **Median** stellt die **wahre Mitte der Verteilung** dar. Er ist gleichzeitig auch das 50%-Quantil. Stellt Euch die Beobachtungen als Punkte (also die einzelnen Länder mit ihrer Plastikstückanzahl) der Reihe nach aufsteigend vor. Das 50%-Quantil, der Median, ist die Beobachtung, die diese Reihe genau in zwei Hälften teilt: In Asien haben 17 Länder an **Break Free From Plastic** teilgenommen. Die Anzahl an Plastikstücken des neunte Land in der imaginären Aufreihung ist der Median. Hier beträgt er 3.459 Plastikstücke, soviel wie in China gesammelt wurden. Bei hohen Unterschieden zwischen Mittelwert und Median ist davon auszugehen, dass Ausreißer die Werte verzerren.
+
 Besonders häufig wird zudem das **25%-Quantil** und das **75%-Quantil** genutzt, die gemeinsam den **Interquartilsabstand** (IQR) bilden: 50% der Beobachtungen liegen in diesem Bereich. In Asien wäre das 25%-Quantil die Plastikstückanzahl von Japan, mit 84 Stücken dem fünften Land in aufsteigender Reihenfolge, und das 75%-Quantil Malaysia, mit 4.880 Plastikstücken dem dreizehnten Land in der Reihe. In Asien fällt es besonders leicht Quantile zu erklären, da wir eine *ungerade* Anzahl an Beobachtungen haben sind das 25%, 50%, und 75%-Quantil die Ausprägungen von konkreten Beobachtungen. Hätten wir eine *gerade* Anzahl, zum Beispiel 18 Länder, dann wären diese Quantilswerte die Mittelwerte zwischen Beobachtungen. Für den Median zum Beispiel der Mittelwert aus dem Land an Position 9 und 10. 
 
 Die **Spannbreite** ist die Differenz aus Minimum und Maximum: 100% oder schlicht "alle" beobachten Werte liegen darin. Allein hat sie nur eine geringe Aussagekraft. Allerdings könnt Ihr über das Minimum und Maximum sehr gut die Datenqualität überprüfen. Gibt es negative Beobachtungen, obwohl die Variable einen natürlichen Nullpunkt hat? Ist das Maximum ein Wert wie "99999", der eventuell auf eine Codierung hinweist? Leider schleichen sich durch mit Zahlen codierte Werte, z.B.99999 für fehlende Werte, immer wieder Fehler in Analysen ein.
@@ -358,7 +355,7 @@ Die **Spannbreite** ist die Differenz aus Minimum und Maximum: 100% oder schlich
 ```{r boxplot_plastik, exercise = TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
-  geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
@@ -400,7 +397,7 @@ quiz(caption = NULL,
     random_answer_order = TRUE
   ),
  
-  question("Was sind die fünf Punkte einer Verteilung?",
+  question("Was sind die fünf Punkte einer Verteilung, welche im Boxplot immer dargestellt werden?",
     answer("Minimum", correct = TRUE),
     answer("25%-Quantil", correct = TRUE),
     answer("Mittelwert"),
@@ -408,7 +405,7 @@ quiz(caption = NULL,
     answer("75%-Quantil", correct = TRUE),
     answer("Maximum", correct = TRUE),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Boxplot ist nur auf mindestens ordinalskalierte Variablen anwendbar und geben den Median aus. Ausreißer können auch außerhalb der Whisker abgetragen sein.",
+    incorrect = "Leider falsch: nur wenn Mittelwert und Median identisch sind, wird auch der Mittelwert erfasst.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
@@ -442,7 +439,7 @@ ggplot(data = community, aes(n_events, n_pieces, label = country)) + # Initialis
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
-In diesem Scatterplot haben wir zwei Hilfslinien eingezogen, welche jeweils den Mittelwert erfassen. Durch die Hilflinien entstehen vier Quadranten. Würden im Quadranten links unten und rechts oben die meisten Punkte liegen, würde ein **positiver statistischer Zusammenhang** vorliegen. Denn dies würde bedeuten: je größer die Anzahl an Events desto größer oftmals auch die Anzahl an gesammelten Plastikstücken. Im Graphen sehen wir allerdings, dass vor allem links unten recht viele Punkte geballt auftreten. Die meisten Länder haben tatsächlich nur ein oder zwei Events veranstaltet. Dies bedeutet auch, es gibt in der Variable `n_events` nur wenig Streuung/Variation.
+In diesem Scatterplot haben wir zwei Hilfslinien eingezogen, welche jeweils den Mittelwert erfassen. Durch die Hilflinien entstehen vier Quadranten. Würden im Quadranten links unten und rechts oben die meisten Punkte liegen, würde ein **positiver statistischer Zusammenhang** vorliegen. Denn dies würde bedeuten: je größer die Anzahl an Events desto größer oftmals auch die Anzahl an gesammelten Plastikstücken. Im Graphen sehen wir allerdings, dass vor allem links unten viele Punkte geballt auftreten. Die meisten Länder haben tatsächlich nur ein oder zwei Events veranstaltet. Dies bedeutet auch, es gibt in der Variable `n_events` nur wenig Streuung/Variation.
 
 Der Korrelationskoeffizient, der den statistischen Zusammenhang zwischen zwei metrisch skalierten Variablen erfasst, beträgt `r cor(community$n_pieces, community$n_events)`. 
 
@@ -459,7 +456,7 @@ Wert:           | Interpretation:
 cat(tabelle)
 ```
 
-Er ist zwar positiv, aber sehr nah bei Null. Die Trendlinie im Graphen ist nahezu waagerecht. 
+Er ist zwar positiv, aber sehr nah bei Null. Die Trendlinie im Graphen ist ebenso nahezu waagerecht. 
 
 ```{r scatterplot_interpretation}
 quiz(caption = NULL,
@@ -496,9 +493,8 @@ Wenn wir uns das Punktediagramm ansehen, dass die Anzahl an Plastikstücken der 
 cor(community$n_pieces, community$n_volunteers)
 ```
 
-0.81 bestätigt, dass wir einen positiven und recht starken statistischen Zusammenhang zwischen der Anzahl an Plastikstücken und Freiwilligen auf Länderebene beobachten. Aber Vorsicht: der Korrelationskoeffizient allein bietet **keinerlei Möglichkeit** einer **kausalen Aussage**. Weder unser Diagramm noch der Koeffizient lassen den Schluss zu, dass mehr Freiwillige zu mehr gesammelten Plastikstücken führen. Außerdem muss auch hier wieder beachtet werden, dass die Aussage nur auf Länderebene getroffen werden kann: es kann nicht geschlossen werden, dass Events mit mehr Freiwilligen mehr Plastikstücke sammeln. 
+0.81 bestätigt, dass wir einen positiven und recht starken statistischen Zusammenhang zwischen der Anzahl an Plastikstücken und Freiwilligen auf Länderebene beobachten. Aber Vorsicht: der Korrelationskoeffizient allein bietet **keinerlei Möglichkeit** einer **kausalen Aussage**. Weder unser Diagramm noch der Koeffizient lassen den Schluss zu, dass mehr Freiwillige die Ursache für mehr gesammelte Plastikstücken sind. Wir beobachten sie lediglich gleichzeitig. Außerdem muss auch hier wieder beachtet werden, dass die Aussage nur auf Länderebene getroffen werden kann: es kann nicht geschlossen werden, dass Events mit mehr Freiwilligen mehr Plastikstücke sammeln. Wir erinnern uns an das Stichwort "Ökologischer Fehlschluss" von oben.
 
-**Phil Comment**: Hier könnte man jetzt wieder anbringen: "Wir erinnern uns an das Stichwort "Ökologischer Fehlschluss" von oben.
 
 ```{r scatter_plot_n_volunteers}
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
@@ -518,7 +514,7 @@ ggplot(data = community, aes(n_volunteers, n_pieces, label = country)) + # Initi
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
-Was nehmen wir aus dieser bivariaten Analyse mit? Die Anzahl an Events korreliert nur sehr schwach positiv mit der Anzahl gesammelter Plastikstücke. Die Anzahl der Freiwilligen korreliert stark positiv mit der Anzahl an gesammelten Plastikstücken. Für diesen Zusammenhang kann es aber auch andere Ursachen geben, die wir in unseren Daten überhaupt nicht betrachten, zum Beispiel die Bevölkerungsanzahl. Welche "Störfaktoren" fallen Euch noch ein?
+Was nehmen wir aus dieser bivariaten Analyse mit? Die Anzahl an Events korreliert nur sehr schwach positiv mit der Anzahl gesammelter Plastikstücke. Die Anzahl der Freiwilligen korreliert stark positiv mit der Anzahl an gesammelten Plastikstücken. Für diesen Zusammenhang kann es viele Ursachen geben, die wir in unseren Daten überhaupt nicht betrachten, zum Beispiel die Bevölkerungsanzahl oder auch die Zeit, welche einzelene Freiwillige investiert haben. Welche "Störfaktoren" fallen Euch noch ein?
 
 
 ### Und jetzt Ihr
