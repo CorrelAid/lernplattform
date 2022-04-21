@@ -152,7 +152,7 @@ out <- knitr::knit_child("04_rstudio.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Daten mit R verstehen -->
+<!-- ## Daten verstehen mit R -->
 ```{r results='asis'}
 out <- knitr::knit_child("05_ersteanalyseninr.Rmd", quiet = TRUE)
 cat(out, sep = '')

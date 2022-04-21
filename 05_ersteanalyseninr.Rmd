@@ -1,4 +1,4 @@
-## Daten mit R verstehen
+## Daten verstehen mit R
 
 ![*Video: Daten mit R verstehen (30min)*](https://youtu.be/nEbiJ4EZ3OE)
 
@@ -489,6 +489,7 @@ quiz(caption = NULL,
 Wenn wir uns das Punktediagramm, dass die Anzahl an Plastikstücken der Anzahl an Freiwilligen gegenüberstellt. Ist ein etwas deutlicherer Zusammenhang erkenntlich. Der Korrelationskoeffizient bringt diesen statistischen Zusammenhang auf den Punkt in einer Zahl. Berechnet ihn für diese beiden Variablen.
 
 ```{r korrelation_pieces_volunteers, exercise=TRUE}
+# Berechnung Korrelation
 cor(community$n_pieces, community$n_volunteers)
 ```
 
@@ -525,7 +526,7 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 
 2. Überlegt: Mit welchen Daten und Datenanalysen könnte die Frage "Wie erfolgreich war der Audit?" noch beantwortet werden? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
 
-3. Versucht, das zugehörige [**R Markdown: 05_ErsteDatenanalysenInR **](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} zum Laufen zu bringen und es nachzuvollziehen.
+3. Versucht, das zugehörige [**R Markdown: 05_DatenVerstehenMitR **](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} zum Laufen zu bringen und es nachzuvollziehen.
 
 4. In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. 
 *Hinweis: Versucht dazu im  RMarkdown in der finalen Version der Graphik die entsprechenden Variablen auszutauschen (und sonst erstmal nichts).*
