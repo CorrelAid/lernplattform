@@ -262,29 +262,20 @@ question(
 )
 ```
 
-Fügen wir nun das **arithmetische Mittel pro Kontinent** (als Dreieck gekennzeichnet) und die **Standardabweichung** (als Strich gekennzeichnet) in die Visualisierung ein. Hattet Ihr den Mittelwert an dieser Stelle erwartet? 
+Fügen wir nun das **arithmetische Mittel pro Kontinent** (als Dreieck gekennzeichnet) in die Visualisierung ein. Hattet Ihr den Mittelwert an dieser Stelle erwartet? 
 
 ```{r geom_point_n_pieces_bericht_mittelwertsd, exercise = TRUE}
 # Visualisierung der Verteilung mit Mittelwert und Standardabweichung
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
   ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen
   # Mittelwert hinzufügen
-  ggplot2::geom_point(data = community %>% 
+  geom_point(data = community %>% 
       # Berechnung der Mittelwerte pro Kontinent
       dplyr::group_by(continent) %>% 
       dplyr::summarise(mean = mean(n_pieces)), 
       # Zuordnung der Mittelwerte zu der gewünschten Darstellungsform
       mapping = aes(x = continent, y = mean), 
       size = 3, color = "#366978", shape = 17) + 
-  # Standardabweichung hinzufügen
-  ggplot2::geom_errorbar(data = community %>%
-      # Berechnung der Mittelwerte und Standardabweichung pro Kontinent
-      dplyr::group_by(continent) %>%
-      dplyr::summarise(mean = mean(n_pieces), sd = sd(n_pieces)) %>%
-      dplyr::mutate(ymin = mean - sd, ymax = mean + sd),
-      # Zuordnung der Standardabweichung zu der gewünschten Darstellungsform
-      mapping = aes(x = continent, y = mean, ymin = ymin, ymax = ymax),
-      color = "darkred", width = 0.1) +
   labs(
     title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
     subtitle = "... unterscheidet sich nach Kontinent.",
@@ -309,18 +300,8 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
-  ),
-  question(
-    "Die Standardabweichung beschreibt die positive und negative Schwankung um den Mittelwert. Was irritiert Euch bei der Betrachtung der Graphik?",
-    answer("Die Standardabweichung ist auf den Kontinenten unterschiedlich groß."),
-    answer("In Afrika und Asien scheint die Standardabweichung sehr hoch zu sein.", correct = TRUE),
-    answer("Die Anzahl an Plastikstücken kann nicht negativ werden.", correct = TRUE),
-    correct = "Richtig! Deshalb sollten wir hier die Daten auf Ausreißer untersuchen und ein Koordinatensystem mit natürlichen Nullpunkt nutzen.",
-    incorrect = "Leider falsch: Die Standardabweichungen können über verschiedenen Kategorien schwanken, bei sehr hohen Werten kann dies aber auch Ausreißern (und nicht nur einer hohen Variation) geschuldet sein. Auch existiert für die Anzahl der Plastikstücke ein natürlicher Nullpunkt. Es können nicht -3 Plastikstücke gesammelt werden.",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen",
-    random_answer_order = TRUE
-  ))
+    )
+  )
 ```
 
 #### Häufige Fehler bei der Betrachtung von statistischen Kennzahlen
