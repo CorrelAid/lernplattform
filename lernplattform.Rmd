@@ -44,6 +44,8 @@ tutorial_options(exercise.timelimit = 30)
 ### Daten laden
 data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+
 ### Community Datensatz laden
 community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
 
