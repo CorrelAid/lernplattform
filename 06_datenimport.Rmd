@@ -341,9 +341,9 @@ Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure 
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
 ### Und jetzt Ihr
-Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige [RMD 06_Datenimport](https://correlcloud.org/index.php/s/NjX2HNSeMmGtFD2){target="_blank"}:
+Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige [RMD 06_Datenimport](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}:
 
-1. Ladet [hier](https://correlcloud.org/index.php/s/NjX2HNSeMmGtFD2){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei mit diesem Code **lokal zu laden**.
+1. Ladet [hier](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG{target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei mit diesem Code **lokal zu laden**.
 2. Ladet den "Plastics"-Datensatz über einen [**Hyperlink**](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
 3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
 4. In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um. 
