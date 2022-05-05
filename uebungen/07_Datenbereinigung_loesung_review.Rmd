@@ -21,7 +21,7 @@ Als nächstes ladet Ihr den Datensatz `plastics`, den Ihr inzwischen schon gut k
 
 ```{r datenimport}
 ### Daten laden
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
 
@@ -32,14 +32,16 @@ Filtert die Daten zuerst:
 
 - keine 'EMPTY'-Werte für country
 - kein 'Grand Total' für parent_company
+- nur das Jahr 2019
 
-Speichert die gefilterten Daten in plastics_processed.
+Speichert die gefilterten Daten in einem R-Objekt namens "plastics_processed".
   
 ```{r filtern}
 plastics_processed <- plastics %>%
   dplyr::filter(
     country != "EMPTY",
-    parent_company != "Grand Total"
+    parent_company != "Grand Total",
+    year = 2019
     )
 ```
 
@@ -55,7 +57,7 @@ Passt die Länderbezeichnungen nun an:
 
 - Großbritannien soll mit *United Kingdom* bezeichnet werden, 
 - die USA sollen mit *United States* benannt werden
-- und Ecuador (und auch alle anderen Bezeichnungen) sollen nicht im upper case geschrieben sein. 
+- und die Ländernamen sollen mit einem Großbuchstaben beginnen, sonst aber klein geschrieben werden.
 
 Hinweis: Schaut Euch dafür die Hilfe zu den Funktionen `?stringr::str_replace()` und `?stringr::str_to_title()` einmal an.
 
@@ -91,19 +93,10 @@ plastics_processed <- plastics_processed %>%
                                       continent == "Oceania" ~ "Ozeanien"),
          countrycode = countrycode::countrycode(country, 
                                                 origin = "country.name", 
-                                                destination = "iso3c"),
+                                                destination = "iso2c"),
          country = countrycode::countrycode(country,
                                             origin = "country.name",
                                             destination = "country.name.de"),
-         )
-```
-
-Leider hat das jetzt nicht für alle Länder und Kontinente wie erhofft funktioniert, codiert deshalb alle NA's in den Variablen `countrycode` und `continent` um und bezeichnet diese mit *Unknown*.
-
-```{r countrycode_na}
-plastics_processed <- plastics_processed %>%
-  mutate(continent = tidyr::replace_na(continent, "Unknown"),
-         countrycode = tidyr::replace_na(countrycode, "Unknown")
          )
 ```
 
@@ -115,8 +108,6 @@ Der erste Datensatz soll der Community-Datensatz für 2019 nach Ländern sein. F
 ```{r community dataset}
 # Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
 community19_by_country <- plastics_processed %>% 
-  # ...filtert den Datensatz auf das Jahr 2019...
-  dplyr::filter(year == 2019) %>% 
   # ...gruppiert den Datensatz nach Kontinent und Land...
   dplyr::group_by(continent, country) %>% 
   # ...und berechnet noch zusammenfassende Statistiken...
@@ -134,8 +125,6 @@ So schnell und einfach habt Ihr mal eben einen neuen Datensatz erstellt, deshalb
 ```{r}
 # Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
 plastics19_by_country_and_company <- plastics_processed %>%
-  # ...filtert den Datensatz auf das Jahr 2019...
-  filter(year == 2019) %>% 
   # ...verändert die Form Eures Datensatz zu einem langen Format 
   # (Spalten hdpe, ldpe, o, pet, pp, ps, pvc)...
   tidyr::pivot_longer(
