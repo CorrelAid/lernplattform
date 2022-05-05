@@ -33,6 +33,7 @@ library(ggplot2)
 library(dplyr)
 library(janitor)
 library(countrycode)
+library(beeswarm)
 ```
 
 # Schritt 2: Daten laden
