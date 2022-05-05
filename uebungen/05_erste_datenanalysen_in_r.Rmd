@@ -33,6 +33,7 @@ library(beeswarm)
 ```
 
 # Schritt 2: Daten laden
+Speichert die Datensätze von dem Datenordner der CorrelCloud im Ordner "daten" ab, der auf einer Ebene mit diesem RMarkdown abliegt.
 ```{r daten_laden}
 ### Community Datensatz laden
 community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
