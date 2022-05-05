@@ -246,7 +246,7 @@ Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vor
 # Ihr nehmt Euren Datensatz,...
 community <- plastics_processed %>% 
   # ..gruppiert die Beobachtungen pro Land
-  dplyr::group_by(continent, country) %>% # Pro Kontinent und Land gruppieren
+  dplyr::group_by(continent, country, countrycode) %>% # Pro Kontinent und Land gruppieren
   # ..entscheidet, wie die anderen Variablen zusammengefasst werden sollen
   dplyr::summarize(
     n_pieces = sum(grand_total, na.rm = TRUE), # Summe
@@ -322,6 +322,7 @@ audit <- plastics_processed %>%
   dplyr::select( # Spalten auswählen
     continent,
     country,
+    countrycode,
     parent_company,
     plastic_type,
     n_pieces
@@ -483,12 +484,12 @@ Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt 
 
 ```
 
-Den Datensatz `wb_areas` wollt Ihr nun mit dem Datensatz `plastics_processed`, den Ihr eben bereinigt habt, zusammenfügen. Um die Datensätze zusammenzuführen, braucht Ihr eine **gemeinsame Variable**, anhand der R die Länder einander zuordnen kann. Da der ausgeschriebene Ländername teilweise unterschiedlich sein kann, nutzen wir die **Country Codes**. Da die Variable auch den **gleichen Namen** in beiden Datensätzen haben sollte, benennt Ihr die Variablen im Datensatz `wb_areas` nun um und löscht die Variablen `country` und `year`:
+Den Datensatz `wb_areas` wollt Ihr nun mit dem Datensatz `plastics_processed` zusammenfügen. Um die Datensätze zusammenzuführen, braucht Ihr eine **gemeinsame Variable**, anhand der R die Länder einander zuordnen kann. Die Variable muss den **gleichen Namen** in beiden Datensätzen haben und die Kodierung (hier ISO2C) muss übereinstimmen. Da Ländernamen oft unterschiedlich genutzt werden, fokussieren wir uns auf die **Country Codes**:
 
 ``` {r 07wb_clean, exercise = TRUE}
 # Umbennung der Spalten
 wb_areas %>% 
-  dplyr::select(country_code = 'iso2c',
+  dplyr::select(countrycode = 'iso2c',
                 protected_area = 'ER.PTD.TOTL.ZS')
 ```
 

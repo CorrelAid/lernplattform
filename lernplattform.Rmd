@@ -63,7 +63,7 @@ wb_areas <- WDI::WDI(
 ) 
 
 wb_processed <- wb_areas %>%
-  dplyr::select(country_code = 'iso2c',
+  dplyr::select(countrycode = 'iso2c',
                 protected_area = 'ER.PTD.TOTL.ZS')
 
 # Einlesen der Shapefiles

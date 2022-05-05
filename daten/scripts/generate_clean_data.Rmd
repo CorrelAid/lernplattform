@@ -57,7 +57,7 @@ plastics_processed <- data_raw %>%
 ```{r reshape-data}
 # Community mit n_pieces, n_volunteers und n_events
 community19_by_country <- plastics_processed %>% 
-  dplyr::group_by(continent, country) %>% # Pro Kontinent und Land gruppieren
+  dplyr::group_by(continent, country, countrycode) %>% # Pro Kontinent und Land gruppieren
   dplyr::summarize( # Zusammenfassung der Gruppierung bestimmen
     n_pieces = sum(grand_total, na.rm = TRUE), # Summe
     n_volunteers = unique(volunteers), # Einzigartige Werte
@@ -78,6 +78,7 @@ plastics19_by_country_and_company <- plastics_processed %>%
   dplyr::select( # Spalten auswählen
     continent,
     country,
+    countrycode,
     parent_company,
     plastic_type,
     n_pieces
