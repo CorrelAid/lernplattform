@@ -44,30 +44,14 @@ tutorial_options(exercise.timelimit = 30)
 ### Daten laden
 data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
-plastics_2019 <- plastics %>% dplyr::filter(year == "2019") 
-plastics_2020 <- plastics %>% dplyr::filter(year == "2020") 
-plastics_reduced <- plastics_2019 %>% dplyr::select(-grand_total)
-reduced_2019 <- plastics_2019 %>%
-  dplyr::filter(parent_company != "Grand Total" & country != "EMPTY") %>%
-  dplyr::group_by(country) %>%
-  dplyr::summarize(grand_total = sum(grand_total),
-                   num_events = mean(num_events),
-                   volunteers = mean(volunteers))
-reduced_2020 <- plastics_2020 %>%
-  dplyr::filter(parent_company != "Grand Total" & country != "EMPTY") %>%
-  dplyr::group_by(country) %>%
-  dplyr::summarize(grand_total = sum(grand_total),
-                   num_events = mean(num_events),
-                   volunteers = mean(volunteers))
-data_2019 <- reduced_2019
-data_2019$country_code <- countrycode::countrycode(data_2019$country, origin = 'country.name', destination = 'iso2c')
+### Bereinigten Datensatz laden
+plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv')
 
 ### Community Datensatz laden
-community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
+community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv')
 
 ### Audit Datensatz laden
-audit <- rio::import(here::here('daten/bffp2019_audit_by_country_and_company.csv'))
+audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
 
 # Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
@@ -78,7 +62,7 @@ wb_areas <- WDI::WDI(
   language = "en" #Sprachauswahl
 ) 
 
-data_wb <- wb_areas %>%
+wb_processed <- wb_areas %>%
   dplyr::select(country_code = 'iso2c',
                 protected_area = 'ER.PTD.TOTL.ZS')
 

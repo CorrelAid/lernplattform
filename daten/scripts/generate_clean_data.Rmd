@@ -15,17 +15,18 @@ pacman::p_load(
 ```
 
 ```{r import-data}
-plastics_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
 ```{r process-data}
-plastics_processed <- plastics_raw %>%
-  # drop empty countries
+plastics_processed <- data_raw %>%
+  # Unbekannte Länder, Summenzeilen und 2020 aussortieren
   dplyr::filter(
     country != "EMPTY",
-    parent_company != "Grand Total"
+    parent_company != "Grand Total",
+    year == 2019
     ) %>%
-  # clean country names
+  # Länder bereinigen
   dplyr::mutate(
     country =
       dplyr::case_when(
@@ -33,9 +34,9 @@ plastics_processed <- plastics_raw %>%
         country == "United States of America" ~ "United States",
         TRUE ~ country
       ),
-    # Strings to title um z.B.: ECUADOR etc case ändern
-    country = str_to_title(country),
-    #Continent und Country Code anspielen
+    # Strings to title um z.B.: ECUADOR zu ändern
+    country = stringr::str_to_title(country),
+    # Kontinent und Land übersetzen
     continent = countrycode::countrycode(country,
                                          origin = "country.name",
                                          destination = "continent"),
@@ -46,40 +47,35 @@ plastics_processed <- plastics_raw %>%
                                  continent == "Oceania" ~ "Ozeanien"),
     countrycode = countrycode::countrycode(country,
                                            origin = "country.name",
-                                           destination = "iso3c"),
+                                           destination = "iso2c"),
     country = countrycode::countrycode(country,
                                            origin = "country.name",
-                                           destination = "country.name.de"),
-    # Replace NA's
-    continent = tidyr::replace_na(continent, "Unknown"),
-    countrycode = tidyr::replace_na(countrycode, "Unknown")
+                                           destination = "country.name.de")
     ) 
 ```
 
 ```{r reshape-data}
 # Community mit n_pieces, n_volunteers und n_events
 community19_by_country <- plastics_processed %>% 
-  dplyr::filter(year == 2019) %>% 
-  dplyr::group_by(continent, country) %>% 
-  dplyr::summarize(
-    n_pieces = sum(grand_total, na.rm = TRUE),
-    n_volunteers = unique(volunteers),
-    n_events = unique(num_events)
+  dplyr::group_by(continent, country) %>% # Pro Kontinent und Land gruppieren
+  dplyr::summarize( # Zusammenfassung der Gruppierung bestimmen
+    n_pieces = sum(grand_total, na.rm = TRUE), # Summe
+    n_volunteers = unique(volunteers), # Einzigartige Werte
+    n_events = unique(num_events) # Einzigartige Werte
   )
 
 # Plastics mit continent, country, parent_company, plastic_type, n_pieces
 plastics19_by_country_and_company <- plastics_processed %>%
-  filter(year == 2019) %>% 
-  tidyr::pivot_longer(
+  tidyr::pivot_longer( # Daten in langes Format umwandeln (neue Spalte zu Plastiktypen)
     cols = c(hdpe, ldpe, o, pet, pp, ps, pvc),
     names_to = "plastic_type",
     values_to = "n_pieces"
     ) %>%
-  dplyr::mutate(dplyr::across(
+  dplyr::mutate(dplyr::across( # Zu Faktor konvertieren
     .cols = c(country, continent, year, plastic_type),
     .fns = as_factor
     )) %>%
-  dplyr::select(
+  dplyr::select( # Spalten auswählen
     continent,
     country,
     parent_company,

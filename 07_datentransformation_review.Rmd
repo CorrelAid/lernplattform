@@ -36,12 +36,18 @@ Sehr wahrscheinlich werdet Ihr vor dem Problem stehen, dass Ihr Daten in **mehre
 - `dplyr::xxxx_join` hilft Euch, wenn Ihr zwei Datensätze habt mit den gleichen oder zumindest sich **überschneidenden Beobachtungen** und Ihr die Variablen in einem Datensatz haben wollt.
 - `dplyr::bind_rows` ist nützlich für Euch, wenn Ihr **Zeilen an einen Datensatz anhängen** wollt, d.h. weitere Beobachtungen mit den gleichen Variablen hinzufügen wollt.
 
-### Interaktive Übung
-
-Zuerst nochmal eine kleine Wiederholung: 
-
+### Quiz 
 ```{r 07quiz_datenbereinigung1}
 quiz(caption = NULL,
+  question("Was macht einen Datensatz tidy?",
+    answer("Jede Variable hat eine eigene Spalte", correct = TRUE),
+    answer("Jede Beobachtung hat eine eigene Zeile", correct = TRUE),
+    answer("Jeder Wert hat eine eigene Zelle", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
   question("Welche dieser Packages sind Teil des Tidyverse?",
     answer("dplyr", correct = TRUE),
     answer("shiny"),
@@ -56,22 +62,15 @@ quiz(caption = NULL,
 )
 ```
 
-#### Datenimport
 
-Zuerst laden wir - wie immer- unseren "Plastics"-Datensatz - das kennt Ihr ja bereits schon! Wie Ihr seht, verwenden wir hier das `readr` Package, welches auch ein Teil des `tidyverse` ist:
+### Interaktive Übung
 
-``` {r 07load_data, exercise = TRUE}
-# Laden des Datensatzes
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
-
-```
-
-#### Die Pipe `%>%`
+#### Wiederholung: Die Pipe `%>%`
 Bei der ersten Einführung in R habt Ihr Euch die Funktion `nrow()` angeschaut, mit der Ihr herausfinden könnt, wie viele Zeilen ein Datensatz hat. Damals habt Ihr das mit `nrow(plastics)` gemacht, also `base R`, in der Zwischenzeit habt Ihr aber auch die **Pipe (%>%)** aus dem `tidyverse` kennengelernt. So könnten wir anstatt mit `ncol(plastics)` mit dem Pipe-Operator die Anzahl an Spalten bestimmen:
 
 ``` {r 07pipebeispiel, exercise = TRUE}
 # Berechnung der Spaltenanzahl
-plastics %>%
+data_raw %>%
   ncol()
 ```
 
@@ -82,7 +81,7 @@ Nutzt nun die Pipe, um Euch die Anzahl der Beobachtungen (`nrow()`) im Datensatz
 
 ```{r exercise_07pipe-solution}
 # Berechnung der Zeilenanzahl
-plastics %>%
+data_raw %>%
   nrow()
 ```
 
@@ -90,253 +89,290 @@ plastics %>%
 grade_this_code()
 ```
 
-```{r 07quiz_datenbereinigung2}
-quiz(caption = NULL,
-  question("Wie viele Zeilen hat Euer Datensatz plastics?",
-    answer("14"),
-    answer("13380", correct = TRUE),
-    answer("15050"),
-    answer("9876"),
-    correct = "Gut gemacht!",
-    incorrect = "Das ist leider nicht ganz richtig. Probiert es doch mal mit plastics %>% nrow().",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  )
-)
+Die Pipe wird Euch in dieser Lektion überall begegnen. So bleibt die langwidrige Datenbereinigung nämlich schön übersichtlich.
+
+#### Import der Rohdaten
+Zuerst laden wir - wie immer - den Datensatz. Das kennt Ihr ja bereits! Hier ziehen wir uns über den Hyperlink einen ziemlich unordentlichen Rohdatensatz, aus dem wir gemeinsam zwei bereinigte Datentabellen ("Community" und "Audit") generieren.
+
+``` {r 07load_data, exercise = TRUE}
+# Laden des Datensatzes
+data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
-#### Die Funktion `dplyr::arrange`
+#### Bereinigungsschritte definieren
+Nun überlegen wir uns, welche Datensätze am Ende des Bereinigungsprozesses existieren sollen und wie wir dorthin kommen.
 
-Um Euch einen Überblick über die Daten zu verschaffen, führt folgenden Code aus. Die Funktion `dplyr::arrange` **sortiert** dabei die Werte in der ausgewählten Spalte.
+Ziel - Zwei Datensätze:
+  a. Community (2019): 
+    - Eine Zeile = Ein Land
+    - Variablen: Kontinent, Land, Anzahl Plastikstücke, Events und Freiwillige
+  b. Audit (2019):
+    - Eine Zeile = Eine einzigartige Kombination aus Hersteller und Plastiktyp pro Land
+    - Variablen: Kontinent, Land, Hersteller, Anzahl Plastikstücke
 
-``` {r 07arrange_data, exercise = TRUE}
-# Ihr nehmt Euren Datensatz...
-plastics %>%
-  # ...und sortiert die Werte absteigend!
-  dplyr::arrange(desc(grand_total))
-```
-
-```{r 07quiz_datenbereinigung3}
-quiz(caption = NULL,
-  question("In welchem Land wurden die meisten Plastikstücke gesammelt?",
-    answer("United States of America"),
-    answer("Argentina"),
-    answer("Taiwan_ Republic of China (ROC)", correct = TRUE),
-    correct = "Gut gemacht!",
-    incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  )
-)
-```
+1. Zeilen, in denen das Land "EMPTY" ist, Sammelzeilen und Beobachtungen aus dem Jahr 2020 aussortieren.
+2. Ländernamen bereinigen und übersetzen.
+3. Entsprechende Variablen auswählen und ggf. Datensatz umformen.
 
 #### Die Funktion `dplyr::filter`
-Ihr das `dplyr` Package auch zum **Filtern von Zeilen bzw. Beobachtungen** verwenden - so sind oben beispielsweise noch Einträge, in denen das Land "EMPTY" ist, vorhanden. Außerdem wollte Ihr nur die Gesamtbeträge betrachten. Mit der Funktion `dplyr::filter` könnt Ihr einen Datensatz unterteilen, wobei die Zeilen beibehalten werden, die die Bedingung(en) erfüllen, die Ihr definiert. Im Kapitel "Einführung in (R)Studio" im Exkurs "Syntax R" könnt Ihr nachschauen, wie Ihr die Bedingungen für die Filterfunktion definieren könnt.
+Für die Analyse des Datensatzes planen wir einen **Ländervergleich** und sortieren deshalb Beobachtungen aus, für die das Land nicht hinterlegt wurde. Es handelt sich hierbei vermutlich um ein einziges Land, da die Anzahl an Freiwilligen und Events über alle Zeilen konstant ist. Daneben sortieren wir Summenzeilen aus, die unsere Ergebnisse verfälschen würden, und schließen 2020 auf Grund der COVID-19-Pandemie aus. Zum **Filtern von Zeilen bzw. Beobachtungen** nutzen wir die `dplyr::filter`-Funktion, wobei die Zeilen beibehalten werden, die die Bedingung(en) erfüllen, die Ihr definiert. Im Kapitel "Einführung in (R)Studio" im Exkurs "Syntax R" könnt Ihr nachschauen, wie Ihr die Bedingungen für die Filterfunktion definieren könnt.
 
 ``` {r 07overview_data, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
-plastics %>%
+data_raw %>%
   # ..filtert "EMPTY" und "Grand Total" heraus
   dplyr::filter(country != "EMPTY",
-                parent_company == "Grand Total") %>%
-  # ...und sortiert die Werte absteigend!
-  dplyr::arrange(desc(grand_total))
+                parent_company != "Grand Total")
 ```
 
-Angenommen Ihr möchtet nun nur die Daten aus dem Jahr 2019. Führt diesen Code aus, sodass Euer neuer Datensatz nur Daten aus 2019 enthält:
-
-``` {r 07filter_data, exercise = TRUE}
-# Erstellung des Datensatzes für 2019
-plastics_2019 <- plastics %>%
-  dplyr::filter(year == "2019") 
-```
-
-Jetzt seid Ihr dran! Erstellt aus `plastics` nun noch einen Datensatz `plastics_2020`, der nur die Daten aus dem Jahr 2020 enthält: 
+Angenommen Ihr möchtet nun nur die Daten aus dem Jahr 2019. Filtert den Datensatz so, dass er nur die Daten aus dem Jahr 2019 enthält: 
 
 ``` {r exercise_07filter_data_exercise, exercise = TRUE}
-# Hier Euer Code!
-
+# Ihr nehmt Euren Datensatz...
+data_raw %>%
+  # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
+  dplyr::filter(country != "EMPTY",
+                parent_company != "Grand Total", 
+                # Hier Euer Code! 
+                )
 ```
 
 ```{r exercise_07filter_data_exercise-solution}
-# Erstellung des Datensatzes für 2020
-plastics_2020 <- plastics %>%
-  dplyr::filter(year == "2020") 
+# Ihr nehmt Euren Datensatz...
+data_raw %>%
+  # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
+  dplyr::filter(country != "EMPTY",
+                parent_company != "Grand Total", 
+                year == 2019 
+                )
 ```
 
 ```{r exercise_07filter_data_exercise-check}
 grade_this_code()
 ```
-
-Kleine Anmerkung: Wie Euch bestimmt aufgefallen ist, sind die Jahreszahlen beim Filtern in Anführungszeichen geschrieben. Hier kommt es auf den Datentyp an, ob Ihr Anführungszeichen braucht oder nicht - in diesem Fall ist die Variable `plastics$year` sogar numerisch, die Anführungszeichen damit gar nicht notwendig. Hier aber dafür nochmal eine kleine Übersicht über die Datentypen, die es in R gibt: 
-
-- character: `apfel`, `wort`
-- numeric: `2`, `15.5`
-- integer: `2L` (das L teilt R nur mit, die 2 als Integer zu speichern)
-- logical: `True`, `False`
-- complex: `2+3i`
-
-#### Die Funktion `dplyr::select`
-
-Neben Zeilen bzw. Beobachtungen könnt Ihr aber natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `select` wieder weiter. Mit `select` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `plastics_2019`-Datensatz:
-
-``` {r 07select_data1, exercise = TRUE}
-# Spalte "grand total" NICHT auswählen
-plastics_reduced <- plastics_2019 %>%
-  dplyr::select(-grand_total)
-```
-
-Kleine Anmerkung: Natürlich könnt Ihr auch mehere Variablen gleichzeitig aus dem Datensatz entfernen, dafür könnt Ihr einfach `-c(variable1, variable2)` verwenden!
-
-Führt den folgenden Code aus, um Euch alle im Datensatz enthaltenen Variablen anzeigen zu lassen. Wie Ihr seht: `grand_total` ist nicht mehr enthalten!
-
-``` {r 07select_data2, exercise = TRUE}
-# Spaltenbezeichnungen anzeigen lassen
-plastics_reduced %>%
-  names()
-```
+*Anmerkung: Wenn Ihr sicher seid, dass nur 2019 und 2020 enthalten sind, könnt Ihr auch mit `year != 2020` filtern.*
 
 #### Die Funktion `dplyr::mutate`
+Nun sollten wir die Variable `country` (zu dt. Land) bereinigen. Wie so oft sind die Bezeichnungen für Großbritannien und die USA nicht standardisiert und die Groß- und Kleinschreibung ist vollkommen durcheinander geraten. Außerdem möchten wir die deutschen Bezeichnungen nutzen und den Kontinent ergänzen. Mit `dplyr::case_when()`können wir einen bestimmten Wert in einen anderen Wert transformieren (WENN-DANN), mit `stringr::str_to_title()` wird nur noch der Anfangsbuchstabe großgeschrieben und mit dem Package `countrycode` können wir Ländernamen in verschiedene Sprachen übersetzen. Welche Funktionen Ihr für Eure Bereinigungsschritte braucht, hängt immer vom Datensatz ab. Mit etwas mehr Erfahrung und einer Googlerecherche lassen sich für die meisten Herausforderungen tolle Hilfsmittel finden!
 
-Wie Ihr vielleicht schon wisst, ist die Variable `grand_total` einfach nur die Summe an Plastik, die sich aus den anderen Plastik-Kategorien im Datensatz zusammensetzt. Deshalb könnt Ihr die eben gelöschte **Variable** wieder leicht in Euren Datensatz **einfügen**: 
+De Code ist für Euch schon geschrieben. Könnt Ihr die fehlenden Funktionen und Variablennamen an Stelle der ??? ergänzen?
 
-``` {r 07mutate1, exercise = TRUE}
-# Ihr nehmt Euren Datensatz,...
-plastics_reduced %>%
-  # ...erstellt die neue Variable,...
-  dplyr::mutate(grand_total = hdpe + ldpe + o + pet + pp + ps + pvc
-                # ...wählt aus, wo diese im Datensatz eingefügt werden soll...
-                , .after = pvc) %>%
-  # ...und lasst Euch die ersten Zeilen des Datensatzes einmal anzeigen - passt!
-  head()
-```
-
-Natürlich kann die neue Variable auch aus anderen Variablen erstellt werden, die dann direkt aus dem Datensatz entfernt werden:
-
-``` {r 07mutate2, exercise = TRUE}
-# Ihr nehmt Euren Datensatz,...
-plastics_reduced %>%
-  # ...erstellt die neue Variable,...
-  dplyr::mutate(grand_total = hdpe + ldpe + o + pet + pp + ps + pvc,
-         # ...wählt aus, wo diese im Datensatz eingefügt werden soll,...
-         .after = pvc,
-         # ...gebt an, dass verwendete Variablen gelöscht werden können...
-         .keep = "unused"
-         ) %>%
-  # ...und lasst Euch die ersten Zeilen des Datensatzes einmal anzeigen - passt!
-  head()
-```
-
-Jetzt seid Ihr an der Reihe! Eben habt Ihr den Datensatz bereits gefiltert mit `dplyr::filter()`, jetzt sollt Ihr zusätzlich noch die Variable **country** bereinigen. Hierbei sollen die Länderbezeichungen vereinheitlicht werden, das geht über `dplyr::case_when()`, welches so funktioniert, dass WENN eine Variable einen bestimmten Wert hat, dieser DANN umbenannt wird (WENN ~ DANN). Der Teil des Codes ist hier bereits für Euch schon geschrieben, könnt Ihr noch die fehlenden Funktionen und Variablennamen an Stelle der ??? ergänzen?
-
-``` {r exercise_07mutate_data_exercise, exercise = TRUE}
+```{r exercise_07mutate_data_exercise, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
-plastics %>%
-  # ...filtert "EMPTY" und "Grand Total" heraus
-  dplyr::filter(country != "EMPTY",
-                parent_company == "Grand Total") %>%
-  # ...und bereinigt zwei der Länderbezeichnungen!
+data_raw %>%
+  # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
   dplyr::???(
-    ??? = dplyr::case_when(
+    country != "EMPTY",
+    parent_company != "Grand Total",
+    year == 2019
+    ) %>%
+  # ..bereinigt die Ländernamen, indem Ihr...
+  dplyr::???(
+    # ..die UK und USA umbenennt
+    country =
+      dplyr::case_when(
         country == "United Kingdom of Great Britain & Northern Ireland" ~ "United Kingdom",
         country == "United States of America" ~ "United States",
         TRUE ~ country
-      ))
+      ),
+    # ..nur den Anfangsbuchstaben der Länder großschreibt
+    ??? = stringr::str_to_title(country),
+    # ..Kontinent und Land übersetzt
+    continent = countrycode::countrycode(country,
+                                         origin = "country.name",
+                                         destination = "continent"),
+    ??? = dplyr::case_when(continent == "Africa" ~ "Afrika",
+                                 continent == "Americas" ~ "Amerika",
+                                 continent == "Asia" ~ "Asien",
+                                 continent == "Europe" ~ "Europa",
+                                 continent == "Oceania" ~ "Ozeanien"),
+    countrycode = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "iso3c"),
+    country = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "country.name.de")
+    ) 
 ```
 
 ```{r exercise_07mutate_data_exercise-solution}
 # Ihr nehmt Euren Datensatz...
-plastics %>%
-  # ...filtert "EMPTY" und "Grand Total" heraus
-  dplyr::filter(country != "EMPTY",
-                parent_company == "Grand Total") %>%
-  # ...und bereinigt zwei der Länderbezeichnungen!
+data_raw %>%
+  # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
+  dplyr::filter(
+    country != "EMPTY",
+    parent_company != "Grand Total",
+    year == 2019
+    ) %>%
+  # ..bereinigt die Ländernamen, indem Ihr...
   dplyr::mutate(
-    country = dplyr::case_when(
+    # ..die UK und USA umbenennt
+    country =
+      dplyr::case_when(
         country == "United Kingdom of Great Britain & Northern Ireland" ~ "United Kingdom",
         country == "United States of America" ~ "United States",
         TRUE ~ country
-      )) 
+      ),
+    # ..nur den Anfangsbuchstaben der Länder großschreibt
+    country = stringr::str_to_title(country),
+    # ..Kontinent und Land übersetzt
+    continent = countrycode::countrycode(country,
+                                         origin = "country.name",
+                                         destination = "continent"),
+    continent = dplyr::case_when(continent == "Africa" ~ "Afrika",
+                                 continent == "Americas" ~ "Amerika",
+                                 continent == "Asia" ~ "Asien",
+                                 continent == "Europe" ~ "Europa",
+                                 continent == "Oceania" ~ "Ozeanien"),
+    countrycode = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "iso3c"),
+    country = countrycode::countrycode(country,
+                                           origin = "country.name",
+                                           destination = "country.name.de")
+    ) 
 ```
 
 ```{r exercise_07mutate_data_exercise-check}
 grade_this_code()
 ```
 
+Der Hauptteil der Bereinigung ist nun abgeschlossen. Das Ergebnis steht Euch unter `plastics_processed` zur Verfügung. Wir können die Daten nun in zwei Tabellen aufteilen.
+
 #### Die Funktionen `dplyr::group_by` und `dplyr::summarize`
-Interessant ist es natürlich auch, die Daten nach Ländern zu **gruppieren**. Dabei helfen Euch die Funktionen `group_by` und `summarize` aus dem `dplyr`-Package. Das kommt Euch aus dem Kapitel  "Erste Datenanalysen mit R" vielleicht noch bekannt vor, dort habt Ihr nach Kontinenten gruppiert - hier jetzt einmal für die Länder, denn Übung macht den Meister! Bevor Ihr die Funktionen anwendet, müsst Ihr allerdings noch eine Kleinigkeit im Datensatz filtern - ist Euch aufgefallen, dass in der Spalte `parent_company` auch das Grand Total für die Länder angegeben ist? Dieses soll bei der Gruppierung ja nicht mitaggregiert werden, daher müsst Ihr diese zuerst filtern. Führt dazu die folgenden Codeblöcke aus:
+Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vorhanden sein soll, müssen wir die bereinigten Daten pro Land gruppieren und entscheiden, wie die anderen Variablen zusammengefasst werden sollen. Mit `dplyr::group_by` und `dplyr::summarize` steht uns die **Gruppierung und Zusammenfassung** der Variablen offen. Wir addieren die Plastikstücke und wählen für die Anzahl der Events und Freiwilligen genau einen Wert aus. Diese sind im Originaldatensatz mehrfach vorhanden.
 
 ``` {r 07group_by_summarize1, exercise = TRUE}
 # Ihr nehmt Euren Datensatz,...
-reduced_2019 <- plastics_2019 %>%
-  # ...löscht die Grand Total Zeilen und EMPTY-Zeilen,...
-  dplyr::filter(parent_company != "Grand Total" 
-                & country != "EMPTY") %>%
-  # ...gruppiert die Daten nach Ländern,...
-  dplyr::group_by(country) %>%
-  # ...und aggregiert die Daten für die einzelnen Länder
-  dplyr::summarize(grand_total = sum(grand_total),
-                   num_events = mean(num_events),
-                   volunteers = mean(volunteers))
-# Check:
-reduced_2019 %>% 
-  head()
+community <- plastics_processed %>% 
+  # ..gruppiert die Beobachtungen pro Land
+  dplyr::group_by(continent, country) %>% # Pro Kontinent und Land gruppieren
+  # ..entscheidet, wie die anderen Variablen zusammengefasst werden sollen
+  dplyr::summarize(
+    n_pieces = sum(grand_total, na.rm = TRUE), # Summe
+    n_volunteers = unique(volunteers), # Einzigartige Werte (da Duplikate)
+    n_events = unique(num_events) # Einzigartige Werte (da Duplikate)
+  )
 ```
 
-``` {r 07group_by_summarize2, exercise = TRUE}
-# Und das selbe für 2020:
-reduced_2020 <- plastics_2020 %>%
-  dplyr::filter(parent_company != "Grand Total"
-                & country != "EMPTY") %>%
-  dplyr::group_by(country) %>%
-  dplyr::summarize(grand_total = sum(grand_total),
-                   num_events = mean(num_events),
-                   volunteers = mean(volunteers))
+Berechnet mit den Funktionen `dplyr::group_by` und `dplyr::summarize` die Gesamtzahl der Plastikstücke, die pro Kontinent gesammelt wurden. Nutzt dafür den `community`-Datensatz.
+
+```{r 07group_by_summarize2, exercise = TRUE}
+# Hier Euer Code
 ```
 
-Nutzt den folgenden Codeblock, um herauszufinden, in welchem der beiden Jahre 2019 oder 2020 es die größere Anzahl an Plastik-Sammelaktionen gab. Nutzt dazu den Datensatz "Plastics" und setzt innerhalb der Summe das Argument `na.rm = TRUE`. <br>
-*Hinweis: Damit Euer Code als "richtig" bewertet wird, muss er mit der Musterlösung übereinstimmen - lasst Euch davon nicht aufhalten. Manchmal führen viele Wege nach Rom. Solange Ihr die Frage richtig beantwortet habt, seid Ihr gut aufgestellt!*
-
-``` {r 07groupby_data_exercise, exercise = TRUE}
-# Hier Euer Code!
-
+```{r 07group_by_summarize2-solution}
+# Ihr nehmt Euren Datensatz,...
+community %>%
+  # ..gruppiert die Beobachtungen pro Kontinent
+  dplyr::group_by(continent) %>%
+  #..entscheidet, wie die anderen Variablen zusammengefasst werden sollen
+  dplyr::summarise(n_pieces = sum(n_pieces, na.rm = TRUE)) # Summe
 ```
 
-```{r 07groupby_data_exercise-solution}
-# Gruppieren des Datensatzes für die Plastikanzahl
-plastics %>%
-  dplyr::filter(parent_company != "Grand Total"
-                & country != "EMPTY") %>%
-  dplyr::group_by(year) %>%
-  dplyr::summarize(grand_total = sum(grand_total, na.rm = TRUE)) # Ausschluss von NAs
-```
-
-```{r 07groupby_data_exercise-check}
+```{r 07group_by_summarize2-check}
 grade_this_code()
 ```
 
-```{r 07quiz_datenbereinigung4}
-quiz(caption = NULL,
-  question("In welchem Jahr gab es mehr Plastik-Sammelaktionen?",
-    answer("2019", correct = TRUE),
-    answer("2020"),
-    correct = "Gut gemacht!",
-    incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
+#### Pivoting
+Über die Bereinigung von Werten im Datensatz und das Filtern von Werten hinaus, könnt Ihr auch die Form des gesamten Datensatzes über `tidyr::pivot_longer` und `tidyr::pivot_wider` verändern. Um den `audit`-Datensatz zu bereinigen, müsst Ihr beispielsweise noch die Plastikarten so transformieren, dass sie als eine Variable im Datensatz vorkommen:
+
+``` {r 07pivot_wider, exercise = TRUE}
+# Ihr nehmt Euren Datensatz...
+plastics_processed %>%
+  #..pivotiert die Plastikarten
+  tidyr::pivot_longer(
+    cols = c(hdpe, ldpe, o, pet, pp, ps, pvc), # Betroffene Variablen
+    names_to = "plastic_type", # Zielspalte
+    values_to = "n_pieces" # Wertspalte
+    ) %>%
+  # ..und faktorisiert sicherheitshalber die anderen Variablen (nicht immer notwendig)
+  dplyr::mutate(dplyr::across( # Zu Faktor konvertieren
+    .cols = c(country, continent, year, plastic_type),
+    .fns = as_factor
+    ))
+```
+Mit `dyplr::pivot_wider` könnt Ihr den Datensatz auch wieder in das breite Format bringen. Wir empfehlen aber immer die lange Form.
+
+#### Die Funktion `dplyr::select`
+Neben Zeilen bzw. Beobachtungen könnt Ihr natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `select` weiter. Mit `select` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Mehrere Variablen können durch die Einbettung in einem Vektor `c(variable1, variable2, ...)` ausgewählt werden. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `data_raw`-Datensatz:
+
+``` {r 07select_data1, exercise = TRUE}
+# Spalte "grand total" NICHT auswählen
+data_raw %>%
+  dplyr::select(-grand_total)
+```
+Um den `audit`-Datensatz zu finalisieren, wählen wir in einem letzten Schritt die relevanten Variablen aus:
+
+```{r 07select_data2, exercise = TRUE}
+# Ihr nehmt Euren Datensatz...
+audit <- plastics_processed %>%
+  #..pivotiert die Plastikarten
+  tidyr::pivot_longer(
+    cols = c(hdpe, ldpe, o, pet, pp, ps, pvc), # Betroffene Variablen
+    names_to = "plastic_type", # Zielspalte
+    values_to = "n_pieces" # Wertspalte
+    ) %>%
+  # ..faktorisiert sicherheitshalber die anderen Variablen (nicht immer notwendig)
+  dplyr::mutate(dplyr::across( # Zu Faktor konvertieren
+    .cols = c(country, continent, year, plastic_type),
+    .fns = as_factor
+    ))
+  # und wählt die richtigen Spalten aus, da manche Variablen mit der Pivotierung nicht aussagekräftig sind.
+  dplyr::select( # Spalten auswählen
+    continent,
+    country,
+    parent_company,
+    plastic_type,
+    n_pieces
   )
-)
 ```
 
-#### Umgang mit NA's
-Nachdem Ihr nun Variablen und Beobachtungen auswählen und filtern könnt, schaut Ihr Euch nun den Umgang mit fehlenden Werten, also NA's (**n**ot **a**vailable) an. Versucht zuerst einmal, den Mittelwert für die Variable `grand_total` im Datensatz `reduced_2019` zu berechnen. (Hinweis: Für den Mittelwert habt Ihr die Funktion `mean()` kennengelernt.)
+Wir sind soweit: Die beiden bereinigten Datensätze stehen. Sind die enthaltenen Werte richtig? Wir machen einen Check und schauen uns für beide Datensätze einige Informationen an:
+
+```{r sanitycheck, exercise = TRUE}
+# Anzahl Plastikstücke
+sum(community$n_pieces, na.rm = TRUE) == sum(plastics_processed$grand_total)
+sum(audit$n_pieces, na.rm = TRUE) == sum(plastics_processed$grand_total)
+
+# Länder
+sort(unique(community$country)) == sort(unique(audit$country))
+```
+
+Check! Das habt Ihr wirklich gut gemacht!
+
+#### Die Funtkion `dplyr::arrange`
+Für die Bereinigung zwar oft nicht nützlich wohl aber für die Tranformation, z.B. um Ranglisten auszugeben, ist die `dplyr::arrange`-Funktion. Sie sortiert Datensätze für Euch. Wir interessieren uns für die Top10 der Firmen, deren Plastikverpackung gefunden wurde:
+
+```{r arrange, exercise = TRUE}
+# Ihr nehmt Euren Datensatz...
+audit %>%
+  # ..wählt relevante Spalten aus
+  dplyr::select(parent_company, n_pieces) %>%
+  # ..gruppiert pro Hersteller
+  dplyr::group_by(parent_company) %>%
+  # ..berechnet die Zusammenfassung (hier: Summe)
+  dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
+  # ..filtert unnütze Werte heraus
+  dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>%
+  # ..begrenzt die Anzahl auf 10
+  dplyr::slice_max(total_pieces, n = 10) %>%
+  # ..und sortiert die Werte absteigend
+  dplyr::arrange(desc(total_pieces))
+```
+Das gefundene Plastik kann Herstellern direkt zugeordnet werden: La Doo (4 Prozent) und Coca-Cola (2,7 Prozent). Vielleicht ist das etwas für die nächste Kampagne?
+
+Bevor Ihr in die Übung geht: Auf einige Themen sind wir hier nur am Rande eingegangen. Den Umgang mit NAs, die Umformung von Textdaten und das (in der `countrycode`-Funktion versteckte) Zusammenfügen von Datensätzen. Wenn Ihr Euch für eins dieser Themen interessiert, dann macht gerne einen der Exkurse.
+
+
+### Exkurs: Umgang mit NA's
+Nachdem Ihr nun Variablen und Beobachtungen auswählen und filtern könnt, schaut Ihr Euch nun den Umgang mit fehlenden Werten, also NA's (**n**ot **a**vailable) an. Versucht zuerst einmal, die Summe für die Variable `n_pieces` im Datensatz `community` zu berechnen.
 
 ``` {r 07mean_na1, exercise = TRUE}
-# Berechnung des Mittelwerts für 2019
-reduced_2019$grand_total %>%
-  mean()
+# Berechnung des Mittelwerts
+sum(community$n_pieces)
 ```
-Klappt! Im Datensatz `reduced_2019` sind keine NA's enthalten, die bei der Berechnung des Mittelwerts stören könnten. Versucht das gleiche jetzt mal für den `reduced_2020`-Datensatz in folgendem Codeblock:
+Klappt! Im Datensatz `community` sind keine NA's enthalten, die bei der Berechnung der Summe stören könnten. Versucht das gleiche jetzt mal für den `audit`-Datensatz in folgendem Codeblock:
 
 ``` {r exercise_07mean_na2, exercise = TRUE}
 # Hier Euer Code!
@@ -344,60 +380,53 @@ Klappt! Im Datensatz `reduced_2019` sind keine NA's enthalten, die bei der Berec
 ```
 
 ```{r exercise_07mean_na2-solution}
-# Berechnung des Mittelwerts für 2020
-reduced_2020$grand_total %>%
-  mean()
+# Berechnung des Mittelwerts
+sum(audit$n_pieces)
 ```
 
 ```{r exercise_07mean_na2-check}
 grade_this_code()
 ```
+
 Ups - Ihr erhaltet ein NA? R kann den Mittelwert hier nicht einfach berechnen, da in der Variable mehrere NA's enthalten sind. Versucht hier mal zu berechnen, wie viele NA's die Variable tatsächlich hat. 
 *Tipp: Experimentiert hier mal mit der Funktion `summary()`)!*
 
-``` {r 07mean_na3, exercise = TRUE}
+``` {r exercise_07mean_na3, exercise = TRUE}
 # Hier Euer Code!
 
 ```
 
-```{r 07quiz_datenbereinigung_na}
-quiz(caption = NULL,
-  question("Wie viele NA's hat die Variable grand_total im Datensatz reduced_2020?",
-    answer("1"),
-    answer("2"),
-    answer("3", correct = TRUE),
-    correct = "Gut gemacht!",
-    incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  )
-)
+``` {r exercise_07mean_na3-solution}
+# NAs bestimmen
+summary(audit)
+```
+``` {r exercise_07mean_na3-check}
+grade_this_code()
 ```
 
-Trotzdem wollt Ihr Euren Mittelwert ja berechnen - dafür könnt Ihr R explizit sagen, dass die **NA's bei der Berechnung ignoriert** werden sollen. Das funktioniert über das Argument `na.rm = TRUE`, das Ihr schon aus der vorherigen Übung kennt:
+Trotzdem wollt Ihr in solchen Fällen manchmal statistische Kennzahlen berechnen - dafür könnt Ihr R explizit sagen, dass die **NA's bei der Berechnung ignoriert** werden sollen. Das funktioniert über das Argument `na.rm = TRUE`, das Ihr schon aus der vorherigen Übung kennt:
 
 ``` {r 07mean_na4, exercise = TRUE}
 # Berechnung des Mittelwerts unter Ausschluss der NAs
-reduced_2020$grand_total %>%
-  mean(na.rm = TRUE)
+sum(audit$n_pieces, na.rm = TRUE)
 ```
+
 Perfekt, jetzt könnt Ihr R schon mitteilen, **NA's zu ignorieren**! Natürlich gibt es noch viele weitere Möglichkeiten, NA's in Datensätzen zu entdecken und zu filtern - versucht dafür mal den folgenden Codeblock zu verstehen: 
 
 ``` {r 07mean_na5, exercise = TRUE}
 # Anzahl an fehlenden Werten
-sum(is.na(reduced_2020$grand_total))
+na_count <- sum(is.na(audit$n_pieces))
 
 # Auflisten von Beobachtungen, die fehlende Werte haben
-reduced_2020[!complete.cases(reduced_2020), ]
-which(is.na(reduced_2020$grand_total))
+na_rows <- audit[!complete.cases(audit$n_pieces), ]
+na_rows <- which(is.na(audit$n_pieces))
 
 # Neuer Datensatz ohne fehlende Werte
-data_no_na <- na.omit(reduced_2020)
+new_df <- data_no_na <- na.omit(audit)
 ```
+**Achtung:** Nicht immer können fehlende Werte einfach so ausgeschlossen werden. Manchmal beeinträchtigt dieser Ausschluss die **Aussagekraft unserer Analysen**. Bei [Allison 2010](https://statisticalhorizons.com/wp-content/uploads/Allison_MissingData_Handbook.pdf){target="_blank"} findet Ihr eine gute Übersicht gängiger Herausforderungen und Lösungen. Unser Tipp: Schon bei der Datenerhebung ansetzen und während der Datenerhebung beständig auf genau solche Vorkommnisse prüfen, sodass Ihr rechtzeitig reagieren könnt.
 
-**Achtung:** Nicht immer können fehlende Werte einfach so ausgeschlossen werden. Manchmal beeinträchtigt dieser Ausschluss die **Aussagekraft unserer Analysen**. Bei [Allison 2010](https://statisticalhorizons.com/wp-content/uploads/Allison_MissingData_Handbook.pdf){target="_blank"} findet Ihr eine gute Übersicht gängiger Herausforderungen und Lösungen. Unser Tipp: Schon bei der Datenerhebung ansetzen und während der Datenerhebung beständig auf genau solche Vorkommnisse prüfen, sodass Ihr rechtzeitig reagieren könnt. 
-
-Häufig kommt es zudem vor, dass **NA's nicht als NA's codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** angegeben. Schaut deshalb immer ins **Codebuch** bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen mit einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`. Da in Eurem Plastik-Datensatz die Bereinigung schon stattgefunden hat und NA's bereits so codiert sind, hier ein anderer kleiner Beispieldatensatz:
+Häufig kommt es zudem vor, dass **NA's nicht als NA's codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** (oder wie bei uns mit etwas ganz anderem wie "EMPTY") angegeben. Schaut deshalb immer ins **Codebuch** bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen mit einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`. Da in Eurem Plastik-Datensatz die Bereinigung schon stattgefunden hat und NA's bereits so codiert sind, hier ein anderer kleiner Beispieldatensatz:
 
 ``` {r 07mean_na6, exercise = TRUE}
 # Erstellung eines Beispieldataframes mit NAs als "NA" und "-99"
@@ -416,56 +445,54 @@ df2 <- df %>%
 head(df2)
 ```
 
-#### Datensätze zusammenfügen
 
-Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt werden sollen. Letzte Woche habt Ihr bereits den Datensatz der Weltbank zu Naturschutzgebieten heruntergeladen. Das macht Ihr jetzt wieder: 
+### Exkurs: String Manipulation
+der Umgang mit **Text (eng. Strings)** ist etwas komplexer. In Eurem Beispiel haben wir die Namen der Länder verändert, unter anderem um die Kodierung des "United Kingdom of Great Britain & Northern Ireland" und den "United States of America" zu ermöglichen (es sind wirklich immer diese zwei...). Um diese Bezeichnungen zu verändern, habt Ihr die Funktion `dplyr::case_when()` und das `stringr`-Package mit der Funktion `str_replace` genutzt. Erstere haben wir im Rahmen einer Einzelfallentscheidung genutzt: Wir haben genau bestimmt, in welchen Fällen Wert A ("United Kingdom of Great Britain & Northern Ireland") durch Wert B ("United Kingdom") ersetzt werden soll. Letztere folgte dagegen einer Logik: Alle Ländernamen werden nun großgeschrieben und erspart uns damit viel Arbeit. Die Funktion kann einfach auf alle Fälle angewandt werden.
 
-```{r weltbank, exercise = TRUE}
-#install.packages("WDI")
-
-# Daten der World Bank mit R-Package ziehen
-wb_areas <- WDI::WDI(
-  country = "all", # Auswahl der Länder
-  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
-    start = 2018, # Auswahl Zeithorizont: Anfang
-  end = 2018, # Auswahl Zeithorizont: Ende
-  language = "en" # Sprachauswahl
-  ) 
+``` {r 07strings1, exercise = TRUE}
+# Lasst Euch alle Länder im Datensatz anzeigen...
+unique(data_raw$country)
 ```
 
-Verschafft euch zuerst nochmal einen kleinen Überblick über den Datensatz `wb_areas`: 
+In einigen Fällen ist es allerdings notwendig, dass die Textmanipulation einer ganz bestimmten Logik folgt. Dann könnt Ihr auch Regex (Regular Expressions) verwenden, um Strings zu manipulieren. Hier findet Ihr ein gutes [Cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/){target="_blank"} mit den wichtigsten Symbolen und ihrer Bedeutung. Wenn Ihr einen Regex testen wollt, dann könnt Ihr beispielsweise folgende [Website](https://regex101.com/){target="_blank"} nutzen. Zum Beispiel könnt Ihr mit Hilfe von Regex alle Klammern entfernen, die noch in den Firmennamen enthalten sind. Führt dazu folgenden Code aus und versucht den Regex zu verstehen: 
+
+``` {r 07strings2, exercise = TRUE}
+# Erste Möglichkeit: Ersetzen des gefundenen Strings durch '' mit str_replace
+data_raw %>%
+  mutate(parent_company = stringr::str_replace(parent_company,
+                                      '\\([^()]*\\)',
+                                      '')
+         ) %>%
+  .$parent_company
+
+# Zweite Möglichkeit: Löschen des gefundenen Strings mit str_remove
+data_raw %>%
+  mutate(parent_company = stringr::str_remove(parent_company,
+                                              '\\([^()]*\\)'
+                                              )
+         ) %>%
+  .$parent_company
+```
+
+
+### Exkurs: Datensätze zusammenfügen
+Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt werden sollen. Letzte Woche habt Ihr bereits den Datensatz der Weltbank zu Naturschutzgebieten (`wb_areas`) heruntergeladen. Verschafft Euch zuerst nochmal einen kleinen Überblick über den Datensatz `wb_areas`: 
 
 ``` {r 07gdppc, exercise = TRUE}
 # Hier Euer Code!
 
 ```
 
-Den Datensatz `wb_areas` wollt Ihr nun mit dem Datensatz `reduced_2019`, den Ihr eben bereinigt habt, zusammenfügen. Um die Datensätze zusammenzuführen, braucht Ihr eine **gemeinsame Variable**, anhand der R die Länder einander zuordnen kann. Da der ausgeschriebene Ländername teilweise unterschiedlich sein kann, fügt Ihr zum `reduced_2019`-Datensatz erst einmal die **Country Codes** hinzu. Da der Datensatz die Ländernamen enthält, können diese einfach mit der Funktion `countrycode::countrycode()` in die jeweiligen Zeilen injiziert werden.
-
-``` {r 07plastics_country, exercise = TRUE}
-# Zuerst legt Ihr Euch eine Kopie des Datensatzes an, der dann um die Variable ergänzt wird,...
-data_2019 <- reduced_2019
-# ...was mit Hilfe des countrycode-Packages sehr einfach funktioniert...
-data_2019$country_code <- countrycode::countrycode(data_2019$country, origin = 'country.name', destination = 'iso2c')
-# ...und zum Schluss das Überprüfen nicht vergessen!
-data_2019 %>% 
-  head()
-```
-
-Da die Variable auch den **gleichen Namen** in beiden Datensätzen haben sollte (dazu findet Ihr unten noch eine Anmerkung), benennt Ihr die Variablen im Datensatz `wb_areas` nun um und löscht die Variablen `country` und `year`:
+Den Datensatz `wb_areas` wollt Ihr nun mit dem Datensatz `plastics_processed`, den Ihr eben bereinigt habt, zusammenfügen. Um die Datensätze zusammenzuführen, braucht Ihr eine **gemeinsame Variable**, anhand der R die Länder einander zuordnen kann. Da der ausgeschriebene Ländername teilweise unterschiedlich sein kann, nutzen wir die **Country Codes**. Da die Variable auch den **gleichen Namen** in beiden Datensätzen haben sollte, benennt Ihr die Variablen im Datensatz `wb_areas` nun um und löscht die Variablen `country` und `year`:
 
 ``` {r 07wb_clean, exercise = TRUE}
 # Umbennung der Spalten
-data_wb <- wb_areas %>% 
+wb_areas %>% 
   dplyr::select(country_code = 'iso2c',
-                protected_area = 'ER.PTD.TOTL.ZS'
-                )
-# Erste fünf Zeilen anzeigen
-data_wb %>%
-  head()
+                protected_area = 'ER.PTD.TOTL.ZS')
 ```
 
-Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `data_2019` und `data_wb` vorhanden sind (hier führen viele Wege zum Ziel!):
+Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `plastics_processed` und `data_wb` vorhanden sind (hier führen viele Wege zum Ziel!):
 
 ``` {r 07nrow_ex, exercise = TRUE}
 # Hier Euer Code!
@@ -474,7 +501,7 @@ Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `
 
 ```{r 07quiz_datenbereinigung5}
 quiz(caption = NULL,
-  question("Wie viele Länder sind im data_wb-Datensatz?",
+  question("Wie viele Länder sind im Datensatz der World Bank enthalten?",
     answer("3"),
     answer("266", correct = TRUE),
     answer("51"),
@@ -489,7 +516,7 @@ quiz(caption = NULL,
 
 ```{r 07quiz_datenbereinigung6}
 quiz(caption = NULL,
-  question("Wie viele Länder sind im data_2019-Datensatz?",
+  question("Wie viele Länder sind im bereinigten Datensatz enthalten?",
     answer("51", correct = TRUE),
     answer("4"),
     answer("9296"),
@@ -514,9 +541,9 @@ Führt die folgenden Codeblöcke nacheinander aus und schaut Euch an, wie diese 
 
 ``` {r 07inner_join, exercise = TRUE}
 # Ihr nehmt Euren ersten Datensatz...
-data_2019 %>%
+plastics_processed %>%
   # ...führt den Join aus...
-  dplyr::inner_join(data_wb, by = "country_code") %>% 
+  dplyr::inner_join(wb_processed, by = "countrycode") %>% 
   # ...und lasst die ersten Zeilen anzeigen
   head()
 ```
@@ -563,81 +590,6 @@ quiz(caption = NULL,
 
 Kleine Anmerkung: Ihr könnt auch zwei Datensätze zusammenfügen, wenn die Variablen unterschiedlich benannt sind. In dem Fall sieht das `by`-Argument dann ein wenig anders aus, z.B. `by = c("a" = "b")`. Schaut dazu auch mal in die [Dokumentation der joins](https://dplyr.tidyverse.org/reference/mutate-joins.html){target="_blank"}!
 
-#### Pivoting
-Über die Bereinigung von Werten im Datensatz und das Filtern von Werten hinaus, könnt Ihr auch die Form des gesamten Datensatzes über `tidyr::pivot_longer` und `tidyr::pivot_wider` verändern. Wenn Ihr beispielsweise analysieren wollt, ob manche Firmen in mehreren Ländern und in welchem Umfang die Quelle des Plastiks sind, könnt Ihr den Datensatz folgendermaßen umformen: 
-
-``` {r 07pivot_wider, exercise = TRUE}
-# Ihr nehmt den Original-Datensatz vom Beginn...
-plastics %>% 
-  # ...filtert diesen auf die relevanten Werte...
-  dplyr::filter(parent_company != 'Grand Total'
-                & country != 'EMPTY') %>% 
-  # ...wählt die Variablen von Interesse... 
-  dplyr::select(c(country, parent_company, year, grand_total)) %>%
-  # ...und ändert das Format des Datensatz von lang zu weit!
-  tidyr::pivot_wider(names_from = parent_company, values_from = grand_total)
-```
-
-Umgekehrt könnt Ihr den Datensatz natürlich auch wieder in das ursprüngliche lange Format bringen: 
-``` {r 07pivot_longer, exercise = TRUE}
-# Zuerst bringt Ihr das Format des Datensatzes von lang zu weit...
-plastics %>% 
-  dplyr::filter(parent_company != 'Grand Total'
-                & country != 'EMPTY') %>% 
-  dplyr::select(c(country, parent_company, year, grand_total)) %>%
-  tidyr::pivot_wider(names_from = parent_company, values_from = grand_total) %>%
-  
-  # ...um es dann wieder von weit zu lang zu ändern!
-  tidyr::pivot_longer(!c(country, year), 
-                      names_to = 'parent_company', 
-                      values_to = 'grand_total') %>%
-  dplyr::filter(!is.na(grand_total))
-```
-
-
-#### Visualisierungen
-Zum Tidyverse gehört natürlich auch das `ggplot2`-Package, damit hattet ihr vor zwei Wochen bereits schicke Visualisierungen erstellt - mehr dazu lernt Ihr dann in den kommenden Wochen! 
-
-### Exkurs: String Manipulation
-Natürlich habt Ihr auch die Möglichkeit, **Text (eng. Strings)** zu verändern, in Eurem Beispiel könnte man die Namen der Länder verändern, mit dem Ziel die Daten zu bereinigen. Beispielsweise ist im Datensatz `reduced_2020` UK als "United Kingdom of Great Britain & Northern Ireland" eingetragen und die USA als "United States of America". Um diese Bezeichnungen zu verändern, habt Ihr vorhin bereits die Funktion `dplyr::case_when()` kurz kennengelernt. Darüber hinaus hat das `stringr`-Package aus dem Tidyverse die Funktion `str_replace`:
-
-``` {r 07strings1, exercise = TRUE}
-# Lasst Euch zuerst alle Länder im Datensatz anzeigen...
-reduced_2020$country %>%
-  unique()
-
-# ...verändert die entsprechenden Bezeichnungen...
-reduced_2020 %>%
-  mutate(country = str_replace(country, 
-                               'United Kingdom of Great Britain & Northern Ireland', 
-                               'UK'),
-         country = str_replace(country,
-                               'United States of America',
-                               'USA')
-         ) %>%
-  # ...und lasst euch davon wieder die Ländernamen anzeigen
-  .$country
-```
-
-Wenn es etwas komplizierter sein sollte, dann könnt Ihr auch Regex (Regular Expressions) verwenden, um Strings zu manipulieren. Hier findet Ihr ein gutes [Cheatsheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/){target="_blank"} mit den wichtigsten Symbolen und ihrer Bedeutung. Wenn Ihr einen Regex testen wollt, dann könnt Ihr beispielsweise folgende [Website](https://regex101.com/){target="_blank"} nutzen. Zum Beispiel könnt Ihr mit Hilfe von Regex alle Klammern entfernen, die noch in den Firmennamen enthalten sind. Führt dazu folgenden Code aus und versucht den Regex zu verstehen: 
-
-``` {r 07strings2, exercise = TRUE}
-# Erste Möglichkeit: Ersetzen des gefundenen Strings durch '' mit str_replace
-plastics %>%
-  mutate(parent_company = stringr::str_replace(parent_company,
-                                      '\\([^()]*\\)',
-                                      '')
-         ) %>%
-  .$parent_company
-
-# Zweite Möglichkeit: Löschen des gefundenen Strings mit str_remove
-plastics %>%
-  mutate(parent_company = stringr::str_remove(parent_company,
-                                              '\\([^()]*\\)'
-                                              )
-         ) %>%
-  .$parent_company
-```
   
 ### Und jetzt Ihr
 Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datenbereinigung**](https://correlcloud.org/index.php/s/NjX2HNSeMmGtFD2){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 

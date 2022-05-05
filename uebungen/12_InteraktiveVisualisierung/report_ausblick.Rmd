@@ -72,7 +72,6 @@ library(leaflet) # für die Karte
 
 ```{r datenimport, include = FALSE}
 # Schritt 2: bereits bereinigte Daten laden
-# TODO: link anpassen sobald auf main gemergt!
 raw_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv') # für den Einführungstext
 community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv')
 audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
@@ -133,7 +132,6 @@ Die Herausforderung, die Break Free From Plastic lösen möchte, ist eng verknü
 ```{r top10hersteller, include = FALSE}
 # Top Ten Hersteller berechnen
 top10_parentcompany <- audit %>%
-    dplyr::ungroup() %>% # Gruppierung aufheben um Operation zu ermöglichen
   dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
   dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
   dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
@@ -174,13 +172,9 @@ Insgesamt wurden auf **`r format_int(sum(community$n_events))` Events** mit durc
 overview_community <- community %>% # Bezug zum Datensatz
   group_by("Kontinent" = continent) %>% # Gruppierung pro Kontinent
   summarize( # Initialisierung der Berechnung
-    # Anzahl beteiligter Länder
     "Anzahl Länder" = n(),
-    # Anzahl Events
     "Anzahl Events" = sum(n_events),
-    # Teilnahmezahl der Freiwilligen
     "Anzahl Freiwilliger" = sum(n_volunteers),
-    # Anzahl Plastikstücke
     "Anzahl Plastikstücke" = sum(n_pieces))
 knitr::kable(overview_community, caption = "Übersicht über Events und Freiwillige")
 ```
