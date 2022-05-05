@@ -26,9 +26,9 @@
 - `dplyr::arrange`: **Sortierung** von Zeilen im Datensatz nach bestimmten Kriterien
 - `dplyr::filter`: **Auswahl von Zeile**n bzw. Beobachtungen nach bestimmten Kriterien
 - `dplyr::select`: **Auswahl von Spalten** bzw. Variablen
-- `dplyr::mutate`: **Erstellung neuer Spalten**/Variablen auf Basis bereits vorhandener Spalten/Variablen
+- `dplyr::mutate`: **Erstellung neuer Spalten/Variablen** auf Basis bereits vorhandener Spalten/Variablen bzw. **Veränderung von Variablen**
 - `dplyr::group_by`: **Gruppierung** von Beobachtungen 
-- `dplyr::summarize`: **Berechnung** von Kennwerten wie Mittelwerten etc.
+- `dplyr::summarise`: **Zusammenfassen** von Beobachtungen mit statistischen Kennzahlen
 
 #### Daten zusammenführen
 Sehr wahrscheinlich werdet Ihr vor dem Problem stehen, dass Ihr Daten in **mehreren Datensätzen** vorliegen habt. Beispielsweise einen Datensatz pro Jahr oder auch Datensätze zu unterschiedlichen Themenbereichen. In dem Fall braucht Ihr Methoden, um die Daten zusammenzuführen: 
@@ -48,14 +48,33 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Welche dieser Packages sind Teil des Tidyverse?",
-    answer("dplyr", correct = TRUE),
-    answer("shiny"),
-    answer("ggplot2", correct = TRUE),
-    answer("readr", correct = TRUE),
-    answer("haven"),
+  question("Was ist der Pipe-Operator (%>%)?",
+    answer("Eine Funktion", correct = TRUE),
+    answer("Ein Werkzeug zur Strukturierung von mehrfachen Operationen in R", correct = TRUE),
+    answer("Ein Werkzeug zur verbesserten Lesbarkeit von Code in R", correct = TRUE),
+    answer("Syntax des ggplot2-Packages"),
+    answer("Eine Besonderheit des dplyr-Packages", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Wie heißen die sechs dplyr-Verben?",
+    answer("arrange (sortieren)", correct = TRUE),
+    answer("filter (filtern)", correct = TRUE),
+    answer("select (auswählen)", correct = TRUE),
+    answer("mutate (verändern)", correct = TRUE),
+    answer("group (gruppieren)", correct = TRUE),
+    answer("summarise (zusammenfassen)", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Was passiert in einem Join?",
+    answer("Anhand einer gemeinsamen Variable wird eine Verbindung zwischen zwei unabhängigen Datensätzen hergestellt und die Datensätze so horizontal zusammengefügt", correct = TRUE),
+    answer("Beobachtungen zweier unabhängiger Datensätze werden anhand der gemeinsamen Variablen am Ende eines Datensatzes vertikal angehangen"),
+    incorrect = "Leider falsch: Das ist ein Bind.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
@@ -239,29 +258,29 @@ grade_this_code()
 
 Der Hauptteil der Bereinigung ist nun abgeschlossen. Das Ergebnis steht Euch unter `plastics_processed` zur Verfügung. Wir können die Daten nun in zwei Tabellen aufteilen.
 
-#### Die Funktionen `dplyr::group_by` und `dplyr::summarize`
-Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vorhanden sein soll, müssen wir die bereinigten Daten pro Land gruppieren und entscheiden, wie die anderen Variablen zusammengefasst werden sollen. Mit `dplyr::group_by` und `dplyr::summarize` steht uns die **Gruppierung und Zusammenfassung** der Variablen offen. Wir addieren die Plastikstücke und wählen für die Anzahl der Events und Freiwilligen genau einen Wert aus. Diese sind im Originaldatensatz mehrfach vorhanden.
+#### Die Funktionen `dplyr::group_by` und `dplyr::summarise`
+Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vorhanden sein soll, müssen wir die bereinigten Daten pro Land gruppieren und entscheiden, wie die anderen Variablen zusammengefasst werden sollen. Mit `dplyr::group_by` und `dplyr::summarise` steht uns die **Gruppierung und Zusammenfassung** der Variablen offen. Wir addieren die Plastikstücke und wählen für die Anzahl der Events und Freiwilligen genau einen Wert aus. Diese sind im Originaldatensatz mehrfach vorhanden.
 
-``` {r 07group_by_summarize1, exercise = TRUE}
+``` {r 07group_by_summarise1, exercise = TRUE}
 # Ihr nehmt Euren Datensatz,...
 community <- plastics_processed %>% 
   # ..gruppiert die Beobachtungen pro Land
   dplyr::group_by(continent, country, countrycode) %>% # Pro Kontinent und Land gruppieren
   # ..entscheidet, wie die anderen Variablen zusammengefasst werden sollen
-  dplyr::summarize(
+  dplyr::summarise(
     n_pieces = sum(grand_total, na.rm = TRUE), # Summe
     n_volunteers = unique(volunteers), # Einzigartige Werte (da Duplikate)
     n_events = unique(num_events) # Einzigartige Werte (da Duplikate)
   )
 ```
 
-Berechnet mit den Funktionen `dplyr::group_by` und `dplyr::summarize` die Gesamtzahl der Plastikstücke, die pro Kontinent gesammelt wurden. Nutzt dafür den `community`-Datensatz.
+Berechnet mit den Funktionen `dplyr::group_by` und `dplyr::summarise` die Gesamtzahl der Plastikstücke, die pro Kontinent gesammelt wurden. Nutzt dafür den `community`-Datensatz.
 
-```{r 07group_by_summarize2, exercise = TRUE}
+```{r 07group_by_summarise2, exercise = TRUE}
 # Hier Euer Code
 ```
 
-```{r 07group_by_summarize2-solution}
+```{r 07group_by_summarise2-solution}
 # Ihr nehmt Euren Datensatz,...
 community %>%
   # ..gruppiert die Beobachtungen pro Kontinent
@@ -270,7 +289,7 @@ community %>%
   dplyr::summarise(n_pieces = sum(n_pieces, na.rm = TRUE)) # Summe
 ```
 
-```{r 07group_by_summarize2-check}
+```{r 07group_by_summarise2-check}
 grade_this_code()
 ```
 
@@ -453,20 +472,12 @@ In einigen Fällen ist es allerdings notwendig, dass die Textmanipulation einer 
 
 ``` {r 07strings2, exercise = TRUE}
 # Erste Möglichkeit: Ersetzen des gefundenen Strings durch '' mit str_replace
-data_raw %>%
-  mutate(parent_company = stringr::str_replace(parent_company,
-                                      '\\([^()]*\\)',
-                                      '')
-         ) %>%
-  .$parent_company
+clean_strings <- data_raw %>%
+  dplyr::mutate(parent_company = stringr::str_replace(parent_company, '\\([^()]*\\)','')
 
 # Zweite Möglichkeit: Löschen des gefundenen Strings mit str_remove
-data_raw %>%
-  mutate(parent_company = stringr::str_remove(parent_company,
-                                              '\\([^()]*\\)'
-                                              )
-         ) %>%
-  .$parent_company
+clean_strings <- data_raw %>%
+  dplyr::mutate(parent_company = stringr::str_remove(parent_company, '\\([^()]*\\)'))
 ```
 
 
@@ -483,8 +494,7 @@ Den Datensatz `wb_areas` wollt Ihr nun mit dem Datensatz `community` zusammenfü
 ``` {r 07wb_clean, exercise = TRUE}
 # Umbennung der Spalten
 wb_areas %>% 
-  dplyr::select(countrycode = 'iso2c',
-                protected_area = 'ER.PTD.TOTL.ZS')
+  dplyr::select(countrycode = 'iso2c', protected_area = 'ER.PTD.TOTL.ZS')
 ```
 
 Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `community` und `data_wb` vorhanden sind (hier führen viele Wege zum Ziel!):
@@ -573,7 +583,7 @@ quiz(
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Woran liegt das?",
+  question("Welche der folgenden Aussagen sind wahr?",
     answer("Beim Inner Join bleiben nur Zeilen bestehen, die in beiden Datensätzen vorhanden sind (n = 50)", correct = TRUE),
     answer ("Beim Full Join bleiben alle Zeilen bestehen, passende werden zusammengefügt (n = 267)", correct = TRUE),
     answer ("Beim Left Join bleiben alle Zeilen des links referenzierten Datensatzes (community) bestehen, passende werden zusammengefügt (n = 51)", correct = TRUE),
