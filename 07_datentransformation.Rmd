@@ -7,6 +7,7 @@
 #### Das Tidyverse
 <left>
 ![*Tidyverse](https://www.tidyverse.org/images/hex-tidyverse.png){#id .class width=20% height=100%}
+
 </left>
 <br>
 
@@ -610,7 +611,7 @@ quiz(
 
   
 ### Und jetzt Ihr
-Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datenbereinigung**](https://correlcloud.org/index.php/s/NjX2HNSeMmGtFD2){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datentransformation**](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
 
 ### Zusätzliche Ressourcen
 - [Schummelblatt: dplyr](https://correlaid.org/material/Schummelblatt_dplyr.pdf){target="_blank"} (engl.)
