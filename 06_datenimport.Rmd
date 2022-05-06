@@ -126,15 +126,15 @@ Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link z
 
 ``` {r daten_einlesen_wdh, exercise = TRUE}
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
 Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link) als auch über lokale Dateipfade importiert werden. Ersteres funktioniert für die meisten Packages intuitiv (siehe oben). Lesen wir Dateien ein, die lokal gespeichert sind, müssen wir den Path definieren. Dazu gibt es verschiedene Methoden, von denen jedoch nur eine wirklich sinnvoll ist: Arbeiten wir an Analysen in R, legen wir sowohl unser Skript als auch unsere Daten in einem dafür vorgesehenen **Ordner** ab, der "daten" heißt. Zu diesem Speicherort navigieren wir mithilfe der Funktion `here::here()`.
 
 ``` {r daten_einlesen_lokal, exercise = TRUE}
-# Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
-plastics <- rio::import(here::here('daten/plastics.csv'))
-head(plastics)
+# Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package (hier nur zum Zeigen)
+data_raw <- rio::import(here::here('daten/bffp2019_plastics_processed.csv'))
+head(data_raw)
 ```
 Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
 
@@ -146,13 +146,13 @@ Um CSV-Dateien zu lesen, benutzen wir häufig die `read.csv()`-Funktion des `rea
 # install.packages("readr")
 
 # Komma als Separator und Punkt als Dezimaltrennzeichen als Standard
-plastics <- readr::read_csv(
-  file = here::here('daten/plastics.csv'), # Dateiname/Pfad zur Datei
+data_raw <- readr::read_csv(
+  file = 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', # Dateiname/Pfad zur Datei
   col_names = TRUE, # Vorhandensein des Headers
   skip = 0, # Festlegen, ob Zeilen übersprungen werden sollen
   na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
   )
-head(plastics)
+head(data_raw)
 ```
 Aber Achtung: Wer **Programme** (insb. Excel) in **deutscher Sprache** nutzt, exportiert CSV-Dateien häufig mit dem Separator ";" und dem Dezimal-Trennzeichen ",". Das führt zu Fehlern. Deutschsprachige CSV-Dateien müssen deshalb mit der Funktion `read.csv2()` importiert werden.
 
@@ -241,10 +241,10 @@ findet Ihr dazu Hilfe.
 Normalerweise lesen wir JSONs nicht manuell ein, vielmehr sind sie **Teil der Antwort einer Datenabfrage**. Der Vollständigkeit halber findet Ihr hier trotzdem das Package `jsontlite` und die Funktion `read_json()` zum Einlesen von JSON-Dateien.
 ```{r json_exercise, exercise = TRUE}
 # Einlesen einer JSON-Datei mit dem jsonlite-Package.
-dtgemeinden <- jsonlite::read_json(here::here("daten/deutsche_gemeinden.json"))
+opengov_beispielsdaten <- jsonlite::read_json(here::here("daten/beispieljson.json"))
 
 # Drucken des zweiten Elements
-head(dtgemeinden[[2]])
+head(opengov_beispielsdaten[[2]])
 ```
 
 #### Geo(-referenzierte) Daten

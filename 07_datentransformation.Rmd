@@ -23,18 +23,18 @@
 - Um den Code übersichtlich zu halten, sollte dabei jede Funktion, die auf das Objekt angewendet wird, in einer eigenen Zeile stehen.
 
 #### Die wichtigsten Funktionen des Tidyverse
-- `dplyr::arrange`: **Sortierung** von Zeilen im Datensatz nach bestimmten Kriterien
-- `dplyr::filter`: **Auswahl von Zeile**n bzw. Beobachtungen nach bestimmten Kriterien
-- `dplyr::select`: **Auswahl von Spalten** bzw. Variablen
-- `dplyr::mutate`: **Erstellung neuer Spalten/Variablen** auf Basis bereits vorhandener Spalten/Variablen bzw. **Veränderung von Variablen**
-- `dplyr::group_by`: **Gruppierung** von Beobachtungen 
-- `dplyr::summarise`: **Zusammenfassen** von Beobachtungen mit statistischen Kennzahlen
+- `dplyr::arrange()`: **Sortierung** von Zeilen im Datensatz nach bestimmten Kriterien
+- `dplyr::filter()`: **Auswahl von Zeile**n bzw. Beobachtungen nach bestimmten Kriterien
+- `dplyr::select()`: **Auswahl von Spalten** bzw. Variablen
+- `dplyr::mutate()`: **Erstellung neuer Spalten/Variablen** auf Basis bereits vorhandener Spalten/Variablen bzw. **Veränderung von Variablen**
+- `dplyr::group_by()`: **Gruppierung** von Beobachtungen 
+- `dplyr::summarise()`: **Zusammenfassen** von Beobachtungen mit statistischen Kennzahlen
 
 #### Daten zusammenführen
 Sehr wahrscheinlich werdet Ihr vor dem Problem stehen, dass Ihr Daten in **mehreren Datensätzen** vorliegen habt. Beispielsweise einen Datensatz pro Jahr oder auch Datensätze zu unterschiedlichen Themenbereichen. In dem Fall braucht Ihr Methoden, um die Daten zusammenzuführen: 
 
-- `dplyr::xxxx_join` hilft Euch, wenn Ihr zwei Datensätze habt mit den gleichen oder zumindest sich **überschneidenden Beobachtungen** und Ihr die Variablen in einem Datensatz haben wollt.
-- `dplyr::bind_rows` ist nützlich für Euch, wenn Ihr **Zeilen an einen Datensatz anhängen** wollt, d.h. weitere Beobachtungen mit den gleichen Variablen hinzufügen wollt.
+- `dplyr::xxxx_join()` hilft Euch, wenn Ihr zwei Datensätze habt mit den gleichen oder zumindest sich **überschneidenden Beobachtungen** und Ihr die Variablen in einem Datensatz haben wollt.
+- `dplyr::bind_rows()` ist nützlich für Euch, wenn Ihr **Zeilen an einen Datensatz anhängen** wollt, d.h. weitere Beobachtungen mit den gleichen Variablen hinzufügen wollt.
 
 ### Quiz 
 ```{r 07quiz_datenbereinigung1}
@@ -62,6 +62,8 @@ quiz(caption = NULL,
   question("Wie heißen die sechs dplyr-Verben?",
     answer("arrange (sortieren)", correct = TRUE),
     answer("filter (filtern)", correct = TRUE),
+    answer("ggplot (visualisieren)"),
+    answer("import (importieren)"),
     answer("select (auswählen)", correct = TRUE),
     answer("mutate (verändern)", correct = TRUE),
     answer("group (gruppieren)", correct = TRUE),
@@ -75,6 +77,7 @@ quiz(caption = NULL,
     answer("Not accessible"),
     answer("Not available", correct = TRUE),
     answer("Not attainable"),
+    correct = "Richtig!",
     incorrect = "Leider falsch: NA steht für not available (nicht verfügbar).",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -82,6 +85,7 @@ quiz(caption = NULL,
   question("Was passiert in einem Join?",
     answer("Anhand einer gemeinsamen Variable wird eine Verbindung zwischen zwei unabhängigen Datensätzen hergestellt und die Datensätze so horizontal zusammengefügt", correct = TRUE),
     answer("Beobachtungen zweier unabhängiger Datensätze werden anhand der gemeinsamen Variablen am Ende eines Datensatzes vertikal angehangen"),
+    correct = "Richtig!",
     incorrect = "Leider falsch: Das ist ein Bind.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -135,14 +139,14 @@ Ziel - Zwei Datensätze:<br>
     - Variablen: Kontinent, Land, Countrycode, Anzahl Plastikstücke, Events und Freiwillige <br>
   b. Audit (2019): <br>
     - Eine Zeile = Eine einzigartige Kombination aus Hersteller und Plastiktyp pro Land <br>
-    - Variablen: Kontinent, Land, Countrycode Hersteller, Anzahl Plastikstücke <br>
+    - Variablen: Kontinent, Land, Countrycode, Hersteller, Anzahl Plastikstücke <br>
 
 Schritt 1: Zeilen, in denen das Land "EMPTY" ist, Sammelzeilen und Beobachtungen aus dem Jahr 2020 aussortieren. <br>
 Schritt 2: Ländernamen bereinigen und übersetzen. <br>
 Schritt 3: Entsprechende Variablen auswählen und ggf. Datensatz umformen. <br>
 
-#### Die Funktion `dplyr::filter`
-Für die Analyse des Datensatzes planen wir einen **Ländervergleich** und sortieren deshalb Beobachtungen aus, für die das Land nicht hinterlegt wurde. Es handelt sich hierbei vermutlich um ein einziges Land, da die Anzahl an Freiwilligen und Events über alle Zeilen konstant ist. Daneben sortieren wir Summenzeilen aus, die unsere Ergebnisse verfälschen würden, und schließen 2020 auf Grund der COVID-19-Pandemie aus. Zum **Filtern von Zeilen bzw. Beobachtungen** nutzen wir die `dplyr::filter`-Funktion, wobei die Zeilen beibehalten werden, die die Bedingung(en) erfüllen, die Ihr definiert. Im Kapitel "Einführung in (R)Studio" im Exkurs "Syntax R" könnt Ihr nachschauen, wie Ihr die Bedingungen für die Filterfunktion definieren könnt.
+#### Die Funktion `dplyr::filter()`
+Für die Analyse des Datensatzes planen wir einen **Ländervergleich** und sortieren deshalb Beobachtungen aus, für die das Land nicht hinterlegt wurde. Es handelt sich hierbei vermutlich um ein einziges Land, da die Anzahl an Freiwilligen und Events über alle Zeilen konstant ist. Daneben sortieren wir Summenzeilen aus, die unsere Ergebnisse verfälschen würden, und schließen 2020 auf Grund der COVID-19-Pandemie aus. Zum **Filtern von Zeilen bzw. Beobachtungen** nutzen wir die `dplyr::filter()`-Funktion, wobei die Zeilen beibehalten werden, die die Bedingung(en) erfüllen, die Ihr definiert. Im Kapitel "Einführung in (R)Studio" im Exkurs "Syntax R" könnt Ihr nachschauen, wie Ihr die Bedingungen für die Filterfunktion definieren könnt.
 
 ``` {r 07overview_data, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
@@ -179,10 +183,10 @@ grade_this_code()
 ```
 *Anmerkung: Wenn Ihr sicher seid, dass nur 2019 und 2020 enthalten sind, könnt Ihr auch mit `year != 2020` filtern.*
 
-#### Die Funktion `dplyr::mutate`
+#### Die Funktion `dplyr::mutate()`
 Nun sollten wir die Variable `country` (zu dt. Land) bereinigen. Wie so oft sind die Bezeichnungen für Großbritannien und die USA **nicht standardisiert** und die **Groß- und Kleinschreibung** ist vollkommen durcheinander geraten. Außerdem möchten wir die **deutschen Bezeichnungen** nutzen und den Kontinent und Countrycode ergänzen. Mit `dplyr::case_when()`können wir einen bestimmten Wert in einen anderen Wert transformieren (WENN-DANN), mit `stringr::str_to_title()` wird nur noch der Anfangsbuchstabe großgeschrieben und mit dem Package `countrycode` können wir Ländernamen in verschiedene Sprachen übersetzen und kodieren. Welche Funktionen Ihr für Eure Bereinigungsschritte braucht, hängt immer vom Datensatz ab. Mit etwas mehr Erfahrung und einer Googlerecherche lassen sich für die meisten Herausforderungen tolle Hilfsmittel finden!
 
-De Code ist für Euch schon geschrieben. Könnt Ihr die fehlenden Funktionen und Variablennamen an Stelle der ??? ergänzen?
+De Code ist für Euch schon geschrieben. Könnt Ihr die fehlenden Funktionen und Variablennamen an Stelle der ??? ergänzen? Um alle Stellen zu finden, müsst Ihr etwas scrollen.
 
 ```{r exercise_07mutate_data_exercise, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
@@ -266,8 +270,8 @@ grade_this_code()
 
 Der Hauptteil der Bereinigung ist nun abgeschlossen. Das Ergebnis steht Euch unter `plastics_processed` zur Verfügung. Wir können die Daten nun in zwei Tabellen aufteilen.
 
-#### Die Funktionen `dplyr::group_by` und `dplyr::summarise`
-Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vorhanden sein soll, müssen wir die bereinigten Daten pro Land gruppieren und entscheiden, wie die anderen Variablen zusammengefasst werden sollen. Mit `dplyr::group_by` und `dplyr::summarise` steht uns die **Gruppierung und Zusammenfassung** der Variablen offen. Wir addieren die Plastikstücke und wählen für die Anzahl der Events und Freiwilligen genau einen Wert aus. Diese sind im Originaldatensatz mehrfach vorhanden.
+#### Die Funktionen `dplyr::group_by()` und `dplyr::summarise()`
+Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vorhanden sein soll, müssen wir die bereinigten Daten pro Land gruppieren und entscheiden, wie die anderen Variablen zusammengefasst werden sollen. Mit `dplyr::group_by()` und `dplyr::summarise()` steht uns die **Gruppierung und Zusammenfassung** der Variablen offen. Wir addieren die Plastikstücke und wählen für die Anzahl der Events und Freiwilligen genau einen Wert aus. Diese sind im Originaldatensatz mehrfach vorhanden - etwas, das typischerweise beim Zusammenfügen von Datensätzen entsteht.
 
 ``` {r 07group_by_summarise1, exercise = TRUE}
 # Ihr nehmt Euren Datensatz,...
@@ -282,7 +286,7 @@ community <- plastics_processed %>%
   )
 ```
 
-Berechnet mit den Funktionen `dplyr::group_by` und `dplyr::summarise` die Gesamtzahl der Plastikstücke, die pro Kontinent gesammelt wurden. Nutzt dafür den `community`-Datensatz.
+Berechnet nun zur Übung mit den Funktionen `dplyr::group_by()` und `dplyr::summarise()` die Gesamtzahl der Plastikstücke, die pro Kontinent gesammelt wurden. Nutzt dafür den `community`-Datensatz.
 
 ```{r 07group_by_summarise2, exercise = TRUE}
 # Hier Euer Code
@@ -302,7 +306,7 @@ grade_this_code()
 ```
 
 #### Pivoting
-Über die Bereinigung von Werten im Datensatz und das Filtern von Werten hinaus, könnt Ihr auch die Form des gesamten Datensatzes über `tidyr::pivot_longer` und `tidyr::pivot_wider` verändern. Um den `audit`-Datensatz zu bereinigen, müsst Ihr beispielsweise noch die Plastikarten so transformieren, dass sie als eine Variable im Datensatz vorkommen:
+Über die Bereinigung von Werten im Datensatz und das Filtern von Werten hinaus, könnt Ihr auch die Form des gesamten Datensatzes über `tidyr::pivot_longer()` und `tidyr::pivot_wider()` verändern. Um den `audit`-Datensatz zu bereinigen, müsst Ihr beispielsweise noch die Plastikarten so transformieren, dass sie als eine Variable im Datensatz vorkommen:
 
 ``` {r 07pivot_wider, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
@@ -319,10 +323,10 @@ plastics_processed %>%
     .fns = as_factor
     ))
 ```
-Mit `dyplr::pivot_wider` könnt Ihr den Datensatz auch wieder in das breite Format bringen. Wir empfehlen aber immer die lange Form.
+Mit `dyplr::pivot_wider()` könnt Ihr den Datensatz auch wieder in das breite Format bringen. Wir empfehlen aber die lange Form zu nutzen.
 
-#### Die Funktion `dplyr::select`
-Neben Zeilen bzw. Beobachtungen könnt Ihr natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `select` weiter. Mit `select` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `data_raw`-Datensatz:
+#### Die Funktion `dplyr::select()`
+Neben Zeilen bzw. Beobachtungen könnt Ihr natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `dplyr::select()` weiter. Mit `dplyr::select()` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `data_raw`-Datensatz:
 
 ``` {r 07select_data1, exercise = TRUE}
 # Spalte "grand total" NICHT auswählen
@@ -363,8 +367,8 @@ sort(unique(community$country)) == sort(unique(audit$country))
 
 Check! Das habt Ihr wirklich gut gemacht!
 
-#### Die Funktion `dplyr::arrange`
-Eine Funktion, die wir Euch nicht vorenthalten möchten und die oft eher für Transformation als Bereinigung genutzt wird, z.B. um **Ranglisten** auszugeben, ist `dplyr::arrange`. Sie **sortiert Datensätze** für Euch. Wir interessieren uns für die Top10 der Firmen, deren Plastikverpackung gefunden wurde:
+#### Die Funktion `dplyr::arrange()`
+Eine Funktion, die wir Euch nicht vorenthalten möchten und die oft eher für Transformation als Bereinigung genutzt wird, z.B. um **Ranglisten** auszugeben, ist `dplyr::arrange()`. Sie **sortiert Datensätze** für Euch. Wir interessieren uns für die Top10 der Firmen, deren Plastikverpackung gefunden wurde:
 
 ```{r arrange, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
@@ -376,7 +380,7 @@ audit %>%
   # ..berechnet die Zusammenfassung (hier: Summe)
   dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
   # ..filtert unnütze Werte heraus
-  dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>%
+  dplyr::filter(! parent_company %in% c("Unbranded", "Inconnu", "Assorted"))  %>%
   # ..begrenzt die Anzahl auf 10
   dplyr::slice_max(total_pieces, n = 10) %>%
   # ..und sortiert die Werte absteigend
@@ -410,7 +414,7 @@ sum(audit$n_pieces)
 grade_this_code()
 ```
 
-Ups - Ihr erhaltet ein NA? R kann den Wert nicht berechnen, da in der Variable mehrere NAs enthalten sind. Versucht hier zu berechnen, wie viele NAs die Variable hat. <br>
+Ups - Ihr erhaltet ein NA? R kann den Wert nicht berechnen, da **in der Variable NAs** enthalten sind. Versucht hier zu berechnen, wie viele NAs die Variable hat. <br>
 *Tipp: Experimentiert mit der Funktion `summary()`)!*
 
 ``` {r exercise_07mean_na3, exercise = TRUE}
@@ -448,7 +452,7 @@ new_df <- na.omit(audit)
 ```
 **Achtung:** Nicht immer können fehlende Werte einfach so ausgeschlossen werden. Manchmal beeinträchtigt dieser Ausschluss die **Aussagekraft unserer Analysen**. Bei [Allison 2010](https://statisticalhorizons.com/wp-content/uploads/Allison_MissingData_Handbook.pdf){target="_blank"} findet Ihr eine gute Übersicht gängiger Herausforderungen und Lösungen. Unser Tipp: Schon bei der Datenerhebung ansetzen und während der Datenerhebung beständig auf genau solche Vorkommnisse prüfen, sodass Ihr rechtzeitig reagieren könnt.
 
-Häufig kommt es zudem vor, dass **NAs nicht als NAs codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** (oder wie bei uns mit etwas ganz anderem wie "EMPTY") angegeben. Schaut deshalb immer ins **Codebuch** bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen mit einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`. Da in Eurem Plastik-Datensatz die Bereinigung schon stattgefunden hat und NAs bereits so codiert sind, hier ein anderer kleiner Beispieldatensatz:
+Häufig kommt es zudem vor, dass **NAs nicht als NAs codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** (oder wie bei uns mit etwas ganz anderem wie "EMPTY") angegeben. Schaut deshalb immer ins **Codebuch**, bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`:
 
 ``` {r 07mean_na6, exercise = TRUE}
 # Erstellung eines Beispieldataframes mit NAs als "NA" und "-99"
@@ -469,7 +473,7 @@ head(df2)
 
 
 ### Exkurs: String Manipulation
-Der Umgang mit **Text (eng. Strings)** ist etwas komplexer. In Eurem Beispiel haben wir die Namen der Länder verändert, unter anderem um die **Kodierung** des "United Kingdom of Great Britain & Northern Ireland" und den "United States of America" zu ermöglichen (es sind wirklich immer diese zwei...). Um diese Bezeichnungen zu verändern, habt Ihr die Funktion `dplyr::case_when()` und das `stringr`-Package mit der Funktion `str_replace` genutzt. Erstere haben wir im Rahmen einer **Einzelfallentscheidung** genutzt: Wir haben genau bestimmt, in welchen Fällen Wert A ("United Kingdom of Great Britain & Northern Ireland") durch Wert B ("United Kingdom") ersetzt werden soll. Letztere folgte dagegen einer **Logik**: Alle Ländernamen werden nun großgeschrieben - ansonsten gibt es keine Großbuchstaben mehr. So wurde "ECUADOR" zu "Ecuador".
+Der Umgang mit **Text (eng. Strings)** ist etwas komplexer. In Eurem Beispiel haben wir die Namen der Länder verändert, unter anderem um die **Kodierung** des "United Kingdom of Great Britain & Northern Ireland" und den "United States of America" zu ermöglichen (es sind wirklich immer diese zwei...). Um diese Bezeichnungen zu verändern, habt Ihr die Funktion `dplyr::case_when()` und das `stringr`-Package mit der Funktion `stringr::str_replace` genutzt. Erstere haben wir im Rahmen einer **Einzelfallentscheidung** genutzt: Wir haben genau bestimmt, in welchen Fällen Wert A ("United Kingdom of Great Britain & Northern Ireland") durch Wert B ("United Kingdom") ersetzt werden soll. Letztere folgte dagegen einer **Logik**: Alle Ländernamen werden nun großgeschrieben - ansonsten gibt es keine Großbuchstaben mehr. So wurde "ECUADOR" zu "Ecuador".
 
 ``` {r 07strings1, exercise = TRUE}
 # Lasst Euch alle Länder im Datensatz anzeigen...

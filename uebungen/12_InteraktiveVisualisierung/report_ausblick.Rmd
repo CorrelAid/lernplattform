@@ -72,7 +72,7 @@ library(leaflet) # für die Karte
 
 ```{r datenimport, include = FALSE}
 # Schritt 2: bereits bereinigte Daten laden
-raw_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv') # für den Einführungstext
+data_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv') # für den Einführungstext
 community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv')
 audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
 ```
@@ -135,7 +135,7 @@ top10_parentcompany <- audit %>%
   dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
   dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
   dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
-  dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>% # Unpassende Werte Filtern
+  dplyr::filter(! parent_company %in% c("Unbranded", "Inconnu", "Assorted"))  %>% # Unpassende Werte Filtern
   dplyr::slice_max(total_pieces, n = 10) %>% # die Top Ten abschneiden
   dplyr::arrange(desc(total_pieces))
 ```
