@@ -133,8 +133,8 @@ Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link)
 
 ``` {r daten_einlesen_lokal, exercise = TRUE}
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package (hier nur zum Zeigen)
-data_raw <- rio::import(here::here('daten/bffp2019_plastics_processed.csv'))
-head(data_raw)
+data_processed <- rio::import(here::here('daten/bffp2019_plastics_processed.csv'))
+head(data_processed)
 ```
 Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
 
