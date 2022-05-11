@@ -6,7 +6,8 @@
 
 #### Das Tidyverse
 <left>
-![*Tidyverse](https://www.tidyverse.org/images/hex-tidyverse.png){#id .class width=20% height=100%}
+
+![](https://www.tidyverse.org/images/hex-tidyverse.png){#id .class width=20% height=100%}
 
 </left>
 <br>

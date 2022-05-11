@@ -77,7 +77,7 @@ plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/l
 ### Diese Technik ist besonders bei Umfragen relevant!
 
 ### Hier hinterlegen wir die Option "Alle Ort" für den Wohnort-Filter
-continent <- c("Alle Kontinente", sort(unique(community$continent)))
+continent_list <- c("Alle Kontinente", sort(unique(community$continent)))
 
 ############################################
 
@@ -125,7 +125,7 @@ ui <- fluidPage(title = "Break Free From Plastic",
     # Hier definieren wir die Filter: Auswahlfilter für Wohnort und Kursniveau und ein Eingabefeld für Text
     sidebarPanel(width = 3,
       # Drop-Down-Filter für den Kontinent
-      selectInput('continent', 'Wähle den Kontinent aus:', choices = continent, selected = 'Alle Kontinente'),
+      selectInput('continent', 'Wähle den Kontinent aus:', choices = continent_list, selected = 'Alle Kontinente'),
       
       # Einfügen eines Download-Buttons
       downloadButton('downloadbutton', label = "Download"),
@@ -150,8 +150,10 @@ ui <- fluidPage(title = "Break Free From Plastic",
         tabPanel('Karte', leafletOutput('Karte')),
         # Tab mit Hersteller-Visualisierung einfügen. Das Package plotly sorgt für die Interaktivität der Visualisierung.
         tabPanel('Hersteller', plotly::plotlyOutput('Hersteller')),
-        # Tab mit Tabelle und allen Daten einfügen. Das Package DT macht die Datentabelle durchsuch- und navigierbar.
-        tabPanel('Daten', DT::DTOutput('Daten'))
+        # Tab mit Community-Tabelle und allen Daten einfügen. Das Package DT macht die Datentabelle durchsuch- und navigierbar.
+        tabPanel('Daten (Community)', DT::DTOutput('DatenCommunity')),
+        # Tab mit Audit-Tabelle und allen Daten einfügen. Das Package DT macht die Datentabelle durchsuch- und navigierbar.
+        tabPanel('Daten (Audit)', DT::DTOutput('DatenAudit'))
       ),
     )
   )
@@ -194,6 +196,11 @@ server <- function(input, output, session){
     filename = paste0(format(Sys.Date(), '%d.%m.%Y'), '_BFFP2019_Bericht', '.html'),
     
     content = function(file) {
+      # Dialogfenster
+      showModal(modalDialog("Datei wird geladen...", footer = NULL))
+      on.exit(removeModal())
+      
+      # Pfade bestimmen
       src1 <- normalizePath('report_ausblick.Rmd')
       src2 <- normalizePath('daten')
       
@@ -206,6 +213,9 @@ server <- function(input, output, session){
       library(rmarkdown)
       out <- render('report_ausblick.Rmd', quiet = TRUE, params = list(continent = input$continent))
       file.rename(out, file)
+      
+      # Dialog
+      showModal(modalDialog("Euer Report wurde erfolgreich heruntergeladen!", footer = modalButton("Schließen")))
   })
   
   # Standort-Karte visualisieren 
@@ -261,9 +271,9 @@ server <- function(input, output, session){
     # Kreisdiagramm kreiieren
     gesamtzahl <- sum(daten$n_pieces)
     plot_continent <- daten %>%
-      select(continent, n_pieces) %>% # Spalten auswählen
-      group_by(continent) %>% # Pro Kontinent gruppieren
-      summarise('Anzahl' = sum(n_pieces), 'Prozent' = sum(n_pieces)/gesamtzahl) %>% # Bei Gruppierung Anzahl und Prozent bestimmen
+      dplyr::select(continent, n_pieces) %>% # Spalten auswählen
+      dplyr::group_by(continent) %>% # Pro Kontinent gruppieren
+      dplyr::summarise('Anzahl' = sum(n_pieces), 'Prozent' = sum(n_pieces)/gesamtzahl) %>% # Bei Gruppierung Anzahl und Prozent bestimmen
       ggplot(aes(x='', y=Prozent, fill=continent)) +
       geom_bar(stat="identity", width=1) + # Basislayout definieren (Hinweis: Das ist ein Barchart)
       coord_polar("y", start=45) + # Kuchendiagramm ausrichten
@@ -287,7 +297,7 @@ server <- function(input, output, session){
       theme(legend.position="none") + # Ausblenden der Legende
       scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
     
-    # Optional: Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
+    # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
     plot_plastik <- ggplot(data = daten, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
       geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
       geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
@@ -350,12 +360,31 @@ server <- function(input, output, session){
     hersteller()
   })
   
-  # Einfügen der Datentabelle in in die Applikation
-  output$Daten <- DT::renderDT({
+  # Einfügen der Community-Datentabelle in in die Applikation
+  output$DatenCommunity <- DT::renderDT({
+    # Spaltennamen übersetzen
+    colnames(community) <- c("Kontinent", "Land", "ISO2C", "Anzahl Plastikstücke", "Anzahl Freiwillige", "Anzahl Events")
+    
     if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
-      daten <- plastics_processed %>% filter(continent == input$continent)
+      daten <- community %>% 
+        dplyr::filter(Kontinent == input$continent)
+        
     } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
-      daten <- plastics_processed
+      daten <- community
+    }
+  })
+  
+  # Einfügen der Audit-Datentabelle in in die Applikation
+  output$DatenAudit <- DT::renderDT({
+    # Spaltennamen übersetzen
+    colnames(audit) <- c("Kontinent", "Land", "ISO2C", "Hersteller", "Plastikart", "Anzahl Plastikstücke")
+
+    if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
+      daten <- audit %>% 
+        dplyr::filter(Kontinent == input$continent)
+      
+    } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
+      daten <- audit
     }
   })
 }

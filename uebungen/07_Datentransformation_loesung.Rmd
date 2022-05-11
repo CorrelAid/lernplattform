@@ -105,7 +105,7 @@ Aus diesem Datensatz lassen sich nun noch zwei weitere Datensätze erstellen, de
 
 Der erste Datensatz soll der Community-Datensatz für 2019 nach Ländern sein. Folgt den Kommentaren im folgenden Codeblock für die Transformation Eures eben erstellten `plastics_processed`-Datensatzes:
 
-```{r community dataset}
+```{r community_erstellen}
 # Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
 community19_by_country <- plastics_processed %>% 
   # ...gruppiert den Datensatz nach Kontinent und Land...
@@ -122,7 +122,7 @@ community19_by_country <- plastics_processed %>%
 ```
 So schnell und einfach habt Ihr mal eben einen neuen Datensatz erstellt, deshalb gleich noch einer, Übung macht den Meister! Auch hier, folgt einfach den Anweisungen im Codeblock:
 
-```{r}
+```{r audit_erstellen}
 # Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
 plastics19_by_country_and_company <- plastics_processed %>%
   # ...verändert die Form Eures Datensatz zu einem langen Format 

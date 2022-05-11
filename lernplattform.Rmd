@@ -21,6 +21,7 @@ library(countrycode)
 library(httr)
 library(purrr)
 library(RSQLite)
+library(leaflet)
 #flipbookr, echarts4r,wesanderson, janitor,rstatix,haven, DBI, ggthemes, BH, anytime,gtrendsR
 
 #devtools::install_github("gadenbuie/xaringanExtra")
@@ -69,6 +70,15 @@ wb_processed <- wb_areas %>%
 # Einlesen der Shapefiles
 polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
 polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
+
+# Kartendaten vorbereiten
+karten_daten <- community %>%
+  # Geometrie anfügen
+  dplyr::left_join(polygons_welt, by = c("countrycode" = "ISO_A2")) %>% 
+  # Variablen für Singular / Plural Formulierung
+  dplyr::mutate(word_n_events = if_else(n_events == 1, "Event", "Events"),
+                word_n_volunteers = if_else(n_volunteers == 1, "Freiwillige*r", "Freiwillige"),
+                word_n_pieces = if_else(n_pieces == 1, "gesammeltes Plastikstück", "gesammelte Plastikstücke"))
 
 # Initialisierung eines temporären Ordners
 tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
@@ -169,26 +179,26 @@ cat(out, sep = '')
 
 <!-- ## Exkurs: APIs -->
 ```{r results='asis'}
-#out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
-#cat(out, sep = '')
+out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
+cat(out, sep = '')
 ```
 
 <!-- ## Exkurs: SQL -->
 ```{r results='asis'}
-#out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE) 
-#cat(out, sep = '')
+out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE) 
+cat(out, sep = '')
 ```
 
-<!--## Datentransformation -->
+<!-- ## Datentransformation -->
 ```{r results='asis'}
 out <- knitr::knit_child("07_datentransformation.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Datenvisualisierung
+<!-- ## Datenvisualisierung -->
 ```{r results='asis'}
-#out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Grundlagen der Statistik

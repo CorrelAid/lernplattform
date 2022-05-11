@@ -88,7 +88,7 @@ dplyr::glimpse(audit)
 ```
 
 ### Vorwort
-Im Folgenden soll der Datensatz der **Break Free From Plastic** Bewegung für das Jahr 2019 und 2020 explorativ erkundet werden. Der Datensatz enthält `r format_int(nrow(raw_data))` Beobachtungen zu Plastiksammelaktionen in `r format_int(length(unique(raw_data$country)))` Ländern. Enthalten sind die Variablen  (als Stichpunkte): Land, Jahr, Hersteller des Produktes, Art des gesammelten Plastiks sowie die Anzahl an durchgeführten Events und der Anzahl teilnehmender Freiwilliger.
+Im Folgenden soll der Datensatz der **Break Free From Plastic** Bewegung für das Jahr 2019 und 2020 explorativ erkundet werden. Der Datensatz enthält `r format_int(nrow(data_raw))` Beobachtungen zu Plastiksammelaktionen in `r format_int(length(unique(data_raw$country)))` Ländern. Enthalten sind die Variablen  (als Stichpunkte): Land, Jahr, Hersteller des Produktes, Art des gesammelten Plastiks sowie die Anzahl an durchgeführten Events und der Anzahl teilnehmender Freiwilliger.
 
 *Anmerkung: Mehr Informationen zu Break Free From Plastic finden Sie unter diesem [Link](https://www.breakfreefromplastic.org/)*.
 \newpage
