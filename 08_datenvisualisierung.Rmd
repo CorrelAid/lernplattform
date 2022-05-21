@@ -3,7 +3,7 @@
 ![*Video: Datenvisualisierung (15min)*](https://youtu.be/LtjKZjCPijo)
 
 ### Kernaussagen
-- Visualisierungen **vereinfachen und beschleunigen** die Vermittlung von (komplexen) Inhalten, weil Menschen visuelle Zusammenhänge schneller begreifen können als Text
+- Visualisierungen **vereinfachen und beschleunigen** die Vermittlung von (komplexen) Inhalten, weil Menschen visuelle Zusammenhänge oft schneller begreifen können als Text
 - Sie erlauben uns in Daten **Muster** zu erkennen (z.B. zur Verteilung von und zu Beziehungen zwischen Variablen)
 - Auch **Fehler und Ausreißer** in den Daten können mit ihnen schnell identifiziert werden
 - Mit der Möglichkeit der interaktiven Gestaltung erlauben sie uns, **spannende Narrative** zu entwickeln (sog. Storytelling)
@@ -12,7 +12,7 @@
   - Der **Art der Variablen** (kontinuierlich oder diskret)
   - Der **Anzahl an Variablen**, die visualisiert werden sollen
   - Der **Botschaft**, die vermittelt werden soll
-- Die Webseite [Data to Viz](https://www.data-to-viz.com){target="_blank"} bietet einen hervorragenden **Ausgangspunkt**, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code Snippets zur praktischen Implementierung
+- Die Webseite [From-Data-to-Viz](https://www.data-to-viz.com){target="_blank"} bietet einen hervorragenden **Ausgangspunkt**, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code-Schnipsel zur praktischen Implementierung
 - Wir schauen uns in dieser Lektion gemeinsam die R-Packages `ggplot2` und `leaflet` an
 
 ### Quiz
@@ -36,7 +36,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Warum sind Boxplots so nützlich?",
+  question("Wie schon in Sitzung 5 besprochen, können Boxplots eine nützliche Darstellung sein. Aber warum genau sind sie so nützlich?",
     answer("Sie sind leicht zu lesen"),
     answer("Sie stellen die fünf Punkte der Verteilung (statistische Kennzahlen) visuell da", correct = TRUE),
     answer("Sie zeigen die genaue Lage der Beobachtungspunkte an"),
@@ -45,16 +45,16 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ), 
-  question("Warum haben Kuchendiagramme einen so schlechten Ruf?",
+  question("Warum haben Kreisdiagramme oft einen schlechten Ruf?",
     answer("Weil sie altmodisch sind"),
     answer("Weil sie nur schwer zu lesen sind"),
     answer("Weil sie oft überfrachtet werden", correct = TRUE),
-    correct = "Richtig! Kuchendiagramme sollten nur für Variablen mit zwei bis drei Kategorien erstellt werden, z.B. Ja, Nein, NA. Bei mehr Kategorien können wir Verhältnisse nicht mehr richtig abschätzen.",
-    incorrect = "Leider falsch: Kuchendiagramme sollten nur für Variablen mit zwei bis drei Kategorien erstellt werden, z.B. Ja, Nein, NA. Bei mehr Kategorien können wir Verhältnisse nicht mehr richtig abschätzen.",
+    correct = "Richtig! Kreisdiagramme sollten nur für Variablen mit zwei bis drei Kategorien erstellt werden, z.B. Ja, Nein, NA. Bei mehr Kategorien können wir Verhältnisse nicht mehr richtig abschätzen.",
+    incorrect = "Leider falsch: Kreisdiagramme sollten nur für Variablen mit zwei bis drei Kategorien erstellt werden, z.B. Ja, Nein, NA. Bei mehr Kategorien können wir Verhältnisse nicht mehr richtig abschätzen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ), 
-  question("Wie heißt die erste Empfehlung von From-Data-to-Viz für mehrere geordnete, numerische Variablen?",
+  question("Wie heißt die erste Empfehlung von From-Data-to-Viz für mehrere geordnete, numerische Variablen? (Tipp: Geht zu data-to-viz.com und schaut dort nach.)",
     answer("Boxplots"),
     answer("Liniendiagramme"),
     answer("Geschichtete Flächendiagramme", correct = TRUE),
@@ -67,7 +67,7 @@ quiz(caption = NULL,
     answer("data", correct = TRUE),
     answer("aes", correct = TRUE),
     answer("theme"),
-    answer("geom_xxx", correct = TRUE),
+    answer("geom_*", correct = TRUE),
     answer("labs"),
     answer("coord_cartesian"),
     correct = "Richtig!",
@@ -78,28 +78,31 @@ quiz(caption = NULL,
 )
 ```
 
+<!-- Cosima: Ich persönlich fand die Frage zum boxplot hier unpassend, da sie so ad-hoc kam und ich das nicht im Video bespreche. Deswegen habe ich hier die direkte Referenz zu Sitzung 5 eingebaut. Wenn wir doch zeitlich kürzen müssten, könnte man die form follows function-Frage rausnehmen und/oder auch die Boxplot-Frage. Mich haben beide irgendwie verwirrt. Aber du hast das große Konzept des Trainings eher im Blick. -->
 
 ### Interaktive Übung
+
+<!-- Cosima: Die Abbildung funktioniert bei mir im learnr-Environment nicht, ich sehe aber keinen Grund warum --> 
 
 <left>
 ![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
 </left>
 <br>
 
-In dieser Sitzung lernt Ihr verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt ([zur App](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
+In dieser Sitzung lernt Ihr zunächst verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt ([zur App](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
 
 #### Wiederholung: `ggplot2`-Basics
-Erinnert Ihr Euch noch an die fünfte Sitzung? 
+Erinnert Ihr Euch noch an die fünfte Sitzung? <!-- Cosima: Sollte hier vielleicht der Link zur 5. Sitzung eingebaut werden? -->
 
 - `ggplot2` folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
 - Für einen ganz simplen Plot benötigen wir immer:
     - `data` (der **Datensatz**)
     - `aes()` (die **"ästhetischen Attribute"** wie beispielsweise die x- oder y-Achse)
-    - `geom_xxx()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform Eure Daten dargestellt werden sollen z.B. in einem Balkendiagramm oder Histogramm) 
+    - `geom_*()` (die **geometrische Form**, d.h. mit welcher Visualisierungsform Eure Daten dargestellt werden sollen z.B. in einem Balkendiagramm oder Histogramm) 
     
 - **Wichtig**: Die einzelne Bestandteile werden bei `ggplot2` mit einem **"+" verknüpft**. Und auch wenn das Package selbst `ggplot2` heißt, ist der erste Befehl, wenn Ihr Eure Visualisierung aufbaut, immer `ggplot()` (ohne die "2").
 
-Die zwei "g" im Packagenamen `ggplot2` stehen für "**g**rammar of **g**raphics". `ggplot2` folgt damit einer "Lagenlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
+Die zwei "g" im Packagenamen `ggplot2` stehen für "**g**rammar of **g**raphics". `ggplot2` folgt damit einer "Lagenlogik" oder "Schichtlogik", nach der eine Visualisierung Stück für Stück aufgebaut wird. Eine ganz einfache Visualisierung mit `ggplot2` erfolgt immer über folgendes Prinzip:
 
 ```
 Daten + 
@@ -148,7 +151,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
 ```
 
 #### Initialisierung
-Nun bauen wir diese Graphik Schritt-für-Schritt nach. Wir beginnen mit dem Grundgerüst einer `ggplot`-Graphik: dem **Erstellen eines `ggplot`-Objekts und der Definition von ästhetischen Attributen**. Das sind die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code? Was passiert, wenn Ihr die Variablen vertauscht?
+Im ersten Schritt bauen wir diese Graphik Schritt-für-Schritt nach. Wir beginnen mit dem Grundgerüst einer `ggplot`-Graphik: dem **Erstellen eines `ggplot`-Objekts und der Definition von ästhetischen Attributen**. Das sind die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code? Was passiert, wenn Ihr die Variablen vertauscht?
 
 ```{r grahik1, exercise=TRUE}
 # Erstellung eines leeren Plots
@@ -159,21 +162,23 @@ ggplot2::ggplot(data = community, aes(x = continent, y = n_volunteers)) # Initia
 `ggplot2` bietet eine fantastische Vielzahl an Visualisierungsmöglichkeiten! Die bekanntesten (und meist genutzten) sind:
 
 - `geom_point()`: eine Punktewolke
+- `geom_beeswarm()`: eine Punktewolke, in der jedoch die einzelnen Punkte zufällig versetzt sind (das hilft uns mehr zu erkennen als es bei einer klassischen Punktewolke möglich wäre)
 - `geom_col()`: Balkendiagramm
-- `geom_line()`: ein Liniendiagramm (vor allem bei Zeitreihendaten sinnvoll, d.h. Daten, die über mehrere Zeitpunkte abgedeckt werden)
+- `geom_line()`: ein Liniendiagramm (vor allem bei Zeitreihendaten sinnvoll, d.h. Daten, die z.B. den Verlauf über mehrere Zeitpunkte darstellen)
 - `geom_histogramm()`: Histogramm (Verteilungsdiagramm)
 - `geom_boxplot()`: Boxplot
 
-Das Schöne an der `ggplot2` Logik ist, dass man mit wenigen Handgriffen Visualisierungstypen austauschen kann. 
+Das Schöne an der `ggplot2` Logik ist, dass man mit wenigen Handgriffen Visualisierungstypen austauschen kann und so schnell eine vollkommen andere Visualisierung bekommt. 
 
-Nun fügen wir dem Plot die **Datenpunkte** hinzu, um einen ersten Scatterplot (hier: Beeswarmplot) zu erstellen. Diese Codezeile unterscheidet sich je nach gewählter Visualisierungsform.
+Nun fügen wir dem Plot die **Datenpunkte** hinzu, um eine erste Punktewolke (hier: Beeswarmplot) zu erstellen. Diese Codezeile unterscheidet sich je nach gewählter Visualisierungsform. 
 
 ```{r geom-point, exercise=TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = n_volunteers)) +
   geom_beeswarm() # Hinzufügen der Datenpunkte (Beeswarmplot)
 ```
 
-Fügt nun den Boxplot hinzu:
+Wie bereits erwähnt kann man in der `ggplot2`-Logik Graphen aufeinander aufbauen. Probieren wir das doch einmal aus - fügt hier den Boxplot hinzu:
+
 ```{r geom-point1, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = continent, y = n_volunteers)) +
   geom_beeswarm() # Hinzufügen der Datenpunkte (Beeswarmplot)
@@ -191,7 +196,7 @@ gradethis::grade_this_code()
 ```
 
 #### Layoutoptionen
-Mit **Layoutoptionen** schaffen wir mehr Übersichtlichkeit. Mit **`alpha = Wert`** ( zwischen 0 und 1) werden die Punkte etwas transparenter, mit **`size= Wert`** (Wert zwischen 0 und +∞) etwas größer und so auch einzeln besser sichtbar.
+Mit **Layoutoptionen** schaffen wir mehr Übersichtlichkeit. Mit **`alpha = Wert`** ( zwischen 0 und 1) werden die Punkte etwas transparenter, mit **`size= Wert`** (Wert zwischen 0 und +∞) werden die Punkte etwas größer und so auch einzeln besser sichtbar.
 
 ```{r geom-point2,exercise=TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
@@ -199,8 +204,9 @@ ggplot(data = community, aes(x = continent, y = n_pieces)) + # Initialisierung d
   geom_beeswarm(size = 3, alpha = 0.5) + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   geom_boxplot(alpha = 0.6) # Hinzufügen des Boxplots
 ```
+
 #### Achsenbegrenzungen
-Auch in Visualisierungen können wir **Extremwerte** exkludieren, wenn die Graphik sonst stark an Leserlichkeit verliert. Idealerweise begrenzt Ihr Koordinatensysteme nicht mit absoluten Werten, sondern orientiert Euch an relativen, statistischen Kennzahlen wie Mittelwert und Median multipliziert mit einem Faktor und der Standardabweichung, Varianz oder dem Interquartilsabstand. So bleiben Eure Achsen reaktiv, wenn sich die zugrundeliegenden Daten ändern. <br>
+Auch in Visualisierungen können wir **Extremwerte** exkludieren. Der Ausschluss von Werten sollte immer gut durchdacht und begründet sein. Es gibt hier leider oft keine "Blaupause", der man folgen kann, sondern es handelt sich oft um Einzelfallentscheidungen. Eine Möglichkeit, um zum Beispiel einen logisch sinnvoll Werterahmen für das Koordinatensystem zu wählen, bilden statistische Kennzahlen wie Mittelwert und Median (auch multipliziert mit einem Faktor und der Standardabweichung), Varianz oder dem Interquartilsabstand. So bleiben Eure Achsen reaktiv, wenn sich die zugrundeliegenden Daten ändern. <br>
 *Hinweis: Nicht immer ist der Ausschluss von Extremwerten sinnvoll. Gerade bei der visuellen Exploration der Daten ist es sinnvoll sie zunächst zu inkludieren, da man sich dann bereits Gedanken über die Auswirkungen auf statistische Kennzahlen und Teststatistik machen kann.*
 
 ```{r geom-point3,exercise=TRUE}
@@ -222,11 +228,11 @@ Die Argumente dafür heißen `color` und `fill`:
 Wenn Ihr Euch unsicher seid, welches Argument Ihr benötigt, könnt Ihr auch einfach ausprobieren und gegebenenfalls `color` gegen `fill` austauschen. Ihr habt zwei Möglichkeiten:
 
 **Auswahl einer Farbe** <br>
-Um ein **einzelne Farbe** für Eure Graphik festzulegen, könnt Ihr diese innerhalb des `geom_...`-Arguments definieren. `color` und `fill` akzeptieren als Argumente **Hexcodes** (#...) und vordefinierte, **ausgeschriebene Farben** wie "darkgrey". <br>
-*Tipp: Erstere könnt Ihr in der Regel Eurem Corporate Design Booklet entnehmen oder sie über einen "Colorpicker" ablesen. Letztere findet Ihr als Übersicht [hier](http://sape.inf.usi.ch/sites/default/files/ggplot2-colour-names.png){target="_blank"}.*
+Um ein **einzelne Farbe** für Eure Graphik festzulegen, könnt Ihr diese innerhalb des `geom_*`-Arguments definieren. `color` und `fill` akzeptieren als Argumente **Hexcodes** (`#...`) und vordefinierte, **ausgeschriebene Farben** wie `"darkgrey"`.<br>
+*Tipp: Hexcodes beginnen mit `#` mit einer folgenden Zahlen- und Buchstabenkombination. Ihr könnt sie in der Regel Eurem Corporate Design Booklet entnehmen, über einen "Colorpicker" ablesen oder Euch bei [colorbrewer2.org](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3){target="_blank"} inspirieren lassen. Die Seite bietet euch verschiedene Optionen, um auch kopier-, druck- oder farbenblindfreundliche Farben auszuwählen. Vordefinierte Farben findet Ihr als Übersicht [hier](http://sape.inf.usi.ch/sites/default/files/ggplot2-colour-names.png){target="_blank"}.*
 
 **Auswahl mehrerer Farben (auf Basis einer Variable)** <br>
-Wollt Ihr die Farben analog zu einer Variable im Datensatz ändern (die entweder schon in der Graphik enthalten ist oder zusätzlich hinzugefügt werden soll), müsst Ihr die Farbe **innerhalb des `aes()` Arguments** bestimmen (`color` oder `fill` = variable)
+Wollt Ihr die Farben analog zu einer Variable im Datensatz ändern (die entweder schon in der Graphik enthalten ist oder zusätzlich hinzugefügt werden soll), müsst Ihr die Farbe **innerhalb des `aes()` Arguments** bestimmen (`color = variable` oder `fill = variable`).
 
 Wir nehmen dazu wieder unsere vorbereiteten Daten und den Plot von oben. Die Punkte haben wir bereits mit `color = "darkgrey"` eingefärbt. Verändert den Code so, dass jeder Kontinent eine andere Farbe hat. <br>
 *Tipp: Achtet auf den richtigen Argumentnamen und die richtige Platzierung!*
@@ -260,9 +266,10 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und IQR
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
+
 Tolle, **vordefinierte Farbpaletten** findet Ihr hier:
 
-- [`gplot2`](https://www.datanovia.com/en/wp-content/uploads/dn-tutorials/ggplot2/figures/030-ggplot-colors-rcolorbrewer-palettes-colorblind-friendly-1.png){target="_blank"}
+- [`ggplot2`](https://www.datanovia.com/en/wp-content/uploads/dn-tutorials/ggplot2/figures/030-ggplot-colors-rcolorbrewer-palettes-colorblind-friendly-1.png){target="_blank"}
 - [`wesanderson`](https://github.com/karthik/wesanderson){target="_blank"}
 - [`fishualize`](https://nschiett.github.io/fishualize/index.html){target="_blank"}
 - [`ghibli`](https://ewenme.github.io/ghibli/index.html){target="_blank"}
@@ -290,7 +297,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
 ```
 
 #### Themes
-Mit **`theme_()`** geben wir unserem Plot-Layout den letzten Schliff: Hier entscheiden wir uns für `theme_minimal()`. Da wir die Standardeinstellungen dieses Themes überschreiben, um mit `theme()` die Legende auszublenden, müssen wir zunächst das Template referenzieren und dann die individuellen Einstellungen vornehmen:
+Mit **`theme_()`** geben wir unserem Plot-Layout den letzten Schliff: Hier entscheiden wir uns für `theme_minimal()`. Da wir auch hier wieder in einer Lagenlogik vorgehen, setzen wir erst das Thema `theme_minimal()` fest, um dann in einem zweiten Schritt die Standardeinstellungen dieses Themas zu überschreiben und mit `theme()` die Legende auszublenden:
 
 ```{r plot_theme, exercise=TRUE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
@@ -308,7 +315,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   theme_minimal() + # Festlegung des Layout-Designs
   theme(legend.position="none")  # Ausblenden der Legende
 ```
-Alle anderen Themes von ggplot2 findet Ihr unter diesem [Link](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}. Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` ergänzen und so auch eine Visualisierung im Economist-Stil erzeugen (für mehr Optionen klickt [hier](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/){target="_blank"})!
+Alle anderen Themes von `ggplot2` findet Ihr unter diesem [Link](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}. Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` ergänzen und so auch eine Visualisierung im Economist-Stil erzeugen (für mehr Optionen klickt [hier](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/){target="_blank"})!
 
 Und tadaa -- das ist der Plot, den wir erstellen wollten! Herzlichen Glückwunsch - das sieht klasse aus! `ggplot2` ist ein sehr mächtiges Tool mit **vielen Stellschrauben**. Sobald Ihr die Grundlogik des Aufbaus verstanden habt, ist es eigentlich ganz leicht Codebausteine wiederzuverwenden. Probiert hier doch mal dieselbe Graphik für die Anzahl an Freiwilligen zu erstellen:
 
@@ -336,11 +343,14 @@ ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent))
 gradethis::grade_this_code()
 ```
 
+<!-- Cosima: Der Facet-Part bildet irgendwie einen Bruch, oder? Es ging die ganze Zeit um andere Plot-Typen und auf einmal machen wir ein Histogram. Ich habe mal versucht es runder zu machen aber irgendwie ist mir das noch nicht ganz geglückt. Was meinst du? -->
+
+<!-- Cosima: Hast du die Facets-Flips hier eigentlich absichtlich rausgenommen? (Ähnlich wie Farbe und Themes (themes verstehe ich, da der Text ja nur noch auf Standard-ggplot-Themes behandelt), aber die anderen müssten doch passen, oder?) (also zum Beispiel das hier für die Facet-Logik: https://cosimameyer.com/slides/flip_for_correlaid_facet/flip_for_correlaid_facet.html#1 oder das für die Colors: https://cosimameyer.com/slides/flip_for_correlaid_color/flip_for_correlaid_color.html#1 (oder fandest du das zu kompliziert, um intuitiv zu sein?) -->
 
 #### Facets
 Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
-Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren - gruppiert die Anzahl der Freiwilligen nach dem Land (`country`). 
+Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren. Wir haben hier Histogramme, also die Darstellungen der Verteilung von Freiwilligen gewählt. Es wäre hier sehr praktisch, wenn man es nach Land darstellen könnte. Dabei hilft und `facet_wrap()` mit dem Ihr die Anzahl der Freiwilligen nach Land (`country`) gruppieren könnt. 
 
 ```{r geom_histogram_facet, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = n_volunteers)) +
@@ -361,7 +371,7 @@ gradethis::grade_this_code()
 #### Visualisierungen speichern
 Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu liefert das Package `ggplot2` eine Funktion, die es ganz leicht macht: `ggplot2::ggsave`.
 
-Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, wo Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die Ihr generiert habt.)
+Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, auf der Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die Ihr generiert habt.)
 
 In der Praxis sieht der Ablauf dann zum Beispiel so aus:
 
@@ -383,10 +393,21 @@ ggplot2::ggsave(filename = "euer_plot.png") # Ohne Pfad
 ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 ```
 
-Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen wie beispielsweise die durch `leaflet` oder `echarts4r` erstellen Karten, bieten sich andere Formate wie `.html` (über Rmds) oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr in den nächsten Wochen!
+Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen, wie beispielsweise die durch `leaflet` oder `echarts4r` erstellten Karten, bieten sich andere Formate wie `.html` (über Rmds) oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr am Ende des Kurses!
+
+### Exkurs: Für das schnelle, visuelle Ausprobieren - `esquisse`
+Ein Grundverständnis für die Logik von `ggplot2` ist immer sinnvoll - aber was, wenn ihr mal "schnell" etwas ausprobieren wollt und es in `ggplot2` einfach nicht klappt? Dann gibt es `esquisse`! `esquisse` erlaubt es euch, direkt einen Datensatz anzusprechen und per Klick die Darstellungsmöglichkeiten auszuwählen. Das Schöne an `esquisse` ist, dass man den `ggplot2` Code dann auch direkt kopieren kann und in das R-Skript einfügen kann - so geht nichts verloren und man kann alles replizieren. Wie das funktioniert sehr Ihr hier im Clip. Dort zeige ich Euch, wie man die Daten lädt, einzelne Variablen auswählt, den Plot-Typ dann bestimmt und letztendlich den `ggplot2`-Code in Euer R-Skript kopiert.
+
+<center>
+![*GIF zur Erklärung von esquisse*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/esquisse.gif?raw=true){#id .class width=70% height=70%}
+</center>
+
+<!-- Cosima: Ich habe hier mal einen Exkurs zu `esquisse` eingebaut weil ich das immer vergesse und es doch so schön ist (vor allem am Anfang) - oder soll es wieder raus? -->
+
 
 ### Exkurs: Karten mit `leaflet`
-Ihr habt bereits gelernt, wie man **geographische Daten** importiert. Wir fügen die sog. Polygone unserem `community`-Datensatz an und fügen drei Spalten ein, die uns später bei den Labels hilft (ein toller Trick, den Ihr Euch für andere Visualisierungsprojekte merken solltet).
+Ihr habt bereits gelernt, wie man **geographische Daten** importiert. Wir fügen die sogenannten Polygone unserem `community`-Datensatz an und fügen drei Spalten ein, die uns später bei den Labels hilft (ein toller Trick, den Ihr Euch für andere Visualisierungsprojekte merken solltet).
+
 ```{r kartendaten, exercise = TRUE}
 # Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
 polygons_welt <- sf::st_read(here::here('daten/geospatial/ne_50m_admin_0_countries.shp'))
@@ -413,13 +434,16 @@ karte <- leaflet::leaflet(karten_daten$geometry) %>%
                        popup = glue::glue("{karten_daten$country}: {karten_daten$n_events} {karten_daten$word_n_events}, {karten_daten$n_volunteers} {karten_daten$word_n_volunteers}, {karten_daten$n_pieces} {karten_daten$word_n_pieces}"))
 ```
 
-Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das wir an dieser Stelle erwähnen möchten: `echarts4r`.
+Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das es euch erlaubt Visualisierungen zu erstellen: [`echarts4r`](https://rstudio.github.io/leaflet/morefeatures.html).
 
-Die Programmierlogik in `echarts4r` unterliegt wie `ggplot2` einer Schichtlogik und funktioniert über die Pipe `%>%`, die Ihr aus dem `tidyverse` kennt. Die Visualisierungen sind hier interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren. Ab einem bestimmten Level müsst Ihr zur Bedienung von `echarts4r` allerdings Javascript können, weshalb wie dieses tolle Visualisierungstool hier nur am Rande erwähnen möchten.
+Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren. 
 
+<!-- Ab einem bestimmten Level müsst Ihr zur Bedienung von `echarts4r` allerdings Javascript können, weshalb wie dieses tolle Visualisierungstool hier nur am Rande erwähnen möchten. --> 
+<!-- Cosima: Den Part habe ich rausgenommen. Leaflet ist auch JS basiert und auch hier trifft bei fortgeschritteneren Abbildungen zu, dass ein Grundverständnis in JavaScript sinnvoll ist - aber nicht unbedingt ein "Muss" ist (hier sind ein paar Beispiele, was ich meine: https://rstudio.github.io/leaflet/morefeatures.html). -->
+<!-- Cosima: Vielleicht wäre es, da leaflet nicht zuverlässig mit Shiny zu funktionieren scheint, eine Idee auf `plotly` zu gehen und statt einer Karte einen interaktiven ggplot zu zeigen? --> 
 
 ### Und jetzt Ihr (diese Woche optional)
-Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Bardiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?
+Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Balkendiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?
 *Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen. Innerhalb von `geom_bar()` müsst Ihr das Argument `stat = "identity" setzen.*
 
 ### Zusätzliche Ressourcen
@@ -432,5 +456,5 @@ Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr geler
 - [R Graph Gallery ](https://www.r-graph-gallery.com/){target="_blank"}(Übersicht über verschiedene Visualisierungen)
 - Online-Version von ["ggplot2: Elegant Graphics for Data Analysis"](https://ggplot2-book.org/index.html){target="_blank"}  von Hadley Wickham (engl.)
 - Einblicke in den [Datenjournalismus (engl.)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/telling-stories-with-data/){target="_blank"}
-- [Visual Inference with R](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/visinference/){target="_blank"} (engl.)
+- [Visual Inference with R (engl.)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/visinference/){target="_blank"} (engl.)
 - [Datenvisualisierung (Wieso, warum und wie?)](https://www.skala-campus.org/artikel/tipps-daten-visualisieren/146){target="_blank"}
