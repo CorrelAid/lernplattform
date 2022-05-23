@@ -54,6 +54,19 @@ community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattf
 ### Audit Datensatz laden
 audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
 
+# EU-Asien Audit Plastik Datensatz erstellen
+audit_eu_asia <- audit %>%
+  dplyr::filter(continent == "Europa" | continent == "Asien") %>%
+  dplyr::filter(n_pieces != 0) %>%
+  dplyr::group_by(continent, country) %>%
+  dplyr::summarise_all(funs(n_distinct(.))) %>%
+  dplyr::select(continent, country, "n_types" = plastic_type)
+
+europe <- audit_eu_asia %>%
+  dplyr::filter(continent == "Europa")
+asia <- audit_eu_asia %>%
+  dplyr::filter(continent == "Asien")
+
 # Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
   country = "all", # Auswahl der Länder
@@ -112,14 +125,6 @@ waste_list <- waste_data$data
 waste_geo <- waste_list %>%
   purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
   filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
-
-# EU-Asien Audit Plastik Datensatz erstellen
-audit_eu_asia <- audit %>%
-  dplyr::filter(n_pieces != 0) %>%
-  dplyr::filter(continent == "Europe" | continent == "Asia") %>%
-  dplyr::distinct(continent, country, plastic_type) %>%
-  dplyr::group_by(continent, country) %>%
-  dplyr::summarise(n_types = n())
 
 # Mini-Datensätze für NA's
 df <- tibble::tribble(
@@ -201,10 +206,10 @@ out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Grundlagen der Statistik
+<!-- ## Grundlagen der Statistik -->
 ```{r results='asis'}
-#out <- knitr::knit_child("09_grundlagenderstatistik.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("09_grundlagenderstatistik.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Reports in R Markdown

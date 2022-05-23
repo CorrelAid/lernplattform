@@ -418,7 +418,7 @@ Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das wir an die
 Die Programmierlogik in `echarts4r` unterliegt wie `ggplot2` einer Schichtlogik und funktioniert über die Pipe `%>%`, die Ihr aus dem `tidyverse` kennt. Die Visualisierungen sind hier interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren. Ab einem bestimmten Level müsst Ihr zur Bedienung von `echarts4r` allerdings Javascript können, weshalb wie dieses tolle Visualisierungstool hier nur am Rande erwähnen möchten.
 
 
-### Und jetzt Ihr (diese Woche optional)
+### Und jetzt Ihr
 Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Bardiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?
 *Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen. Innerhalb von `geom_bar()` müsst Ihr das Argument `stat = "identity" setzen.*
 
