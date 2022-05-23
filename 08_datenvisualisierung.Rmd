@@ -442,8 +442,10 @@ Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das es euch er
 <!-- Cosima: Den Part habe ich rausgenommen. Leaflet ist auch JS basiert und auch hier trifft bei fortgeschritteneren Abbildungen zu, dass ein Grundverständnis in JavaScript sinnvoll ist - aber nicht unbedingt ein "Muss" ist (hier sind ein paar Beispiele, was ich meine: https://rstudio.github.io/leaflet/morefeatures.html). -->
 <!-- Cosima: Vielleicht wäre es, da leaflet nicht zuverlässig mit Shiny zu funktionieren scheint, eine Idee auf `plotly` zu gehen und statt einer Karte einen interaktiven ggplot zu zeigen? --> 
 
+
 ### Und jetzt Ihr (diese Woche optional)
 Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Balkendiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?
+
 *Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen. Innerhalb von `geom_bar()` müsst Ihr das Argument `stat = "identity" setzen.*
 
 ### Zusätzliche Ressourcen
