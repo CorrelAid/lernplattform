@@ -2,9 +2,8 @@
 params:
   heute: !r format(Sys.Date(), '%d. %B %Y')
   daten: "daten/plastics.csv"
-  start: !r as.Date("2019-01-01")
-  ende: !r as.Date("2019-12-31")
-  kontinent: "Alle Kontinente"
+  filter_plactic: "hdpe"
+  filter_kontinent: "Alle Kontinente"
 ---
 
 ## Reportautomatisierung
@@ -27,7 +26,7 @@ params:
 - Möglich ist die Festlegung von Parametern von den folgenden **Typen**: `character` (Text), `integer` (ganze Zahl), `numeric` (Zahl), `logical` (logischer Ausdruck) und Ausdrücke in R
 
 ### Quiz
-```{r 09quiz_reportauto}
+```{r 11quiz_reportauto}
 quiz(caption = NULL,
   question("R Markdowns sind reproduzierbar. Das hat den Vorteil, dass...",
     answer("sie leicht aktualisiert werden können.", correct = TRUE),
@@ -90,12 +89,11 @@ Um Parameter zu nutzen, müssen diese **immer** im YAML-Header definiert werden.
     params:
       heute: !r format(Sys.Date(), '%d. %B %Y')
       daten: "daten/plastics.csv"
-      start: !r as.Date("2019-01-01")
-      ende: !r as.Date("2019-12-31")
-      kontinent: "Alle Kontinente"
+      filter_plactic: "hdpe"
+      filter_kontinent: "Alle Kontinente"
     ---
 
-Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den aktuellen Tag), Daten, Start- und Enddatum und einen Parameter mit diversen Ausprägungen (Kontinente), da dies Weichenstellungen sind, die wir bei der Erstellung und Aktualisierung von Reports häufig austauschen.
+Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den aktuellen Tag), Daten, Start- und Endjahr und einen Parameter mit diversen Ausprägungen (Kontinente), da dies Weichenstellungen sind, die wir bei der Erstellung und Aktualisierung von Reports häufig austauschen.
 
 *Anmerkung: Achtung bei der Nutzung von R-Funktionen in den allgemeinen YAML-Headereinstellungen und den Parametern. Die Syntax unterscheidet sich (siehe oben).* 
     
@@ -120,47 +118,56 @@ Genauso funktioniert das Ganze auch für Code:
 print(params$heute)
 ```
 
-Druckt hier das als Parameter definierte Startdatum.
-``` {r exercise_09_parameter_call, exercise = TRUE}
+Druckt hier das als Parameter definierte Startjahr.
+``` {r 11quiz_parameter_call, exercise = TRUE}
 # Hier Euer Code!
 
 ```
 
-```{r exercise_09_parameter_call-solution}
+```{r 11quiz_parameter_call-solution}
 # Zugriff auf den Parameter "start"
 print(params$start)
 ```
 
-```{r exercise_09_parameter_call-check}
+```{r 11quiz_parameter_call-check}
 grade_this_code()
 ```
 
-Die Parameter können wir dann nutzen, um Daten einzulesen... 
-```{r parameter_daten, exercise = TRUE}
-# Daten mit Parameter laden
-rio::import(here::here(params$daten), fill=TRUE)
+<!-- Die Parameter können wir dann nutzen, um Daten einzulesen...  -->
+<!-- ```{r parameter_daten, exercise = TRUE} -->
+<!-- # Daten mit Parameter laden -->
+<!-- rio::import(here::here(params$daten), fill=TRUE) -->
+<!-- ``` -->
+
+Die Parameter können wir dann nutzen, um Daten zu filtern (wir nutzen hier den vorbereiteten Datensatz `audit`).
+
+```{r include=FALSE}
+audit <- rio::import(
+  here::here("daten/bffp2019_audit_by_country_and_company.csv")
+  )
 ```
-...oder zu filtern (wir nutzen hier den vorbereiteten Datensatz `plastics_prep)`.
+
 ```{r parameter_filtern, exercise = TRUE}
 # Filtern des PlasticsPrep-Datensatzes für 2019
 plastics_prep %>%
-  dplyr::filter((year >= format(params$start, format="%Y")) & (year <= format(params$ende, format="%Y")))
+  dplyr::filter(plastic_type == params$filter_plastic)
 ```
-Erweitert nun den Filter um das Parameterargument "Kontinent".
-```{r exercise_09_parameter_filter, exercise = TRUE}
+
+```{r 11quiz_parameter_filter, exercise = TRUE}
 # Filtern des PlasticsPrep-Datensatzes für 2019
-plastics_prep %>%
-  dplyr::filter((year >= format(params$start, format="%Y")) & (year <= format(params$ende, format="%Y"))) 
+audit %>%
+  dplyr::filter(plastic_type == params$filter_plastic) 
 # Euer Code hier
 ```
 
-```{r exercise_09_parameter_filter-solution}
+```{r 11quiz_parameter_filter-solution}
 # Filtern des PlasticsPrep-Datensatzes für 2019 und Kontinent
 plastics_prep %>%
-  dplyr::filter((year >= format(params$start, format="%Y")) & (year <= format(params$ende, format="%Y"))) %>%
-  dplyr::filter(continent == params$kontinent)
+  dplyr::filter(plastic_type == params$filter_plastic) %>%
+  dplyr::filter(continent == params$filter_kontinent)
 ```
-```{r 09quiz_reportauto_filter}
+
+```{r 11quiz_reportauto_filter}
 quiz(caption = NULL,
   question("Wie viele Beobachtungen werden gefunden?",
     answer("2886"),
@@ -222,13 +229,9 @@ gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards
         label: "Daten hochladen (CSV-Format):" #Beschreibung im Menü
         value: "daten/plastics.csv" #Standardwert
         input: file #Layoutoption: File-Uploard
-      start: !r as.Date("2019-01-01")
-      ende: 
-        label: "Enddatum auswählen:"
-        value: !r as.Date("2019-12-31")
-        input: slider #Layoutoption: Slider
-        min: !r as.Date("2019-12-31") #Minimum
-        max: !r as.Date("2020-12-31") 'Maximum
+      filter_plastic: 
+        label: "Plastikart auswählen:"
+        choices: ["hdpe", "TODO", "TODO", "TODO"] #Layoutoption: Einfachauswahl
       kontinent: 
         label: "Kontinent auswählen:"
         value: "Alle Kontinente"
@@ -252,7 +255,7 @@ Am Besten - und wenn Ihr viele Reports auf einmal erstellen wollt - solltet Ihr 
 rmarkdown::render(
   input = here::here("reporttemplate.Rmd"), # Hier kommt Euer Reporttemplate hin
   output_format = "html_document", # Hier legt Ihr das Outputformat fest
-  output_file = paste0(Sys.Date(), "_Report_", "NH"), # Hier legt Ihr den Outputnamen fest
+  output_file = glue::glue("{lubridate::today()}_Report_{.x}_Kürzel"), # Hier legt Ihr den Outputnamen fest
   output_dir = "out" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
   params = list(start = "2019-01-01", ...) # Hier könnt Ihr die Parameterliste setzen
   )
@@ -271,7 +274,7 @@ Wir wollen für den [Report Ausblick (08_reports-uebung_NH_Ausblick.Rmd)](https:
 
 ```r
 # Liste mit Kontinenten erstellen
-kontinent_liste <- unique(plastics_prep$continent)
+kontinent_liste <- unique(audit$continent)
 ```
 
 Im Anschluss kombinieren wir die `purrr::walk()`-Funktion mit der `rmarkdown::render()`-Funktion.
@@ -281,7 +284,7 @@ purrr::walk(
     .x = kontinent_liste, 
     .f = ~rmarkdown::render(
     # Hier kommt Euer Reporttemplate hin
-    input = here::here("08_reports-uebung_NH_Ausblick.Rmd"), 
+    input = here::here("11_reports-uebung_NH_Ausblick.Rmd"), 
     # Hier legt Ihr das Outputformat fest
     output_format = "html_document",
     # Hier legt Ihr den Outputnamen fest, der nun den Kontinent beinhaltet
