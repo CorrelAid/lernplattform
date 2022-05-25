@@ -33,7 +33,7 @@ Rendert ein .Rmd Eurer Wahl mit der `rmarkdown::render()` Funktion, anstatt des 
 
 ```{r}
 # hier dein Code um einen Report mit rmarkdown::render() zu generieren
-# Bsp: rmarkdown::render(input = "09_Report_Plastic.Rmd")
+# Bsp: rmarkdown::render(input = "Report_Plastic.Rmd")
 ```
 
 
@@ -43,7 +43,7 @@ Probiert Euch nun an dem `output_file` argument der rmarkdown::render Funktion:
 - setzt dort den Namen fest, den Eurer Report später haben soll
 ```{r}
 rmarkdown::render(
-  input = "09_Report_Plastic.Rmd",
+  input = "Report_Plastic.Rmd",
   output_file = "Füge-hier-den-namen-ein"
   )
 ```
@@ -57,7 +57,7 @@ Passt den untenstehenden Code eventuell an, damit er mit Euren Reports funktioni
 
 ## 3.1 Input definieren
 ```{r define-input}
-set_rmd_name <- "09_Report_Plastic.Rmd"
+set_rmd_name <- "Report_Plastic.Rmd"
 
 # Einzelteile des Report Namens
 set_date <- lubridate::today()
@@ -103,7 +103,7 @@ rmarkdown::render(
 ```
 
 # Schritt 5: Parameter kennenlernen
-Schaut in den Beispiel Report `09_Report-Plastic.Rmd` und finde die Stelle, an der die Parameter definiert werden. 
+Schaut in den Beispiel Report `Report-Plastic.Rmd` und finde die Stelle, an der die Parameter definiert werden. 
 
 Welche Parameter könnt Ihr dort entdecken? 
 
@@ -117,7 +117,7 @@ Führt die Folgenden beiden Code Blöcke aus und vergleicht die erstellten Repor
 - Findet ihr auch die Stelle im R Markdown Dokument, der zu dem Ergebnis beigetragen hat?
 ```{r example-no-code}
 rmarkdown::render(
-  input = here::here("09_Report_Plastic.Rmd"),
+  input = here::here("Report_Plastic.Rmd"),
   output_file = "Übungsreport-Europe-kein_Code",
   output_format = "html_document",
   params = list(highlight_continent = "Europe",
@@ -127,7 +127,7 @@ rmarkdown::render(
 
 ```{r example-with-code}
 rmarkdown::render(
-  input = here::here("09_Report_Plastic.Rmd"),
+  input = here::here("Report_Plastic.Rmd"),
   output_file = "Übungsreport-Europe-mit_Code",
   output_format = "html_document",
   params = list(highlight_continent = "Europe",
