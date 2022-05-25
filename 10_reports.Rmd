@@ -3,6 +3,7 @@ output:
   word_document: default
   html_document: default
 ---
+
 ## Reports in R Markdown
 
 ![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
@@ -34,7 +35,8 @@ output:
 -   Daneben gibt es auch noch diesen [**Schummelzettel (dt.)**](https://correlaid.org/material/Schummelblatt_rmarkdown.pdf){target="_blank"}, diesen [**Schummelzettel (engl.)**](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf){target="_blank"} und dieses tolle [**Nachschlagewerk (engl.)**](https://correlaid.org/material/RMarkdownGuideline.pdf){target="_blank"}
 
 ### Quiz
-```{r 08quiz_reports_allg}
+
+```{r 10quiz_reports_allg}
 quiz(caption = NULL,
   question("Welche diese Beschreibungen treffen zu? R Markdown ist... ",
     answer("...📦 ein R-Paket namens rmarkdown.", correct = TRUE),
@@ -70,7 +72,7 @@ Die Formatierung funktioniert nur dem **weiß hinterlegten Teil** des Rmds, dem 
 
 erstellt mit: `##### H5 Überschrift`
 
-*Anmerkung: H1 Überschriften benötigen nur ein #, H2 zwei ##, usw.*
+*Anmerkung: H1 Überschriften benötigen nur ein \#, H2 zwei \#\#, usw.*
 
 ------------------------------------------------------------------------
 
@@ -109,11 +111,11 @@ erstellt mit: `[Hyperlinkname](Link){target="_blank"}`
 
 **Zeilenumbrüche**
 
-Praktisch sind auch **Umbrüche**, die mit "\<br>" eingefügt werden. Diese Notation stammt übrigens aus HTML - ebenso praktisch sind die Notationen "\<center>", "\<left>" und "\<right>" zur **Positionierung**. <br>
+Praktisch sind auch **Umbrüche**, die mit "\<br\>" eingefügt werden. Diese Notation stammt übrigens aus HTML - ebenso praktisch sind die Notationen "\<center\>", "\<left\>" und "\<right\>" zur **Positionierung**. <br>
 
 Soll Rmd diese mit Bedeutung belegten Sonderzeichen mal ignorieren, könnt Ihr vor sie einen **Backslash** `\` einfügen.
 
-```{r 08quiz_reports_markdown}
+```{r 10quiz_reports_markdown}
 quiz(caption = NULL,
   question("Wie formatiert Ihr Text zu einer Überschrift?",
     answer("Der gewünschten Anzahl an Hashes (#), eins für H1, zwei für H2, ...", correct = TRUE),
@@ -158,7 +160,7 @@ Um eine Option für alle Code Blocks festzulegen, kann sie **global im ersten Se
 
 Knitr behandelt jede Option, die an knitr::opts_chunk\$set übergeben wurde, als globalen Standard, der **in einzelnen Chunk-Headern überschrieben** werden kann.
 
-```{r 08quiz_reports_codechunksettings}
+```{r 10quiz_reports_codechunksettings}
 quiz(caption = NULL,
   question("Grundsätzlich möchtet Ihr nicht, dass Code, Nachrichten und Warnungen in Eurem PDF-Outputformat angezeigt werden. Was müsst Ihr tun?",
     answer("Im Set-Up Chunk setzen wir die Argumente include, echo, message und warning auf FALSE"),
@@ -208,7 +210,7 @@ Im untenstehenden YAML Code wird eimes der Standard Themes von R Markdown namens
         highlight: github
     ---
 
-```{r 08quiz_reports_yaml}
+```{r 10quiz_reports_yaml}
 quiz(caption = NULL,
   question("Im YAML-Header können welche Einstellungen getroffen werden?",
     answer("Titel des Outputdokuments", correct = TRUE),
@@ -225,15 +227,14 @@ quiz(caption = NULL,
 )
 ```
 
-
 ### Und jetzt Ihr
 
 1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html){target="_blank"} und stöbert durch einige Beispiele, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
 2.  Bearbeitet lokal die [Übung 10_Reports](https://correlcloud.org/index.php/s/NjX2HNSeMmGtFD2){target="_blank"} zu R Markdown, die wir für Euch vorbereitet haben.
 
-
 ### Zusätzliche Ressourcen
-- [**Schummelzettel (dt.)**](https://correlaid.org/material/Schummelblatt_rmarkdown.pdf){target="_blank"}
-- [**Nachschlagewerk zu RMarkdown (engl.)**](https://correlaid.org/material/RMarkdownGuideline.pdf){target="_blank"}
-- R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"}
-- Templates für [PDF- und HTML-Dokumente](https://www.rstudio.com/blog/r-markdown-custom-formats/){target="_blank"}
+
+-   [**Schummelzettel (dt.)**](https://correlaid.org/material/Schummelblatt_rmarkdown.pdf){target="_blank"}
+-   [**Nachschlagewerk zu RMarkdown (engl.)**](https://correlaid.org/material/RMarkdownGuideline.pdf){target="_blank"}
+-   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"}
+-   Templates für [PDF- und HTML-Dokumente](https://www.rstudio.com/blog/r-markdown-custom-formats/){target="_blank"}
