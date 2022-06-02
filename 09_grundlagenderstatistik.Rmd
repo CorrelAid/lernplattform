@@ -17,11 +17,10 @@
 - Es hilft deshalb **Effekte** (Veränderung oder Stabilisierung), **plausibilisierte Wirkungen** (Plausibilitätscheck möglicher kausaler Mechanismen) und **Wirkung** (nachgewiesener kausaler Mechanismus) unserer Programme zu unterscheiden
 - Viele analytische Verfahren können mit **Mustererkennung** allein schon viel Zugewinn ermöglichen, da wir maschinell viel größere Mengen an Informationen verarbeiten können als manuell
 
-
 ### Quiz
 ```{r quiz_statistischesdenken}
 quiz(caption = NULL,
-  question("Die Studie mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie",
+  question("Das Studiendesign mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
     correct = "Richtig!",
@@ -50,7 +49,7 @@ quiz(caption = NULL,
   ),
   
   question("Welches Verfahren zur Auswahl einer Stichprobe solltet Ihr nutzen?",
-    answer("Willkürliche Stichprobe (Convenience sampling"),
+    answer("Willkürliche Stichprobe (Convenience sampling)"),
     answer("Geschichtete Zufallsstichprobe", correct = TRUE),
     answer("Einfache Zufallsstichprobe"),
     correct = "Richtig!",
@@ -278,7 +277,7 @@ Ein Prüffaktor der bayesianischen Statistik ist - analog zum p-Wert - der **Bay
 Wie in der frequentistischen Statistik gibt es auch hier übliche Grenzwerte, die ebenfalls mit Vorsicht zu nutzen sind:
 
 <center>
-![*Bild: Interpretation des Bayes-Faktors*](https://correlaid.org/material/Interpretation-of-Bayes-Factor-values){#id .class width=100% height=100%}
+![*Bild: Interpretation des Bayes-Faktors*](https://correlaid.org/material/Interpretation-of-Bayes-Factor-values.png){#id .class width=100% height=100%}
 </center>
 
 Wir merken uns: In der Bayesianischen Statistik entwerfen wir zuerst ein Modell auf Basis von vertretbaren Annahmen. Dieses Modell unterfüttern wir mit den Ergebnissen unserer Daten und überprüfen dann, ob das Modell auch tatsächlich zu den Daten passt.
