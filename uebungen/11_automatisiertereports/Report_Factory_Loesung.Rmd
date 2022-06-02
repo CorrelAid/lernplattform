@@ -36,16 +36,16 @@ Rendert ein .Rmd Eurer Wahl mit der `rmarkdown::render()` Funktion, anstatt des 
 
 ```{r}
 # hier dein Code um einen Report mit rmarkdown::render() zu generieren
-rmarkdown::render(input = "09_Report_Plastic.Rmd")
+rmarkdown::render(input = "Report_Plastic.Rmd")
 ```
 
 ## Schritt 2:  Output Datei umbenennen
 
 Probiert Euch nun an dem `output_file` argument der rmarkdown::render Funktion:  
-- setzt dort den Namen fest, den Eurer Report später haben soll  
+- setzt dort den Namen fest, den Euer Report später haben soll  
 ```{r}
 rmarkdown::render(
-  input = "09_Report_Plastic.Rmd",
+  input = "Report_Plastic.Rmd",
   output_file = "2021-11-26_Plastik-Report"
   )
 ```
@@ -58,7 +58,7 @@ Passt den untenstehenden Code eventuell an, damit er mit Euren Reports funktioni
 
 ## 3.1 Input definieren
 ```{r define-input}
-set_rmd_name <- "09_Report_Plastic.Rmd"
+set_rmd_name <- "Report_Plastic.Rmd"
 
 # Einzelteile des Report Namens
 set_date <- lubridate::today()
