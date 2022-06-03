@@ -137,116 +137,42 @@ Und im letzten Schritt bringen wir die Shiny-App natürlich noch zusammen.
 shinyApp(ui = ui, server = server)
 ```
 
-Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel eine Visualisierung erstellen. Nehmen wir einmal die Visualisierung aus der letzten Woche als Beispiel: 
+Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel eine Visualisierung erstellen. Nehmen wir eine Euch bereits bekannte Visualisierung als Beispiel. 
 
 ```{r plot_full_to_print, echo = FALSE}
-# Wir definieren den Dateninput (`community`) 
-community %>%
-  # Datenbereinigung
-  dplyr::filter(continent != "Unknown") %>% 
-  # Überschreibe eine vorherrschende Gruppierung
-  ungroup() %>%
-  # Berechne die absolute Anzahl an Freiwilligen
-  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
-  # Gruppiere nach Kontinent
-  group_by(continent) %>%
-  # Berechne die relative Anzahl der Freiwilligen
-  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
-  # Behaltn jeden Wert pro Kontinent nur einmal
-  distinct(continent, relative_anzahl)  %>%
-  # Initialisiere `ggplot2` und bestimme die x-Achse (Kontinente)
-  # und die y-Achse (relative Anzahl an Freiwilligen)
-  # Zusätzlich legen wir die Farbe der Balken fest
-  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
-  # Definiere den Visualisierungsplot (Balkendiagramm)
-  geom_col() +
-    # Bezeichnung des Titels und des Untertitels
-  labs(
-    title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
-  ) +
-  # Farben der Balken festlegen (über das wesanderson Package)
-  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-  # Legen das Thema fest
-  ggthemes::theme_wsj() +
-  # Benenne die Legende um
-  # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
-  # der Festlegung des Themas geschieht
-  theme(legend.title = element_blank(),
-        text = element_text(size=7))
+# Top Ten Hersteller berechnen
+top10_parentcompany <- daten %>%
+  dplyr::ungroup() %>% # Gruppierung aufheben um Operation zu ermöglichen
+  dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
+  dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
+  dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
+  dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>% # Unpassende Werte Filtern
+  dplyr::slice_max(total_pieces, n = 10) %>% # die Top Ten abschneiden
+  dplyr::arrange(desc(total_pieces))
+
+# Erstellung eines Barplots zu den Herstellern von Plastik
+ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(parent_company, total_pieces))) + # Plot auf Basis der bearbeiteten Daten inititalisieren
+    geom_bar(stat = "identity", fill = "#4E97AC") + # Initialisierung eines Barplots mit absoluten Werten (stat = "identity") in der Farbe blau (#4E97AC)
+    labs(
+      title = "Prominente Firmen aus aller Welt ..." ,
+      subtitle = "... stellen die gefundenen Plastikverpackungen her.",
+      x = "Anzahl an Plastikstücken",
+      y = "Hersteller"
+      ) +
+    theme_minimal()
 ```
 
-Hier ist noch einmal der Code als Erinnerung dafür - wir brauchen ihn gleich:
+Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es, gemeinsam eine den Tab "Hersteller" in einer lokalen Shiny-App zu bauen, die so ([klick hier!](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}) aussehen soll.
 
-```{r plot_full, exercise = TRUE}
-# Wir definieren den Dateninput (`community`) 
-community %>%
-  # Datenbereinigung
-  dplyr::filter(continent != "Unknown") %>% 
-  # Überschreiben eine vorherrschende Gruppierung
-  ungroup() %>%
-  # Berechnen die absolute Anzahl an Freiwilligen
-  dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
-  # Gruppieren nach Kontinent
-  group_by(continent) %>%
-  # Berechnen die relative Anzahl der Freiwilligen
-  dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
-  # Behalten jeden Wert pro Kontinent nur einmal
-  distinct(continent, relative_anzahl)  %>%
-  # Initialisieren `ggplot2` und bestimment die x-Achse (Kontinente)
-  # und die y-Achse (relative Anzahl an Freiwilligen)
-  # Zusätzlich legen wir die Farbe der Balken fest
-  ggplot2::ggplot(aes(x = continent, y = relative_anzahl, fill = continent)) +
-  # Definieren den Visualisierungsplot (Balkendiagramm)
-  geom_col() +
-    # Bezeichnung des Titels und des Untertitels
-  labs(
-    title = "Prozentuale Verteilung der Freiwilligen" ,
-    subtitle = "pro Kontinent",
-  ) +
-  # Farben der Balken festlegen (über das wesanderson Package)
-  scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-  # Legen das Thema fest
-  ggthemes::theme_wsj() +
-  # Benennen die Legende um
-  # Da wir hier wieder auf das `theme` zugreifen, ist es wichtig, dass es nach 
-  # der Festlegung des Themas geschieht
-  theme(legend.title = element_blank(),
-        text = element_text(size=7))
-```
-
-Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code in die Shiny-App-Komponenten kopieren. Unser Ziel ist es, gemeinsam eine lokale Shiny-App zu bauen, die so ([klick hier!](https://cosima-meyer.shinyapps.io/break_free_from_plastic/){target="_blank"}) aussehen soll.
-
-Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern** und wir sehen auch auf einmal, dass Ozeanien auch Freiwillige hat - eben nur sehr wenige! Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR){target="_blank"} herunterladen.
-
-```{r quizz_ap}
-quiz(caption = NULL,
-  question("Wie viele Freiwillige gibt es in Ozeanien (in %)?",
-    answer("ca. 0%"),
-    answer("ca. 20%"),
-    answer("ca. 0.007%", correct = TRUE),
-    answer("ca. 2%"),
-    answer("ca. 0.0001%"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Versucht es einfach nochmal oder schaut Euch die Shiny-App noch einmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  )
-)
-```
-*Tipp: Es ist am besten, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.*
+Probiert die App doch einfach aus. Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern**. Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} herunterladen.
 
 
 #### Schritt 1: Shiny-App planen
 Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen **Plan** zurechtlegen. Hierbei ist es sehr hilfreich, die App grob zu skizzieren (gerne auch ganz klassisch auf Papier).
 
-Wir möchten das **Balkendiagramms** aus der letzten Woche in eine App übersetzen. In der linken Seitenleiste seht Ihr **Auswahlmöglichkeiten nach Kontinenten** - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden **Namen**, z.B. "Break Free From Plastic":
+Wir möchten das **Balkendiagramms** aus der letzten Woche in eine App übersetzen. In der linken Seitenleiste seht Ihr **Auswahlmöglichkeiten nach Kontinenten** - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden **Namen**.
 
-<center>
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/sketch_app.png?raw=true){#id .class width=70% height=70%} 
-</center>
-
-*Anmerkung: Solltet Ihr mal nicht weiterkommen, haben wir auch eine `app_loesung.R`-Datei für Euch vorbereitet.*
+*Tipp: Es ist am besten, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.*
 
 
 #### Schritt 2: Der Server
@@ -264,8 +190,8 @@ Für den Server unserer App können wir den Code für das Balkendiagramm an der 
 ```{r server_new_plot, exercise=TRUE}
 server <- function(input, output) {
 
-    # Wir speichern unsere Visualisierung in `output$balkendiagramm`
-    output$balkendiagramm <- renderPlot({
+    # Wir speichern unsere Visualisierung in `output$Hersteller`
+    output$Hersteller <- renderPlot({
       
     # Innerhalb von `renderPlot()` kreieren wir unseren ggplot2
       
@@ -284,7 +210,7 @@ Das Rendern erfolgt mit `renderPlot`, da wir einen Plot, also eine Visualisierun
 
 Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs). Insbesondere wenn Ihr **Shiny-Erweiterungen** nutzt, müsst Ihr innerhalb der Erweiterung nach der richtigen Renderfunktion suchen. Schließlich benennen wir unseren Output `output$balkendiagramm`. 
 
-Kopiert nun den Code des Balkendiagramms und ergänzt ihn in Eurer lokalen Datei `app.R`an der angegebenen Stelle im Server. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist:
+Kopiert nun den Code des Balkendiagramms (siehe oben) und ergänzt ihn in Eurer lokalen Datei `app.R`an der angegebenen Stelle im Server. Ergänzt den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist:
 
 ```{r aufgabe_1, exercise=TRUE}
 server <- function(input, output) {
@@ -293,7 +219,7 @@ server <- function(input, output) {
   # Nutzt die geeignete Funktion (in diesem Fall renderPlot, da wir einen
   # Plot darstellen möchten), um den Output zu generieren
   
-  output$balkendiagramm <- renderPlot({
+  output$Hersteller <- renderPlot({
     
     ##########################################################################
     # 1. Aufgabe:
@@ -453,9 +379,12 @@ Wunderbar - unsere Seitenleiste steht. Wir wenden uns dem `mainPanel()` zu. Die 
 
 Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht (auf Englisch)](https://mastering-shiny.org/basic-ui.html#outputs){target="_blank"}.
 
-Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl für die `ui` aus, um eine Visualisierung (also einen "Plot") darzustellen. Wir haben im `server` unser Balkendiagramm als `output$balkendiagramm` gespeichert - das ist hier eine wichtige Information, da wir es hier mit dem Namen (auch: Schlüssel) `"balkendiagramm"` direkt ansprechen und einbinden können. Bearbeitet dazu Aufgabe 3 im Code in Eurer `app.R`-Datei.
+Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl für die `ui` aus, um eine Visualisierung (also einen "Plot") darzustellen. Wir haben im `server` unser Balkendiagramm als `output$Hersteller` gespeichert - das ist hier eine wichtige Information, da wir es hier mit dem Namen (auch: Schlüssel) `"Hersteller"` direkt ansprechen und einbinden können. Bearbeitet dazu Aufgabe 3 im Code in Eurer `app.R`-Datei.
 
 ```{r ui_exercise_choices, exercise=TRUE, eval = FALSE}
+### Hier hinterlegen wir die Option "Alle Ort" für den Wohnort-Filter
+continent_list <- c("Alle Kontinente", sort(unique(community$continent)))
+
 # UI ----------------------------------------------------------------------
 
 # Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
@@ -463,40 +392,28 @@ Wählt in Aufgabe 3 (`# 3. Aufgabe` in der `app.R`-Datei) den geeigneten Befehl 
 # die für uns relevanten Teile
 
 ui <- fluidPage(
-
+  
+  # Titel einfügen
   titlePanel(""),
   
-  # Definiert die Seitenleiste und den Input (das haben wir bereits im letzten Schritt getan)
-  sidebarLayout(sidebarPanel(
-    checkboxGroupInput(
-      "",
-      h4(""),
-      choices = list(
-      ),
-      selected = ""
+  # Hiermit legen wir unser Layout fest - wir haben uns für das SidebarLayout entschieden, damit wir links Filter einfügen können.
+  sidebarLayout(
+    
+    # Hier definieren wir die Filter: Auswahlfilter für Wohnort und Kursniveau und ein Eingabefeld für Text
+    sidebarPanel(width = 3,
+      # Drop-Down-Filter für den Kontinent
+      selectInput('continent', 'Wähle den Kontinent aus:', choices = continent_list, selected = 'Alle Kontinente'),
+    ),
+    
+    # Hier kreiieren wir den Hauptteil der Applikation. 
+    mainPanel(
+      # Wir haben uns für das Layout mit Tabs (zu dt. Reitern) entschieden.
+      tabsetPanel(
+        # Tab mit Hersteller-Visualisierung einfügen. Das Package plotly sorgt für die Interaktivität der Visualisierung.
+        tabPanel('Hersteller', plotly::plotlyOutput('Hersteller'))
+      )
     )
-
-  ),
-  
-  ##########################################################################
-  # 3. Aufgabe:
-  
-  # Fügt das Balkendiagramm in `mainPanel()` ein
-  # Dazu müsst Ihr zwei Dinge beachten
-  
-  # 1) Wählt eine geeignete Output-Funktion (hier erhaltet Ihr Inspiration 
-  # (https://mastering-shiny.org/basic-ui.html#outputs) oder
-  # schaut auf der Lernplattform in der Übersicht - es handelt sich hierbei um
-  # einen "plot", den wir darstellen möchten)
-  
-  # 2) Fügt das unten generierte "balkendiagramm" ein (es ist wichtig, dass es
-  # in Anführungszeichen steht)
-  
-  # Für die Intuition: Wir greifen hier auf das Objekt ("balkendiagramm") zu, 
-  # das Ihr zuvor im `server` generiert habt und lassen es uns ausgeben :-)
-  ##########################################################################
-  
-  mainPanel()
+  )
 )
 ```
 
@@ -560,50 +477,15 @@ Das holen wir jetzt nach. Dazu bauen wir einen Filter in unsere Visualisierungsf
 Nach der Bearbeitung der Daten und vor der Erstellung der Visualisierung mit `ggplot2` haben wir die Möglichkeit noch einen zusätzlichen Filter einzubauen. Im Code wäre das an der gekennzeichneten Stelle:
 
 ```{r make_function_work, exercise=TRUE}
-        community %>%
-  
-            # Datenbereinigung
-            dplyr::filter(continent != "Unknown") %>%
-            ungroup() %>%
-            dplyr::mutate(absolute_anzahl = sum(volunteers)) %>%
-            group_by(continent) %>%
-            dplyr::mutate(relative_anzahl = (sum(volunteers) / absolute_anzahl) * 100) %>%
-            distinct(continent, relative_anzahl)  %>%
-            
-            ##########################################################################
-            # Hier bauen wir einen zusätzlichen Filter ein:
-            dplyr::filter(continent %in% input$continentSelection) %>%
-            ##########################################################################
-
-            # Erstellen des ggplot2-Objekts
-            ggplot2::ggplot(aes(
-                x = continent,
-                y = relative_anzahl,
-                fill = continent
-            )) +
-            geom_col() +
-            labs(title = "Prozentuale Verteilung der Freiwilligen" ,
-                 subtitle = "pro Kontinent",) +
-            scale_fill_manual(values = wes_palette("Cavalcanti1")) +
-            ggthemes::theme_wsj() +
-            theme(legend.title = element_blank(),
-                  text = element_text(size = 7))
+# Interaktivität
+if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
+  daten <- audit %>% filter(continent == input$continent)
+} else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
+  daten <- audit
+}
 ```
 
-Wie Ihr seht, wählen wir hier wieder die `dplyr::filter()` Option und definieren so, dass nur die Kontinente ausgewählt werden sollen, die in `input$continentSelection` ausgewählt wurden. Erinnert Ihr Euch noch an die `id`, die wir in der `ui` vergeben haben? Genau hier nutzen wir sie, um darauf im `server` zu verweisen! 
-
-Das ist auch schon unsere 5. Aufgabe in der App - fügt den Code an der entsprechenden Stelle ein und lasst die ganze `app.R`-Datei noch einmal laufen.
-
-```{r make_server_work, exercise=TRUE}
-    ##########################################################################
-    # 5. Aufgabe:
-    # Wichtig! Der Filter lief noch nicht - wieso? 
-    # Als zusätzlichen Schritt müssen wir jetzt noch einen Filter 
-    # einbauen, in dem wir auf unsere Auswahl in der `ui` zugreifen
-    # Hierfür könnt Ihr den Code aus der Lernplattform nehmen und ihn einfügen
-    # (Ihr seht in der Lernplattform, wo es sinnvoll wäre)
-    ##########################################################################
-```
+Wie Ihr seht, wählen wir hier wieder die `dplyr::filter()` Option und definieren so, dass nur die Kontinente ausgewählt werden sollen, die in `input$continent`ausgewählt wurden. Erinnert Ihr Euch noch an die `id`, die wir in der `ui` vergeben haben? Genau hier nutzen wir sie, um darauf im `server` zu verweisen! 
 
 
 #### 5. Verschönerung Eurer Shiny-App
@@ -618,51 +500,15 @@ Wie auch schon in `ggplot2` gibt es verschiedene Themen, die Ihr eurer Shiny-App
 library(shinythemes)
 ```
 
-Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Klickt Euch durch die Folien, um eine Idee zu bekommen, wir Eure Shiny-App aussehen könnte: 
-
-```{r flipbook_shinythemes, out.width='100%', out.height='100%'}
-knitr::include_url("https://cosimameyer.rbind.io/slides/flip_for_correlaid_shinythemes/dsee_slides_shinythemes#1")
-```
-
-Sollte die Darstellung auf dieser Plattform nicht funktionieren, könnt Ihr auf die [Folien hier zugreifen](https://cosimameyer.rbind.io/slides/flip_for_correlaid_shinythemes/dsee_slides_shinythemes#1){target="_blank"}.
-
-Wenn Ihr mehr Inspirationen möchtet, schaut einfach [hier](https://rstudio.github.io/shinythemes/){target="_blank"} vorbei.
-
-Wählt jetzt ein Thema aus, das Euch gefällt und ergänzt es in Aufgabe 6 (`# 6.Aufgabe` in der `app.R`-Datei):
-
-```{r shiny_theme_tuning, exercise=TRUE, eval =FALSE}
-ui <- fluidPage(
-  
-  ##########################################################################
-  # 6. Aufgabe
-  # Jetzt geht es ans Fine-Tuning!
-  # Ändert das Thema - entkommentiert dafür die Zeile Code und ergänzt es mit
-  # einem Thema eurer Wahl
-  # Holt Euch Inspiration hier: https://rstudio.github.io/shinythemes/
-  ##########################################################################
-  
-  # theme = shinytheme(""),
-  
-  ...
-)
-```
-
-Lasst Eure Shiny-App noch einmal lokal laufen und schaut, wie schnell sich die Oberfläche der Shiny-App ändern kann!
+Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Schaut einfach [hier](https://rstudio.github.io/shinythemes/){target="_blank"} vorbei.
 
 **Titel ändern**
 
-Im letzten Schritt geben wir unserer Shiny-App noch einen schönen Titel, zum Beispiel "Break Free From Plastic". Das ergänzen wir auch in der `ui` (in `# 7. Aufgabe` seht Ihr, wo Ihr es ergänzen müsst):
+Im letzten Schritt geben wir unserer Shiny-App noch einen schönen Titel, zum Beispiel "Break Free From Plastic". Das ergänzen wir auch in der `ui` (in `# 4. Aufgabe` seht Ihr, wo Ihr es ergänzen müsst):
 
 ```{r ui_title, exercise=TRUE}
 ui <- fluidPage(
-  
-  ##########################################################################
-  # 7. Aufgabe
-  # Ändert den Titel in `titelPanel`
-  ##########################################################################
-  
-  titlePanel(""),
-  ...
+  titlePanel("")
 )
 ```
 

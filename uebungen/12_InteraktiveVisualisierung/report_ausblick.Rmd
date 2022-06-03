@@ -2,12 +2,12 @@
 title: 'Eine explorative Datenanalyse von #breakfreefromplastic'
 author: "Nina Hauser"
 output:
+  pdf_document:
+    toc: yes
   html_document:
     theme: yeti
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
   word_document:
     toc: yes
 toc: yes

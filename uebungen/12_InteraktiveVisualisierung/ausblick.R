@@ -325,8 +325,9 @@ server <- function(input, output, session){
     plot()
   })
   
-  # Hersteller-Visualisierung gestalten
-  hersteller <- reactive({ # Hier können wir unseren Output reaktiv gestalten.
+  # Einfügen der Visualisierung in die Applikation
+  output$Hersteller <- plotly::renderPlotly({
+    # Interaktivität
     if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
       daten <- audit %>% filter(continent == input$continent)
     } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
@@ -353,11 +354,6 @@ server <- function(input, output, session){
         y = "Hersteller"
       ) +
       theme_minimal()
-  })
-  
-  # Einfügen der Visualisierung in die Applikation
-  output$Hersteller <- plotly::renderPlotly({
-    hersteller()
   })
   
   # Einfügen der Community-Datentabelle in in die Applikation
