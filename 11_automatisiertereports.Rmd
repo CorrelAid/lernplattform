@@ -3,7 +3,7 @@ params:
   heute: !r format(Sys.Date(), '%d. %B %Y')
   daten: "daten/plastics.csv"
   filter_plactic: "hdpe"
-  filter_kontinent: "Alle Kontinente"
+  filter_continent: "alle Kontinente"
 ---
 
 ## Reportautomatisierung
@@ -89,8 +89,8 @@ Um Parameter zu nutzen, müssen diese **immer** im YAML-Header definiert werden.
     params:
       heute: !r format(Sys.Date(), '%d. %B %Y')
       daten: "daten/plastics.csv"
-      filter_plactic: "hdpe"
-      filter_kontinent: "Alle Kontinente"
+      filter_plastic: "hdpe"
+      filter_continent: "alle Kontinente"
     ---
 
 Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den aktuellen Tag), Daten, Start- und Endjahr und einen Parameter mit diversen Ausprägungen (Kontinente), da dies Weichenstellungen sind, die wir bei der Erstellung und Aktualisierung von Reports häufig austauschen.
@@ -162,9 +162,9 @@ audit %>%
 
 ```{r 11quiz_parameter_filter-solution}
 # Filtern des PlasticsPrep-Datensatzes für 2019 und Kontinent
-plastics_prep %>%
+audit %>%
   dplyr::filter(plastic_type == params$filter_plastic) %>%
-  dplyr::filter(continent == params$filter_kontinent)
+  dplyr::filter(continent == params$filter_continent)
 ```
 
 ```{r 11quiz_reportauto_filter}
@@ -181,7 +181,7 @@ quiz(caption = NULL,
   question("Warum ist das der Fall?",
     answer("Es gibt für den Kontinent keine Beobachtungen.", correct = TRUE),
     answer("Das muss ein Fehler sein..."),
-    correct = 'Richtig! Wir haben den Parameter "kontinent" mit dem Standardwert "Alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "Alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
+    correct = 'Richtig! Wir haben den Parameter "kontinent" mit dem Standardwert "alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "Alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
     incorrect = 'Leider falsch: Die Anzahl der Zeilen (= Beobachtungen beträgt 0, ablesbar in Description:df [0 × 16]. Wir haben den Parameter "kontinent" mit dem Standardwert "Alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "Alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -193,15 +193,12 @@ Umsetzen können wir die Option "Alle Kontinente" übrigens, indem wir beispiels
 
 ```{r filter_trick, exercise = TRUE}
 ### Filter für parametrisierte Reports einfügen
-if (params$kontinent == "Alle Kontinente") {
-  plastics_prep <- plastics_prep
-} else {
-  plastics_prep <- plastics_prep %>%
-    filter(continent == params$kontinent)
+if (params$filter_continent != "alle Kontinente") {
+  audit <- audit %>% filter(continent == params$filter_continent)
 }
 
 # Head drucken
-head(plastics_prep)
+head(audit)
 ```
 
 
@@ -232,19 +229,20 @@ gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards
       filter_plastic: 
         label: "Plastikart auswählen:"
         choices: ["hdpe", "TODO", "TODO", "TODO"] #Layoutoption: Einfachauswahl
-      kontinent: 
+      filter_continent: 
         label: "Kontinent auswählen:"
-        value: "Alle Kontinente"
-        input: select
-        choices: ["Americas", "Asia", "Africa", "Europe", "Oceania", "Unknown" ] #Layoutoption: Einfachauswahl
+        value: "alle Kontinente"
+        input: select #Layoutoption: Einfachauswahl
+        choices: ["Amerikas", "Asien", "Afrika", "Europa", "Ozeanien", "alle Kontinente"] 
 
 ![*Knitting mit Parametern - Menüoptionen (Screenshot)*](https://correlaid.org/material/knitwithparametersoptions.png){#id .class width=50% height=50%}
 
 
 ##### Option B1: Die Render-Funktion mit GUI (begrenzt praktikabel)
 Die andere Option, die wir Euch nicht vorenthalten möchten, ist das Starten des GUI über die `rmarkdown::render()`-Funktion. Ansonsten funktionier hier alles analog zu Option A2.
+
 ```r
-rmarkdown::render("reporttemplate.Rmd", params = "ask")
+rmarkdown::render("Report_Plastic.Rmd", params = "ask")
 ```
 
 
@@ -253,11 +251,11 @@ Am Besten - und wenn Ihr viele Reports auf einmal erstellen wollt - solltet Ihr 
 
 ```r
 rmarkdown::render(
-  input = here::here("reporttemplate.Rmd"), # Hier kommt Euer Reporttemplate hin
+  input = here::here("Report_Plastic.Rmd"), # Hier kommt Euer Reporttemplate hin
   output_format = "html_document", # Hier legt Ihr das Outputformat fest
-  output_file = glue::glue("{lubridate::today()}_Report_{.x}_Kürzel"), # Hier legt Ihr den Outputnamen fest
-  output_dir = "out" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
-  params = list(start = "2019-01-01", ...) # Hier könnt Ihr die Parameterliste setzen
+  output_file = glue::glue("{lubridate::today()}_Report_{params$filter_continent}"), # Hier legt Ihr den Outputnamen fest
+  output_dir = "output" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
+  params = list(start = 2019, ...) # Hier könnt Ihr die Parameterliste setzen
   )
 ```
 
@@ -274,31 +272,31 @@ Wir wollen für den [Report Ausblick (08_reports-uebung_NH_Ausblick.Rmd)](https:
 
 ```r
 # Liste mit Kontinenten erstellen
-kontinent_liste <- unique(audit$continent)
+kontinente_liste <- unique(audit$continent)
 ```
 
 Im Anschluss kombinieren wir die `purrr::walk()`-Funktion mit der `rmarkdown::render()`-Funktion.
 
 ```r
 purrr::walk(
-    .x = kontinent_liste, 
+    .x = kontinente_liste, 
     .f = ~rmarkdown::render(
     # Hier kommt Euer Reporttemplate hin
     input = here::here("11_reports-uebung_NH_Ausblick.Rmd"), 
     # Hier legt Ihr das Outputformat fest
     output_format = "html_document",
     # Hier legt Ihr den Outputnamen fest, der nun den Kontinent beinhaltet
-    output_file = glue::glue("{lubridate::today()}_Report_{.x}_Kürzel"),
+    output_file = glue::glue("{lubridate::today()}_Report_{.x}"),
     # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
-    output_dir = "out"
+    output_dir = "output"
     # Hier könnt Ihr die Parameterliste setzen: Wir ändern nur den Parameter "Kontinent"
-    params = list(kontinent = kontinent) 
+    params = list(filter_continent: "alle Kontinente") 
   )
 ```
 
 *Tipp 1: Erstellt das zugehörige Directory automatisch, falls es nicht exisiert.*
 ```r
-output_dir <- here::here("out")
+output_dir <- here::here("output")
 if (!dir.exists(output_dir)) {
   dir.create(output_dir)
 }
