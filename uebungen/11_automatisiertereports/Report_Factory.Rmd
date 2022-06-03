@@ -27,7 +27,7 @@ Let's go!
 
 # Schritt 1: rmarkdown::render() Funktion
 
-Rendert ein .Rmd Eurer Wahl mit der `rmarkdown::render()` Funktion, anstatt des 🧶 Knit-Buttons. Ihr könnt den Code dafür in diesem Dokument sammeln. Hier ist sozusagen Eure Report-Factory, in der ihr den Code schreibt, der dann die Reports generiert. 
+Rendert das `Report_Plastic.Rmd` oder ein .Rmd Eurer Wahl mit der `rmarkdown::render()` Funktion, anstatt des 🧶 Knit-Buttons. Ihr könnt den Code dafür in diesem Dokument sammeln. Hier ist sozusagen Eure Report-Factory, in der ihr den Code schreibt, der dann die Reports generiert. 
 
 *\*Anmerkung: Falls Ihr die render Funktion nachschlagen möchtet, könnt Ihr den Namen der Funktion entweder im Help-Abschnitt von R-Studio eingeben oder die Funktion im Script highlighten und dann F1 drücken. Ein weiterer Weg ist es, `?render` in der Console auszuführen*
 
@@ -60,16 +60,14 @@ Passt den untenstehenden Code eventuell an, damit er mit Euren Reports funktioni
 set_rmd_name <- "Report_Plastic.Rmd"
 
 # Einzelteile des Report Namens
-set_date <- lubridate::today()
+set_continent <- "Europa"
 set_report_name <- "Plastik-Report"
+
+# Dokumentnamen erstellen / zusammenkleben
+output_file_name <- glue::glue("{set_report_name}_{set_continent}")
 ```
 
-## 3.2 Dokumentnamen bauen
-```{r build-document-name}
-output_file_name <- glue::glue("{set_date}_{set_report_name}")
-```
-
-## 3.3 Report mit Namen erstellen 
+## 3.2 Report mit Namen erstellen 
 Generiere nun einen Report mit automatisierter Benennung, den du in der Input-Abschnitt der Report-Factory festgelegt hast:
 ```{r}
 rmarkdown::render(
@@ -79,7 +77,7 @@ rmarkdown::render(
 ```
 
 # Schritt 4: YAML Optionen ändern 
-Nun geht es weiter mit dem `output_format` argument. Könnt ihr den untenstehenden Code so anpassen, dass ein PDF Dokument anstatt einer Website generiert wird?  
+Nun geht es weiter mit dem `output_format` Argument. Könnt ihr den untenstehenden Code so anpassen, dass ein PDF Dokument anstatt einer Website generiert wird?  
 
 *\*Anmerkung: Falls Ihr die render Funktion nachschlagen möchtet, könnt Ihr den Namen der Funktion entweder im Help-Abschnitt von R-Studio eingeben oder die Funktion im Script highlighten und dann F1 drücken. Ein weiterer Weg ist es, `?render` in der Console auszuführen*
 
@@ -105,33 +103,31 @@ rmarkdown::render(
 # Schritt 5: Parameter kennenlernen
 Schaut in den Beispiel Report `Report-Plastic.Rmd` und finde die Stelle, an der die Parameter definiert werden. 
 
-Welche Parameter könnt Ihr dort entdecken? 
+Welchen Parameter könnt Ihr dort entdecken? 
 
 *\*Anmerkung: Erinnert Euch, Parameter bestehen immer aus Key: Value Paaren - übersetzt Schlüssel: Wert Paaren. Dabei steht der Schlüssel vor dem Doppelpunkt und der Wert folgt danach.*
 
 # Schritt 6: Parameter nutzen
 
-Führt die Folgenden beiden Code Blöcke aus und vergleicht die erstellten Reports. 
+Führt die folgenden beiden Code Blöcke aus und vergleicht die erstellten Reports. 
 
 - Könnt ihr die Stelle im Code in diesem Dokument finden, die zu dem Unterschied geführt hat? 
 - Findet ihr auch die Stelle im R Markdown Dokument, der zu dem Ergebnis beigetragen hat?
-```{r example-no-code}
+```{r example-europa}
 rmarkdown::render(
   input = here::here("Report_Plastic.Rmd"),
-  output_file = "Übungsreport-Europe-kein_Code",
+  output_file = "Übungsreport-Europe",
   output_format = "html_document",
-  params = list(highlight_continent = "Europe",
-                include_code = FALSE)
+  params = list(filter_continent = "Europe")
   )
 ```
 
-```{r example-with-code}
+```{r example-ozeanien}
 rmarkdown::render(
   input = here::here("Report_Plastic.Rmd"),
-  output_file = "Übungsreport-Europe-mit_Code",
+  output_file = "Übungsreport-Ozeanien",
   output_format = "html_document",
-  params = list(highlight_continent = "Europe",
-                include_code = TRUE)
+  params = list(filter_continent = "Ozeanien")
   )
 ```
 
@@ -152,20 +148,35 @@ purrr::walk(
   .x = continent_names,
   .f = ~ rmarkdown::render(
     input = here::here(set_rmd_name),
-    output_file = glue::glue("{set_date}_{set_report_name}_hl-{.x}"),
-    output_format = "pdf_document",
-    params = list(highlight_continent = .x) # hier wird der Kontinentname übergeben
+    output_file = glue::glue("{set_report_name}_{.x}"),
+    output_format = "html_document",
+    # hier wird der Kontinentname übergeben
+    params = list(filter_continent = .x) 
   )
 )
 ```
 
-Probiere mit dem gleichen Prinzip, zwei Reportsversionen für das Anzeigen von Code zu generieren, dass durch den Parameter `include_code` gesteuert wird. Schreibe also Code der an den verschiedenen Optionen für den Parameter `include_code` entlang "laufen" wird.
+
+# Bonus
+Probiere mit dem gleichen Prinzip, Reportsversionen für alle Länder zu generieren, indem du einen den Parameter `filter_continent` mit `filter_country` ersetzt und die entsprechenden Stellen im Code anpasst.
 
 ```{r}
 # hier wird ein Objekt der die verschiedenen Optionen enthällt erstellt
-optionen_namen <- c(TRUE, FALSE)
+country_names <-  audit_raw %>% 
+  dplyr::distinct(country) %>% 
+  dplyr::pull(country)
 ```
 
 ```{r}
 # Hier Eurer Code
+purrr::walk(
+  .x = country_names,
+  .f = ~ rmarkdown::render(
+    input = here::here(set_rmd_name),
+    output_file = glue::glue("{set_report_name}_{.x}"),
+    output_format = "html_document",
+    # hier wird der Kontinentname übergeben
+    params = list(filter_country = .x) 
+  )
+)
 ```
