@@ -8,7 +8,7 @@ params:
 
 ## Reportautomatisierung
 
-![*Video: Reportautomatisierung (45min)*](https://youtu.be/E55UtZm0DOY)
+![*Video: Reportautomatisierung (20min)*](https://youtu.be/78r2ugQ6bdQ)
 
 ### Kernaussagen
 - Berichte in R Markdown anzulegen, bedeutet, **reproduzierbare Reports** zu erstellen
@@ -268,7 +268,7 @@ purrr::walk(liste, function(listenelement) {
 })
 ```
 
-Wir wollen für den [Report Ausblick (08_reports-uebung_NH_Ausblick.Rmd)](https://correlcloud.org/index.php/s/FFxbt95PbzDFyiR), der bereits den Trick mit "Alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Plastics-Datensatz und erstellen - analog zum Report -  den Plastics-Prep Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
+Wir wollen für den [Report Ausblick](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}, der bereits den Trick mit "Alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Plastics-Datensatz und erstellen - analog zum Report -  den Plastics-Prep Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
 
 ```r
 # Liste mit Kontinenten erstellen
@@ -307,10 +307,10 @@ if (!dir.exists(output_dir)) {
 Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}, in den englischsprachigen Büchern [Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} und [R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html){target="_blank"} und bei unserem Partner [Dataquest](https://app.dataquest.io/course/intermediate-r){target="_blank"}. In dem verlinkten Kapitel findet Ihr insbesondere weitere Hilfestellungen zu Wenn-Dann-Bedingungen, Funktionen und Iterationen.
 
 ### Und jetzt Ihr
-Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der rmarkdown::render() Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut Euch das [**R Markdown: 11_AutomatisierteReports**](https://correlcloud.org/index.php/s/NjX2HNSeMmGtFD2){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der rmarkdown::render() Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut Euch das [**R Markdown: 11_AutomatisierteReports**](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
 
 ### Zusätzliche Ressourcen
-- [**RStudio Webinar: Rethink Reporting with Automation)**](https://www.rstudio.com/resources/webinars/rethink-reporting-with-automation/){target="_blank"}
+- [RStudio Webinar: **Rethink Reporting with Automation**](https://www.rstudio.com/resources/webinars/rethink-reporting-with-automation/){target="_blank"}
 - Yihui Xie et al. [**RMarkdown: The Definitive Guide**](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} (engl.)
 - RStudios [Hilfeseite](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}
-- [CorrelTalk: Automatisierte Reportgenerierung für die Weltläden](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
+- [CorrelTalk: **Automatisierte Reportgenerierung für die Weltläden**](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
