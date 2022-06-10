@@ -27,10 +27,11 @@ pacman::p_load(
 )
 ```
 
+```{=html}
 <!-- 
 Die nächsten drei Code Chunks laden Daten (1) erstellen Subset der Top/ Firmen basierend auf der Anzahl an Plastikstücken (2) und lassen diese als Output ausgeben (3).
 -->
-
+```
 ```{r import-data, include=FALSE}
 url_audit <- "https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv"
 
@@ -53,7 +54,8 @@ parent_company_counts <- audit %>%
   # Zähle die Anzahl der Plastikstücke pro Unternehmen
   dplyr::count(parent_company,
                wt = n_pieces, name = "total_pieces",
-               sort = TRUE) 
+               sort = TRUE) %>% 
+  filter(total_pieces > 0)
 ```
 
 [![CorrelAid Logo](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg "CorrelAid Logo"){width="20%"}](correlaid.org)
@@ -62,9 +64,9 @@ parent_company_counts <- audit %>%
 
 ##### Auswertung für Europa
 
-- von `füge deinen Namen hier ein`
-- *zuletzt generiert: `r lubridate::today()`*
-- *Mehr Informationen zu Break Free From Plastic finden Sie unter diesem [Link](https://www.breakfreefromplastic.org).*
+-   von `füge deinen Namen hier ein`
+-   *zuletzt generiert: `r lubridate::today()`*
+-   *Mehr Informationen zu Break Free From Plastic finden Sie unter diesem [Link](https://www.breakfreefromplastic.org).*
 
 ------------------------------------------------------------------------
 
@@ -97,7 +99,10 @@ parent_company_top10 %>%
          "Anzahl Plastikstücke" = total_pieces)
 ```
 
-> --\> Das Unternehmen mit den **meisten Plastikstücken** ist `r parent_company_top10 %>% head(1) %>% pull(parent_company)` mit insgesamt `r parent_company_top10 %>% head(1) %>% pull(total_pieces)` Plastikstücken in 2019.
+> --\> In den Top10 der Firmen ist das Unternehmen mit den **meisten Plastikstücken** `r parent_company_top10 %>% head(1) %>% pull(parent_company)` mit insgesamt `r parent_company_top10 %>% head(1) %>% pull(total_pieces)` Plastikstücken in 2019.
+
+> --> In den Top10 der Firmen ist das Unternehmen mit den **wenigsten Plastikstücken** `r parent_company_top10 %>% tail(1) %>% pull(parent_company)` mit insgesamt `r parent_company_top10 %>% tail(1) %>% pull(total_pieces)` Plastikstücken in 2019.
+
 
 ```{r bar-chart-top10-companies, echo=FALSE}
 parent_company_top10 %>%

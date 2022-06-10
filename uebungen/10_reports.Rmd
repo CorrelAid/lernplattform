@@ -124,10 +124,10 @@ parent_company_top10 %>%
          "Anzahl Plastikstücke" = total_pieces)
 ```
 
-<!-- Schaffst du es die untenstehenden Information auch für das Unternehmen mit dem wenigsten Plastik einzufügen?
+<!-- Schaffst du es die untenstehenden Information auch für das Unternehmen aus den Top10 mit dem wenigsten Plastik einzufügen?
 -->
 
-> --\> Das Unternehmen mit den **meisten Plastikstücken** ist `r parent_company_top10 %>% head(1) %>% pull(parent_company)` mit insgesamt `r parent_company_top10 %>% head(1) %>% pull(total_pieces)` Plastikstücken in 2019.
+> --\> In den Top10 der Firmen ist das Unternehmen mit den **meisten Plastikstücken** `r parent_company_top10 %>% head(1) %>% pull(parent_company)` mit insgesamt `r parent_company_top10 %>% head(1) %>% pull(total_pieces)` Plastikstücken in 2019.
 
 <!-- Zeit für einen Plot. 
 Du kannst unterschiedliche Abschnitte im Code highlighten und ausführen um Schritt für Schritt nachverfolgen zu können was der Code in der Abbildung bewirkt. Die Abschnitte enden immer mit der geschlossenen Klammer vor dem `+`.
