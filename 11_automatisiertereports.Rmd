@@ -1,8 +1,8 @@
 ---
 params:
   heute: !r format(Sys.Date(), '%d. %B %Y')
-  daten: "daten/plastics.csv"
-  filter_plactic: "hdpe"
+  daten: "daten/audit.csv"
+  filter_plastic: "hdpe"
   filter_continent: "alle Kontinente"
 ---
 
@@ -88,12 +88,12 @@ Um Parameter zu nutzen, müssen diese **immer** im YAML-Header definiert werden.
     output: html_document
     params:
       heute: !r format(Sys.Date(), '%d. %B %Y')
-      daten: "daten/plastics.csv"
+      daten: "daten/audit.csv"
       filter_plastic: "hdpe"
       filter_continent: "alle Kontinente"
     ---
 
-Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den aktuellen Tag), Daten, Start- und Endjahr und einen Parameter mit diversen Ausprägungen (Kontinente), da dies Weichenstellungen sind, die wir bei der Erstellung und Aktualisierung von Reports häufig austauschen.
+Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den aktuellen Tag), Daten, Plastiktyp und einen Parameter mit diversen Ausprägungen (Kontinente), da dies Weichenstellungen sind, die wir bei der Erstellung und Aktualisierung von Reports häufig austauschen.
 
 *Anmerkung: Achtung bei der Nutzung von R-Funktionen in den allgemeinen YAML-Headereinstellungen und den Parametern. Die Syntax unterscheidet sich (siehe oben).* 
     
@@ -118,15 +118,15 @@ Genauso funktioniert das Ganze auch für Code:
 print(params$heute)
 ```
 
-Druckt hier das als Parameter definierte Startjahr.
+Druckt hier den als Parameter definierten Filter für Plastikart.
 ``` {r 11quiz_parameter_call, exercise = TRUE}
 # Hier Euer Code!
 
 ```
 
 ```{r 11quiz_parameter_call-solution}
-# Zugriff auf den Parameter "start"
-print(params$start)
+# Zugriff auf den Parameter "filter_plastic"
+print(params$filter_plastic)
 ```
 
 ```{r 11quiz_parameter_call-check}
@@ -147,21 +147,21 @@ audit <- rio::import(
   )
 ```
 
-```{r parameter_filtern, exercise = TRUE}
-# Filtern des PlasticsPrep-Datensatzes für 2019
-plastics_prep %>%
+```{r 11quiz_1-parameter_filtern, exercise = TRUE}
+# Filtern des PlasticsPrep-Datensatzes für die Plastikart "hdpe"
+audit %>%
   dplyr::filter(plastic_type == params$filter_plastic)
 ```
 
-```{r 11quiz_parameter_filter, exercise = TRUE}
-# Filtern des PlasticsPrep-Datensatzes für 2019
+```{r 11quiz_2-parameter_filter, exercise = TRUE}
+# Filtern des PlasticsPrep-Datensatzes für die Plastikart "hdpe" und Kontinent
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic) 
 # Euer Code hier
 ```
 
-```{r 11quiz_parameter_filter-solution}
-# Filtern des PlasticsPrep-Datensatzes für 2019 und Kontinent
+```{r 11quiz_2-parameter_filter-solution}
+# Filtern des PlasticsPrep-Datensatzes für die Plastikart "hdpe" und Kontinent
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic) %>%
   dplyr::filter(continent == params$filter_continent)
@@ -181,15 +181,15 @@ quiz(caption = NULL,
   question("Warum ist das der Fall?",
     answer("Es gibt für den Kontinent keine Beobachtungen.", correct = TRUE),
     answer("Das muss ein Fehler sein..."),
-    correct = 'Richtig! Wir haben den Parameter "kontinent" mit dem Standardwert "alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "Alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
-    incorrect = 'Leider falsch: Die Anzahl der Zeilen (= Beobachtungen beträgt 0, ablesbar in Description:df [0 × 16]. Wir haben den Parameter "kontinent" mit dem Standardwert "Alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "Alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
+    correct = 'Richtig! Wir haben den Parameter "filter_continent" mit dem Standardwert "alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
+    incorrect = 'Leider falsch: Die Anzahl der Zeilen (= Beobachtungen beträgt 0, ablesbar in Description:df [0 × 16]. Wir haben den Parameter "filter_continent" mit dem Standardwert "alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
 )
 ```
 
-Umsetzen können wir die Option "Alle Kontinente" übrigens, indem wir beispielsweise in der Datenbereinigung diese Option einbauen:
+Umsetzen können wir die Option "alle Kontinente" übrigens, indem wir beispielsweise in der Datenbereinigung diese Option einbauen:
 
 ```{r filter_trick, exercise = TRUE}
 ### Filter für parametrisierte Reports einfügen
@@ -224,16 +224,18 @@ gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards
       heute: !r format(Sys.Date(), '%d. %B %Y')
       daten: #Parametername
         label: "Daten hochladen (CSV-Format):" #Beschreibung im Menü
-        value: "daten/plastics.csv" #Standardwert
-        input: file #Layoutoption: File-Uploard
+        value: "daten/audit.csv" #Standardwert
+        input: file #Layoutoption: File-Upload
       filter_plastic: 
+        value: "hdpe"
         label: "Plastikart auswählen:"
-        choices: ["hdpe", "TODO", "TODO", "TODO"] #Layoutoption: Einfachauswahl
+        choices: ["hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc"] #Layoutoption: Einfachauswahl
       filter_continent: 
         label: "Kontinent auswählen:"
         value: "alle Kontinente"
         input: select #Layoutoption: Einfachauswahl
         choices: ["Amerikas", "Asien", "Afrika", "Europa", "Ozeanien", "alle Kontinente"] 
+    ---
 
 ![*Knitting mit Parametern - Menüoptionen (Screenshot)*](https://correlaid.org/material/knitwithparametersoptions.png){#id .class width=50% height=50%}
 
@@ -268,7 +270,7 @@ purrr::walk(liste, function(listenelement) {
 })
 ```
 
-Wir wollen für den [Report Ausblick](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}, der bereits den Trick mit "Alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Plastics-Datensatz und erstellen - analog zum Report -  den Plastics-Prep Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
+Wir wollen für den [Report Ausblick](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}, der bereits den Trick mit "alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Plastics-Datensatz und erstellen - analog zum Report -  den Plastics-Prep Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
 
 ```r
 # Liste mit Kontinenten erstellen

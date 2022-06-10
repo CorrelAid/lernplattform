@@ -139,11 +139,12 @@ df2 <- df %>% dplyr::na_if(-99)
 # Parameter (nur zum Zeigen)
 params <- list()
 params$heute <- format(Sys.time(), '%d. %B %Y')
-params$daten <- "daten/plastics.csv"
+params$daten <- "daten/audit.csv"
 params$start <- as.Date("2019-01-01")
 params$ende <- as.Date("2019-12-31")
 params$land <- "Argentina"
-params$kontinent <- "Alle Kontinente"
+params$filter_plastic <- "hdpe"
+params$filter_continent <- "alle Kontinente"
 ``` 
 
 <!-- ## Willkommen -->
