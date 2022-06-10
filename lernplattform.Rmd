@@ -144,6 +144,8 @@ params$start <- as.Date("2019-01-01")
 params$ende <- as.Date("2019-12-31")
 params$land <- "Argentina"
 params$kontinent <- "Alle Kontinente"
+params$filter_plastic <- "hdpe"
+params$filter_continent <- "Asien"
 ``` 
 
 <!-- ## Willkommen -->
@@ -224,22 +226,22 @@ out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Interaktive Visualisierungen
+<!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
-#out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Lernzielkontrolle
+<!-- ## Lernzielkontrolle -->
 ```{r results='asis'}
-#out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Und jetzt?
+<!-- ## Und jetzt? -->
 ```{r results='asis'}
-#out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Glossar -->

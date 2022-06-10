@@ -1,11 +1,3 @@
----
-params:
-  heute: !r format(Sys.Date(), '%d. %B %Y')
-  daten: "daten/plastics.csv"
-  filter_plactic: "hdpe"
-  filter_continent: "alle Kontinente"
----
-
 ## Reportautomatisierung
 
 ![*Video: Reportautomatisierung (20min)*](https://youtu.be/78r2ugQ6bdQ)
@@ -141,27 +133,22 @@ grade_this_code()
 
 Die Parameter können wir dann nutzen, um Daten zu filtern (wir nutzen hier den vorbereiteten Datensatz `audit`).
 
-```{r include=FALSE}
-audit <- rio::import(
-  here::here("daten/bffp2019_audit_by_country_and_company.csv")
-  )
-```
-
 ```{r parameter_filtern, exercise = TRUE}
-# Filtern des PlasticsPrep-Datensatzes für 2019
-plastics_prep %>%
+# Filtern des Audit-Datensatzes für 2019
+audit %>%
   dplyr::filter(plastic_type == params$filter_plastic)
 ```
+Filtert nun zusätzlich den Kontinent (hinterlegt als `filter_continent`):
 
 ```{r 11quiz_parameter_filter, exercise = TRUE}
-# Filtern des PlasticsPrep-Datensatzes für 2019
+# Filtern des Audit-Datensatzes (hinterlegt als )
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic) 
 # Euer Code hier
 ```
 
 ```{r 11quiz_parameter_filter-solution}
-# Filtern des PlasticsPrep-Datensatzes für 2019 und Kontinent
+# Filtern des Audit-Datensatzes
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic) %>%
   dplyr::filter(continent == params$filter_continent)
