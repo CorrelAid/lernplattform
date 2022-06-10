@@ -151,9 +151,9 @@ Nun ist es soweit, wir wollen Reports erstellen die jeweils einen anderen Kontin
 
 1. Kontinente extrahieren
 ```{r}
-continent_names <- plastics_prep %>% 
+continent_names <- audit_raw %>% 
   dplyr::distinct(continent) %>% 
-  dplyr::pull(continent)
+  dplyr::pull(continent) 
 ```
 
 An den Kontinenten in `continent_names` "laufen" wir entlang und übergeben den Kontinentnamen an unsere render Funktion (siehe .x). Noch genauer übergeben wir sie an die Stelle in der render Funktion an der die Parameter für das R Markdown Dokument festgelegt werden können.
