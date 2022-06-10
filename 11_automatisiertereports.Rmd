@@ -148,20 +148,20 @@ audit <- rio::import(
 ```
 
 ```{r 11quiz_1-parameter_filtern, exercise = TRUE}
-# Filtern des PlasticsPrep-Datensatzes für die Plastikart "hdpe"
+# Filtern des Audit-Datensatzes für die Plastikart "hdpe"
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic)
 ```
 
 ```{r 11quiz_2-parameter_filter, exercise = TRUE}
-# Filtern des PlasticsPrep-Datensatzes für die Plastikart "hdpe" und Kontinent
+# Filtern des Audit-Datensatzes für die Plastikart "hdpe" und Kontinent
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic) 
 # Euer Code hier
 ```
 
 ```{r 11quiz_2-parameter_filter-solution}
-# Filtern des PlasticsPrep-Datensatzes für die Plastikart "hdpe" und Kontinent
+# Filtern des Audit-Datensatzes für die Plastikart "hdpe" und Kontinent
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic) %>%
   dplyr::filter(continent == params$filter_continent)
@@ -257,7 +257,7 @@ rmarkdown::render(
   output_format = "html_document", # Hier legt Ihr das Outputformat fest
   output_file = glue::glue("{lubridate::today()}_Report_{params$filter_continent}"), # Hier legt Ihr den Outputnamen fest
   output_dir = "output" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
-  params = list(start = 2019, ...) # Hier könnt Ihr die Parameterliste setzen
+  params = list(filter_continent: "alle Kontinente") # Hier könnt Ihr die Parameterliste setzen
   )
 ```
 
@@ -270,7 +270,7 @@ purrr::walk(liste, function(listenelement) {
 })
 ```
 
-Wir wollen für den [Report Ausblick](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}, der bereits den Trick mit "alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Plastics-Datensatz und erstellen - analog zum Report -  den Plastics-Prep Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
+Wir wollen für den [Report Ausblick](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}, der bereits den Trick mit "alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Audit-Datensatz und erstellen - analog zum Report -  den Audit-Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
 
 ```r
 # Liste mit Kontinenten erstellen
