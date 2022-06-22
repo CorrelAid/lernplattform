@@ -3,6 +3,7 @@
 ![](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg){#id .class width=15% height=15%}
 </center>
 
+
 # R Lernen - Der Datenkurs von und für die Zivilgesellschaft
 
 ## Willkommen
@@ -95,8 +96,95 @@ In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer
 - In der Live-Session jeden **Freitag von 12-13 Uhr** besprechen Datenprofis mit Euch die Lösung der Übung und Lernzielkontrolle, die im Anschluss online gestellt wird
 - Zusätzlich könnt Ihr **1:1 Sprechstunden** mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten (entweder direkt in der Sprechstunde oder per Mail an Nina)
 
+### Das Team
+
+<div class="row">
+  <div class="col-sm-2">
+
+<h4 style="visibility: hidden;">Nina</h4>
+```{r echo=FALSE, out.width="200px"} 
+knitr::include_graphics("images/nina.png")
+```
+
+  </div>
+  <div class="col-sm-10">
+  <h4>Nina Hauser</h4>
+Nina ist ausgebildete Datenanalystin. Seit 2020 entwickelt
+sie für CorrelAid e.V. technische Frameworks und 
+Bildungsmaterialien im Bereich Daten. Mit „R Lernen – 
+Der Datenkurs von und für die Zivilgesellschaft“ hat sie
+ein niedrigschwelliges Bildungsangebot im Bereich 
+Data Literacy für zivilgesellschaftliche Organisationen 
+geschaffen. Um die Nutzerzentrierung unserer 
+Angebote zu sichern, nutzt sie Techniken des Design 
+Thinking.
+
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-2">
+<h4 style="visibility: hidden;">Zoé</h4>
+```{r echo=FALSE, out.width="200px"} 
+knitr::include_graphics("images/zoe.jpg")
+```
+
+  </div>
+  <div class="col-sm-10">
+<h4>Zoé Wolter</h4>
+Zoé ist seit 2018 bei CorrelAid aktiv und arbeitet seit Juni 2022 als Werkstudentin für CorrelAid. Nach ihrem Bachelor in ‘Politik- und Verwaltungswissenschaft‘ studiert sie aktuell im Master in Konstanz ‘Social and Economic Data Science‘. So ist sie auch im Local Chapter dort aktiv und war zuletzt für dessen Koordination verantwortlich. Nach zahlreichen Workshops für Studierende an der Universität Konstanz freut sie sich jetzt darauf, auch euch die große weite Welt von R zu zeigen!
+
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-sm-2">
+  <h4 style="visibility: hidden;">Phil</h4>
+```{r echo=FALSE, out.width="200px"}
+knitr::include_graphics("images/philipp_bosch.jpg")
+```
+
+  </div>
+  <div class="col-sm-10">
+<h4>Philipp Bosch</h4>
+
+Phil stärkt als ausgebildeter Datenwissenschaftler die Data
+Science Community rund um CorrelAid e.V. Er weiß, wie man
+Tech-Communites aufbaut, Begeisterung für neue
+Technologien in die Gesellschaft trägt und neue
+Partnerschaften akquiriert. Zu seinem Tätigkeitsfeld gehört die
+Organisation von Webinaren, Meet-ups, Retreats und
+Konferenzen sowie von Wettbewerben. Angefangen bei CorrelAid hat Phil jedoch
+mit R-Workshops für Studierende an der Universität Konstanz. Diese Leidenschaft
+hat ihn auch während seines weiteren Engagements nie verlassen und er freut sich,
+euch während bei “R-Lernen” zu begleiten.
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2 mt-3">
+
+<h4 style="visibility: hidden;">Frie Preu</h4>
+```{r echo=FALSE, out.width="200px"} 
+knitr::include_graphics("images/frie.jpg")
+```
+  </div>
+  <div class="col-sm-10">
+<h4>Frie Preu</h4>
+Frie Preu ist Gründungsmitglied und arbeitet als Chief Operating Officer von CorrelAid e.V..
+Dort organisiert und koordiniert sie unsere Data4Good-Projekte. Frie studierte in Konstanz Social 
+and Economic Data Analysis und arbeitete nach dem Studium zwei Jahre als IT-Consultant, bevor sie 2020 ihr langjähriges Engagement zum Beruf machte. Frie nutzt seit fast 10 Jahren R und hat schon viele Personen - Studierende, Freund:innen, CorrelAider:innen - bei ihren ersten Schritten in R und Datenanalyse unterstützt. Sie freut sich darauf, dies bei R-Lernen wieder zu tun.
+  </div>
+</div>
+
+
+
 ### Kontakt
-Die Programmleiterin Nina Hauser erreicht Ihr unter nina.h@correlaid.org. 
+Unser Team erreicht ihr unter [education@correlaid.org](mailto:education@correlaid.org). 
 
 Die Hauptkommunikation findet in unserem **Slack-Channel** statt. Zusätzlich habt Ihr die Möglichkeit Euch dort untereinander auszutauschen. Ihr erhaltet die Einladung zu Slack per **E-Mail**, könnt aber auch über diesen [Link](https://join.slack.com/share/enQtMzI1NDAwODk1NDMzNy03ZTE4MTVjMzBkODVmMWY3ZmI0NWY3MDZkZTcwMmUyYWM0NmUzMjFkZmQ3Y2Q4ZGQ5NmNkYWViNjVjZjM2MmZk){target="_blank"} beitreten (Achtung: Der Link ist nur 14 Tage lang gültig).
 
