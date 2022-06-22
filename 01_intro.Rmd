@@ -183,28 +183,6 @@ and Economic Data Analysis und arbeitete nach dem Studium zwei Jahre als IT-Cons
 
 
 
-------
-alternativ: Name über bild bei kleinen bildschirmen..
-
-<div class="row">
-  <div class="col-sm-2 col-sm-offset-2">
-<h4>Frie Preu</h4>
-</div>
-</div>
-
-
-<div class="row">
-  <div class="col-sm-2 mt-3">
-```{r echo=FALSE, out.width="200px"} 
-knitr::include_graphics("images/frie.jpg")
-```
-  </div>
-  <div class="col-sm-10">
-Frie ist seit 2015 bei CorrelAid aktiv und ist seit Februar 2020 hauptamtlich angestellt bei CorrelAid. Sie ist dort verantwortlich für die Koordination der Projekte. Zusätzlich dazu wartet und organisiert sie die CorrelAid Infrastruktur und programmiert ab und an gerne interne Tools. Bei alldem kann sie aus ihrer zweijährigen Berufserfahrung als IT Consultant schöpfen, während derer sie viel über Projektarbeit und deren technische Umsetzung lernen durfte.
-  </div>
-</div>
-
-
 ### Kontakt
 Unser Team erreicht ihr unter [education@correlaid.org](mailto:education@correlaid.org). 
 
