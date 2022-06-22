@@ -17,7 +17,7 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
   - Ihr definiert den **Server** und die **UI** separat und legt beides in verschiedenen Objekten (`server` und `ui`) ab.
 - Wenn Ihr Eure Shiny-App zum Laufen bringen wollt, führt Ihr `ui` und `server` in folgender Funktion zusammen: `shinyApp(ui = ui, server = server)`.
 
-Für weitere Infos zu Shiny-App, schaut Euch den [**Schummelzettel zu Shiny-Apps**](daten/cheat sheets/shiny_de.pdf){target="_blank"} an.
+Für weitere Infos zu Shiny-App, schaut Euch den [**Schummelzettel zu Shiny-Apps**](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"} an.
 
 ### Quiz
 ```{r 11ui}
@@ -63,7 +63,7 @@ R liefert ein eigenes Package, `shiny`, um eine Shiny-App zu bauen. Bevor wir st
 library(shiny)
 ```
 
-Der [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzeroberfläche") und **einen Server**. 
+Der [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzeroberfläche") und **einen Server**. 
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app7.png?raw=true){#id .class width=70% height=70%}</right>
 
@@ -613,7 +613,7 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
 
 3. Überlegt Euch, wie Eure Shiny-App aussehen soll. Eine Shiny-App hat meist links eine Seitenleiste mit Auswahlmöglichkeiten, in der Mitte (dem `main`-Part) ist meist Text, eine Visualisierung oder aber auch eine Tabelle. Es kann helfen, wenn Ihr Euch das kurz auf einem Papier visuell skizziert: Welche Visualisierung möchtet Ihr in Eure Shiny-App einbinden? Was könnten Auswahlmöglichkeiten sein, die Ihr in der Seitenleiste ansteuern möchtet? Möchtet Ihr Text als Informationen mitliefern?
 
-4. Nehmt Euren Code für die Visualisierung (wenn Ihr noch keinen Code habt, erstellt zunächst eine Visualisierung mit `ggplot2` und nutzt diesen Code hier) und baut ihn in die App ein. Orientiert Euch hier an der Anleitung oben oder aber auch am [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"}.
+4. Nehmt Euren Code für die Visualisierung (wenn Ihr noch keinen Code habt, erstellt zunächst eine Visualisierung mit `ggplot2` und nutzt diesen Code hier) und baut ihn in die App ein. Orientiert Euch hier an der Anleitung oben oder aber auch am [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}.
 
 5. Im vorletzten Schritt verschönern wir das Aussehen Eurer App: Baut die einzelnen Auswahlmöglichkeiten in die Seitenleiste ein und platziert Eure Visualisierung oder Euren Text im `main`-Part. 
 
@@ -622,7 +622,7 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
 7. Und jetzt kommt der spannendste Part: Lasst Eure Shiny-App laufen! Führt dazu `shinyApp(ui = ui, server = server)` in der Console aus. Eure App wird sich in einem separaten Fenster öffnen und Ihr könnt sie direkt ausprobieren :-)
 
 ### Weitere Ressourcen
-  - [Schummelzettel Shiny-Apps (auf Deutsch)](daten/cheat sheets/shiny_de.pdf){target="_blank"}
+  - [Schummelzettel Shiny-Apps (auf Deutsch)](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}
   - [R Studio Tutorial (engl.)](https://shiny.rstudio.com/tutorial/){target="_blank"}
   - [Hadley Wickham: Mastering Shiny (auf Englisch)](https://mastering-shiny.org){target="_blank"}
   - [CorrelTalk: Eine interaktive Weltkarte für erlassjahr.de](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
