@@ -273,6 +273,8 @@ Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
 ![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
 </center>
 
+<!-- Cosima: Sollten wir dieses Bild nicht auch ändern? Sonst ist es verwirrend, oder? Wir haben ja jetzt eine andere App. Sag gern Bescheid, dann passe ich es an. -->
+
 Die Grundstruktur dieses Layouts sieht so aus:
 ```{r ui_exercise1, exercise=TRUE, eval =FALSE}
 ui <- fluidPage(
@@ -292,6 +294,8 @@ Nun füllen wir die **linke Seitenleiste** mit Elementen. Bei uns soll dort der 
 
 Wenn Ihr Euch die Shiny-App noch einmal live anschaut, könnt Ihr sicher die folgende Frage beantworten:
 <!-- ...oder wenn man Schritt 1 aufmerksam gelesen hat, vielleicht dort dann rausnehmen, sonst ist die Frage ein bisschen doppelt?-->
+
+<!-- Cosima: Ich bin nicht ganz sicher, was damit gemeint ist. Haben wir die Frage noch an einer anderen Stelle? :) --> 
 ```{r 11filter}
 quiz(caption = NULL,
   question("Welche Auswahlmöglichkeiten (oder auch Filteroptionen) habt Ihr in der Shiny-App?",
