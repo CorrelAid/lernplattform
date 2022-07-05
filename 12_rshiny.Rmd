@@ -272,7 +272,6 @@ Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
 <center>
 ![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
 </center>
-
 <!-- Cosima: Sollten wir dieses Bild nicht auch ändern? Sonst ist es verwirrend, oder? Wir haben ja jetzt eine andere App. Sag gern Bescheid, dann passe ich es an. -->
 
 Die Grundstruktur dieses Layouts sieht so aus:
@@ -456,7 +455,7 @@ quiz(caption = NULL,
 )
 ```
 
-Perfekt - setzt es doch gleich in `# 4. Aufgabe` in der `app.R`-Datei)um! Hier kurz zur Erinnerung wie der Code in der Datei aussehen sollte:
+Perfekt - setzt es doch gleich in `# 4. Aufgabe` in der `app.R`-Datei) um! Hier kurz zur Erinnerung wie der Code in der Datei aussehen sollte:
 
 ```{r shinyapp_bring_it_together, exercise=TRUE, eval = FALSE}
 
@@ -524,9 +523,11 @@ library(shinythemes)
 
 Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Schaut einfach [hier](https://rstudio.github.io/shinythemes/){target="_blank"} vorbei.
 
+<!-- Cosima: Wenn ich mich richtig erinnere war es bei der Visualisierungssitzung ähnlich - es ist Absicht, dass die Slidedecks mit den Anschauungsmaterialen alle rausgenommen wurden? (Passt für mich auch; ich hatte mich nur gewundert, da sie uns ermöglichen den Teilnehmenden eine "Live"-Visualisierung der verschiedenen Möglichkeiten zu zeigen) -->
+
 **Titel ändern**
 
-Im letzten Schritt geben wir unserer Shiny-App noch einen schönen Titel, zum Beispiel "Break Free From Plastic". Das ergänzen wir auch in der `ui` (in `# 4. Aufgabe` seht Ihr, wo Ihr es ergänzen müsst):
+Im letzten Schritt geben wir unserer Shiny-App noch einen schönen Titel, zum Beispiel `"Break Free From Plastic"`. Das ergänzen wir auch in der `ui` (in `# 4. Aufgabe` seht Ihr, wo Ihr es ergänzen müsst):
 
 ```{r ui_title, exercise=TRUE}
 ui <- fluidPage(
@@ -617,17 +618,17 @@ quiz(caption = NULL,
 
 
 ### Und jetzt seid Ihr dran! (diese Woche optional)
-Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit Euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - Eurer Phantasie sind keine Grenzen gesetzt! Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
+Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit Euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - Eurer Phantasie sind keine Grenzen gesetzt. Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
 Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
 
-1. Wählt Euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit Euren Daten aus (idealerweise habt Ihr schon Code, den Ihr jetzt einfach wieder benutzen könnt - zum Beispiel aus der letzten Woche.
+1. Wählt Euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit Euren Daten aus (idealerweise habt Ihr schon Code, den Ihr jetzt einfach wieder benutzen könnt - zum Beispiel den Code aus den letzten Wochen).
 
 2. Öffnet RStudio und wählt dort eine neue Datei aus -- wählt dort "Shiny Web App". 
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shiny_step1.png?raw=true){#id .class width=50% height=50%}
 
-Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer Datei ("Single File (app.R)"), d.h.  es wird eine Datei sowohl für die UI (`ui.R`) als auch für den Server (`server.R`) erstellt) aus. 
+Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer Datei ("Single File (app.R)"), d.h. es wird eine Datei sowohl für die UI (`ui.R`) als auch für den Server (`server.R`) erstellt) aus. 
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shiny_step2.png?raw=true){#id .class width=50% height=50%}
 
