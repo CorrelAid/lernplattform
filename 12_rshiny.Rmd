@@ -1,6 +1,6 @@
 ## Interaktive Visualisierungen
 
-Was wäre eine Welt ohne interaktive und zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig! 
+Was wäre eine Welt ohne zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen mit interaktiven Visualisierungen gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig! 
 
 Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funktioniert.
 
@@ -8,10 +8,10 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
 
 ### Kernaussagen 
 - **Shiny-Apps** sind Webapplikationen:
-  - Man kann damit **Daten**, **Visualisierungen**, oder auch allgemein **Informationen** "verpacken" und so interaktiv für andere Nutzer zur Verfügung stellen.
+  - Man kann damit **Daten**, **Visualisierungen**, oder auch allgemein **Informationen** "verpacken" und so interaktiv für andere Nutzende zur Verfügung stellen.
   - Eine Shiny-App kann man später leicht **hosten** und so auch **ohne Code zugänglich** machen (Webhosting meint das Bereitstellen von Speicherplatz, um eine Website zu veröffentlichen).
 - Eine Shiny-App besteht immer aus einer **UI** und einem **Server**:
-  - Die **UI** stellt das User Interface (dt. Benutzeroberfläche) oder auch den Körper der App dar.
+  - Die **UI** stellt das User Interface (dt. Benutzendenoberfläche) oder auch den Körper der App dar.
   - Hier könnt Ihr Eure App optisch anpassen und die Anordnung der einzelnen Komponenten definieren.
   - Der **Server** bietet den Ort für die Verrechnung (oder auch Erstellung) der Visualisierungen - er ist also quasi das Gehirn der Shiny-App.
   - Ihr definiert den **Server** und die **UI** separat und legt beides in verschiedenen Objekten (`server` und `ui`) ab.
@@ -63,7 +63,7 @@ R liefert ein eigenes Package, `shiny`, um eine Shiny-App zu bauen. Bevor wir st
 library(shiny)
 ```
 
-Der [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzeroberfläche") und **einen Server**. 
+Der [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzendenoberfläche") und **einen Server**. 
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app7.png?raw=true){#id .class width=70% height=70%}</right>
 
@@ -274,7 +274,7 @@ ui <- fluidPage(
 )
 ```
 
-Nun füllen wir die **linke Seitenleiste** mit Elementen. Bei uns soll dort der Filter erscheinen. Nicht nur für die Applikation selbst, auch für die Filter habt Ihr diverse Layoutoptionen. Ihr könnt zum Beispiel "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzer Eurer Shiny-App eine Auswahl treffen zu lassen. 
+Nun füllen wir die **linke Seitenleiste** mit Elementen. Bei uns soll dort der Filter erscheinen. Nicht nur für die Applikation selbst, auch für die Filter habt Ihr diverse Layoutoptionen. Ihr könnt zum Beispiel sogenannte "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzenden Eurer Shiny-App eine Auswahl treffen zu lassen. 
 
 Wenn Ihr Euch die Shiny-App noch einmal live anschaut, könnt Ihr sicher die folgende Frage beantworten:
 <!-- ...oder wenn man Schritt 1 aufmerksam gelesen hat, vielleicht dort dann rausnehmen, sonst ist die Frage ein bisschen doppelt?-->
@@ -311,7 +311,7 @@ Die Auswahlmöglichkeiten folgen einem Schema, das je nach Auswahl komplexer wir
 - **`inputId = "..."`**: Der **interne Name** des Filters, mit dem Ihr die Werte an den Server übergebt. Wichtig ist, dass Ihr jede `id` (hier `continentSelection`) nur einmal vergebt.
 - **`label = "..."`**: Der **externe Name** des Filters, den die Nutzer:innen bei der Interaktion mit der App sehen.
 - **`choices = ...`**: Unter den **Auswahlmöglichkeiten** definieren wir eine Liste an möglichen Werten, anhand derer wir den Datensatz filtern können. Idealerweise programmiert Ihr das bei sich ändernden Ausprägungen diese Eingabe flexibel (z.B. über die Funktion `unique(datensatz$spalte)`). Ihr könnt hier aber auch manuelle Einträge festlegen und diese sogar manuell benennen. In unserer App nutzen wir die Kontinente mit deutschsprachige Labels.
-- **`selected = "..."`**: Im letzten Schritt können wir optional eine Standardauswahl für den Nutzer festlegen. Wir wählen hier `Americas` (also den Namen, der für den Kontinent im Datensatz vergeben ist).
+- **`selected = "..."`**: Im letzten Schritt können wir optional eine Standardauswahl für die Nutzenden festlegen. Wir wählen hier `Americas` (also den Namen, der für den Kontinent im Datensatz vergeben ist).
 
 In der `# 2. Aufgabe` richten wir nun den Filter für die Kontinente im `sidebarPanel()` ein. Geht dazu wieder zur `app.R` Datei.
 
@@ -320,7 +320,7 @@ In der `# 2. Aufgabe` richten wir nun den Filter für die Kontinente im `sidebar
 ```{r ui_exercise2, exercise=TRUE, eval =FALSE}
 # UI ----------------------------------------------------------------------
 
-# Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
+# Jetzt definieren wir das User Interface (auch UI, also die Benutzendenoberfläche)
 # Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen
 # die für uns relevanten Teile
 
@@ -343,17 +343,17 @@ ui <- fluidPage(
       
       "",
       
-      # Gebt eine Anleitung für den Nutzer ein (das kann sehr kurz sein
+      # Gebt eine Anleitung für die Nutzenden ein (das kann sehr kurz sein
       # und zum Beispiel "Wähle einen Kontinent" umfassen oder aber auch 
       # ausführlicher sein - hier seid Ihr vollkommen frei in eurer 
       # Auswahl :-))
       "",
       
-      # Der nächste Schritt ist wichtig - hier definieren wir, was der
-      # Nutzer auswählen kann. Die Logik ist, dass wir eine Liste (`list`)
-      # an Möglichkeiten in `choiches` speichern. Wir möchten hier alle
-      # Kontinente auswählen. Dazu müssen wir jeden Kontinent sein
-      # Anzeigeäquivalent (linke Seite) und seine Bezeichnung im 
+      # Der nächste Schritt ist wichtig - hier definieren wir, was die
+      # Nutzenden auswählen können. Die Logik ist, dass wir eine Liste 
+      # (`list`) an Möglichkeiten in `choiches` speichern. Wir möchten 
+      # hier alle Kontinente auswählen. Dazu müssen wir jeden Kontinent 
+      # sein Anzeigeäquivalent (linke Seite) und seine Bezeichnung im 
       # Datensatz (rechte Seite) geben
 
       choices = list(
@@ -391,7 +391,7 @@ continent_list <- c("Alle Kontinente", sort(unique(community$continent)))
 
 # UI ----------------------------------------------------------------------
 
-# Jetzt definieren wir das User Interface (auch UI, also die Benutzeroberfläche)
+# Jetzt definieren wir das User Interface (auch UI, also die Benutzendenoberfläche)
 # Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen
 # die für uns relevanten Teile
 
@@ -524,7 +524,7 @@ Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. 
 
 ![*Video: Reaktivität in Web Applikationen (5min)*](https://youtu.be/g8wDaNY-o9U)
 
-Man kann sich das Verhalten zwischen der UI, dem Server und dem Nutzer wie die Kommunikation mit einer **Brieftaube** vorstellen. Dieses schöne Bild stammt von [*Garrett Grolemund*](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}, der sagt, dass Reaktivität eine Illusion erzeugt, die dem Nutzer vermittelt, dass die Nutzereingabe automatisch z.B. Abbildungen kreiert.
+Man kann sich das Verhalten zwischen der UI, dem Server und den Nutzenden wie die Kommunikation mit einer **Brieftaube** vorstellen. Dieses schöne Bild stammt von [*Garrett Grolemund*](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}, der sagt, dass Reaktivität eine Illusion erzeugt, die den Nutzenden vermittelt, dass eine Eingabe durch den Nutzenden automatisch z.B. Abbildungen kreiert.
 
 <center>
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/reactivity.png?raw=true){#id .class width=70% height=70%} 
@@ -634,7 +634,7 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
   - [Hosting and deployment (auf Englisch)](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
   - [Shinyapps.io - Schritt für Schritt Anleitung (auf Englisch)](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
 - Mehr zu **echarts4r** 
-  - [echarts4r vignette (auf Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
+  - [echarts4r Vignette (auf Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
   - [Paul Simmering: Exploring echarts4r (auf Englisch)](https://rpubs.com/paul_simmering/echarts){target="_blank"}
 
 - Shiny dashboards
@@ -642,5 +642,5 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
   - [Verschiedene "Themes" (auf Englisch)](https://github.com/nik01010/dashboardthemes){target="_blank"}
 
 - Optimieren von ShinyApps
-  - [Make your Shiny-App faster (auf Englisch) (auf Englisch)](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
-  - [shiny.worker](https://www.r-bloggers.com/shiny-worker-speed-up-r-shiny-apps-by-offloading-heavy-calculations/){target="_blank"}
+  - [Make your Shiny-App faster (auf Englisch)](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
+  - [shiny.worker (auf Englisch)](https://www.r-bloggers.com/shiny-worker-speed-up-r-shiny-apps-by-offloading-heavy-calculations/){target="_blank"}
