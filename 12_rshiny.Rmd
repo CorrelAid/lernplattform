@@ -319,7 +319,7 @@ Die Tabelle gibt Euch eine kurze Übersicht über die wichtigsten **Auswahlmögl
 | Einen langen Freitext                                    | `textAreaInput("id", "Beschreibung", rows = 3)` <br> Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                      |
 | Eine Zahl                                                | `numericInput("id", "Beschreibung", value = 0, min = 0, max = 100)` <br> Mit `value` bestimmen wir den Standardwert, der immer angezeigt wird. Mit ` min` und `max` legen wir die Mindest- und die Maximalwerte fest |
 | Eine Zahl (aber mit "Slider-Auswahl")                    | `sliderInput("id", "Beschreibung", value = 0, min = 0, max = 100)`                                                                                                                                              |
-| Einfachauswahl aus Liste                                 | `selectInput("id", "Beschreibung", auswahl)` <br> In `auswahl` könnt Ihr entweder die Auswahl definieren (so wie wir es in Übung 2 machen) oder Ihr greift auf ein anderes Objekt (in diesem Fall ` auswahl` zu)     |
+| Einfachauswahl aus Liste                                 | `selectInput("id", "Beschreibung", auswahl)` <br> In `auswahl` könnt Ihr entweder die Auswahl definieren (so wie wir es in Übung 2 in dieser Sitzung machen) oder Ihr greift auf ein anderes Objekt (in diesem Fall ` auswahl` zu)     |
 | Checkbox (mit Mehrfachauswahl)                           | `checkboxGroupInput("id", "Beschreibung", auswahl)`                                                                                                                                                             |
 
 Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht](https://mastering-shiny.org/basic-ui.html#inputs){target="_blank"} (auf Englisch).
@@ -566,7 +566,9 @@ quiz(caption = NULL,
 ### Exkurs 2: Hosten von ShinyApps
 RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io){target="_blank"}. Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/){target="_blank"} und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
 
-In jedem Fall sollte intern abgeklärt werden, ob diese Hosting-Option für Euch in Frage kommt oder ob es nicht eine Alternative über die IT-Abteilung gibt (z.B. bei sensiblen Daten).
+> In jedem Fall sollte intern abgeklärt werden, ob diese Hosting-Option für Euch in Frage kommt oder ob es nicht eine Alternative über die IT-Abteilung gibt (z.B. bei sensiblen Daten).
+
+<!-- Cosima: Ich kann es optisch gerade nicht überprüfen - aber i.d.R. bietet diese "Zitieroption" die Möglichkeit, die Textstelle hervorzuheben. -->
 
 Sollte die RStudio-Lösung für Euch eine Option sein, ist das Hosten denkbar einfach. Ihr müsst nur die folgenden Schritte befolgen:
 
