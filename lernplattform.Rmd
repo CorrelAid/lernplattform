@@ -154,16 +154,16 @@ out <- knitr::knit_child("01_intro.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Datenprojekte aus der Zivilgesellschaft
+<!-- ## Datenprojekte aus der Zivilgesellschaft -->
 ```{r results='asis'}
-#out <- knitr::knit_child("02_datenprojekteundstrategie.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("02_datenprojekteundstrategie.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Datenschutz und Datenethik
+<!-- ## Datenschutz und Datenethik -->
 ```{r results='asis'}
-#out <- knitr::knit_child("03_datenschutz.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("03_datenschutz.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Einführung in RStudio
