@@ -222,13 +222,13 @@ Mit **logischen Ausdrücken** könnt Ihr u.a. Datensätze filtern und Wenn-Dann-
 Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **`c()`** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
 ``` {r slicing1, exercise = TRUE}
 # Auslesen der Spalte 'country'
-plastics$country 
-plastics[c('country', 'year')]
+data_raw$country 
+data_raw[c('country', 'year')]
 ```
 
 ``` {r slicing2, exercise = TRUE}
 # Erstellung eines Subsets auf Basis von Bedingungen
-subset(plastics, country == "Argentina" & year == 2020)
+subset(data_raw, country == "Argentina" & year == 2020)
 ```
 
 Falls Code nur unter bestimmten Bedingungen ausgeführt werden soll, wird er in **Wenn-Dann-Bedingungen** integriert. Dazu sind logische Ausdrücke (*innerhalb der runden Klammern*) sehr hilfreich. Welcher Text (*Operation innerhalb der geschwungenen Klammern*) wird hier gedruckt?
