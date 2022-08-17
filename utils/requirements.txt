@@ -1,0 +1,31 @@
+R version 4.1.2 (2021-11-01)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.8           here_1.0.1           class_7.3-19         assertthat_0.2.1     rprojroot_2.0.2     
+ [6] digest_0.6.29        utf8_1.2.2           mime_0.12            R6_2.5.1             cellranger_1.1.0    
+[11] RSQLite_2.2.8        evaluate_0.14        e1071_1.7-9          httr_1.4.2           pillar_1.7.0        
+[16] rlang_1.0.4          curl_4.3.2           readxl_1.3.1         rstudioapi_0.13      data.table_1.14.2   
+[21] blob_1.2.2           learnr_0.10.1.9019   rmarkdown_2.11       foreign_0.8-81       htmlwidgets_1.5.4   
+[26] bit_4.0.4            proxy_0.4-26         shiny_1.7.1          compiler_4.1.2       httpuv_1.6.5        
+[31] xfun_0.29            pkgconfig_2.0.3      gradethis_0.2.4.9000 htmltools_0.5.2      tidyselect_1.1.1    
+[36] tibble_3.1.6         rio_0.5.29           fansi_1.0.2          crayon_1.4.2         dplyr_1.0.9         
+[41] withr_2.4.3          later_1.3.0          sf_1.0-4             grid_4.1.2           jsonlite_1.7.3      
+[46] xtable_1.8-4         lifecycle_1.0.1      DBI_1.1.1            WDI_2.7.4            magrittr_2.0.2      
+[51] units_0.7-2          KernSmooth_2.23-20   zip_2.2.0            cachem_1.0.6         cli_3.3.0           
+[56] stringi_1.7.6        renv_0.15.2          promises_1.2.0.1     ellipsis_0.3.2       generics_0.1.1      
+[61] vctrs_0.4.1          openxlsx_4.2.4       tools_4.1.2          RJSONIO_1.3-1.6      forcats_0.5.1       
+[66] bit64_4.0.5          glue_1.6.1           markdown_1.1         purrr_0.3.4          hms_1.1.1           
+[71] rsconnect_0.8.25     fastmap_1.1.0        yaml_2.2.2           classInt_0.4-3       memoise_2.0.1       
+[76] knitr_1.37           haven_2.4.3         

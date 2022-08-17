@@ -22,11 +22,6 @@ library(httr)
 library(purrr)
 library(RSQLite)
 library(leaflet)
-#flipbookr, echarts4r,wesanderson, janitor,rstatix,haven, DBI, ggthemes, BH, anytime,gtrendsR
-
-#devtools::install_github("gadenbuie/xaringanExtra")
-#devtools::install_github("gadenbuie/countdown")
-#devtools::install_github("gadenbuie/xaringanthemer")
 
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
@@ -196,10 +191,10 @@ out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Datentransformation
+<!-- ## Datentransformation -->
 ```{r results='asis'}
-#out <- knitr::knit_child("07_datentransformation.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("07_datentransformation.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Datenvisualisierung

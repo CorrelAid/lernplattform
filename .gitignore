@@ -42,3 +42,4 @@ vignettes/*.pdf
 # Mac DS-Store
 .DS_Store
 
+packrat/lib*/

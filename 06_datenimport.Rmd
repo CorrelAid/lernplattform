@@ -119,10 +119,10 @@ quiz(caption = NULL,
 ```
 
 ### Interaktive Übung
-Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link zu einem öffentlichen Server eingelesen. Mit [`rio`](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"} könnt Ihr fast alle Dateiformate und -strukturen automatisch importieren - in der Theorie zumindest, manchmal klappt es leider nicht. Denn wir haben uns hier um drei wichtige Stellschrauben des Datenimports herumgemogelt:
-1. Die **Dateiendung** konnten wir ignorieren, da das `rio`-Package dies für uns automatisch erkennt.
-2. Der **Speicherort** wird über einen Web-Link und nicht über einen sog. Path (zu dt. Pfad) auf unserem Computer definiert.
-3. Die **Dateistruktur** wird automatisch erkannt.
+Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link zu einem öffentlichen Server eingelesen. Mit [`rio`](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"} könnt Ihr fast alle Dateiformate und -strukturen automatisch importieren - in der Theorie zumindest, manchmal klappt es leider nicht. Denn wir haben uns hier um drei wichtige Stellschrauben des Datenimports herumgemogelt: <br>
+1. Die **Dateiendung** konnten wir ignorieren, da das `rio`-Package dies für uns automatisch erkennt. <br>
+2. Der **Speicherort** wird über einen Web-Link und nicht über einen sog. Path (zu dt. Pfad) auf unserem Computer definiert. <br>
+3. Die **Dateistruktur** wird automatisch erkannt. <br>
 
 ``` {r daten_einlesen_wdh, exercise = TRUE}
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
@@ -278,7 +278,7 @@ Der Import von geographischen Daten folgt also der folgenden Checkliste:
 
 1. Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
 2. Wo kann ich zugehörige **Shapefiles** finden? <br>
-      Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden. 
+      *Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden.*
 3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
 
 #### APIs in R-Packages
@@ -341,9 +341,9 @@ Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure 
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
 ### Und jetzt Ihr
-Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige [RMD 06_Datenimport](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}:
+Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige [RMD 06_Datenimport](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"}:
 
-1. Ladet [hier](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei mit diesem Code **lokal zu laden**.
+1. Ladet [hier](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei mit diesem Code **lokal zu laden**.
 2. Ladet den "Plastics"-Datensatz über einen [**Hyperlink**](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
 3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
 4. In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um. 

@@ -5,10 +5,9 @@ account: correlaid
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4572281
-bundleId: 6100617
+bundleId: 6195220
 url: https://correlaid.shinyapps.io/lernplattform/
-when: 1657874336.29047
-lastSyncTime: 1657874336.29047
+when: 1660304787.53252
+lastSyncTime: 1660304787.53253
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: 05_ersteanalyseninr.Rmd|06_datenimport_exkursapi.Rmd|06_datenimport_exkurssql.Rmd|06_datenimport.Rmd|07_datentransformation.Rmd|08_datenvisualisierung.Rmd|09_grundlagenderstatistik.Rmd|10_reports.Rmd|11_automatisiertereports.Rmd|12_rshiny.Rmd|13_closing.Rmd|14_lernzielkontrolle.Rmd|lernplattform.html|README.md|utils/apptesting.R
