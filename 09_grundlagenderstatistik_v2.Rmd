@@ -1,0 +1,197 @@
+## Grundlagen der Statistik
+
+![*Video: Grundlagen der Statistik (30min)*](https://youtu.be/ASL2IihMtl0)
+
+### Kernaussagen
+- In der **Replikationskrise der Wissenschaft** können unerwartet viele publizierte Studienergebnisse nicht repliziert werden: Forscher:innen in aller Welt nahmen dies zum Anlass, kritisch zu hinterfragen, wie wir mit Daten verantwortungsbewusst forschen können
+- Wir müssen zwischen verschiedenen **Qualitätsstufen** von Studien unterscheiden
+- In der Medizin erfolgt das über **Evidenzklassen**:
+
+<center>
+![*Bild: Evidenzklassen*](https://correlaid.org/material/evidenzklassen.png){#id .class width=100% height=100%}
+</center>
+
+- Mit unterschiedlichen **Forschungsdesigns** ergeben sich also auch unterschiedliche interne Validität (Zuverlässigkeit der Studienergebnisse), externe Validität (Generalisierbarkeit der Studienergebnisse) und Reliabilität (Reproduzierbarkeit der Studienergebnisse)
+- Insbesondere wenn wir den Begriff der **Kausalität** für uns beanspruchen wollen, müssen wir vorsichtig sein: Wir unterscheiden die Begriffe **Assoziation, Intervention und Kontrafaktische Analyse**
+- In der Zivilgesellschaft können wir auf Grund von ethischen Herausforderungen oft kein geeignetes Experiment durchführen, es fehlt uns die **Vergleichsgruppe**
+- Es hilft deshalb **Effekte** (Veränderung oder Stabilisierung), **plausibilisierte Wirkungen** (Plausibilitätscheck möglicher kausaler Mechanismen) und **Wirkung** (nachgewiesener kausaler Mechanismus) unserer Programme zu unterscheiden
+- Viele analytische Verfahren können mit **Mustererkennung** allein schon viel Zugewinn ermöglichen, da wir maschinell viel größere Mengen an Informationen verarbeiten können als manuell
+
+### Quiz
+```{r quiz_statistischesdenken}
+quiz(caption = NULL,
+  question("Das Studiendesign mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie",
+    answer("Korrekt", correct = TRUE),
+    answer("Inkorrekt"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Es ist die Meta-Studie.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question("Meta-Studien vergleichen die Ergebnisse mehrerer experimenteller Studien (RCTs) miteinander.",
+    answer("Korrekt", correct = TRUE),
+    answer("Inkorrekt"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Meta-Studien überprüfen die Reliabilität/Reproduzierbarkeit von Studienergebnissen, indem sie diese miteinander vergleichen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question("Der Rückschluss von statistischen Eigenschaften der Stichprobe auf die Population wird als ... bezeichnet.",
+    answer("Externe Validität", correct = TRUE),
+    answer("interne Validität"),
+    answer("Reliabilität"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch. Es handelt sich bei der Generalisierbarkeit der Ergebnisse um die externe Validität.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question("Welches Verfahren zur Auswahl einer Stichprobe solltet Ihr nutzen?",
+    answer("Willkürliche Stichprobe (Convenience sampling)"),
+    answer("Geschichtete Zufallsstichprobe", correct = TRUE),
+    answer("Einfache Zufallsstichprobe"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Die geschichtete Zufallsstichprobe bildet repräsentative Gruppen, die Eigenschaften der Population nachbilden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question("Wie viele Messungen gibt es in einem Experiment?",
+    answer("1"),
+    answer("2"),
+    answer("3"),
+    answer("4", correct = TRUE),
+    correct = "Richtig",
+    incorrect = "Leider falsch: Es gibt vier Messungen. Zwei bei der Behandlungsgruppe, zwei bei der Kontrollgruppe (jeweils pre und post Intervention).",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  
+  question("Wirkungen können durch explorative Datenanalysen bestätigt werden",
+    answer("Korrekt"),
+    answer("Inkorrekt", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Wirkungen setzen Kausalität voraus. Deshalb ist es wichtig, Effekte, plausibilisierte Wirkungen und Wirkungen voneinander abzugrenzen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+### Interaktive Übung
+#### **Kausalität**
+Wenn wir Daten mit statistischen Verfahren analysieren, suchen wir nach Mustern. Daraus können wir nicht notwendigerweise kausale Schlüsse ziehen. Judea Pearl beschreibt in "The Book of Why" (2018) die **Leiter der Kausalität** auf drei Ebenen in (aufsteigender Reihenfolge):
+
+- **Ebene 1 - Assoziation:**
+    - Aktivität: Sehen, Beobachtung
+    - Fragen: Was ist, wenn ich XY sehe? Wie stehen Variablen in Beziehung? Wie ändert die Beobachtung von X meine Erwartung an Y?
+    - Beispiele: Was sagt ein Symptom über eine Krankheit aus? Was sagt eine Umfrage über Wahlergebnisse aus?
+
+- **Ebene 2 - Intervention: **
+    - Aktivität: Tun, Beeinflussung
+    - Fragen: Was ist, wenn ich XY tue (und wie)? Wie wäre Y, wenn ich X tue? Wie kann ich Y erreichen?
+    - Beispiele: Verschwinden Kopfschmerzen, wenn man Aspirin nimmt? Was passiert, wenn wir Zigaretten verbieten?
+
+- **Ebene 3 - Kontrafaktische Analyse:**
+    - Aktivität: Vorstellung, Rückschau, Verstehen
+    - Fragen: Was wäre, wenn ich XY getan hätte (und warum)? Hat X Y ausgelöst? Was wäre, wenn X nicht aufgetreten wäre? Was wäre, wenn ich etwas anderes getan hatte?
+    - Beispiele: Hat das Aspirin meine Kopfschmerzen gestoppt? Würde Kennedy noch leben, wenn Oswald ihn nicht erschossen hätte? Was wäre, wenn ich nicht die letzten zwei Jahre geraucht hätte?
+
+Die erste Ebene nimmt Vorhersagen auf Basis von **Beobachtungen** vor. Dafür werden in der Statistik bedingte Wahrscheinlichkeiten (wie wahrscheinlich ist Y gegeben X?), Korrelationen, Regressionen und maschinelles Lernen genutzt. Das ist auch der Grund, warum Datenanalyst:innen, die diese Methoden nutzen, nicht ohne weiteres von Kausalitäten sprechen. So können statistische Modelle gute Vorhersagen treffen, ohne dass wir die *kausalen* Zusammenhänge zwischen Variablen verstehen. Wie eine Eule, die dem Laufweg einer Maus folgt, um an der richtigen Stelle zuschnappen zu können. Deshalb können wir Daten, die wir in der ersten Ebene gesammelt haben, auch nicht automatisch dafür nutzen, um Fragen der zweiten Ebene zu beantworten. Die Daten reflektieren **Bedingungen**, die durch eine Intervention geändert werden würden und diese deshalb nicht abbilden können. Am Beispiel der Frage, welchen Effekt ein Verbot von Zigaretten auf die durchschnittliche Lebenserwartung einer Bevölkerung hat lässt sich das Problem verdeutlichen. Mit Beobachtungsdaten können wir die Lebenserwartung von Menschen die rauchen vergleichen mit der von Menschen die nicht rauchen. Diese Differenz, $d$, muss aber kein guter Schätzer für den kausalen Effekt eines Verbots von Zigaretten sein. Wenn, beispielsweise, Menschen in sehr stressigen Berufen auch sehr viel häufiger rauchen und Stress ebenfalls die Lebenserwartung reduziert, dann wird der kausale Effekt eines Rauchverbotes kleiner ausfallen als $d$. In anderen Worten, die Gruppe der aktuellen “freiwilligen” Nichtraucher ist in dem Beispiel keine gute Kontrollgruppe für die Gruppe der Raucher, die wir durch eine Intervention, das Rauchverbot, zu Nichtrauchern machen. 
+
+Die zweite Ebene kann auf Basis von kontrollierten Experimenten oder quasi-Experimenten erfasst werden: *Randomized Control Trials* (kurz RCTs, randomisierte, kontrollierte Studie) ermöglichen die Erforschung von Interventionen unter unterschiedlichen Bedingungen. Kehren wir zurück zum Problem des Rauchverbotes. Ein RCT scheint schwer umsetzbar, denn dann müssten wir eine repräsentative Stichprobe der Bevölkerung ziehen, einem zufällig ausgewählten Teil dieser Stichprobe das Rauchen verbieten und dieses Verbot auch kontrollieren können. Vielleicht wäre stattdessen ein quasi-Experiment möglich? Bayern und Baden-Württemberg sind in vieler Hinsicht sehr ähnliche Bundesländer. Wenn nur in einem der beiden ein Rauchverbot gilt, könnte das andere unter Umständen als Vergleichsgruppe dienen. Ein Problem könnte allerdings die regionale Nähe sein. Einerseits ist das gut, macht es doch plausibler, dass beide Länder ähnlich sind (zum Beispiel in den klimatisch und geographischen Bedingungen). Andererseits können Menschen aus einem Bundesland auch einfach in das andere Reisen und dort Zigaretten kaufen. Damit wäre die Differenz in der Lebenserwartung zwischen den Bundesländern nach der Einführung des Rauchverbots in einem unter Umständen kein guter Schätzer mehr für den durchschnittlichen kausalen Effekt eines Rauchverbots in ganz Deutschland. 
+
+Ob jedoch im Einzelfall mit dem Rauchen aufzuhören kausal für das Ende eine höhere Lebenserwartung ist, können wir erst auf Ebene 3 verstehen. Wir betrachten, was passiert wäre, wenn wir etwas nicht getan hätten. Träte der Effekt trotzdem ein? Und hier liegt dann auch der Hase im Pfeffer begraben: Wir können schließlich nicht gleichzeitig Rauchen und mit dem Rauchen aufhören - es fehlt uns die Vergleichsgruppe.
+
+### Plausibilität, Wahrscheinlichkeit und Statistik
+
+Stehe einmal kurz vom Computer auf und schau aus dem Fenster. Ist die Straße draußen nass? Wenn die Straße trocken ist, folgt daraus, dass es nicht geregnet hat. Andersherum folgt aber aus der Beobachtung einer nassen Straße nicht, dass es geregnet haben muss. Beispielsweise hätte jemand die Straße mit einem Gartenschlauch bewässern können. Die Beobachtung einer nassen Straße macht aber die Aussage “es hat geregnet” in gewisser Weise *plausibler*. Statistik ist am Ende nichts anderes als eine Systematisierung dieser Plausibilisierung. Wir haben Beobachtungen/Daten (“die Straße draußen ist naß”), die wir nutzen wollen um etwas über die Plausibilität einer Hypothese/einem Model (“es hat geregnet”) zu lernen. 
+
+In der Statistik gibt es zwei grundlegende Ansätze, den Zusammenhang zwischen Daten und Hypothesen zu verstehen. Beantworte bitte zunächst die folgenden drei Fragen aus Johnson, Ott und Dogucu (2021), anhand derer wir dann die Unterschiede erklären.
+
+```{r quiz_grundlagen_stats}
+quiz(caption = NULL,
+  question("Wenn eine faire Münze geworfen wird ist die Wahrscheinlichkeit Kopf zu werfen $p=0.5$. Wie verstehst du diese Wahrscheinlichkeit?",
+    answer("Wenn ich die Münze immer wieder werfe, wird in etwa 50% der Würfe Kopf oben liegen.", correct = TRUE),
+    answer("Kopf oder Zahl zu werfen ist gleich plausibel.", correct = TRUE),
+    answer("Sowohl a. als auch b. sind sinnvoll.", correct = TRUE),
+    correct = "Merke dir deine Antwort.",
+    type="learnr_radio"
+    ),
+  
+  question("Eine Wahl steht bevor und ein Umfrageinstitut behauptet, dass Kandidat A eine Wahrscheinlichkeit von 0.9 hat zu gewinnen. Wie verstehst du diese Wahrscheinlichkeit?",
+    answer("Wenn wir die Wahl immer wieder beobachten wird Kandidat A in 90% der Fälle gewinnen.", correct = TRUE),
+    answer("Es ist sehr viel wahrscheinlicher, dass Kandidat A die Wahl gewinnt als das er sie nicht gewinnt.", correct = TRUE),
+    answer("Das Umfrageinstitut hat einen Fehler gemacht. Kandidat A wird entweder gewinnen oder verlieren und darum kann die Wahrscheinlichkeit zu gewinnen nur 0 oder 1 sein.", correct = TRUE),
+    correct = "Noch eine Frage.",
+    type="learnr_radio"
+    ),
+  
+  question("Nimm an, dass du während deines letzten Arztbesuches positiv auf eine seltene Krankheit getestet wurdest. Wenn du der Ärztin nur eine Frage stellen darfst, welche wäre das?",
+    answer("Was ist jetzt die Wahrscheinlichkeit, dass ich tatsächlich diese Krankheit habe?", correct = TRUE),
+    answer("Wenn ich diese Krankheit nicht hätte, was ist die Wahrscheinlichkeit, dass ich trotzdem ein positives Testergebnis erhalten hätte?", correct = TRUE),
+    correct = "Antworten gemerkt? Die Auflösung gibt es im Text.",
+    type="learnr_radio"
+    )
+  )
+```
+
+Die ersten beiden Fragen verdeutlichen den entscheidenden Unterschied im Verständnis von Wahrscheinlichkeiten. **Frequentistische Statistik** interpretiert die Wahrscheinlichkeit eines Ereignisses als dessen *langfristige relative Häufigkeit*. Entsprechend beantworten Frequentisten die erste Frage mit a. und müssten, streng genommen, auf Frage 2 mit c. antworten, da eine Wahl ein einmaliges Ereignis ist. In der Praxis behilft man sich aber mit der Konstruktion einer *hypothetisch* wiederholten Wahl. Denk an eine Simulation der Wahl, die man hundertmal laufen lässt und in der Kandidat A in 90 der 100 Durchgängen gewinnt. 
+
+In der **bayesianischen Statistik** dagegen beruht der Begriff der Wahrscheinlichkeit auf dem Grad der “vernünftigen” Erwartung für den Eintritt des Ereignisses, der auch auf einmalige Ereignisse anwendbar ist. Vernünftig meint hier unter anderem, dass mir keine Wette angeboten werden kann, in der ich von vornherein sicher bin zu verlieren (ein sogenanntes Dutch Book), wenn meine Erwartungen die Regeln der Wahrscheinlichkeitstheorie erfüllen. Entsprechend beantwortet eine Bayesianerin die Fragen 1 und 2 jeweils mit b: Kopf oder Zahl zu werfen ist bei einer fairen Münze gleich plausibel und es ist sehr viel plausibler, dass A gewinnt als nicht. Frequentisten und Bayesianer sind sich also einige darin, dass die Wahrscheinlichkeit für Kopf bei einer fairen Münze $p=0.5$ ist. Allerdings interpretieren sie diese Wahrscheinlichkeit unterschiedlich. 
+
+Die dritte Frage bringt nun den zu Beginn angesprochenen Bezug zwischen Hypothesen und Daten ins Spiel, denn die beiden Antworten stehen exemplarisch für die Art der Fragen, die wir mit der frequentistischen bzw bayesianischen Statistik beantworten wollen. Da in der frequentistischen Statistik Wahrscheinlichkeit als langfristige relative Häufigkeit definiert wird, können Hypothesen keine Wahrscheinlichkeit haben. Sie sind entweder wahr oder falsch. Deshalb fragen Frequentisten ihre Ärztin (b), was die Wahrscheinlichkeit ist ein positives Testergebnis zu erhalten, wenn sie die Krankheit *nicht* hätten (also die Hypothese falsch ist). In der Bayesianischen Statistik dagegen dient Wahrscheinlichkeit dazu, Wahrheit (Plausibilität) über eine Reihe von konkurrierenden Hypothesen zu verteilen. Die Bayesianerin fragt fragt entsprechend (a), was die Wahrscheinlichkeit ist, die Krankheit tatsächlich zu haben gegeben der Beobachtung. 
+
+#### **Bayesianische Statistik**
+
+Wie wir gerade gesehen haben, fragt die Bayesianerin nach der Wahrscheinlichkeit, die Krankheit zu haben ($H=1$), gegeben einem positiven Testergebnis ($D=1$). Etwas formaler gesprochen haben wir es hier mit zwei binäre Ereignisse ($H=\{0,1\}, D=\{0,1\}$) zu tun und wir fragen nach der bedingten Wahrscheinlichkeit von $H$ gegeben $D$, $P(H=1|D=1)$. 
+ 
+In der klassischen Wahrscheinlichkeitstheorie (unabhängig von Bayesianischer oder frequentistischer Statistik!) gilt dann der folgende Zusammenhang:
+$$\underbrace{P(H=1|D=1)}_{\text{Posterior}} = \frac{\overbrace{P(D=1|H=1)}^{\text{Likelihood}}\overbrace{P(H=1)}^{\text{Prior}}}{\underbrace{P(D=1)}_{\text{Evidenz}}}.$$ 
+Diese Gleichung wird **Bayes’ Theorem** genannt. Der entscheidende Schritt zur bayesianischen Statistik ist es, diese Gleichung, die unsere gesuchte Wahrscheinlichkeit auf der linken Seite als Formel mit drei Komponenten auf der rechten Seite darstellt, als die grundlegende Regel zu nehmen, mit der wir von Beobachtung etwas über die Plausibilität von Hypothesen lernen. Die Zielwahrscheinlichkeit, $P(H=1|D=1)$,  nennen wir dann *a-posteriori* (nach der Beobachtung), $P(H=1)$ ist die *a-priori* Wahrscheinlichkeit der Hypothese (vor der Beobachtung), $P(D=1|H=1)$ ist die *Likelihood* der Beobachtung, wenn die Hypothese wahr ist, und $P(D=1)$ nennen wir die *Evidenz*. Das ist die Wahrscheinlichkeit der Beobachtungen. In anderen Worten, für Bayesianische Statistik braucht es drei Zutaten - Prior, Likelihood, und Evidenz - sowie eine direkte Konsequenz der Wahrscheinlichkeitstheorie - Bayes’ Theorem -, um die Wahrscheinlichkeit der Hypothese gegeben der Beobachtung zu berechnen.
+
+Nehmen wir das obige Beispiel mit der Ärztin und setzen es in einen bekannten Kontext. Nehmen wir an, eine beliebige Person in Deutschland hat am 13.08.2022 einen positiven Corona-Schnelltest der Firma Roche. Was ist dann die Wahrscheinlichkeit, dass die Person tatsächlich krank ist ($H=1$), geben dem positiven Schnelltest ($D=1$)? Drei Zutaten brauchen wir: Prior, Likelihood, Evidenz. 
+
+Als Prior bietet sich die aktuelle 7-Tages-Inzidenz des RKI an, diese liegt bei 342 pro Hunderttausend Einwohner:innen. Die Likelihood gibt die Wahrscheinlichkeit an, einen positiven Schnelltest zu haben, wenn man tatsächlich krank ist, $P(D=1|H=1)$. Der Hersteller unseres Tests berichtet [hier](https://assets.cwp.roche.com/f/94122/x/3fced15880/40338-33-ga-sars-cov-2-09417125003_sozu_a4_ansicht.pdf){target="_blank"} (Seite 2), dass von 102 PCR-positiv getesteten Patient:innen 85 einen positive Schnelltest hatten, wir nennen diesen Wert *richtig-positiv*. Wir lernen weiter dass 4 Personen, die einen positiven Antigentest hattet, negativ im PCR Test waren, wir sagen *falsch-positiv* waren. 
+
+Damit haben wir alle Informationen, um die gesuchte *a-posteriori* Wahrscheinlichkeit zu bestimmen. Denn die Evidenz, $P(D=1)$, kann mit binären Ereignissen nach den Regeln der Wahrscheinlichkeitstheorie als Summe mit nur zwei Termen geschrieben werden: 
+$$P(D=1) = \underbrace{P(D=1|H=1)}_{\text{richtig-positiv-rate}}\underbrace{P(H=1)}_{\text{Prior}} + \underbrace{ P(D=1|H=0)}_{\text{falsch-positiv-rate}}\underbrace{P(H=0)}_{=1-P(H=1)}$$.
+
+```{r estimate_posterior, exercise=TRUE}
+p_prior_krank <- 342e-5
+rpr <- 85 / 102
+fpr <- 4 / 435
+
+# Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
+p_posterior_krank <- 
+
+print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", p_posterior_krank , "."))
+
+```
+
+Was sagt uns dieses Ergebnis? Zunächst sehen wir, dass die Wahrscheinlichkeit an Corona erkrankt zu sein im Vergleich zur Ausgangs Wahrscheinlichkeit, dem Prior, deutlich gestiegen ist. Gleichzeitig bleibt es trotz positivem Test immer noch sehr viel wahrscheinlicher, nicht erkrankt zu sein. Das liegt vor allem an der im Bezug auf die Gesamtbevölkerung niedrigen Inzidenz. 
+
+Aber war es richtig, die 7-Tages-Inzidenz des RKI als Prior zu nutzen? Es gibt gute Gründe zu vermuten, dass die berichtete Inzidenz eine Untergrenze der tatsächlichen Inzidenz ist, die wohl einiges höher liegt. Probier doch mal aus, was passiert, wenn Du die Inzidenz (den Prior) verdoppelst/verdreifachst, um ein Gefühl für die Effektgröße zu bekommen. Ab welcher Inzidenz macht ein positives Testergebnisses dieses Tests eine tatsächliche Erkrankung wahrscheinlicher als nicht erkrankt zu sein? 
+
+Mit der Entscheidung, die Gesamtdeutsche 7-Tages-Inzidenz des RKI als Prior zu nehmen beschränken wir die Aussagekraft der berechneten posterior Wahrscheinlichkeit zusätzlich auf eine beliebige Person in Deutschland. Wir bekommen maximal einen ersten Anhaltspunkt, wie unsere persönliche Wahrscheinlichkeit wäre krank zu sein. Wir könnten aber auch weitere Informationen in den Prior einfließen lassen. Beispielsweise könnte man die lokale Inzidenz im Heimatkreis der Person nutzen oder individuelles Risikoverhalten berücksichtigen. In anderen Worten, eine sinnvolle Wahl des Priors ist nicht einfach und die getroffenen Annahmen wollen gut begründet sein und in der Interpretation berücksichtigt werden. In komplexeren Analysen kann man auch eine Wahrscheinlichkeitsverteilung über die Inzidenz selbst modellieren, die wiederum auf Schätzungen der tatsächlichen (lokalen) Verbreitung des Viruses basieren. Wichtig ist, dass die grundsätzliche Logik der bayesianischen Statistik dieselbe bleibt auch wenn wir statt mit diskreten Wahrscheinlichkeiten mit kontinuierlichen Wahrscheinlichkeitsverteilungen hantieren!
+
+Einen etwas umfangreichen Einstieg in die Bayesianische Statistik bietet Fabian Dablander (selbst CorrelAider in den Niederlanden) auf seinem [Blog](https://fabiandablander.com/r/Bayes-Potter.html){target="_blank"}. Wenn du noch mehr über Bayesianische Statistik lernen willst, bietet sich [diese](https://youtube.com/playlist?list=PLFDbGp5YzjqXQ4oE4w9GVWdiokWB9gEpm){target="_blank"} youtube-Reihe von Ben Lambert an, der in kurzen Videos zentrale Konzepte erklärt. Ebenfalls zu empfehlen ist das frei verfügbare Buch [“Bayes rules!”](https://www.bayesrulesbook.com/){target="_blank"} von Johnson, Ott und Dogucu, aus dem auch unsere drei Eingangsfragen entnommen sind. Konzeptionell basieren die obenstehende Darstellung von (bayesianischer) Statistik auf Vorlesungen von Prof. Philipp Henning, Uni Tübingen.
+
+
+#### **Frequentistische Statistik**
+
+
+
+#### **Fazit**
+In einigen Fällen führt die Anwendung der beiden Techniken zum selben Ergebnis. Aber Obacht: Hypothesentests folgen einem **strengen Regelkatalog** an Voraussetzungen, die in der Praxis leider oft vollkommen missachtet werden. Sie ignorieren zudem häufig den **aktuellen Stand der Wissenschaft**, der bei Bayes in der a-priori-Wahrscheinlichkeit seinen Einklang findet. Hier ist also bei der Nullhypothese darauf zu achten, dass diese sinnvoll gewählt wird. Gegen die Anwendung der Bayesianischen Statistik sprechen die gegebenenfalls komplexe **Auswahl der a-priori Wahrscheinlichkeit** und die **Computing Power**, die sich hinter einigen Modellierungen verbirgt. Letztlich ist bei rigoroser Beachtung der Voraussetzungen von Hypothesentests auch die frequentistische Statistik geeignet, Zusammenhänge zu beurteilen. Insbesondere in **kleinen Stichproben**, die wir in der Sozialwissenschaft häufig finden, ist die Bayesianische Statistik jedoch **robuster** (vgl. Kruschke 2013). Die **Interpretation von bedingten Wahrscheinlichkeiten** ist zudem wesentlich **intuitiver** als die Interpretation von Ergebnissen der frequentistischen Statistik (Rouder et al. 2009).
+
+### Und jetzt Ihr
+Statt eigene Berechnungen anzustellen, möchten wir Euch diese Woche dazu einladen, Eure Kenntnisse zu kausalen Zusammenhängen um ein graphisches Tool zu erweitern: **Directed Acyclic Graphs (kurz DAGs)** stellen Ursache-Wirkungs-Zusammenhänge zwischen verschiedenen Ereignissen dar. Sie helfen uns zu verstehen, welche erklärenden Variablen unsere zu erklärende Variable noch beeinflussen könnten. Andrew Weiss erklärt in seiner [Programmevaluationsvorlesung](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"} besonders toll, wie das funktioniert und wie Ihr in R eigene DAGs kreieren könnt. Schaut Euch die Lektion an und bringt zur nächsten Live Session ein eigenes DAG mit - auf Papier oder in R. Thematisch könnt Ihr Euch entweder mit einem eigenen Thema beschäftigen oder aber überlegen, wie die Aktionen von Break Free From Plastik mit gesammeltem Plastik und Bewusstseinsveränderungen (höheres Umweltbewusstsein) zusammenhängen und welche Faktoren diese Wirkungen noch beeinflussen könnten.
+
+### Zusätzliche Ressourcen
+- [Die Wissenschaft in der Replikationskrise](https://www.nzz.ch/wissenschaft/physik/fallstricke-der-statistik-die-wissenschaft-in-der-replikationskrise-ld.86330){target="_blank"}, Marko Kovic, Neue Züricher Zeitung, 2016
+- [Statistical Rethinking](https://www.routledge.com/Statistical-Rethinking-A-Bayesian-Course-with-Examples-in-R-and-STAN/McElreath/p/book/9780367139919){target="_blank"}, Richard McElreath, CRC Press, 2020
+- [Good & Bad Controls](https://www.youtube.com/watch?v=NSuTaeW6Orc&list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN&index=7&t=3530s){target="_blank"}, Richard McElreath
+- DAGs: Vorlesung mit [Andrew Weiss](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"}
