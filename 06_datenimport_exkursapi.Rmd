@@ -99,10 +99,10 @@ quiz(caption = NULL,
   ),
   question("Wie viele Parameter hat unsere Anfrage?",
     answer("0"),
-    answer("1"),
+    answer("1", correct = TRUE)),
     answer("2"),
     answer("3"),
-    answer("4", correct = TRUE),
+    answer("4",
     correct = "Richtig!",
     incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
     allow_retry = TRUE,
@@ -149,21 +149,6 @@ waste_geo <- waste_list %>%
 dplyr::glimpse(waste_geo)
 ```
 
-Der **Content** (zu dt. Inhalt) einer Antwort enthält häufig neben den eigentlichen Daten (hier im Element `data`) auch Informationen über die Antwort an sich.
-```{r quiz-metainfo, exercise = FALSE, echo=FALSE}
-quiz(caption = NULL,
-  question("Wie viele Elemente wurden insgesamt zurückgegeben?",
-    answer("100"),
-    answer("60", correct = TRUE),
-    answer("23"),
-    answer("0"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Schaue dir den Output nochmal an!",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen")
-)
-```
-
 Abschließend schauen wir uns nochmal genauer eines der Datenelemente an:
 ```{r inspect-data, exercise=TRUE}
 # Wir schauen uns eines der Daten Elemente an. Die doppelten Klammern extrahieren das x-te Element aus der Liste, hier das zehnte.
@@ -174,7 +159,7 @@ Das Daten-Listenelement enthält ziemlich viele Informationen. Für Euch relevan
 
 Diese Informationen nutzen wir nun - gemeinsam mit der Seitenanzahl - um für jede Seite die benötigten Informationen zu ziehen und diese in einem Dataframe zusammenzuführen. Wie genau Ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt Ihr zu einem späteren Zeitpunkt in Eurer Karriere als Datenwissenschaftler:innen der Zivilgesellschaft - hier schon einmal die Preview:
 
-```{r}
+```{r, exercise=TRUE}
 # Funktion, mit der alle Seiten geladen werden, indem die Seitenanzahl "Page" durch eine Nummer zwischen 1 und 11 (= Total Pages) ersetzt wir
 list_of_dataframes <- purrr::map(pages, function(page) {
   antwort <- httr::GET(
