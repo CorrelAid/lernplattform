@@ -37,11 +37,11 @@ Filtert die Daten zuerst:
 Speichert die gefilterten Daten in einem R-Objekt namens "plastics_processed".
   
 ```{r filtern}
-plastics_processed <- plastics %>%
+plastics_processed <- data_raw %>%
   dplyr::filter(
     country != "EMPTY",
     parent_company != "Grand Total",
-    year = 2019
+    year == 2019
     )
 ```
 
