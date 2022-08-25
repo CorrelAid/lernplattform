@@ -79,15 +79,15 @@ Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir nach Mustern. 
 
 Die erste Ebene nimmt Vorhersagen auf Basis von **Beobachtungen** vor. Dafür werden in der Statistik bedingte Wahrscheinlichkeiten (wie wahrscheinlich ist Y gegeben X?), Korrelationen, Regressionen und andere Methoden des maschinellen Lernens genutzt. Das ist auch der Grund, warum Datenanalyst:innen, die diese Methoden nutzen, nicht ohne weiteres von Kausalitäten sprechen. Denn statistische Modelle können gute Vorhersagen treffen auch ohne das wir die *kausalen* Zusammenhänge zwischen Variablen verstehen oder modellieren. Wie die Eule aus dem Video, die dem Laufweg einer Maus folgt, um an der richtigen Stelle zuschnappen zu können.
 
-Beobachtungsdaten, die wir in der ersten Ebene gesammelt haben, können wir nicht notwendigerweise dafür nutzen, Fragen der zweiten Ebene zu beantworten. Denn die Daten reflektieren **Bedingungen**, die durch eine Intervention geändert würden und diese Veränderung deshalb nicht abbilden können. Am Beispiel der Frage, welchen Effekt ein Verbot von Zigaretten auf die durchschnittliche Lebenserwartung der Bevölkerung hat, lässt sich das Problem verdeutlichen. Beobachtungsdaten erlauben uns die Lebenserwartung von Menschen die rauchen zu vergleichen mit der von Menschen die nicht rauchen. Diese Differenz, $d$, muss aber kein guter Schätzer für den kausalen Effekt eines Verbots von Zigaretten sein! Nehmen wir beispielsweise an, dass Menschen in sehr stressigen Berufen auch sehr viel häufiger rauchen, Stress aber ebenfalls die Lebenserwartung reduziert, dann wird der kausale Effekt eines Rauchverbotes kleiner ausfallen als $d$. In anderen Worten, die Gruppe der aktuellen "freiwilligen" Nichtraucher ist dann keine gute Kontrollgruppe für die Gruppe der Raucher, die wir durch eine Intervention (das Rauchverbot) vom Rauchen abhalten.
+Beobachtungsdaten, die wir in der ersten Ebene gesammelt haben, können wir nicht notwendigerweise dafür nutzen, Fragen der zweiten Ebene zu beantworten. Denn die Daten reflektieren **Bedingungen**, die durch eine Intervention geändert würden und diese Veränderung deshalb nicht abbilden können. Am Beispiel der Frage, welchen Effekt ein Verbot von Zigaretten auf die durchschnittliche Lebenserwartung der Bevölkerung hat, lässt sich das Problem verdeutlichen. Beobachtungsdaten erlauben uns, die Lebenserwartung von Menschen, die rauchen, mit der von Menschen, die nicht rauchen, zu vergleichen. Diese Differenz, $d$, muss aber kein guter Schätzer für den kausalen Effekt eines Verbots von Zigaretten sein! Nehmen wir beispielsweise an, dass Menschen in sehr stressigen Berufen auch sehr viel häufiger rauchen, Stress aber ebenfalls die Lebenserwartung reduziert, dann wird der kausale Effekt eines Rauchverbotes kleiner ausfallen als $d$. In anderen Worten, die Gruppe der aktuellen "freiwilligen" Nichtraucher ist dann keine gute Kontrollgruppe für die Gruppe der Raucher, die wir durch eine Intervention (das Rauchverbot) vom Rauchen abhalten.
 
 Fragen der zweiten Ebene können mit kontrollierten Experimenten oder quasi-Experimenten beantwortet werden: *Randomized Control Trials* (kurz RCTs, randomisierte kontrollierte Studie) erlauben es, kausale Effekte von Interventionen unter unterschiedlichen Bedingungen zu erfassen. Kehren wir zurück zum Problem des Rauchverbotes. Ein Experiment ist schwer umsetzbar, denn dafür müssten wir erst eine repräsentative Stichprobe der Bevölkerung ziehen und einem zufällig ausgewählten Teil dieser Stichprobe das Rauchen verbieten. Zusätzlich müssten wir dieses Verbot auch durchsetzen und kontrollieren können. Aber manchmal werden stattdessen Quasiexperimente möglich. Bayern und Baden-Württemberg sind in vieler Hinsicht ähnliche Bundesländer. Wenn nur in einem der beiden ein Rauchverbot gülte, könnte das andere unter Umständen als Vergleichsgruppe dienen um den kausalen Effekt des Rauchverbotes zu isolieren. Die regionale Nähe allerdings ist Fluch und Segen zugleich. Einerseits macht sie es plausibler, dass sich beide Länder ähnlich sind (zum Beispiel in den klimatisch und geographischen Bedingungen). Andererseits können viele Menschen aus dem Bundesland mit Rauchverbot ohne viel Aufwand in das Andere reisen und dort Zigaretten kaufen. Dann wäre unser Vergleich, die Differenz in der Lebenserwartung zwischen den Bundesländern nach der Einführung des Rauchverbots, kein guter Schätzer mehr für den durchschnittlichen kausalen Effekt eines Rauchverbots.
 
-Ob jedoch im Einzelfall mit dem Rauchen aufzuhören kausal ist für eine höhere Lebenserwartung können wir erst auf Ebene 3 verstehen. Hier fragen wir, was passiert wäre, wenn wir etwas nicht getan hätten. Träte der Effekt trotzdem ein? Und hier liegt dann auch der Hase im Pfeffer begraben: Wir können schließlich nicht gleichzeitig Rauchen und mit dem Rauchen aufhören - es fehlt uns die Vergleichsgruppe.
+Ob jedoch im Einzelfall mit dem Rauchen aufzuhören kausal ist für eine höhere Lebenserwartung können wir erst auf Ebene 3 verstehen. Hier fragen wir, was passiert wäre, wenn wir etwas nicht getan hätten. Träte der Effekt trotzdem ein? Und hier liegt dann auch der Hase im Pfeffer begraben: Wir können schließlich nicht gleichzeitig Rauchen und mit dem Rauchen aufhören - es fehlt uns der Vergleich.
 
 ### Plausibilität, Wahrscheinlichkeit und Statistik
 
-Stehe einmal kurz vom Computer auf und schau aus dem Fenster. Ist die Straße draußen nass? Wenn die Straße trocken ist, folgt daraus, dass es nicht geregnet hat. Es folgt aber andersherum nicht, dass es geregnet haben muss, wenn die Straße nass ist. Es hätte ja jemand auch die Straße mit einem Gartenschlauch gießen können. Intuitiv werden wir aber annehmen, dass die Beobachtung einer nassen Straße die Aussage "es hat geregnet" *plausibler* macht. Statistik ist am Ende nichts anderes als eine Systematisierung dieser Art von Plausibilisierungen. Wir haben Beobachtungen ("die Straße draußen ist naß"), auch Daten genannt, mit denen wir etwas über die Plausibilität einer Hypothese ("es hat geregnet") oder eines Modelles lernen wollen.
+Stehe einmal kurz vom Computer auf und schau aus dem Fenster. Ist die Straße draußen nass? Wenn die Straße trocken ist, folgt daraus, dass es nicht geregnet hat. Es folgt aber andersherum nicht, dass es geregnet haben muss, wenn die Straße nass ist. Es hätte ja jemand auch die Straße mit einem Gartenschlauch gießen können. Intuitiv werden wir aber annehmen, dass die Beobachtung einer nassen Straße die Aussage "es hat geregnet" *plausibler* macht. Statistik ist am Ende nichts anderes als eine Systematisierung dieser Art von Plausibilisierungen. Wir haben Beobachtungen ("die Straße draußen ist nass"), auch Daten genannt, mit denen wir etwas über die Plausibilität einer Hypothese ("es hat geregnet") oder eines Modelles lernen wollen.
 
 In der Statistik gibt es zwei grundlegende Ansätze, den Zusammenhang zwischen Daten und Hypothesen zu verstehen. Bevor wir diesen erklären benatworte bitte zunächst die folgenden drei Fragen aus Johnson, Ott und Dogucu (2021). Anhand der Antworten werden wir dann die Unterschiede erklären.
 
@@ -96,24 +96,23 @@ quiz(caption = NULL,
   question("Wenn eine faire Münze geworfen wird ist die Wahrscheinlichkeit Kopf zu werfen $p=0.5$. Wie verstehst du diese Wahrscheinlichkeit?",
     answer("Wenn ich die Münze immer wieder werfe, wird in etwa 50% der Würfe Kopf oben liegen.", correct = TRUE),
     answer("Kopf oder Zahl zu werfen ist gleich plausibel.", correct = TRUE),
-    answer("Sowohl a. als auch b. sind sinnvoll.", correct = TRUE),
-    correct = "Merke dir deine Antwort.",
-    type="learnr_radio"
+    correct = "Super! Merke dir deine Antwort.",
+    type = "learnr_radio"
     ),
   
   question("Eine Wahl steht bevor und ein Umfrageinstitut behauptet, dass Kandidat A eine Wahrscheinlichkeit von 0.9 hat zu gewinnen. Wie verstehst du diese Wahrscheinlichkeit?",
     answer("Wenn wir die Wahl immer wieder beobachten wird Kandidat A in 90% der Fälle gewinnen.", correct = TRUE),
     answer("Es ist sehr viel wahrscheinlicher, dass Kandidat A die Wahl gewinnt als das er sie nicht gewinnt.", correct = TRUE),
     answer("Das Umfrageinstitut hat einen Fehler gemacht. Kandidat A wird entweder gewinnen oder verlieren und darum kann die Wahrscheinlichkeit zu gewinnen nur 0 oder 1 sein.", correct = TRUE),
-    correct = "Noch eine Frage.",
-    type="learnr_radio"
+    correct = "Super! Merke dir deine Antwort.",
+    type = "learnr_radio"
     ),
   
-  question("Nimm an, dass du während deines letzten Arztbesuches positiv auf eine seltene Krankheit getestet wurdest. Wenn du der Ärztin nur eine Frage stellen darfst, welche wäre das?",
+  question("Nimm an, dass du während deines letzten Arztbesuches positiv auf eine seltene Krankheit getestet wurdest. Wenn du der Ärztin nur eine Frage stellen darfst, welche würdest Du sinnvollerweise stellen?",
     answer("Was ist jetzt die Wahrscheinlichkeit, dass ich tatsächlich diese Krankheit habe?", correct = TRUE),
     answer("Wenn ich diese Krankheit nicht hätte, was ist die Wahrscheinlichkeit, dass ich trotzdem ein positives Testergebnis erhalten hätte?", correct = TRUE),
-    correct = "Antworten gemerkt? Dann weiter zur Auflösung im Text.",
-    type="learnr_radio"
+    correct = "Super. Antworten gemerkt? Dann weiter zur Auflösung im Text.",
+    type = "learnr_radio"
     )
   )
 ```
@@ -122,7 +121,7 @@ Die ersten beiden Fragen verdeutlichen den entscheidenden Unterschied zwischen d
 
 In der **bayesianischen Statistik** dagegen beruht der Begriff der Wahrscheinlichkeit auf dem Grad der "vernünftigen" Erwartung für den Eintritt des Ereignisses. Wahrscheinlichkeit ist damit auch auf einmalige Ereignisse anwendbar. Vernünftig meint hier unter anderem, dass mir, wenn meine Erwartungen die Regeln der Wahrscheinlichkeitstheorie befolgen, keine Wette angeboten werden kann, in der ich von vornherein sicher bin zu verlieren (ein sogenanntes Dutch Book). Entsprechend beantwortet eine Bayesianerin die Fragen 1 und 2 jeweils mit Antwort 2: Kopf oder Zahl zu werfen ist bei einer fairen Münze gleich plausibel und es ist sehr viel plausibler, dass Kandidat A die Wahl gewinnt als nicht. Frequentist:innen und Bayesianer:innen sind sich einige darin, dass die Wahrscheinlichkeit Kopf zu werfen bei einer fairen Münze $p=0.5$ ist. Allerdings *interpretieren* sie diese Wahrscheinlichkeit unterschiedlich.
 
-Die dritte Frage bringt den zu Beginn angesprochenen Bezug zwischen Hypothesen und Daten ins Spiel, Die beiden Antworten stehen exemplarisch für die Art von Fragen, die wir mit der frequentistischen oder eben bayesianischen Statistik beantworten wollen. Da in der frequentistischen Statistik Wahrscheinlichkeit als langfristige relative Häufigkeit definiert wird, können Hypothesen keine Wahrscheinlichkeit haben. Sie sind entweder wahr oder falsch. Deshalb fragen Frequentisten ihre Ärztin auch, was die Wahrscheinlichkeit ist ein positives Testergebnis zu erhalten, wenn sie die Krankheit *nicht* hätten (also die Hypothese falsch ist). In der Bayesianischen Statistik dagegen dient Wahrscheinlichkeit dazu, Wahrheit (Plausibilität) über eine Reihe von konkurrierenden Hypothesen zu verteilen. Die Bayesianerin fragt fragt entsprechend, was die Wahrscheinlichkeit ist, gegeben der Beobachtungm die Krankheit tatsächlich zu haben.
+Die dritte Frage bringt den zu Beginn angesprochenen Bezug zwischen Hypothesen und Daten ins Spiel, Die beiden Antworten stehen exemplarisch für die Art von Fragen, die wir mit der frequentistischen oder eben bayesianischen Statistik beantworten wollen. Da in der frequentistischen Statistik Wahrscheinlichkeit als langfristige relative Häufigkeit definiert wird, können Hypothesen keine Wahrscheinlichkeit haben. Sie sind entweder wahr oder falsch. Deshalb fragen Frequentisten ihre Ärztin auch, was die Wahrscheinlichkeit ist ein positives Testergebnis zu erhalten, wenn sie die Krankheit *nicht* hätten (also die Hypothese falsch ist). In der Bayesianischen Statistik dagegen dient Wahrscheinlichkeit dazu, Wahrheit (Plausibilität) über eine Reihe von konkurrierenden Hypothesen zu verteilen. Die Bayesianerin fragt fragt entsprechend, was die Wahrscheinlichkeit ist, gegeben der Beobachtung die Krankheit tatsächlich zu haben.
 
 #### **Bayesianische Statistik**
 
@@ -143,7 +142,8 @@ Als Prior bietet sich die aktuelle 7-Tages-Inzidenz des RKI an. Diese lag nach d
 Damit haben wir alle Informationen, um die gesuchte *posterior* Wahrscheinlichkeit zu bestimmen. Denn die Evidenz, $P(D=1)$, kann bei binären Ereignissen nach den Regeln der Wahrscheinlichkeitstheorie wie folgt als Summe mit nur zwei Termen geschrieben werden: $$P(D=1) = \underbrace{P(D=1|H=1)}_{\text{richtig-positiv-rate}}\underbrace{P(H=1)}_{\text{Prior}} + \underbrace{ P(D=1|H=0)}_{\text{falsch-positiv-rate}}\underbrace{P(H=0)}_{=1-P(H=1)}$$.
 
 ```{r estimate_posterior, exercise=TRUE}
-p_prior_krank <- 342e-5
+# Werte bestimmen
+p_prior <- 342/100000
 rpr <- 85 / 102
 fpr <- 4 / 435
 
@@ -151,6 +151,18 @@ fpr <- 4 / 435
 p_posterior_krank <- 
 
 print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", p_posterior_krank , "."))
+
+```
+
+```{r estimate_posterior-solution}
+# Werte bestimmen
+p_prior_krank <- 342/100000
+rpr <- 85 / 102
+fpr <- 4 / 435
+
+# Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
+p_posterior_krank <- (rpr * p_prior) / ((rpr * p_prior) + (fpr * (1 - p_prior)))
+print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", round(p_posterior_krank,2)*100 , " Prozent."))
 
 ```
 
@@ -197,21 +209,24 @@ Keine Sorge, was die einzelnen Variablen bedeuten, haben wir hier für euch aufg
 Um den z-Wert zu bestimmen könnt ihr nun einfach folgenden Code ausführen:
 
 ```{r z_Wert, exercise = TRUE}
+# Anteile bestimmen
 anteil_a <- 0.54
 anteil_b <- 0.55
 anteil_pool <- (anteil_a + anteil_b) / 2
 
+# Stichprobengröße
 n_a <- 5840
 n_b <- 5640
 
+# z-Wert bestimmen
 z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
-
 print(z)
 ```
 
 Allerdings wollten wir doch eine Irrtums*wahrscheinlichkeit* bestimmen? Das Ergebnis ist aber negativ, kann also keine Wahrscheinlichkeit sein. Keine Sorge, wir sind auf dem Weg! Um von unserem z-Wert auf eine Irrtumswahrscheinlichkeit zu schließen, müssen wir uns die **Verteilung** von z-Werten ansehen. Diese beschreibt welche z-Werte wir erwarten, wenn die Nullhypothese korrekt ist und wir unsere Studie in den beiden Städten sehr häufig wiederholen würden. Z-Werte verteilen sich dann nach einer **Standardnormalverteilung**. Diese könnt ihr euch mit dem nächsten Code-Block graphisch anzeigen lassen.
 
 ```{r normal_distribution, exercise = TRUE}
+# Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
   stat_function(fun = dnorm,
                 geom = "area",
@@ -224,6 +239,7 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 Man erkennt, dass sich die z-Werte symmetrisch um die $0$ verteilen. Je weiter unser berechneter z-Wert von der $0$ entfernt ist, das heißt, je weiter wir an den Rand der Verteilung geraten, desto unplausibler ist es, dass unsere Beobachtungen tatsächlich aus nur einer Population stammen und die Nullhypothese wahr ist. In anderen Worten, je weiter am Rand der Verteilung unser z-Wert liegt, desto niedriger ist unsere Irrtumswahrscheinlichkeit und damit der p-Wert, wenn wir die Nullhypothese verwerfen. Zeichnen wir unseren z-Wert also in die Verteilung ein:
 
 ```{r z_visual, exercise = TRUE}
+# Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
   stat_function(fun = dnorm,
                 geom = "area",
@@ -234,9 +250,10 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 
 ```
 
-Wir sehen, dass der z-Wert unserer Beobachtungen nicht genau in der Mitte der Verteilung liegt, jedoch auch nicht wirklich am Rand. Wie hoch ist denn nun unsere Irrtumswahrscheinlichkeit? Die genaue Wahrscheinlichkeit verbirgt sich in der Fläche unter der Kurve, also dem Integral zwischen unserem z-Wert und dem linken Rand der Verteilung. Hier für euch visualisiert:
+Wir sehen, dass der z-Wert unserer Beobachtungen nicht genau in der **Mitte der Verteilung** liegt, jedoch auch nicht wirklich am Rand. Wie hoch ist denn nun unsere Irrtumswahrscheinlichkeit? Die genaue Wahrscheinlichkeit verbirgt sich in der Fläche unter der Kurve, also dem Integral zwischen unserem z-Wert und dem linken Rand der Verteilung. Hier für euch visualisiert:
 
 ```{r p_value, exercise = TRUE}
+# Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
   stat_function(fun = dnorm,
                 geom = "area",
@@ -252,7 +269,7 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 
 ```
 
-Die blaue Fläche entspricht $0.14105$, also etwa $14\%$ der Gesamtfläche unter der Kurve. Nun haben wir fast unsere Irrtumswahrscheinlichkeit. Warum nur fast? Dazu müssen wir noch einmal zurück zur Formulierung unseren Hypothesen. Wir hatten einfach nur nach einem Unterschied zwischen beiden Gruppen gefragt und damit keine *Richtung* des Unterschiedes vorgegeben. In anderen Worten, wir haben nicht die Hypothese aufgestellt, dass der Anteil der Infizierten in Gruppe A größer als der Anteil in Gruppe B. Dieses kleine Detail hat große Auswirkungen auf die berechnete Irrtumswahrscheinlichkeit. Wir müssen nämlich zusätzlich zu unserem z-Wert von $-1.07565$ auch den positiven z-Wert von $1.07565$ in Betracht ziehen, um Unterschiede in beide Richtungen zu berücksichtigen. Damit verdoppelt sich die Fläche unter der Kurve und somit auch unsere Irrtumswahrscheinlihckeit! Sie beträgt nun also rund 28%. Das könnt ihr in der Grafik unten sehen:
+Die blaue Fläche entspricht $0.14105$, also etwa $14\%$ der Gesamtfläche unter der Kurve. Nun haben wir fast unsere Irrtumswahrscheinlichkeit. Warum nur fast? Dazu müssen wir noch einmal zurück zur Formulierung unseren Hypothesen. Wir hatten einfach nur nach einem Unterschied zwischen beiden Gruppen gefragt und damit keine **Richtung** des Unterschiedes vorgegeben. In anderen Worten, wir haben nicht die Hypothese aufgestellt, dass der Anteil der Infizierten in Gruppe A größer als der Anteil in Gruppe B. Dieses kleine Detail hat große Auswirkungen auf die berechnete Irrtumswahrscheinlichkeit. Wir müssen nämlich zusätzlich zu unserem z-Wert von $-1.07565$ auch den positiven z-Wert von $1.07565$ in Betracht ziehen, um Unterschiede in beide Richtungen zu berücksichtigen. Damit verdoppelt sich die Fläche unter der Kurve und somit auch unsere Irrtumswahrscheinlihckeit! Sie beträgt nun also rund 28%. Das könnt ihr in der Grafik unten sehen:
 
 ```{r p_value_both, exercise = TRUE}
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
@@ -276,19 +293,32 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 
 ```
 
-Für unseren Hypothesentest bedeutet das folgendes: Wenn wir die Nullhypothese verwerfen, besteht eine Irrtumswahrscheinlichkeit von 28%. Dieser Wert wird in der wissenschafltichen Literatur auch häufig das empirische Signifikanzniveau genannt. Wenn wir jetzt zusätzlich festlegen, welche Irrtumswahrscheinlichkeit wir bereit sind zu akzeptieren, dann können wir entscheiden, ob wir die Nullhypothese verwerfen. Diese Grenze wird in den Wissenschaften oftmals bei 5% gesetzt, ist aber eine Konvention. Das bedeudet, dass wir die Nullhypothese nur verwerfen, wenn sich eine Irrtumswahrscheinlichkeit unterhalb eines kritischen Wertes, zum Beispiel 5%, ergibt. Im Bild oben wäre dies also ein z-Wert der sich weiter am Rand der Verteilung befindet.
+Für unseren Hypothesentest bedeutet das folgendes: **Wenn wir die Nullhypothese verwerfen, besteht eine Irrtumswahrscheinlichkeit von 28%.** Dieser Wert wird in der wissenschafltichen Literatur auch häufig das **empirische Signifikanzniveau** genannt. Wenn wir jetzt zusätzlich festlegen, welche Irrtumswahrscheinlichkeit wir bereit sind zu akzeptieren, dann können wir entscheiden, ob wir die Nullhypothese verwerfen. Diese Grenze wird in den Wissenschaften oftmals bei 5% gesetzt, ist aber eine Konvention. Das bedeutet, dass wir die Nullhypothese nur verwerfen, wenn sich eine Irrtumswahrscheinlichkeit unterhalb eines kritischen Wertes, zum Beispiel 5%, ergibt. Im Bild oben wäre dies also ein z-Wert der sich weiter am Rand der Verteilung befindet.
 
-Hypothesentests betrachten also die Plausibilität von Beobachtungen unter einer bestimmten Hypothese. In unserem Fall beobachten wir eine Differenz von $0.01$ im Anteil der Erkrankten zwischen Stadt A und B. Wenn es unter der Nullhypothese, dass die Inzidenz in beiden Städten gleich ist, sehr unwahrscheinlich ist diese oder eine größere Differenz zu beobachten, dann verwerfen wir die Nullhypothese. Wir sagen, dass der Unterschied zwischen den Anteilen **statistisch signifikant** ist. Wichtig ist es vier Dinge zu beachten. Erstens sagt die Feststellung der statisitschen Signifikanz nichts über die tatsächliche Größe der Differenz oder deren praktischen Bedeutung aus. Wir verwerfen die Nullhypothese, aber die Alternativhypothese umfasst alle möglichen Differenzen, die ungleich null sind! Zweitens können selbst kleinste Differenzen statistisch signifikant sein, wenn die Stichproben groß genug werden. Das folgt aus der Definition der z-Statistik. Je größer die Stichproben, desto kleiner wird der Nenner und damit wird der z-Wert größer. Drittens verwerfen wir die Nullhypothese, wenn die Beobachtungen nicht gut zur Nullhypothese passen. Aber wann eine Differenz nicht mehr mit der Nullhypothese vereinbar ist, ist eine Festlegung unsererseits, eine bestimmte Irrtumswahrscheinlichkeit zu akzeptieren. Und viertens arbeiten wir auch dann mit einer, wenn auch kleinen, Irrtumswahrscheinlichkeit. Es ist aber nicht gänzlich auszuschließen, dass die Nullhypothese dennoch (manchmal) korrekt ist und wir einen Fehler machen.
+Hypothesentests betrachten also die Plausibilität von Beobachtungen unter einer bestimmten Hypothese. In unserem Fall beobachten wir eine Differenz von $0.01$ im Anteil der Erkrankten zwischen Stadt A und B. Wenn es unter der Nullhypothese, dass die Inzidenz in beiden Städten gleich ist, sehr unwahrscheinlich ist diese oder eine größere Differenz zu beobachten, dann verwerfen wir die Nullhypothese. Wir sagen, dass der Unterschied zwischen den Anteilen **statistisch signifikant** ist. Wichtig ist es vier Dinge zu beachten. Erstens sagt die Feststellung der statisitschen Signifikanz nichts über die tatsächliche **Größe der Differenz** oder deren **praktische Bedeutung** aus. Wir verwerfen die Nullhypothese, aber die Alternativhypothese umfasst alle möglichen Differenzen, die ungleich null sind! Zweitens können selbst **kleinste Differenzen statistisch signifikant** sein, wenn die Stichproben groß genug werden. Das folgt aus der Definition der z-Statistik. Je größer die Stichproben, desto kleiner wird der Nenner und damit wird der z-Wert größer. Drittens verwerfen wir die Nullhypothese, wenn die Beobachtungen nicht gut zur Nullhypothese passen. Wann eine Differenz nicht mehr mit der Nullhypothese vereinbar ist, ist eine **arbiträre Festlegung** unsererseits. Und viertens arbeiten wir auch dann mit einer, wenn auch kleinen, Irrtumswahrscheinlichkeit. Es ist aber nicht gänzlich auszuschließen, dass die Nullhypothese dennoch (manchmal) korrekt ist und wir einen **Fehler** machen.
 
-Nun seid ihr aber an der Reihe! Versucht doch einmal im Beispiel oben eine Irrtumswahrscheinlichkeit von unter 5% zu erreichen. Ein Tipp, dafür muss euer z-Wert größer/kleiner als $1,960$/$-1,960$ sein. Nutzt einfach den Code oben und ändert die Differenz zwischen den Anteilen der Differenzen oder auch die Stichprobengröße. Was fällt euch zum Beispiel bei der Stichprobengröße auf?
+Nun seid ihr aber an der Reihe! Versucht doch einmal im Beispiel oben eine Irrtumswahrscheinlichkeit von unter 5% zu erreichen. Dafür muss euer z-Wert größer/kleiner als $1,960$/$-1,960$ sein. Nutzt einfach den Code oben und ändert die Differenz zwischen den Anteilen der Differenzen oder auch die Stichprobengröße. Was fällt Euch zum Beispiel bei der Stichprobengröße auf?
+
+```{r z_Wert_experiment, exercise = TRUE}
+anteil_a <- 0.54
+anteil_b <- 0.55
+anteil_pool <- (anteil_a + anteil_b) / 2
+
+n_a <- 5840
+n_b <- 5640
+
+z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
+
+print(z)
+```
 
 #### **Fazit**
 
 Abschließend an diese Einführung ist es uns noch ein Anliegen, zu betonen, dass wir keine abschließende Wertung der beiden Herangehensweisen vornehmen möchten und können. Vielmehr haben beide Philosophien Ihre Berechtigung in der Statistik und ermöglichen es uns, Sachverhalte und Fragen aus unterschiedlichen Perspektiven zu betrachten. Oftmals führen beide Verfahren angewandt auf die selbe Fragestellung auch zum selben Ergebnis. Dies ist insbesondere der Fall, wenn wir es mit großen Stichproben zu tun haben.
 
-Komplett befreit von Vorlieben sind wir jedoch auch nicht. Ein Grund, warum die bayesianische Statistik immer weitere Verbreitung gefunden hat, mag an der intuitivieren Vorgehensweise liegen. Schon im einführenden Quiz weiter oben mag euch aufgefallen sein, dass die Art und Weise wie die bayesianische Statistik Fragen stellt und die Welt interpretiert, den meisten Menschen leichter fällt im Vergleich zur frequentistischen Statistik. Aus bayesianischer Sicht stelle ich mir die Frage wie wahrscheinlich meine aufgestellte Hypothese (*Bin ich mit Corona infiziert?*) im Lichte meiner beobachteten Daten (positiver Test) ist. Frequentistisch drehe ich den Spieß um: Wie wahrscheinlich ist es meine Daten zu beobachten (positiver Test), falls meine Hypothese (*Bin ich mit Corona infiziert*) zutrifft?
+Komplett befreit von Vorlieben sind wir jedoch auch nicht. Ein Grund, warum die bayesianische Statistik immer weitere Verbreitung gefunden hat, mag an der intuitivieren Vorgehensweise liegen. Schon im einführenden Quiz weiter oben mag Euch aufgefallen sein, dass die Art und Weise wie die bayesianische Statistik Fragen stellt und die Welt interpretiert, den meisten Menschen leichter fällt im Vergleich zur frequentistischen Statistik. Aus bayesianischer Sicht stelle ich mir die Frage wie wahrscheinlich meine aufgestellte Hypothese (*Bin ich mit Corona infiziert?*) im Lichte meiner beobachteten Daten (positiver Test) ist. Frequentistisch drehe ich den Spieß um: Wie wahrscheinlich ist es meine Daten zu beobachten (positiver Test), falls meine Hypothese (*Bin ich mit Corona infiziert*) zutrifft?
 
-Uns jedenfalls fällt es leichter, anhand der bayesianischen Vorgehensweise Fragen zu stellen und Entscheidungen zu treffen. Teilt uns gerne in der Sprechstunde eure Präferenz mit! 
+Uns jedenfalls fällt es leichter, anhand der bayesianischen Vorgehensweise Fragen zu stellen und Entscheidungen zu treffen. Teilt uns gerne in der Sprechstunde Eure Präferenz mit! 
 
 ### Und jetzt Ihr
 
