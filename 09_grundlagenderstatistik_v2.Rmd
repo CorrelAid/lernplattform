@@ -149,7 +149,6 @@ fpr <- 4 / 435
 
 # Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
 p_posterior_krank <- 
-
 print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", p_posterior_krank , "."))
 
 ```
@@ -168,9 +167,9 @@ print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland a
 
 Was sagt uns dieses Ergebnis? Zunächst sehen wir, dass die Wahrscheinlichkeit, an Corona erkrankt zu sein, im Vergleich zur Ausgangswahrscheinlichkeit, dem Prior, deutlich gestiegen ist. Gleichzeitig bleibt es trotz positivem Test immer noch sehr viel wahrscheinlicher, nicht erkrankt zu sein. Das liegt hier vorallem an der im Bezug auf die Gesamtbevölkerung niedrigen Inzidenz.
 
-Aber war es richtig, die 7-Tages-Inzidenz des RKI als Prior zu nutzen? Es gibt gute Gründe zu vermuten, dass die berichtete Inzidenz eine Untergrenze der tatsächlichen Inzidenz ist, die wohl einiges höher liegt. Probier doch mal aus, wie sich die Posterior verändert, wenn Du die Inzidenz (den Prior) verdoppelst/verdreifachst, um ein Gefühl für die Effektgröße zu bekommen. Ab welcher Inzidenz macht ein positives Testergebnisses dieses Tests eine tatsächliche Erkrankung wahrscheinlicher als nicht erkrankt zu sein?
+**Aber war es richtig, die 7-Tages-Inzidenz des RKI als Prior zu nutzen?** Es gibt gute Gründe zu vermuten, dass die berichtete Inzidenz eine Untergrenze der tatsächlichen Inzidenz ist, die wohl einiges höher liegt. Probier doch mal aus, wie sich die Posterior verändert, wenn Du die Inzidenz (den Prior) verdoppelst/verdreifachst, um ein Gefühl für die Effektgröße zu bekommen. Ab welcher Inzidenz macht ein positives Testergebnisses dieses Tests eine tatsächliche Erkrankung wahrscheinlicher als nicht erkrankt zu sein?
 
-Mit der Entscheidung, die Gesamtdeutsche 7-Tages-Inzidenz des RKI als Prior zu nehmen beschränken wir die Aussagekraft der berechneten posterior Wahrscheinlichkeit zusätzlich auf eine beliebige Person in Deutschland. Wir bekommen also maximal einen ersten Anhaltspunkt, wie unsere persönliche Wahrscheinlichkeit wäre krank zu sein. Wir könnten aber auch weitere Informationen in den Prior einfließen lassen. Beispielsweise könnte man die lokale Inzidenz im Heimatkreis der Person nutzen oder individuelles Risikoverhalten berücksichtigen. Genauso basiert unsere gewählte Likelihood auf der Annahme, dass der Schnelltest richtig durchgeführt wurde. In anderen Worten, eine sinnvolle Wahl des Priors und der Likelihood ist nicht einfach und die getroffenen Annahmen wollen gut begründet sein und in der Interpretation berücksichtigt werden. In komplexeren Analysen könnte man auch eine Wahrscheinlichkeitsverteilung über die Inzidenz selbst modellieren, die wiederum auf Schätzungen der tatsächlichen (lokalen) Verbreitung des Viruses basieren und damit unsere Unsicherheit über die tatsächliche Inzidenz berücksichtigt. Wichtig ist, dass die grundsätzliche Logik der bayesianischen Statistik dieselbe bleibt auch wenn wir statt mit diskreten Wahrscheinlichkeiten mit komplizierteren Wahrscheinlichkeitsverteilungen arbeiten.
+Mit der Entscheidung, die Gesamtdeutsche 7-Tages-Inzidenz des RKI als Prior zu nehmen beschränken wir die Aussagekraft der berechneten posterior Wahrscheinlichkeit zusätzlich auf eine beliebige Person in Deutschland. Wir bekommen also maximal einen ersten Anhaltspunkt, wie unsere persönliche Wahrscheinlichkeit wäre krank zu sein. Wir könnten aber auch weitere Informationen in den Prior einfließen lassen. Beispielsweise könnte man die **lokale Inzidenz im Heimatkreis** der Person nutzen oder **individuelles Risikoverhalten** berücksichtigen. Genauso basiert unsere gewählte Likelihood auf der Annahme, dass der Schnelltest richtig durchgeführt wurde. In anderen Worten, eine sinnvolle Wahl des Priors und der Likelihood ist nicht einfach und die getroffenen Annahmen wollen gut begründet sein und in der Interpretation berücksichtigt werden. In komplexeren Analysen könnte man auch eine Wahrscheinlichkeitsverteilung über die Inzidenz selbst modellieren, die wiederum auf Schätzungen der tatsächlichen (lokalen) Verbreitung des Viruses basieren und damit unsere Unsicherheit über die tatsächliche Inzidenz berücksichtigt. Wichtig ist, dass die grundsätzliche Logik der bayesianischen Statistik dieselbe bleibt auch wenn wir statt mit diskreten Wahrscheinlichkeiten mit komplizierteren Wahrscheinlichkeitsverteilungen arbeiten.
 
 Wenn dein Interesse geweckt ist, bietet Fabian Dablander (selbst CorrelAider in den Niederlanden) auf seinem [Blog](https://fabiandablander.com/r/Bayes-Potter.html){target="_blank"} einen etwas umfangreichen Einstieg in die Bayesianische Statistik. Wenn du mehr über Bayesianische Statistik lernen willst, bietet sich sonst auch [diese](https://youtube.com/playlist?list=PLFDbGp5YzjqXQ4oE4w9GVWdiokWB9gEpm){target="_blank"} youtube-Reihe von Ben Lambert an, der in kurzen Videos zentrale Konzepte erklärt. Ebenfalls zu empfehlen ist das frei verfügbare Buch ["Bayes rules!"](https://www.bayesrulesbook.com/){target="_blank"} von Johnson, Ott und Dogucu, aus dem auch unsere drei Eingangsfragen entnommen sind. Die obenstehende Darstellung von (bayesianischer) Statistik basiert auf Vorlesungen von Prof. Philipp Henning an der Uni Tübingen.
 
@@ -272,6 +271,7 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 Die blaue Fläche entspricht $0.14105$, also etwa $14\%$ der Gesamtfläche unter der Kurve. Nun haben wir fast unsere Irrtumswahrscheinlichkeit. Warum nur fast? Dazu müssen wir noch einmal zurück zur Formulierung unseren Hypothesen. Wir hatten einfach nur nach einem Unterschied zwischen beiden Gruppen gefragt und damit keine **Richtung** des Unterschiedes vorgegeben. In anderen Worten, wir haben nicht die Hypothese aufgestellt, dass der Anteil der Infizierten in Gruppe A größer als der Anteil in Gruppe B. Dieses kleine Detail hat große Auswirkungen auf die berechnete Irrtumswahrscheinlichkeit. Wir müssen nämlich zusätzlich zu unserem z-Wert von $-1.07565$ auch den positiven z-Wert von $1.07565$ in Betracht ziehen, um Unterschiede in beide Richtungen zu berücksichtigen. Damit verdoppelt sich die Fläche unter der Kurve und somit auch unsere Irrtumswahrscheinlihckeit! Sie beträgt nun also rund 28%. Das könnt ihr in der Grafik unten sehen:
 
 ```{r p_value_both, exercise = TRUE}
+# Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
   stat_function(fun = dnorm,
                 geom = "area",
@@ -308,7 +308,6 @@ n_a <- 5840
 n_b <- 5640
 
 z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
-
 print(z)
 ```
 
