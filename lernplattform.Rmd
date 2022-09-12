@@ -219,10 +219,10 @@ out <- knitr::knit_child("09_grundlagenderstatistik_v2.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Reports in R Markdown
+<!-- ## Reports in R Markdown -->
 ```{r results='asis'}
-#out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Reportautomatisierung

@@ -86,10 +86,11 @@ quiz(caption = NULL,
 
 <left>
 ![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
+
 </left>
 <br>
 
-In dieser Sitzung lernt Ihr zunächst verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt ([zur App](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
+In dieser Sitzung lernt Ihr zunächst verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt [(zur App)](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
 
 #### Wiederholung: `ggplot2`-Basics
 Erinnert Ihr Euch noch an die fünfte Sitzung? <!-- Cosima: Sollte hier vielleicht der Link zur 5. Sitzung eingebaut werden? -->
@@ -350,7 +351,7 @@ gradethis::grade_this_code()
 #### Facets
 Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
-Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren. Wir haben hier Histogramme, also die Darstellungen der Verteilung von Freiwilligen gewählt. Es wäre hier sehr praktisch, wenn man es nach Land darstellen könnte. Dabei hilft und `facet_wrap()` mit dem Ihr die Anzahl der Freiwilligen nach Land (`country`) gruppieren könnt. 
+Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren. Wir haben hier Histogramme, also die Darstellungen der Verteilung von Freiwilligen gewählt. Es wäre hier sehr praktisch, wenn man es nach Kontinent darstellen könnte. Dabei hilft und `facet_wrap()` mit dem Ihr die Anzahl der Freiwilligen nach Kontinent (`continent`) gruppieren könnt. 
 
 ```{r geom_histogram_facet, exercise = TRUE}
 ggplot2::ggplot(data = community, aes(x = n_volunteers)) +

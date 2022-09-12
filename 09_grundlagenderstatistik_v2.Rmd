@@ -20,7 +20,7 @@
 
 ```{r quiz_statistischesdenken}
 quiz(caption = NULL,
-  question("Das Studiendesign mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie",
+  question("Das Studiendesign mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
     correct = "Richtig!",
@@ -40,14 +40,14 @@ quiz(caption = NULL,
   
   question("Der Rückschluss von statistischen Eigenschaften der Stichprobe auf die Population wird als ... bezeichnet.",
     answer("Externe Validität", correct = TRUE),
-    answer("interne Validität"),
+    answer("Interne Validität"),
     answer("Reliabilität"),
     correct = "Richtig!",
     incorrect = "Leider falsch. Es handelt sich bei der Generalisierbarkeit der Ergebnisse um die externe Validität.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  question("Wirkungen können durch explorative Datenanalysen bestätigt werden",
+  question("Wirkungen können durch explorative Datenanalysen bestätigt werden.",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
     correct = "Richtig!",
@@ -143,7 +143,7 @@ Damit haben wir alle Informationen, um die gesuchte *posterior* Wahrscheinlichke
 
 ```{r estimate_posterior, exercise=TRUE}
 # Werte bestimmen
-p_prior <- 342/100000
+p_prior_krank <- 342/100000
 rpr <- 85 / 102
 fpr <- 4 / 435
 
@@ -160,7 +160,7 @@ rpr <- 85 / 102
 fpr <- 4 / 435
 
 # Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
-p_posterior_krank <- (rpr * p_prior) / ((rpr * p_prior) + (fpr * (1 - p_prior)))
+p_posterior_krank <- (rpr * p_prior_krank) / ((rpr * p_prior_krank) + (fpr * (1 - p_prior_krank)))
 print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", round(p_posterior_krank,2)*100 , " Prozent."))
 
 ```
@@ -310,6 +310,8 @@ n_b <- 5640
 z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
 print(z)
 ```
+
+R ermöglicht Euch die Berechnung der Teststatistik über zahreiche Funktionen: `t.test()`, `wilcox.test()`, `shapiro.test()`, etc. Die beste Übersicht, die wir zu Hypothesentests und ihren vorab zu prüfenden Voraussetzungen, gibt es - überraschenderweise als Blogartikel - [hier](https://towardsdatascience.com/hypothesis-tests-explained-8a070636bd28){target="_blank"}.
 
 #### **Fazit**
 
