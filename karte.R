@@ -28,7 +28,7 @@ karten_daten <- community %>%
 # Konvertierung
 karten_daten <- sf::st_as_sf(karten_daten) 
 
-# Create a continuous palette function
+# Farbalette definieren
 pal <- colorQuantile(
   palette = "Blues",
   na.color = "#808080",
