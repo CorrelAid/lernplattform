@@ -24,6 +24,7 @@ params:
               "Europa",
               "Ozeanien",
               "alle Kontinente"]
+  filter_country: "alle Länder""
 ---
 
 ```{r setup-chunk, include=FALSE}
@@ -55,12 +56,12 @@ audit <- audit_raw
 
 <!-- Hier befindet sich ein kleiner Filter-Trick in dem Code-Chunk Header. Der ganze Code-Chunk wird nämlich nur ausgeführt, wenn die Bedingung die hinter `eval=` definiert ist `TRUE` ergibt. In diesem Fall bedeutet das, dass der Code nur ausgeführt wird, wenn der Parameter nicht `alle Kontinente` ist. Wenn also z.B. ein spezifischer Kontinent ausgewählt wurde. Nur dann ergibt es Sinn, den Datensatz zu filtern. -->
 
-```{r wrangle-data-subset-continent, eval= params$filter_continent != "alle Kontinente", include=FALSE}
-audit_continent <- audit %>%
+```{r wrangle-data-subset-continent, eval= params$filter_country != "alle Länder", include=FALSE}
+audit_country <- audit %>%
   # Kontinent filtern
-  dplyr::filter(continent == params$filter_continent)
+  dplyr::filter(country == params$filter_country)
 
-audit <- audit_continent
+audit <- audit_country
 ```
 
 ```{r wrangle-companies, include = FALSE}
@@ -76,7 +77,7 @@ parent_company_counts <- audit %>%
 
 # Break Free From Plastic Report
 
-##### Auswertung für `r params$filter_continent`
+##### Auswertung für `r params$filter_country`
 
 -   von `Lisa Reiber`
 -   *zuletzt generiert: `r lubridate::today()`*

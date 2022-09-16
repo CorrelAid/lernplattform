@@ -17,6 +17,14 @@ pacman::p_load(
   rmarkdown,
   tidyverse
   )
+
+url_audit <- "https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv"
+
+audit_raw <- rio::import(file = url_audit) %>% 
+  # Unpassende Werte Filtern
+  dplyr::filter(!parent_company %in% c("Unbranded", "Inconnu", "Assorted"))
+
+audit <- audit_raw
 ```
 
 # Willkommen in der Report Fabrik
@@ -153,7 +161,7 @@ Nun ist es soweit, wir wollen Reports erstellen die jeweils einen anderen Kontin
 ```{r}
 continent_names <- audit_raw %>% 
   dplyr::distinct(continent) %>% 
-  dplyr::pull(continent) 
+  dplyr::pull(continent)
 ```
 
 An den Kontinenten in `continent_names` "laufen" wir entlang und übergeben den Kontinentnamen an unsere render Funktion (siehe .x). Noch genauer übergeben wir sie an die Stelle in der render Funktion an der die Parameter für das R Markdown Dokument festgelegt werden können.
@@ -190,7 +198,7 @@ purrr::walk(
     input = here::here(set_rmd_name),
     output_file = glue::glue("{set_report_name}_{.x}"),
     output_format = "html_document",
-    # hier wird der Kontinentname übergeben
+    # hier wird der Landname übergeben
     params = list(filter_country = .x) 
   )
 )

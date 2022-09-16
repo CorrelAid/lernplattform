@@ -161,7 +161,7 @@ purrr::walk(
 Probiere mit dem gleichen Prinzip, Reportsversionen für alle Länder zu generieren, indem du einen den Parameter `filter_continent` mit `filter_country` ersetzt und die entsprechenden Stellen im Code anpasst.
 
 ```{r}
-# hier wird ein Objekt der die verschiedenen Optionen enthällt erstellt
+# hier wird ein Objekt der die verschiedenen Optionen enthält erstellt
 country_names <-  audit_raw %>% 
   dplyr::distinct(country) %>% 
   dplyr::pull(country)
@@ -175,7 +175,7 @@ purrr::walk(
     input = here::here(set_rmd_name),
     output_file = glue::glue("{set_report_name}_{.x}"),
     output_format = "html_document",
-    # hier wird der Kontinentname übergeben
+    # hier wird der Ländername übergeben
     params = list(filter_country = .x) 
   )
 )
