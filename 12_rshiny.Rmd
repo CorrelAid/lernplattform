@@ -263,7 +263,7 @@ Eine UI ist immer nach dem gleichen Prinzip aufgebaut:
 <!-- Cosima: Sind Tabs nicht Reiter? (Oder Registerkarten, wie Google mir gerade sagt :D) -->
 
 <center>
-![*Bild: Skizzierung des Sidebaylayouts*](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9wkYS-4dRuL9jBo2u01LpaQVgQzGzqbYnKw&usqp=CAU)
+![*Bild: Skizzierung des Sidebaylayouts (Figure 6.2, Mastering Shiny, Hadley Wickham, O’Reilly Media, 2020)*](https://d33wubrfki0l68.cloudfront.net/37aa2b1c61a6141cc95188bffd0cfc782fdb27d5/b6aa6/diagrams/action-layout/sidebar.png)
 </center>
 
 <!-- Cosima: Haben wir an dem Bild die Rechte? Wenn ich es damals reingenommen habe, würde ich es gerne wieder rausnehmen. Wenn ihr es gerne mit dabei habt, würde ich dafür votieren ein Bild im Corporate Design von uns zu entwerfen (ich übernehme das gerne) - dann können wir auch gleich die deutsche Bezeichnung übernehmen :) -->

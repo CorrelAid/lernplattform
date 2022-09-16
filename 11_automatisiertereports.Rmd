@@ -110,7 +110,7 @@ Genauso funktioniert das Ganze auch für Code:
 print(params$heute)
 ```
 
-Druckt hier den als Parameter definierten Filter für Plastikart.
+Druckt hier den als Parameter definierten Filter für Plastikart (`filter_plastic`).
 ``` {r 11quiz_parameter_call, exercise = TRUE}
 # Hier Euer Code!
 
@@ -159,8 +159,8 @@ audit %>%
 ```{r 11quiz_parameter_filter-solution}
 # Filtern des Audit-Datensatzes
 audit %>%
-  dplyr::filter(plastic_type == params$filter_plastic) %>%
-  dplyr::filter(continent == params$filter_continent)
+  dplyr::filter(plastic_type == params$filter_plastic,
+                continent == params$filter_continent)
 ```
 
 ```{r 11quiz_reportauto_filter}
