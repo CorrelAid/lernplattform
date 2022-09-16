@@ -174,7 +174,7 @@ Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir ein
 
 <!-- Cosima: Sollte es in der App nicht auch für die Konsistenz "Shiny-App" heißen? (Also bei "Eine Übung zum Erlernen von Shiny Web Apps mit echten Daten aus dem tidyverse von und für die Zivilgesellschaft mit CorrelAid e.V. Lizenziert nach CC-BY 4.0.") -->
 
-Probiert die App doch einfach einmal aus! Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern**. Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"} herunterladen.
+Probiert die App doch einfach einmal aus! Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern**. Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} herunterladen.
 
 
 #### Schritt 1: Shiny-App planen
