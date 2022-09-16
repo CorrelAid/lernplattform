@@ -19,7 +19,8 @@ Code in `.R` und `.Rmd` Dateien ist lizensiert unter der MIT Lizenz.
 Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet Ihr [hier](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26). Vielen Dank an das Team von Tidy Tuesday und Break Free From Plastics!
 
 ## Inhaltlicher Input
-Die Lernplattform basiert auf dem CRAN [learnr-Package](https://cran.r-project.org/web/packages/learnr/learnr.pdf) sowie dem im Entwicklungsstadium befindlichen [gradethis-Package](https://github.com/rstudio/gradethis). Über die Datei lernplattform.Rmd werden die Kapitel der Lernplattform gerendered ("Run Document"). Der Inhalt der einzelnen Kapitel findet sich in den jeweiligemn Rmds. Hinzu kommen notwendige Daten (Ordner: daten), inklusive Abbildungen und Cheat Sheets, und Übungen für Teilnehmende (Ordner: uebungen).
+Die Lernplattform basiert auf dem CRAN [learnr-Package](https://cran.r-project.org/web/packages/learnr/learnr.pdf) sowie dem im Entwicklungsstadium befindlichen [gradethis-Package](https://github.com/rstudio/gradethis). Über die Datei lernplattform.Rmd werden die Kapitel der Lernplattform gerendered ("Run Document"). Der Inhalt der einzelnen Kapitel findet sich in den jeweiligemn Rmds. Hinzu kommen notwendige Daten (Ordner: daten), inklusive Abbildungen und Cheat Sheets, und Übungen für Teilnehmende (Ordner: uebungen). 
 
 ## Technische Details
-Entwickler:innen finden Informationen zu den technischen Anforderungen (R-Versionen und benötigte Packages) unter "requirements.txt".
+Entwickler:innen finden Informationen zu den technischen Anforderungen (R-Versionen und benötigte Packages) unter "requirements.txt". In der Datei "lernplattform.Rmd" fließen die einzelnen Kapitel zusammen. Dort sind auch sämtliche Einstellungen zum "Set-Up" enthalten. Sollen R-Objekte über mehrere Kapitel/Übungen zugreifbar sein, müssen sie im Set-Up Code Chunk definiert werden.
+! Achtung: Die Spracheinstellungen bitte immer prüfen. !

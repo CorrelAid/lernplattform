@@ -141,6 +141,16 @@ params$land <- "Argentina"
 params$kontinent <- "Alle Kontinente"
 params$filter_plastic <- "hdpe"
 params$filter_continent <- "Alle Kontinente"
+
+# Bayes
+anteil_a <- 0.54
+anteil_b <- 0.55
+anteil_pool <- (anteil_a + anteil_b) / 2
+
+n_a <- 5840
+n_b <- 5640
+
+z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
 ``` 
 
 <!-- ## Willkommen -->
@@ -181,14 +191,14 @@ cat(out, sep = '')
 
 <!-- ## Exkurs: APIs-->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
-cat(out, sep = '')
+#out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
 ```
 
 <!-- ## Exkurs: SQL -->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE) 
-cat(out, sep = '')
+#out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE) 
+#cat(out, sep = '')
 ```
 
 <!-- ## Datentransformation -->
@@ -197,34 +207,34 @@ out <- knitr::knit_child("07_datentransformation.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-## Datenvisualisierung
+<!-- ## Datenvisualisierung  -->
 ```{r results='asis'}
-#out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Grundlagen der Statistik
+<!-- ## Grundlagen der Statistik -->
 ```{r results='asis'}
-#out <- knitr::knit_child("09_grundlagenderstatistik.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("09_grundlagenderstatistik_v2.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Reports in R Markdown
+<!-- ## Reports in R Markdown -->
 ```{r results='asis'}
-#out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Reportautomatisierung
+<!-- ## Reportautomatisierung -->
 ```{r results='asis'}
-#out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-## Interaktive Visualisierungen
+<!-- ## Interaktive Visualisierungen  -->
 ```{r results='asis'}
-#out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 ## Lernzielkontrolle

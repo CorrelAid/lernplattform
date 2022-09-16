@@ -511,7 +511,7 @@ wb_areas %>%
   dplyr::select(countrycode = 'iso2c', protected_area = 'ER.PTD.TOTL.ZS')
 ```
 
-Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `community` und `data_wb` vorhanden sind (hier führen viele Wege zum Ziel!):
+Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `community` und `wb_areas` vorhanden sind (hier führen viele Wege zum Ziel!):
 
 ``` {r 07nrow_ex, exercise = TRUE}
 # Hier Euer Code!

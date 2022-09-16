@@ -6,9 +6,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+```{r}
 # Notwendige Packages laden
 pacman::p_load(
   glue,
@@ -138,7 +136,7 @@ Der Parameter dient dort als Platzhalter, um die Daten für den ausgewählten Ko
 ```{r example-europa}
 rmarkdown::render(
   input = here::here("Report_Plastic.Rmd"),
-  output_file = "Übungsreport-Europe",
+  output_file = "output/Übungsreport-Europe",
   output_format = "html_document",
   params = list(filter_continent = "Europe")
   )
@@ -147,7 +145,7 @@ rmarkdown::render(
 ```{r example-ozeanien}
 rmarkdown::render(
   input = here::here("Report_Plastic.Rmd"),
-  output_file = "Übungsreport-Ozeanien",
+  output_file = "output/Übungsreport-Ozeanien",
   output_format = "html_document",
   params = list(filter_continent = "Ozeanien")
   )
@@ -196,7 +194,7 @@ purrr::walk(
   .x = country_names,
   .f = ~ rmarkdown::render(
     input = here::here(set_rmd_name),
-    output_file = glue::glue("{set_report_name}_{.x}"),
+    output_file = glue::glue("output/{set_report_name}_{.x}"),
     output_format = "html_document",
     # hier wird der Landname übergeben
     params = list(filter_country = .x) 
