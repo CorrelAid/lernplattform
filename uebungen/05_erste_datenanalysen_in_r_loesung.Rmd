@@ -3,15 +3,37 @@ title: "Erste Datenanalysen in R"
 author: "Nina Hauser"
 date: "10/20/2021"
 output: pdf_document
+
+
 ---
+```{r}
+knit_hooks$set(inline = function(x) {
+  prettyNum(x, big.mark=" ")
+})
+```
 
 ### Übung 1
 Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**:
 - Wie viel Plastik wurde insgesamt gesammelt?
-372276 Plastikstücke
+
+```{r uebung 1 a}
+
+community %>%
+  summarise("Plastikstücke insgesamt" = sum(n_pieces))
+  
+```
+
 
 - Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?
-Afrika: 112717, Amerika: 25926, Asien: 204051, Europa: 29579, Ozeanien: 3
+
+```{r uebung 1 b }
+
+community %>% 
+  group_by(continent) %>%
+  summarise(median=median(n_pieces),
+            mean=mean(n_pieces))
+
+```
 
 - Welche Faktoren beeinflussen möglicherweise diese Unterschiede?
 Eventuell die Anzahl der Freiwilligen (starke Korrelation), allerdings könnten auch sogenannte Störfaktoren wie die Bevölkerungsanzahl und die Anzahl beteiligter Länder eine Rolle spielen.
