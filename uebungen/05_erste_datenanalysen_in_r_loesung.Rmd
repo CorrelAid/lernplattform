@@ -6,34 +6,20 @@ output: pdf_document
 
 
 ---
+
 ```{r}
-knit_hooks$set(inline = function(x) {
-  prettyNum(x, big.mark=" ")
-})
+#knit_hooks$set(inline = function(x) {
+#  prettyNum(x, big.mark=" ")
+#})
 ```
 
 ### Übung 1
 Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**:
 - Wie viel Plastik wurde insgesamt gesammelt?
 
-```{r uebung 1 a}
-
-community %>%
-  summarise("Plastikstücke insgesamt" = sum(n_pieces))
-  
-```
-
 
 - Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?
 
-```{r uebung 1 b }
-
-community %>% 
-  group_by(continent) %>%
-  summarise(median=median(n_pieces),
-            mean=mean(n_pieces))
-
-```
 
 - Welche Faktoren beeinflussen möglicherweise diese Unterschiede?
 Eventuell die Anzahl der Freiwilligen (starke Korrelation), allerdings könnten auch sogenannte Störfaktoren wie die Bevölkerungsanzahl und die Anzahl beteiligter Länder eine Rolle spielen.
@@ -55,7 +41,7 @@ library(ggplot2)
 library(dplyr)
 library(janitor)
 library(countrycode)
-library(beeswarm)
+library(ggbeeswarm)
 ```
 
 # Schritt 2: Daten laden
@@ -82,6 +68,25 @@ dplyr::glimpse(community)
 # Überblick über den Plastik-Audit verschaffen
 dplyr::glimpse(audit)
 ```
+
+Antwort zu Frage 1a
+```{r uebung 1 a}
+
+community %>%
+  summarise("Plastikstücke insgesamt" = sum(n_pieces))
+  
+```
+
+Antwort zu Frage 1b
+```{r uebung 1 b }
+
+community %>% 
+  group_by(continent) %>%
+  summarise(median=median(n_pieces),
+            mean=mean(n_pieces))
+
+```
+
 
 # Schritt 5: Visuelle Exploration
 ```{r boxplot}
