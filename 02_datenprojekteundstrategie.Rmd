@@ -210,7 +210,7 @@ Anfangs ist es vielleicht gar nicht so leicht ein eigenes Projekt zu finden, an 
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1639481268810?code=0d908cb22792410d97948f86822df4ea&sender=ninah9635){target="_blank"}.
+[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1639481285632?code=85530a55216f463eb45c9e17becefc52&sender=ninah9635){target="_blank"}.
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf){target="_blank"}.
 
@@ -228,7 +228,7 @@ Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. 
 <br>
 
 Hier geht es zum
-[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1639481268810?code=0d908cb22792410d97948f86822df4ea&sender=ninah9635){target="_blank"}
+[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1639481285632?code=85530a55216f463eb45c9e17becefc52&sender=ninah9635){target="_blank"}
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.
 

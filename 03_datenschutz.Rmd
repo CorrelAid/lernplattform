@@ -102,7 +102,7 @@ das Recht auf die freie Entfaltung seiner Persönlichkeit"),
     try_again_button = "Nochmal versuchen"
     ),
 
-question("Findet die DSGVO Anwendung auf den persönlichen oder familiären Bereich??",
+question("Findet die DSGVO Anwendung auf den persönlichen oder familiären Bereich?",
     answer("Ja"),
     answer("Nein", correct = TRUE),
     correct = "Richtig!",
