@@ -11,7 +11,7 @@
 Hallo und herzlich willkommen bei "R Lernen - der Datenkurs von und für die Zivilgesellschaft"! 
 Hier findet Ihr alle Informationen zum Kurs, Lernziele und Methodik.
 
-Ersetzt in diesem Codeeditior den Teil mit "--hier dein Name--" mit Eurem Namen. Klickt nun auf "Code ausführen".
+Um direkt einzusteigen: Ersetzt in diesem Codeeditior den Teil mit "--hier dein Name--" mit Eurem Namen. Klickt nun auf "Code ausführen".
 
 ```{r paste, exercise=TRUE}
 paste("Schön, dass Du da bist, --hier dein Name-- !")
@@ -31,56 +31,56 @@ Am Ende des Kurses könnt Ihr zwei Arten von Datenprodukten erstellen: Einen **r
 - Wo in meinem **Wochenplan** kann ich zwei bis drei Stunden für das Selbststudium vormerken?
 
 ### Was Euch diese Woche erwartet
-Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/enQtNDE3NTM5MjU2MzU4NC0xZTBiOTQwYzZkYzhiNjI1M2IwOTA0NTY2NjI5MGM5YWQ1Y2U3ODdiMzhjZTA4NWJjZTczZTNiZDg1OGFmODU4){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/88057998873?pwd=L21Ib3NUMFlicnhCa3FabWpPOUdoUT09&from=addon#success){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 7.10.22, um 12 Uhr** nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/invitation/room/1639481285632?code=85530a55216f463eb45c9e17becefc52&sender=ninah9635){target="_blank"}. Gerne könnt Ihr Euch dort schon eintragen. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 
+Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/enQtNDE3NTM5MjU2MzU4NC0xZTBiOTQwYzZkYzhiNjI1M2IwOTA0NTY2NjI5MGM5YWQ1Y2U3ODdiMzhjZTA4NWJjZTczZTNiZDg1OGFmODU4){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/81401116734?pwd=U09wT096M0RLc2g0L2JHWUJ4b2ZaQT09){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 03.02.2022, um 12 Uhr** nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/invitation/room/1674060452599?code=99330ace8f44400893a2b8aeaab6b53a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Gerne könnt Ihr Euch dort schon eintragen. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 
 
-Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Nina (nina.h@correlaid.org) bitte rechtzeitig mit.
+Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Zoé (zoe.w@correlaid.org) bitte rechtzeitig mit.
 
-Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Kontaktiert nach Eurer Registrierung bei DataQuest einfach Nina (nina.h@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist auf Anfänger:innen gedacht.
+Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Wenn Ihr interessiert seid, kontaktiert dafür einfach Zoé (zoe.w@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist für Anfänger:innen gedacht.
 
 Materialien der Lernplattform sind unter **CC-BY 4.0** lizensiert (Open Source mit Autor:innenakkreditierung). Bitte behandelt den **Link zur Lernplattform vertraulich**. 
 
 ### Eckdaten 
-- 7.10.22 - 23.12.22, Aufwand: 2-4h/Woche
+- 03.02.2023 - 28.04.2023, Aufwand: 2-4h/Woche (auch davon abhängig, ob Ihr doch schon Vorkenntnisse im Programmieren habt)
 - Blended-Learning mit Lernplattform
-- Jeden Freitag live von 12 - 13 Uhr  [(Klick hier!)](https://us02web.zoom.us/j/88057998873?pwd=L21Ib3NUMFlicnhCa3FabWpPOUdoUT09&from=addon#success){target="_blank"}
+- Jeden Freitag live von 12 - 13 Uhr  [(Klick hier!)](https://us02web.zoom.us/j/81401116734?pwd=U09wT096M0RLc2g0L2JHWUJ4b2ZaQT09){target="_blank"}
 - Mit und von Datenprofis
 
 ### Wochenplan
-#### Woche 1 (Livetermin 07.10.22): Kick-Off!
+#### Woche 1 (Livetermin 03.02.23): Kick-Off!
 Wir stellen uns, Ihr Euch und wir die **Kursmodalitäten** vor.
 
-#### Woche 2 (Livetermin 14.10.22): Daten- und Leuchtturmprojekte der Zivilgesellschaft
-Wir präsentieren **Anwendungsbeispiele von Datenprojekten** aus unserem Arbeitsalltag und der Zivilgesellschaft, um einen Ausblick auf Mögliches zu geben. Außerdem verrraten wir Tipps & Tricks, die es bei Datenprojekten zu beachten gilt. Ihr entwickelt erste Ideen für Euer eigenes Projekt.
-
-#### Woche 3 (Livetermin 21.10.22): Datenschutz & -Ethik für Anfänger:innen
+#### Woche 2 (Livetermin 10.02.23): Datenschutz & -ethik für Anfänger:innen
 Wir führen Euch pragmatisch und lebensnah durch den **DSGVO-Dschungel**, sprechen über Tools und Datenethik. Ihr prüft Euer Projekt auf geltende Regelungen und hinterlegt in einem Datenverarbeitungsverzeichnis die personenbezogenen Daten, die Ihr in Eurem Projekt nutzen wollt. 
 
-#### Woche 4 (Livetermin 28.10.22): Einführung in RStudio
+#### Woche 3 (Livetermin 17.02.23): Einführung in RStudio
 Wir zeigen Euch, was in **RStudio** passiert, wo Ihr die erste Zeile Code schreiben dürft und was für spannende Funktionalitäten es in der Applikation so alles gibt. Ihr öffnet RStudio das erste Mal, probiert Euch aus und - bei Fragen rund um das Set-up - helfen wir Euch.
 
-#### Woche 5 (Livetermin 04.11.22): Daten mit R verstehen
+#### Woche 4 (Livetermin 24.02.23): Daten mit R verstehen
 Datenkompetenz setzt voraus, dass Ihr aus Daten die richtigen Schlüsse zieht. Wir zeigen Euch, wie Ihr Daten und Datenanalysen hinsichtlich ihrer Aussagekraft beurteilt und **Visualisierungen** und **statistische Kennzahlen** richtig interpretiert. Ihr macht erste Codingexperimente.
 
-#### Woche 6 (Livetermin 11.11.22): Datenimport
+#### Woche 5 (Livetermin 03.03.23): Datenimport
 Wir zeigen Euch, auf wie viele Arten Ihr Daten in RStudio laden könnt - **manuell**, aber vorallem auch **live** - und zeigen, wie wir mit **APIs** arbeiten. Ihr ladet Eure Daten.
 
-#### Woche 7 (Livetermin 18.11.22): Datentransformation
+#### Woche 6 (Livetermin 10.03.23): Datentransformation
 Was tun, wenn die Daten noch gar nicht nutzbar sind? Wir stellen Euch das **tidyverse** der Datentransformation in R vor. Und Ihr? Ihr macht Eure Daten fit für die Auswertung und fangt an statistische Kennzahlen zu berechnen!
 
-#### Woche 8 (Livetermin 25.11.22): Datenvisualiserung
+#### Woche 7 (Livetermin 17.03.23): Datenvisualiserung
 Wir klären, welcher **Diagrammtyp** für Euren Fall der richtige ist und was Ihr bei der Erstellung einer Visualisierung in R beachten solltet. Ihr wendet das Gerlernte an.
 
-#### Woche 9 (Livetermin 02.12.22): Grundlagen der Statistik
+#### Woche 8 (Livetermin 24.03.23): Grundlagen der Statistik
 Warum **evidenzbasierte Entscheidungen** nicht nur auf Basis von statistischen Kennzahlen und Visualisierungen getroffen werden sollten, erklären wir Euch in dieser Woche. Ihr lernt die Voraussetzungen verschiedener **statistischer Verfahren** kennen.
 
-#### Woche 10 (Livetermin 09.12.22): Reports
+#### Woche 9 (Livetermin 31.03.23): Reports
 Diese Woche lernt Ihr, wie Ihr auf Basis Eurer Kennzahlen, Tabellen und Graphiken mit **RMarkdown** schöne, reproduzierbare Reports erstellt, die Ihr als **PDF- oder HTML-Dokument** teilen könnt. Ihr sucht Euch passende Kennzahlen, Tabellen und Graphiken heraus und erstellt damit einen ersten Report.
 
-#### Woche 11 (Livetermin 16.12.22: Reportautomatisierung
+#### Woche 10 (Livetermin 14.04.23): Reportautomatisierung
 In der vorletzten Phase des Datenkurses lernt Ihr, wie die **Reproduzierbarkeit von RMarkdowns** Euch bei der **Skalierung** von Reporting unterstützt. So könnt Ihr mit geschickten Handgriffen eine große Anzahl an individuellen Reports erstellen. Ihr baut Eure eigene kleine Reportfabrik.
 
-#### Woche 12 (Livetermin 23.12.22): Interaktive Visualisierung
+#### Woche 11 (Livetermin 21.04.23): Interaktive Visualisierung
 In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer interaktiven Visualisierung teilen könnt. Wir programmieren mit Euch im Kurs eine erste **Shiny-App**, erklären, wie so eine Applikation funktioniert und wie Ihr sie hosten könnt. Ihr übertragt das Gelernte auf Eure eigenen Daten. 
+
+#### Woche 12 (Livetermin 28.04.23): Daten- und Leuchtturmprojekte der Zivilgesellschaft
+Wir präsentieren **Anwendungsbeispiele von Datenprojekten** aus unserem Arbeitsalltag und der Zivilgesellschaft, um einen Ausblick auf Mögliches zu geben. Außerdem verraten wir Tipps & Tricks, die es bei Datenprojekten zu beachten gilt. Nach den letzten elf Wochen habt Ihr einen Überblick, was mit R möglich ist - und entwickelt jetzt Ideen für Euer eigenes Projekt.
 
 ### Lernziele
 - Ihr entwickelt ein **Grundverständnis für Datennutzung** (inkl. Grundkonzepte der Mathematik und Statistik für Non-Techs)
@@ -94,34 +94,36 @@ In der letzten Phase des Datenkurses lernt Ihr, wie Ihr Eure Ergebnisse in einer
 - Dort findet Ihr dann ein Video, die wichtigsten Kernaussagen des Wochenthemas, Übungsmaterialien und (freiwillige) Lernzielkontrollen
 - Die Materialien könnt Ihr bearbeiten, wenn Ihr dafür Zeit und einen freien Kopf habt
 - In der Live-Session jeden **Freitag von 12-13 Uhr** besprechen Datenprofis mit Euch die Lösung der Übung und Lernzielkontrolle, die im Anschluss online gestellt wird
-- Zusätzlich könnt Ihr [**1:1 Sprechstunden**](https://calendly.com/correlaid-frie/datensprechstunde){target="_blank"} mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten (entweder direkt in der Sprechstunde oder per Mail an Nina)
+- Zusätzlich könnt Ihr **1:1 Sprechstunden** mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten (entweder direkt in der Sprechstunde oder per Nachricht oder Mail an Zoé)
+- Außerdem wird Euer Lernduo auch eine:r Tutor:in zugeordnet, sodass Ihr eine:n Mentor:in an Eurer Seite habt. Meldet Euch nach der ersten Live-Session einfach einmal direkt bei Euerer:m Mentor:in!
 
 ### Das Team
 
-<div class="row">
-  <div class="col-sm-2">
+<!-- <div class="row"> -->
+<!--   <div class="col-sm-2"> -->
 
-<h4 style="visibility: hidden;">Nina</h4>
-```{r echo=FALSE, out.width="200px"} 
-knitr::include_graphics("images/nina.png")
-```
+<!-- <h4 style="visibility: hidden;">Nina</h4> -->
+<!-- ```{r echo=FALSE, out.width="200px"}  -->
+<!-- knitr::include_graphics("images/nina.png") -->
+<!-- ``` -->
 
-  </div>
-  <div class="col-sm-10">
-  <h4 style="padding-left:90px;">Nina Hauser [Projektleitung]</h4>
-  <p style="margin-left: 90px;">
-[Nina](nina.h@correlaid.org) ist ausgebildete Datenanalystin. Seit 2020 entwickelt
-sie für CorrelAid e.V. technische Frameworks und 
-Bildungsmaterialien im Bereich Daten. Um die Nutzerzentrierung unserer 
-Angebote zu sichern, nutzt sie Techniken des Design 
-Thinking. Mit „R Lernen – 
-Der Datenkurs von und für die Zivilgesellschaft“ hat sie
-ein niedrigschwelliges Bildungsangebot im Bereich 
-Data Literacy für zivilgesellschaftliche Organisationen 
-geschaffen.
-  </p>
-  </div>
-</div>
+<!-- </div> -->
+
+<!--   <div class="col-sm-10"> -->
+<!--   <h4 style="padding-left:90px;">Nina Hauser [Projektleitung]</h4> -->
+<!--   <p style="margin-left: 90px;"> -->
+<!-- [Nina](nina.h@correlaid.org) ist ausgebildete Datenanalystin. Seit 2020 entwickelt -->
+<!-- sie für CorrelAid e.V. technische Frameworks und  -->
+<!-- Bildungsmaterialien im Bereich Daten. Um die Nutzerzentrierung unserer  -->
+<!-- Angebote zu sichern, nutzt sie Techniken des Design  -->
+<!-- Thinking. Mit „R Lernen –  -->
+<!-- Der Datenkurs von und für die Zivilgesellschaft“ hat sie -->
+<!-- ein niedrigschwelliges Bildungsangebot im Bereich  -->
+<!-- Data Literacy für zivilgesellschaftliche Organisationen  -->
+<!-- geschaffen. -->
+<!--   </p> -->
+<!--   </div> -->
+<!-- </div> -->
 
 
 <div class="row">
@@ -132,9 +134,9 @@ knitr::include_graphics("images/zoe.jpg")
 ```
 </div>
   <div class="col-sm-10">
-  <h4 style="padding-left:90px;">Zoé Wolter [Projektassistenz]</h4>
+  <h4 style="padding-left:90px;">Zoé Wolter [Projektverantwortlich]</h4>
   <p style="margin-left: 90px;">
-[Zoé]((mailto:zoe.w@correlaid.org)) ist seit 2018 bei CorrelAid aktiv und arbeitet nun als Werkstudentin bei uns. Aktuell studiert sie im Master in Konstanz "Social and Economic Data Science" und unterstützt Euch als Mentorin für R.
+[Zoé]((mailto:zoe.w@correlaid.org)) ist seit 2018 bei CorrelAid aktiv und für den Bildungsbereich und damit auch "R Lernen" verantwortlich. Aktuell studiert sie im Master in Konstanz "Social and Economic Data Science" - dabei war ihr erster Kontakt zu R auch in einem CorrelAid-Workshop an der Uni. 
   </p>
   </div>
 </div>
@@ -142,7 +144,6 @@ knitr::include_graphics("images/zoe.jpg")
 
 <div class="row">
   <div class="col-sm-2 mt-3">
-
 <h4 style="visibility: hidden;">Frie Preu</h4>
 ```{r echo=FALSE, out.width="200px"} 
 knitr::include_graphics("images/frie.jpg")
@@ -157,6 +158,66 @@ Dort organisiert und koordiniert Frie unsere Data4Good-Projekte und kann Euch al
   </div>
 </div>
 
+<div class="row">
+  <div class="col-sm-2">
+<h4 style="visibility: hidden;">Lisa</h4>
+```{r echo=FALSE, out.width="200px"} 
+knitr::include_graphics("images/lisa.jpg")
+```
+</div>
+  <div class="col-sm-10">
+  <h4 style="padding-left:90px;">Lisa Reiber [Tutorin]</h4>
+  <p style="margin-left: 90px;">
+[Lisa]((mailto:lisa.r@correlaid.org))
+  </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+<h4 style="visibility: hidden;">Sylvi</h4>
+```{r echo=FALSE, out.width="200px"} 
+knitr::include_graphics("images/sylvi.jpg")
+```
+</div>
+  <div class="col-sm-10">
+  <h4 style="padding-left:90px;">Sylvi Rzepka [Tutorin]</h4>
+  <p style="margin-left: 90px;">
+[Lisa]((mailto:sylvi.r@correlaid.org))
+  </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+<h4 style="visibility: hidden;">Cosima</h4>
+```{r echo=FALSE, out.width="200px"} 
+knitr::include_graphics("images/cosima.png")
+```
+</div>
+  <div class="col-sm-10">
+  <h4 style="padding-left:90px;">Cosima Meyer [Tutorin]</h4>
+  <p style="margin-left: 90px;">
+[Cosima]((mailto:education@correlaid.org))
+  </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+<h4 style="visibility: hidden;">Phil</h4>
+```{r echo=FALSE, out.width="200px"} 
+knitr::include_graphics("images/philipp_bosch.jpg")
+```
+</div>
+  <div class="col-sm-10">
+  <h4 style="padding-left:90px;">Phil Bosch [Tutor]</h4>
+  <p style="margin-left: 90px;">
+[Phil]((mailto:phil.b@correlaid.org))
+  </p>
+  </div>
+</div>
+
 
 ### Kontakt
 Unser Team erreicht Ihr unter [education@correlaid.org](mailto:education@correlaid.org). 
@@ -166,8 +227,8 @@ Die Hauptkommunikation findet in unserem **Slack-Channel** statt. Zusätzlich ha
 Alle weiteren Angebot von CorrelAid e.V. erhaltet Ihr jeden Monat in unserem [Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}.
 
 ### Und eine kleine Bitte haben wir noch:
-Da für uns im Rahmen dieses Kurses allerhand Kosten entstehen und wir diesen gerne langfristig anbieten möchten, würden wir uns freuen, wenn Ihr es auch der **Generation nach Euch** ermöglicht an diesem Kurs teilzunehmen. Wie das geht? Unter **betterplace** könnt Ihr für das Projekt **"R Lernen -  Der Datenkurs für die Zivilgesellschaft"** spenden und den Link gerne auch in Eurem Netzwerk teilen. Pro Teilnehmer:in entstehen uns über die **drei Monate etwa 300€ Kosten** für **Tutor:innen, Hosting und Verwaltung**. Ihr müsst natürlich nicht den Gesamtbetrag spenden - auch kleinere Summen helfen! Das Beste ist: Über betterplace bekommt Ihr sogar eine **Spendenbescheinigung** über Eure Spende, die Ihr so bei der **Steuererklärung** geltend machen könnt.  Überzeugt? Zur Spendenseite: [Klick hier!](https://www.betterplace.org/de/projects/58963-correlaid-e-v-foerderung-von-datenwissenschaft-in-der-zivilgesellschaft){target="_blank"}
+Da für uns im Rahmen dieses Kurses allerhand Kosten entstehen und wir diesen gerne langfristig anbieten möchten, würden wir uns freuen, wenn Ihr es auch der **Generation nach Euch** ermöglicht, an diesem Kurs teilzunehmen. Wie das geht? Unter **betterplace** könnt Ihr für das Projekt **"R Lernen -  Der Datenkurs für die Zivilgesellschaft"** spenden und den Link gerne auch in Eurem Netzwerk teilen. Pro Teilnehmer:in entstehen uns über die **drei Monate etwa 300€ Kosten** für **Tutor:innen, Hosting und Verwaltung**. Ihr müsst natürlich nicht den Gesamtbetrag spenden - auch kleinere Summen helfen! Das Beste ist: Über betterplace bekommt Ihr sogar eine **Spendenbescheinigung** über Eure Spende, die Ihr so bei der **Steuererklärung** geltend machen könnt.  Überzeugt? Zur Spendenseite: [Klick hier!](https://www.betterplace.org/de/projects/58963-correlaid-e-v-foerderung-von-datenwissenschaft-in-der-zivilgesellschaft){target="_blank"}
 
 <center>
-![](https://www.mentor-bundesverband.de/images/Logo-DSEE_Neu.jpg){#id .class width=50% height=50%}
+<!--![](https://www.mentor-bundesverband.de/images/Logo-DSEE_Neu.jpg){#id .class width=50% height=50%}-->
 </center>
