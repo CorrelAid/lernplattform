@@ -12,6 +12,21 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 #remotes::install_github("rstudio/learnr")
 #remotes::install_github("rstudio/gradethis")
+# suppressWarnings(if (!require("pacman")) install.packages("pacman"))
+# pacman::p_load(anytime,
+#                clisymbols,
+#                countdown,
+#                flipbookr,
+#                ggthemes,
+#                gtrendsR,
+#                prismatic,
+#                servr,
+#                tidylog,
+#                xaringan,
+#                xaringanExtra,
+#                xaringanthemer,
+#                install = TRUE,
+#                update = FALSE)
 library(gradethis)
 library(learnr)
 library(rio)
@@ -156,6 +171,12 @@ z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1
 <!-- ## Willkommen -->
 ```{r results='asis'}
 out <- knitr::knit_child("01_intro.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
+<!-- ## Setup -->
+```{r results='asis'}
+out <- knitr::knit_child("02_setup.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 

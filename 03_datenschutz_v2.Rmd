@@ -1,5 +1,5 @@
-## Datenschutz und Datenethik
-![*Video: Datenschutz und Datenethik (60min)*](https://youtu.be/WlNjPFlNams)
+## **Datenschutz und Datenethik**
+![*Video: Datenschutz und Datenethik (20min)*](https://youtu.be/0Qmy81DLQDw)
 
 Als Lektüre empfehlen wir die [Publikation](https://www.b-b-e.de/fileadmin/Redaktion/06_Service/02_Publikationen/2021/2021-bbe-reihe-forum-3.pdf){target="_blank"} des Bundesnetzwerks Bürgerschaftliches Engagement (BBE) zu „Datenschutz und Datensicherheit“, insbesondere die Schritte 1-12 auf den Seiten 29ff. Darüber hinaus könnt Ihr bei der Stiftung Datenschutz zahlreiche [Webinare](https://stiftungdatenschutz.org/veranstaltungen/datenschutz-im-ehrenamt){target="_blank"} zum Thema besuchen. Ein Webinar zur DSGVO-konformen Nutzung von bestehenden Datenbeständen mit der Stiftung Datenschutz und uns findet Ihr [hier](https://stiftungdatenschutz.org/veranstaltungen/unsere-veranstaltungen-detailansicht/datenschutz-im-ehrenamt-datenbestaende-rechtskonform-nutzen-293){target="_blank"}.
 
@@ -39,6 +39,16 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
     ),
  
+ question("Eure neu erworbenen Datenkompetenzen möchtet Ihr nutzen, um Daten von Euren digitalen Bildungsangeboten zu analysieren: Ihr zieht Euch einen Export aus der Lernplattform und aus Eurem Videokonferenztool. Könnte es sich hierbei um personenbezogene Daten handeln?",
+    answer("Ganz klar ja!"),
+    answer("Nein!"),
+    answer("Es kommt drauf an, ob eine Anmeldung oder ein Login erforderlich sind oder die Personen über ihre IP Adresse identifizierbar sind.", correct = TRUE),
+    correct = "Richtig! Es handelt sich bei der Lernplattform um personenbezogene Daten, sobald ein Login mit Benutzernamen und Passwort für die Teilnehmenden erforderlich ist oder die über ihre IP-Adressen identifizierbar sind. Beim Videokonferenztool hängt es davon ab, ob eine Anmeldung notwendig ist oder die Klarnamen verwendet werden.",
+    incorrect = "Leider falsch. Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person (im Folgenden „betroffene Person“) beziehen. Kann das durch eine Anmeldung oder die Verwendung von Namen bei Lernplattform und Videokonferenztool der Fall sein? Versuche es einfach nochmal! ",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+ 
  question("Findet die DSGVO Anwendung auf den persönlichen oder familiären Bereich?",
     answer("Ja"),
     answer("Nein", correct = TRUE),
@@ -52,7 +62,7 @@ quiz(caption = NULL,
     answer("in automatisierten Vorgängen."),
     answer("in nicht-automatisierten Vorgängen."),
     answer("in automatisierten und nicht-automatisierten Vorgängen.", correct = TRUE),
-    correct = "Richtig! Also im Grunde alle, was man mit Daten tun kann.",
+    correct = "Richtig! Also im Grunde alles, was man mit Daten tun kann.",
     incorrect = "Leider falsch: Sowohl die menschliche als auch maschinelle Datenverarbeitung sind gemeint.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -61,17 +71,32 @@ quiz(caption = NULL,
 ```
 
 
-Die Verarbeitung von personenbezogenen Daten unterliegt einem **Verbotsprinzip**: Nur wenn Ihr eine Berechtigung zur Datenverarbeitung habt, dürft Ihr dies auch tun. Dabei sind die Rechtsgrundlagen bzw. **Erlaubnistatbestände** für die Datenverarbeitung folgende:
+Die Verarbeitung von personenbezogenen Daten unterliegt einem **Verbotsprinzip**: Nur wenn Ihr eine explizite Berechtigung zur Datenverarbeitung habt, dürft Ihr dies auch tun. Dabei sind die Rechtsgrundlagen bzw. **Erlaubnistatbestände** für die Datenverarbeitung folgende:
 ![](images/02dsgvo/rechtmaessigkeit.png){#id .class width=100% height=100%}
 
-Auf Grund Euer **Informationspflichten** (Art. 12-14 DSGVO) müsst Ihr bei der Datenerfassung auf **Rechtsgrundlage, Zweck, Speicherdauer, Kontaktdaten der Verantwortlichen, die Weitergabe an Dritte und Rechte der Betroffenen** hinweisen.
+```{r 02_quiz3}
+quiz(caption = NULL,
+ question("Darfst Du im Verein die Mitgliederdatenbank nutzen, um Monitoringdashboards und Prognosemodelle für die Vereinsentwicklung zu erstellen? Wenn ja, was ist die zugehrige Rechtsgrundlage?",
+    answer("Ich darf die Daten für diesen Zweck nicht nutzen."),
+    answer("Ich darf sie nutzen, wenn die Mitglieder eingewilligt haben, wobei hier der Zweck und dessen Interpretation entscheidend sind.", correct = TRUE),
+    answer("Ich darf sie nutzen, wenn die Verarbeitung der Vertragserfüllung dient, wobei hier der Zweck und dessen Interpretation entscheidend sind.", correct = TRUE),
+    answer("Ich darf sie durch berechtigtes Interesse nutzen (z.B. bei Erwägungsgrund 47-49 DSGVO).", correct = TRUE),
+    correct = "Richtig! Achte aber immer auf den Zweck und dessen Interpretation: Der Zweck 'Mitgliederverwaltung' kann durch Analysetools unterstützt werden, wenn Du aber 'Registrierung' als Zweck der Verarbeitung angegeben hast, dann solltest Du die Daten aus der Mitgliederdatenbank nicht für Analysezwecke nutzen.",
+    incorrect = "Leider falsch. Lebenswichtiges und öffentliches Interesse und auch eine rechtliche Verpflichtung spielen hier sicher keine Rolle, aber was denkst Du über die anderen drei Erlaubnistatbestände?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    )
+)
+```
+
+Auf Grund Eurer **Informationspflichten** (Art. 12-14 DSGVO) müsst Ihr bei der Datenerfassung auf **Rechtsgrundlage, Zweck, Speicherdauer, Kontaktdaten der Verantwortlichen, die Weitergabe an Dritte und Rechte der Betroffenen** hinweisen.
 <!-- - Ihr seid zu der Einhaltung der folgenden **sieben** Kernpflichten verpflichtet: **Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Speicherbegrenzung, Vertraulichkeit und Rechenschaft** (Art.5-7, 12-23 ff. DSGVO) -->
 Außerdem müsst Ihr auf die folgenden **Betroffenenrechte** (Art. 15-21 DSGVO) hinweisen und diese berücksichtigen:
 ![](images/02dsgvo/betroffenenrechte.png){#id .class width=100% height=100%}
 
 Bei **Erlöschung des Zwecks** müssen personenbezogene Daten gem. §35 BDSG spätestens nach *drei Jahren* gelöscht werden - außer es handelt sich um steuerlich relevante oder Sozialdaten (Frist von 10 Jahren). Alternativ zur Löschung können Daten auch **anonymisiert** werden, indem identifizierende Informationen wie Name, exakte Adresse oder E-Mail gelöscht werden, bis die Kombination von Merkmalsausprägungen wie Wohnort, Beruf und Geschlecht jeweils bei *min. drei Personen* vorhanden ist (oder bei keiner).
 
-```{r 02_quiz3}
+```{r 02_quiz4}
 quiz(caption = NULL,
   question("Wie lange dürfen Daten gespeichert werden?",
       answer("Unbegrenzt"),
@@ -86,17 +111,17 @@ quiz(caption = NULL,
 ```
 
 Da der **Datenschutz in Drittländern** (auch in den USA) nicht so ausgeprägt ist wie in der EU, solltet Ihr bei der Auswahl von datenverarbeitenden Tools darauf achten, wo sie ihren Hauptsitz und Server haben, und müsst ggf. zusätzliche Maßnahmen (z.B. rechtliche Vereinbarung, Passwortschutz, Verschlüsselung) ergreifen.
-Am Besten veröffentlicht Ihr auf Eurer Webseite Eure **Datenschutzerklärung sowie Kontaktdaten von Ansprechpartner:innen** und legt mit klar definierten **Verantwortlichen** ein **Verarbeitungsverzeichnis und Datenschutzmanagementsystem** an, das Ihr in festen Abständen **überprüft**:
+Am besten veröffentlicht Ihr auf Eurer Webseite Eure **Datenschutzerklärung sowie Kontaktdaten von Ansprechpartner:innen** und legt mit klar definierten **Verantwortlichen** ein **Verarbeitungsverzeichnis und Datenschutzmanagementsystem** an, das Ihr in festen Abständen **überprüft**:
 ![](images/02dsgvo/datenschutzerklaerung.png){#id .class width=100% height=100%}
 
-```{r 02_quiz4}
+```{r 02_quiz5}
 quiz(caption = NULL,
   question("Abschließend einmal zusammengefasst: Welche Kernpflichten umfasst die DSGVO?",
       answer("Rechtmäßigkeit", correct = TRUE),
       answer("Zweckbindung", correct = TRUE),
       answer("Datenminimierung", correct = TRUE),
       answer("Richtigkeit", correct = TRUE),
-      answer("Datenreduktion", correct = TRUE),
+      answer("Speicherbegrenzung", correct = TRUE),
       answer("Vertraulichkeit", correct = TRUE),
       answer("Rechenschaft", correct = TRUE),
       correct = "Richtig!",
@@ -107,9 +132,10 @@ quiz(caption = NULL,
 )
 ```
 
+
 #### **Datenschutz in der Praxis**
 
-```{r 02_quiz5}
+```{r 02_quiz6}
 quiz(caption = NULL,
   question("Weil Ihr den morgendlichen und bitter benötigten Kaffee über Euren Arbeitslaptop verschüttet, verliert Ihr die Mitgliedsdaten Eures 20 Mitglieder starken Vereins, die Ihr lokal in einer Excel gespeichert hattet. Die Daten sind unwiderruflich verschwunden. „Kein Problem“, denkt Ihr, „für von Kaffee eliminierte Daten bin ich ja nicht haftungspflichtig.“ Ist das richtig?",
       answer("Ja"),
@@ -127,16 +153,32 @@ quiz(caption = NULL,
     incorrect = " Leider falsch! Es ist zwar lobenswert, dass die hochsensiblen Daten durch Passwörter geschützt werden, aber Google ist ein US-Amerikanischer Anbieter, weshalb mit dem Kippen des Privacy Shields 2020 (Schrems I) das Nutzen von US-Amerikanischen Tools zur Speicherung personenbezogener Daten unzulässig ist. Das ist zwar erstmal eine ziemlich schlechte Nachricht, aber auch wir sind derzeit noch in der Umstellung – und erwarten hier auch Korrekturen und Eingriffe der Gesetzgebenden. Bis dahin nutzen wir – wo möglich – digitale Tools aus der EU oder hosten Alternativen, wie z.B. IDGARD oder eine eigene Instanz von NextCloud.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Zum Abschluss noch der Klassiker: Ihr habt vermutlich eine Vereinswebseite. Sind hier (zustimmungspflichtige) Cookie-Hinweise notwendig?",
+    answer("Ja, es ist immer ein Cookie-Hinweis mit expliziter Einwilligung notwendig."),
+    answer("Nein, der Cookie-Hinweis ist optional."),
+    answer("Für technisch notwendige Cookies brauche ich einen Cookie-Hinweis, aber keine explizite Einwilligung.", correct = TRUE),
+    answer("Für Cookies, die über die technisch notwendigen Cookies hinausgehen (z.B. Tracking, Marketing), müssen Betroffene die Möglichkeit zum Opt-In freiwillig wahrnehmen.", correct = TRUE),
+    correct = "Richtig! Für technisch notwendige Cookies braucht es keine explizite Einwilligung, für alles weitere hingegegen schon. Aber: durch die Informationspflicht ist ein Banner mit Cookie-Hinweis Pflicht!",
+    incorrect = "Leider falsch! Auch hier kommt es wieder drauf an: während für alle Cookies eine Informationspflicht gilt, benötigen technisch notwendige Cookies im Gegensatz zu allen weiteren Cookies keine explizite Einwilligung.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
     )
 )
 ```
 
+
 ### **Datenethik**
-- Darüber hinaus solltet Ihr Euch auch mit Euren Anforderungen an Datenethik beschäftigen, denn nur weil etwas augenscheinlich legal ist, heißt es noch lange nicht, dass es auch moralisch ist  - eine Inspiration kann die **Charta der digitalen Grundrechte** sein
+- Darüber hinaus solltet Ihr Euch auch mit Euren Anforderungen an Datenethik beschäftigen, denn nur weil etwas augenscheinlich legal ist, heißt es noch lange nicht, dass es auch moralisch ist  - eine Inspiration kann die **Charta der digitalen Grundrechte** sein.
 - Prüft, ob Eure **Datengrundlage ausreicht**, um Sachverhalte zu bewerten, und diese Bewertung **sinnvoll ist**
-- Evaluiert Eure Datengrundlage und sucht gezielt nach **Verzerrungen** wie historischem Bias
-- Überlegt Euch, ob Eure Datenanalyse zu **struktureller Benachteiligung, Diskriminierung oder (negativer) Politisierung** von Menschen führen kann
-- Denkt bei der Programmierung von Algorithmen darüber nach, ob die zu treffende **Entscheidung** überhaupt **maschinell** anhand von sozio-demographischen Merkmalen und deren Proxies getroffen werden sollte - das gilt insbesondere bei Algorithmen, die über **Zugang zu essentiellen Bereichen** wie dem Arbeits- und Finanzmarkt oder auch über den Zugang zu **zivilgesellschaftlichen Programmen** entscheiden
+- Evaluiert Eure Datengrundlage und sucht gezielt nach **Verzerrungen** wie historischem Bias.
+- Überlegt Euch, ob Eure Datenanalyse zu **struktureller Benachteiligung, Diskriminierung oder (negativer) Politisierung** von Menschen führen kann.
+- Denkt bei der Programmierung von Algorithmen darüber nach, ob die zu treffende **Entscheidung** überhaupt **maschinell** anhand von sozio-demographischen Merkmalen und deren Proxies getroffen werden sollte - das gilt insbesondere bei Algorithmen, die über **Zugang zu essentiellen Bereichen** wie dem Arbeits- und Finanzmarkt oder auch über den Zugang zu **zivilgesellschaftlichen Programmen** entscheiden.
+
+Einige ethische Fragen solltet Ihr Euch vor und während Eurer Datenprojekte stellen:
+![](images/02dsgvo/ethische-fragen.png){#id .class width=100% height=100%}
+
 
 #### **Datenethik in der Praxis**
 ```{r 02_quiz}
@@ -177,10 +219,10 @@ quiz(caption = NULL,
 ```
 
 ### **Interaktive Übung**
-Wenn Ihr (personenbezogene) Daten verarbeitet, speichert Ihr diese in (exportierten) Excel-Tabellen, intern und externen Datenbanken oder unstrukturiert. Auch in R gibt es spezifische Lösungen zur Speicherung von **strukturierten und unstrukturierten Daten**: **Data Frames** (zu dt. Datenrahmen, ein tabellarisches Format) bzw. **Listen**. In Data Frames und Listen werden einzelne Beobachtungen und Variablen in Datenstrukturen zusammengefasst und als **Objekt** gespeichert. Mit was für einem Objekt Ihr arbeitet, könnt Ihr wie gehabt mit der Funktion `class()` überprüfen. Testet die Funktion in Zeile 8 für die Liste und den Data Frame, indem Ihr den Code ausführt.
+Wenn Ihr (personenbezogene) Daten verarbeitet, speichert Ihr diese in (exportierten) Excel-Tabellen, intern und externen Datenbanken oder unstrukturiert. Auch in R gibt es spezifische Lösungen zur Speicherung von **strukturierten und unstrukturierten Daten**: **Data Frames** (zu dt. Datenrahmen, ein tabellarisches Format) bzw. **Listen**. In Data Frames und Listen werden einzelne Beobachtungen und Variablen in Datenstrukturen zusammengefasst und als **Objekt** gespeichert. Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit der Funktion `class()` überprüfen. Testet die Funktion in Zeile 8 für die Liste und den Data Frame, indem Ihr den Code ausführt.
 
 ```{r objekte, exercise=TRUE}
-# Eine Liste kann aus verschiedenen Datenformaten bestehen
+# Eine Liste kann aus verschiedenen Datenformaten bestehen: hier werden das Wort 'Text', die Zahl 20 und das aktuelle Datum in eine Liste geschrieben, der Pfeil weist das dem Objekt mit dem Namen 'liste' zu
 liste <- list("Text", 20, Sys.Date())
 class(liste)
 
@@ -195,7 +237,7 @@ print(df)
 ```
 
 ```{r objekte-solution}
-# Eine Liste kann aus verschiedenen Datenformaten bestehen
+# Eine Liste kann aus verschiedenen Datenformaten bestehen: hier werden das Wort 'Text', die Zahl 20 und das aktuelle Datum in eine Liste geschrieben, der Pfeil weist das dem Objekt mit dem Namen 'liste' zu
 liste <- list("Text", 20, Sys.Date())
 class(liste)
 

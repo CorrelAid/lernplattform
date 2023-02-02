@@ -1,4 +1,4 @@
-## Glossar
+## **Glossar**
 
 ``` {r settings_glossar, echo=FALSE, include=FALSE}
 ```
@@ -18,7 +18,11 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Dashboard** (zu dt. Instrumententafel) = Zusammenstellung von (zumeist) explorativen Datenanalyseelementen wie Visualisierungen und statistischen Kennwerten 
 
+**Data Engineering** = Erfassen, Übersetzen und Validieren von (unstrukturierten) Daten als Grundlage für die Analyse
+
 **Dataframe** (zu dt. Datenrahmen) = tabellarisches Objekt, in dem Daten gespeichert werden 
+
+**Data Science** = Analyse, Test und Aufbereitung (strukturierter) Daten
 
 **Daten** = formalisierte, idealerweise durch Binärcodierung maschinell lesbare Informationen 
 
@@ -31,6 +35,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 **DSGVO** = verfassungsrechtlich verankertes Grundrecht, das personenbezogene Daten vor Missbrauch schützt (Art. 1 Abs. 1 und Art. 2 Abs. 1 GG, Art. 1 - 4 ff. DSGVO)
 
 **Environment (RStudio)** = Ort der IDE RStudio, in dem Objekte gespeichert werden 
+
+**Explorative Datenanalyse** = Teilgebiet der Statistik, um einen Datensatz z.B. mit Visualisierungen zu untersuchen und kennenzulernen
 
 **Framework** = Grundgerüst zur Programmierung von Applikationen
 
@@ -68,7 +74,7 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Pivoting** = Umformen eines rechteckigen Datensatzes zwischen long- und wide-Format
 
-**Quantil**: Anteil der Werte, die kleiner oder gleich einem bestimmten Wert sind (z.B. 25%-Quantil: 25% aller beobachteten Werte sind kleiner gleich dieser Wert)
+**Quantil** = Anteil der Werte, die kleiner oder gleich einem bestimmten Wert sind (z.B. 25%-Quantil: 25% aller beobachteten Werte sind kleiner gleich dieser Wert)
 
 **Regex** (Regular Expressions) = Reguläre Ausdrücke zur Bestimmung von bestimmten Zeichen(folgen) 
 
@@ -110,11 +116,13 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 ### Wichtiger Syntax in R
 
 **Code Chunk** <br>
+*Hinweis: Bei R Markdown - in einem simplen R Skript hingegen nicht nötig, um Code zu schreiben* <br>
 \```{r} <br>
 Dein Code hier <br>
 \``` <br>
 
 **Funktion** <br>
+*Hinweis: Funktionen funktionieren auch ohne das package:: davor, aber für Nachvollziehbarkeit und die Verwendung einer Funktion aus einem spezifischen Package ist es sinnvoll, das Package immer anzugeben* <br>
 package::funktion(argument1, argument2, ...) <br>
 
 **Konditionale Statements** <br>
@@ -171,6 +179,7 @@ Neben den Grundfunktionen ("baseR") benötigt für Eure Arbeit in R oft weitere 
 `library(tidyverse)` - Packagesammlung für die Datenwissenschaft <br>
 
 ### Wichtige Funktionen in R
+*Hinweis: Funktionen ohne Package-Angabe sind baseR-Funktionen, die meisten anderen Packages sind aus dem Tidyverse, dazu mehr in der Lektion zur Datentransformation!*
 
 **Anzahl** = `n()`
 

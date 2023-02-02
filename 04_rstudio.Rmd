@@ -1,4 +1,4 @@
-## Einführung in RStudio
+## **Einführung in RStudio**
 
 ``` {r settings_rstudio, echo=FALSE, include=FALSE}
 library(rio)

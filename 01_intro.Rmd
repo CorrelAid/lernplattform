@@ -6,7 +6,7 @@
 
 # R Lernen - Der Datenkurs von und für die Zivilgesellschaft
 
-## Willkommen
+## **Willkommen**
 
 Hallo und herzlich willkommen bei "R Lernen - der Datenkurs von und für die Zivilgesellschaft"! 
 Hier findet Ihr alle Informationen zum Kurs, Lernziele und Methodik.
@@ -31,11 +31,11 @@ Am Ende des Kurses könnt Ihr zwei Arten von Datenprodukten erstellen: Einen **r
 - Wo in meinem **Wochenplan** kann ich zwei bis drei Stunden für das Selbststudium vormerken?
 
 ### Was Euch diese Woche erwartet
-Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/enQtNDE3NTM5MjU2MzU4NC0xZTBiOTQwYzZkYzhiNjI1M2IwOTA0NTY2NjI5MGM5YWQ1Y2U3ODdiMzhjZTA4NWJjZTczZTNiZDg1OGFmODU4){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/81401116734?pwd=U09wT096M0RLc2g0L2JHWUJ4b2ZaQT09){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 03.02.2022, um 12 Uhr** nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/invitation/room/1674060452599?code=99330ace8f44400893a2b8aeaab6b53a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Gerne könnt Ihr Euch dort schon eintragen. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 
+Diese Woche dreht sich alles rund ums Kennenlernen und Aufwärmen. Unten findet Ihr alle wichtigen Informationen zum Kurs nochmal in Schriftform - inklusiver aller wichtigen Links zu [Slack](https://join.slack.com/share/enQtNDcwODA4NjYwNzk3MS01Nzg1NTM3YmJkNTI2OGRiOWIxODM4MmM0ZDlhNGE3OTg3YmRlMzkyNWVkOWE3YWYwMGQ5ODdlYjg2NDE4MDNj){target="_blank"} und der Live-Session am Freitag auf [Zoom](https://us02web.zoom.us/j/81401116734?pwd=U09wT096M0RLc2g0L2JHWUJ4b2ZaQT09){target="_blank"}. Lest Euch die Informationen gut durch. Falls es dazu Fragen gibt, können wir diese am **Freitag, den 03.02.2022, um 12 Uhr** nach einer kleinen Vorstellungsrunde klären. Dazu arbeiten wir gemeinsam auf [Mural](https://app.mural.co/invitation/room/1674060452599?code=99330ace8f44400893a2b8aeaab6b53a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Gerne könnt Ihr Euch dort schon im "Kennenlernen"-Dashboard eintragen. Wie jede Woche wird im Anschluss an unseren Live-Termin das nächste Kapitel freigeschaltet. 
 
 Für diesen Kurs werden wir zudem **Lernduos** bilden. Falls Ihr Präferenzen habt, mit wem Ihr in eine Gruppe kommen möchtet, dann teilt diese Zoé (zoe.w@correlaid.org) bitte rechtzeitig mit.
 
-Ihr habt außerdem die Möglichkeit von dem Angebot unserer Partner zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Wenn Ihr interessiert seid, kontaktiert dafür einfach Zoé (zoe.w@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist für Anfänger:innen gedacht.
+Ihr habt außerdem die Möglichkeit von dem Angebot unseres Partners zu profitieren: **[Dataquest](https://www.dataquest.io/){target="_blank"}** unterstützt uns mit kostenlosen Lizenzen für ihre **Data Science Online Kurse**. Für **drei Monate** könnt Ihr dort zusätzlich zu unserem Angebot Kurse in englischer Sprache belegen. Wenn Ihr interessiert seid, kontaktiert dafür einfach Zoé (zoe.w@correlaid.org). Aber Augen auf: Programmierkurse für Datenwissenschaftler:innen sind dort meist etwas schwieriger - lasst Euch davon nicht beirren. Unser Kurs ist für Anfänger:innen gedacht.
 
 Materialien der Lernplattform sind unter **CC-BY 4.0** lizensiert (Open Source mit Autor:innenakkreditierung). Bitte behandelt den **Link zur Lernplattform vertraulich**. 
 
@@ -94,37 +94,10 @@ Wir präsentieren **Anwendungsbeispiele von Datenprojekten** aus unserem Arbeits
 - Dort findet Ihr dann ein Video, die wichtigsten Kernaussagen des Wochenthemas, Übungsmaterialien und (freiwillige) Lernzielkontrollen
 - Die Materialien könnt Ihr bearbeiten, wenn Ihr dafür Zeit und einen freien Kopf habt
 - In der Live-Session jeden **Freitag von 12-13 Uhr** besprechen Datenprofis mit Euch die Lösung der Übung und Lernzielkontrolle, die im Anschluss online gestellt wird
-- Zusätzlich könnt Ihr **1:1 Sprechstunden** mit den Datenprofis buchen, um parallel an Eurem eigenen Projekt zu arbeiten (entweder direkt in der Sprechstunde oder per Nachricht oder Mail an Zoé)
-- Außerdem wird Euer Lernduo auch eine:r Tutor:in zugeordnet, sodass Ihr eine:n Mentor:in an Eurer Seite habt. Meldet Euch nach der ersten Live-Session einfach einmal direkt bei Euerer:m Mentor:in!
+- Außerdem wird Euer Lernduo auch eine:r Tutor:in zugeordnet, sodass Ihr eine:n Mentor:in an Eurer Seite habt. Meldet Euch nach der ersten Live-Session einfach einmal direkt bei Euerer:m Mentor:in! Bei kleineren Fragen und Problemen helfen Euch die ehrenamtlichen Tutor:innen gerne weiter. 
+- Zusätzlich könnt Ihr **1:1 Datensprechstunden** buchen, wenn Ihr ausführlichere Fragen habt, Euch über Euer eigenes Projekt austauschen wollt etc. (per Mail an Zoé oder direkt [hier](https://calendly.com/correlaid/30min){target="_blank"})
 
 ### Das Team
-
-<!-- <div class="row"> -->
-<!--   <div class="col-sm-2"> -->
-
-<!-- <h4 style="visibility: hidden;">Nina</h4> -->
-<!-- ```{r echo=FALSE, out.width="200px"}  -->
-<!-- knitr::include_graphics("images/nina.png") -->
-<!-- ``` -->
-
-<!-- </div> -->
-
-<!--   <div class="col-sm-10"> -->
-<!--   <h4 style="padding-left:90px;">Nina Hauser [Projektleitung]</h4> -->
-<!--   <p style="margin-left: 90px;"> -->
-<!-- [Nina](nina.h@correlaid.org) ist ausgebildete Datenanalystin. Seit 2020 entwickelt -->
-<!-- sie für CorrelAid e.V. technische Frameworks und  -->
-<!-- Bildungsmaterialien im Bereich Daten. Um die Nutzerzentrierung unserer  -->
-<!-- Angebote zu sichern, nutzt sie Techniken des Design  -->
-<!-- Thinking. Mit „R Lernen –  -->
-<!-- Der Datenkurs von und für die Zivilgesellschaft“ hat sie -->
-<!-- ein niedrigschwelliges Bildungsangebot im Bereich  -->
-<!-- Data Literacy für zivilgesellschaftliche Organisationen  -->
-<!-- geschaffen. -->
-<!--   </p> -->
-<!--   </div> -->
-<!-- </div> -->
-
 
 <div class="row">
   <div class="col-sm-2">
@@ -168,7 +141,7 @@ knitr::include_graphics("images/lisa.jpg")
   <div class="col-sm-10">
   <h4 style="padding-left:90px;">Lisa Reiber [Tutorin]</h4>
   <p style="margin-left: 90px;">
-[Lisa]((mailto:lisa.r@correlaid.org))
+[Lisa]((mailto:lisa.r@correlaid.org)) ist seit einigen Jahren aktives CorrelAid Mitglied und hat durch ihre Arbeit als Data Scientist viel Erfahrung im Umgang mit dem Generieren von Reports in R und R-Markdown. In letzter Zeit haben Datenbanken und Dateninfrastuktur ihr Interesse geweckt, sodass sie sich momentan in Richtung Data Engineer fortbildet. Während ihrer Zeit als Data Scientist bei Citizens For Europe hat sie eine technische Umgebung entwickelt, in der Daten aus Online Umfragen automatisiert aufbereitet und die Analysen den Forschenden im Team zur Verfügung gestellt werden. Lisa hat einen Master in Sozialwissenschaften von der Humboldt-Universität Berlin. Twitter und Mastodon: @Lisa Reiber, GH: @lisallreiber.
   </p>
   </div>
 </div>
@@ -183,7 +156,22 @@ knitr::include_graphics("images/sylvi.jpg")
   <div class="col-sm-10">
   <h4 style="padding-left:90px;">Sylvi Rzepka [Tutorin]</h4>
   <p style="margin-left: 90px;">
-[Lisa]((mailto:sylvi.r@correlaid.org))
+[Sylvi]((mailto:sylvi.r@correlaid.org)) ist promovierte Arbeitsmarktökonomin, die aktuell bei der Deutschen Bahn als Datenwissenschaftlerin arbeitet. Bei CorrelAid hat sie sich vor allem im Local Chapter Berlin eingebracht und ein Datenprojekt zum guten Leben auf dem Land im hohen Alter geleitet.
+  </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+<h4 style="visibility: hidden;">Nina</h4>
+```{r echo=FALSE, out.width="200px"}
+knitr::include_graphics("images/nina.png")
+```
+</div>
+  <div class="col-sm-10">
+  <h4 style="padding-left:90px;">Nina Hauser [Tutorin]</h4>
+  <p style="margin-left: 90px;">
+[Nina](nina.h@correlaid.org) ist ausgebildete Datenanalystin. Seit 2020 entwickelt sie für CorrelAid e.V. technische Frameworks und Bildungsmaterialien im Bereich Daten. Um die Nutzerzentrierung unserer Angebote zu sichern, nutzt sie Techniken des Design Thinking. Als Initiatorin hat sie mit „R Lernen – Der Datenkurs von und für die Zivilgesellschaft“ ein niedrigschwelliges Bildungsangebot im Bereich Data Literacy für zivilgesellschaftliche Organisationen geschaffen.
   </p>
   </div>
 </div>
@@ -198,7 +186,7 @@ knitr::include_graphics("images/cosima.png")
   <div class="col-sm-10">
   <h4 style="padding-left:90px;">Cosima Meyer [Tutorin]</h4>
   <p style="margin-left: 90px;">
-[Cosima]((mailto:education@correlaid.org))
+[Cosima]((mailto:education@correlaid.org)) hat im Bereich Konfliktforschung promoviert und arbeitet im Feld Data Science und AI. Mit ihrer Leidenschaft für “data4good” unterstützt sie CorrelAid ehrenamtlich seit mehreren Jahren.
   </p>
   </div>
 </div>
@@ -213,7 +201,7 @@ knitr::include_graphics("images/philipp_bosch.jpg")
   <div class="col-sm-10">
   <h4 style="padding-left:90px;">Phil Bosch [Tutor]</h4>
   <p style="margin-left: 90px;">
-[Phil]((mailto:phil.b@correlaid.org))
+[Phil]((mailto:phil.b@correlaid.org)) hat vor kurzem seinen Master in "Social and Economic Data Science" an der Uni Konstanz abgeschlossen und arbeitet nun als Data Scientist für das statistische Kantonalsamt Zürich. Bei CorrelAid hat er schon so ziemlich alles gemacht, kommt jedoch immer wieder zu seiner "ersten Liebe" zurück: Andere für R und Datenanalyse begeistern!
   </p>
   </div>
 </div>
@@ -222,7 +210,7 @@ knitr::include_graphics("images/philipp_bosch.jpg")
 ### Kontakt
 Unser Team erreicht Ihr unter [education@correlaid.org](mailto:education@correlaid.org). 
 
-Die Hauptkommunikation findet in unserem **Slack-Channel** statt. Zusätzlich habt Ihr die Möglichkeit Euch dort untereinander auszutauschen. Ihr erhaltet die Einladung zu Slack per **E-Mail**, könnt aber auch über diesen [Link](https://join.slack.com/share/enQtNDE3NTM5MjU2MzU4NC0xZTBiOTQwYzZkYzhiNjI1M2IwOTA0NTY2NjI5MGM5YWQ1Y2U3ODdiMzhjZTA4NWJjZTczZTNiZDg1OGFmODU4){target="_blank"} beitreten (Achtung: Der Link ist nur 14 Tage lang gültig).
+Die Hauptkommunikation findet in unserem **Slack-Channel** statt. Zusätzlich habt Ihr die Möglichkeit Euch dort untereinander auszutauschen. Ihr erhaltet die Einladung zu Slack per **E-Mail**, könnt aber auch über diesen [Link](https://join.slack.com/share/enQtNDcwODA4NjYwNzk3MS01Nzg1NTM3YmJkNTI2OGRiOWIxODM4MmM0ZDlhNGE3OTg3YmRlMzkyNWVkOWE3YWYwMGQ5ODdlYjg2NDE4MDNj){target="_blank"} beitreten (Achtung: Der Link ist nur 14 Tage lang gültig).
 
 Alle weiteren Angebot von CorrelAid e.V. erhaltet Ihr jeden Monat in unserem [Newsletter für NPOs](https://correlaid.us12.list-manage.com/subscribe?u=b294bf2834adf5d89bdd2dd5a&id=175fade988){target="_blank"}.
 
