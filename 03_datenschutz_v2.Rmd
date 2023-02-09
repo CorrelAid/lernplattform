@@ -76,7 +76,7 @@ Die Verarbeitung von personenbezogenen Daten unterliegt einem **Verbotsprinzip**
 
 ```{r 02_quiz3}
 quiz(caption = NULL,
- question("Darfst Du im Verein die Mitgliederdatenbank nutzen, um Monitoringdashboards und Prognosemodelle für die Vereinsentwicklung zu erstellen? Wenn ja, was ist die zugehrige Rechtsgrundlage?",
+ question("Darfst Du im Verein die Mitgliederdatenbank nutzen, um Monitoringdashboards und Prognosemodelle für die Vereinsentwicklung zu erstellen? Wenn ja, was ist die zugehörige Rechtsgrundlage?",
     answer("Ich darf die Daten für diesen Zweck nicht nutzen."),
     answer("Ich darf sie nutzen, wenn die Mitglieder eingewilligt haben, wobei hier der Zweck und dessen Interpretation entscheidend sind.", correct = TRUE),
     answer("Ich darf sie nutzen, wenn die Verarbeitung der Vertragserfüllung dient, wobei hier der Zweck und dessen Interpretation entscheidend sind.", correct = TRUE),
@@ -170,6 +170,7 @@ quiz(caption = NULL,
 
 
 ### **Datenethik**
+
 - Darüber hinaus solltet Ihr Euch auch mit Euren Anforderungen an Datenethik beschäftigen, denn nur weil etwas augenscheinlich legal ist, heißt es noch lange nicht, dass es auch moralisch ist  - eine Inspiration kann die **Charta der digitalen Grundrechte** sein.
 - Prüft, ob Eure **Datengrundlage ausreicht**, um Sachverhalte zu bewerten, und diese Bewertung **sinnvoll ist**
 - Evaluiert Eure Datengrundlage und sucht gezielt nach **Verzerrungen** wie historischem Bias.
@@ -177,8 +178,8 @@ quiz(caption = NULL,
 - Denkt bei der Programmierung von Algorithmen darüber nach, ob die zu treffende **Entscheidung** überhaupt **maschinell** anhand von sozio-demographischen Merkmalen und deren Proxies getroffen werden sollte - das gilt insbesondere bei Algorithmen, die über **Zugang zu essentiellen Bereichen** wie dem Arbeits- und Finanzmarkt oder auch über den Zugang zu **zivilgesellschaftlichen Programmen** entscheiden.
 
 Einige ethische Fragen solltet Ihr Euch vor und während Eurer Datenprojekte stellen:
-![](images/02dsgvo/ethische-fragen.png){#id .class width=100% height=100%}
 
+![](images/02dsgvo/ethische-fragen.png){#id .class width=100% height=100%}
 
 #### **Datenethik in der Praxis**
 ```{r 02_quiz}

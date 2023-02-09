@@ -100,6 +100,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
+  
 )
 ```
 
@@ -123,7 +124,7 @@ Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
 data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
-# plastics <- rio::import(here::here('daten/plastics.csv'))
+# data_raw <- rio::import(here::here('daten/plastics.csv'))
 ```
 
 Überprüft hier nochmal, als welches **Objekt** `rio::import()` unseren Datensatz importiert. Die Funktion dafür habt Ihr in den vergangenen Lektionen kennengelernt. Wenn Ihr dann auf "Antwort einreichen" klickt, bekommt Ihr Feedback zu Eurem Code. Mit Hilfe von "Lösung anzeigen" könnt Ihr nachschauen, wie die richtige Lösung aussieht.
