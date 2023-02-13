@@ -1,8 +1,8 @@
-## Daten verstehen mit R
+## **Daten verstehen mit R**
 
 ![*Video: Daten mit R verstehen (30min)*](https://youtu.be/nEbiJ4EZ3OE)
 
-### Kernaussagen
+### **Kernaussagen**
 #### Grundlagen der Datenanalyse
 - Konzeptionell sollten wir uns von **Fragen zur Exploration, möglichen Plausibilitätschecks und Fallentscheidungen** leiten lassen, die während der Analyse beantwortet werden
 - Bei einer Datenanalyse nutzen wir zunächst niedrigschwellige **tabellarische Formate** wie `summary()` und `str()`, um uns einen Überblick über die Daten zu verschaffen
@@ -52,7 +52,7 @@ library(dplyr)
 library(ggplot2)
 ```
 
-### Quiz
+### **Quiz**
 ```{r quiz_ersteanalyseninr}
 quiz(caption = NULL,
   question("Welche Aussagen sind wahr?",
@@ -107,7 +107,7 @@ quiz(caption = NULL,
 ```
 
 
-### Interaktive Übung
+### **Interaktive Übung**
 
 #### Fragen
 Am Anfang jeder Datenanalyse steht etwas, dass zunächst gar nichts mit Daten zu tun haben muss: Fragen. Da Daten letztlich Informationen formalisieren, nutzen wir die Ergebnisse einer Datenanalyse in der Regel für den **Erkenntnisgewinn**. Möchten wir Daten erheben oder liegen uns diese bereits vor vor, hilft es, sich auf bestimmte Fragestellungen zu fokussieren, die sich aus strategischen Überlegungen ergeben.
@@ -136,7 +136,7 @@ quiz(caption = NULL,
     "Wie viele Variablen hat der `community`-Datensatz?",
     answer("Das kann man anhand des Outputs nicht sagen."),
     answer("51"),
-    answer("6", correct = TRUE),
+    answer("5", correct = TRUE),
     answer("7"),
     correct = "Richtig!",
     incorrect = "Leider falsch: 6 Variablen sind enthalten.",
@@ -517,7 +517,7 @@ ggplot(data = community, aes(n_volunteers, n_pieces, label = country)) + # Initi
 Was nehmen wir aus dieser bivariaten Analyse mit? Die Anzahl an Events korreliert nur sehr schwach positiv mit der Anzahl gesammelter Plastikstücke. Die Anzahl der Freiwilligen korreliert stark positiv mit der Anzahl an gesammelten Plastikstücken. Für diesen Zusammenhang kann es viele Ursachen geben, die wir in unseren Daten überhaupt nicht betrachten, zum Beispiel die Bevölkerungsanzahl oder auch die Zeit, welche einzelene Freiwillige investiert haben. Welche "Störfaktoren" fallen Euch noch ein?
 
 
-### Und jetzt Ihr
+### **Und jetzt Ihr**
 Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
 
 1. Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**: <br>
@@ -535,7 +535,7 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 5. Interpretiert die Graphik. Was könnt Ihr ablesen?
 
 
-### Zusätzliche Ressourcen
+### **Zusätzliche Ressourcen**
 - Die kostenlosen Kurse des [Statistischen Bundesamts](https://www.destatis.de/DE/Service/Statistik-Campus/E-Learning/eLearning-statistik.html;jsessionid=63AE25DDABD8853990FBE83F354C8911.live722?nn=206328){target="_blank"}
 - Stocker T. C. und Steinke I. (2017): Statistik – Grundlagen und Methodik [verfügbar z.B. hier](https://www.beck-shop.de/stocker-steinke-de-gruyter-studium-statistik/product/32926361){target="_blank"}
 - [R for Data Science (engl.)](https://r4ds.had.co.nz/){target="_blank"}

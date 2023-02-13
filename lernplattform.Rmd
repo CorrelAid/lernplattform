@@ -103,6 +103,10 @@ karten_daten <- community %>%
                 word_n_volunteers = if_else(n_volunteers == 1, "Freiwillige*r", "Freiwillige"),
                 word_n_pieces = if_else(n_pieces == 1, "gesammeltes Plastikstück", "gesammelte Plastikstücke"))
 
+# Variable 'countrycode' aus community Datensatz löschen
+community <- community %>%
+  dplyr::select(-countrycode)
+
 # Initialisierung eines temporären Ordners
 tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
 download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
@@ -194,8 +198,8 @@ cat(out, sep = '')
 
 <!-- Daten verstehen mit R -->
 ```{r results='asis'}
-# out <- knitr::knit_child("05_ersteanalyseninr.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("05_ersteanalyseninr.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Datenimport und APIs -->
