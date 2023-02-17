@@ -275,7 +275,7 @@ Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal 
 Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und...
 
 1. Installiert und ladet das Package "rio".
-2. Lest den Datensatz über den Hyperlink oder lokal ein. Ihr findet ihn unter diesem [Link]('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'){target="_blank"} und könnt ihn dort auch herunterladen, wenn Ihr Euch für die zweite Variante entscheidet.
+2. Lest den Datensatz über den Hyperlink oder lokal ein. Ihr findet ihn unter diesem [Link](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"} und könnt ihn dort auch herunterladen, wenn Ihr Euch für die zweite Variante entscheidet.
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.
 
 ### Zusätzliche Ressourcen
