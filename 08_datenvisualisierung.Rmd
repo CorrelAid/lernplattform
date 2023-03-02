@@ -40,7 +40,7 @@ quiz(caption = NULL,
     answer("Sie sind leicht zu lesen"),
     answer("Sie stellen die fünf Punkte der Verteilung (statistische Kennzahlen) visuell da", correct = TRUE),
     answer("Sie zeigen die genaue Lage der Beobachtungspunkte an"),
-    correct = "Richtig!",
+    correct = "Richtig! Sie fassen die fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum) zusammen und geben damit einen sehr guten Überblick über Daten.",
     incorrect = "Leider falsch: Boxplots stellen die fünf Punkte der Verteilung visuell dar, sind deshalb aber nur gut zu verstehen, wenn man diese auch kennt. Wie einzelne Beobachtungen liegen, kann man nicht erkennen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -78,22 +78,18 @@ quiz(caption = NULL,
 )
 ```
 
-<!-- Cosima: Ich persönlich fand die Frage zum boxplot hier unpassend, da sie so ad-hoc kam und ich das nicht im Video bespreche. Deswegen habe ich hier die direkte Referenz zu Sitzung 5 eingebaut. Wenn wir doch zeitlich kürzen müssten, könnte man die form follows function-Frage rausnehmen und/oder auch die Boxplot-Frage. Mich haben beide irgendwie verwirrt. Aber du hast das große Konzept des Trainings eher im Blick. -->
-
 ### Interaktive Übung
 
-<!-- Cosima: Die Abbildung funktioniert bei mir im learnr-Environment nicht, ich sehe aber keinen Grund warum --> 
+<right>
+![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=60%}
 
-<left>
-![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
-
-</left>
+</right>
 <br>
 
 In dieser Sitzung lernt Ihr zunächst verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt [(zur App)](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
 
 #### Wiederholung: `ggplot2`-Basics
-Erinnert Ihr Euch noch an die fünfte Sitzung? <!-- Cosima: Sollte hier vielleicht der Link zur 5. Sitzung eingebaut werden? -->
+Erinnert Ihr Euch noch an die [fünfte Sitzung](#section-datenvisualisierung)?
 
 - `ggplot2` folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
 - Für einen ganz simplen Plot benötigen wir immer:
@@ -268,7 +264,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
-Tolle, **vordefinierte Farbpaletten** findet Ihr hier:
+Tolle, **vordefinierte Farbpaletten** findet Ihr hier (hinter den Paketnamen verbergen sich auch Links zu den jeweiligen Webseiten):
 
 - [`ggplot2`](https://www.datanovia.com/en/wp-content/uploads/dn-tutorials/ggplot2/figures/030-ggplot-colors-rcolorbrewer-palettes-colorblind-friendly-1.png){target="_blank"}
 - [`wesanderson`](https://github.com/karthik/wesanderson){target="_blank"}
@@ -349,7 +345,7 @@ gradethis::grade_this_code()
 <!-- Cosima: Hast du die Facets-Flips hier eigentlich absichtlich rausgenommen? (Ähnlich wie Farbe und Themes (themes verstehe ich, da der Text ja nur noch auf Standard-ggplot-Themes behandelt), aber die anderen müssten doch passen, oder?) (also zum Beispiel das hier für die Facet-Logik: https://cosimameyer.com/slides/flip_for_correlaid_facet/flip_for_correlaid_facet.html#1 oder das für die Colors: https://cosimameyer.com/slides/flip_for_correlaid_color/flip_for_correlaid_color.html#1 (oder fandest du das zu kompliziert, um intuitiv zu sein?) -->
 
 #### Facets
-Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
+Wie Ihr auf dem [Schummelzettel](/daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
 Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren. Wir haben hier Histogramme, also die Darstellungen der Verteilung von Freiwilligen gewählt. Es wäre hier sehr praktisch, wenn man es nach Kontinent darstellen könnte. Dabei hilft und `facet_wrap()` mit dem Ihr die Anzahl der Freiwilligen nach Kontinent (`continent`) gruppieren könnt. 
 
@@ -403,10 +399,10 @@ Ein Grundverständnis für die Logik von `ggplot2` ist immer sinnvoll - aber was
 ![*GIF zur Erklärung von esquisse*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/esquisse.gif?raw=true){#id .class width=70% height=70%}
 </center>
 
-<!-- Cosima: Ich habe hier mal einen Exkurs zu `esquisse` eingebaut weil ich das immer vergesse und es doch so schön ist (vor allem am Anfang) - oder soll es wieder raus? -->
-
-
 ### Exkurs: Karten mit `leaflet`
+
+> Um die Ergebnisse des Codes sehen zu können, müsst Ihr den Code in Eurem lokalen RStudio/R ausführen.
+
 Ihr habt bereits gelernt, wie man **geographische Daten** importiert. Wir fügen die sogenannten Polygone unserem `community`-Datensatz an und fügen drei Spalten ein, die uns später bei den Labels hilft (ein toller Trick, den Ihr Euch für andere Visualisierungsprojekte merken solltet).
 
 ```{r kartendaten, exercise = TRUE}
@@ -415,6 +411,8 @@ polygons_welt <- sf::st_read(here::here('daten/geospatial/ne_50m_admin_0_countri
 
 # Kartendaten vorbereiten
 karten_daten <- community %>%
+  # Wir kodieren hier den Ländercode mit Hilfe der `countrycode`Bibliothek
+  dplyr::mutate(countrycode = countrycode(country, "country.name", "iso2c")) %>% 
   # Geometrie anfügen
   dplyr::left_join(polygons_welt, by = c("countrycode" = "ISO_A2")) %>% 
   # Variablen für Singular / Plural Formulierung
@@ -466,8 +464,6 @@ Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das es euch er
 
 Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren. 
 
-<!-- Ab einem bestimmten Level müsst Ihr zur Bedienung von `echarts4r` allerdings Javascript können, weshalb wie dieses tolle Visualisierungstool hier nur am Rande erwähnen möchten. --> 
-<!-- Cosima: Den Part habe ich rausgenommen. Leaflet ist auch JS basiert und auch hier trifft bei fortgeschritteneren Abbildungen zu, dass ein Grundverständnis in JavaScript sinnvoll ist - aber nicht unbedingt ein "Muss" ist (hier sind ein paar Beispiele, was ich meine: https://rstudio.github.io/leaflet/morefeatures.html). -->
 <!-- Cosima: Vielleicht wäre es, da leaflet nicht zuverlässig mit Shiny zu funktionieren scheint, eine Idee auf `plotly` zu gehen und statt einer Karte einen interaktiven ggplot zu zeigen? --> 
 
 
