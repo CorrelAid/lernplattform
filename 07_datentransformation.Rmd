@@ -1,8 +1,8 @@
-## Datentransformation
+## **Datentransformation**
 
 ![*Video: Datentransformation (30min)*](https://youtu.be/YWFLSovbha0)
 
-### Kernaussagen
+### **Kernaussagen**
 
 #### Das Tidyverse
 <left>
@@ -38,7 +38,8 @@ Sehr wahrscheinlich werdet Ihr vor dem Problem stehen, dass Ihr Daten in **mehre
 - `dplyr::xxxx_join()` hilft Euch, wenn Ihr zwei Datensätze habt mit den gleichen oder zumindest sich **überschneidenden Beobachtungen** und Ihr die Variablen in einem Datensatz haben wollt.
 - `dplyr::bind_rows()` ist nützlich für Euch, wenn Ihr **Zeilen an einen Datensatz anhängen** wollt, d.h. weitere Beobachtungen mit den gleichen Variablen hinzufügen wollt.
 
-### Quiz 
+### **Quiz** 
+
 ```{r 07quiz_datenbereinigung1}
 quiz(caption = NULL,
   question("Was macht einen Datensatz tidy?",
@@ -96,7 +97,7 @@ quiz(caption = NULL,
 ```
 
 
-### Interaktive Übung
+### **Interaktive Übung**
 
 #### Wiederholung: Die Pipe `%>%`
 Bei der ersten Einführung in R habt Ihr Euch die Funktion `nrow()` angeschaut, mit der Ihr herausfinden könnt, wie viele Zeilen ein Datensatz hat. Damals habt Ihr das mit `nrow(data_raw)` gemacht, also `base R`, in der Zwischenzeit habt Ihr aber auch die **Pipe (%>%)** aus dem `tidyverse` kennengelernt. So könnten wir anstatt mit `ncol(plastics)` mit dem Pipe-Operator die Anzahl an Spalten bestimmen:
@@ -393,7 +394,7 @@ Das gefundene Plastik kann Herstellern direkt zugeordnet werden: La Doo (4 Proze
 Nun kennt Ihr alle `dplyr`-Verben und seid fit für die Datentransformation! Bevor Ihr in die Übung geht: Auf einige Themen sind wir hier nur am Rande eingegangen - den Umgang mit fehlenden Werte (NAs), die Umformung von Textdaten und das (in der `countrycode`-Funktion versteckte) Zusammenfügen von Datensätzen. Wenn Ihr Euch für diese Themen interessiert, dann macht gerne die Exkurse.
 
 
-### Exkurs: Umgang mit fehlenden Werten (NAs)
+### **Exkurs**: Umgang mit fehlenden Werten (NAs)
 Nachdem Ihr nun Variablen und Beobachtungen auswählen und filtern könnt, schaut Ihr Euch nun den Umgang mit fehlenden Werten, also NAs (**n**ot **a**vailable) an. Versucht zuerst einmal, die Summe für die Variable `n_pieces` im Datensatz `community` zu berechnen.
 
 ``` {r 07mean_na1, exercise = TRUE}
@@ -474,7 +475,7 @@ head(df2)
 ```
 
 
-### Exkurs: String Manipulation
+### **Exkurs**: String Manipulation
 Der Umgang mit **Text (eng. Strings)** ist etwas komplexer. In Eurem Beispiel haben wir die Namen der Länder verändert, unter anderem um die **Kodierung** des "United Kingdom of Great Britain & Northern Ireland" und den "United States of America" zu ermöglichen (es sind wirklich immer diese zwei...). Um diese Bezeichnungen zu verändern, habt Ihr die Funktion `dplyr::case_when()` und das `stringr`-Package mit der Funktion `stringr::str_replace` genutzt. Erstere haben wir im Rahmen einer **Einzelfallentscheidung** genutzt: Wir haben genau bestimmt, in welchen Fällen Wert A ("United Kingdom of Great Britain & Northern Ireland") durch Wert B ("United Kingdom") ersetzt werden soll. Letztere folgte dagegen einer **Logik**: Alle Ländernamen werden nun großgeschrieben - ansonsten gibt es keine Großbuchstaben mehr. So wurde "ECUADOR" zu "Ecuador".
 
 ``` {r 07strings1, exercise = TRUE}
@@ -495,7 +496,7 @@ clean_strings <- data_raw %>%
 ```
 
 
-### Exkurs: Datensätze zusammenfügen
+### **Exkurs**: Datensätze zusammenfügen
 Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt werden sollen. Letzte Woche habt Ihr bereits den Datensatz der Weltbank zu Naturschutzgebieten (`wb_areas`) heruntergeladen. Verschafft Euch zuerst nochmal einen kleinen Überblick über den Datensatz `wb_areas`: 
 
 ``` {r 07gdppc, exercise = TRUE}
@@ -611,10 +612,10 @@ quiz(
 ```
 
   
-### Und jetzt Ihr
+### **Und jetzt Ihr**
 Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datentransformation**](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
 
-### Zusätzliche Ressourcen
+### **Zusätzliche Ressourcen**
 - [Schummelblatt: dplyr](https://correlaid.org/material/Schummelblatt_dplyr.pdf){target="_blank"} (engl.)
 - [Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning){target="_blank"} auf DataQuest (engl.)
 - [Advanced Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning-advanced){target="_blank"} auf DataQuest (engl.)

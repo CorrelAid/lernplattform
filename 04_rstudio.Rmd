@@ -9,7 +9,7 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 ![*Video: Einführung in RStudio (30min)*](https://youtu.be/zHpCjZDbpB8)
 *Anmerkung: CSV-Dateien (comma separated values, zu dt. Komma getrennte Werte) sind strukturierte Textdateien, die Ihr u.a. in Excel erstellen oder aus anderen Tools exportieren könnt.* 
 
-### Kernaussagen 
+### **Kernaussagen** 
 #### R
 - R ist eine **freie, statistische Programmiersprache**
 - Die **Groß- und Kleinschreibung** muss in R unbedingt beachtet werden
@@ -40,7 +40,8 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 
 Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet Ihr [hier](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"}.
 
-### Quiz
+### **Quiz**
+
 ```{r quiz_rstudio}
 quiz(caption = NULL,
   question("Ich muss nicht auf die Groß- und Kleinschreibung achten, wenn ich in R programmiere.",
@@ -105,7 +106,8 @@ quiz(caption = NULL,
 ```
 
 
-### Interaktive Übung
+### **Interaktive Übung**
+
 *Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio zu gewöhnen.*
 
 Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analysieren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete) - eine ziemlich gute Sache. Eure Arbeit beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **`install.packages("package")`** und **`library(package)`**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. Bitte denkt daran, "install.packages()" auszukommentieren, wenn die Installation abgeschlossen ist - sonst wird die Installation bei jedem Ausführen des Skripts wieder durchgeführt. In der Zukunft könnt Ihr auch eine eigene Datei für Installationsskripte einrichten - das zeigen wir Euch zu einem späteren Zeitpunkt.
@@ -271,14 +273,14 @@ while (i <= length(spenderinnenliste)) {
 Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch dann angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt** (sog. Fehlermeldung). Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf [**Stack Overflow**](https://stackoverflow.com/){target="_blank"} und in der [**R-Online Community**](https://community.rstudio.com/){target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
 
 
-### Und jetzt Ihr
+### **Und jetzt Ihr**
 Legt nun eine neue R Markdown-Datei auf Eurem Rechner an und...
 
 1. Installiert und ladet das Package "rio".
 2. Lest den Datensatz über den Hyperlink oder lokal ein. Ihr findet ihn unter diesem [Link](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"} und könnt ihn dort auch herunterladen, wenn Ihr Euch für die zweite Variante entscheidet.
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.
 
-### Zusätzliche Ressourcen
+### **Zusätzliche Ressourcen**
 - Schummelblatt zu den [Grundlagen in R](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"} (dt.)
 - Schummelblatt zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} (engl.)
 - [Introduction to Programming in R (engl.)](https://app.dataquest.io/course/intro-to-r-rewrite){target="_blank"} von Dataquest
