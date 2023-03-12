@@ -19,7 +19,8 @@
 
 ### Quiz
 ```{r quiz_statistischesdenken}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Das Studiendesign mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -28,7 +29,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Meta-Studien vergleichen die Ergebnisse mehrerer experimenteller Studien (RCTs) miteinander.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -37,7 +37,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Der Rückschluss von statistischen Eigenschaften der Stichprobe auf die Population wird als ... bezeichnet.",
     answer("Externe Validität", correct = TRUE),
     answer("interne Validität"),
@@ -47,7 +46,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Welches Verfahren zur Auswahl einer Stichprobe solltet Ihr nutzen?",
     answer("Willkürliche Stichprobe (Convenience sampling)"),
     answer("Geschichtete Zufallsstichprobe", correct = TRUE),
@@ -57,7 +55,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Wie viele Messungen gibt es in einem Experiment?",
     answer("1"),
     answer("2"),
@@ -68,7 +65,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Wirkungen können durch explorative Datenanalysen bestätigt werden",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
@@ -161,16 +157,17 @@ Wie viele unterschiedliche Plastikarten werden in den asiatischen und europäisc
 
 ```{r durchschnitt, exercise = TRUE}
 # Mittelwert und Standardabweichung bestimmen
-audit_eu_asia  %>%
+audit_eu_asia %>%
   dplyr::group_by(continent) %>%
-  dplyr::summarize(n_types_mean = mean(n_types),
-                   n_types_sd = sd(n_types))
+  dplyr::summarize(
+    n_types_mean = mean(n_types),
+    n_types_sd = sd(n_types)
+  )
 ```
 
 ```{r quiz_kennzahlen3, echo=FALSE}
 quiz(
   caption = NULL,
-  
   question(
     "Wo wurden im Durchschnitt mehr Plastikarten gesammelt?",
     answer("In Europa"),
@@ -181,7 +178,6 @@ quiz(
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question(
     "Auf welchem Kontinent vermutet Ihr in den einzelnen Ländern auf Basis der Auswertung größere Abweichungen vom Mittelwert?",
     answer("In Europa"),
@@ -208,7 +204,7 @@ europe <- audit_eu_asia %>%
 asia <- audit_eu_asia %>%
   dplyr::filter(continent == "Asien")
 
-### Schnittmenge bilden 
+### Schnittmenge bilden
 intersect <- intersect(europe, asia)
 
 ### Ergebnisse drucken (hier logischerweise 0 - Länder werden schließlich nur einem Kontinent zugeordnet)

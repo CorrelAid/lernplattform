@@ -41,7 +41,8 @@ Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit M
 ### Quiz
 
 ```{r quiz_datenstrategie}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Daten sind...",
     answer("Elemente, die Informationen formal darstellen.", correct = TRUE),
     answer("immer binärcodiert."),
@@ -52,15 +53,21 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   ),
   question("Welche der folgenden Fragestellungen können mit Daten beantwortet werden:",
-    answer("Was macht unsere gesellschaftliche Herausforderung aus?", correct = TRUE),
-    answer("Wie können wir bessere Entscheidungen treffen?", correct = TRUE),
-    answer("Wie können wir effizienter und effektiver arbeiten?", correct = TRUE),
+    answer("Was macht unsere gesellschaftliche Herausforderung aus?",
+      correct = TRUE
+    ),
+    answer("Wie können wir bessere Entscheidungen treffen?",
+      correct = TRUE
+    ),
+    answer("Wie können wir effizienter und effektiver arbeiten?",
+      correct = TRUE
+    ),
     correct = "Richtig! Darüber hinaus fallen Euch vielleicht auch noch eigene Fragen ein.",
     incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-    question("Datenwissenschaft ist ein interdisziplinäres Feld. Eine Person, die in diesem Bereich tätig ist, sollte...",
+  question("Datenwissenschaft ist ein interdisziplinäres Feld. Eine Person, die in diesem Bereich tätig ist, sollte...",
     answer("analytische Fähigkeiten haben.", correct = TRUE),
     answer("technische Fähigkeiten besitzen.", correct = TRUE),
     answer("sich mit der Domain (zu dt. Bereich) auskennen.", correct = TRUE),
@@ -70,7 +77,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-    question("Die Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?",
+  question("Die Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?",
     answer("Ungenutzten Daten, die Ihr bereits erhoben habt"),
     answer("Daten, die Ihr noch erheben möchtet"),
     answer("Neusten, technischen Möglichkeiten"),
@@ -80,7 +87,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-    question("Daten geben ausschließlich Auskunft über die Vergangenheit und Gegenwart.",
+  question("Daten geben ausschließlich Auskunft über die Vergangenheit und Gegenwart.",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
     correct = "Richtig! Ein Beispiel für zukunftsorientierte Datenanalysen sind Prognosemodelle: Wie entwickeln sich Mitgliederzahlen oder die Nachfrage nach unserem Angebot in der nächsten Zeit?",
@@ -88,7 +95,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-    question("Automatisierungen haben generell einen höheren Mehrwert als explorative Analysen",
+  question("Automatisierungen haben generell einen höheren Mehrwert als explorative Analysen",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
     correct = "Richtig!",
@@ -96,7 +103,7 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-    question("Quantitative Forschung ist grundsätzlich besser als qualitative Forschung.",
+  question("Quantitative Forschung ist grundsätzlich besser als qualitative Forschung.",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
     correct = "Richtig!",
@@ -104,16 +111,16 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-    question("Welche Datenquelle bedeutet für Eure Organisation am meisten Aufwand?",
+  question("Welche Datenquelle bedeutet für Eure Organisation am meisten Aufwand?",
     answer("Externe (offene) Daten"),
     answer("Interne Daten aus operationellen Prozessen"),
-    answer("Erhebungsdaten", correct=TRUE),
+    answer("Erhebungsdaten", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Erhebungsdaten sind am aufwendigsten, weshalb eine Recherche von öffentlichen Datenbanken und Studien zum Themengebiet sowie die Betrachtung von operationellen Daten sinnvoll ist.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-    question("In Datenprojekten arbeitet Ihr am besten mit Prototypen und agil.",
+  question("In Datenprojekten arbeitet Ihr am besten mit Prototypen und agil.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
     correct = "Richtig!",
@@ -134,10 +141,17 @@ aktive_projekte <- 20
 # An dieser Stelle dürft Ihr den Code angepassen
 abgeschlossene_projekte <- 0
 
-# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind. %d formatiert den Tag, %m den Monat und %y das Jahr. Als Trennungszeichen haben wir uns für "." entschieden.
-datum <- format(Sys.Date(),"%d.%m.%y")
+# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann 
+# formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind. 
+# %d formatiert den Tag, %m den Monat und %y das Jahr. 
+# Als Trennungszeichen haben wir uns für "." entschieden.
+datum <- format(Sys.Date(), "%d.%m.%y")
 
-paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
+paste("CorrelAid e.V. hat (Stand: ", datum, ") ",
+  abgeschlossene_projekte, " Projekte durchgeführt. ",
+  aktive_projekte, " sind noch aktiv.",
+  sep = ""
+)
 ```
 
 ```{r projekte-solution}
@@ -147,47 +161,73 @@ aktive_projekte <- 20
 # An dieser Stelle dürft Ihr den Code angepassen
 abgeschlossene_projekte <- 44
 
-# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind. %d formatiert den Tag, %m den Monat und %y das Jahr. Als Trennungszeichen haben wir uns für "." entschieden.
-datum <- format(Sys.Date(),"%d.%m.%y")
+# Das aktuelle Datum bekommen wir mit der Funktion "Sys.Date()", das wir dann
+# formatieren, damit es so aussieht, wie wir das in Deutschland gewohnt sind.
+# %d formatiert den Tag, %m den Monat und %y das Jahr.
+# Als Trennungszeichen haben wir uns für "." entschieden.
+datum <- format(Sys.Date(), "%d.%m.%y")
 
-paste("CorrelAid e.V. hat (Stand: ", datum, ") ", abgeschlossene_projekte, " Projekte durchgeführt. ", aktive_projekte, " sind noch aktiv.", sep= "")
+paste("CorrelAid e.V. hat (Stand: ", datum, ") ",
+  abgeschlossene_projekte, " Projekte durchgeführt. ",
+  aktive_projekte, " sind noch aktiv.",
+  sep = ""
+)
 ```
 
-Nicht mit allen **Datentypen** können alle Technologien genutzt werden. Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
+Nicht mit allen **Datentypen** können alle Technologien genutzt werden. 
+Kennt Ihr bereits die verschiedenen Datentypen, mit denen wir arbeiten? 
 
-Mit der Funktion **class(Euer Objekt)** könnt Ihr überprüfen, welches Datenformat bei Eurem Objekt vorliegt. Testet die Funktion in Zeile 15 für Datumsformate und führt den Code aus.
+Mit der Funktion **class(Euer Objekt)** könnt Ihr überprüfen, welches Datenformat
+bei Eurem Objekt vorliegt. Testet die Funktion in Zeile 15 für Datumsformate und
+führt den Code aus.
 
 ```{r datentypen, exercise=TRUE}
-# Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
+# Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character"
+# man erkennt diesen Datentyp an den Anführungszeichen.
 class("Hallo")
 
-# 20.5 ist eine Zahl - bei R bezeichnet man Zahlen als "numeric". Manchmal wird auch noch zwischen ganzen Zahlen - "integer" - und Zahlen mit Nachkommastellen - "double" unterschieden.
+# 20.5 ist eine Zahl - bei R bezeichnet man Zahlen als "numeric". Manchmal wird
+# auch noch zwischen ganzen Zahlen - "integer" - und Zahlen mit Nachkommastellen
+# - "double" unterschieden.
 class(20)
 
-# Bei der Datenanalyse kommen häufig Vergleiche zum Einsatz, z.B. "zeige nur alle Mitglieder, die **älter sind als** 20". Es werden dann nur alle Beobachtungen angezeigt für die dieser Vergleich wahr ist. Solche Vergleiche und andere "Tests" werden als logische ("logical") Variablen abgebildet - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
+# Bei der Datenanalyse kommen häufig Vergleiche zum Einsatz, z.B. 
+# "zeige nur alle Mitglieder, die **älter sind als** 20". Es werden dann nur alle
+# Beobachtungen angezeigt für die dieser Vergleich wahr ist. Solche Vergleiche und
+# andere "Tests" werden als logische ("logical") Variablen abgebildet - bei R 
+# kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
 alter <- 22
 print(alter > 20)
 class(alter > 20)
 
-# Bei Datumsformaten geht R besonders klug vor. Testet die Funktion "class()" mit dem Datum. Was fällt Euch auf?
+# Bei Datumsformaten geht R besonders klug vor. 
+# Testet die Funktion "class()" mit dem Datum. Was fällt Euch auf?
 datum <- Sys.Date()
 typeof(datum)
 # Hier Euer Code
 ```
 
 ```{r datentypen-solution}
-# Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character" und man erkennt diesen Datentyp an den Anführungszeichen.
+# Hallo ist Text - bei R bezeichnet man dieses Datenformat als "character"
+# man erkennt diesen Datentyp an den Anführungszeichen.
 class("Hallo")
 
-# 20.5 ist eine Zahl - bei R bezeichnet man Zahlen als "numeric". Manchmal wird auch noch zwischen ganzen Zahlen - "integer" - und Zahlen mit Nachkommastellen - "double" unterschieden.
+# 20.5 ist eine Zahl - bei R bezeichnet man Zahlen als "numeric". Manchmal wird
+# auch noch zwischen ganzen Zahlen - "integer" - und Zahlen mit Nachkommastellen
+# - "double" unterschieden.
 class(20)
 
-# Bei der Datenanalyse kommen häufig Vergleiche zum Einsatz, z.B. "zeige nur alle Mitglieder, die **älter sind als** 20". Es werden dann nur alle Beobachtungen angezeigt für die dieser Vergleich wahr ist. Solche Vergleiche und andere "Tests" werden als logische ("logical") Variablen abgebildet - bei R kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
+# Bei der Datenanalyse kommen häufig Vergleiche zum Einsatz, z.B. 
+# "zeige nur alle Mitglieder, die **älter sind als** 20". Es werden dann nur alle
+# Beobachtungen angezeigt für die dieser Vergleich wahr ist. Solche Vergleiche und
+# andere "Tests" werden als logische ("logical") Variablen abgebildet - bei R 
+# kann das "TRUE" (zu dt. richtig) und "FALSE" (zu dt. falsch) sein.
 alter <- 22
 print(alter > 20)
 class(alter > 20)
 
-# Bei Datumsformaten geht R besonders klug vor. Testet die Funktion "class()" mit dem Datum. Was fällt Euch auf?
+# Bei Datumsformaten geht R besonders klug vor. 
+# Testet die Funktion "class()" mit dem Datum. Was fällt Euch auf?
 datum <- Sys.Date()
 typeof(datum)
 class(datum)

@@ -43,7 +43,8 @@ Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet
 ### **Quiz**
 
 ```{r quiz_rstudio}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Ich muss nicht auf die Groß- und Kleinschreibung achten, wenn ich in R programmiere.",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
@@ -52,7 +53,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Code ist über Patent- und Urheberrechte geschützt, deshalb darf ich nichts von anderen Coder:innen benutzen.",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
@@ -61,7 +61,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Welche Aussagen über den Syntax in R und RMDs sind wahr?",
     answer("Code Chunks werden in RMDs durch ``` eingeschlossen und sind grau hinterlegt.", correct = TRUE),
     answer("Optionen für den Output eines Code Chunks können wir in RMDs durch \"{r code_chunk_label, setting1 =..., ...\" festlegen.", correct = TRUE),
@@ -73,7 +72,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("IDE steht für Integrated Development Environment (zu dt. integrierte Entwicklungsumgebung). RStudio ist eine integrierte Entwicklungsumgebung für R.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -82,7 +80,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Dateiformate in RStudio sind unter anderem...",
     answer("R Markdowns (kurz RMD) zur Erstellung von PDF- und HTML-Reporten.", correct = TRUE),
     answer("Shiny Web Apps zur Erstellung von interaktiven Dashboards.", correct = TRUE),
@@ -92,7 +89,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Knitting bedeutet, dass ich aus einem ganzen RMD PDF-, HTML- oder Worddateien erstelle, während \"Run\" bedeutet, dass Code über die Konsole oder in meinem RMD interpretiert werden soll.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -101,7 +97,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
-  
 )
 ```
 
@@ -116,7 +111,7 @@ Ein **Codechunk** (zu dt. Codeblock), also ein Abschnitt mit Code, der Pakete in
 
 ```{r pakete, exercise = TRUE}
 # Installation und Laden des Packages "rio"
-#install.packages("rio")
+# install.packages("rio")
 library(rio)
 ```
 
@@ -124,7 +119,7 @@ Mit der Notation **`package::funktion()`** kennzeichnen wir, woher eine Funktion
 Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den Pfad der Datei (einsehbar über Rechtsklick auf den Dateinamen) auf Eurem Rechner ersetzen. Leichter wird das mit der Funktion **`here::here()`**, die für Euch in Verbindung mit RProjekts die Navigation in den entsprechenden Ordner stark vereinfacht.
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
-data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
 # data_raw <- rio::import(here::here('daten/plastics.csv'))
 ```
@@ -165,16 +160,16 @@ ncol(data_raw)
 ```
 
 ```{r exercise_ncol-check}
-  give_code_feedback(grade_this({
-    pass_if_equal(.solution)
-    if (length(.result) != 1) {
-        fail("Eure Antwort enthält {length(.result)} Wert(e) und nicht: {length(.solution)}. Habt Ihr die richtige Funktion genutzt?")
-    }
-    if (.result == 13380) {
-        fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen! Habt Ihr die richtige Funktion genutzt?")
-    }
-    fail("Noch nicht ganz richtig.")
-  }))
+give_code_feedback(grade_this({
+  pass_if_equal(.solution)
+  if (length(.result) != 1) {
+    fail("Eure Antwort enthält {length(.result)} Wert(e) und nicht: {length(.solution)}. Habt Ihr die richtige Funktion genutzt?")
+  }
+  if (.result == 13380) {
+    fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen! Habt Ihr die richtige Funktion genutzt?")
+  }
+  fail("Noch nicht ganz richtig.")
+}))
 ```
 
 Elementare Dataframemerkmale könnt Ihr Euch mit der Funktion **`summary()`** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte.
@@ -201,23 +196,23 @@ zahl <- 2
 
 ``` {r mathop, exercise = TRUE}
 ### mathematische Operatoren
-2 + 2   # plus
-2 - 1   # minus
-2 * 2   # mal
-2 / 2   # geteilt
+2 + 2 # plus
+2 - 1 # minus
+2 * 2 # mal
+2 / 2 # geteilt
 ```
 
 Mit **logischen Ausdrücken** könnt Ihr u.a. Datensätze filtern und Wenn-Dann-Begingungen für Operationen definieren. Was denkt Ihr, sind die folgenden logischen Ausdrücke wahr (=TRUE) oder falsch (=FALSE)?
 
 ``` {r logik, exercise = TRUE}
 ### logische Ausdrücke
-2 == 2  # ist gleich
+2 == 2 # ist gleich
 2 != 3 # nicht gleich
 !(2 == 2) # nicht
-2 < 3   # kleiner als
-2 > 3   # größer als
-2 <= 2  # kleiner gleich
-2 >= 3  # größer gleich
+2 < 3 # kleiner als
+2 > 3 # größer als
+2 <= 2 # kleiner gleich
+2 >= 3 # größer gleich
 (1 + 1 == 2) & (2 + 2 == 5) # und
 (1 + 1 == 2) | (2 + 2 == 5) # oder
 ```
@@ -225,8 +220,8 @@ Mit **logischen Ausdrücken** könnt Ihr u.a. Datensätze filtern und Wenn-Dann-
 Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes braucht, könnt Ihr diese aus dem Datensatz herausziehen. Dazu nutzen wir das Dollarzeichen "\$" mit Datensatz$Spaltenname oder die eckigen Klammern mit Datensatz['Spaltenname']. Wollt Ihr mehrere Spalten aufrufen, könnt Ihr die Logik Datensatz[c('Spaltenname1', 'Spaltenname2')] nutzen. **`c()`** ist  hierbei die Notation von R für Listen und Vektoren, in denen Ihr mehrere Werte hinterlegen könnt.
 ``` {r slicing1, exercise = TRUE}
 # Auslesen der Spalte 'country'
-data_raw$country 
-data_raw[c('country', 'year')]
+data_raw$country
+data_raw[c("country", "year")]
 ```
 
 ``` {r slicing2, exercise = TRUE}
@@ -239,13 +234,13 @@ Falls Code nur unter bestimmten Bedingungen ausgeführt werden soll, wird er in 
 # Wenn-Dann-Ausdrücke
 if (2 + 2 == 5) {
   print("Oh nein!")
-  } else if (2 + 2 <= 3) {
+} else if (2 + 2 <= 3) {
   print("Oh nein!")
-  } else if (2 + 2 >= 5) {
+} else if (2 + 2 >= 5) {
   print("Oh nein!")
-  } else {
+} else {
   print("Puh, nicht verrechnet...")
-    }
+}
 ```
 
 Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert. Neben **Maschinellem Lernen** sind solche regelbasierten Systeme übrigens eine wichtige Form von allen Technologien, die unter das Modewort **Künstliche Intelligenz** fallen. Die zugehörigen Regeln werden in komplexeren Systemen von Expert:innen verfasst und erst nach und nach, wenn es möglich ist, durch alternative Technologien ersetzt. Ein gutes Beispiel dafür sind Verfahren zur Verarbeitung von Sprache (siehe [hier](https://aclanthology.org/D13-1079.pdf){target="_blank"}). Ihr könnt Euch aber auch einfach ein regelbasiertes System vorstellen, das automatisch bei der Erreichung einer bestimmten Spendensumme eine Dankesnachricht an alle Spender:innen versendet.
@@ -266,7 +261,7 @@ spenderinnenliste <- list("Phil", "Frie", "Nina")
 i <- 1
 while (i <= length(spenderinnenliste)) {
   print(paste("Danke,", spenderinnenliste[[i]], "!"))
-  i = i + 1
+  i <- i + 1
 }
 ```
 

@@ -15,7 +15,7 @@ pacman::p_load(
   lubridate,
   rmarkdown,
   tidyverse
-  )
+)
 ```
 
 # Willkommen in der Report Fabrik
@@ -45,7 +45,7 @@ Probiert Euch nun an dem `output_file` argument der rmarkdown::render Funktion:
 rmarkdown::render(
   input = "Report_Plastic.Rmd",
   output_file = "Füge-hier-den-namen-ein"
-  )
+)
 ```
 
 
@@ -73,7 +73,7 @@ Generiere nun einen Report mit automatisierter Benennung, den du in der Input-Ab
 rmarkdown::render(
   input = here::here(set_rmd_name),
   output_file = output_file_name
-  )
+)
 ```
 
 # Schritt 4: YAML Optionen ändern 
@@ -95,7 +95,7 @@ Was passiert wenn du das Argument `output_dir` verwendest? Schaue im Hilfe-Absch
 rmarkdown::render(
   input = set_rmd_name,
   output_file = output_file_name,
-  output_dir = "output",           # diese Zeile ist neu!
+  output_dir = "output", # diese Zeile ist neu!
   output_format = "html_document"
 )
 ```
@@ -119,7 +119,7 @@ rmarkdown::render(
   output_file = "Übungsreport-Europe",
   output_format = "html_document",
   params = list(filter_continent = "Europe")
-  )
+)
 ```
 
 ```{r example-ozeanien}
@@ -128,7 +128,7 @@ rmarkdown::render(
   output_file = "Übungsreport-Ozeanien",
   output_format = "html_document",
   params = list(filter_continent = "Ozeanien")
-  )
+)
 ```
 
 # Schritt 6: Parameter recyclen
@@ -137,8 +137,8 @@ Nun ist es soweit, wir wollen Reports erstellen die jeweils einen anderen Kontin
 
 1. Kontinente extrahieren
 ```{r}
-continent_names <- plastics_prep %>% 
-  dplyr::distinct(continent) %>% 
+continent_names <- plastics_prep %>%
+  dplyr::distinct(continent) %>%
   dplyr::pull(continent)
 ```
 
@@ -151,7 +151,7 @@ purrr::walk(
     output_file = glue::glue("{set_report_name}_{.x}"),
     output_format = "html_document",
     # hier wird der Kontinentname übergeben
-    params = list(filter_continent = .x) 
+    params = list(filter_continent = .x)
   )
 )
 ```
@@ -162,8 +162,8 @@ Probiere mit dem gleichen Prinzip, Reportsversionen für alle Länder zu generie
 
 ```{r}
 # hier wird ein Objekt der die verschiedenen Optionen enthält erstellt
-country_names <-  audit_raw %>% 
-  dplyr::distinct(country) %>% 
+country_names <- audit_raw %>%
+  dplyr::distinct(country) %>%
   dplyr::pull(country)
 ```
 
@@ -176,7 +176,7 @@ purrr::walk(
     output_file = glue::glue("{set_report_name}_{.x}"),
     output_format = "html_document",
     # hier wird der Ländername übergeben
-    params = list(filter_country = .x) 
+    params = list(filter_country = .x)
   )
 )
 ```

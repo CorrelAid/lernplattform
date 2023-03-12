@@ -21,7 +21,7 @@ Als nächstes ladet Ihr den Datensatz `plastics`, den Ihr inzwischen schon gut k
 
 ```{r datenimport}
 ### Daten laden
-data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 ```
 
 
@@ -42,7 +42,7 @@ plastics_processed <- data_raw %>%
     country != "EMPTY",
     parent_company != "Grand Total",
     year == 2019
-    )
+  )
 ```
 
 #### Länder bereinigen
@@ -65,12 +65,12 @@ Hinweis: Schaut Euch dafür die Hilfe zu den Funktionen `?stringr::str_replace()
 plastics_processed <- plastics_processed %>%
   mutate(
     country = dplyr::case_when(
-        country == "United Kingdom of Great Britain & Northern Ireland" ~ "United Kingdom",
-        country == "United States of America" ~ "United States",
-        TRUE ~ country
-      ),
+      country == "United Kingdom of Great Britain & Northern Ireland" ~ "United Kingdom",
+      country == "United States of America" ~ "United States",
+      TRUE ~ country
+    ),
     country = str_to_title(country)
-         )
+  )
 ```
 
 Nachdem Ihr die Ländernamen nun bereinigt habt, fügt jetzt noch neue Variablen hinzu: 
@@ -83,21 +83,27 @@ Hinweis: Das `countrycode`-Package ist hier wahnsinnig hilfreich. Schaut gerne m
 
 ```{r countrycode}
 plastics_processed <- plastics_processed %>%
-  mutate(continent = countrycode::countrycode(country, 
-                                              origin = "country.name", 
-                                              destination = "continent"),
-         continent = dplyr::case_when(continent == "Africa" ~ "Afrika",
-                                      continent == "Americas" ~ "Amerika",
-                                      continent == "Asia" ~ "Asien",
-                                      continent == "Europe" ~ "Europa",
-                                      continent == "Oceania" ~ "Ozeanien"),
-         countrycode = countrycode::countrycode(country, 
-                                                origin = "country.name", 
-                                                destination = "iso2c"),
-         country = countrycode::countrycode(country,
-                                            origin = "country.name",
-                                            destination = "country.name.de"),
-         )
+  mutate(
+    continent = countrycode::countrycode(country,
+      origin = "country.name",
+      destination = "continent"
+    ),
+    continent = dplyr::case_when(
+      continent == "Africa" ~ "Afrika",
+      continent == "Americas" ~ "Amerika",
+      continent == "Asia" ~ "Asien",
+      continent == "Europe" ~ "Europa",
+      continent == "Oceania" ~ "Ozeanien"
+    ),
+    countrycode = countrycode::countrycode(country,
+      origin = "country.name",
+      destination = "iso2c"
+    ),
+    country = countrycode::countrycode(country,
+      origin = "country.name",
+      destination = "country.name.de"
+    ),
+  )
 ```
 
 Perfekt - schon habt Ihr Euren ersten Datensatz komplett bereinigt! 
@@ -107,16 +113,16 @@ Der erste Datensatz soll der Community-Datensatz für 2019 nach Ländern sein. F
 
 ```{r community_erstellen}
 # Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
-community19_by_country <- plastics_processed %>% 
+community19_by_country <- plastics_processed %>%
   # ...gruppiert den Datensatz nach Kontinent und Land...
-  dplyr::group_by(continent, country) %>% 
+  dplyr::group_by(continent, country) %>%
   # ...und berechnet noch zusammenfassende Statistiken...
   dplyr::summarize(
-    #1) Die Summe von grand_total
+    # 1) Die Summe von grand_total
     n_pieces = sum(grand_total, na.rm = TRUE),
-    #2) Die Anzahl an (einzelnen) Ehrenamtlichen
+    # 2) Die Anzahl an (einzelnen) Ehrenamtlichen
     n_volunteers = unique(volunteers),
-    #3) Die Anzahl an (einzelnen) Events
+    # 3) Die Anzahl an (einzelnen) Events
     n_events = unique(num_events)
   )
 ```
@@ -125,18 +131,18 @@ So schnell und einfach habt Ihr mal eben einen neuen Datensatz erstellt, deshalb
 ```{r audit_erstellen}
 # Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
 plastics19_by_country_and_company <- plastics_processed %>%
-  # ...verändert die Form Eures Datensatz zu einem langen Format 
+  # ...verändert die Form Eures Datensatz zu einem langen Format
   # (Spalten hdpe, ldpe, o, pet, pp, ps, pvc)...
   tidyr::pivot_longer(
     cols = c(hdpe, ldpe, o, pet, pp, ps, pvc),
     names_to = "plastic_type",
     values_to = "n_pieces"
-    ) %>%
+  ) %>%
   # ...transformiert Eure Spalten zu Faktoren...
   dplyr::mutate(dplyr::across(
     .cols = c(country, continent, year, plastic_type),
     .fns = as_factor
-    )) %>%
+  )) %>%
   # ...und reduziert den Datensatz auf folgende Variablen:
   # continent, country, parent_company, plastic_type, n_pieces
   dplyr::select(

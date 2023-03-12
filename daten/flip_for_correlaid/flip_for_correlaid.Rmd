@@ -39,8 +39,8 @@ options(htmltools.dir.version = FALSE)
 style_mono_accent(
   base_color = "#272822",
   header_font_google = google_font("Roboto"),
-  text_font_google   = google_font("Roboto", "300", "300i"),
-  code_font_google   = google_font("Fira Mono")
+  text_font_google = google_font("Roboto", "300", "300i"),
+  code_font_google = google_font("Fira Mono")
 )
 ```
 
@@ -62,24 +62,24 @@ community <- read.csv("data/community_perspective.csv")
 
 ```{r my_plot, include = FALSE}
 # Wir laden erst die Daten
-community %>% 
+community %>%
   # Initialisieren dann `ggplot2`
-  ggplot() + #BREAK
+  ggplot() + # BREAK
   # Fügen die x-Achse hinzu
-  aes(x = continent) + #BREAK
+  aes(x = continent) + # BREAK
   # Dann die y-Achse
-  aes(y = volunteers) + #BREAK
+  aes(y = volunteers) + # BREAK
   # Und schließlich unsere Punktewolke
   geom_point(
-    alpha = 0.6, 
-    color = "black" 
-    ) + #BREAK
+    alpha = 0.6,
+    color = "black"
+  ) + # BREAK
   # Wir können unseren ggplot2 noch weiter verfeinern
   # und ändern die Größe der Punkte
-  aes(size = volunteers) + #BREAK
+  aes(size = volunteers) + # BREAK
   # Ergänzen die Achsenbezeichnungen
   ylab("Anzahl der Freiwilligen") +
-  xlab("Kontinente") + #BREAK
+  xlab("Kontinente") + # BREAK
   # oder ändern das Design
   theme_minimal()
 ```

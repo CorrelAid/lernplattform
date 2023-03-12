@@ -39,8 +39,8 @@ options(htmltools.dir.version = FALSE)
 style_mono_accent(
   base_color = "#272822",
   header_font_google = google_font("Roboto"),
-  text_font_google   = google_font("Roboto", "300", "300i"),
-  code_font_google   = google_font("Fira Mono")
+  text_font_google = google_font("Roboto", "300", "300i"),
+  code_font_google = google_font("Fira Mono")
 )
 ```
 
@@ -63,13 +63,13 @@ ggplot(data = community) +
   aes(x = continent) +
   aes(y = volunteers) +
   geom_point() +
-  theme_gray() + #ROTATE
-  theme_minimal() + #ROTATE
-  theme_bw() + #ROTATE
-  theme_classic() + #ROTATE
-  theme_dark() + #ROTATE
-  theme_light() + #ROTATE
-  theme_void() #ROTATE
+  theme_gray() + # ROTATE
+  theme_minimal() + # ROTATE
+  theme_bw() + # ROTATE
+  theme_classic() + # ROTATE
+  theme_dark() + # ROTATE
+  theme_light() + # ROTATE
+  theme_void() # ROTATE
 ```
 
 ---
@@ -83,12 +83,12 @@ ggplot(data = community) +
   aes(x = continent) +
   aes(y = volunteers) +
   geom_point() +
-  theme_tufte() + #ROTATE
-  theme_economist() + #ROTATE
-  theme_stata() + #ROTATE
-  theme_hc() + #ROTATE
-  theme_excel() + #ROTATE
-  theme_fivethirtyeight() #ROTATE
+  theme_tufte() + # ROTATE
+  theme_economist() + # ROTATE
+  theme_stata() + # ROTATE
+  theme_hc() + # ROTATE
+  theme_excel() + # ROTATE
+  theme_fivethirtyeight() # ROTATE
 ```
 
 <!-- adjust font size in this css code chunk, currently 80 -->

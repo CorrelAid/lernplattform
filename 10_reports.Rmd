@@ -37,7 +37,8 @@ output:
 ### Quiz
 
 ```{r 10quiz_reports_allg}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Welche diese Beschreibungen treffen zu? R Markdown ist... ",
     answer("...📦 ein R-Paket namens rmarkdown.", correct = TRUE),
     answer("...️Zauberei 🧙"),
@@ -46,7 +47,8 @@ quiz(caption = NULL,
     correct = "Richtig!",
     incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"),
+    try_again_button = "Nochmal versuchen"
+  ),
   question("Die drei Hauptkomponenten, aus denen sich R Markdown Dateien zusammensetzen, sind:",
     answer("YAML Abschnitt, Inhalt und Code Chunks", correct = TRUE),
     answer("Überschriften, Texte und Bilder"),
@@ -116,7 +118,8 @@ Praktisch sind auch **Umbrüche**, die mit "\<br\>" eingefügt werden. Diese Not
 Soll Rmd diese mit Bedeutung belegten Sonderzeichen mal ignorieren, könnt Ihr vor sie einen **Backslash** `\` einfügen.
 
 ```{r 10quiz_reports_markdown}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Wie formatiert Ihr Text zu einer Überschrift?",
     answer("Der gewünschten Anzahl an Hashes (#), eins für H1, zwei für H2, ...", correct = TRUE),
     answer("Zwei Sternchen (**) vor und hinter der Überschrift"),
@@ -161,7 +164,8 @@ Um eine Option für alle Code Blocks festzulegen, kann sie **global im ersten Se
 Knitr behandelt jede Option, die an knitr::opts_chunk\$set übergeben wurde, als globalen Standard, der **in einzelnen Chunk-Headern überschrieben** werden kann.
 
 ```{r 10quiz_reports_codechunksettings, echo=FALSE, message=FALSE, warning=FALSE}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Grundsätzlich möchtet Ihr nicht, dass Code, Nachrichten und Warnungen in Eurem PDF-Outputformat angezeigt werden (also nur der Output sichtbar ist). Was müsst Ihr tun?",
     answer("Im Set-Up Chunk setzen wir die Argumente include, echo, message und warning auf FALSE"),
     answer("Im Set-Up Chunk setzen wir die Argumente echo, message und warning auf FALSE", correct = TRUE),
@@ -211,7 +215,8 @@ Im untenstehenden YAML Code wird eimes der Standard Themes von R Markdown namens
     ---
 
 ```{r 10quiz_reports_yaml}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Im YAML-Header können welche Einstellungen getroffen werden?",
     answer("Titel des Outputdokuments", correct = TRUE),
     answer("Autor:in des Outputdokuments", correct = TRUE),

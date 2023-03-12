@@ -39,8 +39,8 @@ options(htmltools.dir.version = FALSE)
 style_mono_accent(
   base_color = "#272822",
   header_font_google = google_font("Roboto"),
-  text_font_google   = google_font("Roboto", "300", "300i"),
-  code_font_google   = google_font("Fira Mono")
+  text_font_google = google_font("Roboto", "300", "300i"),
+  code_font_google = google_font("Fira Mono")
 )
 ```
 
@@ -62,10 +62,12 @@ community <- read.csv("data/community_perspective.csv")
 
 ```{r my_plot, include = FALSE}
 # Initialisieren dann `ggplot2`
-  ggplot(data = community) + #BREAK
+ggplot(data = community) + # BREAK
   # Fügen die volunteers hinzu
-  aes(y = volunteers,
-      x = continent) + #BREAK
+  aes(
+    y = volunteers,
+    x = continent
+  ) + # BREAK
   # Erstellen unsere Punktewolke
   geom_point()
 ```
@@ -75,12 +77,14 @@ community <- read.csv("data/community_perspective.csv")
 
 ```{r my_plot_color, include = FALSE}
 # Initialisieren dann `ggplot2`
-  ggplot(data = community) + #BREAK
+ggplot(data = community) + # BREAK
   # Fügen die volunteers hinzu
-  aes(y = volunteers,
-      x = continent,
-      # Hier kommt das `color` Argument
-      color = continent) + #BREAK
+  aes(
+    y = volunteers,
+    x = continent,
+    # Hier kommt das `color` Argument
+    color = continent
+  ) + # BREAK
   # Erstellen unsere Punktewolke
   geom_point()
 ```
@@ -92,13 +96,15 @@ community <- read.csv("data/community_perspective.csv")
 
 ```{r my_plot_color_fill, include = FALSE}
 # Initialisieren dann `ggplot2`
-  ggplot(data = community) + #BREAK
+ggplot(data = community) + # BREAK
   # Fügen die volunteers hinzu
   # Achtung, Histograms nehmen nur y-
   # oder x-Argumente
-  aes(x = volunteers,
-      # Hier kommt das `color` Argument
-      color = continent) + #BREAK
+  aes(
+    x = volunteers,
+    # Hier kommt das `color` Argument
+    color = continent
+  ) + # BREAK
   # Erstellen unsere Punktewolke
   geom_histogram()
 ```
@@ -108,13 +114,15 @@ community <- read.csv("data/community_perspective.csv")
 
 ```{r my_plot_color_fill_full, include = FALSE}
 # Initialisieren dann `ggplot2`
-  ggplot(data = community) + #BREAK
+ggplot(data = community) + # BREAK
   # Fügen die volunteers hinzu
-  aes(x = volunteers,
-      # Hier kommt das `color` Argument
-      color = continent,
-      # Und ergänzen `fill`
-      fill = continent) + #BREAK
+  aes(
+    x = volunteers,
+    # Hier kommt das `color` Argument
+    color = continent,
+    # Und ergänzen `fill`
+    fill = continent
+  ) + # BREAK
   # Erstellen unsere Punktewolke
   geom_histogram()
 ```

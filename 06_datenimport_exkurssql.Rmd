@@ -36,14 +36,14 @@ quiz(
     incorrect = "Leider falsch. Es gibt drei Tabellen. Bei den Tabellen Audit Plastic und Community handelt es sich um Entitäten, also identifizierbare Objekte, während in der Tabelle Countries lediglich eine Beziehung zwischen den beiden Entitätstabellen hergestellt wird. Alle Tabellen haben Attribute (Eigenschaften).",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-  ), 
+  ),
   question(
     "Anhand welchen Attributs werden die Tabellen verknüpft?",
     answer("year"),
     answer("plastics"),
     answer("countrycode", correct = TRUE),
     correct = "Richtig! Das erkennt man daran, dass dieses Attribut in allen drei Tabellen auftaucht.",
-    incorrect = "Leider falsch. Das erkennt man an dem Attribut countrycode, das in allen drei Tabellen auftaucht." ,
+    incorrect = "Leider falsch. Das erkennt man an dem Attribut countrycode, das in allen drei Tabellen auftaucht.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )

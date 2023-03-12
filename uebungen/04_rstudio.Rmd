@@ -10,7 +10,7 @@ Das hier ist ein Set-up-Code Chunk, in dem Ihr global (= also für das gesamte D
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, include = TRUE)
 
 # Installation und Laden des Packages "rio"
-#install.packages("rio")
+# install.packages("rio")
 library(rio)
 ```
 
@@ -23,7 +23,7 @@ Das ist beispielhafter Text - in **fett** und *kursiv*.
 
 ``` {r einlesen}
 # Laden des Datensatzes, der als CSV vorliegt, über einen Link mit dem Package "rio"
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', fill = TRUE)
+plastics <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv", fill = TRUE)
 
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package
 # rio::import(here::here('daten/plastics.csv'), fill = TRUE)
@@ -32,7 +32,7 @@ plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidyt
 
 ```{r view}
 # Datensatz anschauen
-#View(plastics)
+# View(plastics)
 ```
 
 ``` {r head}

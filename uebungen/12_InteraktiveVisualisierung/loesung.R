@@ -1,6 +1,6 @@
 # INTERAKTIVE VISUALISIERUNGEN MIT (R) SHINY
 
-### Dieses Codescript hilft Euch Eure erste Shiny Web-Applikation zu bauen. 
+### Dieses Codescript hilft Euch Eure erste Shiny Web-Applikation zu bauen.
 ### Ihr könnt den Code ausführen, indem Ihr oben rechts "Run App" anklickt.
 ### Mehr Informationen findet Ihr unter: http://shiny.rstudio.com/
 ### Hilfe zu Funktionen findet Ihr über help(Funktion) oder ?Funktion
@@ -18,8 +18,8 @@
 
 "
 install.packages(c(
-  'shiny', 
-  'ggplot2', 
+  'shiny',
+  'ggplot2',
   'tidyr',
   'dplyr',
   'plotly',
@@ -56,19 +56,19 @@ library(leaflet) # Das ermöglicht das Erstellen von Karten
 
 # 3) DATEN LADEN
 ### Euer Script sucht - genau wie Ihr es tun würdet - die genutzten Daten.
-### Sogenannte "Paths" (zu dt. Wege) geben an, wo lokale Dokumente abliegen. 
+### Sogenannte "Paths" (zu dt. Wege) geben an, wo lokale Dokumente abliegen.
 ### Dabei werden die verschiedenen Ordner mit "/" getrennt und der gesamte Path in Anführungszeichen gesetzt.
 ### Als absolute Paths bezeichnet man die Option, eine Reise von Berlin nach München mit allen Zwischenstationen zu definieren.
 ### Relative Paths starten bei einem gesetzten Startpunkt, wo z.B. Euer Script liegt. Damit können Scripte leichter geteilt werden.
-### Die Idee ist: Wenn Ihr erst in Dresden losfahrt, dann braucht Ihr auch erst ab die Fahrstrecke. 
+### Die Idee ist: Wenn Ihr erst in Dresden losfahrt, dann braucht Ihr auch erst ab die Fahrstrecke.
 ### So müssen Eure Kolleg:innen nicht erstmal den Path anpassen, wenn sie Euer Script auf ihrem PC ausführen möchten.
-### Hinweis: In R gibts dafür für neue Projekte einen tollen Trick - Nutzt RProjects und schiebt alle Eure Dokumente in den entsprechenden Ordner (https://rstats.wtf/project-oriented-workflow.html) 
-### Alle Pfade beginnen dann in Eurem RProject-Ordner. 
+### Hinweis: In R gibts dafür für neue Projekte einen tollen Trick - Nutzt RProjects und schiebt alle Eure Dokumente in den entsprechenden Ordner (https://rstats.wtf/project-oriented-workflow.html)
+### Alle Pfade beginnen dann in Eurem RProject-Ordner.
 ### Übrigens: Mit sogenannten APIs könnt Ihr digital erhobene Daten ebenfalls in R laden. Schaut mal, ob das auch für Eure Umfragetools funktioniert!
 
-community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv')
-audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
-plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv')
+community <- rio::import("https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv")
+audit <- rio::import("https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv")
+plastics_processed <- rio::import("https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv")
 
 ############################################
 
@@ -85,25 +85,25 @@ continent_list <- c("Alle Kontinente", sort(unique(community$continent)))
 ### Hier definieren wir, was die Nutzer:innen (und wir) sehen.
 ### Hinweis: Nach jedem Element (textInput, textOutput, etc.) müsst Ihr ein Komma setzen.
 ui <- fluidPage(
-  
+
   ### Aufgabe 5: Titel einfügen ###
   titlePanel(""),
-  
+
   # Hiermit legen wir unser Layout fest - wir haben uns für das SidebarLayout entschieden, damit wir links Filter einfügen können.
   sidebarLayout(
-    
+
     ### Aufgabe 3: Hier definieren wir die Filter: Auswahlfilter für Wohnort und Kursniveau und ein Eingabefeld für Text
     sidebarPanel(
       # Drop-Down-Filter für den Kontinent
-      selectInput('continent', 'Wähle den Kontinent aus:', choices = continent_list, selected = 'Alle Kontinente'),
+      selectInput("continent", "Wähle den Kontinent aus:", choices = continent_list, selected = "Alle Kontinente"),
     ),
-    
-    # Hier kreiieren wir den Hauptteil der Applikation. 
+
+    # Hier kreiieren wir den Hauptteil der Applikation.
     mainPanel(
       # Wir haben uns für das Layout mit Tabs (zu dt. Reitern) entschieden.
       tabsetPanel(
         ### Aufgabe 2: Tab mit Hersteller-Visualisierung einfügen. Das Package plotly sorgt für die Interaktivität der Visualisierung. ###
-        tabPanel('Hersteller', plotly::plotlyOutput('Hersteller'))
+        tabPanel("Hersteller", plotly::plotlyOutput("Hersteller"))
       )
     )
   )
@@ -113,17 +113,16 @@ ui <- fluidPage(
 
 # 6) SERVER
 ### Hier im Server berechnen wir Werte, filtern und hinterlegen ganz allgemein Anweisungen, was angezeigt werden soll - besonders wenn der Nutzer:innen Filter auswählt.
-server <- function(input, output, session){
-  
+server <- function(input, output, session) {
   # Einfügen der Visualisierung in die Applikation
   output$Hersteller <- plotly::renderPlotly({
     ### Aufgabe 4: Interaktivität über Filter einfügen ###
-    if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
+    if (input$continent != "Alle Kontinente") { # Erster Fall: Ein Kontinent wird ausgewählt.
       daten <- audit %>% filter(continent == input$continent)
     } else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
       daten <- audit
     }
-    
+
     ### Aufgabe 1: Code einfügen ###
     # Top Ten Hersteller berechnen
     top10_parentcompany <- daten %>%
@@ -131,15 +130,15 @@ server <- function(input, output, session){
       dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
       dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
       dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
-      dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>% # Unpassende Werte Filtern
+      dplyr::filter(!parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted")) %>% # Unpassende Werte Filtern
       dplyr::slice_max(total_pieces, n = 10) %>% # die Top Ten abschneiden
       dplyr::arrange(desc(total_pieces))
-    
+
     # Erstellung eines Barplots zu den Herstellern von Plastik
     ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(parent_company, total_pieces))) + # Plot auf Basis der bearbeiteten Daten inititalisieren
       geom_bar(stat = "identity", fill = "#4E97AC") + # Initialisierung eines Barplots mit absoluten Werten (stat = "identity") in der Farbe blau (#4E97AC)
       labs(
-        title = "Prominente Firmen aus aller Welt ..." ,
+        title = "Prominente Firmen aus aller Welt ...",
         subtitle = "... stellen die gefundenen Plastikverpackungen her.",
         x = "Anzahl an Plastikstücken",
         y = "Hersteller"

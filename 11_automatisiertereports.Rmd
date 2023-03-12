@@ -19,7 +19,8 @@
 
 ### Quiz
 ```{r 11quiz_reportauto}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("R Markdowns sind reproduzierbar. Das hat den Vorteil, dass...",
     answer("sie leicht aktualisiert werden können.", correct = TRUE),
     answer("in verschiede Layoutformate übertragen werden können.", correct = TRUE),
@@ -32,14 +33,13 @@ quiz(caption = NULL,
   ),
   question("Der Mehrwert von R Markdowns liegt in...",
     answer("der leichten Anpassungsfähigkeit ihrer Designs."),
-     answer("ihrer Reproduzierbarkeit.", correct = TRUE),
-     answer("ihrem niedrigschwelligen User Interface für nicht so tech-affine Nutzer:innen."),
-     correct = "Richtig! Glücklicherweise gibt es tolle Layouttemplates und die Möglichkeit der interaktiven Parametrisierung durch GUIs, die es uns vereinfachen, Reports anschaulich und nutzerinnenfreundlich zu gestalten.",
-     incorrect = "Leider falsch: Das Layout von R Markdowns muss oft in HTML und CSS codiert werden. Deshalb nutzen wir in der Regel Templates. Teilen wir außerdem R Markdowns direkt (also nicht das Outputformat) ist auch die Nutzung in RStudio gar nicht so leicht - wie Ihr ja bereits wisst. Da müssen wir also Zeit in das Set-up und die gute Erklärung des Tools stecken.",
-     allow_retry = TRUE,
-     try_again_button = "Nochmal versuchen"
+    answer("ihrer Reproduzierbarkeit.", correct = TRUE),
+    answer("ihrem niedrigschwelligen User Interface für nicht so tech-affine Nutzer:innen."),
+    correct = "Richtig! Glücklicherweise gibt es tolle Layouttemplates und die Möglichkeit der interaktiven Parametrisierung durch GUIs, die es uns vereinfachen, Reports anschaulich und nutzerinnenfreundlich zu gestalten.",
+    incorrect = "Leider falsch: Das Layout von R Markdowns muss oft in HTML und CSS codiert werden. Deshalb nutzen wir in der Regel Templates. Teilen wir außerdem R Markdowns direkt (also nicht das Outputformat) ist auch die Nutzung in RStudio gar nicht so leicht - wie Ihr ja bereits wisst. Da müssen wir also Zeit in das Set-up und die gute Erklärung des Tools stecken.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
   ),
-  
   question("Parameter sind...",
     answer("Platzhalter, die es ermöglichen einen Wert einmal zu definieren, und ihn an verschiedenen Stellen im Code zu übergeben.", correct = TRUE),
     answer("eine Maßeinheit der Performance in der Computerwissenschaft."),
@@ -113,7 +113,6 @@ print(params$heute)
 Druckt hier den als Parameter definierten Filter für Plastikart (`filter_plastic`).
 ``` {r 11quiz_parameter_call, exercise = TRUE}
 # Hier Euer Code!
-
 ```
 
 ```{r 11quiz_parameter_call-solution}
@@ -134,14 +133,14 @@ grade_this_code()
 Die Parameter können wir dann nutzen, um Daten zu filtern (wir nutzen hier den vorbereiteten Datensatz `audit`).
 
 ```{r parameter_filtern, exercise = TRUE}
-# Laden des Audit-Datensatzes 
+# Laden des Audit-Datensatzes
 audit <- rio::import(
   here::here("daten/bffp2019_audit_by_country_and_company.csv")
-  )
+)
 ```
 
 ```{r 11quiz_1-parameter_filtern, exercise = TRUE}
-# Filtern des Audit-Datensatzes 
+# Filtern des Audit-Datensatzes
 audit %>%
   dplyr::filter(plastic_type == params$filter_plastic)
 ```
@@ -151,7 +150,7 @@ Filtert nun zusätzlich den Kontinent (hinterlegt als `filter_continent`):
 ```{r 11quiz_parameter_filter, exercise = TRUE}
 # Filtern des Audit-Datensatzes (hinterlegt als )
 audit %>%
-  dplyr::filter(plastic_type == params$filter_plastic) 
+  dplyr::filter(plastic_type == params$filter_plastic)
 # Euer Code hier
 ```
 
@@ -159,12 +158,15 @@ audit %>%
 ```{r 11quiz_parameter_filter-solution}
 # Filtern des Audit-Datensatzes
 audit %>%
-  dplyr::filter(plastic_type == params$filter_plastic,
-                continent == params$filter_continent)
+  dplyr::filter(
+    plastic_type == params$filter_plastic,
+    continent == params$filter_continent
+  )
 ```
 
 ```{r 11quiz_reportauto_filter}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Wie viele Beobachtungen werden gefunden?",
     answer("2886"),
     answer("0", correct = TRUE),

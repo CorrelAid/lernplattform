@@ -39,7 +39,8 @@ Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet
 
 ### **Quiz**
 ```{r quiz_rstudio}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Ich muss nicht auf die Groß- und Kleinschreibung achten, wenn ich in R programmiere.",
     answer("Korrekt"),
     answer("Inkorrekt", correct = TRUE),
@@ -48,7 +49,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Code ist über Patent- und Urheberrechte geschützt, deshalb darf ich nichts von anderen Coder:innen benutzen.",
     answer("Korrekt, Code von anderen sollte ich auf keinen Fall kopieren."),
     answer("Inkorrekt, Code von anderen kann ich immer übernehmen."),
@@ -58,7 +58,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Wo in RStudio schreibst Du Deinen Code?",
     answer("Konsole", correct = TRUE),
     answer("Environment"),
@@ -69,7 +68,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("IDE steht für Integrated Development Environment (zu dt. integrierte Entwicklungsumgebung). RStudio ist eine integrierte Entwicklungsumgebung für R.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -78,12 +76,11 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Du möchtest die Funktion \"filter\" aus dem \"dplyr-Package\" verwenden. Wie gehst Du vor?",
     answer("Ich installiere zuerst das Package über \"library(dplyr)\"."),
     answer("Nachdem das Package über \"install.packages('dplyr')\" installiert ist, muss ich es mit \"library(dplyr)\" noch laden.", correct = TRUE),
     answer("Wenn das Package installiert und geladen ist, kann ich die Funktion im Code verwenden: \"filter::dplyr()\""),
-        answer("Wenn das Package installiert und geladen ist, kann ich die Funktion im Code verwenden: \"dplyr::filter()\"", correct = TRUE),
+    answer("Wenn das Package installiert und geladen ist, kann ich die Funktion im Code verwenden: \"dplyr::filter()\"", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Die Aussage ist wahr",
     allow_retry = TRUE,
@@ -103,23 +100,23 @@ Die simpelste Version von R ist einfach die Verwendung als Taschenrechner. Führ
 
 ``` {r mathop, exercise = TRUE}
 ### mathematische Operatoren
-2 + 2   # plus
-2 - 1   # minus
-2 * 2   # mal
-2 / 2   # geteilt
+2 + 2 # plus
+2 - 1 # minus
+2 * 2 # mal
+2 / 2 # geteilt
 ```
 
 R kann aber auch eine Art Orakel sein: Mit **logischen Ausdrücken** könnt Ihr u.a. Datensätze filtern und Wenn-Dann-Begingungen für Operationen definieren. Was denkt Ihr, sind die folgenden logischen Ausdrücke wahr (=TRUE) oder falsch (=FALSE)?
 
 ``` {r logik, exercise = TRUE}
 ### logische Ausdrücke
-2 == 2                      # ist gleich
-2 != 3                      # nicht gleich
-!(2 == 2)                   # nicht
-2 < 3                       # kleiner als
-2 > 3                       # größer als
-2 <= 2                      # kleiner gleich
-2 >= 3                      # größer gleich
+2 == 2 # ist gleich
+2 != 3 # nicht gleich
+!(2 == 2) # nicht
+2 < 3 # kleiner als
+2 > 3 # größer als
+2 <= 2 # kleiner gleich
+2 >= 3 # größer gleich
 (1 + 1 == 2) & (2 + 2 == 5) # und
 (1 + 1 == 2) | (2 + 2 == 5) # oder
 ```
@@ -127,28 +124,28 @@ R kann aber auch eine Art Orakel sein: Mit **logischen Ausdrücken** könnt Ihr 
 Was für Daten gibt es denn eigentlich? Klassisch denkt Ihr vermutlich an Zahlen, aber Text und ein binäres TRUE/FALSE sind genauso Informationen. In R könnt Ihr mit den verschiedenen Grundtypen an Daten arbeiten:
 
 ```{r grundtypen, exercise = TRUE}
-7                # integer (also eine ganze Zahl)
-7.234123         # numeric (also alle Zahlen)
-'irgendein Text' # character (jegliche Text-Daten müssen immer in Anführungszeichen stehen)
-TRUE             # boolean (also das binäre TRUE oder FALSE)
+7 # integer (also eine ganze Zahl)
+7.234123 # numeric (also alle Zahlen)
+"irgendein Text" # character (jegliche Text-Daten müssen immer in Anführungszeichen stehen)
+TRUE # boolean (also das binäre TRUE oder FALSE)
 ```
 
 R hat darüber hinaus aber auch eine Art Gedächtnis. D.h. Ihr könnt Werte in Objekten speichern, das geht über den Zuweisungspfeil `<-`:
 
 ``` {r zuweisung, exercise = TRUE}
-zahl <- 2       # Variablenzuweisung: Der Wert 2 wird im Objekt mit dem Namen 2 gespeichert
-zahl            # Wenn Ihr dann das Objekt aufruft, wird Euch der Wert angezeigt, der im Objekt gespeichert ist
+zahl <- 2 # Variablenzuweisung: Der Wert 2 wird im Objekt mit dem Namen 2 gespeichert
+zahl # Wenn Ihr dann das Objekt aufruft, wird Euch der Wert angezeigt, der im Objekt gespeichert ist
 ```
 
 Neben einzelnen Werten lässt sich natürlich auch eine ganze Reihe solcher Werte in einem Objekt speichern. Hierbei handelt es sich um einen Vektor, d.h. alle einzelnen Werte werden über das `c()` zusammengepackt. Achtung: in einem Vektor sollten nur Werte des gleichen Grundtyps gespeichert sein!
 
 ```{r vector, exercise = TRUE}
 # Einzelne Werte werden in einem Vektor mit der Bezeichnung 'irgendein_vektor' gespeichert, wenn Ihr diesen aufruft, werden alle darin enthaltenen Werte angezeigt
-irgendein_vektor <- c('R', 'ist', 'richtig', 'toll!')   
-irgendein_vektor      
+irgendein_vektor <- c("R", "ist", "richtig", "toll!")
+irgendein_vektor
 
 # Natürlich könnt Ihr auch einen einzelnen Wert, der in einem Vektor enthalten ist, wieder aufspüren, dazu nutzt Ihr einfach die Position des Wertes im Vektor
-irgendein_vektor[1] 
+irgendein_vektor[1]
 irgendein_vektor[4]
 ```
 
@@ -156,7 +153,7 @@ Einen letzten Datentyp neben den vier Grundtypen und Vektoren möchten wir Euch 
 
 ```{r list, exercise = TRUE}
 # Einzelne Werte werden in einer Liste mit der Bezeichnung 'meine_liste' gespeichert, wenn Ihr diese aufruft, werden alle darin enthaltenen Werte angezeigt
-meine_liste <- list('Das', 'ist', 'eine', 'Liste', 1, 5.23, TRUE)
+meine_liste <- list("Das", "ist", "eine", "Liste", 1, 5.23, TRUE)
 meine_liste
 
 # Natürlich könnt Ihr auch einen einzelnen Wert, der in einer Liste enthalten ist, wieder aufspüren, dazu nutzt Ihr einfach die Position des Wertes in der Liste
@@ -183,7 +180,7 @@ Wenn Ihr Daten aus lokalen Ordnern laden möchtet, müsst Ihr den Link durch den
 
 ``` {r daten_einlesen, exercise = TRUE}
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
-data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 # Wenn Ihr das Objekt aufruft, bekommt Ihr die darin gespeicherten Daten angezeigt
 data_raw
 
@@ -232,16 +229,16 @@ ncol(data_raw)
 ```
 
 ```{r exercise_ncol-check}
-  give_code_feedback(grade_this({
-    pass_if_equal(.solution)
-    if (length(.result) != 1) {
-        fail("Eure Antwort enthält {length(.result)} Wert(e) und nicht: {length(.solution)}. Habt Ihr die richtige Funktion genutzt?")
-    }
-    if (.result == 13380) {
-        fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen! Habt Ihr die richtige Funktion genutzt?")
-    }
-    fail("Noch nicht ganz richtig.")
-  }))
+give_code_feedback(grade_this({
+  pass_if_equal(.solution)
+  if (length(.result) != 1) {
+    fail("Eure Antwort enthält {length(.result)} Wert(e) und nicht: {length(.solution)}. Habt Ihr die richtige Funktion genutzt?")
+  }
+  if (.result == 13380) {
+    fail("Das ist die Zeilenanzahl, also die Anzahl an Beobachtungen! Habt Ihr die richtige Funktion genutzt?")
+  }
+  fail("Noch nicht ganz richtig.")
+}))
 ```
 
 Elementare Merkmale des Datensatzes könnt Ihr Euch mit der Funktion **`summary()`** anzeigen lassen. Bei Text sind das Länge, Objektart und Mode; bei numerischen Werten Minimum, Mittelwert, Maximum, Quartile und fehlende Werte (keine Sorge, die ganzen Begriffe werdet Ihr in der Lektion zu Grundlagen der Statistik noch genauer kennenlernen).
@@ -262,9 +259,9 @@ Wenn Ihr einzelne Spalten oder **Subsets** (zu dt. Teilmengen) eines Datensatzes
 
 ``` {r slicing1, exercise = TRUE}
 # Auslesen der Spalte 'country'
-data_raw$country 
+data_raw$country
 # Auslesen der Spalten 'country' und 'year'
-data_raw[c('country', 'year')]
+data_raw[c("country", "year")]
 ```
 
 ``` {r slicing2, exercise = TRUE}
@@ -289,13 +286,13 @@ In der Programmierung gibt es verschiedene Kontrollstrukturen: Nur *wenn* die No
 
 if (2 + 2 == 5) {
   print("Oh nein!")
-  } else if (2 + 2 <= 3) {
+} else if (2 + 2 <= 3) {
   print("Oh nein!")
-  } else if (2 + 2 >= 5) {
+} else if (2 + 2 >= 5) {
   print("Oh nein!")
-  } else {
+} else {
   print("Puh, nicht verrechnet...")
-    }
+}
 ```
 
 Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert. Neben **Maschinellem Lernen** sind solche regelbasierten Systeme übrigens eine wichtige Form von allen Technologien, die unter das Modewort **Künstliche Intelligenz** fallen. Die zugehörigen Regeln werden in komplexeren Systemen von Expert:innen verfasst und erst nach und nach, wenn es möglich ist, durch alternative Technologien ersetzt. Ein gutes Beispiel dafür sind Verfahren zur Verarbeitung von Sprache (siehe [hier](https://aclanthology.org/D13-1079.pdf){target="_blank"}). Ihr könnt Euch aber auch einfach ein regelbasiertes System vorstellen, das automatisch bei der Erreichung einer bestimmten Spendensumme eine Dankesnachricht an alle Spender:innen versendet.
@@ -328,7 +325,7 @@ while (i <= length(spenderinnenliste)) {
   # ...gebe für diesen Eintrag den Satz 'Danke, <Name diese:r:s Spender:in>!' aus...
   print(paste("Danke,", spenderinnenliste[[i]], "!"))
   # ...setze den Counter i um 1 herauf
-  i = i + 1
+  i <- i + 1
 }
 ```
 

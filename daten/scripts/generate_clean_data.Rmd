@@ -15,7 +15,7 @@ pacman::p_load(
 ```
 
 ```{r import-data}
-data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 ```
 
 ```{r process-data}
@@ -25,7 +25,7 @@ plastics_processed <- data_raw %>%
     country != "EMPTY",
     parent_company != "Grand Total",
     year == 2019
-    ) %>%
+  ) %>%
   # Länder bereinigen
   dplyr::mutate(
     country =
@@ -38,25 +38,30 @@ plastics_processed <- data_raw %>%
     country = stringr::str_to_title(country),
     # Kontinent und Land übersetzen
     continent = countrycode::countrycode(country,
-                                         origin = "country.name",
-                                         destination = "continent"),
-    continent = dplyr::case_when(continent == "Africa" ~ "Afrika",
-                                 continent == "Americas" ~ "Amerika",
-                                 continent == "Asia" ~ "Asien",
-                                 continent == "Europe" ~ "Europa",
-                                 continent == "Oceania" ~ "Ozeanien"),
+      origin = "country.name",
+      destination = "continent"
+    ),
+    continent = dplyr::case_when(
+      continent == "Africa" ~ "Afrika",
+      continent == "Americas" ~ "Amerika",
+      continent == "Asia" ~ "Asien",
+      continent == "Europe" ~ "Europa",
+      continent == "Oceania" ~ "Ozeanien"
+    ),
     countrycode = countrycode::countrycode(country,
-                                           origin = "country.name",
-                                           destination = "iso2c"),
+      origin = "country.name",
+      destination = "iso2c"
+    ),
     country = countrycode::countrycode(country,
-                                           origin = "country.name",
-                                           destination = "country.name.de")
-    ) 
+      origin = "country.name",
+      destination = "country.name.de"
+    )
+  )
 ```
 
 ```{r reshape-data}
 # Community mit n_pieces, n_volunteers und n_events
-community19_by_country <- plastics_processed %>% 
+community19_by_country <- plastics_processed %>%
   dplyr::group_by(continent, country, countrycode) %>% # Pro Kontinent und Land gruppieren
   dplyr::summarize( # Zusammenfassung der Gruppierung bestimmen
     n_pieces = sum(grand_total, na.rm = TRUE), # Summe
@@ -70,11 +75,11 @@ plastics19_by_country_and_company <- plastics_processed %>%
     cols = c(hdpe, ldpe, o, pet, pp, ps, pvc),
     names_to = "plastic_type",
     values_to = "n_pieces"
-    ) %>%
+  ) %>%
   dplyr::mutate(dplyr::across( # Zu Faktor konvertieren
     .cols = c(country, continent, year, plastic_type),
     .fns = as_factor
-    )) %>%
+  )) %>%
   dplyr::select( # Spalten auswählen
     continent,
     country,

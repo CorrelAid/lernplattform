@@ -155,8 +155,10 @@ Für die Analyse des Datensatzes planen wir einen **Ländervergleich** und sorti
 # Ihr nehmt Euren Datensatz...
 data_raw %>%
   # ..filtert "EMPTY" und "Grand Total" heraus
-  dplyr::filter(country != "EMPTY",
-                parent_company != "Grand Total")
+  dplyr::filter(
+    country != "EMPTY",
+    parent_company != "Grand Total"
+  )
 ```
 
 Angenommen Ihr möchtet nun nur die Daten aus dem Jahr 2019. Filtert den Datensatz so, dass er nur die Daten aus dem Jahr 2019 enthält: 
@@ -165,20 +167,22 @@ Angenommen Ihr möchtet nun nur die Daten aus dem Jahr 2019. Filtert den Datensa
 # Ihr nehmt Euren Datensatz...
 data_raw %>%
   # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
-  dplyr::filter(country != "EMPTY",
-                parent_company != "Grand Total", 
-                # Hier Euer Code! 
-                )
+  dplyr::filter(
+    country != "EMPTY",
+    parent_company != "Grand Total",
+    # Hier Euer Code!
+  )
 ```
 
 ```{r exercise_07filter_data_exercise-solution}
 # Ihr nehmt Euren Datensatz...
 data_raw %>%
   # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
-  dplyr::filter(country != "EMPTY",
-                parent_company != "Grand Total", 
-                year == 2019 
-                )
+  dplyr::filter(
+    country != "EMPTY",
+    parent_company != "Grand Total",
+    year == 2019
+  )
 ```
 
 ```{r exercise_07filter_data_exercise-check}
@@ -237,7 +241,7 @@ data_raw %>%
     country != "EMPTY",
     parent_company != "Grand Total",
     year == 2019
-    ) %>%
+  ) %>%
   # ..bereinigt die Ländernamen, indem Ihr...
   dplyr::mutate(
     # ..die UK und USA umbenennt
@@ -251,20 +255,25 @@ data_raw %>%
     country = stringr::str_to_title(country),
     # ..Kontinent und Land übersetzt
     continent = countrycode::countrycode(country,
-                                         origin = "country.name",
-                                         destination = "continent"),
-    continent = dplyr::case_when(continent == "Africa" ~ "Afrika",
-                                 continent == "Americas" ~ "Amerika",
-                                 continent == "Asia" ~ "Asien",
-                                 continent == "Europe" ~ "Europa",
-                                 continent == "Oceania" ~ "Ozeanien"),
+      origin = "country.name",
+      destination = "continent"
+    ),
+    continent = dplyr::case_when(
+      continent == "Africa" ~ "Afrika",
+      continent == "Americas" ~ "Amerika",
+      continent == "Asia" ~ "Asien",
+      continent == "Europe" ~ "Europa",
+      continent == "Oceania" ~ "Ozeanien"
+    ),
     countrycode = countrycode::countrycode(country,
-                                           origin = "country.name",
-                                           destination = "iso3c"),
+      origin = "country.name",
+      destination = "iso3c"
+    ),
     country = countrycode::countrycode(country,
-                                           origin = "country.name",
-                                           destination = "country.name.de")
-    ) 
+      origin = "country.name",
+      destination = "country.name.de"
+    )
+  )
 ```
 
 ```{r exercise_07mutate_data_exercise-check}
@@ -278,7 +287,7 @@ Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vor
 
 ``` {r 07group_by_summarise1, exercise = TRUE}
 # Ihr nehmt Euren Datensatz,...
-community <- plastics_processed %>% 
+community <- plastics_processed %>%
   # ..gruppiert die Beobachtungen pro Land
   dplyr::group_by(continent, country, countrycode) %>% # Pro Kontinent und Land gruppieren
   # ..entscheidet, wie die anderen Variablen zusammengefasst werden sollen
@@ -300,7 +309,7 @@ Berechnet nun zur Übung mit den Funktionen `dplyr::group_by()` und `dplyr::summ
 community %>%
   # ..gruppiert die Beobachtungen pro Kontinent
   dplyr::group_by(continent) %>%
-  #..entscheidet, wie die anderen Variablen zusammengefasst werden sollen
+  # ..entscheidet, wie die anderen Variablen zusammengefasst werden sollen
   dplyr::summarise(n_pieces = sum(n_pieces, na.rm = TRUE)) # Summe
 ```
 
@@ -314,17 +323,17 @@ grade_this_code()
 ``` {r 07pivot_wider, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
 plastics_processed %>%
-  #..pivotiert die Plastikarten
+  # ..pivotiert die Plastikarten
   tidyr::pivot_longer(
     cols = c(hdpe, ldpe, o, pet, pp, ps, pvc), # Betroffene Variablen
     names_to = "plastic_type", # Zielspalte
     values_to = "n_pieces" # Wertspalte
-    ) %>%
+  ) %>%
   # ..und faktorisiert sicherheitshalber die anderen Variablen (nicht immer notwendig)
   dplyr::mutate(dplyr::across( # Zu Faktor konvertieren
     .cols = c(country, continent, year, plastic_type),
     .fns = as_factor
-    ))
+  ))
 ```
 Mit `dyplr::pivot_wider()` könnt Ihr den Datensatz auch wieder in das breite Format bringen. Wir empfehlen aber die lange Form zu nutzen.
 
@@ -342,17 +351,17 @@ Um den `audit`-Datensatz zu finalisieren, wählen wir in einem letzten Schritt d
 ```{r 07select_data2, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
 audit <- plastics_processed %>%
-  #..pivotiert die Plastikarten
+  # ..pivotiert die Plastikarten
   tidyr::pivot_longer(
     cols = c(hdpe, ldpe, o, pet, pp, ps, pvc), # Betroffene Variablen
     names_to = "plastic_type", # Zielspalte
     values_to = "n_pieces" # Wertspalte
-    ) %>%
+  ) %>%
   # ..faktorisiert sicherheitshalber die anderen Variablen (nicht immer notwendig)
   dplyr::mutate(dplyr::across( # Zu Faktor konvertieren
     .cols = c(country, continent, countrycode, year, plastic_type),
     .fns = as_factor
-    )) %>%
+  )) %>%
   # und wählt die richtigen Spalten aus, da manche Variablen mit der Pivotierung nicht aussagekräftig sind.
   dplyr::select(continent, country, countrycode, parent_company, plastic_type, n_pieces)
 ```
@@ -383,7 +392,7 @@ audit %>%
   # ..berechnet die Zusammenfassung (hier: Summe)
   dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
   # ..filtert unnütze Werte heraus
-  dplyr::filter(! parent_company %in% c("Unbranded", "Inconnu", "Assorted"))  %>%
+  dplyr::filter(!parent_company %in% c("Unbranded", "Inconnu", "Assorted")) %>%
   # ..begrenzt die Anzahl auf 10
   dplyr::slice_max(total_pieces, n = 10) %>%
   # ..und sortiert die Werte absteigend
@@ -429,6 +438,7 @@ Ups - Ihr erhaltet ein NA? R kann den Wert nicht berechnen, da **in der Variable
 # NAs bestimmen
 summary(audit)
 ```
+
 ``` {r exercise_07mean_na3-check}
 grade_this_code()
 ```
@@ -453,6 +463,7 @@ na_rows <- which(is.na(audit$n_pieces))
 # Neuer Datensatz ohne fehlende Werte
 new_df <- na.omit(audit)
 ```
+
 **Achtung:** Nicht immer können fehlende Werte einfach so ausgeschlossen werden. Manchmal beeinträchtigt dieser Ausschluss die **Aussagekraft unserer Analysen**. Bei [Allison 2010](https://statisticalhorizons.com/wp-content/uploads/Allison_MissingData_Handbook.pdf){target="_blank"} findet Ihr eine gute Übersicht gängiger Herausforderungen und Lösungen. Unser Tipp: Schon bei der Datenerhebung ansetzen und während der Datenerhebung beständig auf genau solche Vorkommnisse prüfen, sodass Ihr rechtzeitig reagieren könnt.
 
 Häufig kommt es zudem vor, dass **NAs nicht als NAs codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** (oder wie bei uns mit etwas ganz anderem wie "EMPTY") angegeben. Schaut deshalb immer ins **Codebuch**, bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`:
@@ -460,20 +471,19 @@ Häufig kommt es zudem vor, dass **NAs nicht als NAs codiert** sind: Wie Ihr vie
 ``` {r 07mean_na6, exercise = TRUE}
 # Erstellung eines Beispieldataframes mit NAs als "NA" und "-99"
 df <- tibble::tribble(
-  ~name,              ~x,  ~y,           ~z,  
-  "Person 1",         1,   -99,          6.7, 
+  ~name,              ~x,  ~y,           ~z,
+  "Person 1",         1,   -99,          6.7,
   "Person 2",         3,   NA,           -99,
   "Person 3",         NA,  0.76,         -1.6
-  )
+)
 
 # Definition der NAs
-df2 <- df %>% 
+df2 <- df %>%
   dplyr::na_if(-99)
 
 # Erste fünf Zeilen anzeigen
 head(df2)
 ```
-
 
 ### **Exkurs**: String Manipulation
 Der Umgang mit **Text (eng. Strings)** ist etwas komplexer. In Eurem Beispiel haben wir die Namen der Länder verändert, unter anderem um die **Kodierung** des "United Kingdom of Great Britain & Northern Ireland" und den "United States of America" zu ermöglichen (es sind wirklich immer diese zwei...). Um diese Bezeichnungen zu verändern, habt Ihr die Funktion `dplyr::case_when()` und das `stringr`-Package mit der Funktion `stringr::str_replace` genutzt. Erstere haben wir im Rahmen einer **Einzelfallentscheidung** genutzt: Wir haben genau bestimmt, in welchen Fällen Wert A ("United Kingdom of Great Britain & Northern Ireland") durch Wert B ("United Kingdom") ersetzt werden soll. Letztere folgte dagegen einer **Logik**: Alle Ländernamen werden nun großgeschrieben - ansonsten gibt es keine Großbuchstaben mehr. So wurde "ECUADOR" zu "Ecuador".
@@ -488,13 +498,12 @@ In einigen Fällen ist es allerdings notwendig, dass die Textmanipulation einer 
 ``` {r 07strings2, exercise = TRUE}
 # Erste Möglichkeit: Ersetzen des gefundenen Strings durch '' mit str_replace
 clean_strings <- data_raw %>%
-  dplyr::mutate(parent_company = stringr::str_replace(parent_company, '\\([^()]*\\)','')
+  dplyr::mutate(parent_company = stringr::str_replace(parent_company, "\\([^()]*\\)", ""))
 
 # Zweite Möglichkeit: Löschen des gefundenen Strings mit str_remove
 clean_strings <- data_raw %>%
-  dplyr::mutate(parent_company = stringr::str_remove(parent_company, '\\([^()]*\\)'))
+  dplyr::mutate(parent_company = stringr::str_remove(parent_company, "\\([^()]*\\)"))
 ```
-
 
 ### **Exkurs**: Datensätze zusammenfügen
 Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt werden sollen. Letzte Woche habt Ihr bereits den Datensatz der Weltbank zu Naturschutzgebieten (`wb_areas`) heruntergeladen. Verschafft Euch zuerst nochmal einen kleinen Überblick über den Datensatz `wb_areas`: 
@@ -508,8 +517,8 @@ Den Datensatz `wb_areas` wollt Ihr nun mit dem Datensatz `community` zusammenfü
 
 ``` {r 07wb_clean, exercise = TRUE}
 # Umbennung der Spalten
-wb_areas %>% 
-  dplyr::select(countrycode = 'iso2c', protected_area = 'ER.PTD.TOTL.ZS')
+wb_areas %>%
+  dplyr::select(countrycode = "iso2c", protected_area = "ER.PTD.TOTL.ZS")
 ```
 
 Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `community` und `wb_areas` vorhanden sind (hier führen viele Wege zum Ziel!):
@@ -520,7 +529,8 @@ Versucht jetzt einmal herauszufinden, wie viele Länder in beiden Datensätzen `
 ```
 
 ```{r 07quiz_datenbereinigung5}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Wie viele Länder sind im Datensatz der World Bank enthalten?",
     answer("3"),
     answer("266", correct = TRUE),
@@ -535,7 +545,8 @@ quiz(caption = NULL,
 ```
 
 ```{r 07quiz_datenbereinigung6}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Wie viele Länder sind in Community enthalten?",
     answer("51", correct = TRUE),
     answer("4"),
@@ -600,9 +611,9 @@ quiz(
   ),
   question("Welche der folgenden Aussagen sind wahr?",
     answer("Beim Inner Join bleiben nur Zeilen bestehen, die in beiden Datensätzen vorhanden sind (n = 50)", correct = TRUE),
-    answer ("Beim Full Join bleiben alle Zeilen bestehen, passende werden zusammengefügt (n = 267)", correct = TRUE),
-    answer ("Beim Left Join bleiben alle Zeilen des links referenzierten Datensatzes (community) bestehen, passende werden zusammengefügt (n = 51)", correct = TRUE),
-    answer ("Beim Right Join bleiben alle Zeilen des rechts referenzierten Datensatzes (wb_areas) bestehen, passende werden zusammengefügt (n = 266)", correct = TRUE),
+    answer("Beim Full Join bleiben alle Zeilen bestehen, passende werden zusammengefügt (n = 267)", correct = TRUE),
+    answer("Beim Left Join bleiben alle Zeilen des links referenzierten Datensatzes (community) bestehen, passende werden zusammengefügt (n = 51)", correct = TRUE),
+    answer("Beim Right Join bleiben alle Zeilen des rechts referenzierten Datensatzes (wb_areas) bestehen, passende werden zusammengefügt (n = 266)", correct = TRUE),
     correct = "Gut gemacht!",
     incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
     allow_retry = TRUE,
@@ -610,7 +621,6 @@ quiz(
   )
 )
 ```
-
   
 ### **Und jetzt Ihr**
 Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datentransformation**](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 

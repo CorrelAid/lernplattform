@@ -85,25 +85,27 @@ continent_list <- c("Alle Kontinente", sort(unique(community$continent)))
 ### Hier definieren wir, was die Nutzer:innen (und wir) sehen.
 ### Hinweis: Nach jedem Element (textInput, textOutput, etc.) müsst Ihr ein Komma setzen.
 ui <- fluidPage(
-  
+
   ### Aufgabe 5: Titel einfügen ###
   titlePanel("Hier Euer Titel"),
-  
+
   # Hiermit legen wir unser Layout fest - wir haben uns für das SidebarLayout entschieden, damit wir links Filter einfügen können.
   sidebarLayout(
-    
+
     ### Aufgabe 3: Hier definieren wir die Filter: Auswahlfilter für Wohnort und Kursniveau und ein Eingabefeld für Text
     sidebarPanel(
       # Drop-Down-Filter für den Kontinent
-      selectInput(# Hier Euer Code),
+      selectInput( # Hier Euer Code),
+      )
     ),
-    
-    # Hier kreiieren wir den Hauptteil der Applikation. 
+
+    # Hier kreiieren wir den Hauptteil der Applikation.
     mainPanel(
       # Wir haben uns für das Layout mit Tabs (zu dt. Reitern) entschieden.
       tabsetPanel(
         ### Aufgabe 2: Tab mit Hersteller-Visualisierung einfügen. Das Package plotly sorgt für die Interaktivität der Visualisierung. ###
-        tabPanel(# Hier Euer Code)
+        tabPanel( # Hier Euer Code)
+        )
       )
     )
   )

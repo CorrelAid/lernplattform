@@ -19,7 +19,8 @@
 ### Quiz
 
 ```{r quiz_statistischesdenken}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Das Studiendesign mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -28,7 +29,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Meta-Studien vergleichen die Ergebnisse mehrerer experimenteller Studien (RCTs) miteinander.",
     answer("Korrekt", correct = TRUE),
     answer("Inkorrekt"),
@@ -37,7 +37,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Der Rückschluss von statistischen Eigenschaften der Stichprobe auf die Population wird als ... bezeichnet.",
     answer("Externe Validität", correct = TRUE),
     answer("Interne Validität"),
@@ -92,29 +91,28 @@ Stehe einmal kurz vom Computer auf und schau aus dem Fenster. Ist die Straße dr
 In der Statistik gibt es zwei grundlegende Ansätze, den Zusammenhang zwischen Daten und Hypothesen zu verstehen. Bevor wir diesen erklären benatworte bitte zunächst die folgenden drei Fragen aus Johnson, Ott und Dogucu (2021). Anhand der Antworten werden wir dann die Unterschiede erklären.
 
 ```{r quiz_grundlagen_stats}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Wenn eine faire Münze geworfen wird ist die Wahrscheinlichkeit Kopf zu werfen $p=0.5$. Wie verstehst du diese Wahrscheinlichkeit?",
     answer("Wenn ich die Münze immer wieder werfe, wird in etwa 50% der Würfe Kopf oben liegen.", correct = TRUE),
     answer("Kopf oder Zahl zu werfen ist gleich plausibel.", correct = TRUE),
     correct = "Super! Merke dir deine Antwort.",
     type = "learnr_radio"
-    ),
-  
+  ),
   question("Eine Wahl steht bevor und ein Umfrageinstitut behauptet, dass Kandidat A eine Wahrscheinlichkeit von 0.9 hat zu gewinnen. Wie verstehst du diese Wahrscheinlichkeit?",
     answer("Wenn wir die Wahl immer wieder beobachten wird Kandidat A in 90% der Fälle gewinnen.", correct = TRUE),
     answer("Es ist sehr viel wahrscheinlicher, dass Kandidat A die Wahl gewinnt als das er sie nicht gewinnt.", correct = TRUE),
     answer("Das Umfrageinstitut hat einen Fehler gemacht. Kandidat A wird entweder gewinnen oder verlieren und darum kann die Wahrscheinlichkeit zu gewinnen nur 0 oder 1 sein.", correct = TRUE),
     correct = "Super! Merke dir deine Antwort.",
     type = "learnr_radio"
-    ),
-  
+  ),
   question("Nimm an, dass du während deines letzten Arztbesuches positiv auf eine seltene Krankheit getestet wurdest. Wenn du der Ärztin nur eine Frage stellen darfst, welche würdest Du sinnvollerweise stellen?",
     answer("Was ist jetzt die Wahrscheinlichkeit, dass ich tatsächlich diese Krankheit habe?", correct = TRUE),
     answer("Wenn ich diese Krankheit nicht hätte, was ist die Wahrscheinlichkeit, dass ich trotzdem ein positives Testergebnis erhalten hätte?", correct = TRUE),
     correct = "Super. Antworten gemerkt? Dann weiter zur Auflösung im Text.",
     type = "learnr_radio"
-    )
   )
+)
 ```
 
 Die ersten beiden Fragen verdeutlichen den entscheidenden Unterschied zwischen den beiden Ansätzen im Verständnis von Wahrscheinlichkeiten selbst. Die **frequentistische Statistik** interpretiert die Wahrscheinlichkeit eines Ereignisses als dessen *langfristige relative Häufigkeit*. Entsprechend beantworten Frequentist:innen die erste Frage mit Antwort 1. Streng genommen müssten sie auf Frage 2 die dritte Antwort geben, denn eine Wahl ist ein einmaliges Ereignis. In der Praxis behilft man sich aber häufig mit der Konstruktion einer *hypothetisch* wiederholten Wahl. Denk an eine Simulation der Wahl, die man hundertmal laufen lässt und in der Kandidat A 90 der 100 Durchgänge gewinnt.
@@ -143,26 +141,24 @@ Damit haben wir alle Informationen, um die gesuchte *posterior* Wahrscheinlichke
 
 ```{r estimate_posterior, exercise=TRUE}
 # Werte bestimmen
-p_prior_krank <- 342/100000
+p_prior_krank <- 342 / 100000
 rpr <- 85 / 102
 fpr <- 4 / 435
 
 # Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
-p_posterior_krank <- 
-print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", p_posterior_krank , "."))
-
+p_posterior_krank <-
+  print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", p_posterior_krank, "."))
 ```
 
 ```{r estimate_posterior-solution}
 # Werte bestimmen
-p_prior_krank <- 342/100000
+p_prior_krank <- 342 / 100000
 rpr <- 85 / 102
 fpr <- 4 / 435
 
 # Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
 p_posterior_krank <- (rpr * p_prior_krank) / ((rpr * p_prior_krank) + (fpr * (1 - p_prior_krank)))
-print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", round(p_posterior_krank,2)*100 , " Prozent."))
-
+print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", round(p_posterior_krank, 2) * 100, " Prozent."))
 ```
 
 Was sagt uns dieses Ergebnis? Zunächst sehen wir, dass die Wahrscheinlichkeit, an Corona erkrankt zu sein, im Vergleich zur Ausgangswahrscheinlichkeit, dem Prior, deutlich gestiegen ist. Gleichzeitig bleibt es trotz positivem Test immer noch sehr viel wahrscheinlicher, nicht erkrankt zu sein. Das liegt hier vor allem an der im Bezug auf die Gesamtbevölkerung niedrigen Inzidenz.
@@ -218,7 +214,7 @@ n_a <- 5840
 n_b <- 5640
 
 # z-Wert bestimmen
-z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
+z <- (anteil_a - anteil_b) / (sqrt(anteil_pool * (1 - anteil_pool) * ((1 / n_a) + (1 / n_b))))
 print(z)
 ```
 
@@ -227,12 +223,13 @@ Allerdings wollten wir doch eine Irrtums*wahrscheinlichkeit* bestimmen? Das Erge
 ```{r normal_distribution, exercise = TRUE}
 # Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6) + 
+  stat_function(
+    fun = dnorm,
+    geom = "area",
+    fill = "steelblue",
+    alpha = 0.6
+  ) +
   theme_minimal()
-
 ```
 
 Man erkennt, dass sich die z-Werte symmetrisch um die $0$ verteilen. Je weiter unser berechneter z-Wert von der $0$ entfernt ist, das heißt, je weiter wir an den Rand der Verteilung geraten, desto unplausibler ist es, dass unsere Beobachtungen tatsächlich aus nur einer Population stammen und die Nullhypothese wahr ist. In anderen Worten, je weiter am Rand der Verteilung unser z-Wert liegt, desto niedriger ist unsere Irrtumswahrscheinlichkeit und damit der p-Wert, wenn wir die Nullhypothese verwerfen. Zeichnen wir unseren z-Wert also in die Verteilung ein:
@@ -240,13 +237,14 @@ Man erkennt, dass sich die z-Werte symmetrisch um die $0$ verteilen. Je weiter u
 ```{r z_visual, exercise = TRUE}
 # Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6) + 
+  stat_function(
+    fun = dnorm,
+    geom = "area",
+    fill = "steelblue",
+    alpha = 0.6
+  ) +
   geom_vline(xintercept = z, color = "red") +
   theme_minimal()
-
 ```
 
 Wir sehen, dass der z-Wert unserer Beobachtungen nicht genau in der **Mitte der Verteilung** liegt, jedoch auch nicht wirklich am Rand. Wie hoch ist denn nun unsere Irrtumswahrscheinlichkeit? Die genaue Wahrscheinlichkeit verbirgt sich in der Fläche unter der Kurve, also dem Integral zwischen unserem z-Wert und dem linken Rand der Verteilung. Hier für euch visualisiert:
@@ -254,18 +252,21 @@ Wir sehen, dass der z-Wert unserer Beobachtungen nicht genau in der **Mitte der 
 ```{r p_value, exercise = TRUE}
 # Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6,
-                xlim = c(-3, z)) + 
+  stat_function(
+    fun = dnorm,
+    geom = "area",
+    fill = "steelblue",
+    alpha = 0.6,
+    xlim = c(-3, z)
+  ) +
   geom_vline(xintercept = z, color = "red") +
-  xlim(-3,3) +
-    stat_function(fun = dnorm,
-                geom = "line",
-                xlim = c(z, 3)) +
+  xlim(-3, 3) +
+  stat_function(
+    fun = dnorm,
+    geom = "line",
+    xlim = c(z, 3)
+  ) +
   theme_minimal()
-
 ```
 
 Die blaue Fläche entspricht $0.14105$, also etwa $14\%$ der Gesamtfläche unter der Kurve. Nun haben wir fast unsere Irrtumswahrscheinlichkeit. Warum nur fast? Dazu müssen wir noch einmal zurück zur Formulierung unseren Hypothesen. Wir hatten einfach nur nach einem Unterschied zwischen beiden Gruppen gefragt und damit keine **Richtung** des Unterschiedes vorgegeben. In anderen Worten, wir haben nicht die Hypothese aufgestellt, dass der Anteil der Infizierten in Gruppe A größer als der Anteil in Gruppe B. Dieses kleine Detail hat große Auswirkungen auf die berechnete Irrtumswahrscheinlichkeit. Wir müssen nämlich zusätzlich zu unserem z-Wert von $-1.07565$ auch den positiven z-Wert von $1.07565$ in Betracht ziehen, um Unterschiede in beide Richtungen zu berücksichtigen. Damit verdoppelt sich die Fläche unter der Kurve und somit auch unsere Irrtumswahrscheinlihckeit! Sie beträgt nun also rund 28%. Das könnt ihr in der Grafik unten sehen:
@@ -273,24 +274,29 @@ Die blaue Fläche entspricht $0.14105$, also etwa $14\%$ der Gesamtfläche unter
 ```{r p_value_both, exercise = TRUE}
 # Verteilung visualisieren
 ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6,
-                xlim = c(-3, z)) + 
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6,
-                xlim = c(z*(-1), 3)) +
+  stat_function(
+    fun = dnorm,
+    geom = "area",
+    fill = "steelblue",
+    alpha = 0.6,
+    xlim = c(-3, z)
+  ) +
+  stat_function(
+    fun = dnorm,
+    geom = "area",
+    fill = "steelblue",
+    alpha = 0.6,
+    xlim = c(z * (-1), 3)
+  ) +
   geom_vline(xintercept = z, color = "red") +
-  geom_vline(xintercept = z*(-1), color = "red") +
-  xlim(-3,3) +
-    stat_function(fun = dnorm,
-                geom = "line",
-                xlim = c(z, z*(-1))) +
+  geom_vline(xintercept = z * (-1), color = "red") +
+  xlim(-3, 3) +
+  stat_function(
+    fun = dnorm,
+    geom = "line",
+    xlim = c(z, z * (-1))
+  ) +
   theme_minimal()
-
 ```
 
 Für unseren Hypothesentest bedeutet das folgendes: **Wenn wir die Nullhypothese verwerfen, besteht eine Irrtumswahrscheinlichkeit von 28%.** Dieser Wert wird in der wissenschafltichen Literatur auch häufig das **empirische Signifikanzniveau** genannt. Wenn wir jetzt zusätzlich festlegen, welche Irrtumswahrscheinlichkeit wir bereit sind zu akzeptieren, dann können wir entscheiden, ob wir die Nullhypothese verwerfen. Diese Grenze wird in den Wissenschaften oftmals bei 5% gesetzt, ist aber eine Konvention. Das bedeutet, dass wir die Nullhypothese nur verwerfen, wenn sich eine Irrtumswahrscheinlichkeit unterhalb eines kritischen Wertes, zum Beispiel 5%, ergibt. Im Bild oben wäre dies also ein z-Wert der sich weiter am Rand der Verteilung befindet.
@@ -307,7 +313,7 @@ anteil_pool <- (anteil_a + anteil_b) / 2
 n_a <- 5840
 n_b <- 5640
 
-z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
+z <- (anteil_a - anteil_b) / (sqrt(anteil_pool * (1 - anteil_pool) * ((1 / n_a) + (1 / n_b))))
 print(z)
 ```
 

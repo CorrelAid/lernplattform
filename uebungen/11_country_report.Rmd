@@ -5,7 +5,6 @@ output: html_document
 ---
 
 ```{r}
-
 ```
 
 
@@ -25,11 +24,11 @@ title: `r title`
 ```{r datenimport, include = FALSE}
 # Schritt 2: Daten laden
 ### Daten laden
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 
 # Schritt 3: Daten bereinigen
-# Country name cleaning: 
-  # United Kingdom of Great Britain & Northern Ireland sowie für die USA
+# Country name cleaning:
+# United Kingdom of Great Britain & Northern Ireland sowie für die USA
 plastics_prep <- plastics %>%
   # nur 2019 weil 2020 wegen der Pandemie ein nicht repräsentatives Jahr ist
   filter(year == 2019) %>%
@@ -41,8 +40,8 @@ plastics_prep <- plastics %>%
     ),
     country = str_replace(country, "United States of America", "United States"),
     country = str_to_title(country)
-  ) %>% #um z.B.: ECUADOR etc case ändern
-  #Continent und Country Code anspielen
+  ) %>% # um z.B.: ECUADOR etc case ändern
+  # Continent und Country Code anspielen
   mutate(
     continent = countrycode::countrycode(country, origin = "country.name", destination = "continent"),
     countrycode = countrycode::countrycode(country, origin = "country.name", destination = "iso3c")
@@ -54,9 +53,8 @@ plastics_prep <- plastics %>%
 ```
 
 ```{r}
-country_data <- plastics_prep %>% 
+country_data <- plastics_prep %>%
   filter(country == params$country)
-
 ```
 
 - ideen: 

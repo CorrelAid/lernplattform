@@ -7,7 +7,8 @@ Als Lektüre empfehlen wir die [Publikation](https://www.b-b-e.de/fileadmin/Reda
 Das Recht auf informationelle Selbstbestimmung ist ein Unterfall des verfassungsrechtlich verankerten **allgemeinen Persönlichkeitsrecht**  (Art. 1 Abs. 1 und Art. 2 Abs. 1 GG). Wichtige Rechtsgrundlage ist dafür die **DSGVO** (europäische Datenschutzgrundverordnung), welche am 25. Mai 2018 in Kraft getreten ist. 
 
 ```{r 02_quiz1}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Welche Daten werden von der DSGVO geschützt?",
     answer("Personenbezogene Daten", correct = TRUE),
     answer("Organisations-/Unternehmensdaten"),
@@ -16,15 +17,16 @@ quiz(caption = NULL,
     incorrect = "Leider falsch. Richtig wäre: Personenbezogene Daten. Daten von nicht-natürlichen, also juristischen Personen, wie Vereinen und Unternehmen sind also nicht von der DSGVO geschützt. Hier gelten ggf. das Geschäftsgeheimnisgesetz (GeschGehG) sowie bilateral getroffene Vereinbarungen zur Datenverarbeitung.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
+  )
 )
 ```
 
 Personenbezogene Daten sind **Informationen**, mit denen **natürliche Personen**, also Menschen, **identifiziert** werden (können). 
 ![](images/02dsgvo/personenbezogene-daten.png){#id .class width=100% height=100%}
 ```{r 02_quiz2}
-quiz(caption = NULL,
- question("Nutzt die Definition von personenbezogenen Daten (Art. 4 DSGVO), um die Daten zu identifizieren, die unter den Schutzbereich der DSGVO fallen:",
+quiz(
+  caption = NULL,
+  question("Nutzt die Definition von personenbezogenen Daten (Art. 4 DSGVO), um die Daten zu identifizieren, die unter den Schutzbereich der DSGVO fallen:",
     answer("Name und Vorname", correct = TRUE),
     answer("Privatanschrift", correct = TRUE),
     answer("Ausweis-/Passnummer", correct = TRUE),
@@ -37,9 +39,8 @@ quiz(caption = NULL,
     incorrect = "Leider falsch. Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person (im Folgenden „betroffene Person“) beziehen; als identifizierbar wird eine natürliche Person angesehen, die direkt oder indirekt, insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu einer Kennnummer, zu Standortdaten, zu einer Online-Kennung oder zu einem oder mehreren besonderen Merkmalen, die Ausdruck der physischen, physiologischen, genetischen, psychischen, wirtschaftlichen, kulturellen oder sozialen Identität dieser natürlichen Person sind, identifiziert werden kann (Originalwortlaut Art 4 DSGVO).",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    ),
- 
- question("Eure neu erworbenen Datenkompetenzen möchtet Ihr nutzen, um Daten von Euren digitalen Bildungsangeboten zu analysieren: Ihr zieht Euch einen Export aus der Lernplattform und aus Eurem Videokonferenztool. Könnte es sich hierbei um personenbezogene Daten handeln?",
+  ),
+  question("Eure neu erworbenen Datenkompetenzen möchtet Ihr nutzen, um Daten von Euren digitalen Bildungsangeboten zu analysieren: Ihr zieht Euch einen Export aus der Lernplattform und aus Eurem Videokonferenztool. Könnte es sich hierbei um personenbezogene Daten handeln?",
     answer("Ganz klar ja!"),
     answer("Nein!"),
     answer("Es kommt drauf an, ob eine Anmeldung oder ein Login erforderlich sind oder die Personen über ihre IP Adresse identifizierbar sind.", correct = TRUE),
@@ -47,18 +48,16 @@ quiz(caption = NULL,
     incorrect = "Leider falsch. Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person (im Folgenden „betroffene Person“) beziehen. Kann das durch eine Anmeldung oder die Verwendung von Namen bei Lernplattform und Videokonferenztool der Fall sein? Versuche es einfach nochmal! ",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    ),
- 
- question("Findet die DSGVO Anwendung auf den persönlichen oder familiären Bereich?",
+  ),
+  question("Findet die DSGVO Anwendung auf den persönlichen oder familiären Bereich?",
     answer("Ja"),
     answer("Nein", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch. Die DSGVO gilt nicht für die Verarbeitung von personenbezogenen Daten, die von einer natürlichen Person zur Ausübung ausschließlich persönlicher oder familiärer Tätigkeiten und somit ohne Bezug zu einer beruflichen oder wirtschaftlichen Tätigkeit vorgenommen wird (Erwägungsgrund 18).",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    ),
- 
- question("Was versteht die DSGVO unter Datenverarbeitung? Das Erheben, Erfassen, die Organisation, das Ordnen, die Speicherung, Anpassung, Veränderung, das Auslesen, Abfragen, die Verwendung, Offenlegung, den Abgleich, die Verknüpfung, Einschränkung, Löschung oder Vernichtung...",
+  ),
+  question("Was versteht die DSGVO unter Datenverarbeitung? Das Erheben, Erfassen, die Organisation, das Ordnen, die Speicherung, Anpassung, Veränderung, das Auslesen, Abfragen, die Verwendung, Offenlegung, den Abgleich, die Verknüpfung, Einschränkung, Löschung oder Vernichtung...",
     answer("in automatisierten Vorgängen."),
     answer("in nicht-automatisierten Vorgängen."),
     answer("in automatisierten und nicht-automatisierten Vorgängen.", correct = TRUE),
@@ -66,7 +65,7 @@ quiz(caption = NULL,
     incorrect = "Leider falsch: Sowohl die menschliche als auch maschinelle Datenverarbeitung sind gemeint.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
+  )
 )
 ```
 
@@ -75,8 +74,9 @@ Die Verarbeitung von personenbezogenen Daten unterliegt einem **Verbotsprinzip**
 ![](images/02dsgvo/rechtmaessigkeit.png){#id .class width=100% height=100%}
 
 ```{r 02_quiz3}
-quiz(caption = NULL,
- question("Darfst Du im Verein die Mitgliederdatenbank nutzen, um Monitoringdashboards und Prognosemodelle für die Vereinsentwicklung zu erstellen? Wenn ja, was ist die zugehörige Rechtsgrundlage?",
+quiz(
+  caption = NULL,
+  question("Darfst Du im Verein die Mitgliederdatenbank nutzen, um Monitoringdashboards und Prognosemodelle für die Vereinsentwicklung zu erstellen? Wenn ja, was ist die zugehörige Rechtsgrundlage?",
     answer("Ich darf die Daten für diesen Zweck nicht nutzen."),
     answer("Ich darf sie nutzen, wenn die Mitglieder eingewilligt haben, wobei hier der Zweck und dessen Interpretation entscheidend sind.", correct = TRUE),
     answer("Ich darf sie nutzen, wenn die Verarbeitung der Vertragserfüllung dient, wobei hier der Zweck und dessen Interpretation entscheidend sind.", correct = TRUE),
@@ -85,7 +85,7 @@ quiz(caption = NULL,
     incorrect = "Leider falsch. Lebenswichtiges und öffentliches Interesse und auch eine rechtliche Verpflichtung spielen hier sicher keine Rolle, aber was denkst Du über die anderen drei Erlaubnistatbestände?",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
+  )
 )
 ```
 
@@ -97,16 +97,17 @@ Außerdem müsst Ihr auf die folgenden **Betroffenenrechte** (Art. 15-21 DSGVO) 
 Bei **Erlöschung des Zwecks** müssen personenbezogene Daten gem. §35 BDSG spätestens nach *drei Jahren* gelöscht werden - außer es handelt sich um steuerlich relevante oder Sozialdaten (Frist von 10 Jahren). Alternativ zur Löschung können Daten auch **anonymisiert** werden, indem identifizierende Informationen wie Name, exakte Adresse oder E-Mail gelöscht werden, bis die Kombination von Merkmalsausprägungen wie Wohnort, Beruf und Geschlecht jeweils bei *min. drei Personen* vorhanden ist (oder bei keiner).
 
 ```{r 02_quiz4}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Wie lange dürfen Daten gespeichert werden?",
-      answer("Unbegrenzt"),
-      answer("Bis zur Erlöschung des Zwecks (Prinzip der Zweckbindung)"),
-      answer("Bis zur Erlöschung des Zwecks, allerdings kann eine längere Aufhebung durch konkurrierende Gesetzgebung nötig sein", correct = TRUE),
-      correct = "Richtig! Grundsätzlich gilt bei Erlöschung der Zweckbindung (z.B. Austritt eines Vereinsmitglieds) auch die Pflicht zur Löschung der Daten. Allerdings können der Löschung vertragliche Vereinbarungen und Satzungen entgegenstehen (§35 BDSG). Zudem kann eine eine gesetzliche Pflicht zur längeren Aufhebung bestehen, z.B. Dokumente, die für die Steuer relevant sind (10 Jahre, §257 HGB), und Sozialdaten (10 Jahre, §304 SGB). Bei einem Mitgliedsaustritt müssen deshalb Name, Anschrift, Daten zur Mitgliedschaft im Verein und Daten zur Beitragszahlung über 10 Jahre aufgehoben werden. Ansonsten gilt grundsätzlich die Frist zur Löschung nach drei Jahren.",
-      incorrect = "Leider falsch. Grundsätzlich gilt bei Erlöschung der Zweckbindung (z.B. Austritt eines Vereinsmitglieds) auch die Pflicht zur Löschung der Daten. Allerdings können der Löschung vertragliche Vereinbarungen und Satzungen entgegenstehen (§35 BDSG). Zudem kann eine eine gesetzliche Pflicht zur längeren Aufhebung bestehen, z.B. Dokumente, die für die Steuer relevant sind (10 Jahre, §257 HGB), und Sozialdaten (10 Jahre, §304 SGB). Bei einem Mitgliedsaustritt müssen deshalb Name, Anschrift, Daten zur Mitgliedschaft im Verein und Daten zur Beitragszahlung über 10 Jahre aufgehoben werden. Ansonsten gilt grundsätzlich die Frist zur Löschung nach drei Jahren.",
-      allow_retry = TRUE,
-      try_again_button = "Nochmal versuchen"
-      )
+    answer("Unbegrenzt"),
+    answer("Bis zur Erlöschung des Zwecks (Prinzip der Zweckbindung)"),
+    answer("Bis zur Erlöschung des Zwecks, allerdings kann eine längere Aufhebung durch konkurrierende Gesetzgebung nötig sein", correct = TRUE),
+    correct = "Richtig! Grundsätzlich gilt bei Erlöschung der Zweckbindung (z.B. Austritt eines Vereinsmitglieds) auch die Pflicht zur Löschung der Daten. Allerdings können der Löschung vertragliche Vereinbarungen und Satzungen entgegenstehen (§35 BDSG). Zudem kann eine eine gesetzliche Pflicht zur längeren Aufhebung bestehen, z.B. Dokumente, die für die Steuer relevant sind (10 Jahre, §257 HGB), und Sozialdaten (10 Jahre, §304 SGB). Bei einem Mitgliedsaustritt müssen deshalb Name, Anschrift, Daten zur Mitgliedschaft im Verein und Daten zur Beitragszahlung über 10 Jahre aufgehoben werden. Ansonsten gilt grundsätzlich die Frist zur Löschung nach drei Jahren.",
+    incorrect = "Leider falsch. Grundsätzlich gilt bei Erlöschung der Zweckbindung (z.B. Austritt eines Vereinsmitglieds) auch die Pflicht zur Löschung der Daten. Allerdings können der Löschung vertragliche Vereinbarungen und Satzungen entgegenstehen (§35 BDSG). Zudem kann eine eine gesetzliche Pflicht zur längeren Aufhebung bestehen, z.B. Dokumente, die für die Steuer relevant sind (10 Jahre, §257 HGB), und Sozialdaten (10 Jahre, §304 SGB). Bei einem Mitgliedsaustritt müssen deshalb Name, Anschrift, Daten zur Mitgliedschaft im Verein und Daten zur Beitragszahlung über 10 Jahre aufgehoben werden. Ansonsten gilt grundsätzlich die Frist zur Löschung nach drei Jahren.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
 )
 ```
 
@@ -115,20 +116,21 @@ Am besten veröffentlicht Ihr auf Eurer Webseite Eure **Datenschutzerklärung so
 ![](images/02dsgvo/datenschutzerklaerung.png){#id .class width=100% height=100%}
 
 ```{r 02_quiz5}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Abschließend einmal zusammengefasst: Welche Kernpflichten umfasst die DSGVO?",
-      answer("Rechtmäßigkeit", correct = TRUE),
-      answer("Zweckbindung", correct = TRUE),
-      answer("Datenminimierung", correct = TRUE),
-      answer("Richtigkeit", correct = TRUE),
-      answer("Speicherbegrenzung", correct = TRUE),
-      answer("Vertraulichkeit", correct = TRUE),
-      answer("Rechenschaft", correct = TRUE),
-      correct = "Richtig!",
-      incorrect = "Leider falsch - richtig sind alle sieben.",
-      allow_retry = TRUE,
-      try_again_button = "Nochmal versuchen"
-      )
+    answer("Rechtmäßigkeit", correct = TRUE),
+    answer("Zweckbindung", correct = TRUE),
+    answer("Datenminimierung", correct = TRUE),
+    answer("Richtigkeit", correct = TRUE),
+    answer("Speicherbegrenzung", correct = TRUE),
+    answer("Vertraulichkeit", correct = TRUE),
+    answer("Rechenschaft", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch - richtig sind alle sieben.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
 )
 ```
 
@@ -136,16 +138,16 @@ quiz(caption = NULL,
 #### **Datenschutz in der Praxis**
 
 ```{r 02_quiz6}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Weil Ihr den morgendlichen und bitter benötigten Kaffee über Euren Arbeitslaptop verschüttet, verliert Ihr die Mitgliedsdaten Eures 20 Mitglieder starken Vereins, die Ihr lokal in einer Excel gespeichert hattet. Die Daten sind unwiderruflich verschwunden. „Kein Problem“, denkt Ihr, „für von Kaffee eliminierte Daten bin ich ja nicht haftungspflichtig.“ Ist das richtig?",
-      answer("Ja"),
-      answer("Nein", correct = TRUE),
-      correct = "Richtig! Die Datenpanne (Art. 4 DSGVO) könnt, müsst Ihr aber nicht unebdingt innerhalb der 72h der zuständigen Behörde melden, da das Risiko für Betroffene hier nicht sehr groß ist. Den Vorfall sowie Eure Überlegungen zur Meldepflicht solltet Ihr trotzdem dokumentieren.",
-      incorrect = " Leider falsch! Eure sieben Kernpflichten (Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Datenreduktion, Vertraulichkeit und Rechenschaft) beinhalten gem. Art. 5 DSGVO auch den Grundsatz der Vertraulichkeit. Damit seid Ihr verpflichtet Daten durch dem Risiko angemessene technische und organisatorische Maßnahmen vor Zugriff und Verlust zu sichern. Dass Endgeräte kaputtgehen, ist durchaus zu erwarten. Eine doppelte Datensicherung durch externe, digitale Speicher wie USB oder Cloud-Lösung ist notwendig. Die Datenpanne (Art. 4 DSGVO) könnt, müsst Ihr aber nicht unbedingt innerhalb von 72h der zuständigen Behörde melden, da das Risiko für Betroffene hier nicht sehr groß ist. Den Vorfall sowie Eure Überlegungen zur Meldepflicht solltet Ihr trotzdem dokumentieren.",
-      allow_retry = TRUE,
-      try_again_button = "Nochmal versuchen"
-      ),
-  
+    answer("Ja"),
+    answer("Nein", correct = TRUE),
+    correct = "Richtig! Die Datenpanne (Art. 4 DSGVO) könnt, müsst Ihr aber nicht unebdingt innerhalb der 72h der zuständigen Behörde melden, da das Risiko für Betroffene hier nicht sehr groß ist. Den Vorfall sowie Eure Überlegungen zur Meldepflicht solltet Ihr trotzdem dokumentieren.",
+    incorrect = " Leider falsch! Eure sieben Kernpflichten (Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Datenreduktion, Vertraulichkeit und Rechenschaft) beinhalten gem. Art. 5 DSGVO auch den Grundsatz der Vertraulichkeit. Damit seid Ihr verpflichtet Daten durch dem Risiko angemessene technische und organisatorische Maßnahmen vor Zugriff und Verlust zu sichern. Dass Endgeräte kaputtgehen, ist durchaus zu erwarten. Eine doppelte Datensicherung durch externe, digitale Speicher wie USB oder Cloud-Lösung ist notwendig. Die Datenpanne (Art. 4 DSGVO) könnt, müsst Ihr aber nicht unbedingt innerhalb von 72h der zuständigen Behörde melden, da das Risiko für Betroffene hier nicht sehr groß ist. Den Vorfall sowie Eure Überlegungen zur Meldepflicht solltet Ihr trotzdem dokumentieren.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
   question("Zum Austausch von personenbezogenen Daten nutzt die HR-Abteilung Eures Unternehmens passwortgeschützte Ordnerstrukturen in der Google Cloud. Zugang haben lediglich Mitarbeitende der Personalabteilung. Ist das unbedenklich?",
     answer("Ja"),
     answer("Nein", correct = TRUE),
@@ -153,8 +155,7 @@ quiz(caption = NULL,
     incorrect = " Leider falsch! Es ist zwar lobenswert, dass die hochsensiblen Daten durch Passwörter geschützt werden, aber Google ist ein US-Amerikanischer Anbieter, weshalb mit dem Kippen des Privacy Shields 2020 (Schrems I) das Nutzen von US-Amerikanischen Tools zur Speicherung personenbezogener Daten unzulässig ist. Das ist zwar erstmal eine ziemlich schlechte Nachricht, aber auch wir sind derzeit noch in der Umstellung – und erwarten hier auch Korrekturen und Eingriffe der Gesetzgebenden. Bis dahin nutzen wir – wo möglich – digitale Tools aus der EU oder hosten Alternativen, wie z.B. IDGARD oder eine eigene Instanz von NextCloud.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    ),
-  
+  ),
   question("Zum Abschluss noch der Klassiker: Ihr habt vermutlich eine Vereinswebseite. Sind hier (zustimmungspflichtige) Cookie-Hinweise notwendig?",
     answer("Ja, es ist immer ein Cookie-Hinweis mit expliziter Einwilligung notwendig."),
     answer("Nein, der Cookie-Hinweis ist optional."),
@@ -164,7 +165,7 @@ quiz(caption = NULL,
     incorrect = "Leider falsch! Auch hier kommt es wieder drauf an: während für alle Cookies eine Informationspflicht gilt, benötigen technisch notwendige Cookies im Gegensatz zu allen weiteren Cookies keine explizite Einwilligung.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
+  )
 )
 ```
 
@@ -183,39 +184,38 @@ Einige ethische Fragen solltet Ihr Euch vor und während Eurer Datenprojekte ste
 
 #### **Datenethik in der Praxis**
 ```{r 02_quiz}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Wie könnt Ihr Daten zu Geschlecht und Aussehen sensibel erheben?",
-      answer("Mit Selbstidentifikation mit gängigen Merkmalsausprägungen "),
-      answer("Mit Selbstidentifikation mit einigen Vorschlägen, Opt Out (die Möglichkeit die Frage unbeantwortet zu lassen) und Freitextfeld"),
-      answer("Mit Selbstidentifikation mit einigen Vorschlägen, Opt Out und Freitextfeld sowie Fremdidentifikation (wie andere Menschen den:die Befragte:n wahrnehmen würden)", correct = TRUE),
-      correct = "Richtig!",
-      incorrect = " Leider falsch! Lies doch nochmal unter diesen Links nach: https://nibi.space/geschlechtsabfragen, https://citizensforeurope.org/wp-content/uploads/Broschu%CC%88re_2012-Einzelseiten.pdf",
-      allow_retry = TRUE,
-      try_again_button = "Nochmal versuchen"
-      ),
-
+    answer("Mit Selbstidentifikation mit gängigen Merkmalsausprägungen "),
+    answer("Mit Selbstidentifikation mit einigen Vorschlägen, Opt Out (die Möglichkeit die Frage unbeantwortet zu lassen) und Freitextfeld"),
+    answer("Mit Selbstidentifikation mit einigen Vorschlägen, Opt Out und Freitextfeld sowie Fremdidentifikation (wie andere Menschen den:die Befragte:n wahrnehmen würden)", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = " Leider falsch! Lies doch nochmal unter diesen Links nach: https://nibi.space/geschlechtsabfragen, https://citizensforeurope.org/wp-content/uploads/Broschu%CC%88re_2012-Einzelseiten.pdf",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
   question("Eurer Projektpartner bittet Euch bei der geplanten Datenanalyse zur Polizeilichen Kriminalitätsstatistik (PKS) vorhandene demographische Merkmalen (Geschlecht und Nationalität) zu berücksichtigen. Ihr findet das Ganze aus ethischer Perspektive bedenklich  – zu Recht?",
-      answer("Ja", correct = TRUE),
-      answer("Nein"),
-      correct = "Richtig! Die Polizeiliche Kriminalstatistik enthält viele spannende Daten – allerdings kann die geplante Analyse – falls statistische signifikante Beobachtungen gemacht werden - leicht politisiert werden, z.B. um für die Ausweisung von Migrant:innen zu
+    answer("Ja", correct = TRUE),
+    answer("Nein"),
+    correct = "Richtig! Die Polizeiliche Kriminalstatistik enthält viele spannende Daten – allerdings kann die geplante Analyse – falls statistische signifikante Beobachtungen gemacht werden - leicht politisiert werden, z.B. um für die Ausweisung von Migrant:innen zu
   werben. Besonders kritisch ist hier auch, dass die Polizeistatistik neben den genannten Merkmalen wenig Informationen zu sonstigen demographischen Merkmalen enthält, weshalb sog. Confounding Variables (zu dt. Störfaktoren) wie Alter und Einkommen nicht identifiziert werden können.",
-      incorrect = "Leider falsch! Die Polizeiliche Kriminalstatistik enthält viele spannende Daten – allerdings kann die geplante Analyse – falls statistische signifikante Beobachtungen gemacht werden - leicht politisiert werden, z.B. um für die Ausweisung von Migrant:innen zu
+    incorrect = "Leider falsch! Die Polizeiliche Kriminalstatistik enthält viele spannende Daten – allerdings kann die geplante Analyse – falls statistische signifikante Beobachtungen gemacht werden - leicht politisiert werden, z.B. um für die Ausweisung von Migrant:innen zu
   werben. Besonders kritisch ist hier auch, dass die Polizeistatistik neben den genannten Merkmalen wenig Informationen zu sonstigen demographischen Merkmalen enthält, weshalb sog. Confounding Variables (zu dt. Störfaktoren) wie Alter und Einkommen nicht identifiziert werden können.",
-      allow_retry = TRUE,
-      try_again_button = "Nochmal versuchen"
-      ),
-
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
   question("Von welchen Kriterien könnt Ihr solche ethischen Überlegungen zu Datenanalysen leiten lassen?",
     answer("Ich kann überlegen, ob die Datenanalyse zu Diskriminierung einer Politisierung des Themas und/oder zur strukturellen Benachteiligung von Gruppen führen könnte", correct = TRUE),
-  answer("Ich kann evaluieren, ob die Datengrundlage überhaupt ausreicht, um den Sachverhalt wissenschaftlich zu bewerten, und das auch sinnvoll ist", correct = TRUE),
-  answer("Ich kann prüfen, ob die Daten repräsentativ oder eventuell (historisch) verzerrt sind", correct = TRUE),
-  answer("Ich kann mir bei der Programmierung von Algorithmen Gedanken darüber machen, ob die Entscheidung überhaupt maschinell und automatisiert erfolgen sollte", correct = TRUE),
-  answer("Ich kann bei der Programmierung von Algorithmen  darüber nachdenken, ob Entscheidungen durch Algorithmen auf Basis von sozio-demographischen Merkmalen und deren Proxies im Anwendungsfall überhaupt fair sind", correct = TRUE),
-  correct = "Richtig! Darüber hinaus gibt es aber noch wesentlich mehr Möglichkeiten. Legt idealerweise selbst einen Katalog an, der Euch als Entscheidungshilfe dient.",
-      incorrect = " Leider falsch! Zumindest die genannten vier sollten alle angewandt werden. Darüber hinaus gibt es aber noch wesentlich mehr Möglichkeiten. Legt idealerweise selbst einen Katalog an, der Euch als Entscheidungshilfe dient.",
-      allow_retry = TRUE,
-      try_again_button = "Nochmal versuchen"
-    )
+    answer("Ich kann evaluieren, ob die Datengrundlage überhaupt ausreicht, um den Sachverhalt wissenschaftlich zu bewerten, und das auch sinnvoll ist", correct = TRUE),
+    answer("Ich kann prüfen, ob die Daten repräsentativ oder eventuell (historisch) verzerrt sind", correct = TRUE),
+    answer("Ich kann mir bei der Programmierung von Algorithmen Gedanken darüber machen, ob die Entscheidung überhaupt maschinell und automatisiert erfolgen sollte", correct = TRUE),
+    answer("Ich kann bei der Programmierung von Algorithmen  darüber nachdenken, ob Entscheidungen durch Algorithmen auf Basis von sozio-demographischen Merkmalen und deren Proxies im Anwendungsfall überhaupt fair sind", correct = TRUE),
+    correct = "Richtig! Darüber hinaus gibt es aber noch wesentlich mehr Möglichkeiten. Legt idealerweise selbst einen Katalog an, der Euch als Entscheidungshilfe dient.",
+    incorrect = " Leider falsch! Zumindest die genannten vier sollten alle angewandt werden. Darüber hinaus gibt es aber noch wesentlich mehr Möglichkeiten. Legt idealerweise selbst einen Katalog an, der Euch als Entscheidungshilfe dient.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
 )
 ```
 
@@ -228,8 +228,10 @@ liste <- list("Text", 20, Sys.Date())
 class(liste)
 
 # In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert (wie in einer Excel Tabelle). Jede Spalte kann dabei nur Werte des gleichen Datentyps enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
-df <- data.frame(Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
-                 Variable2_string = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
+df <- data.frame(
+  Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
+  Variable2_string = c("Text", "noch mehr Text", NA)
+) # der letzte Wert von Variable2 fehlt
 
 # Euer Code hier
 
@@ -243,8 +245,10 @@ liste <- list("Text", 20, Sys.Date())
 class(liste)
 
 # In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert (wie in einer Excel Tabelle). Jede Spalte kann dabei nur Werte des gleichen Datentyps enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
-df <- data.frame(Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
-                 Variable2_string = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
+df <- data.frame(
+  Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
+  Variable2_string = c("Text", "noch mehr Text", NA)
+) # der letzte Wert von Variable2 fehlt
 
 class(df)
 

@@ -79,7 +79,8 @@ initiale_anfrage$url
 ```
 
 ```{r quiz-route, exercise = FALSE, echo=FALSE}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Was ist die Basis-URL der Anfrage?",
     answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/Data"),
     answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/"),
@@ -87,7 +88,8 @@ quiz(caption = NULL,
     correct = "Richtig!",
     incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
     allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"),
+    try_again_button = "Nochmal versuchen"
+  ),
   question("Was ist die Route der Anfrage?",
     answer("v1/sdg/Series/Data"),
     answer("SDGAPI/v1/sdg/Series/Data/", correct = TRUE),
@@ -172,10 +174,10 @@ list_of_dataframes <- purrr::map(pages, function(page) {
   )
   # Von jeder Seite die Daten laden
   waste_list <- httr::content(antwort)$data
-  
+
   # Generierung eines Dataframes mit den ausgewählten Variablen
-  waste_geo <- waste_list %>% 
-    purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) 
+  waste_geo <- waste_list %>%
+    purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value"))
   return(waste_geo)
 })
 
@@ -191,11 +193,13 @@ Hierzu gibt es viele verschiedene Modelle. Im einfachsten Fall erstellt ihr euch
 ```{r authorization-ex, exercise=FALSE, eval=FALSE, echo=TRUE}
 # Liest die Umgebungsvariable API_TOKEN und speichert sie im Objekt Token
 basis_url <- "https://beispielapi.org/"
-token <- Sys.getenv("API_TOKEN") 
+token <- Sys.getenv("API_TOKEN")
 
 # Füge unserer Anfrage einen Autorisierungs-Header hinzu, sodass die API weiß, dass wir autorisiert sind
-antwort <- httr::GET(basis_url, 
-                 httr::add_headers(Authorization = paste("Authorization", token)))
+antwort <- httr::GET(
+  basis_url,
+  httr::add_headers(Authorization = paste("Authorization", token))
+)
 ```
 Die Details zur Authentifizierung sind von API zu API unterschiedlich. Die genauen Instruktionen solltet ihr in der jeweiligen API-Dokumentation finden. 
 

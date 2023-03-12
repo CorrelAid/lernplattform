@@ -39,8 +39,8 @@ options(htmltools.dir.version = FALSE)
 style_mono_accent(
   base_color = "#272822",
   header_font_google = google_font("Roboto"),
-  text_font_google   = google_font("Roboto", "300", "300i"),
-  code_font_google   = google_font("Fira Mono")
+  text_font_google = google_font("Roboto", "300", "300i"),
+  code_font_google = google_font("Fira Mono")
 )
 ```
 
@@ -62,11 +62,11 @@ community <- read.csv("data/community_perspective.csv")
 
 ```{r my_plot, include = FALSE}
 # Initialisieren dann `ggplot2`
-  ggplot(data = community) + #BREAK
+ggplot(data = community) + # BREAK
   # Fügen die volunteers hinzu
-  aes(x = volunteers) + #BREAK
+  aes(x = volunteers) + # BREAK
   # Erstellen unser Histogramm
-  geom_histogram() + #BREAK
+  geom_histogram() + # BREAK
   # Und ergänzen unseren facet_wrap
   facet_wrap(~continent)
 ```

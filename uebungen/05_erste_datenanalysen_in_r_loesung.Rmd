@@ -8,9 +8,9 @@ output: pdf_document
 ---
 
 ```{r}
-#knit_hooks$set(inline = function(x) {
+# knit_hooks$set(inline = function(x) {
 #  prettyNum(x, big.mark=" ")
-#})
+# })
 ```
 
 ### Übung 1
@@ -47,15 +47,14 @@ library(ggbeeswarm)
 # Schritt 2: Daten laden
 ```{r daten_laden}
 ### Community Datensatz laden
-community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
+community <- rio::import(here::here("daten/bffp2019_community_by_country.csv"))
 
 ### Audit Datensatz laden
-audit <- rio::import(here::here('daten/bffp2019_audit_by_country_and_company.csv'))
+audit <- rio::import(here::here("daten/bffp2019_audit_by_country_and_company.csv"))
 ```
 
 # Schritt 3: Daten bereinigen (hier für Euch schon erledigt)
 ```{r daten_bereinigen}
-
 ```
 
 # Schritt 4: Übersicht verschaffen
@@ -71,20 +70,18 @@ dplyr::glimpse(audit)
 
 Antwort zu Frage 1a
 ```{r uebung 1 a}
-
 community %>%
   summarise("Plastikstücke insgesamt" = sum(n_pieces))
-  
 ```
 
 Antwort zu Frage 1b
 ```{r uebung 1 b }
-
-community %>% 
+community %>%
   group_by(continent) %>%
-  summarise(median=median(n_pieces),
-            mean=mean(n_pieces))
-
+  summarise(
+    median = median(n_pieces),
+    mean = mean(n_pieces)
+  )
 ```
 
 
@@ -96,13 +93,14 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
-    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ...",
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() + # Festlegung des Layout-Designs  
-  theme(legend.position="none") + # Ausblenden der Legende
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs
+  theme(legend.position = "none") + # Ausblenden der Legende
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
@@ -117,13 +115,14 @@ ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent))
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community$n_volunteers) + 2 * IQR(community$n_volunteers))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
-    title = "Die Anzahl der Freiwilligen von 'Break Free From Plastic' ..." ,
+    title = "Die Anzahl der Freiwilligen von 'Break Free From Plastic' ...",
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl Freiwillige",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() + # Festlegung des Layout-Designs  
-  theme(legend.position="none") + # Ausblenden der Legende
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs
+  theme(legend.position = "none") + # Ausblenden der Legende
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 ### Übung 5:
@@ -134,16 +133,18 @@ Interpretiert die Graphik. Was könnt Ihr ablesen?
 # Tabelle mit statistischen Kennzahlen
 community %>%
   group_by("Kontinent" = continent) %>%
-  summarise("Anzahl Beobachtungen" = n(),
-         "Anzahl Events" = sum(n_events),
-         "Anzahl Freiwillige" = sum(n_volunteers),
-         "Anzahl Plastikstücke" = sum(n_pieces),
-         "Mittelwert" = mean(n_pieces),
-         "Standardabweichung" = sd(n_pieces),
-         "Varianz" = var(n_pieces),
-         "Median" = median(n_pieces),
-         "Quartil (25%)" = quantile(n_pieces, .25),
-         "Quartil (75%)" = quantile(n_pieces, .75),
-         "Interquartilsabstand (IQR)" = IQR(n_pieces),
-         "Spannweite" = max(n_pieces) - min(n_pieces))
+  summarise(
+    "Anzahl Beobachtungen" = n(),
+    "Anzahl Events" = sum(n_events),
+    "Anzahl Freiwillige" = sum(n_volunteers),
+    "Anzahl Plastikstücke" = sum(n_pieces),
+    "Mittelwert" = mean(n_pieces),
+    "Standardabweichung" = sd(n_pieces),
+    "Varianz" = var(n_pieces),
+    "Median" = median(n_pieces),
+    "Quartil (25%)" = quantile(n_pieces, .25),
+    "Quartil (75%)" = quantile(n_pieces, .75),
+    "Interquartilsabstand (IQR)" = IQR(n_pieces),
+    "Spannweite" = max(n_pieces) - min(n_pieces)
+  )
 ```

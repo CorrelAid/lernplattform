@@ -54,7 +54,8 @@ library(ggplot2)
 
 ### **Quiz**
 ```{r quiz_ersteanalyseninr}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Welche Aussagen sind wahr?",
     answer("Es ist ausreichend statistische Kennzahlen zu berechnen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
     answer("Es sind ausreichend Visualisierungen zu erstellen, um Aussagen über die Bedeutung erhobener Daten zu treffen."),
@@ -131,7 +132,8 @@ dplyr::glimpse(community)
 ```
 
 ```{r quiz_kurzstatistik}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question(
     "Wie viele Variablen hat der `community`-Datensatz?",
     answer("Das kann man anhand des Outputs nicht sagen."),
@@ -144,7 +146,6 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ),
-  
   question(
     "Welche Variablen gibt die Anzahl an gesammelten Plastikstücken an?",
     answer("Das kann man anhand des Outputs nicht sagen."),
@@ -156,8 +157,8 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
-    )
   )
+)
 ```
 
 Wir sehen, dass die Variablen, die Spalten in unserem Datensatz, unterschiedliche Formate haben. `continent` und `country` haben die Class "character", weil sie aus Text/ Buchstaben bestehen. Statistisch gesehen sind sie **nominal skalierte** Variablen, da sie Kategorien sind, ohne Ranking und ohne numerischen Wert. Alle anderen Variablen `n_...` sind **metrisch skalierte** Variablen. Wir können sie der Größe nach sortieren und mit ihnen ganz natürlich rechnen. Zwar nicht in unserem Datensatz aber zur Vollständigkeit: es gibt auch noch **ordinal skalierte** Variablen, z.B. Schulnoten, diese haben eine Rangreihenfolge, die Abstände zwischen den Rängen können wir aber nicht sinnvoll interpretieren. Es ist wichtig sich dieser Skalenniveaus bewusst zu sein, um die richtigen statistischen Kennzahlen für eine Variable zu finden. 
@@ -188,7 +189,6 @@ quiz(
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ),
-  
   question(
     "Die Spannweite gibt die Differenz zwischen dem größten und dem kleinsten Wert einer Variable an. Wie plausibel findet ihr die Spannweite der Variable n_pieces?",
     answer("Das kann man anhand des Outputs nicht sagen."),
@@ -200,8 +200,8 @@ quiz(
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
-    )
   )
+)
 ```
 
 Auch die Gesamtanzahl an gesammelten Plastikstücken, Events und Freiwilligen können wir bestimmen:
@@ -222,20 +222,21 @@ Erstellen wir zur Betrachtung der Kontinente nun ein Punktediagramm (*engl. Scat
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
   ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
   labs(
-    title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ...",
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community)} \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() + # Festlegung des Layout-Designs  
-  theme(legend.position="none") + # Ausblenden der Legende
+    caption = glue::glue("n = {nrow(community)} \nDatenquelle: TidyTuesday und BFFP")
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs
+  theme(legend.position = "none") + # Ausblenden der Legende
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 ```{r quiz_scatterplot}
-quiz(caption = NULL,
-     
-question(
+quiz(
+  caption = NULL,
+  question(
     "In welchen Kontinenten beobachten wir extreme Werte, sogenannte 'Ausreißer'?",
     answer("Afrika und Amerika"),
     answer("Afrika und Europa"),
@@ -247,8 +248,7 @@ question(
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ),
-
-    question(
+  question(
     "Aufsteigend von klein nach groß, wie schätzt ihr die Spannweite der Plastikstückzahl über die Kontinente hinweg ein?",
     answer("Ozeanien, Afrika, Amerika, Europa, Asien"),
     answer("Ozeanien, Europa, Amerika, Afrika, Asien", correct = TRUE),
@@ -269,26 +269,30 @@ Fügen wir nun das **arithmetische Mittel pro Kontinent** (als Dreieck gekennzei
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
   ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen
   # Mittelwert hinzufügen
-  geom_point(data = community %>% 
+  geom_point(
+    data = community %>%
       # Berechnung der Mittelwerte pro Kontinent
-      dplyr::group_by(continent) %>% 
-      dplyr::summarise(mean = mean(n_pieces)), 
-      # Zuordnung der Mittelwerte zu der gewünschten Darstellungsform
-      mapping = aes(x = continent, y = mean), 
-      size = 3, color = "#366978", shape = 17) + 
+      dplyr::group_by(continent) %>%
+      dplyr::summarise(mean = mean(n_pieces)),
+    # Zuordnung der Mittelwerte zu der gewünschten Darstellungsform
+    mapping = aes(x = continent, y = mean),
+    size = 3, color = "#366978", shape = 17
+  ) +
   labs(
-    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ...",
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() + # Festlegung des Layout-Designs  
-  theme(legend.position="none") + # Ausblenden der Legende
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs
+  theme(legend.position = "none") + # Ausblenden der Legende
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 ```{r quiz_Mittelwert}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question(
     "Wie gut bringt der Mittelwert die Verteilung der in den verschiedenen Ländern gesammelten Plastikstücken auf den Punkt?",
     answer("Gut: er ist einfach zu interpretieren"),
@@ -300,8 +304,8 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
-    )
   )
+)
 ```
 
 #### Häufige Fehler bei der Betrachtung von statistischen Kennzahlen
@@ -311,24 +315,27 @@ Obwohl er das wohl am häufigsten genutzte statistische Maß ist: Das arithmetis
 # Tabelle mit statistischen Kennzahlen
 community %>%
   group_by("Kontinent" = continent) %>%
-  summarise("Anzahl Beobachtungen" = n(),
-         "Anzahl Events" = sum(n_events),
-         "Anzahl Freiwillige" = sum(n_volunteers),
-         "Anzahl Plastikstücke" = sum(n_pieces),
-         "Mittelwert" = mean(n_pieces),
-         "Standardabweichung" = sd(n_pieces),
-         "Varianz" = var(n_pieces),
-         "Median" = median(n_pieces),
-         "Quartil (25%)" = quantile(n_pieces, .25),
-         "Quartil (75%)" = quantile(n_pieces, .75),
-         "Interquartilsabstand (IQR)" = IQR(n_pieces),
-         "Spannweite" = max(n_pieces) - min(n_pieces))
+  summarise(
+    "Anzahl Beobachtungen" = n(),
+    "Anzahl Events" = sum(n_events),
+    "Anzahl Freiwillige" = sum(n_volunteers),
+    "Anzahl Plastikstücke" = sum(n_pieces),
+    "Mittelwert" = mean(n_pieces),
+    "Standardabweichung" = sd(n_pieces),
+    "Varianz" = var(n_pieces),
+    "Median" = median(n_pieces),
+    "Quartil (25%)" = quantile(n_pieces, .25),
+    "Quartil (75%)" = quantile(n_pieces, .75),
+    "Interquartilsabstand (IQR)" = IQR(n_pieces),
+    "Spannweite" = max(n_pieces) - min(n_pieces)
+  )
 ```
 
 Varianz und Standardabweichung geben die **Streuung um den Mittelwert** an, wobei die Standardabweichung  leichter zu interpretieren ist, da sie die **gleiche Einheit** wie unsere Variable (also ein Plastikstück) hat. Hohe Werte können auf eine weit gestreute Verteilung aber auch auf die Existenz von Ausreißern hinweisen. Das solltet Ihr unbedingt immer überprüfen! Für Asien ist die Standardabweichung mit 29424 doppelt so groß wie der Mittelwert. Dies liegt in diesem Fall an den Ausreißern, die wir bereits in der Visualisierung sehen konnten.
 
 ```{r quiz_standardabweichung}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Warum gibt R für die Standardabweichung für Ozeanien (eng. Oceania) 'NA' aus?",
     answer("Weil keine Plastikstücke gefunden wurden."),
     answer("Weil Ozeanien nur drei Stück Plastik registriert hat."),
@@ -359,21 +366,23 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
   coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
   labs(
-    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ...",
     subtitle = "... unterscheidet sich nach Kontinent.",
     y = "Anzahl gefundener Plastikstücke",
     x = "Kontinent",
-    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
-  theme_minimal() + # Festlegung des Layout-Designs  
-  theme(legend.position="none") + # Ausblenden der Legende
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs
+  theme(legend.position = "none") + # Ausblenden der Legende
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
 Die Außenkanten der Box sind das 25%- und 75%-Quantil. Die Länge der Box gibt den **Interquartilsabstand** (IQR) an und enthält **50% der Beobachtungen**. Der Strich innerhalb der Box markiert den **Median**. Die **"Antennen" des Boxplots** (engl.: whiskers) erweitern die Box um das 1,5-fache des Interquartilsabstand. Alle Punkte, die außerhalb der Whisker liegen, sind Ausreißer. 
 
 ```{r quantile}
-quiz(caption = NULL,
- question("Was trifft nicht auf das 50%-Quantil zu?",
+quiz(
+  caption = NULL,
+  question("Was trifft nicht auf das 50%-Quantil zu?",
     answer("Auch als Median bekannt."),
     answer("Nicht so sensibel Ausreißern gegenüber wie das arithmetische Mittel."),
     answer("Entspricht stets dem arithmetischem Mittel.", correct = TRUE),
@@ -384,8 +393,7 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ),
- 
- question("Was trifft auf Boxplots zu?",
+  question("Was trifft auf Boxplots zu?",
     answer("Wir können daraus den Mittelwert ablesen."),
     answer("Alle Beobachtungen liegen innerhalb der 'Box'."),
     answer("Sie fassen 5 Punkte einer Verteilung zusammen.", correct = TRUE),
@@ -396,7 +404,6 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ),
- 
   question("Was sind die fünf Punkte einer Verteilung, welche im Boxplot immer dargestellt werden?",
     answer("Minimum", correct = TRUE),
     answer("25%-Quantil", correct = TRUE),
@@ -411,7 +418,6 @@ quiz(caption = NULL,
     random_answer_order = TRUE
   )
 )
-
 ```
 
 Fassen wir kurz zusammen: Wir wissen nun, dass im Datensatz einige Ausreißer enthalten sind. Daher sollten wir in der statistischen Zusammenfassung den Median und nicht das arithmetische Mittel nutzen. Außerdem empfiehlt sich bei Achsenabschnitten in graphischen Darstellungen die extremen Werte auszuklammern, um die Graphiken leserlich zu halten. 
@@ -424,18 +430,19 @@ Bisher haben wir uns vor allem der **univariaten** (= eine Variable) Verteilung 
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(n_events, n_pieces, label = country)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(seed = 3), size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe
-  geom_vline(xintercept=mean(community$n_events), color= "darkgray") +
-  geom_hline(yintercept=mean(community$n_pieces), color= "darkgray") +
-  geom_line(stat="smooth", method = "lm", colour = "darkred", alpha= 0.5, size=1.5) + # Trendlinie hinzufügen
-  #stat_smooth(colour = "darkred", method = "lm", alpha=0.6) + # Trendlinie hinzufügen
+  geom_vline(xintercept = mean(community$n_events), color = "darkgray") +
+  geom_hline(yintercept = mean(community$n_pieces), color = "darkgray") +
+  geom_line(stat = "smooth", method = "lm", colour = "darkred", alpha = 0.5, size = 1.5) + # Trendlinie hinzufügen
+  # stat_smooth(colour = "darkred", method = "lm", alpha=0.6) + # Trendlinie hinzufügen
   coord_cartesian(xlim = c(0, median(community$n_events) + 2 * IQR(community$n_events)), ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Interquartilabstand
-  geom_text(size = 2) + 
+  geom_text(size = 2) +
   labs(
-    title = "Anzahl gesammelter Plastiksstücke bei 'Break Free From Plastic' ..." ,
+    title = "Anzahl gesammelter Plastiksstücke bei 'Break Free From Plastic' ...",
     subtitle = "... in Abhängigkeit von der Eventanzahl.",
     x = "Events",
     y = "Anzahl gefundener Plastikstücke",
-    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() # Festlegung des Layout-Designs
 ```
 
@@ -449,9 +456,9 @@ tabelle <- "
 
 Wert:           | Interpretation:
 ----------------|-------------------------
-0 ≤ r ≤  0,3    | schwache Korrelation     
-0,3 < r ≤ 0,7   | moderate Korrelation 
-0,7 < r ≤ 1     | starke Korrelation 
+0 ≤ r ≤  0,3    | schwache Korrelation
+0,3 < r ≤ 0,7   | moderate Korrelation
+0,7 < r ≤ 1     | starke Korrelation
 "
 cat(tabelle)
 ```
@@ -459,19 +466,19 @@ cat(tabelle)
 Er ist zwar positiv, aber sehr nah bei Null. Die Trendlinie im Graphen ist ebenso nahezu waagerecht. 
 
 ```{r scatterplot_interpretation}
-quiz(caption = NULL,
+quiz(
+  caption = NULL,
   question("Welche Art Zusammenhang vermutet ihr?",
     answer("eindeutig kein Zusammenhang"),
     answer("eindeutig negativ"),
     answer("eindeutig positiv"),
-    answer("Das kann nicht aus dem Schaubild nicht eindeutig ablesen." , correct = TRUE),
+    answer("Das kann nicht aus dem Schaubild nicht eindeutig ablesen.", correct = TRUE),
     correct = "Richtig!",
     incorrect = "Leider falsch: Mit Augenmaß ist der Zusammenhang nicht klar ersichtlich.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen",
     random_answer_order = TRUE
   ),
-  
   question(
     "Welche Anzahl an Events beobachten wir am meisten?",
     answer("4"),
@@ -482,7 +489,7 @@ quiz(caption = NULL,
     incorrect = "Leider falsch: Die meisten Länder haben genau ein Event veranstaltet.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
+  )
 )
 ```
 
@@ -500,17 +507,18 @@ cor(community$n_pieces, community$n_volunteers)
 # Optional: Erstellung eines Punktediagramms mit der Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(n_volunteers, n_pieces, label = country)) + # Initialisierung des ggplots mit Variablen
   geom_point(position = position_jitter(seed = 3), size = 3, alpha = 0.5, color = "darkgrey") + # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Positionierung, Punktegröße, Transparenz und Farbe
-  geom_vline(xintercept=mean(community$n_volunteers), color= "darkgray") +
-  geom_hline(yintercept=mean(community$n_pieces), color= "darkgray") +
-  geom_line(stat="smooth", method = "lm", colour = "darkred", alpha= 0.5, size=1.5) + # Trendlinie hinzufügen
+  geom_vline(xintercept = mean(community$n_volunteers), color = "darkgray") +
+  geom_hline(yintercept = mean(community$n_pieces), color = "darkgray") +
+  geom_line(stat = "smooth", method = "lm", colour = "darkred", alpha = 0.5, size = 1.5) + # Trendlinie hinzufügen
   coord_cartesian(xlim = c(0, median(community$n_volunteers) + 3 * IQR(community$n_volunteers)), ylim = c(0, median(community$n_pieces) + 3 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Interquartilabstand
-  geom_text(size = 2) + 
+  geom_text(size = 2) +
   labs(
-    title = "Anzahl gesammelter Plastiksstücke bei 'Break Free From Plastic' ..." ,
+    title = "Anzahl gesammelter Plastiksstücke bei 'Break Free From Plastic' ...",
     subtitle = "... in Abhängigkeit von der Freiwilligenzahl pro Land",
     x = "Anzahl Freiwillige",
     y = "Anzahl gefundener Plastikstücke",
-    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")
+  ) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
   theme_minimal() # Festlegung des Layout-Designs
 ```
 

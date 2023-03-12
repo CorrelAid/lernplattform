@@ -19,10 +19,10 @@ library(dplyr)
 library(httr)
 library(purrr)
 
-# Achtung: SDGsR muss über diesen Befehl installiert werden - 
+# Achtung: SDGsR muss über diesen Befehl installiert werden -
 # devtools::install_github("DrMattG/SDGsR", dependencies = TRUE)
 # Fall es dabei Fehler gibt, installiert getrennt "conquer", "RcppArmadillo" und "corrrplot"
-# Führt dann: devtools::install_github("DrMattG/SDGsR") aus 
+# Führt dann: devtools::install_github("DrMattG/SDGsR") aus
 ```
 
 # Schritt 2: Daten laden
@@ -55,10 +55,10 @@ Ladet den "Plastics"-Datensatz über einen **Hyperlink** [Link](https://raw.gith
 Da es sich um eine CSV-Datei handelt, können wir entweder das `rio`-Package mit der Funktion `import()` oder das `readr`-Package mit der Funktion `read_csv()` nutzen. Bei beiden Packages funktioniert das Einlesen über den Hyperlink.
 ```{r uebung2loesung}
 ### Daten mit rio laden
-plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 
 ### Daten mit readr laden
-plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+plastics <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 ```
 
 ### Übung 3:
@@ -72,11 +72,11 @@ Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.
 # Daten der World Bank mit R-Package ziehen
 WDI::WDI(
   country = "all", # Auswahl der Länder
-  indicator = "EN.MAM.THRD.NO",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  indicator = "EN.MAM.THRD.NO", # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
   start = 2018, # Auswahl Zeithorizont: Anfang
   end = 2018, # Auswahl Zeithorizont: Ende
   language = "en" # Sprachauswahl
-) 
+)
 ```
 
 ### Übung 4: 
@@ -104,7 +104,7 @@ basis_url <- "https://unstats.un.org/" # Basis-URL
 initiale_anfrage <- httr::GET( # Initialisierung
   basis_url,
   path = "/SDGAPI/v1/sdg/Series/Data", # Route
-  query = list( #Datenabfrage
+  query = list( # Datenabfrage
     seriescode = "EN_MWT_RCYV" # Indikatorcode
   )
 )
@@ -124,8 +124,8 @@ total_pages <- content$totalPages
 pages <- c(1:total_pages)
 
 
-## Schritt 4: Testweise den Inhalt der initialen Response entpacken 
-#Inhalt der Datenabfrage speichern
+## Schritt 4: Testweise den Inhalt der initialen Response entpacken
+# Inhalt der Datenabfrage speichern
 recycling_data_test <- httr::content(initiale_anfrage)
 
 # Für verschiedene Länder erhalten wir also zu verschiedenen Jahren Ihre Recyclingquoten (Tipp: Schaut Euch ein Element genauer an, um die Variablen zu identifizieren)
@@ -152,10 +152,10 @@ list_of_dataframes <- purrr::map(pages, function(page) {
   )
   # Von jeder Seite die Daten laden
   recycling_list <- httr::content(antwort)$data
-  
+
   # Generierung eines Dataframes mit den ausgewählten Variablen
-  recycling_geo <- recycling_list %>% 
-    purrr::map_df(`[`, c("geoAreaName", "timePeriodStart", "value")) 
+  recycling_geo <- recycling_list %>%
+    purrr::map_df(`[`, c("geoAreaName", "timePeriodStart", "value"))
   return(recycling_geo)
 })
 

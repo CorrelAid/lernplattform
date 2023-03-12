@@ -9,7 +9,7 @@ inititalrequest <- httr::GET("https://correlaid.shinyapps.io/lernplattform")$sta
 # Statuscodes, die mit 4XX oder 5XX beginnen, weisen auf ernsthafte Fehler hin. Da wollen wir sofort benachrichtigt werden!
 if (isTRUE(grep("^(4)|(5)[0-9]*", as.character(inititalrequest)))) {
   # Wirf einen Fehler
-  quit(status=1)
+  quit(status = 1)
 } else {
   # Tu nichts
 }
@@ -21,9 +21,9 @@ Sys.sleep(120)
 app_state <- httr::GET("https://correlaid.shinyapps.io/lernplattform")$status
 
 # Der Statuscode 200 bedeutet "ok" - eine Übersicht findet Ihr hier: https://umbraco.com/knowledge-base/http-status-codes/
-if(app_state != 200) {
+if (app_state != 200) {
   # Wirf einen Fehler
-  quit(status=1)
+  quit(status = 1)
 } else {
   # Tu nichts
 }
@@ -38,21 +38,21 @@ if(app_state != 200) {
 # library(shinytest)
 
 # Verbindung herstellen
-#app <- shinytest::ShinyDriver$new("https://correlaid.shinyapps.io/lernplattform/")
-#app_state <- app$.__enclos_env__$private$state
-#if (app_state == "running"){
-  #quit(status=1)
-#} else {
-  #quit(status=1)
-#}
+# app <- shinytest::ShinyDriver$new("https://correlaid.shinyapps.io/lernplattform/")
+# app_state <- app$.__enclos_env__$private$state
+# if (app_state == "running"){
+# quit(status=1)
+# } else {
+# quit(status=1)
+# }
 
 # Textbox finden
-#app$findElement(xpath = '/html/body/div[2]/div/div[1]/div/div[1]/div[1]/div[1]/div[2]/div/div[2]/div')$click()
+# app$findElement(xpath = '/html/body/div[2]/div/div[1]/div/div[1]/div[1]/div[1]/div[2]/div/div[2]/div')$click()
 
 # Code ausführen klicken
-#app$findElement(xpath = '/html/body/div[2]/div/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/a/span')$click()
+# app$findElement(xpath = '/html/body/div[2]/div/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/a/span')$click()
 
-#Sys.sleep(10)
+# Sys.sleep(10)
 
 # Response finden
-#app$findElement(xpath = '/html/body/div[2]/div/div[1]/div/div[1]/div[1]/div[2]/div/pre/code')
+# app$findElement(xpath = '/html/body/div[2]/div/div[1]/div/div[1]/div[1]/div[2]/div/pre/code')

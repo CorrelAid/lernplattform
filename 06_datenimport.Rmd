@@ -31,23 +31,23 @@ tabelle <- "
 
 Dateiformat:  | Dateistruktur:                                                    | Endung:
 --------------|-------------------------------------------------------------------|---------------------------------
-CSV-Datei     | tabellarisch-strukturierte Textdatei                              | .csv 
-Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx     
+CSV-Datei     | tabellarisch-strukturierte Textdatei                              | .csv
+Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx
 GEOJSON       | textbasiertes, strukturiertes Format  mit geographischen Daten    | .geojson
-JSON          | textbasiertes, strukturiertes Format                              | .json (zumeist aus API-Requests) 
-SAS           | SAS-Export, der nicht in allen Anwendungen geöffnet werden kann   | .sas 
+JSON          | textbasiertes, strukturiertes Format                              | .json (zumeist aus API-Requests)
+SAS           | SAS-Export, der nicht in allen Anwendungen geöffnet werden kann   | .sas
 Shapefile     | Kartographische Datei, die Koordinaten und Polygone enthält       | .shp
 SPSS          | SPSS-Export, der nicht in allen Anwendungen geöffnet werden kann  | .sav
 Stata         | Stata-Export, der nicht in allen Anwendungen geöffnet werden kann | .dta
-Textdatei     | allgemeine Textdateien                                            | .txt  
+Textdatei     | allgemeine Textdateien                                            | .txt
 "
 cat(tabelle)
 ```
 
 ### **Quiz**
 ```{r quiz_datenimport, echo=FALSE}
-quiz(caption = NULL,
-     
+quiz(
+  caption = NULL,
   question("Welche Faktoren spielen beim Datenimport eine wichtige Rolle?",
     answer("Das Dateiformat (erkennbar an der Dateiendung)", correct = TRUE),
     answer("Die Dateistruktur mit Codierung, (Dezimal-)Trennzeichen, uvm.", correct = TRUE),
@@ -58,7 +58,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("An welcher Dateiendung erkennt Ihr Excel-Dateien?",
     answer(".xls", correct = TRUE),
     answer(".xlsx", correct = TRUE),
@@ -68,7 +67,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Woran erkennt Ihr CSV-Dateien?",
     answer('An dem Trennzeichen ","'),
     answer('An der Dateiendung ".csv"', correct = TRUE),
@@ -77,7 +75,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Welche Optionen habt Ihr lokale Dateien zu importieren?",
     answer("Manuell über den File Explorer in RStudio (File -> Import Dataset)", correct = TRUE),
     answer("Mit der Funktion import() des rio-Packages", correct = TRUE),
@@ -87,7 +84,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Können nur lokal gespeicherte Dateien importiert werden?",
     answer("Ja"),
     answer("Nein", correct = TRUE),
@@ -96,7 +92,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Warum ist es best practice Datenquellen live mit Analysetools zu verknüpfen?",
     answer("Es ist leichter technisch umzusetzen."),
     answer("Es garantiert, dass Daten aktuell und damit qualitativ hochwertiger sind.", correct = TRUE),
@@ -106,7 +101,6 @@ quiz(caption = NULL,
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
-  
   question("Um Datenquellen live zu verknüpfen, ist es immer notwendig, selbst Code zu schreiben, der mit einer API interagiert.",
     answer("Wahr"),
     answer("Unwahr", correct = TRUE),
@@ -126,14 +120,14 @@ Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link z
 
 ``` {r daten_einlesen_wdh, exercise = TRUE}
 # Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
-data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+data_raw <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
 ```
 
 Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link) als auch über lokale Dateipfade importiert werden. Ersteres funktioniert für die meisten Packages intuitiv (siehe oben). Lesen wir Dateien ein, die lokal gespeichert sind, müssen wir den Path definieren. Dazu gibt es verschiedene Methoden, von denen jedoch nur eine wirklich sinnvoll ist: Arbeiten wir an Analysen in R, legen wir sowohl unser Skript als auch unsere Daten in einem dafür vorgesehenen **Ordner** ab, der "daten" heißt. Zu diesem Speicherort navigieren wir mithilfe der Funktion `here::here()`.
 
 ``` {r daten_einlesen_lokal, exercise = TRUE}
 # Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package (hier nur zum Zeigen)
-data_processed <- rio::import(here::here('daten/bffp2019_plastics_processed.csv'))
+data_processed <- rio::import(here::here("daten/bffp2019_plastics_processed.csv"))
 head(data_processed)
 ```
 Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
@@ -147,11 +141,11 @@ Um CSV-Dateien zu lesen, benutzen wir häufig die `read.csv()`-Funktion des `rea
 
 # Komma als Separator und Punkt als Dezimaltrennzeichen als Standard
 data_raw <- readr::read_csv(
-  file = 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv', # Dateiname/Pfad zur Datei
+  file = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv", # Dateiname/Pfad zur Datei
   col_names = TRUE, # Vorhandensein des Headers
   skip = 0, # Festlegen, ob Zeilen übersprungen werden sollen
   na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
-  )
+)
 head(data_raw)
 ```
 Aber Achtung: Wer **Programme** (insb. Excel) in **deutscher Sprache** nutzt, exportiert CSV-Dateien häufig mit dem Separator ";" und dem Dezimal-Trennzeichen ",". Das führt zu Fehlern. Deutschsprachige CSV-Dateien müssen deshalb mit der Funktion `read.csv2()` importiert werden.
@@ -165,14 +159,15 @@ Hier laden wir mit der Funktion `readxl::read_excel()` das Arbeitsblatt (`sheet 
 
 *Anmerkung: Zur Live-Verknüpfung mit den aktuellen Daten von Google gibt es in R das `gtrendsR`-Package. Dazu gleich mehr.*
 ```{r exercise_xlsx, exercise = TRUE}
-#install.packages(readxl)
+# install.packages(readxl)
 
 # Laden der Entwicklung des Suchbegriffs "Plastic Pollution" über die Zeit
 googletrendstime_plasticpollution <- readxl::read_excel(
   path = here::here("daten/Plastic Pollution - Google Trends.xlsx"), # Definition von Path und Dateinamen
   sheet = "trends_over_time", # Definition des Arbeitsblatts
   col_names = TRUE, # Deklarierung der Spaltennamen
-  na = c("", NA)) # Syntax fehlender Werte
+  na = c("", NA)
+) # Syntax fehlender Werte
 
 head(googletrendstime_plasticpollution)
 ```
@@ -188,7 +183,8 @@ readxl::read_excel(
   path = here::here("daten/Beach Clean Up - Google Trends.xlsx"), # hier ändern wir den Dateinamen
   sheet = "by_country", # hier ändern wir den Arbeitsblattnamen
   col_names = TRUE,
-  na = c("", NA))
+  na = c("", NA)
+)
 ```
 
 ```{r exercise_excel-check}
@@ -215,7 +211,7 @@ package. Die jeweiligen Datensätze dienen dabei nur der Veranschaulichung und
 haben für unseren Kurs keine inhaltliche Bedeutung.
 
 ```{r otherformats_exercise, exercise = TRUE}
-#install.packages("haven")
+# install.packages("haven")
 library(haven)
 
 # SAS
@@ -286,16 +282,16 @@ Der Umgang mit APIs ist für Programmieranfänger:innen oft eine Herausforderung
 
 *Anmerkung: Genau wissen wir das natürlich nicht, die Daten geben uns hier lediglich einen Hinweis darauf, wo der Bedarf groß sein könnte. Deshalb ist es wichtig die Annahmen, auf denen Entscheidungen basieren genau zu definieren und sich darüber Gedanken zu machen, ob die Datengrundlage für eine Entscheidung überhaupt ausreichend ist. Unsere Thesen können wir dann ggf. in Interviews mit Expert:innen (hier z.B. Naturschützer:innen) verifizieren.*
 ```{r wb, exercise = TRUE}
-#install.packages("WDI")
+# install.packages("WDI")
 
 # Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
   country = "all", # Auswahl der Länder
-  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
-    start = 2018, # Auswahl Zeithorizont: Anfang
+  indicator = "ER.PTD.TOTL.ZS", # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  start = 2018, # Auswahl Zeithorizont: Anfang
   end = 2018, # Auswahl Zeithorizont: Ende
   language = "en" # Sprachauswahl
-) 
+)
 
 head(wb_areas)
 ```
@@ -309,11 +305,11 @@ Ladet nun den Datensatz zum Indikator ["Fish species, threatened" (EN.FSH.THRD.N
 # Daten der World Bank mit R-Package ziehen
 WDI::WDI(
   country = "all", # Auswahl der Länder
-  indicator = "EN.FSH.THRD.NO",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  indicator = "EN.FSH.THRD.NO", # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
   start = 2018, # Auswahl Zeithorizont: Anfang
   end = 2018, # Auswahl Zeithorizont: Ende
   language = "en" # Sprachauswahl
-) 
+)
 ```
 
 ```{r exercise_wb-check}

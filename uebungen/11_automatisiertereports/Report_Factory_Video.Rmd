@@ -16,7 +16,7 @@ pacman::p_load(
   lubridate,
   rmarkdown,
   tidyverse
-  )
+)
 ```
 
 # Willkommen in der Report Fabrik
@@ -36,7 +36,7 @@ rmarkdown::render(input = "Report_Plastic.Rmd")
 rmarkdown::render(
   input = "Report_Plastic.Rmd",
   output_file = "Report-Plastic_Europe"
-  )
+)
 ```
 
 
@@ -62,7 +62,7 @@ output_file_name <- glue::glue("{set_report_name}_{set_continent}")
 rmarkdown::render(
   input = here::here(set_rmd_name),
   output_file = output_file_name
-  )
+)
 ```
 
 # Schritt 4: YAML Optionen ändern 
@@ -97,7 +97,7 @@ rmarkdown::render(
   output_file = output_file_name,
   output_format = "html_document",
   params = list(filter_continent = "Europa")
-  )
+)
 ```
 
 ```{r example-asia}
@@ -106,14 +106,14 @@ rmarkdown::render(
   output_file = output_file_name,
   output_format = "html_document",
   params = list(filter_continent = "Asien")
-  )
+)
 ```
 
 # Schritt 6: Parameter recyclen
 
 ```{r prep-continent-names}
-continent_names <- audit_raw %>% 
-  dplyr::distinct(continent) %>% 
+continent_names <- audit_raw %>%
+  dplyr::distinct(continent) %>%
   dplyr::pull(continent)
 ```
 
@@ -125,7 +125,7 @@ purrr::walk(
     output_file = glue::glue("{set_report_name}_{.x}"),
     output_format = "html_document",
     # hier wird der Kontinentname übergeben
-    params = list(filter_continent = .x) 
+    params = list(filter_continent = .x)
   )
 )
 ```

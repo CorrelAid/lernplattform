@@ -10,7 +10,6 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 # Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
-
 ```
 
 # Schritt 2: Daten laden
