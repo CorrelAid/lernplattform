@@ -52,128 +52,15 @@ gradethis::gradethis_setup(
 
 tutorial_options(exercise.timelimit = 30)
 
-### Daten laden
-data_raw <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
+source("00_setup_get_data.R") ## ACHTUNG content heißt jetzt cont, da wir sonst den Namen mehrfach zuweisen
+content <- cont # Zwischenlösung
 
-### Bereinigten Datensatz laden
-plastics_processed <- rio::import("https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv")
+source("00_setup_modify_data.R") ## ACHTUNG df heißt jetzt df_, da wir sonst den Namen mehrfach zuweisen
+df <- df_ # Zwischenlösung
 
-### Community Datensatz laden
-community <- rio::import("https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_community_by_country.csv")
+source("00_setup_connect_to_plastics.R")
 
-### Audit Datensatz laden
-audit <- rio::import("https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv")
-
-# EU-Asien Audit Plastik Datensatz erstellen
-audit_eu_asia <- audit %>%
-  dplyr::filter(continent == "Europa" | continent == "Asien") %>%
-  dplyr::filter(n_pieces != 0) %>%
-  dplyr::group_by(continent, country) %>%
-  dplyr::summarise_all(funs(n_distinct(.))) %>%
-  dplyr::select(continent, country, "n_types" = plastic_type)
-
-europe <- audit_eu_asia %>%
-  dplyr::filter(continent == "Europa")
-asia <- audit_eu_asia %>%
-  dplyr::filter(continent == "Asien")
-
-# Daten der World Bank mit R-Package ziehen
-wb_areas <- WDI::WDI(
-  country = "all", # Auswahl der Länder
-  indicator = "ER.PTD.TOTL.ZS", # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
-  start = 2018, # Auswahl Zeithorizont: Anfang
-  end = 2018, # Auswahl Zeithorizont: Ende
-  language = "en" # Sprachauswahl
-)
-
-wb_processed <- wb_areas %>%
-  dplyr::select(
-    countrycode = "iso2c",
-    protected_area = "ER.PTD.TOTL.ZS"
-  )
-
-# Einlesen der Shapefiles
-polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
-polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
-
-# Kartendaten vorbereiten
-karten_daten <- community %>%
-  # Geometrie anfügen
-  dplyr::left_join(polygons_welt, by = c("countrycode" = "ISO_A2")) %>%
-  # Variablen für Singular / Plural Formulierung
-  dplyr::mutate(
-    word_n_events = if_else(n_events == 1, "Event", "Events"),
-    word_n_volunteers = if_else(n_volunteers == 1, "Freiwillige*r", "Freiwillige"),
-    word_n_pieces = if_else(n_pieces == 1, "gesammeltes Plastikstück", "gesammelte Plastikstücke")
-  )
-
-# Variable 'countrycode' aus community Datensatz löschen
-community <- community %>%
-  dplyr::select(-countrycode)
-
-# Initialisierung eines temporären Ordners
-tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
-download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
-con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
-
-# API
-basis_url <- "https://unstats.un.org/" # Haupt-URL
-initiale_anfrage <- httr::GET( # Initialisierung
-  basis_url, # URL verlinken
-  path = "/SDGAPI/v1/sdg/Series/Data", # Route definieren
-  query = list(
-    seriescode = "EN_REF_WASCOL"
-  )
-)
-
-# Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
-content <- httr::content(initiale_anfrage)
-
-# Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
-total_pages <- content$totalPages
-pages <- c(1:total_pages)
-
-# Inhalt der Response herausziehen
-waste_data <- httr::content(initiale_anfrage)
-
-# Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
-waste_list <- waste_data$data
-
-# Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
-waste_geo <- waste_list %>%
-  purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
-  filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
-
-# Mini-Datensätze für NA's
-df <- tibble::tribble(
-  ~name,              ~x,  ~y,           ~z,
-  "Person 1",         1,   -99,          6.7,
-  "Person 2",         3,   NA,           -99,
-  "Person 3",         NA,  0.76,         -1.6
-)
-
-df2 <- df %>% dplyr::na_if(-99)
-
-# Parameter (nur zum Zeigen)
-params <- list()
-params$heute <- format(Sys.time(), "%d. %B %Y")
-params$daten <- "daten/audit.csv"
-params$start <- as.Date("2019-01-01")
-params$ende <- as.Date("2019-12-31")
-params$land <- "Argentina"
-params$kontinent <- "Alle Kontinente"
-params$filter_plastic <- "hdpe"
-params$filter_continent <- "Alle Kontinente"
-
-# Bayes
-anteil_a <- 0.54
-anteil_b <- 0.55
-anteil_pool <- (anteil_a + anteil_b) / 2
-
-n_a <- 5840
-n_b <- 5640
-
-z <- (anteil_a - anteil_b) / (sqrt(anteil_pool * (1 - anteil_pool) * ((1 / n_a) + (1 / n_b))))
+source("00_setup_set_params.R")
 ``` 
 
 <!-- ## Willkommen -->
