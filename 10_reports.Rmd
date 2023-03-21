@@ -135,7 +135,7 @@ Wenn Ihr noch ein bisschen üben wollt, wie Ihr Text mit Hilfe von der Markdown 
 
 #### 2. R Code Blöcke (Chunks)
 
-Code Blöcke werden in Eurem Rms's **grau hinterlegt**. Ihr könnt sie mit
+Code Blöcke werden in Eurem Rmd's **grau hinterlegt**. Ihr könnt sie mit
 
 -   der Tastenkombination Strg + Alt + I (OS X: Cmd + Wahl + I) oder
 -   dem Befehl `Chunk hinzufügen` in der Symbolleiste des Editors (grünes C+)
@@ -166,7 +166,7 @@ quiz(caption = NULL,
     answer("Im Set-Up Chunk setzen wir die Argumente include, echo, message und warning auf FALSE"),
     answer("Im Set-Up Chunk setzen wir die Argumente echo, message und warning auf FALSE", correct = TRUE),
     answer("Im Set-Up Chunk setzen wir die Argumente include, echo, message und warning auf TRUE"),
-    answer("Im Chunk setzen wir die Argumente echo, message und warning auf FALSE"),
+    answer("Im Code-Chunk setzen wir die Argumente echo, message und warning auf FALSE"),
     correct = "Richtig! Die Argumente setzen wir dann innerhalb der Funktion knitr::opts_chunk$set().",
     incorrect = "Leider falsch: Für globale Einstellungen nutzen wir den Set-Up-Chunk und definieren innerhalb von knitr::opts_chunk$set() die Argumente wie gewünscht. Hier sind das echo, message und warning, die alle auf FALSE gesetzt werden müssen.",
     allow_retry = TRUE,
