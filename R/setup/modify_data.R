@@ -68,4 +68,4 @@ df_ <- tibble::tribble(
   "Person 3",         NA,  0.76,         -1.6
 )
 
-df2 <- df_ %>% dplyr::na_if(-99)
+df2 <- df_ %>% mutate(across(where(is.numeric), ~ dplyr::na_if(.x, -99)))
