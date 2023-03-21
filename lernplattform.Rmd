@@ -52,15 +52,15 @@ gradethis::gradethis_setup(
 
 tutorial_options(exercise.timelimit = 30)
 
-source("00_setup_get_data.R") ## ACHTUNG content heißt jetzt cont, da wir sonst den Namen mehrfach zuweisen
+source("R/setup/get_data.R") ## ACHTUNG content heißt jetzt cont, da wir sonst den Namen mehrfach zuweisen
 content <- cont # Zwischenlösung
 
-source("00_setup_modify_data.R") ## ACHTUNG df heißt jetzt df_, da wir sonst den Namen mehrfach zuweisen
+source("R/setup/modify_data.R") ## ACHTUNG df heißt jetzt df_, da wir sonst den Namen mehrfach zuweisen
 df <- df_ # Zwischenlösung
 
-source("00_setup_connect_to_plastics.R")
+source("R/setup/connect_to_plastics.R")
 
-source("00_setup_set_params.R")
+source("R/setup/set_params.R")
 ``` 
 
 <!-- ## Willkommen -->
