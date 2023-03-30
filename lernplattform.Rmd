@@ -52,15 +52,44 @@ gradethis::gradethis_setup(
 
 tutorial_options(exercise.timelimit = 30)
 
-source("R/setup/get_data.R") ## ACHTUNG content heißt jetzt cont, da wir sonst den Namen mehrfach zuweisen
-content <- cont # Zwischenlösung
+source("R/setup/functions.R")
 
-source("R/setup/modify_data.R") ## ACHTUNG df heißt jetzt df_, da wir sonst den Namen mehrfach zuweisen
-df <- df_ # Zwischenlösung
+### Benötigt für 04, 07, 14
+data_raw <- get_data_raw()
 
-source("R/setup/connect_to_plastics.R")
+### Benötigt für 05, 07, 08, 12
+community <- get_community()
 
-source("R/setup/set_params.R")
+### Benötigt für 06, 08
+polygons_welt <- get_poly_welt()
+
+### Benötigt für 06*api
+basis_url <- "https://unstats.un.org/"
+initiale_anfrage <- get_initiale_anfrage(url = basis_url)
+waste_data <- get_waste_data(anfrage = initiale_anfrage)
+pages <- get_pages(content = waste_data)
+
+### Benötigt für 06*sql
+con <- get_connection()
+
+### Benötigt für 07
+plastics_processed <- get_pl_proc()
+audit <- get_audit() # Auch für 11, 12
+wb_areas <- get_wb_areas()
+wb_processed <- process_wb_areas(wb_data = wb_areas)
+
+### Benötigt für 08
+karten_daten <- get_karten_daten(
+  from = community,
+  join = polygons_welt
+)
+
+### Benötigt für 09
+# z <- get_z()
+
+### Benötigt für 11
+# params <- get_params()
+
 ``` 
 
 <!-- ## Willkommen -->
