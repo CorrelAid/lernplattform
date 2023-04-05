@@ -148,7 +148,7 @@ df <- tibble::tribble(
   "Person 3",         NA,  0.76,         -1.6
   )
 
-df2 <- df %>% dplyr::na_if(-99)
+df2 <- df %>% dplyr::mutate_if(is.numeric, dplyr::na_if, -99)
 
 # Parameter (nur zum Zeigen)
 params <- list()
@@ -234,20 +234,20 @@ cat(out, sep = '')
 
 <!-- ## Grundlagen der Statistik -->
 ```{r results='asis'}
-# out <- knitr::knit_child("09_grundlagenderstatistik_v2.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("09_grundlagenderstatistik_v2.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Reports in R Markdown -->
 ```{r results='asis'}
-# out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Reportautomatisierung -->
 ```{r results='asis'}
-#out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Interaktive Visualisierungen -->

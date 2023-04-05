@@ -455,7 +455,7 @@ new_df <- na.omit(audit)
 ```
 **Achtung:** Nicht immer können fehlende Werte einfach so ausgeschlossen werden. Manchmal beeinträchtigt dieser Ausschluss die **Aussagekraft unserer Analysen**. Bei [Allison 2010](https://statisticalhorizons.com/wp-content/uploads/Allison_MissingData_Handbook.pdf){target="_blank"} findet Ihr eine gute Übersicht gängiger Herausforderungen und Lösungen. Unser Tipp: Schon bei der Datenerhebung ansetzen und während der Datenerhebung beständig auf genau solche Vorkommnisse prüfen, sodass Ihr rechtzeitig reagieren könnt.
 
-Häufig kommt es zudem vor, dass **NAs nicht als NAs codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** (oder wie bei uns mit etwas ganz anderem wie "EMPTY") angegeben. Schaut deshalb immer ins **Codebuch**, bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`:
+Häufig kommt es zudem vor, dass **NAs nicht als NAs codiert** sind: Wie Ihr vielleicht schon mal gesehen habt, werden fehlende Werte häufig auch als **“N/A”, “N A”, und “Not Available”, oder -99, oder -1** (oder wie bei uns mit etwas ganz anderem wie "EMPTY") angegeben. Schaut deshalb immer ins **Codebuch**, bevor Ihr die Daten bereinigt und analysiert - sonst berechnet Ihr beispielsweise einen Mittelwert, in den fälschlicherweise diese Zahlen einfließen! Hier hat dann auch das `dplyr`-Package wieder eine einfache Lösung parat: die Funktion `dplyr::na_if()`. Diese wenden wir mithilfe von `dplyr::mutate_all()` auf alle Spalten an:
 
 ``` {r 07mean_na6, exercise = TRUE}
 # Erstellung eines Beispieldataframes mit NAs als "NA" und "-99"
@@ -468,7 +468,7 @@ df <- tibble::tribble(
 
 # Definition der NAs
 df2 <- df %>% 
-  dplyr::na_if(-99)
+  dplyr::mutate_all(dplyr::na_if, -99)
 
 # Erste fünf Zeilen anzeigen
 head(df2)
