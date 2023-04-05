@@ -72,7 +72,7 @@ parent_company_counts <- audit %>%
                sort = TRUE) 
 ```
 
-[![CorrelAid Logo](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg "CorrelAid Logo"){width="20%"}](correlaid.org)
+[![CorrelAid Logo](media/logo.png){width="20%"}](correlaid.org)
 
 # Break Free From Plastic Report
 
