@@ -10,23 +10,6 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-# remotes::install_github("rstudio/learnr")
-# remotes::install_github("rstudio/gradethis")
-# suppressWarnings(if (!require("pacman")) install.packages("pacman"))
-# pacman::p_load(anytime,
-#                clisymbols,
-#                countdown,
-#                flipbookr,
-#                ggthemes,
-#                gtrendsR,
-#                prismatic,
-#                servr,
-#                tidylog,
-#                xaringan,
-#                xaringanExtra,
-#                xaringanthemer,
-#                install = TRUE,
-#                update = FALSE)
 library(gradethis)
 library(learnr)
 library(rio)

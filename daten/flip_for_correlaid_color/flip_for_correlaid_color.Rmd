@@ -25,10 +25,6 @@ output:
         </div>
 ---
 ```{r load_packages, message=FALSE, warning=FALSE, include=FALSE} 
-# devtools::install_github("rstudio/fontawesome")
-# remotes::install_github("gadenbuie/xaringanExtra")
-# remotes::install_github("gadenbuie/countdown")
-
 library(fontawesome)
 library(xaringanthemer)
 library(countdown)
