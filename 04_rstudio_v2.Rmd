@@ -1,7 +1,30 @@
+---
+title: "R Lernen: Inhaltsverzeichnis"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
 ## **Einführung in RStudio**
 
 ``` {r settings_rstudio, echo=FALSE, include=FALSE}
-library(rio)
+library(learnr)
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+gradethis::gradethis_setup(
+  pass = "Gut gemacht!",
+  fail = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
+  code_correct = "Gut gemacht!",
+  code_incorrect = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
+  maybe_code_feedback = FALSE,
+  fail.hint = FALSE,
+  grading_problem.message = "Hups. Ist hier Code zur Überprüfung? Wenn ja, dann liegt der Fehler bei uns. Schickt Nina bitte einen Screenshot mit der Übung und Eurer Lösung."
+)
 ```
 
 Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per Slack-Nachricht** an Zoé kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
