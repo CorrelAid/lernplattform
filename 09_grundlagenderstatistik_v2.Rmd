@@ -1,8 +1,14 @@
-## Grundlagen der Statistik
+## **Grundlagen der Statistik**
 
 ![*Video: Grundlagen der Statistik (30min)*](https://youtu.be/ASL2IihMtl0)
 
-### Kernaussagen
+<p style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+  **Disclaimer** <br>
+  Du hast alles direkt verstanden? Perfekt!
+  Du hast nicht alles direkt verstanden? Völlig normal! Nimm Deine Fragen gerne mit in die Livesession - die Tutor:innen freuen sich darüber, alle Deine Fragen zu beantworten und Dir weiterzuhelfen. Bei kleineren Fragen wende Dich natürlich auch gerne einfach direkt an Deine:n Mentor:in. Und wenn Du gar nicht weißt, wo Du anfangen sollst mit Deinen Fragen - ein kleiner Schritt nach dem anderen und nicht alles brauchst Du für jede Datenanalyse oder -visualisierung. 
+</p>
+
+### **Kernaussagen**
 
 -   In der **Replikationskrise der Wissenschaft** können unerwartet viele publizierte Studienergebnisse nicht repliziert werden: Forscher:innen in aller Welt nahmen dies zum Anlass, kritisch zu hinterfragen, wie wir mit Daten verantwortungsbewusst forschen können
 -   Wir müssen zwischen verschiedenen **Qualitätsstufen** von Studien unterscheiden
@@ -16,7 +22,7 @@
 -   Es hilft deshalb **Effekte** (Veränderung oder Stabilisierung), **plausibilisierte Wirkungen** (Plausibilitätscheck möglicher kausaler Mechanismen) und **Wirkung** (nachgewiesener kausaler Mechanismus) unserer Programme zu unterscheiden
 -   Viele analytische Verfahren können mit **Mustererkennung** allein schon viel Zugewinn ermöglichen, da wir maschinell viel größere Mengen an Informationen verarbeiten können als manuell
 
-### Quiz
+### **Quiz**
 
 ```{r quiz_statistischesdenken}
 quiz(caption = NULL,
@@ -58,7 +64,7 @@ quiz(caption = NULL,
 )
 ```
 
-### Interaktive Übung
+### **Interaktive Übung**
 
 #### **Kausalität**
 
@@ -85,7 +91,7 @@ Fragen der zweiten Ebene können mit kontrollierten Experimenten oder quasi-Expe
 
 Ob jedoch im Einzelfall mit dem Rauchen aufzuhören kausal ist für eine höhere Lebenserwartung können wir erst auf Ebene 3 verstehen. Hier fragen wir, was passiert wäre, wenn wir etwas nicht getan hätten. Träte der Effekt trotzdem ein? Und hier liegt dann auch der Hase im Pfeffer begraben: Wir können schließlich nicht gleichzeitig Rauchen und mit dem Rauchen aufhören - es fehlt uns der Vergleich.
 
-### Plausibilität, Wahrscheinlichkeit und Statistik
+### **Plausibilität, Wahrscheinlichkeit und Statistik**
 
 Stehe einmal kurz vom Computer auf und schau aus dem Fenster. Ist die Straße draußen nass? Wenn die Straße trocken ist, folgt daraus, dass es nicht geregnet hat. Es folgt aber andersherum nicht, dass es geregnet haben muss, wenn die Straße nass ist. Es hätte ja jemand auch die Straße mit einem Gartenschlauch gießen können. Intuitiv werden wir aber annehmen, dass die Beobachtung einer nassen Straße die Aussage "es hat geregnet" *plausibler* macht. Statistik ist am Ende nichts anderes als eine Systematisierung dieser Art von Plausibilisierungen. Wir haben Beobachtungen ("die Straße draußen ist nass"), auch Daten genannt, mit denen wir etwas über die Plausibilität einer Hypothese ("es hat geregnet") oder eines Modelles lernen wollen.
 
@@ -321,11 +327,11 @@ Komplett befreit von Vorlieben sind wir jedoch auch nicht. Ein Grund, warum die 
 
 Uns jedenfalls fällt es leichter, anhand der bayesianischen Vorgehensweise Fragen zu stellen und Entscheidungen zu treffen. Teilt uns gerne in der Sprechstunde Eure Präferenz mit! 
 
-### Und jetzt Ihr
+### **Und jetzt Ihr**
 
 Statt eigene Berechnungen anzustellen, möchten wir Euch diese Woche dazu einladen, Eure Kenntnisse zu kausalen Zusammenhängen um ein graphisches Tool zu erweitern: **Directed Acyclic Graphs (kurz DAGs)** stellen Ursache-Wirkungs-Zusammenhänge zwischen verschiedenen Ereignissen dar. Sie helfen uns zu verstehen, welche erklärenden Variablen unsere zu erklärende Variable noch beeinflussen könnten. Andrew Heiss erklärt in seiner [Programmevaluationsvorlesung](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"} besonders toll, wie das funktioniert und wie Ihr in R eigene DAGs kreieren könnt. Schaut Euch die Lektion an und bringt zur nächsten Live Session ein eigenes DAG mit - auf Papier oder in R. Thematisch könnt Ihr Euch entweder mit einem eigenen Thema beschäftigen oder aber überlegen, wie die Aktionen von Break Free From Plastik mit gesammeltem Plastik und Bewusstseinsveränderungen (höheres Umweltbewusstsein) zusammenhängen und welche Faktoren diese Wirkungen noch beeinflussen könnten.
 
-### Zusätzliche Ressourcen
+### **Zusätzliche Ressourcen**
 
 -   [Pepsi, Coca Cola und die Geschichte der Nullhypothese](https://correlaid.org/blog/pepsi/){target="_blank"}, Manuel Neumann im CorrelAid Blog, 2019
 -   [About P-Values](https://correlaid.org/blog/understand-p-values/){target="_blank"}, Daniel Lakens im CorrelAid Blog, 2017
