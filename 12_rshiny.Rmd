@@ -71,7 +71,7 @@ In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und ein
 
 ##### **Der Server**
 
-<right>![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100%}</right>
+![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100% align="right}
 
 Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet. Wenn Ihr die Shiny-App in Aktion sehen wollt, könnt Ihr sie Euch [**hier**](https://cosima-meyer.shinyapps.io/example_app/){target="_blank"} ansehen.
 
@@ -143,10 +143,6 @@ shinyApp(ui = ui, server = server)
 
 Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel eine Visualisierung erstellen. Nehmen wir eine Euch bereits bekannte Visualisierung als Beispiel: 
 
-<!-- @Review: Das Objekt daten gibt es nicht, müsste wahrscheinlich noch im Setup der Lernplattform hinterlegt werden, dass die Visualisierung hier läuft -->
-
-<!-- Cosima: Ich sehe kein `daten` Objekt und nehme an, dass der Kommentar schon gelöst ist?-->
-
 ```{r plot_full_to_print, echo = FALSE}
 # Top Ten Hersteller berechnen
 top10_parentcompany <- audit %>%
@@ -176,6 +172,8 @@ Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir ein
 
 Probiert die App doch einfach einmal aus! Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern**. Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} herunterladen.
 
+<!-- Cosima: Der Link muss angepasst werden; ich weiß nicht genau wo die Übungsdateien aktuell liegen -->
+
 
 #### Schritt 1: Shiny-App planen
 Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen **Plan** zurechtlegen. Hierbei ist es sehr hilfreich, die App grob zu skizzieren (gerne auch ganz klassisch auf Papier).
@@ -198,7 +196,7 @@ Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app4.png?raw=true){#id .class width=70% height=70%}
 </center>
 
-Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"}!) und benennen. In unserer App ergibt das:
+Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}!) und benennen. In unserer App ergibt das:
 
 ```{r server_new_plot, exercise=TRUE}
 server <- function(input, output) {
