@@ -258,14 +258,6 @@ Eine UI ist immer nach dem gleichen Prinzip aufgebaut:
 - Die Elemente werden in vorgegebene **Layoutformaten** eingefügt: `sidebarLayout()` teilt die App in eine Seitenleiste und einen Hauptbereich, bei `fluidRow()` seid Ihr völlig flexibel.
 - Im Layout finden sich dann **verschiedene, angeordnete Panels** (dt. Felder). Für das `sidebarLayout()` sind das beispielsweise ein `sidebarPanel`, das die Elemente der Seitenleiste bündelt, und ein `mainPanel()`, das Hauptfeld, in dem in der Regel die Outputs angeordnet werden. Dieses kann auch aus mehreren Tabs (zu dt. Reitern) bestehen: `mainPanel(tabPanel(), tabPanel(),...)`.
 
-<!-- Cosima: Sind Tabs nicht Reiter? (Oder Registerkarten, wie Google mir gerade sagt :D) -->
-
-<center>
-![*Bild: Skizzierung des Sidebaylayouts (Figure 6.2, Mastering Shiny, Hadley Wickham, O’Reilly Media, 2020)*](https://d33wubrfki0l68.cloudfront.net/37aa2b1c61a6141cc95188bffd0cfc782fdb27d5/b6aa6/diagrams/action-layout/sidebar.png)
-</center>
-
-<!-- Cosima: Haben wir an dem Bild die Rechte? Wenn ich es damals reingenommen habe, würde ich es gerne wieder rausnehmen. Wenn ihr es gerne mit dabei habt, würde ich dafür votieren ein Bild im Corporate Design von uns zu entwerfen (ich übernehme das gerne) - dann können wir auch gleich die deutsche Bezeichnung übernehmen :) -->
-
 Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
 <center>
 ![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
