@@ -1,8 +1,8 @@
-## Reportautomatisierung
+## **Reportautomatisierung**
 
 ![*Video: Reportautomatisierung (20min)*](https://youtu.be/78r2ugQ6bdQ)
 
-### Kernaussagen
+### **Kernaussagen**
 - Berichte in R Markdown anzulegen, bedeutet, **reproduzierbare Reports** zu erstellen
 - So können...
   a) Reports leicht **aktualisiert**,
@@ -17,7 +17,7 @@
 - Innerhalb des R Markdowns kann auf die selbst benannten Parameter über `params$parameter_name` **zugegriffen** werden
 - Möglich ist die Festlegung von Parametern von den folgenden **Typen**: `character` (Text), `integer` (ganze Zahl), `numeric` (Zahl), `logical` (logischer Ausdruck) und Ausdrücke in R
 
-### Quiz
+### **Quiz**
 ```{r 11quiz_reportauto}
 quiz(caption = NULL,
   question("R Markdowns sind reproduzierbar. Das hat den Vorteil, dass...",
@@ -257,7 +257,7 @@ rmarkdown::render(
   )
 ```
 
-### Exkurs: Die Reportfabrik
+### **Exkurs: Die Reportfabrik**
 Wollen wir viele Reports auf einmal erstellen, müssen wir die Render-Funktion in etwas einbetten, das definiert, dass der Report für die verschiedenen Werte in einer Liste gerendert werden soll. Wir nutzen dazu die `purrr::walk`-Funktion. Sie bedeutet: Für jedes Element der Liste, wende die Funktion an, die hier definiert wird:
 
 ```r
@@ -266,7 +266,7 @@ purrr::walk(liste, function(listenelement) {
 })
 ```
 
-Wir wollen für den [Report Ausblick](https://correlcloud.org/index.php/s/ngFQ79p6ciwdFoG){target="_blank"}, der bereits den Trick mit "alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Audit-Datensatz und erstellen - analog zum Report -  den Audit-Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
+Wir wollen für den [Report Ausblick](https://drive.google.com/file/d/1vjfbibPdMfXuw0HQHL_0p4MeGO_kcYP2/view?usp=share_link){target="_blank"}, der bereits den Trick mit "alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Audit-Datensatz und erstellen - analog zum Report -  den Audit-Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
 
 ```r
 # Liste mit Kontinenten erstellen
@@ -304,10 +304,10 @@ if (!dir.exists(output_dir)) {
 
 Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}, in den englischsprachigen Büchern [Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} und [R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html){target="_blank"} und bei unserem Partner [Dataquest](https://app.dataquest.io/course/intermediate-r){target="_blank"}. In dem verlinkten Kapitel findet Ihr insbesondere weitere Hilfestellungen zu Wenn-Dann-Bedingungen, Funktionen und Iterationen.
 
-### Und jetzt Ihr
-Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der rmarkdown::render() Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut Euch das [**R Markdown: 11_AutomatisierteReports**](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+### **Und jetzt Ihr**
+Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut ladet den zip-Ordner [`11_automatisiertereports`](https://drive.google.com/file/d/1fzcbJ_cVTguLNOKii3hhhwsm8xcdbSnI/view?usp=share_link){target="_blank"} herunter, entpackt ihn, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten. 
 
-### Zusätzliche Ressourcen
+### **Zusätzliche Ressourcen**
 - [RStudio Webinar: **Rethink Reporting with Automation**](https://www.rstudio.com/resources/webinars/rethink-reporting-with-automation/){target="_blank"}
 - Yihui Xie et al. [**RMarkdown: The Definitive Guide**](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} (engl.)
 - RStudios [Hilfeseite](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}

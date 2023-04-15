@@ -1,8 +1,8 @@
-## Datenvisualisierung
+## **Datenvisualisierung**
 
 ![*Video: Datenvisualisierung (15min)*](https://youtu.be/LtjKZjCPijo)
 
-### Kernaussagen
+### **Kernaussagen**
 - Visualisierungen **vereinfachen und beschleunigen** die Vermittlung von (komplexen) Inhalten, weil Menschen visuelle Zusammenhänge oft schneller begreifen können als Text
 - Sie erlauben uns in Daten **Muster** zu erkennen (z.B. zur Verteilung von und zu Beziehungen zwischen Variablen)
 - Auch **Fehler und Ausreißer** in den Daten können mit ihnen schnell identifiziert werden
@@ -15,7 +15,7 @@
 - Die Webseite [From-Data-to-Viz](https://www.data-to-viz.com){target="_blank"} bietet einen hervorragenden **Ausgangspunkt**, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code-Schnipsel zur praktischen Implementierung
 - Wir schauen uns in dieser Lektion gemeinsam die R-Packages `ggplot2` und `leaflet` an
 
-### Quiz
+### **Quiz**
 ```{r 10visualisierung}
 quiz(caption = NULL,
   question("Wofür kann und sollte man Datenvisualisierung nutzen?",
@@ -40,7 +40,7 @@ quiz(caption = NULL,
     answer("Sie sind leicht zu lesen"),
     answer("Sie stellen die fünf Punkte der Verteilung (statistische Kennzahlen) visuell da", correct = TRUE),
     answer("Sie zeigen die genaue Lage der Beobachtungspunkte an"),
-    correct = "Richtig!",
+    correct = "Richtig! Sie fassen die fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum) zusammen und geben damit einen sehr guten Überblick über Daten.",
     incorrect = "Leider falsch: Boxplots stellen die fünf Punkte der Verteilung visuell dar, sind deshalb aber nur gut zu verstehen, wenn man diese auch kennt. Wie einzelne Beobachtungen liegen, kann man nicht erkennen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -78,18 +78,18 @@ quiz(caption = NULL,
 )
 ```
 
-### Interaktive Übung
+### **Interaktive Übung**
 
-<left>
-![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
+<right>
+![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=60%}
 
-</left>
+</right>
 <br>
 
 In dieser Sitzung lernt Ihr zunächst verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt [(zur App)](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
 
 #### Wiederholung: `ggplot2`-Basics
-Erinnert Ihr Euch noch an die [fünfte Sitzung](/lernplattform.Rmd#section-daten-verstehen-mit-r)?
+Erinnert Ihr Euch noch an die [fünfte Sitzung](https://correlaid.shinyapps.io/lernplattform/#section-daten-verstehen-mit-r)?
 
 - `ggplot2` folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
 - Für einen ganz simplen Plot benötigen wir immer:
@@ -125,7 +125,7 @@ Für diese Lektion benötigt Ihr also `ggplot2`.
 library(ggplot2)
 ```
 
-Alle wichtigen `ggplot2` Befehle findet Ihr in diesem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"}.
+Alle wichtigen `ggplot2` Befehle findet Ihr in diesem [Schummelzettel](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"}.
 
 
 #### Inspiration suchen
@@ -264,7 +264,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
-Tolle, **vordefinierte Farbpaletten** findet Ihr hier:
+Tolle, **vordefinierte Farbpaletten** findet Ihr hier (hinter den Paketnamen verbergen sich auch Links zu den jeweiligen Webseiten):
 
 - [`ggplot2`](https://www.datanovia.com/en/wp-content/uploads/dn-tutorials/ggplot2/figures/030-ggplot-colors-rcolorbrewer-palettes-colorblind-friendly-1.png){target="_blank"}
 - [`wesanderson`](https://github.com/karthik/wesanderson){target="_blank"}
@@ -341,7 +341,7 @@ gradethis::grade_this_code()
 ```
 
 #### Facets
-Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
+Wie Ihr auf dem [Schummelzettel](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
 Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren. Wir haben hier Histogramme, also die Darstellungen der Verteilung von Freiwilligen gewählt. Es wäre hier sehr praktisch, wenn man es nach Kontinent darstellen könnte. Dabei hilft und `facet_wrap()` mit dem Ihr die Anzahl der Freiwilligen nach Kontinent (`continent`) gruppieren könnt. 
 
@@ -388,14 +388,17 @@ ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 
 Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen, wie beispielsweise die durch `leaflet` oder `echarts4r` erstellten Karten, bieten sich andere Formate wie `.html` (über Rmds) oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr am Ende des Kurses!
 
-### Exkurs: Für das schnelle, visuelle Ausprobieren - `esquisse`
+### **Exkurs**: Für das schnelle, visuelle Ausprobieren - `esquisse`
 Ein Grundverständnis für die Logik von `ggplot2` ist immer sinnvoll - aber was, wenn ihr mal "schnell" etwas ausprobieren wollt und es in `ggplot2` einfach nicht klappt? Dann gibt es `esquisse`! `esquisse` erlaubt es euch, direkt einen Datensatz anzusprechen und per Klick die Darstellungsmöglichkeiten auszuwählen. Das Schöne an `esquisse` ist, dass man den `ggplot2` Code dann auch direkt kopieren kann und in das R-Skript einfügen kann - so geht nichts verloren und man kann alles replizieren. Wie das funktioniert sehr Ihr hier im Clip. Dort zeige ich Euch, wie man die Daten lädt, einzelne Variablen auswählt, den Plot-Typ dann bestimmt und letztendlich den `ggplot2`-Code in Euer R-Skript kopiert.
 
 <center>
 ![*GIF zur Erklärung von esquisse*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/esquisse.gif?raw=true){#id .class width=70% height=70%}
 </center>
 
-### Exkurs: Karten mit `leaflet`
+### **Exkurs**: Karten mit `leaflet`
+
+> Um die Ergebnisse des Codes sehen zu können, müsst Ihr den Code in Eurem lokalen RStudio/R ausführen.
+
 Ihr habt bereits gelernt, wie man **geographische Daten** importiert. Wir fügen die sogenannten Polygone unserem `community`-Datensatz an und fügen drei Spalten ein, die uns später bei den Labels hilft (ein toller Trick, den Ihr Euch für andere Visualisierungsprojekte merken solltet).
 
 ```{r kartendaten, exercise = TRUE}
@@ -404,6 +407,8 @@ polygons_welt <- sf::st_read(here::here('daten/geospatial/ne_50m_admin_0_countri
 
 # Kartendaten vorbereiten
 karten_daten <- community %>%
+  # Wir kodieren hier den Ländercode mit Hilfe der `countrycode`Bibliothek
+  dplyr::mutate(countrycode = countrycode(country, "country.name", "iso2c")) %>% 
   # Geometrie anfügen
   dplyr::left_join(polygons_welt, by = c("countrycode" = "ISO_A2")) %>% 
   # Variablen für Singular / Plural Formulierung
@@ -420,6 +425,7 @@ karten_daten <- sf::st_as_sf(karten_daten)
 ```
 
 Nun **initialisieren** wir die **Karte** mit der Funktion `leaflet::leaflet()` und den angefügten, geometrischen Daten. Das **Kartenlayout** könnt Ihr unter verschiedenen Anbietern (engl. Providern) aussuchen - wir entscheiden uns hier für CartoDB mit dem Layout "Positron" und referenzieren dies in der Funktion `leaflet::addProviderTiles()` mit `providers$CartoDB.Positron`. Der Zugriff auf die Providers erfolgt wie bei den Spalten mit `$`, während `CartoDB.Positron` einfach der Name des Eintrags ist. Alle Layoutoption findet Ihr in dieser [interaktiven Übersicht](https://leaflet-extras.github.io/leaflet-providers/preview/){target="_blank"} - wie findet Ihr `CartoDB.DarkMatter`?
+
 ```{r karte, exercise = TRUE}
 # Create a continuous palette function
 pal <- colorQuantile(
@@ -455,12 +461,12 @@ Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das es euch er
 
 Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren.
 
-### Und jetzt Ihr (diese Woche optional)
+### **Und jetzt Ihr** (diese Woche optional)
 Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Balkendiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?
 
 *Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen. Innerhalb von `geom_bar()` müsst Ihr das Argument `stat = "identity" setzen.*
 
-### Zusätzliche Ressourcen
+### **Zusätzliche Ressourcen**
 - Unser Partner Dataquest bietet auch einen [Kurs zu Datenvisualisierungen in R](https://app.dataquest.io/course/r-data-viz){target="_blank"} an
 - [Schummelzettel zu `ggplot2`](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"}
 - Mehr Informationen zu [`leaflet` (engl.)](https://leafletjs.com/){target="_blank"}
