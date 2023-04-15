@@ -78,11 +78,7 @@ quiz(caption = NULL,
 )
 ```
 
-<!-- Cosima: Ich persönlich fand die Frage zum boxplot hier unpassend, da sie so ad-hoc kam und ich das nicht im Video bespreche. Deswegen habe ich hier die direkte Referenz zu Sitzung 5 eingebaut. Wenn wir doch zeitlich kürzen müssten, könnte man die form follows function-Frage rausnehmen und/oder auch die Boxplot-Frage. Mich haben beide irgendwie verwirrt. Aber du hast das große Konzept des Trainings eher im Blick. -->
-
 ### Interaktive Übung
-
-<!-- Cosima: Die Abbildung funktioniert bei mir im learnr-Environment nicht, ich sehe aber keinen Grund warum --> 
 
 <left>
 ![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=100%}
@@ -93,7 +89,7 @@ quiz(caption = NULL,
 In dieser Sitzung lernt Ihr zunächst verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt [(zur App)](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
 
 #### Wiederholung: `ggplot2`-Basics
-Erinnert Ihr Euch noch an die fünfte Sitzung? <!-- Cosima: Sollte hier vielleicht der Link zur 5. Sitzung eingebaut werden? -->
+Erinnert Ihr Euch noch an die [fünfte Sitzung](/lernplattform.Rmd#section-daten-verstehen-mit-r)?
 
 - `ggplot2` folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
 - Für einen ganz simplen Plot benötigen wir immer:
@@ -344,10 +340,6 @@ ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent))
 gradethis::grade_this_code()
 ```
 
-<!-- Cosima: Der Facet-Part bildet irgendwie einen Bruch, oder? Es ging die ganze Zeit um andere Plot-Typen und auf einmal machen wir ein Histogram. Ich habe mal versucht es runder zu machen aber irgendwie ist mir das noch nicht ganz geglückt. Was meinst du? -->
-
-<!-- Cosima: Hast du die Facets-Flips hier eigentlich absichtlich rausgenommen? (Ähnlich wie Farbe und Themes (themes verstehe ich, da der Text ja nur noch auf Standard-ggplot-Themes behandelt), aber die anderen müssten doch passen, oder?) (also zum Beispiel das hier für die Facet-Logik: https://cosimameyer.com/slides/flip_for_correlaid_facet/flip_for_correlaid_facet.html#1 oder das für die Colors: https://cosimameyer.com/slides/flip_for_correlaid_color/flip_for_correlaid_color.html#1 (oder fandest du das zu kompliziert, um intuitiv zu sein?) -->
-
 #### Facets
 Wie Ihr auf dem [Schummelzettel](daten/cheat sheets/data-visualization_de.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
@@ -402,9 +394,6 @@ Ein Grundverständnis für die Logik von `ggplot2` ist immer sinnvoll - aber was
 <center>
 ![*GIF zur Erklärung von esquisse*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/esquisse.gif?raw=true){#id .class width=70% height=70%}
 </center>
-
-<!-- Cosima: Ich habe hier mal einen Exkurs zu `esquisse` eingebaut weil ich das immer vergesse und es doch so schön ist (vor allem am Anfang) - oder soll es wieder raus? -->
-
 
 ### Exkurs: Karten mit `leaflet`
 Ihr habt bereits gelernt, wie man **geographische Daten** importiert. Wir fügen die sogenannten Polygone unserem `community`-Datensatz an und fügen drei Spalten ein, die uns später bei den Labels hilft (ein toller Trick, den Ihr Euch für andere Visualisierungsprojekte merken solltet).
@@ -464,12 +453,7 @@ leaflet::leaflet() %>%
 
 Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das es euch erlaubt Visualisierungen zu erstellen: [`echarts4r`](https://rstudio.github.io/leaflet/morefeatures.html).
 
-Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren. 
-
-<!-- Ab einem bestimmten Level müsst Ihr zur Bedienung von `echarts4r` allerdings Javascript können, weshalb wie dieses tolle Visualisierungstool hier nur am Rande erwähnen möchten. --> 
-<!-- Cosima: Den Part habe ich rausgenommen. Leaflet ist auch JS basiert und auch hier trifft bei fortgeschritteneren Abbildungen zu, dass ein Grundverständnis in JavaScript sinnvoll ist - aber nicht unbedingt ein "Muss" ist (hier sind ein paar Beispiele, was ich meine: https://rstudio.github.io/leaflet/morefeatures.html). -->
-<!-- Cosima: Vielleicht wäre es, da leaflet nicht zuverlässig mit Shiny zu funktionieren scheint, eine Idee auf `plotly` zu gehen und statt einer Karte einen interaktiven ggplot zu zeigen? --> 
-
+Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren.
 
 ### Und jetzt Ihr (diese Woche optional)
 Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Balkendiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?

@@ -71,7 +71,7 @@ In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und ein
 
 ##### **Der Server**
 
-<right>![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100%}</right>
+![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100% align="right}
 
 Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet. Wenn Ihr die Shiny-App in Aktion sehen wollt, könnt Ihr sie Euch [**hier**](https://cosima-meyer.shinyapps.io/example_app/){target="_blank"} ansehen.
 
@@ -143,10 +143,6 @@ shinyApp(ui = ui, server = server)
 
 Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel eine Visualisierung erstellen. Nehmen wir eine Euch bereits bekannte Visualisierung als Beispiel: 
 
-<!-- @Review: Das Objekt daten gibt es nicht, müsste wahrscheinlich noch im Setup der Lernplattform hinterlegt werden, dass die Visualisierung hier läuft -->
-
-<!-- Cosima: Ich sehe kein `daten` Objekt und nehme an, dass der Kommentar schon gelöst ist?-->
-
 ```{r plot_full_to_print, echo = FALSE}
 # Top Ten Hersteller berechnen
 top10_parentcompany <- audit %>%
@@ -172,15 +168,10 @@ ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(pa
 
 Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code für die Visualisierung in die Shiny-App-Komponenten kopieren. Unser Ziel ist es, gemeinsam den Tab "Hersteller" in einer lokalen Shiny-App zu bauen, die so ([klick hier!](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}) aussehen soll.
 
-<!-- Cosima: Sollte es in der App nicht auch für die Konsistenz "Shiny-App" heißen? (Also bei "Eine Übung zum Erlernen von Shiny Web Apps mit echten Daten aus dem tidyverse von und für die Zivilgesellschaft mit CorrelAid e.V. Lizenziert nach CC-BY 4.0.") -->
-
 Probiert die App doch einfach einmal aus! Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern**. Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} herunterladen.
-
 
 #### Schritt 1: Shiny-App planen
 Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen **Plan** zurechtlegen. Hierbei ist es sehr hilfreich, die App grob zu skizzieren (gerne auch ganz klassisch auf Papier).
-
-<!-- Cosima: Soll ich uns wieder eine "handschriftliche" Skizze der App entwerfen, die wir hier einbinden können? -->
 
 Wir möchten das **Balkendiagramm** aus der letzten Woche in eine App übersetzen. In der linken Seitenleiste seht Ihr **Auswahlmöglichkeiten nach Kontinenten** - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden **Namen**.
 
@@ -198,7 +189,7 @@ Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app4.png?raw=true){#id .class width=70% height=70%}
 </center>
 
-Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](daten/cheat sheets/shiny_de.pdf){target="_blank"}!) und benennen. In unserer App ergibt das:
+Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}!) und benennen. In unserer App ergibt das:
 
 ```{r server_new_plot, exercise=TRUE}
 server <- function(input, output) {
@@ -222,7 +213,6 @@ Das Rendern erfolgt mit `renderPlot`, da wir einen Plot, also eine Visualisierun
 | Eine Visualisierung                                               | `renderPlot({})`                |
 
 Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht](https://mastering-shiny.org/basic-ui.html#outputs) (auf Englisch). Insbesondere wenn Ihr auf ergänzende Packages zugreift, müsst Ihr innerhalb der Erweiterung nach der richtigen Renderfunktion suchen. Schließlich benennen wir unseren Output `output$balkendiagramm`. 
-<!-- Cosima: Das ist damit gemeint, oder? Oder was sollen "Shiny-Erweiterungen" sein? Oder hab ich das damals geschrieben? :D Dann weiß ich es selbst nicht mehr und finde es so logischer :) -->
 
 Kopiert nun den Code des Balkendiagramms (siehe oben) und ergänzt ihn in Eurer lokalen Datei `app.R` an der angegebenen Stelle im Server. Ergänzt dazu den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist:
 
@@ -247,9 +237,7 @@ server <- function(input, output) {
 }
 ```
 
-*Tipp: Genauso wie wir es hier gemacht haben, ist es oft leichter, zunächst in einer `Rmd.-Datei` notwendige Packages zu laden, die Daten zu importieren, zu bereinigen und zu Tabellen, Diagrammen und anderen Formaten zu verarbeiten. Im Anschluss könnt Ihr den dort funktionierenden Code in eine Shiny Web App übertragen.*
-
-<!-- Cosima: Wenn ich das vor 6 Monaten so geschrieben habe, würde ich dem Punkt " Auch zur Fehlerbehebung ist dieses Vorgehen gut geeignet." heute nicht mehr zustimmen. Copy Paste verursacht so viele Fehler und ich würde auch nicht sagen, dass das wirklich Fehler an sich reduziert, deswegen habe ich es rausgenommen :) -->
+*Tipp: Genauso wie wir es hier gemacht haben, ist es oft leichter, zunächst in einer `Rmd.-Datei` notwendige Packages zu laden, die Daten zu importieren, zu bereinigen und zu Tabellen, Diagrammen und anderen Formaten zu verarbeiten. Im Anschluss könnt Ihr den dort funktionierenden Code in eine Shiny-App übertragen.*
 
 #### Schritt 3: Die UI (User Interface) 
 Damit steht der `server` der App in den Grundzügen und wir können uns der (**G**raphical) **U**ser **I**nterface (also der *UI*, manchmal auch: *GUI*) der Shiny-App widmen. 
@@ -260,19 +248,10 @@ Eine UI ist immer nach dem gleichen Prinzip aufgebaut:
 - Die Elemente werden in vorgegebene **Layoutformaten** eingefügt: `sidebarLayout()` teilt die App in eine Seitenleiste und einen Hauptbereich, bei `fluidRow()` seid Ihr völlig flexibel.
 - Im Layout finden sich dann **verschiedene, angeordnete Panels** (dt. Felder). Für das `sidebarLayout()` sind das beispielsweise ein `sidebarPanel`, das die Elemente der Seitenleiste bündelt, und ein `mainPanel()`, das Hauptfeld, in dem in der Regel die Outputs angeordnet werden. Dieses kann auch aus mehreren Tabs (zu dt. Reitern) bestehen: `mainPanel(tabPanel(), tabPanel(),...)`.
 
-<!-- Cosima: Sind Tabs nicht Reiter? (Oder Registerkarten, wie Google mir gerade sagt :D) -->
-
-<center>
-![*Bild: Skizzierung des Sidebaylayouts (Figure 6.2, Mastering Shiny, Hadley Wickham, O’Reilly Media, 2020)*](https://d33wubrfki0l68.cloudfront.net/37aa2b1c61a6141cc95188bffd0cfc782fdb27d5/b6aa6/diagrams/action-layout/sidebar.png)
-</center>
-
-<!-- Cosima: Haben wir an dem Bild die Rechte? Wenn ich es damals reingenommen habe, würde ich es gerne wieder rausnehmen. Wenn ihr es gerne mit dabei habt, würde ich dafür votieren ein Bild im Corporate Design von uns zu entwerfen (ich übernehme das gerne) - dann können wir auch gleich die deutsche Bezeichnung übernehmen :) -->
-
 Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
 <center>
 ![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
 </center>
-<!-- Cosima: Sollten wir dieses Bild nicht auch ändern? Sonst ist es verwirrend, oder? Wir haben ja jetzt eine andere App. Sag gern Bescheid, dann passe ich es an. -->
 
 Die Grundstruktur dieses Layouts sieht so aus:
 ```{r ui_exercise1, exercise=TRUE, eval =FALSE}
@@ -292,9 +271,7 @@ ui <- fluidPage(
 Nun füllen wir die **linke Seitenleiste** mit Elementen. Bei uns soll dort der Filter erscheinen. Nicht nur für die Applikation selbst, auch für die Filter habt Ihr diverse Layoutoptionen. Ihr könnt zum Beispiel sogenannte "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzenden Eurer Shiny-App eine Auswahl treffen zu lassen. 
 
 Wenn Ihr Euch die Shiny-App noch einmal live anschaut, könnt Ihr sicher die folgende Frage beantworten:
-<!-- ...oder wenn man Schritt 1 aufmerksam gelesen hat, vielleicht dort dann rausnehmen, sonst ist die Frage ein bisschen doppelt?-->
 
-<!-- Cosima: Ich bin nicht ganz sicher, was damit gemeint ist. Haben wir die Frage noch an einer anderen Stelle? :) --> 
 ```{r 11filter}
 quiz(caption = NULL,
   question("Welche Auswahlmöglichkeiten (oder auch Filteroptionen) habt Ihr in der Shiny-App?",
@@ -523,8 +500,6 @@ library(shinythemes)
 
 Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Schaut einfach [hier](https://rstudio.github.io/shinythemes/){target="_blank"} vorbei.
 
-<!-- Cosima: Wenn ich mich richtig erinnere war es bei der Visualisierungssitzung ähnlich - es ist Absicht, dass die Slidedecks mit den Anschauungsmaterialen alle rausgenommen wurden? (Passt für mich auch; ich hatte mich nur gewundert, da sie uns ermöglichen den Teilnehmenden eine "Live"-Visualisierung der verschiedenen Möglichkeiten zu zeigen) -->
-
 **Titel ändern**
 
 Im letzten Schritt geben wir unserer Shiny-App noch einen schönen Titel, zum Beispiel `"Break Free From Plastic"`. Das ergänzen wir auch in der `ui` (in `# 4. Aufgabe` seht Ihr, wo Ihr es ergänzen müsst):
@@ -568,8 +543,6 @@ quiz(caption = NULL,
 RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io){target="_blank"}. Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/){target="_blank"} und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
 
 > In jedem Fall sollte intern abgeklärt werden, ob diese Hosting-Option für Euch in Frage kommt oder ob es nicht eine Alternative über die IT-Abteilung gibt (z.B. bei sensiblen Daten).
-
-<!-- Cosima: Ich kann es optisch gerade nicht überprüfen - aber i.d.R. bietet diese "Zitieroption" die Möglichkeit, die Textstelle hervorzuheben. -->
 
 Sollte die RStudio-Lösung für Euch eine Option sein, ist das Hosten denkbar einfach. Ihr müsst nur die folgenden Schritte befolgen:
 
