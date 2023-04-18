@@ -340,10 +340,6 @@ ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent))
 gradethis::grade_this_code()
 ```
 
-<!-- Cosima: Der Facet-Part bildet irgendwie einen Bruch, oder? Es ging die ganze Zeit um andere Plot-Typen und auf einmal machen wir ein Histogram. Ich habe mal versucht es runder zu machen aber irgendwie ist mir das noch nicht ganz geglückt. Was meinst du? -->
-
-<!-- Cosima: Hast du die Facets-Flips hier eigentlich absichtlich rausgenommen? (Ähnlich wie Farbe und Themes (themes verstehe ich, da der Text ja nur noch auf Standard-ggplot-Themes behandelt), aber die anderen müssten doch passen, oder?) (also zum Beispiel das hier für die Facet-Logik: https://cosimameyer.com/slides/flip_for_correlaid_facet/flip_for_correlaid_facet.html#1 oder das für die Colors: https://cosimameyer.com/slides/flip_for_correlaid_color/flip_for_correlaid_color.html#1 (oder fandest du das zu kompliziert, um intuitiv zu sein?) -->
-
 #### Facets
 Wie Ihr auf dem [Schummelzettel](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
@@ -463,10 +459,7 @@ leaflet::leaflet() %>%
 
 Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das es euch erlaubt Visualisierungen zu erstellen: [`echarts4r`](https://rstudio.github.io/leaflet/morefeatures.html).
 
-Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren. 
-
-<!-- Cosima: Vielleicht wäre es, da leaflet nicht zuverlässig mit Shiny zu funktionieren scheint, eine Idee auf `plotly` zu gehen und statt einer Karte einen interaktiven ggplot zu zeigen? --> 
-
+Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren.
 
 ### **Und jetzt Ihr** (diese Woche optional)
 Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Balkendiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?
