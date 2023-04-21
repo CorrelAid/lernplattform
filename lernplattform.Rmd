@@ -258,8 +258,8 @@ cat(out, sep = '')
 
 <!-- ## Datenprojekte aus der Zivilgesellschaft -->
 ```{r results='asis'}
-#out <- knitr::knit_child("02_datenprojekteundstrategie.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("02_datenprojekteundstrategie_v2.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Lernzielkontrolle -->

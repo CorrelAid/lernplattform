@@ -1,0 +1,169 @@
+## **Datenprojekte für die Zivilgesellschaft**
+
+![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (60min)*](https://youtu.be/6lGuBz7Cie0)
+*Anmerkung: Der Begriff "Impact" ist hier mit "Effekt" zu übersetzen - nicht mit "Wirkung".*
+
+Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/){target="_blank"}, in unserem [Blog](https://correlaid.org/blog/){target="_blank"} und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast){target="_blank"}. Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
+
+### **Kernaussagen**
+- Datenprojekte von und für die Zivilgesellschaft gibt es in allen **Farben und Formen**
+- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](https://correlaid.org/nonprofits/projects/){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **[CorrelCon](https://www.youtube.com/watch?v=JJoEJGc1eNc&list=PLXK26SbU8735a2yFZIpIshLdiuxgaK2_n){target="_blank"} und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**.
+- Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://dashboard.mailerlite.com/forms/257414/78742752988235359/share){target="_blank"}** vor.
+- Daten sind **formalisierte, idealerweise durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können.
+- Daneben verstehen wir **Datenwissenschaft** auch als **Denkweise** ("Wie gehen wir an Herausforderungen heran?") und **Kompetenzbereich** ("Welche analytischen, technischen und fachlichen Fähigkeiten sind notwendig?").
+- Ohne Daten treffen wir **Entscheidungen auf Basis von Hypothesen**, die wir noch gar nicht überprüft haben, und lassen **Potenziale der Digitalisierung** für **effektive und effiziente** Arbeitsweisen ungenutzt.
+- Der **Zweck** unserer Datenstrategie und unserer Datenprojekte ergibt sich aus unserer **Wirkungslogik** - sie folgen also einer **strategischen Zielsetzung**.
+- Da die Einführung von technischen Veränderungen mit Hürden verbunden ist, gehört auch das **Einbeziehen von Mitarbeitenden** und eine Auseinandersetzung mit der **Organisationskultur** zu einer guten Datenstrategie.
+
+Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit Mehrwert für Eure Organisation und Euch solltet Ihr einige Punkte beachten:
+
+**Was wir tun sollten:**
+
+- Projekte vom Zweck (und nicht von der Technologie aus) zu denken
+- Auch Technologien mit niedrigem analytischen Reifegrad in Erwägung zu ziehen
+- Quantitative und qualitative Forschungsmethoden zu nutzen
+- Externe und operationale Daten vor dem Beginn von Datenerhebungen zu evaluieren
+- Manuelle Prozesse mit menschlichen Fähigkeiten zu verknüpfen, um passende Technolgien zu finden
+- Mit Prototypen und agilem Arbeiten in Iterationen die Nützlichkeit von Projekten zu überprüfen
+
+**Was wir vermeiden sollten:**
+
+- (Einmalig) identifizierte Signifikanz überzubewerten und Erkenntnisse ohne Sinnhaftigkeitsprüfung zu übernehmen
+- Unsinnige Vergleichsgruppen zu bilden
+- Nur nach präferierten Resultaten zu suchen
+- Voraussetzungen der Datenqualität und -aktualität zu missachten
+- Uns auf Trendtechnologien und BuzzWords zu fokussieren
+- Den Aufwand von Datenprojekten (insb. im Bereich der Organisationskultur) zu unterschätzen
+
+### **Quiz**
+
+```{r quiz_datenstrategie}
+quiz(caption = NULL,
+  question("Welche der folgenden Fragestellungen können mit Daten beantwortet werden:",
+    answer("Was macht unsere gesellschaftliche Herausforderung aus?", correct = TRUE),
+    answer("Wie können wir bessere Entscheidungen treffen?", correct = TRUE),
+    answer("Wie können wir effizienter und effektiver arbeiten?", correct = TRUE),
+    correct = "Richtig! Darüber hinaus fallen Euch vielleicht auch noch eigene Fragen ein.",
+    incorrect = "Leider falsch: Auf Daten treffen alle diese Aussagen zu.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Die Datenstrategie Eurer Organisation sollte in erster Linie worauf aufbauen?",
+    answer("Ungenutzten Daten, die Ihr bereits erhoben habt"),
+    answer("Daten, die Ihr noch erheben möchtet"),
+    answer("Neusten, technischen Möglichkeiten"),
+    answer("Eurer Organisationsstrategie", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Datennutzung ist mit erheblichen Ressourcenaufwendungen verbunden. Datenprojekte kosten Zeit und Geld und innerhalb Eurer Organisation müssen Veränderungsprozesse nicht nur in Euren Systemen sondern auch in Eurer Kultur verankert werden. Deshalb sollte die Datenstrategie auf strategischen Zielsetzungen aufbauen, sodass kostbare Ressourcen nicht an falscher Stelle verbraucht und Projekte umsichtig und inklusiv geplant werden.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Welche Datenquelle bedeutet für Eure Organisation am meisten Aufwand?",
+    answer("Externe (offene) Daten"),
+    answer("Interne Daten aus operationellen Prozessen"),
+    answer("Erhebungsdaten", correct=TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Erhebungsdaten sind am aufwendigsten, weshalb eine Recherche von öffentlichen Datenbanken und Studien zum Themengebiet sowie die Betrachtung von operationellen Daten sinnvoll ist.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+### **Und jetzt Ihr**
+
+Nach den letzten Wochen seit Ihr nun richtig fit in R geworden! Daher ist es jetzt an der Zeit, Euch zu überlegen, wie Ihr Eure neuen R-Skills in einem Datenprojekt anwenden könnt - arbeitet dafür gerne mit unseren Templates und wir freuen uns, wenn Ihr Eure Ideen in der nächsten Livesession vorstellt! 
+
+#### Teil 1: Erste Ideen entwickeln
+Anfangs ist es vielleicht gar nicht so leicht, ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
+
+<center>
+![*Template: Ideenfindung*](https://correlaid.org/material/Ideenfindung.png){#id .class width=100% height=100%}
+
+
+</center>
+<br>
+
+Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
+
+Hier geht es zum
+[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1674060452599?code=99330ace8f44400893a2b8aeaab6b53a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr ein Mural mit Eurem Namen - tobt Euch dort gerne aus! 
+
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf){target="_blank"}.
+
+
+#### Teil 2: Eigenen Data Use Case entwickeln
+Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
+
+Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen. Es ist zudem ausreichend, wenn Ihr allein bis Sektion 5 kommt. Ihr könnt im Verlauf des Kurses immer wieder auf das Template zurückgreifen und insbesondere die Sektionen 6-8 werden zu einem späteren Zeitpunkt leichter zu beantworten sein.
+
+<center>
+![*Template: Data Use Case*](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
+
+
+</center>
+<br>
+
+Hier geht es zum
+[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1674060452599?code=99330ace8f44400893a2b8aeaab6b53a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr das Mural mit Eurem Namen - tobt Euch dort gerne aus! 
+
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.
+
+### **Wie CorrelAid Euch unterstützen kann** 
+
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>R Lernen Alumni</b></p>
+Ist Euch der #rlernen-alumni Slack Channel bereits aufgefallen? Dieser Channel soll Euer Channel sein, also nutzt ihn gerne ausgiebig, um Euch auszutauschen und weiterzuhelfen, schreibt zum Beispiel gerne
+
+- bei Herausforderungen, aber auch Tipps und Tricks rund um R,
+- wenn Ihr ein Datenprojekt angeht und Feedback zum Zwischenstand haben wollt,
+- wenn Ihr Tipps zu Workshops uns Weiterbildungsmöglichkeiten in der Datenwelt habt,
+- oder einfach wann auch immer Euch etwas einfällt, was Ihr hier teilen wollt!
+</div>
+
+<br>
+
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>R Lernen Sprechstunde</b></p>
+Ihr habt bereits guten Kontakt zu Eurer\*m Mentor\*in? Perfekt - dann fragt gerne einfach direkt im Slack bei ihnen nach! Ansonsten ist auch weiterhin die R Lernen Sprechstunde für Euch geöffnet. Meldet Euch dafür gerne [hier](https://calendly.com/correlaid/30min){target="_blank"} an und wir helfen Euch in der halben Stunde direkt weiter!
+</div>
+
+<br>
+
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>NPO Newsletter</b></p>
+Einmal im Monat senden wir Euch eine Mail mit einem Projekt des Monats und Neuigkeiten und Angeboten aus unserem Netzwerk. Für den Newsletter könnt Ihr Euch [hier](https://dashboard.mailerlite.com/forms/257414/78742752988235359/share){target="_blank"} anmelden.
+</div>
+
+<br>
+
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>Bildungsressourcen auf unserer Website</b></p>
+Es gibt unzählige CorrelAid-Workshops, die bereits stattgefunden haben - auf unserer neuen Website werdet Ihr bald alle Materialien in aufbereiteter Form davon finden. Bis dahin: Schaut gerne bei unserem Github [hier](https://github.com/CorrelAid){target="_blank"} vorbei, dort findet Ihr Code und Workshop-Materialien zu vielen verschiedenen Themenbereichen!
+</div>
+
+<br>
+
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>Datenreifegradmodell</b></p>
+Für die Entwicklung einer organisationsweiten Datenstrategie über diesen Kurs hinaus bieten wir eine digitale Bestandsaufnahme Eures Datenreifegrads an: Habt Ihr Euch jenseits von einzelnen Projekten schon gefragt, an welchen Punkten Ihr als Organisation in Bezug auf Eure Arbeit mit Daten noch Verbesserungspotenziale habt und wo investierte Ressourcen bereits ausreichen? Findet es mit unserem Rechner [Elmo](https://correlaid.shinyapps.io/datamaturitymodel/){target="_blank"} heraus! 
+</div>
+
+<br>
+
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>TidyTuesday</b></p>
+Tidytuesday ist eine globale Coding Challenge rund um das Aufbereiten und kreative Visualisieren von Daten mit R. Wir vom CorrelAid Tidytuesday Netzwerk sind schon seit über zwei Jahren dabei.
+Ziel unserer Coding Sessions ist es zum einen, sich gegenseitig zu inspirieren, zum anderen voneinander zu lernen. Expert\*innen unterstützen Anfänger\*innen "von der Pike auf" bei der Visualisierung von Daten: von statischen Plots, über interaktive Visualisierungen bis hin zu Animationen. Gleichzeitig kann bereits erlerntes Wissen bei jeder Session immer aufs Neue unter Beweis gestellt werden. Bei uns wird die Förderung der Kreativität und Neugierde für neue Visualisierungstechniken ganz groß geschrieben.
+Schaut euch gerne die Visualisierungen unserer Community auf unserer [Tidytuesday Repository](https://tidytuesday.correlaid.org/){target="_blank"} an. Wenn wir Euer Interesse geweckt haben, könnt Ihr sehr gerne ein [Coding Meetup](https://calendly.com/correlaid-main/tidytuesday){target="_blank"} bei uns buchen. Wir freuen uns auf Euch!
+
+Darüber hinaus, bieten wir Eurer Non-Profit-Organisation unsere Unterstützung bei kreativen Datenvisualisierungen z.B. für Webauftritte, Präsentationen oder Publikationen an. Wir arrangieren und tragen, in enger Rücksprache mit Euch und Eurer Organisation, eine CorrelAid Tidytuesday Challenge aus, in der alle Teilnehmende ihren Ideenreichtum freien Lauf lassen und Euch neue Einblicke in die Daten gewähren können. Alle Visualisierungen werden nach Abschluss der Challenge Euch und Eurer Organisation zur Auswahl weitergereicht.
+
+Bei weiteren Fragen, könnt Ihr Euch einfach bei Slack an die beiden Organisatoren Long und Andreas wenden.
+</div>
+
+### **Zusätzliche Ressourcen**
+- [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"}
+- [Skalacampus](https://www.skala-campus.org/){target="_blank"}
+- [Bernard Marr: Data Strategy: How to Profit from a World of Big Data, Analytics and the Internet of Things](https://bernardmarr.com/books/){target="_blank"}
+- [Haus des Stiftens: Digital-Report 2020](https://www.hausdesstiftens.org/wp-content/uploads/Digital-Report-2020.pdf){target="_blank"}
