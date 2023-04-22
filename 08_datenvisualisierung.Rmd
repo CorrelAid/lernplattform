@@ -397,7 +397,7 @@ Ein Grundverständnis für die Logik von `ggplot2` ist immer sinnvoll - aber was
 
 ### **Exkurs**: Karten mit `leaflet`
 
-> Um die Ergebnisse des Codes sehen zu können, müsst Ihr den Code in Eurem lokalen RStudio/R ausführen.
+> Um die Ergebnisse des Codes sehen zu können, müsst Ihr den Code in Eurem lokalen RStudio/R ausführen. Wir haben Euch [hier](https://drive.google.com/drive/folders/1vfzAAJ0gS7FXAhL2MSWn3JpJQZlu6PIe) in einer ZIP-Datei schon Skripte vorbereitet, die Ihr nutzen könnt (`uebung.R` enthält den Lückentext, `loesung.R` die Lösung, wenn Ihr nicht weiterkommt).
 
 Ihr habt bereits gelernt, wie man **geographische Daten** importiert. Wir fügen die sogenannten Polygone unserem `community`-Datensatz an und fügen drei Spalten ein, die uns später bei den Labels hilft (ein toller Trick, den Ihr Euch für andere Visualisierungsprojekte merken solltet).
 
