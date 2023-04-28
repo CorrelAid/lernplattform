@@ -1,9 +1,9 @@
-## Lernzielkontrolle
+## **Lernzielkontrolle**
 
 Hier kannst Du deinen **Wissensstand überprüfen**. Für die Bearbeitung solltest Du zwei Stunden Zeit (**120min**) einplanen. Viel Glück!
 
 
-### Theoretischer Teil (40 Fragen - 60min Zeit)
+### **Theoretischer Teil** (40 Fragen - 60min Zeit)
 In diesem Teil fragen wir Euer theoretisches Wissen ab. Ein Großteil der Fragen setzt sich aus den Quiz der Lektionen in den vergangenen Wochen zusammen. Dort könnt Ihr auch nochmal nachlesen, wenn Ihr nicht verstanden habt, warum Eure Antwort nicht richtig war.
 ```{r quiz_lernzielkontrolle}
 quiz(caption = NULL,
@@ -430,7 +430,7 @@ question("Was macht das UI (user interface) einer Shiny-App?",
 ```
 
 
-### Praktischer Teil (10 Aufgaben - 60min Zeit)
+### **Praktischer Teil** (10 Aufgaben - 60min Zeit)
 
 #### Schritt 1: Packages installieren und laden
 Installiert hier das Package "tidyverse".
