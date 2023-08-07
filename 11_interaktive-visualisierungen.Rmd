@@ -67,13 +67,13 @@ library(shiny)
 
 Der [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzendenoberfläche") und **einen Server**. 
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app7.png?raw=true){#id .class width=70% height=70%}</right>
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui-server-2.png?raw=true){#id .class width=70% height=70%}</right>
 
 In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und einen `server`-Part, die Ihr dann mit dem Befehl **`shinyApp(ui = ui, server = server)`** zusammenbringt und Eure Shiny-App zum Laufen bringt. Da die **UI** und der **Server** die zentralen Bestandteile der Shiny-App sind, hier noch einmal in Kürze das Wichtigste:
 
 ##### **Der Server**
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/brain.png?raw=true){#id .class width=20% height=100% align="right}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/brain.png?raw=true){#id .class width=20% height=100% align="right}
 
 Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet. Wenn Ihr die Shiny-App in Aktion sehen wollt, könnt Ihr sie Euch [**hier**](https://cosima-meyer.shinyapps.io/example_app/){target="_blank"} ansehen.
 
@@ -101,7 +101,7 @@ server <- function(input, output) {
 
 ##### **Die UI**
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/body.png?raw=true){#id .class width=20% height=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/body.png?raw=true){#id .class width=20% height=100%}
 
 Im nächsten Schritt könnt Ihr das **Aussehen Eurer App** (also das *U*ser *I*nterface) bestimmen. Dazu nutzen wir die `ui`, die zum Beispiel so aussehen kann:
 
@@ -186,7 +186,7 @@ Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 3. Der Output, den die `render`-Funktion erzeugt, wird ein **Objektname** zugewiesen (`output$name <- render...({})`), auf den wir dann in der UI verweisen können.
 
 <center>
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app4.png?raw=true){#id .class width=70% height=70%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/app-server.png?raw=true){#id .class width=70% height=70%}
 </center>
 
 Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}!) und benennen.
@@ -252,7 +252,7 @@ Eine UI ist immer nach dem gleichen Prinzip aufgebaut:
 
 Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
 <center>
-![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app3.png?raw=true){#id .class width=70% height=70%}
+![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui.png?raw=true){#id .class width=70% height=70%}
 </center>
 
 Die Grundstruktur dieses Layouts sieht so aus:
@@ -470,7 +470,7 @@ quiz(caption = NULL,
 
 Richtig, Euer Filter scheint noch nicht richtig zu funktionieren. Das liegt daran, dass wir den **`server` noch nicht mit der `ui` verbunden** haben. Erinnert Ihr Euch an die Abbildung im Video, die Euch gezeigt hat, dass alles miteinander verbunden sein muss?
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app5.png?raw=true){#id .class width=70% height=70%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui-server-1.png?raw=true){#id .class width=70% height=70%}
 
 Das holen wir jetzt nach. Dazu bauen wir einen Filter in unsere Visualisierungsfunktion im `server` ein. Dazu gehen wir in die Funktion, die wir vorher einfach in unseren `server` reinkopiert haben.
 
@@ -523,7 +523,7 @@ Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. 
 Man kann sich das Verhalten zwischen der UI, dem Server und den Nutzenden wie die Kommunikation mit einer **Brieftaube** vorstellen. Dieses schöne Bild stammt von [*Garrett Grolemund*](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}, der sagt, dass Reaktivität eine Illusion erzeugt, die den Nutzenden vermittelt, dass eine Eingabe durch den Nutzenden automatisch z.B. Abbildungen kreiert.
 
 <center>
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/reactivity.png?raw=true){#id .class width=70% height=70%} 
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/reactivity.png?raw=true){#id .class width=70% height=70%} 
 </center>
 
 ```{r reactivity_quiz}
@@ -558,15 +558,15 @@ Sollte die RStudio-Lösung für Euch eine Option sein, ist das Hosten denkbar ei
 
 Sobald Ihr Euch bei [ShinyApps.io](https://www.shinyapps.io){target="_blank"} eingeloggt habt, seht Ihr folgendes Dashboard: 
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shinyapps1.png?raw=true){#id .class width=80% height=80%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shinyapps1.png?raw=true){#id .class width=80% height=80%}
 
 Dort klickt Ihr auf Euer Benutzerkonto (rechts oben) und dann auf "Tokens" und gelangt zu folgendem Fenster:
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shinyapps2.png?raw=true){#id .class width=80% height=80%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shinyapps2.png?raw=true){#id .class width=80% height=80%}
 
 Wenn Ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und erscheint in der Auflistung. Um die Informationen zu bekommen, die Ihr für Eure Shiny-App braucht, klickt einfach auf "Show". Dann öffnet sich ein kleines Pop-up Fenster mit allen wichtigen Infos, die Ihr einfach kopieren könnt (klickt dazu auf "Copy to clipboard").
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shinyapps3.png?raw=true){#id .class width=80% height=80%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shinyapps3.png?raw=true){#id .class width=80% height=80%}
 
 5. Nachdem Ihr den Code kopiert habt, verknüpft Eure Shiny-App mit [ShinyApps.io](https://www.shinyapps.io){target="_blank"}, indem Ihr den Code in der Console einfügt und ausführt. 
 
@@ -601,11 +601,11 @@ Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
 
 2. Öffnet RStudio und wählt dort eine neue Datei aus -- wählt dort "Shiny Web App". 
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shiny_step1.png?raw=true){#id .class width=50% height=50%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shiny_step1.png?raw=true){#id .class width=50% height=50%}
 
 Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer Datei ("Single File (app.R)"), d.h. es wird eine Datei sowohl für die UI (`ui.R`) als auch für den Server (`server.R`) erstellt) aus. 
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/shiny_step2.png?raw=true){#id .class width=50% height=50%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive_visualisierungen/shiny_step2.png?raw=true){#id .class width=50% height=50%}
 
 3. Überlegt Euch, wie Eure Shiny-App aussehen soll. Eine Shiny-App hat meist links eine Seitenleiste mit Auswahlmöglichkeiten, in der Mitte (dem `main`-Part) ist meist Text, eine Visualisierung oder aber auch eine Tabelle. Es kann helfen, wenn Ihr Euch das kurz auf einem Papier visuell skizziert: Welche Visualisierung möchtet Ihr in Eure Shiny-App einbinden? Was könnten Auswahlmöglichkeiten sein, die Ihr in der Seitenleiste ansteuern möchtet? Möchtet Ihr Text als Informationen mitliefern?
 

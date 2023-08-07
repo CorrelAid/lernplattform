@@ -392,7 +392,7 @@ Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für int
 Ein Grundverständnis für die Logik von `ggplot2` ist immer sinnvoll - aber was, wenn ihr mal "schnell" etwas ausprobieren wollt und es in `ggplot2` einfach nicht klappt? Dann gibt es `esquisse`! `esquisse` erlaubt es euch, direkt einen Datensatz anzusprechen und per Klick die Darstellungsmöglichkeiten auszuwählen. Das Schöne an `esquisse` ist, dass man den `ggplot2` Code dann auch direkt kopieren kann und in das R-Skript einfügen kann - so geht nichts verloren und man kann alles replizieren. Wie das funktioniert sehr Ihr hier im Clip. Dort zeige ich Euch, wie man die Daten lädt, einzelne Variablen auswählt, den Plot-Typ dann bestimmt und letztendlich den `ggplot2`-Code in Euer R-Skript kopiert.
 
 <center>
-![*GIF zur Erklärung von esquisse*](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/esquisse.gif?raw=true){#id .class width=70% height=70%}
+![*GIF zur Erklärung von esquisse*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/07_datenvisualisierung/esquisse.gif?raw=true){#id .class width=70% height=70%}
 </center>
 
 ### **Exkurs**: Karten mit `leaflet`

@@ -302,7 +302,7 @@ Da haben wir nochmal Glück gehabt: Unser **regelbasiertes System** funktioniert
 
 Neben der Ausführung von Aktionen unter bestimmten Bedingungen können wir durch technische Implementierungen **Aktionen mehrfach ausführen**. Ein Beispiel: Nach der Erreichung der Spendensumme soll eine Dankesnachricht an alle Spender:innen gesendet werden. In der Programmierung bezeichnet man diese iterierenden Verfahren als **Loop** (zu dt. Schleife). Sind alle Spender:innen bekannt (und somit die Liste der Elemente, über die man iteriert), nutzt man einen **For Loop** (zu dt. Für-Schleife). 
 
-![](images/03rstudio/forloop.png){#id .class width=30% height=100%}
+![](abbildungen/03_einfuehrung-in-rstudio/forloop.png){#id .class width=30% height=100%}
 
 ```{r fuerschleife, exercise = TRUE}
 # Aus der Liste "list("Lisa", "Frie", "Zoe")" picken wir uns eine "spenderin" raus...
@@ -314,7 +314,7 @@ for (spenderin in list("Lisa", "Frie", "Zoe")) {
 
 Soll die Aktion ausgeführt werden, bis eine Bedingung eintritt, z.B. weil alle Spender:innen kontaktiert wurden, dann nutzt man einen **While Loop** (zu dt. Solange-Schleife).
 
-![](images/03rstudio/whileloop.png){#id .class width=30% height=100%}
+![](abbildungen/03_einfuehrung-in-rstudio/whileloop.png){#id .class width=30% height=100%}
 
 ```{r solangeschleife, exercise = TRUE}
 # Erstellung der Liste unbekannter Länge
