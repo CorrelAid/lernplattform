@@ -19,6 +19,8 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
 
 Für weitere Infos zu Shiny-App, schaut Euch den [**Schummelzettel zu Shiny-Apps**](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"} an.
 
+> Den Code aus dieser Sitzung müsst Ihr lokal ausführen. Dafür könnt Ihr Stück für Stück die Code-Snippets kopieren und befüllen. Alternativ haben wir Euch [hier](https://drive.google.com/drive/folders/1vfzAAJ0gS7FXAhL2MSWn3JpJQZlu6PIe) in einer ZIP-Datei schon Skripte vorbereitet, die Ihr nutzen könnt (`uebung.R` enthält den Lückentext, `loesung.R` die Lösung, wenn Ihr nicht weiterkommt).
+
 ### **Quiz**
 ```{r 11ui}
 quiz(caption = NULL,
@@ -187,7 +189,9 @@ Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 ![](https://github.com/CorrelAid/lernplattform/blob/main/daten/abbildungen/app4.png?raw=true){#id .class width=70% height=70%}
 </center>
 
-Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}!) und benennen. In unserer App ergibt das:
+Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}!) und benennen.
+
+In unserer App ergibt das:
 
 ```{r server_new_plot, exercise=TRUE}
 server <- function(input, output) {
