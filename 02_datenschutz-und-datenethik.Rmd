@@ -21,7 +21,7 @@ quiz(caption = NULL,
 ```
 
 Personenbezogene Daten sind **Informationen**, mit denen **natürliche Personen**, also Menschen, **identifiziert** werden (können). 
-![](abbildungen/02_datenschutz-und-datenethik/personenbezogene-daten.png){#id .class width=100% height=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/personenbezogene-daten.png?raw=true){#id .class width=100% height=100%}
 ```{r 02_quiz2}
 quiz(caption = NULL,
  question("Nutzt die Definition von personenbezogenen Daten (Art. 4 DSGVO), um die Daten zu identifizieren, die unter den Schutzbereich der DSGVO fallen:",
@@ -72,7 +72,7 @@ quiz(caption = NULL,
 
 
 Die Verarbeitung von personenbezogenen Daten unterliegt einem **Verbotsprinzip**: Nur wenn Ihr eine explizite Berechtigung zur Datenverarbeitung habt, dürft Ihr dies auch tun. Dabei sind die Rechtsgrundlagen bzw. **Erlaubnistatbestände** für die Datenverarbeitung folgende:
-![](abbildungen/02_datenschutz-und-datenethik/rechtmaessigkeit.png){#id .class width=100% height=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/rechtmaessigkeit.png?raw=true){#id .class width=100% height=100%}
 
 ```{r 02_quiz3}
 quiz(caption = NULL,
@@ -92,7 +92,7 @@ quiz(caption = NULL,
 Auf Grund Eurer **Informationspflichten** (Art. 12-14 DSGVO) müsst Ihr bei der Datenerfassung auf **Rechtsgrundlage, Zweck, Speicherdauer, Kontaktdaten der Verantwortlichen, die Weitergabe an Dritte und Rechte der Betroffenen** hinweisen.
 <!-- - Ihr seid zu der Einhaltung der folgenden **sieben** Kernpflichten verpflichtet: **Rechtmäßigkeit, Zweckbindung, Datenminimierung, Richtigkeit, Speicherbegrenzung, Vertraulichkeit und Rechenschaft** (Art.5-7, 12-23 ff. DSGVO) -->
 Außerdem müsst Ihr auf die folgenden **Betroffenenrechte** (Art. 15-21 DSGVO) hinweisen und diese berücksichtigen:
-![](abbildungen/02_datenschutz-und-datenethik/betroffenenrechte.png){#id .class width=100% height=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/betroffenenrechte.png?raw=true){#id .class width=100% height=100%}
 
 Bei **Erlöschung des Zwecks** müssen personenbezogene Daten gem. §35 BDSG spätestens nach *drei Jahren* gelöscht werden - außer es handelt sich um steuerlich relevante oder Sozialdaten (Frist von 10 Jahren). Alternativ zur Löschung können Daten auch **anonymisiert** werden, indem identifizierende Informationen wie Name, exakte Adresse oder E-Mail gelöscht werden, bis die Kombination von Merkmalsausprägungen wie Wohnort, Beruf und Geschlecht jeweils bei *min. drei Personen* vorhanden ist (oder bei keiner).
 
@@ -112,7 +112,7 @@ quiz(caption = NULL,
 
 Da der **Datenschutz in Drittländern** (auch in den USA) nicht so ausgeprägt ist wie in der EU, solltet Ihr bei der Auswahl von datenverarbeitenden Tools darauf achten, wo sie ihren Hauptsitz und Server haben, und müsst ggf. zusätzliche Maßnahmen (z.B. rechtliche Vereinbarung, Passwortschutz, Verschlüsselung) ergreifen.
 Am besten veröffentlicht Ihr auf Eurer Webseite Eure **Datenschutzerklärung sowie Kontaktdaten von Ansprechpartner:innen** und legt mit klar definierten **Verantwortlichen** ein **Verarbeitungsverzeichnis und Datenschutzmanagementsystem** an, das Ihr in festen Abständen **überprüft**:
-![](abbildungen/02_datenschutz-und-datenethik/datenschutzerklaerung.png){#id .class width=100% height=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/datenschutzerklaerung.png?raw=true){#id .class width=100% height=100%}
 
 ```{r 02_quiz5}
 quiz(caption = NULL,
@@ -179,7 +179,7 @@ quiz(caption = NULL,
 
 Einige ethische Fragen solltet Ihr Euch vor und während Eurer Datenprojekte stellen:
 
-![](abbildungen/02_datenschutz-und-datenethik/ethische-fragen.png){#id .class width=100% height=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/ethische-fragen.png?raw=true){#id .class width=100% height=100%}
 
 #### **Datenethik in der Praxis**
 ```{r 02_quiz}
