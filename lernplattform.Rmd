@@ -266,9 +266,9 @@ out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quie
 cat(out, sep = '')
 ```
 
-<!-- ## Lernzielkontrolle -->
+<!-- ## Abschlussquiz -->
 ```{r results='asis'}
-out <- knitr::knit_child("13_lernzielkontrolle.Rmd", quiet = TRUE)
+out <- knitr::knit_child("13_abschlussquiz.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
