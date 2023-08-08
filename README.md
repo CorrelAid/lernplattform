@@ -1,5 +1,10 @@
 # R Lernen - Der Datenkurs von und für die Zivilgesellschaft (Lernplattform)
 
+## Download 
+
+- Die gesamte Lernplattform kann als .zip-Datei [hier](https://github.com/CorrelAid/lernplattform/archive/main.zip) heruntergeladen werden. 
+- Der Ordner mit den Übungsdateien als .zip-Datei kann [hier](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen) heruntergeladen werden.
+
 ## Lizenzinformationen
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
