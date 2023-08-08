@@ -164,7 +164,7 @@ Angenommen Ihr möchtet nun nur die Daten aus dem Jahr 2019. Filtert den Datensa
 ``` {r exercise_07filter_data_exercise, exercise = TRUE}
 # Ihr nehmt Euren Datensatz...
 data_raw %>%
-  # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
+  # ..filtert "EMPTY", "Grand Total" und alle Jahre außer 2019 heraus
   dplyr::filter(country != "EMPTY",
                 parent_company != "Grand Total", 
                 # Hier Euer Code! 
@@ -174,7 +174,7 @@ data_raw %>%
 ```{r exercise_07filter_data_exercise-solution}
 # Ihr nehmt Euren Datensatz...
 data_raw %>%
-  # ..filtert "EMPTY", "Grand Total" und Jahr 2020 heraus
+  # ..filtert "EMPTY", "Grand Total" und alle Jahre außer 2019 heraus
   dplyr::filter(country != "EMPTY",
                 parent_company != "Grand Total", 
                 year == 2019 
