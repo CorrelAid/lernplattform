@@ -90,7 +90,7 @@ ui <- fluidPage(title = "Break Free From Plastic",
   
   # Titel einfügen
   titlePanel(fluidRow(
-    column(10, tags$h2("Eine explorative Datenanalyse von #breakfreefromplastic"), HTML('<h5><em>Eine Übung zum Erlernen von Shiny Web Apps mit echten Daten aus dem tidyverse von und für die Zivilgesellschaft mit CorrelAid e.V. Lizenziert nach CC-BY 4.0. </h5></em>')),
+    column(10, tags$h2("Eine explorative Datenanalyse von #breakfreefromplastic"), HTML('<h5><em>Eine Übung zum Erlernen von Shiny-Apps mit echten Daten aus dem tidyverse von und für die Zivilgesellschaft mit CorrelAid e.V. Lizenziert nach CC-BY 4.0. </h5></em>')),
     column(1, HTML('<center><img src="https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg" width="75"></center>'))
   )),
   
