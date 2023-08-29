@@ -4,7 +4,7 @@
 library(rio)
 ```
 
-Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per Slack-Nachricht** an Zoé kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
+Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per Slack-Nachricht** kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
 
 ![*Video: Einführung in RStudio (30min)*](https://youtu.be/sgczH-e0Cxg)
 
@@ -97,7 +97,7 @@ quiz(caption = NULL,
 </p>
 
 ### **Grundlagen: Syntax in R**
-Einen Überblick über die Grundlagen in R erhaltet Ihr in diesem [**Schummelblatt**](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"}. In diesem Abschnitt stellen wir Euch die wichtigsten Grundlagen für die kommenden Wochen vor! 
+Einen Überblick über die Grundlagen in R erhaltet Ihr in diesem [**Schummelblatt**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/03_cheatsheet-base-r.pdf){target="_blank"}. In diesem Abschnitt stellen wir Euch die wichtigsten Grundlagen für die kommenden Wochen vor! 
 
 Die simpelste Version von R ist einfach die Verwendung als Taschenrechner. Führt mal folgenden Code-Block aus:
 
@@ -343,8 +343,8 @@ Legt nun ein neues R Projekt (wie im Video) und eine neue R Markdown-Datei auf E
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.
 
 ### **Zusätzliche Ressourcen**
-- Schummelblatt zu den [Grundlagen in R](https://correlaid.org/material/Schummelblatt_baseR.pdf){target="_blank"} (dt.)
-- Schummelblatt zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} (engl.)
+- Schummelblatt zu den [Grundlagen in R](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/03_cheatsheet-base-r.pdf){target="_blank"} (dt.)
+- Schummelblatt zur [IDE RStudio](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/03_cheatsheet-rstudio.pdf){target="_blank"} (engl.)
 - [Introduction to Programming in R (engl.)](https://app.dataquest.io/course/intro-to-r-rewrite){target="_blank"} von Dataquest
 - [Data Structures in R (engl.)](https://app.dataquest.io/course/datastructure-in-r-rewrite){target="_blank"} von Dataquest
 - [Control Flow, Iteration and Functions in R (engl.)](https://app.dataquest.io/course/intermediate-r){target="_blank"} von Dataquest

@@ -125,7 +125,7 @@ Für diese Lektion benötigt Ihr also `ggplot2`.
 library(ggplot2)
 ```
 
-Alle wichtigen `ggplot2` Befehle findet Ihr in diesem [Schummelzettel](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"}.
+Alle wichtigen `ggplot2` Befehle findet Ihr in diesem [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/07_cheatsheet-ggplot2.pdf){target="_blank"}.
 
 
 #### Inspiration suchen
@@ -341,7 +341,7 @@ gradethis::grade_this_code()
 ```
 
 #### Facets
-Wie Ihr auf dem [Schummelzettel](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
+Wie Ihr auf dem [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/07_cheatsheet-ggplot2.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
 Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren. Wir haben hier Histogramme, also die Darstellungen der Verteilung von Freiwilligen gewählt. Es wäre hier sehr praktisch, wenn man es nach Kontinent darstellen könnte. Dabei hilft und `facet_wrap()` mit dem Ihr die Anzahl der Freiwilligen nach Kontinent (`continent`) gruppieren könnt. 
 
@@ -467,8 +467,8 @@ Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr geler
 *Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen. Innerhalb von `geom_bar()` müsst Ihr das Argument `stat = "identity" setzen.*
 
 ### **Zusätzliche Ressourcen**
-- Unser Partner Dataquest bietet auch einen [Kurs zu Datenvisualisierungen in R](https://app.dataquest.io/course/r-data-viz){target="_blank"} an
-- [Schummelzettel zu `ggplot2`](https://correlaid.org/material/Schummelblatt_ggplot2.pdf){target="_blank"}
+- Dataquest bietet auch einen [Kurs zu Datenvisualisierungen in R](https://app.dataquest.io/course/r-data-viz){target="_blank"} an
+- [Schummelzettel zu `ggplot2`](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/07_cheatsheet-ggplot2.pdf){target="_blank"}
 - Mehr Informationen zu [`leaflet` (engl.)](https://leafletjs.com/){target="_blank"}
 - [RStudios Tutorial zu leaflet (engl.)](https://rstudio.github.io/leaflet/){target="_blank"}
 - Mehr Informationen zu [`echarts4r` (engl.)](https://echarts4r.john-coene.com/index.html){target="_blank"}

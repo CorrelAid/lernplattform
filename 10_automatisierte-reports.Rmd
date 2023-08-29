@@ -206,7 +206,7 @@ Falls Ihr den Report lediglich semi-automatisch ausführen wollt, könnt Ihr die
 ##### Option A2: YAML-Header mit GUI (begrenzt praktikabel)
 Neben dem Knit-Button findet sich ein Menü, in dem "Knit with parameters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine graphische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können. 
 
-![*Knitting mit Parametern - Standard (Screenshot)*](https://correlaid.org/material/knitwithparameters.png){#id .class width=50% height=50%}
+![*Knitting mit Parametern - Standard (Screenshot)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/10_automatisierte-reports/knitwithparameters.png?raw=true){#id .class width=50% height=50%}
 
 Das Layout der Parametereingabe könnt Ihr über den YAML-Header sogar
 gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards (nützlich für Daten), Slider (für numeriswche Werte oder Datumsangaben) und ein Dropdown-Menü zur Auswahl von Optionen. Außerdem könnt Ihr den Eingabefeldern individuelle Namen, ein Minimum und Maximum zuweisen. 
@@ -233,7 +233,7 @@ gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards
         choices: ["Amerikas", "Asien", "Afrika", "Europa", "Ozeanien", "alle Kontinente"] 
     ---
 
-![*Knitting mit Parametern - Menüoptionen (Screenshot)*](https://correlaid.org/material/knitwithparametersoptions.png){#id .class width=50% height=50%}
+![*Knitting mit Parametern - Menüoptionen (Screenshot)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/10_automatisierte-reports/knitwithparametersoptions.png?raw=true){#id .class width=50% height=50%}
 
 
 ##### Option B1: Die Render-Funktion mit GUI (begrenzt praktikabel)
@@ -302,10 +302,10 @@ if (!dir.exists(output_dir)) {
 
 *Tipp 2: Ihr wollt die Reports ganz automatisch ohne Euer Zutun erzeugen, z.B. auf einem Server? Dafür nutzen wir CronJobs, die zeitbasiert Prozesse für uns ausführen. Wie üblich gibt es zum vereinfachten Management ein Package in R: [cron R Dokumentation](https://cran.r-project.org/web/packages/cronR/cronR.pdf){target="_blank"}*
 
-Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}, in den englischsprachigen Büchern [Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} und [R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html){target="_blank"} und bei unserem Partner [Dataquest](https://app.dataquest.io/course/intermediate-r){target="_blank"}. In dem verlinkten Kapitel findet Ihr insbesondere weitere Hilfestellungen zu Wenn-Dann-Bedingungen, Funktionen und Iterationen.
+Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}, in den englischsprachigen Büchern [Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} und [R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html){target="_blank"} und bei [Dataquest](https://app.dataquest.io/course/intermediate-r){target="_blank"}. In dem verlinkten Kapitel findet Ihr insbesondere weitere Hilfestellungen zu Wenn-Dann-Bedingungen, Funktionen und Iterationen.
 
 ### **Und jetzt Ihr**
-Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut ladet den zip-Ordner [`11_automatisiertereports`](https://drive.google.com/file/d/1fzcbJ_cVTguLNOKii3hhhwsm8xcdbSnI/view?usp=share_link){target="_blank"} herunter, entpackt ihn, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten. 
+Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut in den Ordner `10_automatisierte-reports/10_automatisiertereports` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten. 
 
 ### **Zusätzliche Ressourcen**
 - [RStudio Webinar: **Rethink Reporting with Automation**](https://www.rstudio.com/resources/webinars/rethink-reporting-with-automation/){target="_blank"}

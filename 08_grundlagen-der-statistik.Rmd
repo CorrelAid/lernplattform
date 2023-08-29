@@ -14,7 +14,7 @@
 -   Wir müssen zwischen verschiedenen **Qualitätsstufen** von Studien unterscheiden
 -   In der Medizin erfolgt das über **Evidenzklassen**:
 
-<center>![Bild: Evidenzklassen](https://correlaid.org/material/evidenzklassen.png){#id .class width="100%" height="100%"}</center>
+<center>![Bild: Evidenzklassen](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/evidenzklassen.png?raw=true){#id .class width="100%" height="100%"}</center>
 
 -   Mit unterschiedlichen **Forschungsdesigns** ergeben sich also auch unterschiedliche interne Validität (Zuverlässigkeit der Studienergebnisse), externe Validität (Generalisierbarkeit der Studienergebnisse) und Reliabilität (Reproduzierbarkeit der Studienergebnisse)
 -   Insbesondere wenn wir den Begriff der **Kausalität** für uns beanspruchen wollen, müssen wir vorsichtig sein: Wir unterscheiden die Begriffe **Assoziation, Intervention und Kontrafaktische Analyse**
@@ -333,8 +333,6 @@ Statt eigene Berechnungen anzustellen, möchten wir Euch diese Woche dazu einlad
 
 ### **Zusätzliche Ressourcen**
 
--   [Pepsi, Coca Cola und die Geschichte der Nullhypothese](https://correlaid.org/blog/pepsi/){target="_blank"}, Manuel Neumann im CorrelAid Blog, 2019
--   [About P-Values](https://correlaid.org/blog/understand-p-values/){target="_blank"}, Daniel Lakens im CorrelAid Blog, 2017
 -   [An introduction to Causal inference](https://fabiandablander.com/r/Causal-Inference.html){target="_blank"}, Fabian Dablander, 2019
 -   [Statistical Rethinking](https://www.routledge.com/Statistical-Rethinking-A-Bayesian-Course-with-Examples-in-R-and-STAN/McElreath/p/book/9780367139919){target="_blank"}, Richard McElreath, CRC Press, 2020
 -   [Good & Bad Controls](https://www.youtube.com/watch?v=NSuTaeW6Orc&list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN&index=7&t=3530s){target="_blank"}, Richard McElreath

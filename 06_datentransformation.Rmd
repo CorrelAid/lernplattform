@@ -613,10 +613,12 @@ quiz(
 
   
 ### **Und jetzt Ihr**
-Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datentransformation**](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
+Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das **R Markdown: 06_datentransformation-uebung.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 06_datentransformation) an und versucht die Aufgaben darin zu bearbeiten. 
 
 ### **Zusätzliche Ressourcen**
-- [Schummelblatt: dplyr](https://correlaid.org/material/Schummelblatt_dplyr.pdf){target="_blank"} (engl.)
+- [Schummelblatt: dplyr](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/06_cheatsheet-dplyr.pdf){target="_blank"} (engl.)
+- [Schummelblatt: stringr](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/06_cheatsheet-stringr.pdf){target="_blank"} (engl.)
+- [Schummelblatt: tidyr](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/06_cheatsheet-tidyr.pdf){target="_blank"} (engl.)
 - [Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning){target="_blank"} auf DataQuest (engl.)
 - [Advanced Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning-advanced){target="_blank"} auf DataQuest (engl.)
 - Eine noch etwas holpriger Spielplatz, der zeigt, wie Eure Schritte in der Datenbereinigung aussehen: [Tidy Data Tutor](https://tidydatatutor.com){target="_blank"} (engl.)

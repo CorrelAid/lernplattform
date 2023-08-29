@@ -132,6 +132,7 @@ quiz(caption = NULL,
 )
 ```
 
+<br>
 
 #### **Datenschutz in der Praxis**
 

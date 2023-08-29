@@ -78,7 +78,7 @@ Nach den letzten Wochen seit Ihr nun richtig fit in R geworden! Daher ist es jet
 Anfangs ist es vielleicht gar nicht so leicht, ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
 
 <center>
-![*Template: Ideenfindung*](https://correlaid.org/material/Ideenfindung.png){#id .class width=100% height=100%}
+![*Template: Ideenfindung*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/ideenfindung.png?raw=true){#id .class width=100% height=100%}
 
 
 </center>
@@ -87,9 +87,9 @@ Anfangs ist es vielleicht gar nicht so leicht, ein eigenes Projekt zu finden, an
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1674060452599?code=99330ace8f44400893a2b8aeaab6b53a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr ein Mural mit Eurem Namen - tobt Euch dort gerne aus! 
+[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1693225230580?code=306bee73fc874d8698c51192d51db612&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr ein Mural mit Eurem Namen - tobt Euch dort gerne aus! 
 
-Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/Ideenfindung.pdf){target="_blank"}.
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/ideenfindung.pdf?raw=true){target="_blank"}.
 
 
 #### Teil 2: Eigenen Data Use Case entwickeln
@@ -98,16 +98,16 @@ Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes S
 Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen. Es ist zudem ausreichend, wenn Ihr allein bis Sektion 5 kommt. Ihr könnt im Verlauf des Kurses immer wieder auf das Template zurückgreifen und insbesondere die Sektionen 6-8 werden zu einem späteren Zeitpunkt leichter zu beantworten sein.
 
 <center>
-![*Template: Data Use Case*](https://correlaid.org/material/DataUseCase.png){#id .class width=100% height=100%}
+![*Template: Data Use Case*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/data-use-case.png?raw=true){#id .class width=100% height=100%}
 
 
 </center>
 <br>
 
 Hier geht es zum
-[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1674060452599?code=99330ace8f44400893a2b8aeaab6b53a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr das Mural mit Eurem Namen - tobt Euch dort gerne aus! 
+[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1693225230580?code=306bee73fc874d8698c51192d51db612&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr das Mural mit Eurem Namen - tobt Euch dort gerne aus! 
 
-Alternativ findet Ihr das Template als PDF unter diesem [Link](https://correlaid.org/material/DataUseCase.pdf){target="_blank"}.
+Alternativ findet Ihr das Template als PDF unter diesem [Link](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/data-use-case.pdf?raw=true){target="_blank"}.
 
 ### **Wie CorrelAid Euch unterstützen kann** 
 

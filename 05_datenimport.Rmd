@@ -3,7 +3,7 @@ Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um dami
 
 ![*Video: Datenimport und APIs (30min)*](https://youtu.be/NA9QLeQsE9M)
 
-[Hier](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} findet Ihr zudem ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
+[Hier](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/05_cheatsheet-import.pdf){target="_blank"} findet Ihr zudem ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
 
 ### **Kernaussagen**
 - Es gibt **zwei grundlegende Möglichkeiten** Daten zu importieren:
@@ -341,15 +341,15 @@ Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure 
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
 ### **Und jetzt Ihr**
-Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige [RMD 06_Datenimport](https://drive.google.com/drive/folders/1vLeG8s66sMR5cFBNtWaGpQ3xCNHxKW2-?usp=sharing){target="_blank"}:
+Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige **RMD 05_datenimport-uebung.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 05_datenimport):
 
-1. Ladet [hier](https://drive.google.com/drive/folders/1vLeG8s66sMR5cFBNtWaGpQ3xCNHxKW2-?usp=sharing){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei mit diesem Code **lokal zu laden**.
+1. Versucht, den "Plastics"-Datensatz (im Ordner `daten/plastics.csv` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}) mit diesem Code **lokal zu laden**.
 2. Ladet den "Plastics"-Datensatz über einen [**Hyperlink**](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
 3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
 4. In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um. 
 
 ### **Zusätzliche Ressourcen**
-- [Cheat Sheet: Data import](https://correlaid.org/material/CheatSheet_import.pdf){target="_blank"} (engl.)
+- [Cheat Sheet: Data import](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/05_cheatsheet-import.pdf){target="_blank"} (engl.)
 - [APIs in R](https://app.dataquest.io/course/apis-in-r){target="_blank"} auf DataQuest (engl.)
 - [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
 - [Web Scraping in R](https://app.dataquest.io/course/scraping-in-r){target="_blank"} auf DataQuest (engl.)

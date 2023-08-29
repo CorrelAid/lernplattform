@@ -5,8 +5,7 @@ Daten, die uns in unserem Alltag als Datenanalyst:innen und Datenwissenschaftler
 
 <center>
 
-![*2020 Developer Survey, Stack Overflow, n = 65,000*](https://correlaid.org/images/popular_dbms.png){#id .class width=50% height=50%}
-
+![*2020 Developer Survey, Stack Overflow, n = 65,000*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/05_datenimport/popular_dbms.png?raw=true){#id .class width=50% height=50%}
 </center>
 
 An einer Technologie kommt man beim Thema Datenbanken also nicht vorbei: **SQL (Structured Query Language, zu dt. Strukturierte Abfragesprache)**. SQL erlaubtuns aus SQL-basierten Datenbanken Daten abzufragen. Wie bei R handelt es sich hier also um eine Programmiersprache mit eigenem Syntax. Um erste Abfragen zu generieren, reichen allerdings nur wenige Befehle aus. In diesem Code Chunk stellen wir die Verbindung zu einer SQLite-DBMS her (Platz 4 in der 2020 Developer Survey von Stack Overflow).
@@ -24,7 +23,7 @@ con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
 
 Die Live-Verknüpfung selbst funktioniert wie erklärt **für jede Datenbank anders** - dieser Code kann also nicht einfach übertragen werden. Für einen Großteil der verschiedenen DBMS und zugehörige Importmöglichkeiten gibt es  jedoch von RStudio eine praktische [Übersicht](https://db.rstudio.com/tooling/pro-drivers/){target="_blank"}. Ist Euer Analysetool mit der Datenbank verknüft, könnt Ihr in der zugehörigen Abfragesprache **Abfragen** generieren. Schauen wir uns dazu zunächst an, wie das ERM (Entity-Relationship-Modell, zu dt. Datenbankschema) der Datenbank aussieht:
 
-![*ERM der Plastics-SQLite-Datenbank*](https://correlaid.org/images/ERM.png){#id .class width=50% height=50%}
+![*ERM der Plastics-SQLite-Datenbank*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/05_datenimport/erm.png?raw=true){#id .class width=50% height=50%}
 
 ```{r quiz_dbdiagramm}
 quiz(
@@ -101,4 +100,4 @@ dbDisconnect(con)
 
 SQLite-Datenbanken benötigen in der Regel **kein Passwort** (und somit auch keinen Code für die Authentifizierung). Falls das für Euch notwendig ist, findet Ihr in der Dokumentation von RStudio in den Kapiteln [Database](https://docs.rstudio.com/connect/1.7.8/admin/database-provider.html){target="_blank"} und [Authentication](https://docs.rstudio.com/connect/1.7.8/admin/authentication.html){target="_blank"} Hilfestellungen.
 
-Ihr wollt mehr SQL lernen? Unser Partner Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
+Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
