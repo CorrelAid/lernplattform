@@ -189,7 +189,7 @@ Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 3. Der Output, den die `render`-Funktion erzeugt, wird ein **Objektname** zugewiesen (`output$name <- render...({})`), auf den wir dann in der UI verweisen können.
 
 <center>
-![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/app-server.png?raw=true){#id .class width=70% height=70%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-server.png?raw=true){#id .class width=70% height=70%}
 </center>
 
 Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}!) und benennen.
