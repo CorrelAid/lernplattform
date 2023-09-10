@@ -1,0 +1,54 @@
+---
+title: "Datenimport und APIs"
+author: "Nina Hauser"
+date: "10/20/2021"
+output: pdf_document
+---
+
+# Schritt 1: Infrastruktur
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
+```
+
+# Schritt 2: Daten laden
+
+### Übung 1: 
+Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei **lokal zu laden**.
+
+```{r}
+# Euer Code hier
+```
+
+
+### Übung 2:
+Ladet den "Plastics"-Datensatz über einen **Hyperlink** [Link](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
+
+```{r}
+# Euer Code hier
+```
+
+
+### Übung 3:
+Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
+```{r}
+# Euer Code hier
+```
+
+
+### Übung 4: 
+In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um.
+
+```{r}
+# Euer Code hier
+```
+
+
+# Schritt 3: Daten bereinigen
+
+# Schritt 4: Übersicht verschaffen
+
+# Schritt 5: Visuelle Exploration
+
+# Schritt 6: Statistische Kennzahlen

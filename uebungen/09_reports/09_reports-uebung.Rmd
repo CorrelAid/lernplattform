@@ -1,0 +1,183 @@
+---
+title: ''
+author: "Dein Name"
+date: "19. Nov. 2021"
+output:
+  html_document: 
+#    theme: yeti
+#    df_print: kable
+#    toc: TRUE
+#    toc_float: TRUE
+#    code_folding: "hide"
+#    self_contained: TRUE
+  pdf_document:
+    pandoc_args:
+    - --extract-media
+    - ./media
+---
+
+```{r setup, include=FALSE}
+# setze hier die Code Block Argumente die du für alle Code Blöcke als Default festlegen möchtest
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# R-Pakete laden
+pacman::p_load(
+  tidyverse,
+  rio
+)
+```
+
+<!-- 
+Die nächsten drei Code Chunks laden Daten (1) erstellen Subset der Top/ Firmen basierend auf der Anzahl an Plastikstücken (2) und lassen diese als Output ausgeben (3). Beachte, wie die Code Labels dir Aufschluss darüber geben, was im jeweiligen Block passiert.  
+
+- Führe die Code Blöcke nacheinander aus. Schaue dir die Daten in jedem Schritt am. Kannst du nachverfolgen was passiert?  
+
+- Probiere mithilfe der Code Block Argumente die Blöcke an sich nicht im Report anzeigen zu lassen. Eine Übersicht zu den Code Chunks findest du bei dieser R-Studio Website. (https://rmarkdown.rstudio.com/lesson-3.html).
+-->
+
+```{r import-data, include=FALSE}
+url_audit <- "https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv"
+
+audit <- rio::import(file = url_audit) %>%
+  # Unpassende Werte Filtern
+  dplyr::filter(!parent_company %in% c("Unbranded", "Inconnu", "Assorted"))
+```
+
+```{r wrangle-data-subset-continent, include=FALSE}
+audit_continent <- audit %>%
+  # Kontinent filtern
+  dplyr::filter(continent == "Europa")
+
+audit <- audit_continent
+```
+
+```{r wrangle-companies, include = FALSE}
+# Anzahl Top Ten Hersteller berechnen
+parent_company_counts <- audit %>%
+  # Zähle die Anzahl der Plastikstücke pro Unternehmen
+  dplyr::count(parent_company,
+    wt = n_pieces, name = "total_pieces",
+    sort = TRUE
+  )
+```
+
+
+<!-- Nun beginnen wir den Report mit Markdown zu gestalten: zuerst das Logo -->
+[![CorrelAid Logo](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg "CorrelAid Logo"){width="20%"}](correlaid.org)
+
+<!-- Findest du den untenstehenden Titel gut? Finde einen anderen falls du ihn ändern möchtest -->
+
+# Break Free From Plastic Report
+
+<!-- der untenstehende Untertitel ist zu groß geraten: könnt Ihr ihn auf Level 5 setzen damit er kleiner wird? -->
+
+# Auswertung für Europa
+
+von `füge deinen Namen hier ein`
+
+<!-- Hier findest du ein Stück sogenannter Inline Code, welcher jedes mal wenn der Report neue generiert wird, automatisch das aktuelle Datum einfügt  -->
+
+*zuletzt generiert: `r lubridate::today()`*
+
+<!-- kannst du die zweite Anmerkung auch kursiv machen, den Hperlink einfügen und beide Punkte als Liste darstellen? -->
+
+Mehr Informationen zu Break Free From Plastic finden Sie unter diesem Link (als Hyperlink einfügen, <https://www.breakfreefromplastic.org/>).
+
+------------------------------------------------------------------------
+
+<!-- Stellt euch vor, ihr beginnt eine neue Analyse. Bevor ihr mit dem Code loslegt, bietet es sich an, das Projekt und das Ziel kurz zu beschreiben. Füge also unter diesem Kommentar eine Art Einleitung für dein Projekt ein. Nutze dafür die verschiedenen Wege, den Text mithilfe von Markdown zu formatieren. Wenn du dieses Dokument knittest, kannst du deinen Fortschritt überprüfen. Beispiel Formatierungen: Überschriften, fett, kursiv, Listen, Links. Du kannst auch gerne die vorhandenen Überschriften verändern, sodass aus diesem Dokument dein eigender Report wird. -->
+
+### Vorwort
+
+Lorem ipsum dolor sit amet, ex saepe euismod quo, error constituto ius ex, cu mei facilisis delicatissimi. Quo cu enim dicant, pri nobis detracto ut. An veritus reprimique conclusionemque eos, ex laudem definitionem vim. Sit ut dicta solet, cu cum tale complectitur, ex sea partem doming tibique.
+
+### Datenbereinigung
+
+No usu impetus quaeque inimicus. Ne delenit oportere constituam sit. Pri te commune senserit scriptorem, duo ad justo libris. Etiam soluta eam eu, elit dicant vix in.
+No usu impetus quaeque inimicus. Ne delenit oportere constituam sit. Pri te commune senserit scriptorem, duo ad justo libris. Etiam soluta eam eu, elit dicant vix in.
+
+<!-- Das erste Kapitel des Reports, nun beginnt die Datenanalyse für dieses Kapitel -->
+
+### 1. Aktivitäten
+
+<!-- Hier findet ihr einen Beschreibungstext, der auch Inline Code enthält. Versteht ihr, was mit dem top3_string passiert, wenn der Report erstellt wird? -->
+
+```{r glue-top3-string, include=FALSE}
+top3_string <- glue::glue_collapse(
+  x = parent_company_counts$parent_company %>% head(3),
+  sep = ", ",
+  last = " und "
+)
+```
+
+2019 führte Break Free From Plastics mehrere Events mit Freiwilligen durch, kategorisierte die verschiedenen Plastikstücke und sorgte im Anschluss für ihre fachgerechte Entsorgung. Besonders häufig waren Plastikstücke der Firmen `r top3_string`.
+
+<!-- Nun ist es an der Zeit ein paar Ergebnisse festzuhalten: 
+Zuerst fügen wir eine Tabelle ein und wieder etwas beschreibenden Text.
+-->
+
+```{r print-top10-unternehmen, echo=FALSE}
+parent_company_top10 <- parent_company_counts %>%
+  # die Top Ten abspalten
+  slice_max(total_pieces, n = 10)
+
+parent_company_top10 %>%
+  select(
+    Unternehmen = parent_company,
+    "Anzahl Plastikstücke" = total_pieces
+  )
+```
+
+<!-- Schaffst du es die untenstehenden Information auch für das Unternehmen aus den Top10 mit dem wenigsten Plastik einzufügen?
+-->
+
+> --\> In den Top10 der Firmen ist das Unternehmen mit den **meisten Plastikstücken** `r parent_company_top10 %>% head(1) %>% pull(parent_company)` mit insgesamt `r parent_company_top10 %>% head(1) %>% pull(total_pieces)` Plastikstücken in 2019.
+
+<!-- Zeit für einen Plot. 
+Du kannst unterschiedliche Abschnitte im Code highlighten und ausführen um Schritt für Schritt nachverfolgen zu können was der Code in der Abbildung bewirkt. Die Abschnitte enden immer mit der geschlossenen Klammer vor dem `+`.
+-->
+
+```{r bar-chart-top7-volunteers, echo=FALSE}
+parent_company_top10 %>%
+  # definiere die Variablen in den aesthetics
+  ggplot2::ggplot(
+    aes(
+      x = total_pieces,
+      y = fct_reorder(parent_company, total_pieces)
+    )
+  ) +
+  # definiere dass die Daten als Balkendiagramm zum Plot hinzugefügt werden sollen
+  ggplot2::geom_col(
+    width = 0.5, fill = "#4E97AC"
+  ) +
+  # definiere die Labels der Abbildung
+  ggplot2::labs(
+    title = "Prominente Firmen aus aller Welt ...",
+    subtitle = "... stellen die gefundenen Plastikverpackungen her.",
+    x = "Anzahl an Plastikstücken",
+    y = ""
+  ) +
+  # definiere den Style der Abbildung
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.title.position = "plot",
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank()
+  )
+```
+
+<!-- Last But not Least: Die YAML Kopfzeile!
+Nun ist es an der Zeit sich über den Output Gedanken zu machen. Dafür bietet sich die YAML Kopfzeile (ganz oben) an.
+Einige mögliche YAML "Key: Value" Paare sind schon formuliert, aber noch mit einer Raute `#` auskommentiert.
+- Ändere das Format des Outputs von PDF wieder schließlich zu html.
+- Ändere die Darstellung von Tabellen mit der Option df_print: "paged", probiere es danach mit df_print: "kable". Schaue dir jeweils den Tabellen Output an: Was gefällt dir besser?
+- Setze deinen eigenen Titel
+- Füge ein Inhaltsverzeichnis ein mithilfe der `toc: TRUE` Option
+- Pro: schaffst du es, das Inhaltsverzeichnis an der Seite schweben zu lassen? (klappt nur, wenn der Output "html_document" ist) 
+- Pro: schaffst du es die Tabelle ud die Grafik in nebeneinanderstehenden Tabs darzustellen? (html_document). Eine Anleitung dafür findest du hier: https://bookdown.org/yihui/rmarkdown/html-document.html
+-->
+
+<!--und nun?
+Löscht nun die Anleitungstexte für die Übungen und werdet kreativ. Was würdet Ihr noch verändern, um einen schön gestalteten Report zu erzeugen? Welche Überschriften braucht es noch? Welche Tabellen und Graphiken der letzten Wochen könnten für den Report spannend sein?  -->
+
+<!-- Bettet doch am Ende des Reports noch das Bild von der Sammelaktion ein (https://camo.githubusercontent.com/e571cad1e53d23d5a8fbc452989601fdd98de550e5ce165762a8cc290f2d3bb4/68747470733a2f2f7777772e627265616b6672656566726f6d706c61737469632e6f72672f77702d636f6e74656e742f75706c6f6164732f323031392f30382f6865616465725f626666705f32303139772e6a7067) -->
