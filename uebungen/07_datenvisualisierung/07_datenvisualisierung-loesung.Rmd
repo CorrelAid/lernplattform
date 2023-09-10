@@ -1,0 +1,66 @@
+---
+title: "Datenvisualisierung"
+author: "Nina Hauser"
+date: "May 10, 2022"
+output: pdf_document
+---
+
+### Schritt 1: Infrastruktur
+Im ersten Schritt müsst Ihr alle Packages installieren und laden, mit denen Ihr später arbeiten werdet. Installiert und ladet hier das `tidyverse`-Package, falls Ihr weitere Packages benutzen wollt, fügt sie gerne hinzu!
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# install.packages("tidyverse")
+# install. packages("ggplot2")
+library(tidyverse)
+library(ggplot2)
+```
+
+
+### Schritt 2: Daten laden
+Als nächstes ladet Ihr den Datensatz `audit`, den Ihr inzwischen schon gut kennt. Nutzt dafür das die Funktion `readr::read_csv()` oder `rio::import()`, die Daten findet Ihr unter diesem Link: rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
+
+```{r datenimport}
+# Audit-Datensatz laden
+audit <- rio::import("https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv")
+```
+
+
+### Schritt 3: Daten bereinigen
+Mit `dplyr` könnt Ihr den `audit`-Datensatz transformieren:
+```{r datenbereinigung}
+# Top Ten Hersteller berechnen
+top10_parentcompany <- audit %>%
+  dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
+  dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
+  dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
+  dplyr::filter(!parent_company %in% c("Unbranded", "Inconnu", "Assorted")) %>% # Unpassende Werte Filtern
+  dplyr::slice_max(total_pieces, n = 10) %>% # die Top Ten abschneiden
+  dplyr::arrange(desc(total_pieces))
+```
+
+### Schritt 4: Übersicht verschaffen
+Hier überprüfen wir nochmal unser Ergebnis...
+```{r ueberblick}
+# Überblick
+summary(top10_parentcompany)
+head(top10_parentcompany)
+```
+
+### Schritt 5: Daten visualisieren
+...und visualisieren sie mit `ggplot2`. Wir ordnen die Graphik innerhalb der Initialisierung nochmal mit `reorder` an, erstellen das Bardiagramm mit `geom_bar`, wobei wir das Argument `stat = "identity` setzen, um die tatsächlichen Werte zu reflektieren, passen die Beschriftungen an und fügen hier sogar noch Labels für die Datenpunkte ein.
+```{r datenvisualisierung}
+# Erstellung eines Barplots zu den Herstellern von Plastik
+ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(parent_company, total_pieces))) + # Plot auf Basis der bearbeiteten Daten inititalisieren und Reihenfolge sicherstellen
+  geom_bar(stat = "identity", fill = "#4E97AC") + # Initialisierung eines Barplots mit absoluten Werten (stat = "identity") in der Farbe blau (#4E97AC)
+  labs(
+    title = "Prominente Firmen aus aller Welt ...",
+    subtitle = "... stellen die gefundenen Plastikverpackungen her.",
+    x = "Anzahl an Plastikstücken",
+    y = "Hersteller"
+  ) +
+  theme_minimal() +
+  geom_text(aes(label = total_pieces), size = 2.5, hjust = -0.01)
+```
+

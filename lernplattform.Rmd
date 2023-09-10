@@ -85,113 +85,112 @@ karten_daten <- get_karten_daten(
 )
 
 ### Benötigt für 09
-# z <- get_z()
+z <- get_z()
 
 ### Benötigt für 11
-# params <- get_params()
-
+params <- get_params()
 ``` 
 
 <!-- ## Willkommen -->
 ```{r results='asis'}
-out <- knitr::knit_child("01_intro.Rmd", quiet = TRUE)
+out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Setup -->
 ```{r results='asis'}
-out <- knitr::knit_child("02_setup.Rmd", quiet = TRUE)
+out <- knitr::knit_child("01_setup.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Datenschutz und Datenethik -->
 ```{r results='asis'}
-out <- knitr::knit_child("03_datenschutz_v2.Rmd", quiet = TRUE)
+out <- knitr::knit_child("02_datenschutz-und-datenethik.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Einführung in RStudio -->
 ```{r results='asis'}
-out <- knitr::knit_child("04_rstudio_v2.Rmd", quiet = TRUE)
+out <- knitr::knit_child("03_einfuehrung-in-rstudio.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- Daten verstehen mit R -->
 ```{r results='asis'}
-out <- knitr::knit_child("05_ersteanalyseninr.Rmd", quiet = TRUE)
+out <- knitr::knit_child("04_daten-verstehen-mit-r.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Datenimport und APIs -->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport.Rmd", quiet = TRUE)
+out <- knitr::knit_child("05_datenimport.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Exkurs: APIs-->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE)
+out <- knitr::knit_child("05_1_datenimport-exkurs-api.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Exkurs: SQL -->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE)
+out <- knitr::knit_child("05_2_datenimport-exkurs-sql.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Datentransformation -->
 ```{r results='asis'}
-out <- knitr::knit_child("07_datentransformation.Rmd", quiet = TRUE)
+out <- knitr::knit_child("06_datentransformation.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Datenvisualisierung  -->
 ```{r results='asis'}
-out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
+out <- knitr::knit_child("07_datenvisualisierung.Rmd", quiet = TRUE)
 cat(out, sep = "")
 ```
 
 <!-- ## Grundlagen der Statistik -->
 ```{r results='asis'}
-# out <- knitr::knit_child("09_grundlagenderstatistik_v2.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Reports in R Markdown -->
 ```{r results='asis'}
-# out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("09_reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Reportautomatisierung -->
 ```{r results='asis'}
-# out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("10_automatisierte-reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
-# out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Datenprojekte aus der Zivilgesellschaft -->
 ```{r results='asis'}
-# out <- knitr::knit_child("02_datenprojekteundstrategie.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Lernzielkontrolle -->
 ```{r results='asis'}
-# out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("13_abschlussquiz.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Und jetzt? -->
 ```{r results='asis'}
-# out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("14_closing.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Glossar -->

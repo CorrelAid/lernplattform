@@ -1,0 +1,157 @@
+---
+title: "Datenbereinigung in R"
+author: "Zoé Wolter"
+date: "Nov 19, 2021"
+output: pdf_document
+---
+
+### Schritt 1: Infrastruktur
+Im ersten Schritt müsst Ihr alle Packages installieren und laden, mit denen Ihr später arbeiten werdet. Falls Ihr weitere Packages benutzen wollt, fügt sie gerne hinzu!
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
+library(tidyverse)
+```
+
+
+### Schritt 2: Daten laden
+Als nächstes ladet Ihr den Datensatz `plastics`, den Ihr inzwischen schon gut kennt. Nutzt dafür das die Funktion `read_csv`, die Daten findet Ihr unter diesem Link: https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv
+
+```{r datenimport}
+### Daten laden
+data_raw <- rio::import("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv")
+```
+
+
+### Schritt 3: Daten bereinigen
+
+#### Daten filtern
+Filtert die Daten zuerst:
+
+- keine 'EMPTY'-Werte für country
+- kein 'Grand Total' für parent_company
+- nur das Jahr 2019
+
+Speichert die gefilterten Daten in einem R-Objekt namens "plastics_processed".
+  
+```{r filtern}
+plastics_processed <- data_raw %>%
+  dplyr::filter(
+    country != "EMPTY",
+    parent_company != "Grand Total",
+    year == 2019
+  )
+```
+
+#### Länder bereinigen
+Schaut Euch einmal an, welche Länder im Datensatz enthalten sind. Nutzt hierfür die Funktion `unique()` für die Variable `country`.
+
+```{r länder_untersuchen}
+plastics_processed$country %>%
+  unique()
+```
+
+Passt die Länderbezeichnungen nun an:
+
+- Großbritannien soll mit *United Kingdom* bezeichnet werden, 
+- die USA sollen mit *United States* benannt werden
+- und die Ländernamen sollen mit einem Großbuchstaben beginnen, sonst aber klein geschrieben werden.
+
+Hinweis: Schaut Euch dafür die Hilfe zu den Funktionen `?stringr::str_replace()` und `?stringr::str_to_title()` einmal an.
+
+```{r länder_anpassen}
+plastics_processed <- plastics_processed %>%
+  mutate(
+    country = dplyr::case_when(
+      country == "United Kingdom of Great Britain & Northern Ireland" ~ "United Kingdom",
+      country == "United States of America" ~ "United States",
+      TRUE ~ country
+    ),
+    country = str_to_title(country)
+  )
+```
+
+Nachdem Ihr die Ländernamen nun bereinigt habt, fügt jetzt noch neue Variablen hinzu: 
+
+- `continent`: Name des Kontinents, zu dem das Land gehört, diese sollen auch noch umbenannt werden zu Afrika, Amerika, Asien, Europa und Ozeanien,
+- `countrycode`: Countrycode des Landes in iso3c.
+- `country`: Der englische Ländername soll durch den deutschen Ländernamen ersetzt werden.
+
+Hinweis: Das `countrycode`-Package ist hier wahnsinnig hilfreich. Schaut gerne mal in die Dokumentation des Packages (https://cran.r-project.org/web/packages/countrycode/countrycode.pdf), bevor Ihr die Aufgabe bearbeitet.
+
+```{r countrycode}
+plastics_processed <- plastics_processed %>%
+  mutate(
+    continent = countrycode::countrycode(country,
+      origin = "country.name",
+      destination = "continent"
+    ),
+    continent = dplyr::case_when(
+      continent == "Africa" ~ "Afrika",
+      continent == "Americas" ~ "Amerika",
+      continent == "Asia" ~ "Asien",
+      continent == "Europe" ~ "Europa",
+      continent == "Oceania" ~ "Ozeanien"
+    ),
+    countrycode = countrycode::countrycode(country,
+      origin = "country.name",
+      destination = "iso2c"
+    ),
+    country = countrycode::countrycode(country,
+      origin = "country.name",
+      destination = "country.name.de"
+    ),
+  )
+```
+
+Perfekt - schon habt Ihr Euren ersten Datensatz komplett bereinigt! 
+Aus diesem Datensatz lassen sich nun noch zwei weitere Datensätze erstellen, denen Ihr in den kommenden Wochen auch noch das ein oder andere Mal begegnen werdet.
+
+Der erste Datensatz soll der Community-Datensatz für 2019 nach Ländern sein. Folgt den Kommentaren im folgenden Codeblock für die Transformation Eures eben erstellten `plastics_processed`-Datensatzes:
+
+```{r community_erstellen}
+# Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
+community19_by_country <- plastics_processed %>%
+  # ...gruppiert den Datensatz nach Kontinent und Land...
+  dplyr::group_by(continent, country) %>%
+  # ...und berechnet noch zusammenfassende Statistiken...
+  dplyr::summarize(
+    # 1) Die Summe von grand_total
+    n_pieces = sum(grand_total, na.rm = TRUE),
+    # 2) Die Anzahl an (einzelnen) Ehrenamtlichen
+    n_volunteers = unique(volunteers),
+    # 3) Die Anzahl an (einzelnen) Events
+    n_events = unique(num_events)
+  )
+```
+So schnell und einfach habt Ihr mal eben einen neuen Datensatz erstellt, deshalb gleich noch einer, Übung macht den Meister! Auch hier, folgt einfach den Anweisungen im Codeblock:
+
+```{r audit_erstellen}
+# Zuerst nehmt Ihr Euren vorhandenen Datensatz und weist diesem eine neue Bezeichnung zu...
+plastics19_by_country_and_company <- plastics_processed %>%
+  # ...verändert die Form Eures Datensatz zu einem langen Format
+  # (Spalten hdpe, ldpe, o, pet, pp, ps, pvc)...
+  tidyr::pivot_longer(
+    cols = c(hdpe, ldpe, o, pet, pp, ps, pvc),
+    names_to = "plastic_type",
+    values_to = "n_pieces"
+  ) %>%
+  # ...transformiert Eure Spalten zu Faktoren...
+  dplyr::mutate(dplyr::across(
+    .cols = c(country, continent, year, plastic_type),
+    .fns = as_factor
+  )) %>%
+  # ...und reduziert den Datensatz auf folgende Variablen:
+  # continent, country, parent_company, plastic_type, n_pieces
+  dplyr::select(
+    continent,
+    country,
+    parent_company,
+    plastic_type,
+    n_pieces
+  )
+```
+
+Kommen Euch die fertigen Datensätze irgendwie bekannt vor? Mit ihnen habt Ihr bereits in den letzten Wochen gearbeitet, damals direkt mit den bereinigten Datensätzen - jetzt könnt Ihr den Code schon selbst schreiben, sehr gut! Wenn Ihr weitere Ideen zur Bereinigung des Codes habt oder Ihr die `dplyr`-Verben nochmal testen wollt, dann macht gerne mit diesem Datensatz weiter oder versucht Euren eigenen Datensatz von Anfang an einzulesen und zu bereinigen. 
