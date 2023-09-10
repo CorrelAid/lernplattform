@@ -85,11 +85,10 @@ karten_daten <- get_karten_daten(
 )
 
 ### Benötigt für 09
-# z <- get_z()
+z <- get_z()
 
 ### Benötigt für 11
-# params <- get_params()
-
+params <- get_params()
 ``` 
 
 <!-- ## Willkommen -->
