@@ -1,3 +1,33 @@
+---
+title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(learnr)
+library(gradethis)
+library(forcats)
+ 
+source("R/setup/gradethis-setup.R")
+source("R/setup/tutorial-setup.R")
+
+# Benötigte Daten laden
+source("R/setup/functions.R")
+data_raw <- get_data_raw()
+community <- get_community()
+plastics_processed <- get_pl_proc()
+audit <- get_audit()
+wb_areas <- get_wb_areas()
+wb_processed <- process_wb_areas(wb_data = wb_areas)
+```
+
 ## **Datentransformation**
 
 ![*Video: Datentransformation (30min)*](https://youtu.be/YWFLSovbha0)

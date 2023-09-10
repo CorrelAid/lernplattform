@@ -1,3 +1,23 @@
+---
+title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(learnr)
+library(gradethis)
+ 
+source("R/setup/gradethis-setup.R")
+source("R/setup/tutorial-setup.R")
+```
+
 ## **Abschlussquiz**
 
 Hier kannst Du deinen **Wissensstand überprüfen**. Für die Bearbeitung solltest Du zwei Stunden Zeit (**120min**) einplanen. Viel Glück!

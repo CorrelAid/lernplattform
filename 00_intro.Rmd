@@ -1,12 +1,19 @@
+---
+title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
 
 <center>
 ![](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg){#id .class width=15% height=15%}
 </center>
 
-
-# R Lernen - Der Datenkurs von und für die Zivilgesellschaft
-
-## **Willkommen**
+# Willkommen
 
 Hallo und herzlich willkommen bei "R Lernen - der Datenkurs von und für die Zivilgesellschaft"! 
 Hier findet Ihr alle Informationen zum Kurs, Lernziele und Methodik.

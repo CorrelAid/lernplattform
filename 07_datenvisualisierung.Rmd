@@ -1,3 +1,38 @@
+---
+title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(learnr)
+library(gradethis)
+library(dplyr)
+library(ggplot2)
+library(ggbeeswarm)
+library(countrycode)
+library(leaflet)
+ 
+source("R/setup/gradethis-setup.R")
+source("R/setup/tutorial-setup.R")
+
+# Benötigte Daten laden
+source("R/setup/functions.R")
+
+community <- get_community()
+polygons_welt <- get_poly_welt()
+karten_daten <- get_karten_daten(
+  from = community,
+  join = polygons_welt
+)
+```
+
 ## **Datenvisualisierung**
 
 ![*Video: Datenvisualisierung (15min)*](https://youtu.be/LtjKZjCPijo)

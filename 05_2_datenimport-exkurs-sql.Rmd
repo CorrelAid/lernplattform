@@ -1,3 +1,28 @@
+---
+title: "R Lernen: Inhaltsverzeichnis"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(learnr)
+library(gradethis)
+library(RSQLite)
+ 
+source("R/setup/gradethis-setup.R")
+source("R/setup/tutorial-setup.R")
+
+# Benötigte Daten laden
+source("R/setup/functions.R")
+con <- get_connection()
+```
+
 ## **Datenabfragen in SQL (Exkurs)**
 
 ### **Interaktive Übung**

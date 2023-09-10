@@ -1,3 +1,28 @@
+---
+title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(learnr)
+library(gradethis)
+library(ggplot2)
+
+source("R/setup/gradethis-setup.R")
+source("R/setup/tutorial-setup.R")
+
+# Benötigte Daten laden
+source("R/setup/functions.R")
+community <- get_community()
+```
+
 ## **Daten verstehen mit R**
 
 ![*Video: Daten mit R verstehen (30min)*](https://youtu.be/nEbiJ4EZ3OE)
@@ -120,7 +145,6 @@ Versetzen wir uns die Rolle der Organisator:innen. Sie fragen sich bestimmt, wie
   1. Wie viel Plastik wurde insgesamt gesammelt? <br>
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? <br>
   3. Welche Faktoren beeinflussen möglicherweise diese Unterschiede? <br>
-
 
 #### Datenstruktur
 Um diese Fragen zu beantworten, schauen wir nun auf die Informationen, die uns vorliegen: Wir analysieren die dazu vorliegenden Daten und interpretieren die Ergebnisse.

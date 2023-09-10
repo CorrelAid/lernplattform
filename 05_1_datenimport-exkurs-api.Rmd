@@ -1,3 +1,31 @@
+---
+title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+author:
+output: 
+  learnr::tutorial:
+    includes:
+      after_body: ./www/favicon.html
+    language: de
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(learnr)
+library(gradethis)
+ 
+source("R/setup/gradethis-setup.R")
+source("R/setup/tutorial-setup.R")
+
+# Benötigte Daten laden
+source("R/setup/functions.R")
+
+basis_url <- "https://unstats.un.org/"
+initiale_anfrage <- get_initiale_anfrage(url = basis_url)
+waste_data <- get_waste_data(anfrage = initiale_anfrage)
+pages <- get_pages(content = waste_data)
+```
+
 ## **Eigene API-Anfragen (Exkurs)**
 
 ![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)
