@@ -154,44 +154,44 @@ cat(out, sep = "")
 
 <!-- ## Grundlagen der Statistik -->
 ```{r results='asis'}
-# out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Reports in R Markdown -->
 ```{r results='asis'}
-# out <- knitr::knit_child("09_reports.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("09_reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Reportautomatisierung -->
 ```{r results='asis'}
-# out <- knitr::knit_child("10_automatisierte-reports.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("10_automatisierte-reports.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
-# out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Datenprojekte aus der Zivilgesellschaft -->
 ```{r results='asis'}
-# out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Lernzielkontrolle -->
 ```{r results='asis'}
-# out <- knitr::knit_child("13_abschlussquiz.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("13_abschlussquiz.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Und jetzt? -->
 ```{r results='asis'}
-# out <- knitr::knit_child("14_closing.Rmd", quiet = TRUE)
-# cat(out, sep = '')
+out <- knitr::knit_child("14_closing.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Glossar -->
