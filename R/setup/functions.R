@@ -44,7 +44,7 @@ get_connection <- function() {
     tmpfile
   ) # Herunterladen der temporären Datei
   
-  dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
+  DBI::dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
 }
 
 get_pl_proc <- function() {
