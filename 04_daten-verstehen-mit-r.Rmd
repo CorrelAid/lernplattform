@@ -1,6 +1,7 @@
 ---
-title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
-author:
+title: "Daten verstehen mit R"
+author: CorrelAid e.V.
+date: "`r Sys.Date()`"
 output: 
   learnr::tutorial:
     includes:
@@ -23,7 +24,17 @@ source("R/setup/functions.R")
 community <- get_community()
 ```
 
-## **Daten verstehen mit R**
+<br>
+
+```{r}
+shiny::actionButton(
+  inputId = "zuruek", label = "Zurück zur Hauptseite",
+  icon = icon("backward"),
+  onclick = "window.open('https://selinazitrone.github.io/lernplattform_website/')"
+)
+```
+
+<br>
 
 ![*Video: Daten mit R verstehen (30min)*](https://youtu.be/nEbiJ4EZ3OE)
 
