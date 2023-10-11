@@ -10,6 +10,7 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
+## INSTALL PACKAGES
 #remotes::install_github("rstudio/learnr")
 #remotes::install_github("rstudio/gradethis")
 # suppressWarnings(if (!require("pacman")) install.packages("pacman"))
@@ -38,8 +39,10 @@ library(purrr)
 library(RSQLite)
 library(leaflet)
 
+## RMD
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
+## LEARNR SETUP
 gradethis::gradethis_setup(
   pass = "Gut gemacht!",
   fail = "Das ist leider nicht ganz richtig. Probiert es nochmal!",
@@ -52,6 +55,7 @@ gradethis::gradethis_setup(
 
 tutorial_options(exercise.timelimit = 30)
 
+## DATEN SETUP
 ### Daten laden
 data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 
@@ -64,7 +68,7 @@ community <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattf
 ### Audit Datensatz laden
 audit <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_audit_by_country_and_company.csv')
 
-# EU-Asien Audit Plastik Datensatz erstellen
+### EU-Asien Audit Plastik Datensatz erstellen
 audit_eu_asia <- audit %>%
   dplyr::filter(continent == "Europa" | continent == "Asien") %>%
   dplyr::filter(n_pieces != 0) %>%
@@ -77,10 +81,10 @@ europe <- audit_eu_asia %>%
 asia <- audit_eu_asia %>%
   dplyr::filter(continent == "Asien")
 
-# Daten der World Bank mit R-Package ziehen
+### Daten der World Bank mit R-Package ziehen
 wb_areas <- WDI::WDI(
   country = "all", # Auswahl der Länder
-  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators
   start = 2018, # Auswahl Zeithorizont: Anfang
   end = 2018, # Auswahl Zeithorizont: Ende
   language = "en" #Sprachauswahl
@@ -90,11 +94,11 @@ wb_processed <- wb_areas %>%
   dplyr::select(countrycode = 'iso2c',
                 protected_area = 'ER.PTD.TOTL.ZS')
 
-# Einlesen der Shapefiles
+### Einlesen der Shapefiles
 polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
 polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
 
-# Kartendaten vorbereiten
+### Kartendaten vorbereiten
 karten_daten <- community %>%
   # Geometrie anfügen
   dplyr::left_join(polygons_welt, by = c("countrycode" = "ISO_A2")) %>% 
@@ -103,16 +107,16 @@ karten_daten <- community %>%
                 word_n_volunteers = if_else(n_volunteers == 1, "Freiwillige*r", "Freiwillige"),
                 word_n_pieces = if_else(n_pieces == 1, "gesammeltes Plastikstück", "gesammelte Plastikstücke"))
 
-# Variable 'countrycode' aus community Datensatz löschen
+### Variable 'countrycode' aus community Datensatz löschen
 community <- community %>%
   dplyr::select(-countrycode)
 
-# Initialisierung eines temporären Ordners
+### Initialisierung eines temporären Ordners
 tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
 download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
 con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
 
-# API
+### API
 basis_url <- "https://unstats.un.org/" # Haupt-URL
 initiale_anfrage <- httr::GET( # Initialisierung
   basis_url, # URL verlinken
@@ -122,25 +126,25 @@ initiale_anfrage <- httr::GET( # Initialisierung
   )
 )
 
-# Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
+### Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
 content <- httr::content(initiale_anfrage)
 
-# Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
+### Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
 total_pages <- content$totalPages
 pages <- c(1:total_pages)
 
-# Inhalt der Response herausziehen
+### Inhalt der Response herausziehen
 waste_data <- httr::content(initiale_anfrage)
 
-# Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
+### Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
 waste_list <- waste_data$data
 
-# Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
+### Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
 waste_geo <- waste_list %>%
   purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
   filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
 
-# Mini-Datensätze für NA's
+### Mini-Datensätze für NA's
 df <- tibble::tribble(
   ~name,              ~x,  ~y,           ~z,  
   "Person 1",         1,   -99,          6.7, 
@@ -150,7 +154,7 @@ df <- tibble::tribble(
 
 df2 <- df %>% dplyr::mutate_if(is.numeric, dplyr::na_if, -99)
 
-# Parameter (nur zum Zeigen)
+### Parameter (nur zum Zeigen)
 params <- list()
 params$heute <- format(Sys.time(), '%d. %B %Y')
 params$daten <- "daten/audit.csv"
@@ -161,7 +165,7 @@ params$kontinent <- "Alle Kontinente"
 params$filter_plastic <- "hdpe"
 params$filter_continent <- "Alle Kontinente"
 
-# Bayes
+### Bayes
 anteil_a <- 0.54
 anteil_b <- 0.55
 anteil_pool <- (anteil_a + anteil_b) / 2
@@ -174,104 +178,104 @@ z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1
 
 <!-- ## Willkommen -->
 ```{r results='asis'}
-out <- knitr::knit_child("01_intro.Rmd", quiet = TRUE)
+out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Setup -->
 ```{r results='asis'}
-out <- knitr::knit_child("02_setup.Rmd", quiet = TRUE)
+out <- knitr::knit_child("01_setup.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Datenschutz und Datenethik -->
 ```{r results='asis'}
-out <- knitr::knit_child("03_datenschutz_v2.Rmd", quiet = TRUE)
+out <- knitr::knit_child("02_datenschutz-und-datenethik.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Einführung in RStudio -->
 ```{r results='asis'}
-out <- knitr::knit_child("04_rstudio_v2.Rmd", quiet = TRUE)
+out <- knitr::knit_child("03_einfuehrung-in-rstudio.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- Daten verstehen mit R -->
 ```{r results='asis'}
-out <- knitr::knit_child("05_ersteanalyseninr.Rmd", quiet = TRUE)
+out <- knitr::knit_child("04_daten-verstehen-mit-r.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Datenimport und APIs -->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport.Rmd", quiet = TRUE) 
+out <- knitr::knit_child("05_datenimport.Rmd", quiet = TRUE) 
 cat(out, sep = '')
 ```
 
 <!-- ## Exkurs: APIs-->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_exkursapi.Rmd", quiet = TRUE) 
+out <- knitr::knit_child("05_1_datenimport-exkurs-api.Rmd", quiet = TRUE) 
 cat(out, sep = '')
 ```
 
 <!-- ## Exkurs: SQL -->
 ```{r results='asis'}
-out <- knitr::knit_child("06_datenimport_exkurssql.Rmd", quiet = TRUE) 
+out <- knitr::knit_child("05_2_datenimport-exkurs-sql.Rmd", quiet = TRUE) 
 cat(out, sep = '')
 ```
 
 <!-- ## Datentransformation -->
 ```{r results='asis'}
-out <- knitr::knit_child("07_datentransformation.Rmd", quiet = TRUE)
+out <- knitr::knit_child("06_datentransformation.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Datenvisualisierung  -->
 ```{r results='asis'}
-out <- knitr::knit_child("08_datenvisualisierung.Rmd", quiet = TRUE)
+out <- knitr::knit_child("07_datenvisualisierung.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Grundlagen der Statistik -->
 ```{r results='asis'}
-out <- knitr::knit_child("09_grundlagenderstatistik_v2.Rmd", quiet = TRUE)
+out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Reports in R Markdown -->
 ```{r results='asis'}
-out <- knitr::knit_child("10_reports.Rmd", quiet = TRUE)
+out <- knitr::knit_child("09_reports.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Reportautomatisierung -->
 ```{r results='asis'}
-out <- knitr::knit_child("11_automatisiertereports.Rmd", quiet = TRUE)
+out <- knitr::knit_child("10_automatisierte-reports.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
-#out <- knitr::knit_child("12_rshiny.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Datenprojekte aus der Zivilgesellschaft -->
 ```{r results='asis'}
-#out <- knitr::knit_child("02_datenprojekteundstrategie.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
-<!-- ## Lernzielkontrolle -->
+<!-- ## Abschlussquiz -->
 ```{r results='asis'}
-#out <- knitr::knit_child("14_lernzielkontrolle.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("13_abschlussquiz.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Und jetzt? -->
 ```{r results='asis'}
-#out <- knitr::knit_child("13_closing.Rmd", quiet = TRUE)
-#cat(out, sep = '')
+out <- knitr::knit_child("14_closing.Rmd", quiet = TRUE)
+cat(out, sep = '')
 ```
 
 <!-- ## Glossar -->

@@ -1,0 +1,646 @@
+## **Interaktive Visualisierungen**
+*R Lernen - Interaktive Visualisierungen von Cosima Meyer. Lizensiert unter Creative Commons Attribution 4.0 International.*
+
+Was wäre eine Welt ohne zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen mit interaktiven Visualisierungen gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig! 
+
+Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funktioniert.
+
+![*Video: Interaktive Visualisierungen in RShiny (10min)*](https://youtu.be/nAX2Ss3Nsk8) 
+
+### **Kernaussagen** 
+- **Shiny-Apps** sind Webapplikationen:
+  - Man kann damit **Daten**, **Visualisierungen** oder auch allgemein **Informationen** "verpacken" und so interaktiv anderen Nutzenden zur Verfügung stellen.
+  - Eine Shiny-App kann man später leicht **hosten** und so auch **ohne Code zugänglich** machen (Webhosting meint das Bereitstellen von Speicherplatz, um eine Website zu veröffentlichen).
+- Eine Shiny-App besteht immer aus einer **UI** und einem **Server**:
+  - Die **UI** stellt das User Interface (dt. Benutzendenoberfläche) dar. Man kann es sich auch als Körper der App vorstellen.
+  - Hier könnt Ihr Eure App optisch anpassen und die Anordnung der einzelnen Komponenten definieren.
+  - Der **Server** bietet den Ort für die Verrechnung (oder auch Erstellung) der Visualisierungen - er ist also quasi das Gehirn der Shiny-App.
+  - Ihr definiert den **Server** und die **UI** separat und legt beides in verschiedenen Objekten (`server` und `ui`) ab.
+- Wenn Ihr Eure Shiny-App zum Laufen bringen wollt, führt Ihr `ui` und `server` in folgender Funktion zusammen: `shinyApp(ui = ui, server = server)`.
+
+Für weitere Infos zu Shiny-App, schaut Euch den [**Schummelzettel zu Shiny-Apps**](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"} an.
+
+<p style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+**Achtung** <br>
+Den Code aus dieser Sitzung müsst Ihr lokal ausführen. Dafür könnt Ihr Stück für Stück die Code-Snippets kopieren und befüllen. Alternativ haben wir Euch [hier](https://drive.google.com/drive/folders/1vfzAAJ0gS7FXAhL2MSWn3JpJQZlu6PIe) in einer ZIP-Datei schon Skripte vorbereitet, die Ihr nutzen könnt (`uebung.R` enthält den Lückentext, `loesung.R` die Lösung, wenn Ihr nicht weiterkommt).
+</p>
+
+### **Quiz**
+```{r 11ui}
+quiz(caption = NULL,
+  question("Was macht das UI (User Interface) einer Shiny-App?",
+    answer("Eine UI bestimmt das Aussehen der Shiny-App.", correct = TRUE),
+    answer("Eine UI ist in der Shiny-App für das Hosten zuständig."),
+    answer("Eine UI legt fest, wo welche Komponente der Shiny-App dargestellt wird.", correct = TRUE),
+    answer("In einer UI kann der/die Programmierer:in das Design der Shiny-App festlegen.", correct = TRUE),
+    answer("Eine UI nimmt die gesamten Rechenoperationen im Hintergrund vor."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ), 
+  
+  question("Wofür ist der Server in einer Shiny-App zuständig?",
+    answer("Der Server ist in der Shiny-App für das Hosten zuständig."),
+    answer("Der Server legt fest, wo welche Komponente der Shiny-App dargestellt wird."),
+    answer("Im Server wird der Code (z.B. zur Visualisierung) abgelegt.", correct = TRUE),
+    answer("Der Server ist quasi das 'Gehirn' der Shiny-App und übernimmt die ganze Rechenleistung im Hintergrund.", correct = TRUE),
+    answer("Der Server ist kein Bestandteil einer Shiny-App."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Versucht es nochmal"
+  )
+)
+```
+
+### **Interaktive Übung**
+Wie Ihr im Video gesehen habt, sind Eurer Phantasie keine Grenzen gesetzt. Ihr könnt Shiny-Apps zur Visualisierung nutzen, als Suchmaschine -- oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (*engl. application, daher auch Shiny-App für "Shiny application"*) zu bauen. Wenn Ihr mehr Inspiration möchtet, schaut in der [Galerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
+
+
+#### Wie funktioniert eine Shiny-App genau? 
+<left>
+![*Shiny](https://d33wubrfki0l68.cloudfront.net/d08c35bfe1ba68584788f5cdcad703d0c9d8263f/7969a/wp-content/uploads/2014/04/shiny.png){#id .class width=20% height=100%}
+
+R liefert ein eigenes Package, `shiny`, um eine Shiny-App zu bauen. Bevor wir starten, installieren wir das Package:
+
+```{r package_prep_shiny, exercise = TRUE}
+# install.packages("shiny")
+library(shiny)
+```
+
+Der [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzendenoberfläche") und **einen Server**. 
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui-server-2.png?raw=true){#id .class width=70% height=70%}</right>
+
+In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und einen `server`-Part, die Ihr dann mit dem Befehl **`shinyApp(ui = ui, server = server)`** zusammenbringt und Eure Shiny-App zum Laufen bringt. Da die **UI** und der **Server** die zentralen Bestandteile der Shiny-App sind, hier noch einmal in Kürze das Wichtigste:
+
+##### **Der Server**
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/brain.png?raw=true){#id .class width=20% height=100% align="right}
+
+Zunächst betrachten wir das **Gehirn**, oder auch die Schaltzentrale der Shiny-App: den **Server**. Das Beispiel zeigt die standardmäßige Shiny-App, die Euch RStudio generiert, sobald Ihr eine Shiny-App startet. Wenn Ihr die Shiny-App in Aktion sehen wollt, könnt Ihr sie Euch [**hier**](https://cosima-meyer.shinyapps.io/example_app/){target="_blank"} ansehen.
+
+Die `server` Datei dafür kann so aussehen:
+
+```{r server, exercise=TRUE, context="server"}
+# Dieser Code definiert die Serverlogik, um ein Histogramm zu visualisieren
+# Der Server nimmt zwei Argumente `input` und `output`
+server <- function(input, output) {
+
+    # Wir speichern unsere Visualisierung in `output$distPlot` und werden `distPlot`
+    # später auch in der UI nutzen, um auf die Visualisierung zu verweisen
+    output$distPlot <- renderPlot({
+      
+        # Im nächsten Schritt bereiten wir die Daten für das Histogramm vor
+        x    <- faithful[, 2]
+        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+
+        # Und erstellen das Histogramm (wir können hier noch Farben bestimmen - das
+        # sind aber alles optionale Argumente)
+        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    })
+}
+```
+
+##### **Die UI**
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/body.png?raw=true){#id .class width=20% height=100%}
+
+Im nächsten Schritt könnt Ihr das **Aussehen Eurer App** (also das *U*ser *I*nterface) bestimmen. Dazu nutzen wir die `ui`, die zum Beispiel so aussehen kann:
+
+```{r ui, exercise=TRUE}
+# Hier bestimmen wir die UI
+ui <- fluidPage(
+
+    # Ihr könnt Eurer App einen Titel geben
+    titlePanel("Old Faithful Geyser Data"),
+
+    # Oder einen Slider einbauen
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("bins",
+                        "Number of bins:",
+                        min = 1,
+                        max = 50,
+                        value = 30)
+        ),
+
+        # Und letztlich integrieren wir noch Eure Visualisierung - 
+        # erinnert Ihr Euch noch an `distPlot`? Das kommt hier zum Einsatz :-)
+        mainPanel(
+           plotOutput("distPlot")
+        )
+    )
+)
+```
+
+
+Und im letzten Schritt bringen wir die Shiny-App natürlich noch zusammen:
+*Hinweis: Dieser Code zeigt Euch auf der Lernplattform nichts an - das ist etwas, das nur lokal auf Euren Rechnern funktioniert. Wir zeigen ihn euch aber an dieser Stelle trotzdem, um euch den normalen Fluss zu simulieren.*
+
+```{r shinyApp, exercise=TRUE}
+# Wir kombinieren mit dem folgenden Befehl die UI und den Server und bringen
+# die Shiny-App lokal zum Laufen :-)
+shinyApp(ui = ui, server = server)
+```
+
+Ihr könnt in einer Shiny-App Eure bisherigen Kenntnisse nutzen und zum Beispiel eine Visualisierung erstellen. Nehmen wir eine Euch bereits bekannte Visualisierung als Beispiel: 
+
+```{r plot_full_to_print, echo = FALSE}
+# Top Ten Hersteller berechnen
+top10_parentcompany <- audit %>%
+  dplyr::ungroup() %>% # Gruppierung aufheben um Operation zu ermöglichen
+  dplyr::select(parent_company, n_pieces) %>% # Spalten auswählen
+  dplyr::group_by(parent_company) %>% # Pro Hersteller gruppieren
+  dplyr::summarise(total_pieces = sum(n_pieces, na.rm = TRUE)) %>%
+  dplyr::filter(! parent_company %in% c("Grand Total", "Unbranded", "Inconnu", "Assorted"))  %>% # Unpassende Werte Filtern
+  dplyr::slice_max(total_pieces, n = 10) %>% # die Top Ten abschneiden
+  dplyr::arrange(desc(total_pieces))
+
+# Erstellung eines Barplots zu den Herstellern von Plastik
+ggplot2::ggplot(data = top10_parentcompany, aes(x = total_pieces, y = reorder(parent_company, total_pieces))) + # Plot auf Basis der bearbeiteten Daten inititalisieren
+    geom_bar(stat = "identity", fill = "#4E97AC") + # Initialisierung eines Barplots mit absoluten Werten (stat = "identity") in der Farbe blau (#4E97AC)
+    labs(
+      title = "Prominente Firmen aus aller Welt ..." ,
+      subtitle = "... stellen die gefundenen Plastikverpackungen her.",
+      x = "Anzahl an Plastikstücken",
+      y = "Hersteller"
+      ) +
+    theme_minimal()
+```
+
+Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir einfach den Code für die Visualisierung in die Shiny-App-Komponenten kopieren. Unser Ziel ist es, gemeinsam den Tab "Hersteller" in einer lokalen Shiny-App zu bauen, die so ([klick hier!](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}) aussehen soll.
+
+Probiert die App doch einfach einmal aus! Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern**. Die Übungsdateien könnt Ihr jetzt [hier](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} herunterladen.
+
+#### Schritt 1: Shiny-App planen
+Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen **Plan** zurechtlegen. Hierbei ist es sehr hilfreich, die App grob zu skizzieren (gerne auch ganz klassisch auf Papier).
+
+Wir möchten das **Balkendiagramm** aus der letzten Woche in eine App übersetzen. In der linken Seitenleiste seht Ihr **Auswahlmöglichkeiten nach Kontinenten** - d.h. wir können hinterher in unserer Shiny-App die Darstellung nach den Kontinenten filtern. Abschließend geben wir der App noch einen passenden **Namen**.
+
+*Tipp: Es ist am besten, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.*
+
+
+#### Schritt 2: Der Server
+Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten. 
+
+1. `server <- function(input, output) {}` definiert eine **Funktion**, die `input` und `output`-Argumente annimmt. Der `input` stellt das dar, was unsere **Nutzer:innen in der UI** bei den interaktiven Elementen der App **eingeben**. Der `output` definiert, was die **App zurückgeben** soll, also was die Nutzer:innen sehen sollen.
+2. Das Erzeugen des Outputformats erfolgt auch hier über eine **Renderfunktion**: `render...({})`. Dieser Funktionstyp erzeugt also überall im R-Universum benötigte Outputs. Allerdings ist es wichtig, die **richtige Renderfunktion** für den gewünschten Output zu nutzen - es passt also nicht jede Renderfunktion zu jedem Output (dazu später mehr). Innerhalb der Renderfunktion wird dann der Output definiert.
+3. Der Output, den die `render`-Funktion erzeugt, wird ein **Objektname** zugewiesen (`output$name <- render...({})`), auf den wir dann in der UI verweisen können.
+
+<center>
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-server.png?raw=true){#id .class width=70% height=70%}
+</center>
+
+Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}!) und benennen.
+
+In unserer App ergibt das:
+
+```{r server_new_plot, exercise=TRUE}
+server <- function(input, output) {
+
+    # Wir speichern unsere Visualisierung in `output$Hersteller`
+    output$Hersteller <- renderPlot({
+      
+    # Innerhalb von `renderPlot()` kreieren wir unseren ggplot2
+      
+      
+    })
+}
+```
+
+Das Rendern erfolgt mit `renderPlot`, da wir einen Plot, also eine Visualisierung darstellen. Wenn Ihr allerdings einen Text oder eine Tabelle einfügen wollt, müsst Ihr entsprechend eine andere Funktion nehmen. Die Tabelle stellt Euch die wichtigsten Befehle gegenüber:
+
+| **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**                     |
+|-------------------------------------------------------------------|---------------------------------|
+| Einen Text(block)                                                 | `renderText({})`              |
+| Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  |
+| Eine Visualisierung                                               | `renderPlot({})`                |
+
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht](https://mastering-shiny.org/basic-ui.html#outputs) (auf Englisch). Insbesondere wenn Ihr auf ergänzende Packages zugreift, müsst Ihr innerhalb der Erweiterung nach der richtigen Renderfunktion suchen. Schließlich benennen wir unseren Output `output$balkendiagramm`. 
+
+Kopiert nun den Code des Balkendiagramms (siehe oben) und ergänzt ihn in Eurer lokalen Datei `app.R` an der angegebenen Stelle im Server. Ergänzt dazu den Code des Balkendiagramms im Server an der Stelle, die mit `# 1. Aufgabe` markiert ist:
+
+```{r aufgabe_1, exercise=TRUE}
+server <- function(input, output) {
+  
+  # Wir speichern unsere Visualisierung in `output$balkendiagramm`
+  # Nutzt die geeignete Funktion (in diesem Fall renderPlot, da wir einen
+  # Plot darstellen möchten), um den Output zu generieren
+  
+  output$Hersteller <- renderPlot({
+    
+    ##########################################################################
+    # 1. Aufgabe:
+    # Innerhalb von `renderPlot()` kreieren wir unseren ggplot2
+    # Hierfür können wir unseren Code kopieren, den wir in der letzten
+    # Sitzung erstellt haben
+    ##########################################################################
+    
+    
+  })
+}
+```
+
+*Tipp: Genauso wie wir es hier gemacht haben, ist es oft leichter, zunächst in einer `Rmd.-Datei` notwendige Packages zu laden, die Daten zu importieren, zu bereinigen und zu Tabellen, Diagrammen und anderen Formaten zu verarbeiten. Im Anschluss könnt Ihr den dort funktionierenden Code in eine Shiny-App übertragen.*
+
+#### Schritt 3: Die UI (User Interface) 
+Damit steht der `server` der App in den Grundzügen und wir können uns der (**G**raphical) **U**ser **I**nterface (also der *UI*, manchmal auch: *GUI*) der Shiny-App widmen. 
+ 
+Eine UI ist immer nach dem gleichen Prinzip aufgebaut: 
+
+- Die Funktion `fluidPage()` bettet das **gesamte Layout** ein und akzeptiert als Argumente die Elemente, die dargestellt werden sollen. Das sind zum Beispiel Titel und Themes.
+- Die Elemente werden in vorgegebene **Layoutformaten** eingefügt: `sidebarLayout()` teilt die App in eine Seitenleiste und einen Hauptbereich, bei `fluidRow()` seid Ihr völlig flexibel.
+- Im Layout finden sich dann **verschiedene, angeordnete Panels** (dt. Felder). Für das `sidebarLayout()` sind das beispielsweise ein `sidebarPanel`, das die Elemente der Seitenleiste bündelt, und ein `mainPanel()`, das Hauptfeld, in dem in der Regel die Outputs angeordnet werden. Dieses kann auch aus mehreren Tabs (zu dt. Reitern) bestehen: `mainPanel(tabPanel(), tabPanel(),...)`.
+
+Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
+<center>
+![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui.png?raw=true){#id .class width=70% height=70%}
+</center>
+
+Die Grundstruktur dieses Layouts sieht so aus:
+```{r ui_exercise1, exercise=TRUE, eval =FALSE}
+ui <- fluidPage(
+  
+  titlePanel(""), # Hier können wir den Titel festlegen
+   
+  # Definiert das Layout: Seitenleiste mit Hauptpanel
+  sidebarLayout(sidebarPanel( # Hier werden alle Elemente der Seitenleiste eingefügt
+  ),
+  
+  mainPanel( # Hier werden alle Elemente des Hauptpanels eingefügt
+  )
+)
+```
+
+Nun füllen wir die **linke Seitenleiste** mit Elementen. Bei uns soll dort der Filter erscheinen. Nicht nur für die Applikation selbst, auch für die Filter habt Ihr diverse Layoutoptionen. Ihr könnt zum Beispiel sogenannte "Checkboxen" oder "Dropdown-Menüs" wählen, um den Nutzenden Eurer Shiny-App eine Auswahl treffen zu lassen. 
+
+Wenn Ihr Euch die Shiny-App noch einmal live anschaut, könnt Ihr sicher die folgende Frage beantworten:
+
+```{r 11filter}
+quiz(caption = NULL,
+  question("Welche Auswahlmöglichkeiten (oder auch Filteroptionen) habt Ihr in der Shiny-App?",
+    answer("Man kann nach Ländern filtern"),
+    answer("Man kann nach Jahren filtern"),
+    answer("Man kann nach Kontinenten filtern", correct = TRUE),
+    answer("Man kann nach Plastik und Freiwilligen filtern"),
+    correct = "Richtig! Und genau das setzen wir jetzt auch um :-)",
+    incorrect = "Leider falsch: Versucht es einfach nochmal oder schaut Euch noch einmal die Shiny-App genauer an",
+    allow_retry = TRUE,
+    try_again_button = "Versucht es nochmal"
+  )
+)
+```
+
+Die Tabelle gibt Euch eine kurze Übersicht über die wichtigsten **Auswahlmöglichkeiten**:
+
+| Layoutoption | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                    |
+|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Einen kurzen Freitext                                    | `textInput("id", "Beschreibung")`                                                                                                                                                                               |
+| Einen langen Freitext                                    | `textAreaInput("id", "Beschreibung", rows = 3)` <br> Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                      |
+| Eine Zahl                                                | `numericInput("id", "Beschreibung", value = 0, min = 0, max = 100)` <br> Mit `value` bestimmen wir den Standardwert, der immer angezeigt wird. Mit ` min` und `max` legen wir die Mindest- und die Maximalwerte fest |
+| Eine Zahl (aber mit "Slider-Auswahl")                    | `sliderInput("id", "Beschreibung", value = 0, min = 0, max = 100)`                                                                                                                                              |
+| Einfachauswahl aus Liste                                 | `selectInput("id", "Beschreibung", auswahl)` <br> In `auswahl` könnt Ihr entweder die Auswahl definieren (so wie wir es in Übung 2 in dieser Sitzung machen) oder Ihr greift auf ein anderes Objekt (in diesem Fall ` auswahl` zu)     |
+| Checkbox (mit Mehrfachauswahl)                           | `checkboxGroupInput("id", "Beschreibung", auswahl)`                                                                                                                                                             |
+
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht](https://mastering-shiny.org/basic-ui.html#inputs){target="_blank"} (auf Englisch).
+
+Die Auswahlmöglichkeiten folgen einem Schema, das je nach Auswahl komplexer wird. Die Hauptargumente sind:
+
+- **`inputId = "..."`**: Der **interne Name** des Filters, mit dem Ihr die Werte an den Server übergebt. Wichtig ist, dass Ihr jede `id` (hier `continentSelection`) nur einmal vergebt.
+- **`label = "..."`**: Der **externe Name** des Filters, den die Nutzer:innen bei der Interaktion mit der App sehen.
+- **`choices = ...`**: Unter den **Auswahlmöglichkeiten** definieren wir eine Liste an möglichen Werten, anhand derer wir den Datensatz filtern können. Idealerweise programmiert Ihr das bei sich ändernden Ausprägungen diese Eingabe flexibel (z.B. über die Funktion `unique(datensatz$spalte)`). Ihr könnt hier aber auch manuelle Einträge festlegen und diese sogar manuell benennen. In unserer App nutzen wir die Kontinente mit deutschsprachige Labels.
+- **`selected = "..."`**: Im letzten Schritt können wir optional eine Standardauswahl für die Nutzenden festlegen. Wir wählen hier `Americas` (also den Namen, der für den Kontinent im Datensatz vergeben ist).
+
+In der `# 2. Aufgabe` richten wir nun den Filter für die Kontinente im `sidebarPanel()` ein. Geht dazu wieder zur `app.R` Datei.
+
+*Eine kurze Anmerkung: Wir vernachlässigen in diesem Schritt zunächst das `mainPanel()` - das kommt gleich!*
+
+```{r ui_exercise2, exercise=TRUE, eval =FALSE}
+# UI ----------------------------------------------------------------------
+
+# Jetzt definieren wir das User Interface (auch UI, also die Benutzendenoberfläche)
+# Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen
+# die für uns relevanten Teile
+
+ui <- fluidPage(
+  
+  titlePanel(""), # Den Titel lassen wir an dieser Stelle noch ungefüllt
+   
+  # Definiert die Seitenleiste und den Input
+  sidebarLayout(sidebarPanel(
+    ##########################################################################
+    # 2. Aufgabe
+    # Wir verwenden hier den `checkboxGroupInput`
+    # Das erlaubt uns, ein Input-Menü zu erstellen, bei dem 
+    # wir über "Check-Boxen" die Kontinente auswählen
+    
+    checkboxGroupInput(
+      
+      # Gebt dieser Auswahl einen Namen (wir werden den Namen später
+      # nutzen, um auf dieses Auswahlmenü zuzugreifen)
+      
+      "",
+      
+      # Gebt eine Anleitung für die Nutzenden ein (das kann sehr kurz sein
+      # und zum Beispiel "Wähle einen Kontinent" umfassen oder aber auch 
+      # ausführlicher sein - hier seid Ihr vollkommen frei in eurer 
+      # Auswahl :-))
+      "",
+      
+      # Der nächste Schritt ist wichtig - hier definieren wir, was die
+      # Nutzenden auswählen können. Die Logik ist, dass wir eine Liste 
+      # (`list`) an Möglichkeiten in `choiches` speichern. Wir möchten 
+      # hier alle Kontinente auswählen. Dazu müssen wir jeden Kontinent 
+      # sein Anzeigeäquivalent (linke Seite) und seine Bezeichnung im 
+      # Datensatz (rechte Seite) geben
+
+      choices = list(
+      ),
+      
+      # Wir können jetzt noch im letzten Schritt eine Standardvorauswahl 
+      # treffen - hier nehmen wir `"Americas"` (also den Namen im Daten-
+      # satz) :-)
+
+      selected = ""
+    )
+    ##########################################################################
+    
+  ),
+  
+  mainPanel() # das mainPanel lassen wir an dieser Stelle noch ungefüllt
+)
+```
+
+Wunderbar - unsere Seitenleiste steht. Wir wenden uns dem `mainPanel()` zu. Die Tabelle sollte Euch bekannt vorkommen - wir haben sie an dieser Stelle um eine weitere Spalte ergänzt. Wenn Ihr Euch noch einmal an das Video zurückerinnert, haben wir dort gelernt, dass alles **miteinander verbunden** sein muss, damit die Shiny-App auch funktioniert. Das bezieht sich auf eine entsprechende Einbindung der im `server` generierten Texte, Tabellen oder Visualisierungen. In der dritten Spalte der Tabelle habt Ihr das entsprechende Äquivalent, dass Ihr nutzen könnt, um den "Output" im `mainPanel()` der Shiny-App einzubinden.
+
+| **Was möchtet Ihr darstellen?**                                       | **Befehl in R für den `server`**    | **Befehl in R für die `ui` in mainPanel()** |
+|-------------------------------------------------------------------|---------------------------------|--------------------------|
+| Einen Text(block)                                                 | `renderText({})`              | `textOutput()`          |
+| Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`  | `tableOutput()`          |
+| Eine Visualisierung                                               | `renderPlot({})`                | `plotOutput()`          |
+
+Wenn Ihr mehr wissen möchtet, findet Ihr [hier eine gute Übersicht](https://mastering-shiny.org/basic-ui.html#outputs){target="_blank"} (auf Englisch).
+
+Wählt in `# 3. Aufgabe` in der `app.R`-Datei den geeigneten Befehl für die `ui` aus, um eine Visualisierung (also einen "Plot") darzustellen. Wir haben im `server` unser Balkendiagramm als `output$Hersteller` gespeichert - das ist hier eine wichtige Information, da wir es hier mit dem Namen (auch: Schlüssel) `"Hersteller"` direkt ansprechen und einbinden können. Bearbeitet dazu Aufgabe 3 im Code in Eurer `app.R`-Datei.
+
+```{r ui_exercise_choices, exercise=TRUE, eval = FALSE}
+### Hier hinterlegen wir die Option "Alle Ort" für den Wohnort-Filter
+continent_list <- c("Alle Kontinente", sort(unique(community$continent)))
+
+# UI ----------------------------------------------------------------------
+
+# Jetzt definieren wir das User Interface (auch UI, also die Benutzendenoberfläche)
+# Hierfür nehmen wir die Vorlage, die uns RStudio liefert und ergänzen
+# die für uns relevanten Teile
+
+ui <- fluidPage(
+  
+  # Titel einfügen
+  titlePanel(""),
+  
+  # Hiermit legen wir unser Layout fest - wir haben uns für das SidebarLayout entschieden, damit wir links Filter einfügen können.
+  sidebarLayout(
+    
+    # Hier definieren wir die Filter: Auswahlfilter für Wohnort und Kursniveau und ein Eingabefeld für Text
+    sidebarPanel(width = 3,
+      # Drop-Down-Filter für den Kontinent
+      selectInput('continent', 'Wähle den Kontinent aus:', choices = continent_list, selected = 'Alle Kontinente'),
+    ),
+    
+    # Hier kreiieren wir den Hauptteil der Applikation. 
+    mainPanel(
+      # Wir haben uns für das Layout mit Tabs (zu dt. Reitern) entschieden.
+      tabsetPanel(
+        # Tab mit Hersteller-Visualisierung einfügen. Das Package plotly sorgt für die Interaktivität der Visualisierung.
+        tabPanel('Hersteller', plotly::plotlyOutput('Hersteller'))
+      )
+    )
+  )
+)
+```
+
+
+#### Schritt 4: Funktionalität testen & Server und UI verbinden
+Im letzten Schritt bringen wir in Eurer Shiny-App den `server` und die `ui` zusammen - erinnert Ihr Euch noch, wie das ging? 
+
+```{r 11shinyapp}
+quiz(caption = NULL,
+  question("Wie bringt man in der Shiny-App den `server` und die `ui` zusammen?",
+    answer("Mit `shinyApp(ui = ui, server = server)`", correct = TRUE),
+    answer("Gar nicht - wir müssen beide Funktionen einzeln ausführen und RStudio bringt sie dann zusammen."),
+    correct = "Richtig! Und genau das setzen wir jetzt auch um!",
+    incorrect = "Leider falsch: Versucht es einfach nochmal oder schaut Euch das Video noch einmal an",
+    allow_retry = TRUE,
+    try_again_button = "Versucht es nochmal"
+  )
+)
+```
+
+Perfekt - setzt es doch gleich in `# 4. Aufgabe` in der `app.R`-Datei) um! Hier kurz zur Erinnerung wie der Code in der Datei aussehen sollte:
+
+```{r shinyapp_bring_it_together, exercise=TRUE, eval = FALSE}
+
+# Shiny-App zum Laufen bringen --------------------------------------------
+
+##########################################################################
+# 4. Aufgabe:
+# Wir kombinieren mit dem folgenden Befehl die UI und den Server und bringen
+# die Shiny-App lokal zum Laufen :-)
+# Nutzt `shinyApp` mit den entsprechenden Argumenten (fügt also die `ui` und
+# den `server` ein in die "XXX" ein) und lasst das gesamte Dokument 
+# durchlaufen 
+##########################################################################
+
+shinyApp(ui = XXX, server = XXX)
+
+```
+
+Jetzt sind wir endlich soweit -- lasst das gesamte Dokument einmal durchlaufen (markiert dafür den gesamten Code und führt ihn aus) und probiert Eure Shiny-App auf Eurem Rechner aus. Was fällt Euch auf?
+
+```{r 11shinyapp_does_filter_work}
+quiz(caption = NULL,
+  question("Was fällt Euch auf, wenn Ihr Euch die Shiny-App lokal auf Eurem Rechner genauer anschaut?",
+    answer("Gar nichts - es läuft doch alles wunderbar!"),
+    answer("Der Filter scheint nicht zu reagieren", correct = TRUE),
+    correct = "Richtig! Und genau das beheben wir jetzt im Code :-)",
+    incorrect = "Leider falsch: Versucht es einfach nochmal oder schaut Euch die Shiny-App noch einmal genauer an",
+    allow_retry = TRUE,
+    try_again_button = "Versucht es nochmal"
+  )
+)
+```
+
+Richtig, Euer Filter scheint noch nicht richtig zu funktionieren. Das liegt daran, dass wir den **`server` noch nicht mit der `ui` verbunden** haben. Erinnert Ihr Euch an die Abbildung im Video, die Euch gezeigt hat, dass alles miteinander verbunden sein muss?
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui-server-1.png?raw=true){#id .class width=70% height=70%}
+
+Das holen wir jetzt nach. Dazu bauen wir einen Filter in unsere Visualisierungsfunktion im `server` ein. Dazu gehen wir in die Funktion, die wir vorher einfach in unseren `server` reinkopiert haben.
+
+Nach der Bearbeitung der Daten und vor der Erstellung der Visualisierung mit `ggplot2` haben wir die Möglichkeit, noch einen zusätzlichen Filter einzubauen. Im Code wäre das an der gekennzeichneten Stelle:
+
+```{r make_function_work, exercise=TRUE}
+# Interaktivität
+if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird ausgewählt.
+  daten <- audit %>% filter(continent == input$continent)
+} else { # Zweiter Fall: Der/die Nutzer:in möchte alle Kontinente ansehen.
+  daten <- audit
+}
+```
+
+Wie Ihr seht, wählen wir hier wieder die `dplyr::filter()` Option und definieren so, dass nur die Kontinente ausgewählt werden sollen, die in `input$continent`ausgewählt wurden. Erinnert Ihr Euch noch an die `id`, die wir in der `ui` vergeben haben? Genau hier nutzen wir sie, um darauf im `server` zu verweisen! 
+
+
+#### 5. Verschönerung Eurer Shiny-App
+Bis hierhin haben wir schon 80% der Shiny-App geschafft - herzlichen Glückwunsch! Sie läuft, zeigt uns zuverlässig über unseren vordefinierten Filter die Balken an, die wir sehen möchten und ist insgesamt auch schon recht professionell. Es wäre natürlich noch schön, wenn wir die Shiny-App noch ein bisschen weiter verschönern könnten. Dazu gibt es verschiedene Möglichkeiten und auch oft schon vordefinierte Packages, die Ihr einfach nutzen könnt.
+
+**Thema ändern**
+
+Wie auch schon in `ggplot2` gibt es verschiedene Themen, die Ihr eurer Shiny-App geben könnt. Wir nutzen dazu das Package `shinythemes`, das wir mit folgendem Befehl zunächst laden:
+
+```{r shinythemes, exercise=TRUE}
+# install.packages("shinythemes")
+library(shinythemes)
+```
+
+Hier gibt es viele verschiedene Themen, die Euch zur Auswahl stehen! Schaut einfach [hier](https://rstudio.github.io/shinythemes/){target="_blank"} vorbei.
+
+**Titel ändern**
+
+Im letzten Schritt geben wir unserer Shiny-App noch einen schönen Titel, zum Beispiel `"Break Free From Plastic"`. Das ergänzen wir auch in der `ui` (in `# 4. Aufgabe` seht Ihr, wo Ihr es ergänzen müsst):
+
+```{r ui_title, exercise=TRUE}
+ui <- fluidPage(
+  titlePanel("")
+)
+```
+
+Und jetzt lassen wir sie noch einmal final erstellen - markiert dazu wieder den ganzen Code in der `app.R`-Datei und lasst sie durchlaufen. Herzlichen Glückwünsch zu Eurer ersten Shiny-App! Das sieht klasse aus!
+
+
+### **Exkurs 1**: Reaktives Programmieren - das Geheimnis einer Shiny-App
+Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. Was ist genau der Algorithmus, der sie zum Laufen bringt? Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auch **reaktives Programmieren**. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
+
+![*Video: Reaktivität in Web Applikationen (5min)*](https://youtu.be/g8wDaNY-o9U)
+
+Man kann sich das Verhalten zwischen der UI, dem Server und den Nutzenden wie die Kommunikation mit einer **Brieftaube** vorstellen. Dieses schöne Bild stammt von [*Garrett Grolemund*](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}, der sagt, dass Reaktivität eine Illusion erzeugt, die den Nutzenden vermittelt, dass eine Eingabe durch den Nutzenden automatisch z.B. Abbildungen kreiert.
+
+<center>
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/reactivity.png?raw=true){#id .class width=70% height=70%} 
+</center>
+
+```{r reactivity_quiz}
+quiz(caption = NULL,
+  question("Welche Aussagen sind korrekt?",
+    answer("Die Reaktivität einer Shiny-App kann mit einer Brieftaube verglichen werden - sie fliegt nur los, wenn sie beauftragt wird.", correct = TRUE),
+    answer("Eine Shiny-App ruft die ganze Zeit die Informationen ab und updatet sich die ganze Zeit im Hintergrund."),
+    answer("Die Reaktivität der Shiny-App generiert die Illusion, dass sich die Nutzereingabe automatisch kreiert - dabei handelt es sich in Wirklichkeit um ein Zusammenspiel zwischen Nutzerauswahl, Server und der Ausgabe im User Interface.", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+
+### **Exkurs 2**: Hosten von ShinyApps
+RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io){target="_blank"}. Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/){target="_blank"} und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen. 
+
+> In jedem Fall sollte intern abgeklärt werden, ob diese Hosting-Option für Euch in Frage kommt oder ob es nicht eine Alternative über die IT-Abteilung gibt (z.B. bei sensiblen Daten).
+
+Sollte die RStudio-Lösung für Euch eine Option sein, ist das Hosten denkbar einfach. Ihr müsst nur die folgenden Schritte befolgen:
+
+1. Alle Packages müssen installiert sein und nur über `library()` geladen werden. D.h. Euer Code darf kein `install.packages()` enthalten.
+
+2. Dann müsst Ihr `rsconnect` installieren (das macht Ihr ganz einfach über die Console mit `install.packages("rsconnect")`).
+
+3. Danach erstellt Ihr Euch einen Account auf [ShinyApps.io](https://www.shinyapps.io){target="_blank"} (es gibt verschiedene Optionen, wählt den Account aus, der am besten zu Euren Bedürfnissen passt).
+
+4. Jetzt könnt Ihr `rsconnect` konfigurieren. Dazu müsst Ihr den Token, den Euch [ShinyApps.io](https://www.shinyapps.io){target="_blank"} zur Verfügung stellt, kopieren. Die Screenshots zeigen Euch, wie Ihr dahin kommt.
+
+Sobald Ihr Euch bei [ShinyApps.io](https://www.shinyapps.io){target="_blank"} eingeloggt habt, seht Ihr folgendes Dashboard: 
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shinyapps1.png?raw=true){#id .class width=80% height=80%}
+
+Dort klickt Ihr auf Euer Benutzerkonto (rechts oben) und dann auf "Tokens" und gelangt zu folgendem Fenster:
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shinyapps2.png?raw=true){#id .class width=80% height=80%}
+
+Wenn Ihr jetzt auf "+ Add Token" klickt, wird ein neues Token generiert und erscheint in der Auflistung. Um die Informationen zu bekommen, die Ihr für Eure Shiny-App braucht, klickt einfach auf "Show". Dann öffnet sich ein kleines Pop-up Fenster mit allen wichtigen Infos, die Ihr einfach kopieren könnt (klickt dazu auf "Copy to clipboard").
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shinyapps3.png?raw=true){#id .class width=80% height=80%}
+
+5. Nachdem Ihr den Code kopiert habt, verknüpft Eure Shiny-App mit [ShinyApps.io](https://www.shinyapps.io){target="_blank"}, indem Ihr den Code in der Console einfügt und ausführt. 
+
+6. Ihr könnt Eure Shiny-App noch vor dem finalen Deployen testen, indem Ihr in der Console `runApp()` ausführt.
+
+7. Hat alles geklappt? Dann kommt das Deployen! Führt in der Console einfach `deployApp()` aus und wartet ein bisschen - Eure Shiny-App ist nach ein bisschen Warten direkt online und kann über einen Link aufgerufen werden!
+
+
+```{r 11deployment}
+quiz(caption = NULL,
+  question("Was sind die wichtigen Schritte, die Ihr beim Deployen Eurer Shiny-App beachten müsst?",
+    answer("Ihr solltet sowohl `install.packages` als auch `library` Aufrufe in Eurer `app.R`-Datei haben."),
+    answer("Es dürfen keine `install.packages`-Funktionen in Eurer `app.R`-Datei sein.", correct = TRUE),
+    answer("Ihr braucht ein sogenanntes Token von shinyapps.io.", correct = TRUE),
+    answer("Ihr müsst eine Verbindung zwischen shinyapps.io und RStudio mit Hilfe von `rsconnect` herstellen.", correct = TRUE),
+    answer("Ihr müsst eigentlich nichts weiter beachten oder einstellen - es reicht, wenn Ihr `deployApp()` laufen lasst."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder lest Euch noch einmal die Beschreibung durch.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+
+### **Und jetzt seid Ihr dran!** (diese Woche optional)
+Ihr habt jetzt das wichtigste Grundwerkzeug gelernt, um eine Shiny-App lokal zu erstellen -- und genau das könnt Ihr in dieser Übung mit Euren Daten umsetzen! Ziel ist es, eine einfache Shiny-App zu erstellen. Dazu könnt Ihr beispielsweise eine Visualisierung aus einer vorherigen Übung in eine Shiny-App einbinden oder eine Tabelle anzeigen lassen - Eurer Phantasie sind keine Grenzen gesetzt. Jede Shiny-App fängt simpel an und kann dann durch die einzelnen Bausteine beliebig erweitert werden. 
+Hier die Schritte, die Ihr zum Erstellen einer Shiny-App befolgen solltet:
+
+
+1. Wählt Euch eine Visualisierung (z.B. mit `ggplot2` oder aber auch mit `echarts4r`)  mit Euren Daten aus (idealerweise habt Ihr schon Code, den Ihr jetzt einfach wieder benutzen könnt - zum Beispiel den Code aus den letzten Wochen).
+
+2. Öffnet RStudio und wählt dort eine neue Datei aus -- wählt dort "Shiny Web App". 
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shiny_step1.png?raw=true){#id .class width=50% height=50%}
+
+Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer Datei ("Single File (app.R)"), d.h. es wird eine Datei sowohl für die UI (`ui.R`) als auch für den Server (`server.R`) erstellt) aus. 
+
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/shiny_step2.png?raw=true){#id .class width=50% height=50%}
+
+3. Überlegt Euch, wie Eure Shiny-App aussehen soll. Eine Shiny-App hat meist links eine Seitenleiste mit Auswahlmöglichkeiten, in der Mitte (dem `main`-Part) ist meist Text, eine Visualisierung oder aber auch eine Tabelle. Es kann helfen, wenn Ihr Euch das kurz auf einem Papier visuell skizziert: Welche Visualisierung möchtet Ihr in Eure Shiny-App einbinden? Was könnten Auswahlmöglichkeiten sein, die Ihr in der Seitenleiste ansteuern möchtet? Möchtet Ihr Text als Informationen mitliefern?
+
+4. Nehmt Euren Code für die Visualisierung (wenn Ihr noch keinen Code habt, erstellt zunächst eine Visualisierung mit `ggplot2` und nutzt diesen Code hier) und baut ihn in die App ein. Orientiert Euch hier an der Anleitung oben oder aber auch am [Schummelzettel](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}.
+
+5. Im vorletzten Schritt verschönern wir das Aussehen Eurer App: Baut die einzelnen Auswahlmöglichkeiten in die Seitenleiste ein und platziert Eure Visualisierung oder Euren Text im `main`-Part. 
+
+6. Wenn Ihr möchtet, könnt Ihr Eure Shiny-App über ein `theme` noch weiter verschönern. [Hier](https://rstudio.github.io/shinythemes/){target="_blank"} findet Ihr eine Liste an Auswahlmöglichkeiten. Um es umzusetzen, installiert `install.packages("shinythemes")` und fügt in die `fluidPage` Euer präferiertes Design hinzu (z.B. `fluidPage(theme = shinytheme("cerulean"), ...)`).
+
+7. Und jetzt kommt der spannendste Part: Lasst Eure Shiny-App laufen! Führt dazu `shinyApp(ui = ui, server = server)` in der Console aus. Eure App wird sich in einem separaten Fenster öffnen und Ihr könnt sie direkt ausprobieren :-)
+
+### **Weitere Ressourcen**
+  - [Schummelzettel Shiny-Apps (auf Deutsch)](https://correlaid.org/material/Schummelblatt_rshiny.pdf){target="_blank"}
+  - [R Studio Tutorial (engl.)](https://shiny.rstudio.com/tutorial/){target="_blank"}
+  - [Hadley Wickham: Mastering Shiny (auf Englisch)](https://mastering-shiny.org){target="_blank"}
+  - [CorrelTalk: Eine interaktive Weltkarte für erlassjahr.de](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
+  - [Konstantin Gavras and Nick Baumann: Shiny Apps: Development and Deployment (auf Englisch)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/shiny-apps/){target="_blank"} auf Methods Bites
+  - [Julie Scholler: Intro to Shiny Web App (auf Englisch)](https://juliescholler.gitlab.io/files/M2/M2-CM3-Shiny.html#1){target="_blank"}
+  - [Kaleen L. Medeiros: Introduction to Shiny (auf Englisch)](https://github.com/klmedeiros/rladies-tunisia-july2020-intro-shiny){target="_blank"}
+  - [Garrett Grolemund: How to understand reactivity in R (auf Englisch)](https://shiny.rstudio.com/articles/understanding-reactivity.html){target="_blank"}
+- ShinyApps hosten
+  - [Hosting and deployment (auf Englisch)](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
+  - [Shinyapps.io - Schritt für Schritt Anleitung (auf Englisch)](https://shiny.rstudio.com/articles/shinyapps.html){target="_blank"}
+- Mehr zu **echarts4r** 
+  - [echarts4r Vignette (auf Englisch)](https://echarts4r.john-coene.com/index.html){target="_blank"}
+  - [Paul Simmering: Exploring echarts4r (auf Englisch)](https://rpubs.com/paul_simmering/echarts){target="_blank"}
+
+- Shiny dashboards
+  - [R Studio Tutorial (auf Englisch)](https://rstudio.github.io/shinydashboard/){target="_blank"}
+  - [Verschiedene "Themes" (auf Englisch)](https://github.com/nik01010/dashboardthemes){target="_blank"}
+
+- Optimieren von ShinyApps
+  - [Make your Shiny-App faster (auf Englisch)](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
+  - [shiny.worker (auf Englisch)](https://www.r-bloggers.com/shiny-worker-speed-up-r-shiny-apps-by-offloading-heavy-calculations/){target="_blank"}

@@ -1,0 +1,172 @@
+---
+title: "Datenimport und APIs"
+author: "Nina Hauser"
+date: "10/20/2021"
+output: pdf_document
+---
+
+# Schritt 1: Infrastruktur
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
+library(here)
+library(rio)
+library(readr)
+library(WDI)
+library(SDGsR)
+library(dplyr)
+library(httr)
+library(purrr)
+
+# Achtung: SDGsR muss über diesen Befehl installiert werden - 
+# devtools::install_github("DrMattG/SDGsR", dependencies = TRUE)
+# Fall es dabei Fehler gibt, installiert getrennt "conquer", "RcppArmadillo" und "corrrplot"
+# Führt dann: devtools::install_github("DrMattG/SDGsR") aus 
+```
+
+# Schritt 2: Daten laden
+
+### Übung 1: 
+Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei **lokal zu laden**.
+
+```{r}
+# Euer Code hier
+```
+
+### Übung 1 - Lösung:
+Da es sich um eine CSV-Datei handelt, können wir entweder das `rio`-Package mit der Funktion `import()` oder das `readr`-Package mit der Funktion `read_csv()` nutzen. Die Navigation zu den Dateien funktioniert über das `here`-Package mit der Funktion `here()`.
+```{r uebung1loesung}
+### Daten mit rio laden
+plastics <- rio::import(here::here("daten/plastics.csv"))
+
+### Daten mit readr laden
+plastics <- readr::read_csv(here::here("daten/plastics.csv"))
+```
+
+### Übung 2:
+Ladet den "Plastics"-Datensatz über einen **Hyperlink** [Link](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
+
+```{r}
+# Euer Code hier
+```
+
+### Übung 2 - Lösung:
+Da es sich um eine CSV-Datei handelt, können wir entweder das `rio`-Package mit der Funktion `import()` oder das `readr`-Package mit der Funktion `read_csv()` nutzen. Bei beiden Packages funktioniert das Einlesen über den Hyperlink.
+```{r uebung2loesung}
+### Daten mit rio laden
+plastics <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+
+### Daten mit readr laden
+plastics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+```
+
+### Übung 3:
+Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
+```{r}
+# Euer Code hier
+```
+
+### Übung 3 - Lösung:
+```{r uebung3loesung}
+# Daten der World Bank mit R-Package ziehen
+WDI::WDI(
+  country = "all", # Auswahl der Länder
+  indicator = "EN.MAM.THRD.NO",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  start = 2018, # Auswahl Zeithorizont: Anfang
+  end = 2018, # Auswahl Zeithorizont: Ende
+  language = "en" # Sprachauswahl
+) 
+```
+
+### Übung 4: 
+In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um.
+
+```{r}
+# Euer Code hier
+```
+
+### Übung 4 - Lösung:
+Um die Daten der UN-API zu laden gibt es zwei Möglichkeiten.
+
+**Option 1**: Wir recherchieren im Internet und finden das `SDGsR`-Package, das wir installieren, und mit dem wir die Daten über den für uns in eine Funktion eingebetteten API-GET-Request laden:
+```{r uebung4loesungb}
+# Daten mit dem SDGsR-Package laden
+SDGsR::get_indicator_data(indicator = "12.5.1")
+```
+
+**Option 2**: Wir schauen uns den Exkurs an und schreiben folgende API-Abfrage:
+```{r uebung4loesungb}
+### Laden der Daten zum UN-Indikator EN_MWT_RCYV
+
+## Schritt 1: URL definieren
+basis_url <- "https://unstats.un.org/" # Basis-URL
+initiale_anfrage <- httr::GET( # Initialisierung
+  basis_url,
+  path = "/SDGAPI/v1/sdg/Series/Data", # Route
+  query = list( #Datenabfrage
+    seriescode = "EN_MWT_RCYV" # Indikatorcode
+  )
+)
+
+
+## Schritt 2: Statuscode prüfen
+httr::stop_for_status(initiale_anfrage)
+
+
+## Schritt 3: Responselänge bestimmen
+# Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern und betrachten - über View finden wir dort auch die Seitenanzahl der Response
+content <- httr::content(initiale_anfrage)
+View(content)
+
+# Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
+total_pages <- content$totalPages
+pages <- c(1:total_pages)
+
+
+## Schritt 4: Testweise den Inhalt der initialen Response entpacken 
+#Inhalt der Datenabfrage speichern
+recycling_data_test <- httr::content(initiale_anfrage)
+
+# Für verschiedene Länder erhalten wir also zu verschiedenen Jahren Ihre Recyclingquoten (Tipp: Schaut Euch ein Element genauer an, um die Variablen zu identifizieren)
+recycling_list_test <- recycling_data_test$data
+View(recycling_data_test$data[[1]])
+
+# Mit dem purrr-Package ziehen wir nun die Testdaten in einen Dataframe und entscheiden uns für den Import der Länder (geoAreaName), des Beginns der Messungen (timePeriodStart) und des Wertes (value)
+recycling_geo_test <- recycling_list_test %>%
+  purrr::map_df(`[`, c("geoAreaName", "timePeriodStart", "value"))
+
+# Datensatz betrachten
+dplyr::glimpse(recycling_geo_test)
+
+## Schritt 5: Daten von allen Seiten der Response ziehen
+# Funktion, mit der alle Seiten geladen werden, indem die Seitenanzahl "Page" durch eine Nummer zwischen 1 und 11 (= Total Pages) ersetzt wird
+list_of_dataframes <- purrr::map(pages, function(page) {
+  antwort <- httr::GET(
+    basis_url,
+    path = "/SDGAPI/v1/sdg/Series/Data",
+    query = list(
+      seriescode = "EN_MWT_RCYV",
+      page = page # Hier wird die Seitenzahl eingesetzt
+    )
+  )
+  # Von jeder Seite die Daten laden
+  recycling_list <- httr::content(antwort)$data
+  
+  # Generierung eines Dataframes mit den ausgewählten Variablen
+  recycling_geo <- recycling_list %>% 
+    purrr::map_df(`[`, c("geoAreaName", "timePeriodStart", "value")) 
+  return(recycling_geo)
+})
+
+# Erstellung eines großen Dataframes mit allen Daten
+recycling_geo_df <- dplyr::bind_rows(list_of_dataframes)
+```
+
+# Schritt 3: Daten bereinigen
+
+# Schritt 4: Übersicht verschaffen
+
+# Schritt 5: Visuelle Exploration
+
+# Schritt 6: Statistische Kennzahlen

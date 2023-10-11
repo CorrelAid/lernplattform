@@ -1,0 +1,106 @@
+---
+title: "Erste Datenanalysen in R"
+author: "Nina Hauser"
+date: "10/20/2021"
+output: pdf_document
+---
+### Übung 1
+Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**:
+- Wie viel Plastik wurde insgesamt gesammelt?
+
+- Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?
+
+- Welche Faktoren beeinflussen möglicherweise diese Unterschiede?
+
+### Übung 2: 
+Überlegt: Welche **Fragen** möchtet Ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
+
+### Übung 3:
+Versucht, dieses RMarkdown zum Laufen zu bringen (Tipp: Run -> Run All) und es nachzuvollziehen.
+
+# Schritt 1: Infrastruktur
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
+library(rio)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(janitor)
+library(countrycode)
+library(ggbeeswarm)
+```
+
+# Schritt 2: Daten laden
+Speichert die Datensätze von dem Datenordner der CorrelCloud im Ordner "daten" ab, der auf einer Ebene mit diesem RMarkdown abliegt.
+```{r daten_laden}
+### Community Datensatz laden
+community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
+
+### Audit Datensatz laden
+audit <- rio::import(here::here('daten/bffp2019_audit_by_country_and_company.csv'))
+```
+
+# Schritt 3: Daten bereinigen (hier für Euch schon erledigt)
+```{r daten_bereinigen}
+
+```
+
+# Schritt 4: Übersicht verschaffen
+```{r ueberblickcommunity}
+# Überblick über die Community verschaffen
+dplyr::glimpse(community)
+```
+
+```{r ueberblickaudit}
+# Überblick über den Plastik-Audit verschaffen
+dplyr::glimpse(audit)
+```
+
+# Schritt 5: Visuelle Exploration
+```{r boxplot}
+# Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
+ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
+  ggbeeswarm::geom_beeswarm(size = 3, alpha = 0.5, color = "darkgrey") + # # Hinzufügen der Datenpunkte (Scatterplot) inkl. Stylingoptionen zur Punktegröße, Transparenz und Farbe zur Verdeutlichung der Anzahl
+  geom_boxplot(alpha = 0.6) + # Hinzufügen des Boxplots
+  coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) + # Festlegung der Achsenlänge der y-Achse abhängig von Median und Standardabweichung
+  labs(
+    title = "Die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent.",
+    y = "Anzahl gefundener Plastikstücke",
+    x = "Kontinent",
+    caption = glue::glue("n = {nrow(community)}\n Einige Ausreißer wurden zur Lesbarkeit des Graphen ausgeklammert. \nDatenquelle: TidyTuesday und BFFP")) + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs  
+  theme(legend.position="none") + # Ausblenden der Legende
+  scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
+```
+
+### Übung 4:
+In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. <br> 
+*Hinweis: Kopiert den Code der Graphik oben, tauscht an relevanten Stellen die entsprechende Variable aus und passt die Beschriftungen an (und tut sonst erstmal nichts).*
+
+```{r loesung}
+#Euer Code hier
+```
+### Übung 5:
+Interpretiert die Graphik. Was könnt Ihr ablesen?
+
+# Schritt 6: Statistische Kennzahlen
+```{r tabelle}
+# Tabelle mit statistischen Kennzahlen
+community %>%
+  group_by("Kontinent" = continent) %>%
+  summarise("Anzahl Beobachtungen" = n(),
+         "Anzahl Events" = sum(n_events),
+         "Anzahl Freiwillige" = sum(n_volunteers),
+         "Anzahl Plastikstücke" = sum(n_pieces),
+         "Mittelwert" = mean(n_pieces),
+         "Standardabweichung" = sd(n_pieces),
+         "Varianz" = var(n_pieces),
+         "Median" = median(n_pieces),
+         "Quartil (25%)" = quantile(n_pieces, .25),
+         "Quartil (75%)" = quantile(n_pieces, .75),
+         "Interquartilsabstand (IQR)" = IQR(n_pieces),
+         "Spannweite" = max(n_pieces) - min(n_pieces))
+```
