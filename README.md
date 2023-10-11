@@ -9,16 +9,14 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
-Inhalte sind lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de). Attribution ist in der folgenden Form erfolgen:
+Inhalte der Sessions (durchnummerierte `.Rmd`-Dateien on top-level) sind generell lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de). Die genaue Form der Attribution für eine gegebene Session kann dem jeweiligen `.Rmd` entnommen werden. 
 
-"R Lernen - Der Datenkurs von und für die Zivilgesellschaft mit CorrelAid e.V.", Nina Hauser, lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de).
-
-Alternativ kann der Link zur Quelle auch als Hyperlink dem Titel hinzugefügt werden.
+Der Link zur Session kann als Hyperlink dem Titel hinzugefügt werden.
 
 ## Code
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Code in `.R` und `.Rmd` Dateien ist lizensiert unter der MIT Lizenz.
+Code in `.R`-Dateien und sonstige `.Rmd`-Dateien sind lizensiert unter der MIT Lizenz.
 
 ## Daten
 Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet Ihr [hier](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26). Vielen Dank an das Team von Tidy Tuesday und Break Free From Plastics!
