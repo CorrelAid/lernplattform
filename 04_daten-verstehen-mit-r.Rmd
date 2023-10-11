@@ -66,7 +66,7 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   ),
   question("Welche der folgenden sind Lagemaße einer Verteilung?",
-    answer("25%-Quantil - 25% der Werte ver Verteilung sind kleiner, der Rest ist größer. ", correct = TRUE),
+    answer("25%-Quantil - 25% der Werte der Verteilung sind kleiner oder gleich, der Rest ist größer. ", correct = TRUE),
     answer("Median - die wahre Mitte der Ausprägungen", correct = TRUE),
     answer("Mittelwert - der Durchschnitt", correct = TRUE),
     answer("Maximum - der höchste Wert"),
