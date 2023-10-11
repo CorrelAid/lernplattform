@@ -1,5 +1,7 @@
 ## **Einführung in RStudio**
 
+*R Lernen - Einführung in RStudio von Nina Hauser, Zoé Wolter. Lizensiert unter Creative Commons Attribution 4.0 International.*
+
 ``` {r settings_rstudio, echo=FALSE, include=FALSE}
 library(rio)
 ```

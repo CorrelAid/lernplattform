@@ -5,6 +5,7 @@ output:
 ---
 
 ## **Reports in R Markdown**
+*R Lernen - Reports in R Markdown von Lisa Reiber. Lizensiert unter Creative Commons Attribution 4.0 International.*
 
 ![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
 

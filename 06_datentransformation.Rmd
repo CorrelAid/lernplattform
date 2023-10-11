@@ -1,4 +1,5 @@
 ## **Datentransformation**
+*R Lernen - Datentransformation von Zoé Wolter. Lizensiert unter Creative Commons Attribution 4.0 International.*
 
 ![*Video: Datentransformation (30min)*](https://youtu.be/YWFLSovbha0)
 

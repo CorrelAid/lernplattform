@@ -1,4 +1,5 @@
 ## **Interaktive Visualisierungen**
+*R Lernen - Interaktive Visualisierungen von Cosima Meyer. Lizensiert unter Creative Commons Attribution 4.0 International.*
 
 Was wäre eine Welt ohne zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen mit interaktiven Visualisierungen gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig! 
 

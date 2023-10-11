@@ -1,4 +1,5 @@
 ## **Reportautomatisierung**
+*R Lernen - Reportautomatisierung von Lisa Reiber. Lizensiert unter Creative Commons Attribution 4.0 International.*
 
 ![*Video: Reportautomatisierung (20min)*](https://youtu.be/78r2ugQ6bdQ)
 

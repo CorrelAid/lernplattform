@@ -1,4 +1,5 @@
 ## **Grundlagen der Statistik**
+*R Lernen - Grundlagen der Statistik von Philipp Bosch, Nina Hauser, Sebastian Zezulka. Lizensiert unter Creative Commons Attribution 4.0 International.*
 
 ![*Video: Grundlagen der Statistik (30min)*](https://youtu.be/ASL2IihMtl0)
 

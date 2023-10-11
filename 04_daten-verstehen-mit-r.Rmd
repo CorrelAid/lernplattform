@@ -1,4 +1,5 @@
 ## **Daten verstehen mit R**
+*R Lernen - Daten verstehen mit R von Sylvi Rzepka. Lizensiert unter Creative Commons Attribution 4.0 International.*
 
 ![*Video: Daten mit R verstehen (30min)*](https://youtu.be/nEbiJ4EZ3OE)
 

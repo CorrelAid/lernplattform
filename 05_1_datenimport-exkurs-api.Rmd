@@ -1,4 +1,5 @@
 ## **Eigene API-Anfragen (Exkurs)**
+*R Lernen - Eigene API-Anfragen (Exkurs) von Frie Preu. Lizensiert unter Creative Commons Attribution 4.0 International.*
 
 ![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)
 

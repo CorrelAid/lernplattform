@@ -1,4 +1,6 @@
 ## **Datenimport und APIs**
+*R Lernen - Datenimport und APIs von Nina Hauser. Lizensiert unter Creative Commons Attribution 4.0 International.*
+
 Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um damit Analysen durchzuführen. 
 
 ![*Video: Datenimport und APIs (30min)*](https://youtu.be/NA9QLeQsE9M)
