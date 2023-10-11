@@ -256,10 +256,10 @@ print(df)
 ### Und jetzt Ihr: Eigenes Datenverarbeitungsverzeichnis erstellen (optional)
 Ihr arbeitet mit personenbezogenen Daten und möchtet ein **Datenverarbeitungsverzeichnis** anlegen? Zur Erstellung eines solchen Verzeichnisses gibt es im Netz zahlreiche Informationen. Hier geht es zu den Veröffentlichungen der [Datenschutzkonferenz (DKI)](https://www.bfdi.bund.de/DE/Fachthemen/Inhalte/Allgemein/Verzeichnis-Verarbeitungstaetigkeiten.html){target="_blank"} und [bitkom](https://www.bitkom.org/sites/default/files/file/import/180529-LF-Verarbeitungsverzeichnis-online.pdf){target="_blank"}. 
 
-Wir haben für Euch zudem ein **Muster in Excel** erstellt, das Ihr [hier](https://correlaid.org/material/MusterDatenverarbeitungsverzeichnis.xlsx){target="_blank"} herunterladen könnt.
+Wir haben für Euch zudem ein **Muster in Excel** erstellt, das Ihr [hier](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/MusterDatenverarbeitungsverzeichnis.xlsx?raw=true){target="_blank"} herunterladen könnt.
 
 <center>
-![*Template: Datenverarbeitungsverzeichnis*](https://correlaid.org/material/Verarbeitungsverzeichnis.png){#id .class width=100% height=100%}
+![*Template: Datenverarbeitungsverzeichnis*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/Verarbeitungsverzeichnis.png?raw=true){#id .class width=100% height=100%}
 </center>
 <br>
 
