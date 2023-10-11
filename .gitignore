@@ -42,5 +42,6 @@ vignettes/*.pdf
 # Mac DS-Store
 .DS_Store
 
+# package systems
 packrat/lib*/
-venv/
+/venv/
