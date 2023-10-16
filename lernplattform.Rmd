@@ -107,10 +107,6 @@ karten_daten <- community %>%
                 word_n_volunteers = if_else(n_volunteers == 1, "Freiwillige*r", "Freiwillige"),
                 word_n_pieces = if_else(n_pieces == 1, "gesammeltes Plastikstück", "gesammelte Plastikstücke"))
 
-### Variable 'countrycode' aus community Datensatz löschen
-community <- community %>%
-  dplyr::select(-countrycode)
-
 ### Initialisierung eines temporären Ordners
 tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
 download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
