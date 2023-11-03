@@ -26,7 +26,7 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 - Unter dem Environment findet Ihr einen **File Explorer** (zu dt. Dateimanager), mit dem Ihr Dateien auf Eurer Festplatte suchen und per Doppelklick öffnen könnt
 - Zusätzlich werden dort Plots (zu dt. Abbildungen), geladene Packages und die **Dokumentation** ("Hilfe") angezeigt, die Ihr mit dem Befehl **help("Funktion")** oder **?Funktion** durchsuchen könnt
 - Alle **Shortcuts** für RStudio findet Ihr unter ("Menü Help -> Keyboard Shortcuts Help)
-- In englischer Sprache ist zudem ein **Schummelblatt** zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} verfügbar
+- In englischer Sprache ist zudem ein **Schummelblatt** zur [IDE RStudio](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/03_cheatsheet-rstudio.pdf){target="_blank"} verfügbar
 - Mit dem **Tabstopp** (Pfeil nach rechts über Shift) könnt Ihr die **Vorschläge**, die Euch RStudio für Euren Code macht, übernehmen
 
 #### R Markdown (Rmd)
