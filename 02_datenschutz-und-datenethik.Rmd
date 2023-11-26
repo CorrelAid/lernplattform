@@ -10,20 +10,14 @@ output:
 runtime: shiny_prerendered
 ---
 
+<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary" href="https://correlaid.github.io/lernplattform_website/" target="_blank">Zurück zur Hauptseite</a>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(learnr)
 library(gradethis)
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
-```
-
-```{r}
-shiny::actionButton(
-  inputId = "zuruek", label = "Zurück zur Hauptseite",
-  icon = icon("backward"),
-  onclick = "window.open('https://selinazitrone.github.io/lernplattform_website/')"
-)
 ```
 
 ![*Video: Datenschutz und Datenethik (20min)*](https://youtu.be/0Qmy81DLQDw)
@@ -300,5 +294,5 @@ Wir haben für Euch zudem ein **Muster in Excel** erstellt, das Ihr [hier](https
 - [Publikation](https://www.b-b-e.de/fileadmin/Redaktion/06_Service/02_Publikationen/2021/2021-bbe-reihe-forum-3.pdf){target="_blank"} des Bundesnetzwerks Bürgerschaftliches Engagement (BBE) zu „Datenschutz und Datensicherheit“, insbesondere die Schritte 1-12 auf den Seiten 29ff.
 - [Webinare](https://stiftungdatenschutz.org/veranstaltungen/datenschutz-im-ehrenamt){target="_blank"} der Stiftung Datenschutz
 - Informationsseiten des:der [Berliner Datenschutzbeauftragten](https://www.datenschutz-berlin.de/){target="_blank"}
-- [Data Ethics Canvas (dt.)](http://theodi.org/wp-content/uploads/2021/07/Data-Ethics-Canvas-German-Colour.pdf){target="_blank"} des Open Data Institutes
+(- [Data Ethics Canvas (dt.)](http://theodi.org/wp-content/uploads/2021/07/Data-Ethics-Canvas-German-Colour.pdf){target="_blank"} des Open Data Institutes
 - [Coded Bias](https://www.netflix.com/title/81328723){target="_blank"}, eine Netflixdokumentation zu Bias (zu dt. Verzerrungen) in Algorithmen
