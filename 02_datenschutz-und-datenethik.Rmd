@@ -3,7 +3,11 @@ title: "Datenschutz und Datenethik"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
-  learnr::tutorial:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: flatly
     includes:
       after_body: ./www/favicon.html
     language: de
@@ -24,7 +28,7 @@ source("R/setup/tutorial-setup.R")
 
 Als Lektüre empfehlen wir die [Publikation](https://www.b-b-e.de/fileadmin/Redaktion/06_Service/02_Publikationen/2021/2021-bbe-reihe-forum-3.pdf){target="_blank"} des Bundesnetzwerks Bürgerschaftliches Engagement (BBE) zu „Datenschutz und Datensicherheit“, insbesondere die Schritte 1-12 auf den Seiten 29ff. Darüber hinaus könnt Ihr bei der Stiftung Datenschutz zahlreiche [Webinare](https://stiftungdatenschutz.org/veranstaltungen/datenschutz-im-ehrenamt){target="_blank"} zum Thema besuchen. Ein Webinar zur DSGVO-konformen Nutzung von bestehenden Datenbeständen mit der Stiftung Datenschutz und uns findet Ihr [hier](https://stiftungdatenschutz.org/veranstaltungen/unsere-veranstaltungen-detailansicht/datenschutz-im-ehrenamt-datenbestaende-rechtskonform-nutzen-293){target="_blank"}.
 
-## **Datenschutz**
+# **Datenschutz**
 Das Recht auf informationelle Selbstbestimmung ist ein Unterfall des verfassungsrechtlich verankerten **allgemeinen Persönlichkeitsrecht**  (Art. 1 Abs. 1 und Art. 2 Abs. 1 GG). Wichtige Rechtsgrundlage ist dafür die **DSGVO** (europäische Datenschutzgrundverordnung), welche am 25. Mai 2018 in Kraft getreten ist. 
 
 ```{r 02_quiz1}
@@ -158,7 +162,7 @@ quiz(
 
 <br>
 
-### **Datenschutz in der Praxis**
+## **Datenschutz in der Praxis**
 
 ```{r 02_quiz6}
 quiz(
@@ -193,7 +197,7 @@ quiz(
 ```
 
 
-## **Datenethik**
+# **Datenethik**
 
 - Darüber hinaus solltet Ihr Euch auch mit Euren Anforderungen an Datenethik beschäftigen, denn nur weil etwas augenscheinlich legal ist, heißt es noch lange nicht, dass es auch moralisch ist  - eine Inspiration kann die **Charta der digitalen Grundrechte** sein.
 - Prüft, ob Eure **Datengrundlage ausreicht**, um Sachverhalte zu bewerten, und diese Bewertung **sinnvoll ist**
@@ -205,7 +209,7 @@ Einige ethische Fragen solltet Ihr Euch vor und während Eurer Datenprojekte ste
 
 ![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/02_datenschutz-und-datenethik/ethische-fragen.png?raw=true){#id .class width=100% height=100%}
 
-### **Datenethik in der Praxis**
+## **Datenethik in der Praxis**
 ```{r 02_quiz}
 quiz(
   caption = NULL,
@@ -242,7 +246,7 @@ quiz(
 )
 ```
 
-## **Interaktive Übung**
+# **Interaktive Übung**
 Wenn Ihr (personenbezogene) Daten verarbeitet, speichert Ihr diese in (exportierten) Excel-Tabellen, intern und externen Datenbanken oder unstrukturiert. Auch in R gibt es spezifische Lösungen zur Speicherung von **strukturierten und unstrukturierten Daten**: **Data Frames** (zu dt. Datenrahmen, ein tabellarisches Format) bzw. **Listen**. In Data Frames und Listen werden einzelne Beobachtungen und Variablen in Datenstrukturen zusammengefasst und als **Objekt** gespeichert. Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit der Funktion `class()` überprüfen. Testet die Funktion in Zeile 8 für die Liste und den Data Frame, indem Ihr den Code ausführt.
 
 ```{r objekte, exercise=TRUE}
@@ -279,7 +283,7 @@ class(df)
 print(df)
 ```
 
-## Und jetzt Ihr: Eigenes Datenverarbeitungsverzeichnis erstellen (optional)
+# Und jetzt Ihr: Eigenes Datenverarbeitungsverzeichnis erstellen (optional)
 
 Ihr arbeitet mit personenbezogenen Daten und möchtet ein **Datenverarbeitungsverzeichnis** anlegen? Zur Erstellung eines solchen Verzeichnisses gibt es im Netz zahlreiche Informationen. Hier geht es zu den Veröffentlichungen der [Datenschutzkonferenz (DKI)](https://www.bfdi.bund.de/DE/Fachthemen/Inhalte/Allgemein/Verzeichnis-Verarbeitungstaetigkeiten.html){target="_blank"} und [bitkom](https://www.bitkom.org/sites/default/files/file/import/180529-LF-Verarbeitungsverzeichnis-online.pdf){target="_blank"}. 
 
@@ -289,7 +293,7 @@ Wir haben für Euch zudem ein **Muster in Excel** erstellt, das Ihr [hier](https
 ![*Template: Datenverarbeitungsverzeichnis*](https://correlaid.org/material/Verarbeitungsverzeichnis.png){#id .class width=100% height=100%}
 </center>
 
-## Zusätzliche Ressourcen
+# Zusätzliche Ressourcen
 
 - [Publikation](https://www.b-b-e.de/fileadmin/Redaktion/06_Service/02_Publikationen/2021/2021-bbe-reihe-forum-3.pdf){target="_blank"} des Bundesnetzwerks Bürgerschaftliches Engagement (BBE) zu „Datenschutz und Datensicherheit“, insbesondere die Schritte 1-12 auf den Seiten 29ff.
 - [Webinare](https://stiftungdatenschutz.org/veranstaltungen/datenschutz-im-ehrenamt){target="_blank"} der Stiftung Datenschutz
