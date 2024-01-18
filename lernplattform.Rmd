@@ -38,6 +38,10 @@ library(httr)
 library(purrr)
 library(RSQLite)
 library(leaflet)
+library(tidytext)
+library(gutenbergr)
+library(wordcloud)
+library(stopwords)
 
 ## RMD
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -178,6 +182,39 @@ regex_df <- tibble::tribble(
   "Person 2", 'Panoramastraße 1A, 10178 Berlin',          'B-BG 200', '7.7.1999',        '1,67m',
   "Person 3", 'Arnulf-Klett-Platz 2, 70173 Stuttgart',    'S-Ö 9999', '12.12.1985',      '1,92m'
   )
+
+### Doktor Oetker Kochbuch von Project Gutenberg für Wordcloud
+
+oetker <- gutenberg_download(31537)
+
+Encoding(oetker$text) <- "latin1"
+
+oetker <- oetker |> 
+  filter(text != "")
+
+oetker <- oetker[1:1749, ]
+
+### SentiWS Lexikon vom Projekt Wortschatz Leipzig
+
+lexicon <- map(c("daten/SentiWS_v2.0_Negative.txt", "daten/SentiWS_v2.0_Positive.txt"), function(file){
+  file_df <- read_tsv(file, 
+                     col_names = c("wort|code", "sentiment", "inflektionen")
+                     ) |> 
+  separate_wider_delim(col = "wort|code", delim = "|", 
+                       names = c("wort", "code")
+                       )
+  
+  original_only <- file_df |> 
+    select(wort, code, sentiment)
+  
+  inflektionen <- file_df |> 
+    separate_longer_delim(inflektionen, delim = ",") |> 
+    select(wort = inflektionen, code, sentiment) |> 
+    filter(!is.na(wort))
+  
+  union_all(original_only, inflektionen)
+}) |> list_rbind()
+
 ``` 
 
 <!-- ## Willkommen -->

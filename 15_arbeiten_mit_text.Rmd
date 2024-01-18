@@ -282,6 +282,32 @@ regex_df |>
 grade_this_code()
 ```
 
+### Exkurs Text Mining
+
+Zur Veranschaulichung von Text Mining wollen wir nun ein deutschsprachiges Werk aus dem [Project Gutenberg](https://www.gutenberg.org/) analysieren, welche sich bequem im dem R-Package `gutenbergr` herunterladen lassen.
+Als Beispiel soll hier "Dr. Oetkers Grundlehren der Kochkunst" dienen (Gutenberg ID 31537), welches wir bereits in einen Dataframe namens `oetker` bereitgestellt haben.
+
+Zunächst möchten wir das Werk mit der Funktion `unnnest_tokens()` in seine einzelnen Wörter zerlegen. Diese werden dabei auch standardmäßig in Kleinschreibung umgewandelt. Danach bereinigen wir den Datensatz um sogenannte Stoppwörter, Zahlen und einzelne Buchstaben. Zuletzt zählen wir, wie häufig die einzelnen Wörter im Text vorkommen und visualisieren dies dann in einer Wordcloud.
+
+```{r 15wordcloud, exercise = TRUE}
+woerter <- oetker |> 
+  unnest_tokens(wort, text)
+
+stopp <- stopwords::stopwords("de")
+
+woerter <- woerter |> 
+  filter(!(wort %in% stopp),
+         !str_detect(wort, "\\d"),
+         !str_detect(wort, "^\\w$"))
+
+hitlist <- woerter |> 
+  count(wort, sort = TRUE)
+
+wordcloud(hitlist$wort, hitlist$n, min.freq = 20)
+```
+
+
+
 ### **Und jetzt Ihr**
 
 Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das **R Markdown: 06_datentransformation-uebung.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 06_datentransformation) an und versucht die Aufgaben darin zu bearbeiten.
