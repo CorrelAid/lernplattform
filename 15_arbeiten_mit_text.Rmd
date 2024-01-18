@@ -287,7 +287,7 @@ grade_this_code()
 Zur Veranschaulichung von Text Mining wollen wir nun ein deutschsprachiges Werk aus dem [Project Gutenberg](https://www.gutenberg.org/) analysieren, welche sich bequem im dem R-Package `gutenbergr` herunterladen lassen.
 Als Beispiel soll hier "Dr. Oetkers Grundlehren der Kochkunst" dienen (Gutenberg ID 31537), welches wir bereits in einen Dataframe namens `oetker` bereitgestellt haben.
 
-Zunächst möchten wir das Werk mit der Funktion `unnnest_tokens()` in seine einzelnen Wörter zerlegen. Diese werden dabei auch standardmäßig in Kleinschreibung umgewandelt. Danach bereinigen wir den Datensatz um sogenannte Stoppwörter, Zahlen und einzelne Buchstaben. Zuletzt zählen wir, wie häufig die einzelnen Wörter im Text vorkommen und visualisieren dies dann in einer Wordcloud.
+Zunächst möchten wir das Werk mit der Funktion `unnnest_tokens()` in seine einzelnen Wörter zerlegen. Diese werden dabei auch standardmäßig in Kleinschreibung umgewandelt. Danach bereinigen wir den Datensatz um sogenannte Stoppwörter (mit dem Package `stopwords`), Zahlen und einzelne Buchstaben. Zuletzt zählen wir, wie häufig die einzelnen Wörter im Text vorkommen und visualisieren dies dann in einer Wordcloud (mit dem Package `wordcloud`).
 
 ```{r 15wordcloud, exercise = TRUE}
 woerter <- oetker |> 
@@ -304,6 +304,21 @@ hitlist <- woerter |>
   count(wort, sort = TRUE)
 
 wordcloud(hitlist$wort, hitlist$n, min.freq = 20)
+```
+
+Als zweites Wollen wir schauen, ob das Kochbuch im Durchschnitt eher positive oder negative Wörter verwendet.
+Den Sentimentwortschatz vom Projekt [Wortschatz Leipzig](https://wortschatz.uni-leipzig.de/de/download) haben wir dabei schon als Dataframe `lexicon` importiert.
+Da der Wortschatz Wörter in Groß- und Kleinschreibung klassifiziert zerlegen wir das Buch noch einmal in seine Wörter, aber diesmal ohne die Umwandlung. So können wir den Text-Dataframe mit dem Sentimentwortschatz joinen und so allen in beiden Tabellen vorhandenen Wörtern einen Sentimentwert zuordnen. Abschließend können wir über den Durchschnitt das gesamte Sentiment bestimmen.
+
+```{r 15sentiment, exercise = TRUE}
+woerter_2 <- oetker |> 
+  unnest_tokens(wort, text, to_lower = FALSE)
+
+sentiment_oetker <- woerter_2 |> 
+  inner_join(lexicon, by = "wort") |> 
+  summarise(sentiment = mean(sentiment)) |> 
+  pull(sentiment) |> 
+  print()
 ```
 
 
