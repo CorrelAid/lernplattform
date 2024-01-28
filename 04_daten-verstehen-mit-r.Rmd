@@ -3,12 +3,20 @@ title: "Daten verstehen mit R"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
-  learnr::tutorial:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: flatly
+    css: www/style.css
     includes:
       after_body: ./www/favicon.html
     language: de
 runtime: shiny_prerendered
 ---
+
+<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Zurück zur Hauptseite</a>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -23,18 +31,6 @@ source("R/setup/tutorial-setup.R")
 source("R/setup/functions.R")
 community <- get_community()
 ```
-
-<br>
-
-```{r}
-shiny::actionButton(
-  inputId = "zuruek", label = "Zurück zur Hauptseite",
-  icon = icon("backward"),
-  onclick = "window.open('https://selinazitrone.github.io/lernplattform_website/')"
-)
-```
-
-<br>
 
 ![*Video: Daten mit R verstehen (30min)*](https://youtu.be/nEbiJ4EZ3OE)
 

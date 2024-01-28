@@ -3,12 +3,20 @@ title: "Einführung in R Studio"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
-  learnr::tutorial:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: flatly
+    css: www/style.css
     includes:
       after_body: ./www/favicon.html
     language: de
 runtime: shiny_prerendered
 ---
+
+<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Zurück zur Hauptseite</a>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -16,14 +24,6 @@ library(learnr)
 library(gradethis)
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
-```
-
-```{r}
-shiny::actionButton(
-  inputId = "zuruek", label = "Zurück zur Hauptseite",
-  icon = icon("backward"),
-  onclick = "window.open('https://selinazitrone.github.io/lernplattform_website/')"
-)
 ```
 
 Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per Slack-Nachricht** kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
