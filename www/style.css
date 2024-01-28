@@ -27,7 +27,7 @@ a {
 
 /* Change link hover color */
 a:hover {
-  color: var(--green3); 
+  color: var(--green1); 
 }
 
 /* Change background color of the table of contents */
