@@ -15,19 +15,7 @@ output:
 runtime: shiny_prerendered
 ---
 
-```{r echo=FALSE, results='asis'}
-cat('
-<style>
-.btn-back-to-main {
-  background-color: #bbd459 !important;
-  color: white !important;
-  border: none !important;
-}
-</style>
-')
-````
-
-<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/" target="_blank">Zurück zur Hauptseite</a>
+<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Zurück zur Hauptseite</a>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
