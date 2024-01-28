@@ -1,0 +1,56 @@
+:root {
+  --blue1: #345a8c;
+  --blue2: #98accc;
+  --blue3: #88a1b0;
+  --green1: #769e7b;
+  --green2: #96c042;
+  --green3: #bbd459;
+
+  --button-color: var(--green2); /* Replace with the color you want */
+}
+
+/* Header styles and colors */
+h1 {
+  color: var(--blue1);
+}
+
+/* Change style of the "Zurück zur Hauptseite" button */
+body .btn.btn-primary.btn-back-to-main {
+  background-color: var(--green2) !important;
+  border: none !important;
+}
+
+/* Change link color */
+a {
+  color: var(--green2); 
+}
+
+/* Change link hover color */
+a:hover {
+  color: var(--green3); 
+}
+
+/* Change background color of the table of contents */
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    z-index: 2;
+    color: #fff;
+    background-color: var(--blue1);
+    border-color: var(--blue1);
+}
+
+/* Change tutorial style --------------------------*/
+
+/* Change the style of the "Submit Answer" button */
+.btn.btn-default.action-button.btn-primary.shiny-bound-input {
+  background-color: var(--blue1) !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+/* Background color for correct answers */
+.alert-success {
+  background-color: var(--green2) !important;
+  border: none !important;
+  
+}
+
