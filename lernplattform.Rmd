@@ -189,7 +189,7 @@ oetker <- gutenberg_download(31537)
 
 Encoding(oetker$text) <- "latin1"
 
-oetker <- oetker |> 
+oetker <- oetker %>% 
   filter(text != "")
 
 oetker <- oetker[1:1749, ]
@@ -199,21 +199,21 @@ oetker <- oetker[1:1749, ]
 lexicon <- map(c("daten/SentiWS_v2.0_Negative.txt", "daten/SentiWS_v2.0_Positive.txt"), function(file){
   file_df <- read_tsv(file, 
                      col_names = c("wort|code", "sentiment", "inflektionen")
-                     ) |> 
+                     ) %>% 
   separate_wider_delim(col = "wort|code", delim = "|", 
                        names = c("wort", "code")
                        )
   
-  original_only <- file_df |> 
+  original_only <- file_df %>% 
     select(wort, code, sentiment)
   
-  inflektionen <- file_df |> 
-    separate_longer_delim(inflektionen, delim = ",") |> 
-    select(wort = inflektionen, code, sentiment) |> 
+  inflektionen <- file_df %>% 
+    separate_longer_delim(inflektionen, delim = ",") %>% 
+    select(wort = inflektionen, code, sentiment) %>% 
     filter(!is.na(wort))
   
   union_all(original_only, inflektionen)
-}) |> list_rbind()
+}) %>% list_rbind()
 
 ``` 
 
