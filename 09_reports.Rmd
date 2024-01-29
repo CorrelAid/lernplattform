@@ -493,6 +493,10 @@ rmarkdown::render(
 
 ## **Exkurs 2: Die Reportfabrik**
 
+<details>
+
+<summary>Hier klicken zum Aufklappen</summary>
+
 Wollen wir viele Reports auf einmal erstellen, müssen wir die Render-Funktion in etwas einbetten, das definiert, dass der Report für die verschiedenen Werte in einer Liste gerendert werden soll. Wir nutzen dazu die `purrr::walk`-Funktion. Sie bedeutet: Für jedes Element der Liste, wende die Funktion an, die hier definiert wird:
 
 ``` r
@@ -543,6 +547,8 @@ Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](htt
 ### **Und jetzt Ihr**
 
 Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut in den Ordner `10_automatisierte-reports/10_automatisiertereports` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten.
+
+<details>
 
 ### **Zusätzliche Ressourcen**
 
