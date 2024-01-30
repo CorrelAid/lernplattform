@@ -184,6 +184,12 @@ out <- knitr::knit_child("01_setup.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
+<!-- ## Datenprojekte aus der Zivilgesellschaft -->
+```{r results='asis'}
+out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
 <!-- ## Datenschutz und Datenethik -->
 ```{r results='asis'}
 out <- knitr::knit_child("02_datenschutz-und-datenethik.Rmd", quiet = TRUE)
@@ -253,12 +259,6 @@ cat(out, sep = '')
 <!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
 out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Datenprojekte aus der Zivilgesellschaft -->
-```{r results='asis'}
-out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
