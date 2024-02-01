@@ -11,8 +11,8 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE}
 ## INSTALL PACKAGES
-#remotes::install_github("rstudio/learnr")
-#remotes::install_github("rstudio/gradethis")
+remotes::install_github("rstudio/learnr")
+remotes::install_github("rstudio/gradethis")
 # suppressWarnings(if (!require("pacman")) install.packages("pacman"))
 # pacman::p_load(anytime,
 #                clisymbols,
@@ -32,7 +32,6 @@ library(gradethis)
 library(learnr)
 library(rio)
 library(tidyverse)
-library(ggbeeswarm)
 library(countrycode)
 library(httr)
 library(purrr)
@@ -184,12 +183,6 @@ out <- knitr::knit_child("01_setup.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Datenprojekte aus der Zivilgesellschaft -->
-```{r results='asis'}
-out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
 <!-- ## Datenschutz und Datenethik -->
 ```{r results='asis'}
 out <- knitr::knit_child("02_datenschutz-und-datenethik.Rmd", quiet = TRUE)
@@ -259,6 +252,12 @@ cat(out, sep = '')
 <!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
 out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
+<!-- ## Datenprojekte aus der Zivilgesellschaft -->
+```{r results='asis'}
+out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
