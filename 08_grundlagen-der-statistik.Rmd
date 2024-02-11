@@ -4,7 +4,9 @@
 
 *"Grundlagen der Statistik" von Philipp Bosch, Nina Hauser, Sebastian Zezulka, Michael Aydinbas in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
-In dieser Woche geht es um die Grundlagen des statistischen Denkens. Wir beginnen mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden.
+In dieser Woche geht es um die Grundlagen des statistischen Denkens. Wir beginnen mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir die Grundbegriffe der Statistik kennen und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können.
+
+Wir beschäftigen uns aber nicht mit der Statistik aus purem Selbstzweck, sondern sie ist ein ganz wesentlicher Teil und Voraussetzung für den kritischen Umgang mit Daten. Daher schauen wir uns zunächst an, was wir für einen kompetenten Umgang mit Daten benötigen und wie wir Datenkompetenz erlangen können.
 
 ### **Data Literacy**
 
@@ -20,16 +22,31 @@ Wenn Daten Entscheidungsprozesse unterstützen sollen, braucht es kompetente Ant
 Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Insbesondere werden die Fähigkeit und Bereitschaft, eine Datenkultur zu etablieren sowie die Fähigkeit und Bereitschaft, Handeln abzuleiten als Teilkompetenzen von Datenkompetenz verstanden.
 
 <center>
-![*Grafik: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten. Quelle: Schüller, Busch, Hindinger (2019)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten.<br>Quelle: Schüller, Busch, Hindinger (2019)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
 </center>
+
+Im oberen Schaubild ist die Statistik an fast allen Schritten beteiligt:
+
+- Sie spielt bei der Planung der Datenerhebung (Messung) eine Rolle, wenn es darum geht, welche Daten in welchen Einheiten erhoben werden sollen
+- Sie spielt bei der Erhebung der Daten eine Rolle, wenn es darum geht, eine repräsentative Stichprobe auszuwählen sowie Messfehler und Verzerrungen zu vermeiden
+- Sie spielt bei der Datenanalyse eine zentrale Rolle, wenn es darum geht, Muster und Auffälligkeiten in den Daten zu finden
+- Sie spielt bei der Interpretation der Daten eine zentrale Rolle, wenn es darum geht, gefundene Zusammenhänge auf ihre Bedeutung hin zu prüfen und zu bewerten
+- Sie spielt bei der Entscheidungsfindung eine Rolle, wenn es darum geht, auf Basis der erhobenen Daten Entscheidungen abzuleiten
+
+Daher wollen wir uns näher mit den Grundlagen der Statistik beschäftigen. Wir tun dies hier aber sehr anwendungsorientiert und werden nur die Grundlagen behandeln, die beim Umgang mit eigenen Daten und Datensätzen direkt angewendet werden können. 
 
 ### **Einführung in die Statistik**
 
-<center>
-![*Video: Connecting the world with data we can trust (1:42 min).*](https://www.destatis.de/static/DE/videos/Imagevideo_Weltstatistiktag_2020.mp4)
-</center>
+<div>
+<video width="320" height="240" controls>
+  <source src="https://www.destatis.de/static/DE/videos/Imagevideo_Weltstatistiktag_2020.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
 
 Die Statistik ist eine Wissenschaft, die alle Lebensbereiche durchdringt. Jeder von uns ist heute im Alltag mit einer Fülle von Daten und Visualisierungen von Daten konfrontiert, die uns über verschiedene Kanäle erreichen. Im Internet kann man gezielt nach Daten aller Art suchen, z.B. nach statistischen Informationen zu Migrationsströmen im Gefolge des Kriegs in der Ukraine oder zur Kursentwicklung von Kryptowährungen. Zugleich wird die Online-Präsentation von Daten immer benutzerfreundlicher. Dies gilt insbesondere für Daten der amtlichen Statistik – wie das folgende Beispiel einer [interaktiven Präsentation der Bevölkerungsvorausberechnung](https://service.destatis.de/bevoelkerungspyramide/) für Deutschland des Statistischen Bundesamts (Destatis) zeigt.
+
+Jetzt wollen wir uns einige Pressemitteilungen des Statistischen Bundesamts näher ansehen. 
 
 #### **Pressemitteilungen**
 
@@ -46,18 +63,13 @@ Verbraucherpreisindex, Januar 2024
 - +2,9 % zum Vorjahresmonat (vorläufiges Ergebnis bestätigt)
 - +0,2 % zum Vormonat (vorläufiges Ergebnis bestätigt)
 
-Harmonisierter Verbraucherpreisindex, Januar 2024
-
-- +3,1 % zum Vorjahresmonat (vorläufiges Ergebnis bestätigt)
-- -0,2 % zum Vormonat (vorläufiges Ergebnis bestätigt)
-
 <center>
-![*Grafik: Verbraucherpreisindizes für Deutschland (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Verbraucherpreisindizes für Deutschland (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
 </center>
 
-```{r 08_quiz1}
+```{r 08_quiz1, echo=FALSE}
 quiz(caption = "Fragen zur Pressemitteilung",
-  question("Welche der drei Kategorien (insgesamt, Energie, Nahrungsmittel) weist die größte Schwankung über die Zeit auf? Warum?",
+  question("Welche der drei Kategorien (VPI insgesamt, Energie, Nahrungsmittel) weist die größte Schwankung über die Zeit auf? Warum?",
     answer("VPI insgesamt"),
     answer("Energie", correct = TRUE),
     answer("Nahrungsmittel"),
@@ -65,9 +77,8 @@ quiz(caption = "Fragen zur Pressemitteilung",
     incorrect = "Leider falsch. Schau dir den zeitlichen Verlauf der drei Linien an. Welche Linie ist besonders 'ruhig' und welche Linie ist besonders 'wild'?",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Fragen zur Pressemitteilung",
+    ),
+  
   question("Was lässt sich über die Preisentwicklung seit Januar 2021 sagen?",
     answer("Alle drei Indizes lagen stets über 100.", correct = TRUE),
     answer("Energie und Nahrungsmittel lagen stets über 100, aber nicht VPI gesamt."),
@@ -89,15 +100,15 @@ Menschen in Deutschland bei erster Heirat immer älter – Durchschnittsalter au
 - Rund die Hälfte (49 %) der erwachsenen Bevölkerung war Ende 2022 verheiratet, bei den 65- bis 69-Jährigen gut zwei Drittel (68 %)
 
 <center>
-![*Grafik: Eheschließende bei der ersten Heirat nach Altergruppen (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Eheschließende bei der ersten Heirat nach Altersgruppen (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
 </center>
 
 <center>
-![*Grafik: Anteil der Verheirateten an der Bevölkerung ab 18 Jahren zum Jahresende 2022 (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Anteil der Verheirateten an der Bevölkerung ab 18 Jahren zum Jahresende 2022 (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
 </center>
 
 
-```{r 08_quiz2}
+```{r 08_quiz2_v2, echo=FALSE}
 quiz(caption = "Fragen zur Pressemitteilung",
   question("In welcher Altergruppe gibt es die größten Unterschiede zwischen 2002 und 2022?",
     answer("50 Jahre und älter"),
@@ -108,18 +119,16 @@ quiz(caption = "Fragen zur Pressemitteilung",
     incorrect = "Leider falsch. Schau dir die länge der Balken an. In welcher Altersgruppe sind die Balken am unterschiedlichsten?",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Fragen zur Pressemitteilung",
+    ),
   question("Sind die Altersgruppen sinnvoll gewählt?",
-    answer("Ja", correct = TRUE),
-    answer("Nein", correct = TRUE),
-    correct = "Dass kann man so einfach nicht sagen! Bis auf die erste und letzte Altersgruppe umfasst jede Gruppe 10 Jahre. Bei der ersten Gruppe kann man argumentieren, dass eine weitere Unterteilung in ' Unter 20 Jahre' nicht sinnvoll ist, da diese Gruppe zu klein ist. Bei der letzten Gruppe kann man ähnlich argumentieren, dass eine erste Heirat vermutlich mit über 60 sehr unwahrscheinlich wird. Aber diese Einteilungen sinn dennoch 'willkürlich' und können die Visualisierung entscheidend verändern.",
+    answer("Ja"),
+    answer("Nein"),
+    answer("Das kommt drauf an", correct = TRUE),
+    correct = "Das kann man so einfach nicht sagen! Bis auf die erste und letzte Altersgruppe umfasst jede Gruppe 10 Jahre. Bei der ersten Gruppe kann man argumentieren, dass eine weitere Unterteilung in ' Unter 20 Jahre' nicht sinnvoll ist, da diese Gruppe zu klein ist. Bei der letzten Gruppe kann man ähnlich argumentieren, dass eine erste Heirat vermutlich mit über 60 sehr unwahrscheinlich wird. Aber diese Einteilungen sinn dennoch 'willkürlich' und können die Visualisierung entscheidend verändern.",
+    incorrect = "Leider falsch. Die Frage ist gemein, das wissen wir. Aber wie so oft im Leben: Es kommt eben darauf an.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Fragen zur Pressemitteilung",
+    ),
   question("Welche Altersgruppe weist die meisten Verheirateten in % der jeweiligen Altersgruppe auf?",
     answer("30"),
     answer("40"),
@@ -128,6 +137,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
     answer("70", correct=TRUE),
     answer("80"),
     correct = "Richtig! Die Frage bezieht sich auf die zweite Grafik, greift aber die letzte Frage mit auf. Obwohl die erste Grafik alle Menschen ab 50 Jahre aufwärts in einer Gruppe einsortiert, zeigt die zweite Grafik doch noch deutliche Unterschiede innerhalb dieser Gruppe, was den Anteil der Verheirateten anbelangt. So ist der Anteil der 50-jährigen Verheirateten bei etwa 60 %, bei den 60-jährigen steigt dieser Anteil bereits auf etwa 66 % und bei den 70-jährigen (oder knapp darunter) erreicht er das Maximum von etwas über 70 %. Interessanterweise sinkt der Anteil bei den über 80-jährigen dann deutlich unter den Durchschnitt, d.h. die meisten über 80-jährigen sind nicht verheiratet, oder, wie die Beschreibung am unteren Rand erklärt, verwitwet.",
+    incorrect = "Leider falsch. Schau dir die blaue Kurve an und versuche, die Altersgruppe zu finden, die den höchsten Wert auf dieser Kurve hat.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     )
@@ -142,10 +152,10 @@ Bierabsatz 2023 um 4,5 % niedriger als im Vorjahr.
 - Auch langfristig sinkender Bierabsatz: Im Jahr 2023 haben die Brauereien und Bierlager 11,5 % weniger Bier abgesetzt als im Jahr 2013
 
 <center>
-![*Grafik: Bierabsatz in Deutschland (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Bierabsatz in Deutschland (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
 </center>
 
-```{r 08_quiz3}
+```{r 08_quiz3, echo=FALSE}
 quiz(caption = "Fragen zur Pressemitteilung",
   question("Was verrät die Färbung der Monatssegmente über den Bierabsatz eines Jahres (z.B. die Segmente des äußersten Ringes für das Jahr 2023)?",
     answer("Ich habe eine Idee", correct=TRUE),
@@ -154,9 +164,8 @@ quiz(caption = "Fragen zur Pressemitteilung",
     incorrect = "Wenn du dich auf einen Ring (= ein Jahr) konzentrierst, was fällt dir dann in Bezug auf die Färbung der Segmente auf? Welche Monate sind heller, welche dunkler? Was kannst du daraus über den Absatz schlussfolgern? Liegt dem ein saisonaler Trend zugrunde?",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Fragen zur Pressemitteilung",
+    ),
+  
   question("In welchem Monat und Jahr war der geringste Absatz, in welchem der größte Absatz?",
     answer("Sehe ich", correct = TRUE),
     answer("Sehe ich nicht"),
@@ -164,9 +173,8 @@ quiz(caption = "Fragen zur Pressemitteilung",
     incorrect = "Da die Farbskala global für alle Monate und Jahre gilt, muss der Monat mit dem geringsten Absatz die hellste Färbung, der Monat mit dem größten Absatz die dunkelste Färbung aufweisen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Fragen zur Pressemitteilung",
+    ),
+  
   question("Was verrät die Färbung eines Monats (alle Segmente) über alle Jahre hinweg (z.B. August von 1993 - 2023)?",
     answer("Ich habe eine Idee", correct=TRUE),
     answer("Keine Idee"),
@@ -176,7 +184,6 @@ quiz(caption = "Fragen zur Pressemitteilung",
     try_again_button = "Nochmal versuchen"
     )
 )
-
 ```
 
 #### **Aufgaben und Teilbereiche der Statistik**
@@ -189,19 +196,125 @@ Aus der beschreibenden Statistik hat sich die **explorative Datenanalyse** entwi
 
 Die **schließende Statistik** oder induktive Statistik leitet aus Stichprobendaten **Aussagen** ab, die über die jeweilige Stichprobe hinausgehen und sich auf eine umfassendere **Grundgesamtheit beziehen**. Die Stichprobendaten werden als Ausprägungen von Zufallsvariablen interpretiert (Modellvorstellung) und das Verhalten solcher Zufallsvariablen durch sog. Verteilungsmodelle beschrieben. Typische Aufgaben der schließenden Statistik sind das Schätzen von Modellparametern und das Testen von Hypothesen. Die aus den Daten abgeleiteten Folgerungen sind mit Unsicherheiten verknüpft.
 
+### **Was sind Daten?**
+
+Beginnen wir mit der Frage, was Daten und was Informationen sind. Information ist abgeleitetes Wissen. Dieses Wissen wollen wir anderen vermitteln sowie aufbewahren. Eine Möglichkeit, dies zu erreichen, ist die Kodierung. Daten sind kodierte Informationen. Da ein und dieselbe Information auf unterschiedliche Weise kodiert werden kann (verschiedene Einheiten, verschiedene Skalen usw.), kann ein und dieselbe Information auch mit unterschiedlichen Daten ausgedrückt werden. Verstehe ich die Kodierung hingegen nicht, so sind die Daten für mich wertlos, da ich die kodierten Informationen nicht verwerten kann.
+
+Wenn wir uns nun eine gewöhnliche Tabelle vorstellen, so enthält diese Tabelle kodierte Informationen und somit Daten. Eine Tabelle mit Daten nennen wir daher auch einen Datensatz. 
+
+Dabei stellt eine Zeile einer Tabelle eine zusammenhängende Informationseinheit dar, die zu einem bestimmten Zeitpunkt erhoben oder gemessen wurde. Jede Spalte einer Tabelle repräsentiert eine Eigenschaft, die uns interessiert, und die für alle Zeilen auf die gleiche Art und Weise kodiert wird, so dass wir die verschiedenen Messungen leicht vergleichen können. 
+
+Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**, **Aufzeichnungen** (Engl. records), oder **Versuche**. Die Spalten einer Tabelle bezeichnen wir als **Merkmale**, **Features**, **Attribute**, **Felder**, oder **Variablen**. Daher kann man einen Datensatz auch beschreiben als eine Sammlung von $N$ Beobachtungen mit $Y$ Merkmalen oder Variablen. Man spricht in diesem Falle von der **Dimension** des Datensatzes. Ein **Datenpunkt** oder **Datenwert** ist der Schnittpunkt (eine Zelle in der Tabelle) zwischen einer Beobachtung und einem Merkmal. Jede Tabelle besitzt eine Kopfzeile (Engl. header), die die Merkmale näher beschreibt. 
+
+<center>
+![*Grafik: Grundbegriffe für den Umgang mit tabellarischen Datensätzen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.svg?raw=true){#id .class width=100%}
+</center>
+
+```{r 08_quiz_datensatz, echo=FALSE}
+quiz(caption = "Fragen zu tabellarischen Daten",
+  question("Wie viele Merkmale hat der Datensatz aus der Abbildung?",
+    answer("2"),
+    answer("3", correct = TRUE),
+    answer("4"),
+    answer("5"),
+    correct = "Richtig. Der Datensatz hat 3 Merkmale: 'Name', 'Alter' und 'Reaktionszeit'. 'Index' ist kein Merkmal im eigentlichen Sinne, da es automatisch für uns erzeugt wird.",
+    incorrect = "Leider falsch. Zähle nochmal die Spalten in der Tabelle. Ist 'Index' ein Merkmal, dass wir messen würden?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Wie viele Beobachtungen hat der Datensatz aus der Abbildung?",
+    answer("2"),
+    answer("3"),
+    answer("4", correct = TRUE),
+    answer("5"),
+    correct = "Richtig. Der Datensatz zeigt vier Beobachtungen, da es vier Zeilen mit befüllten Werten gibt und jede Zeile ist eine Beobachtung/Messung.",
+    incorrect = "Leider falsch. Zähle nochmal die Zeilen in der Tabelle.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Wie lauten die Dimensionen des Datensatzes?",
+    answer("4x4"),
+    answer("4x3", correct = TRUE),
+    answer("3x4"),
+    answer("3x3"),
+    correct = sprintf("Richtig. Die Dimension eines Datensatzes wird angegeben als Anzahl Zeilen $\\times$ Anzahl Spalten, daher ist die richtige Antwort $4 \\times 3$"),
+    incorrect = "Leider falsch. Die Dimension eines Datensatzes wird angegeben als Anzahl Zeilen $\\times$ Anzahl Spalten.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    )
+)
+```
+
+
+#### **Datentypen**
+
+Daten können je nach Kodierung in verschiedene **Datentypen** eingeteilt werden. Die zwei wichtigsten Datentypen werden als *numerisch* und *kategorisch* bezeichnet. **Numerische Daten** sind solche, die in Zahlen (und ggf. eine Einheit) ausgedrückt werden können. **Kategorische Daten** sind solche, die in Worten und Symbolen ausgedrückt werden. Es gibt jedoch auch kategorische Daten wie Postleitzahlen, die trotz ihres numerischen Charakters nur sinnvoll als kategorische Daten interpretiert werden können. 
+
+Numerische Daten werden in zwei Hauptkategorien unterteilt:
+
+- **Kontinuierliche Daten** können jede Zahl innerhalb eines bestimmten Bereichs annehmen. Sie stellen eine grundsätzlich nicht abzählbare Menge von Werten dar, d.h., es gibt immer noch einen Wert zwischen zwei beliebigen Werten. Beispiele für diesen Datentyp sind Wetterdaten wie die Menge an Niederschlag oder die Außentemperatur. Die Außentemperatur kann mit beliebiger Genauigkeit angegeben werden, also beispielsweise mit $29\ °C$, $28,6\ °C$, oder $28,6425\ °C$.
+- **Diskrete Daten** sind auf ganze Zahlen beschränkt. Sie stellen eine abzählbare Menge von Werten dar. Beispiele für diesen Datentyp sind die Anzahl der Kinder in einer Familie oder die Anzahl der Tore in einem Fußballspiel. Man kann $0, 1, 2$ oder mehr Kinder haben, aber nicht $1,28$ Kinder. 
+
+Kategorische Daten werden ebenfalls in zwei Hauptkategorien unterteilt:
+
+- **Ordinale Daten** besitzen eine natürliche Ordnung. So nutzen Umfragen Ordinaldaten, wenn sie nach deiner Erfahrung oder Zustimmung auf einer Skala von 1-10 fragen. Die Werte sehen zwar wie diskrete Daten aus, aber es ist nicht möglich oder sinnvoll, den Abstand zwischen zwei Werten zu interpretieren. Man kann nicht sagen, dass der Abstand zwischen einer 9 und 10 in einer Umfrage identisch ist mit dem Abstand zwischen einer 0 und einer 1. Ordinaldaten müssen nicht mit Zahlen kodiert sein. So können Kleidergrößen wie S, M, L, XL, XXL als Ordinaldaten interpretiert werden.
+- **Nominale Daten** besitzen keine natürliche Ordnung. Beispiele für nominale Daten sind die Farbe eines Autos, die Nationalität, das Geschlecht, die Postleitzahl oder die Parteizugehörigkeit. Die Reihenfolge, in der die Daten präsentiert werden, ist willkürlich, da es nicht möglich ist, eine Kategorie als "größer" oder "kleiner" als eine andere zu bezeichnen.
+
+Warum ist dieses sogenannte **Skalenniveau** wichtig für uns? Das Skalenniveau bestimmt, welche statistischen Methoden angewendet werden können. So können beispielsweise Mittelwerte nur für kontinuierliche numerische Daten sinnvoll berechnet werden. Nominale kategorische Daten hingegehen lassen sich nur sinnvoll über Häufigkeiten zusammenfassen, mehr kann man mit ihnen nicht anstellen. Außerdem hilft ein gemeinsames Vokabular dabei, sich mit anderen über die eigenen Daten auszutauschen und den Datensatz zu beschreiben.
+
+```{r 08_quiz_datentypen, echo=FALSE}
+quiz(caption = "Fragen zu Datentypen",
+  question("Welches Merkmal hat einen kategorischen Datentyp im Datensatz aus der Abbildung?",
+    answer("Name", correct = TRUE),
+    answer("Alter"),
+    answer("Reaktionszeit"),
+    correct = "Richtig. Das Merkmal 'Name' enthält Text und ist daher eine klassische (nominale) kategorische Variable.",
+    incorrect = "Leider falsch. Kategorische Daten sind oftmals als Text oder Symbole kodiert.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Welches Merkmal hat einen diskreten numerischen Datentyp im Datensatz aus der Abbildung?",
+    answer("Name"),
+    answer("Alter", correct = TRUE),
+    answer("Reaktionszeit"),
+    correct = "Richtig. Das Merkmal 'Alter' ist klassischerweise eine diskrete numerische Variable, weil wir das Alter für gewöhnlich in ganzen Jahren (oder Tage/Monaten) angeben.",
+    incorrect = "Leider falsch. Diskrete numerische Daten sind als ganze Zahlen kodiert.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Welches Merkmal hat einen kontinuierlichen numerischen Datentyp im Datensatz aus der Abbildung?",
+    answer("Name"),
+    answer("Alter"),
+    answer("Reaktionszeit", correct=TRUE),
+    correct = "Richtig. Das Merkmal 'Reaktionszeit' wird in Sekunden gemessen und kann daher jeden beliebigen Wert annehmen und ist letztendlich nur durch die Genauigkeit der Messung begrenzt.",
+    incorrect = "Leider falsch. Kontinuierliche numerische Daten sind oftmals mit Kommazahlen kodiert.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+
+Jetzt, wo wir uns mit den Grundlagen von Daten auskennen, können wir zur eigentlichen Statistik kommen.
+
 ### **Grundbegriffe der Statistik**
 
-![*Video: Statistik Teil 1 - statistische Daten, von6auf1*](https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF)
+```{r echo=FALSE}
+vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
+```
 
 In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist. Oft werden Teilmengen von Grundgesamtheiten (Teilpopulationen) betrachtet, etwa Differenzierung nach Geschlecht bei Untersuchungen zu delinquentem Verhalten bei Jugendlichen oder nach Fahrzeugtyp bei Untersuchungen zu Schadstoffemissionen im Straßenverkehr.
 Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. In der Statistik werden Merkmale üblicherweise mit *Großbuchstaben* gekennzeichnet, Merkmalsausprägungen mit *Kleinbuchstaben*.
 
-
 <center>
-![*Grafik: Begriffshierarchien für statistische Grundbegriffe, H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Begriffshierarchien.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Begriffshierarchien für statistische Grundbegriffe, H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Begriffshierarchien.png?raw=true){#id .class width=70% height=70%}
 </center>
 
-Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren eine Teilmenge aus, spricht man von einer **Stichprobe**. Wenn man, wie in der schließenden Statistik üblich, die Ausprägungen eines Merkmals als das Ergebnis eines Zufallsvorgangs interpretiert (Modellvorstellung), nennt man ein solches Merkmal **Zufallsvariable** und deren Ausprägungen auch **Realisierungen**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Drittimpfungen gegen eine -Infektion. In der schließenden Statistik werden auch die Elemente einer Stichprobe als Zufallsvariablen interpretiert und als **Stichprobenvariablen** bezeichnet.
+Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren eine Teilmenge aus, spricht man von einer **Stichprobe**. Wenn man, wie in der schließenden Statistik üblich, die Ausprägungen eines Merkmals als das Ergebnis eines Zufallsvorgangs interpretiert (Modellvorstellung), nennt man ein solches Merkmal **Zufallsvariable** und deren Ausprägungen auch **Realisierungen**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Dritt-Impfungen gegen [FSME](https://www.rki.de/SharedDocs/FAQ/FSME/FSME-Impfung/FSME-Impfung.html).
 
 <center>
 ![*Grafik: Population und Stichprobe, <https://systats.github.io/linear_model/basics.html>*](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
@@ -254,9 +367,9 @@ Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens ein
 ![*Grafik: Zur Uneindeutigkeit des Durchschnitts bei schiefen Verteilungen (Mittelwert vs. Median). Youtube, Statistik Verstehen, <https://www.youtube.com/watch?v=oXikr5DFaiY>* ](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FoXikr5DFaiY%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=54fddca2ced558d715146770745d3bd4bd178d943eb449eb40a59ce4fd9e2507&ipo=images){#id .class width=70% height=70%}
 </center>
 
-```{r 08_quiz4}
+```{r 08_quiz4, echo=FALSE}
 quiz(caption = "Frage zu Lageparametern",
-  question("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Modus?",
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Modus?"),
     answer("0",),
     answer("1", correct = TRUE),
     answer("2", correct = TRUE),
@@ -266,10 +379,9 @@ quiz(caption = "Frage zu Lageparametern",
     incorrect = "Leider falsch. Der Modus ist der häufigste Wert. Der Modus kann dabei auch mehrere Zahlen umfassen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Frage zu Lageparametern",
-  question("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Median?",
+    ),
+  
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Median?"),
     answer("0",),
     answer("1"),
     answer("2", correct = TRUE),
@@ -279,17 +391,16 @@ quiz(caption = "Frage zu Lageparametern",
     incorrect = "Leider falsch. Der Median ist der mittlere Wert der geordneten Messreihe.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Frage zu Lageparametern",
-  question("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Mittelwert?",
+    ),
+  
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Mittelwert?"),
     answer("0",),
     answer("1"),
     answer("2"),
     answer("3"),
     answer("4"),
-    answer("$1,86$", correct = TRUE),
-    correct = "Richtig! Der Mittelwert lautet $1,86$. Dazu müssen zuerst alle Werte aufaddiert werden ($=13$), um anschließend durch die Anzahl der Messwerte ($=7$) geteilt zu werden. Wie wir sehen, ist der Mittelwert kein Wert, der in der Messung selber vorkommt, sondern ein fiktiver Wert.",
+    answer("1,86", correct = TRUE),
+    correct = sprintf("Richtig! Der Mittelwert lautet 1,86. Dazu müssen zuerst alle Werte aufaddiert werden ($=13$), um anschließend durch die Anzahl der Messwerte ($=7$) geteilt zu werden. Wie wir sehen, ist der Mittelwert kein Wert, der in der Messung selber vorkommt, sondern ein fiktiver Wert."),
     incorrect = "Leider falsch. Der Mittelwert ist die Summe aller Messwerte, geteilt durch die Anzahl der Messwerte.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -307,37 +418,40 @@ Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum b
 
 **Spannweite**: Differenz zwischen dem kleinsten Wert (**minimale Ausprägung**) einer Variablen und dem größten Wert (**maximale Ausprägung**) einer Variablen
 
-**p-Quantil**: Der Wert, für den mindestens $p\cdot 100 \%$ der Beobachtungen kleiner oder gleich diesem Wert sind. Das 25%-Quantil ($p=25) ist also der Wert, für den 25 % aller beobachteten Werte kleiner oder gleich diesem Wert sind.
+**p-Quantil**: Der Wert, für den mindestens $p\cdot 100 \%$ der Beobachtungen kleiner oder gleich diesem Wert sind. Das 25%-Quantil ($p=25$) ist also der Wert, für den 25 % aller beobachteten Werte kleiner oder gleich diesem Wert sind.
 
 **Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
 
 <center>
-![*Grafik: Veranschaulichung des *p-Quantils*. H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/p-Quantil.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Median, unteres Quartil und oberes Quartil. H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Median_und_Quartile.png?raw=true){#id .class width=70% height=70%}
 </center>
 
-<center>
-![*Grafik: Median, unteres Quartil und oberes Quartil. H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Median_und_Quartile.png?raw=true){#id .class width=70% height=70%}
-</center>
-
-```{r 08_quiz05}
+```{r 08_quiz05, echo=FALSE}
 quiz(caption = "Frage zu Streuungsparameter",
-  question("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet die Spannweite?",
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet die Spannweite?"),
     answer("0",),
     answer("1"),
     answer("2"),
     answer("3"),
     answer("4", correct = TRUE),
-    correct = "Richtig! Der größte Wert ist 4, der kleinste Wert ist 0, daher beträgt die Spannweite $4-0=4$.",
+    correct = sprintf("Richtig! Der größte Wert ist 4, der kleinste Wert ist 0, daher beträgt die Spannweite $4-0=4$."),
     incorrect = "Leider falsch. Die Spannweite ist der Abstand zwischen dem größten und kleinsten Messweret.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-    )
-)
-quiz(caption = "Frage zu Streuungsparameter",
+    ),
+  
   question("Entspricht ein größerer IQR auch einer größeren Streuung/Varianz um den Median?",
     answer("Ja", correct = TRUE),
     answer("Nein"),
     correct = "Richtig! Für den Mittelwert wäre die Sache nicht ganz so einfach, aber der Median liegt IMMER innerhalb des oberen und unteren Quartils (per Definition), daher bedeutet ein größerer IQR auch, dass die Werte (wenigstens am Rand) weiter vom Median entfert sind als bei einem kleineren IQR. Am Boxplot wird dies in einer späteren Lektion am besten ersichtlich.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Kann der Median durch Ausreißer (besonders große oder kleine Werte) verzerrt/beeinflusst werden?",
+    answer("Ja"),
+    answer("Nein", correct = TRUE),
+    correct = "Richtig! Der Median ergibt sich ja durch den mittleren Wert der geordneten Messreihe, d.h., zuerst werden alle Messwerte sortiert und dann wird der Wert in der Mitte herausgezogen. Dieser verändert sich nicht, wenn die Werte am Anfang der Reihe, oder am Ende, noch weiter ins Extreme verschoben werden. Daher sagt man auch, dass der Median ein robustes Lagemaß ist, da er gegenüber Ausreißern unempfindlich ist. Ganz anders als der Mittelwert, bei dem ja alle Werte durch die Aufsummierung in die Berechnung mit einfließen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     )
@@ -346,22 +460,15 @@ quiz(caption = "Frage zu Streuungsparameter",
 
 ### **Kausalität und Korrelation**
 
-Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir nach Mustern. Daraus können wir nicht notwendigerweise kausale Schlüsse ziehen. Judea Pearl beschreibt in "The Book of Why" (2018) die **Leiter der Kausalität** auf drei Ebenen in aufsteigender Reihenfolge:
+Es gibt eine weitere statistische Größe, die uns wertvolle Aussagen zu den Daten liefern kann, die aber oftmals voreilig als Ursachenbeziehung interpretiert wird: die Korrelation. Die **Korrelation** ist ein Maß für den Zusammenhang zwischen zwei Variablen. Es gibt verschiedene Korrelationsmaße. Die häufigste Art der Korrelation nach Pearson misst einen linearen Zusammenhang (denke an eine gerade Linie durch die Datenpunkte) zwischen zwei Variablen und kann Werte zwischen $-1$ und $1$ annehmen. Bei einer **positiven Korrelation** beobachten wir bei Zunahme einer Variable auch eine gewisse Zunahme in der anderen Variable: größere Häuser erzielen für gewöhnlich einen höheren Verkaufspreis. Bei einer **negativen Korrelation** beobachten wir bei Zunahme einer Variable eine Abnahme in der anderen: Bei schwereren Autos beobachten wir in der Regel einen schlechteren Kraftstoffverbrauch. Je höher die Korrelation (nahe $1$ oder $-1$), desto näher liegen die Datenpunkte an einer geraden Linie im Scatterplot/Streudiagramm (lernen wir später ausführlich kennen). Bei einer Korrelation nahe $0$ können wir keinen *linearen* Zusammenhang erkennen: Egal, was wir über eine Variable wissen, wir können keine Vorhersage über die Werte der andere Variable treffen.
 
--   **Ebene 1 - Assoziation:**
-    -   Aktivität: Sehen, Beobachtung
-    -   Fragen: Was ist, wenn ich XY sehe? Wie stehen Variablen in Beziehung? Wie ändert die Beobachtung von X meine Erwartung an Y?
-    -   Beispiele: Was sagt ein Symptom über eine Krankheit aus? Was sagt eine Umfrage über Wahlergebnisse aus?
--   **Ebene 2 - Intervention:**
-    -   Aktivität: Tun, Beeinflussung
-    -   Fragen: Was ist, wenn ich XY tue (und wie)? Wie wäre Y, wenn ich X tue? Wie kann ich Y erreichen?
-    -   Beispiele: Verschwinden Kopfschmerzen, wenn man Aspirin nimmt? Was passiert, wenn wir Zigaretten verbieten?
--   **Ebene 3 - Kontrafaktische Analyse:**
-    -   Aktivität: Vorstellung, Rückschau, Verstehen
-    -   Fragen: Was wäre, wenn ich XY getan hätte (und warum)? Hat X Y ausgelöst? Was wäre, wenn X nicht aufgetreten wäre? Was wäre, wenn ich etwas anderes getan hatte?
-    -   Beispiele: Hat das Aspirin meine Kopfschmerzen gestoppt? Würde Kennedy noch leben, wenn Oswald ihn nicht erschossen hätte? Was wäre, wenn ich nicht die letzten zwei Jahre geraucht hätte?
+Warum interessieren wir uns für die Korrelation? Sie kann uns dabei helfen, interessante Variablen zu identifizieren, wenn wir für eine Erklärung eines Phänomens mehrere Variablen zur Verfügung haben. Sie kann uns auch dabei helfen, die Qualität von Modellen zu beurteilen, die wir auf Basis von Daten erstellen. Wenn wir beispielsweise untersuchen, wie Verkaufspreise für Häuser zustande kommen, können wir zahlreiche Variablen in Betracht ziehen, die den Preis beeinflussen könnten: die Größe des Hauses, die Anzahl der Zimmer, die Lage, das Baujahr, die Ausstattung, die Anzahl der Bäder, die Anzahl der Stockwerke, die Grundstücksgröße, die Entfernung zu Schulen und Einkaufsmöglichkeiten, und so weiter. Die Korrelation kann uns dabei helfen, die Variablen zu identifizieren, die den Preis am stärksten beeinflussen (sprich, mit dem Preis eine hohe Korrelation aufweisen).
 
-Die erste Ebene nimmt Vorhersagen auf Basis von **Beobachtungen** vor. Dafür werden in der Statistik bedingte Wahrscheinlichkeiten (wie wahrscheinlich ist Y gegeben X?), Korrelationen, Regressionen und andere Methoden des maschinellen Lernens genutzt. Das ist auch der Grund, warum Datenanalyst:innen, die diese Methoden nutzen, nicht ohne weiteres von Kausalitäten sprechen. Denn statistische Modelle können gute Vorhersagen treffen auch ohne das wir die *kausalen* Zusammenhänge zwischen Variablen verstehen oder modellieren. Wie die Eule aus dem Video, die dem Laufweg einer Maus folgt, um an der richtigen Stelle zuschnappen zu können.
+Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir also nach (verborgenen) Mustern. Daraus können wir jedpch nicht notwendigerweise kausale Schlüsse ziehen. Bleiben wir bei unserem Beispiel des Häuserverkaufs: Wir betrachten zwei Nachbarschaften. Dabei finden wir, dass die Anzahl der Bäume auf dem Grundstück stark mit dem Verkaufspreis korreliert. Wir könnten nun fälschlicherweise annehmen, dass die Anzahl der Bäume den Verkaufspreis positiv beeinflusst. Weitere Analysen zeigen jedoch, dass dieser Zusammenhang nur bis zu einer gewissen Anzahl an Bäumen besteht, danach sinkt der Verkaufspreis wieder. Zu viele Bäume sind also auch nicht gut. Um solche voreiligen Fehlschlüsse zu vermeiden, kann die Visualisierung des Datensatzes und der gefundenen Zusammenhänge eine große Hilfe sein.
+
+Ein anderer sehr wichtiger Spruch ist: "Aus Korrelation folgt keine Kausalität". Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursachen oder hervorrufen muss. Beispielsweise ist der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit liegt es am Alter. 
+
+Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grundsätzlich so lange von keinerlei Kausalität auszugehen, bis diese durch ein Experiment belegt werden konnte. Kausale Zusammenhänge können nur durch kontrollierte Experimente bestätigt werden, nicht durch einfache Zusammenhangsmaße. 
 
 
 ### **Fazit**
