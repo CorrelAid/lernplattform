@@ -558,9 +558,9 @@
     {
       "id": "hKzTgdTwxI6qlZL3gFHlK",
       "type": "text",
-      "x": 664.2385054886734,
+      "x": 672.4385024369155,
       "y": 137.51765526579874,
-      "width": 301.3597717285156,
+      "width": 284.95977783203125,
       "height": 25,
       "angle": 0,
       "strokeColor": "#1971c2",
@@ -574,8 +574,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 1723465133,
-      "version": 262,
-      "versionNonce": 73015907,
+      "version": 271,
+      "versionNonce": 1546316323,
       "isDeleted": false,
       "boundElements": [
         {
@@ -583,17 +583,17 @@
           "type": "arrow"
         }
       ],
-      "updated": 1707677949704,
+      "updated": 1707678677828,
       "link": null,
       "locked": false,
-      "text": "Merkmale/Variablen/Dimensionen",
+      "text": "Merkmale/Variablen/Attribute",
       "fontSize": 20,
       "fontFamily": 1,
       "textAlign": "center",
       "verticalAlign": "top",
       "baseline": 18,
       "containerId": null,
-      "originalText": "Merkmale/Variablen/Dimensionen",
+      "originalText": "Merkmale/Variablen/Attribute",
       "lineHeight": 1.25
     },
     {
@@ -655,9 +655,9 @@
     {
       "id": "1O71MUHPpTv444D9dQtsm",
       "type": "arrow",
-      "x": 762.9219611905883,
+      "x": 762.7516638533559,
       "y": 171.6879743198326,
-      "width": 97.41764718408558,
+      "width": 97.24734984685324,
       "height": 56.90188749086076,
       "angle": 0,
       "strokeColor": "#1971c2",
@@ -673,11 +673,11 @@
         "type": 2
       },
       "seed": 2082582573,
-      "version": 187,
-      "versionNonce": 776855043,
+      "version": 196,
+      "versionNonce": 674213315,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1707677949704,
+      "updated": 1707678677828,
       "link": null,
       "locked": false,
       "points": [
@@ -686,11 +686,11 @@
           0
         ],
         [
-          -67.37817425439698,
+          -67.20787691716464,
           24.69451629115079
         ],
         [
-          -97.41764718408558,
+          -97.24734984685324,
           56.90188749086076
         ]
       ],
