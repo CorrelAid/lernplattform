@@ -45,12 +45,14 @@ Your browser does not support the video tag.
 </div>
 *Quelle: Weltstatistiktag - Statistisches Bundesamt, https://www.destatis.de/DE/Ueber-uns/Ziele-Strategie/weltstatistiktag-2020.html (Februar 2024).*
 
+
 Die Statistik ist eine Wissenschaft, die alle Lebensbereiche durchdringt. Jeder von uns ist heute im Alltag mit einer Fülle von Daten und Visualisierungen von Daten konfrontiert, die uns über verschiedene Kanäle erreichen. Im Internet kann man gezielt nach Daten aller Art suchen, z.B. nach statistischen Informationen zu Migrationsströmen oder zur Kursentwicklung von Kryptowährungen. Zugleich wird die Online-Präsentation von Daten immer benutzerfreundlicher. Dies gilt insbesondere für Daten der amtlichen Statistik – wie das folgende Beispiel einer [interaktiven Präsentation der Bevölkerungsvorausberechnung](https://service.destatis.de/bevoelkerungspyramide/) für Deutschland des Statistischen Bundesamts (Destatis) zeigt.
 
 ```{r echo=FALSE}
 vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
 ```
 *Quelle: von6auf1 - "Statistik Teil 1 - statistische Daten - Merkmalsträger, Merkmalsausprägung ...", https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF (04.11.2015, abgerufen Februar 2024)*
+
 
 In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist.
 Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. 
