@@ -1,6 +1,6 @@
 ## **Grundlagen der Statistik**
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.png)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
 *"Grundlagen der Statistik" von Philipp Bosch, Nina Hauser, Sebastian Zezulka, Michael Aydinbas in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
@@ -64,7 +64,7 @@ Verbraucherpreisindex, Januar 2024
 - +0,2 % zum Vormonat (vorläufiges Ergebnis bestätigt)
 
 <center>
-![*Grafik: Verbraucherpreisindizes für Deutschland (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz1, echo=FALSE}
@@ -100,11 +100,11 @@ Menschen in Deutschland bei erster Heirat immer älter – Durchschnittsalter au
 - Rund die Hälfte (49 %) der erwachsenen Bevölkerung war Ende 2022 verheiratet, bei den 65- bis 69-Jährigen gut zwei Drittel (68 %)
 
 <center>
-![*Grafik: Eheschließende bei der ersten Heirat nach Altersgruppen (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
 </center>
 
 <center>
-![*Grafik: Anteil der Verheirateten an der Bevölkerung ab 18 Jahren zum Jahresende 2022 (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
 </center>
 
 
@@ -152,7 +152,7 @@ Bierabsatz 2023 um 4,5 % niedriger als im Vorjahr.
 - Auch langfristig sinkender Bierabsatz: Im Jahr 2023 haben die Brauereien und Bierlager 11,5 % weniger Bier abgesetzt als im Jahr 2013
 
 <center>
-![*Grafik: Bierabsatz in Deutschland (<https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
+![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz3, echo=FALSE}
@@ -207,7 +207,7 @@ Dabei stellt eine Zeile einer Tabelle eine zusammenhängende Informationseinheit
 Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**, **Aufzeichnungen** (Engl. records), oder **Versuche**. Die Spalten einer Tabelle bezeichnen wir als **Merkmale**, **Features**, **Attribute**, **Felder**, oder **Variablen**. Daher kann man einen Datensatz auch beschreiben als eine Sammlung von $N$ Beobachtungen mit $Y$ Merkmalen oder Variablen. Man spricht in diesem Falle von der **Dimension** des Datensatzes. Ein **Datenpunkt** oder **Datenwert** ist der Schnittpunkt (eine Zelle in der Tabelle) zwischen einer Beobachtung und einem Merkmal. Jede Tabelle besitzt eine Kopfzeile (Engl. header), die die Merkmale näher beschreibt. 
 
 <center>
-![*Grafik: Grundbegriffe für den Umgang mit tabellarischen Datensätzen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.svg?raw=true){#id .class width=100%}
+![*Grafik: Grundbegriffe für den Umgang mit tabellarischen Datensätzen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz_datensatz, echo=FALSE}
@@ -364,7 +364,7 @@ Lageparameter dienen der Beantwortung der Frage, welche der in der Stichprobe vo
 Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens einer Stichprobe) ganz unterschiedliche Lagemaße haben kann, zeigt die folgende Abbildung.
 
 <center>
-![*Grafik: Zur Uneindeutigkeit des Durchschnitts bei schiefen Verteilungen (Mittelwert vs. Median). Youtube, Statistik Verstehen, <https://www.youtube.com/watch?v=oXikr5DFaiY>* ](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FoXikr5DFaiY%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=54fddca2ced558d715146770745d3bd4bd178d943eb449eb40a59ce4fd9e2507&ipo=images){#id .class width=70% height=70%}
+![*Grafik: Schiefe vs. symmetrische Verteilungen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz4, echo=FALSE}
@@ -423,7 +423,7 @@ Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum b
 **Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
 
 <center>
-![*Grafik: Median, unteres Quartil und oberes Quartil. H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Median_und_Quartile.png?raw=true){#id .class width=70% height=70%}
+![*Grafik: Bestimmung und Bedeutung von p-Quantilen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz05, echo=FALSE}
@@ -464,15 +464,27 @@ Es gibt eine weitere statistische Größe, die uns wertvolle Aussagen zu den Dat
 
 Warum interessieren wir uns für die Korrelation? Sie kann uns dabei helfen, interessante Variablen zu identifizieren, wenn wir für eine Erklärung eines Phänomens mehrere Variablen zur Verfügung haben. Sie kann uns auch dabei helfen, die Qualität von Modellen zu beurteilen, die wir auf Basis von Daten erstellen. Wenn wir beispielsweise untersuchen, wie Verkaufspreise für Häuser zustande kommen, können wir zahlreiche Variablen in Betracht ziehen, die den Preis beeinflussen könnten: die Größe des Hauses, die Anzahl der Zimmer, die Lage, das Baujahr, die Ausstattung, die Anzahl der Bäder, die Anzahl der Stockwerke, die Grundstücksgröße, die Entfernung zu Schulen und Einkaufsmöglichkeiten, und so weiter. Die Korrelation kann uns dabei helfen, die Variablen zu identifizieren, die den Preis am stärksten beeinflussen (sprich, mit dem Preis eine hohe Korrelation aufweisen).
 
-Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir also nach (verborgenen) Mustern. Daraus können wir jedpch nicht notwendigerweise kausale Schlüsse ziehen. Bleiben wir bei unserem Beispiel des Häuserverkaufs: Wir vergleichen die Verkaufspreise in zwei Nachbarschaften. Dabei finden wir, dass die Anzahl der Bäume auf dem Grundstück stark mit dem Verkaufspreis korreliert. Wir könnten nun fälschlicherweise annehmen, dass die Anzahl der Bäume den Verkaufspreis positiv beeinflusst. Weitere Analysen zeigen jedoch, dass dieser Zusammenhang nur bis zu einer gewissen Anzahl an Bäumen besteht, danach sinkt der Verkaufspreis wieder. Zu viele Bäume sind also auch nicht gut. Um solche voreiligen Fehlschlüsse zu vermeiden, kann die Visualisierung des Datensatzes und der gefundenen Zusammenhänge eine große Hilfe sein.
+Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir also nach (verborgenen) Mustern. Daraus können wir jedoch nicht notwendigerweise kausale Schlüsse ziehen. Bleiben wir bei unserem Beispiel des Häuserverkaufs: Wir vergleichen die Verkaufspreise in zwei Nachbarschaften. Dabei finden wir, dass die Anzahl der Bäume auf dem Grundstück stark mit dem Verkaufspreis korreliert. Wir könnten nun fälschlicherweise annehmen, dass die Anzahl der Bäume den Verkaufspreis positiv beeinflusst. Weitere Analysen zeigen jedoch, dass dieser Zusammenhang nur bis zu einer gewissen Anzahl an Bäumen besteht, danach sinkt der Verkaufspreis wieder. Zu viele Bäume sind also auch nicht gut. Um solche voreiligen Fehlschlüsse zu vermeiden, kann die Visualisierung des Datensatzes und der gefundenen Zusammenhänge eine große Hilfe sein.
 
-Ein anderer sehr wichtiger Spruch ist: "Aus Korrelation folgt keine Kausalität". Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit liegt es am Alter. Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
+Ein anderer sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit liegt es am Alter. Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
 
 Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grundsätzlich so lange von keinerlei Kausalität auszugehen, bis diese durch ein Experiment belegt werden konnte. Kausale Zusammenhänge können nur durch kontrollierte Experimente bestätigt werden, nicht durch einfache Zusammenhangsmaße. 
 
+### **Abschließendes Beispiel**
 
-### **Fazit**
+Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten treten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. An dieser Stelle könnt ihr kurz innehalten und euch ein paar Gründe für diesen Befund überlegen. Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Grafik)! Wie kann beides gleichzeitig war sein? Wie können zwei Städte mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
 
+<center>
+![*Grafik: US-Bundesstaaten mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
+</center>
+
+Und die gibt es in der Tat: Die geringe Bevölkerungsdichte in den Bezirken sorgt für eine hohe Streuung (Varianz) in den Krebsraten. Nehmen wir zwei Bezirke in ländlicher Gegend, Bezirk A und Bezirk B, mit je 1000 Einwohnern. Bezirk A hat keine Krebsfälle, daher ist die Krebsrate 0. Bezirk B hat einen einzigen Krebsfall, doch die Krebsrate steigt dadurch sofort auf 100, da die Krebsrate ja pro 100.000 Bewohnern gemessen wird. 100 ist aber extrem hoch, sogar die höchste Rate im ganzen Land! Wenn wir uns dagegen den Bundesstaat New York mit einer Einwohnerzahl von 1.5 Millionen ansehen, würde ein einziger Krebsfall, sagen wir von 75 auf 76 Krebsfälle pro 100.000 Einwohner, die Rate kaum merklich verändern: Sie würde von 5 auf 5.07 ansteigen. 
+
+Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bundesstaaten zusammen. Die weniger dicht besiedelten Bundesstaaten auf der linken Seite der Grafik weisen eine deutlich höhere Varianz in den Krebsraten auf. Zudem treten sowohl die höchsten als auch die niedrigsten Krebsraten in dieser Gruppe auf. Mit steigender Bevölkerungsdichte (je mehr wir uns auf der x-Achse nach rechts bewegen) sinkt die Varianz und wir können eine Stabilisierung um den Wert 5 herum erkennen. Was sollten wir aus diesem Beispiel mitnehmen? Kleine Stichprobengrößen können zu extremen Ergebnissen führen.
+
+<center>
+![*Grafik: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
+</center>
 
 ### **Zusätzliche Ressourcen**
 
