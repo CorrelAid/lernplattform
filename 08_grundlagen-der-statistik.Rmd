@@ -406,7 +406,7 @@ quiz(caption = "Frage zu Lageparametern",
     try_again_button = "Nochmal versuchen"
     ),
   
-  question("Warum sind schiefe Verteilungen problematisch?"),
+  question("Warum sind schiefe Verteilungen problematisch?",
     answer("Eine Idee", correct = TRUE),
     answer("Keine Idee"),
     correct = "Schiefe Verteilungen sind problematisch, weil viele statistische Modelle und Berechnungen von einer symmetrischen Verteilung ausgehen, insbesondere davon, dass die Werte gleichmäßig um den Mittelwert herum verteilt sind. Ist eine Verteilung besonders 'schief', so hat sie entweder einen langen Schwanz (engl. tail) auf der linken oder rechten Seite, d.h., ganz viele Werte mit besonders kleinen oder großen Werten. Alleine schon der Mittelwert ist für solche Verteilungen problematisch, weil er nicht mehr wirklich repräsentativ ist (siehe Grafik). Er befindet sich viel näher an den wenigen Extremwerten als am Großteil der Werte. Mithilfe von Transformationen kann man manchmal eine solche Verteilung wieder 'normalisieren', z.B. mithilfe des Logarithmus'.",
