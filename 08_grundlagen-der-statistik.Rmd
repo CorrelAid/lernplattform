@@ -19,7 +19,7 @@ Wenn Daten Entscheidungsprozesse unterstützen sollen, braucht es kompetente Ant
 - **Was darf ich mit Daten machen**? Alle gesetzlichen Regeln der Datennutzung (zum Beispiel Datenschutz, Urheberrechte und Lizenzfragen) müssen immer mitbedacht werden.
 - **Was soll ich mit Daten machen**? Weil Daten eine wertvolle Ressource darstellen, leitet sich daraus ein normativer Anspruch ab, sie zum Wohl von Individuen und Gesellschaft zu nutzen.
 
-Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Insbesondere werden die Fähigkeit und Bereitschaft, eine Datenkultur zu etablieren sowie die Fähigkeit und Bereitschaft, Handeln abzuleiten als Teilkompetenzen von Datenkompetenz verstanden.
+Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Insbesondere werden die Fähigkeit und Bereitschaft, eine Datenkultur zu etablieren, sowie die Fähigkeit und Bereitschaft, Handeln abzuleiten, als Teilkompetenzen von Datenkompetenz verstanden.
 
 <center>
 ![*Grafik: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten.<br>Quelle: Schüller, Busch, Hindinger (2019)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
@@ -43,6 +43,8 @@ Daher wollen wir uns näher mit den Grundlagen der Statistik beschäftigen. Wir 
 Your browser does not support the video tag.
 </video>
 </div>
+
+*Quelle: Weltstatistiktag - Statistisches Bundesamt, https://www.destatis.de/DE/Ueber-uns/Ziele-Strategie/weltstatistiktag-2020.html (Februar 2024)*
 
 Die Statistik ist eine Wissenschaft, die alle Lebensbereiche durchdringt. Jeder von uns ist heute im Alltag mit einer Fülle von Daten und Visualisierungen von Daten konfrontiert, die uns über verschiedene Kanäle erreichen. Im Internet kann man gezielt nach Daten aller Art suchen, z.B. nach statistischen Informationen zu Migrationsströmen im Gefolge des Kriegs in der Ukraine oder zur Kursentwicklung von Kryptowährungen. Zugleich wird die Online-Präsentation von Daten immer benutzerfreundlicher. Dies gilt insbesondere für Daten der amtlichen Statistik – wie das folgende Beispiel einer [interaktiven Präsentation der Bevölkerungsvorausberechnung](https://service.destatis.de/bevoelkerungspyramide/) für Deutschland des Statistischen Bundesamts (Destatis) zeigt.
 
@@ -198,13 +200,13 @@ Die **schließende Statistik** oder induktive Statistik leitet aus Stichprobenda
 
 ### **Was sind Daten?**
 
-Beginnen wir mit der Frage, was Daten und was Informationen sind. Information ist abgeleitetes Wissen. Dieses Wissen wollen wir anderen vermitteln sowie aufbewahren. Eine Möglichkeit, dies zu erreichen, ist die Kodierung. Daten sind kodierte Informationen. Da ein und dieselbe Information auf unterschiedliche Weise kodiert werden kann (verschiedene Einheiten, verschiedene Skalen usw.), kann ein und dieselbe Information auch mit unterschiedlichen Daten ausgedrückt werden. Verstehe ich die Kodierung hingegen nicht, so sind die Daten für mich wertlos, da ich die kodierten Informationen nicht verwerten kann.
+Zentral ist dabei Frage, was Daten und was Informationen sind. Information ist abgeleitetes Wissen. Dieses Wissen wollen wir anderen vermitteln sowie aufbewahren. Eine Möglichkeit, dies zu erreichen, ist die Kodierung. Daten sind kodierte Informationen. Da ein und dieselbe Information auf unterschiedliche Weise kodiert werden kann (verschiedene Einheiten, verschiedene Skalen usw.), kann ein und dieselbe Information auch mit unterschiedlichen Daten ausgedrückt werden. Verstehen wir die Kodierung hingegen nicht, so sind die Daten für uns wertlos, da wir die kodierten Informationen nicht verwerten können.
 
 Wenn wir uns nun eine gewöhnliche Tabelle vorstellen, so enthält diese Tabelle kodierte Informationen und somit Daten. Eine Tabelle mit Daten nennen wir daher auch einen Datensatz. 
 
 Dabei stellt eine Zeile einer Tabelle eine zusammenhängende Informationseinheit dar, die zu einem bestimmten Zeitpunkt erhoben oder gemessen wurde. Jede Spalte einer Tabelle repräsentiert eine Eigenschaft, die uns interessiert, und die für alle Zeilen auf die gleiche Art und Weise kodiert wird, so dass wir die verschiedenen Messungen leicht vergleichen können. 
 
-Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**, **Aufzeichnungen** (Engl. records), oder **Versuche**. Die Spalten einer Tabelle bezeichnen wir als **Merkmale**, **Features**, **Attribute**, **Felder**, oder **Variablen**. Daher kann man einen Datensatz auch beschreiben als eine Sammlung von $N$ Beobachtungen mit $Y$ Merkmalen oder Variablen. Man spricht in diesem Falle von der **Dimension** des Datensatzes. Ein **Datenpunkt** oder **Datenwert** ist der Schnittpunkt (eine Zelle in der Tabelle) zwischen einer Beobachtung und einem Merkmal. Jede Tabelle besitzt eine Kopfzeile (Engl. header), die die Merkmale näher beschreibt. 
+Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**, **Aufzeichnungen** (engl. records), oder **Versuche**. Die Spalten einer Tabelle bezeichnen wir als **Merkmale**, **Features**, **Attribute**, **Felder**, oder **Variablen**. Daher kann man einen Datensatz auch beschreiben als eine Sammlung von $N$ Beobachtungen mit $Y$ Merkmalen oder Variablen. Man spricht in diesem Falle von der **Dimension** des Datensatzes. Ein **Datenpunkt** oder **Datenwert** ist der Schnittpunkt (eine Zelle in der Tabelle) zwischen einer Beobachtung und einem Merkmal. Jede Tabelle besitzt eine Kopfzeile (engl. header), die die Merkmale näher beschreibt. 
 
 <center>
 ![*Grafik: Grundbegriffe für den Umgang mit tabellarischen Datensätzen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
@@ -306,6 +308,7 @@ Jetzt, wo wir uns mit den Grundlagen von Daten auskennen, können wir zur eigent
 ```{r echo=FALSE}
 vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
 ```
+*Quelle: von6auf1 - "Statistik Teil 1 - statistische Daten - Merkmalsträger, Merkmalsausprägung ...", https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF (04.11.2015, abgerufen Februar 2024)*
 
 In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist. Oft werden Teilmengen von Grundgesamtheiten (Teilpopulationen) betrachtet, etwa Differenzierung nach Geschlecht bei Untersuchungen zu delinquentem Verhalten bei Jugendlichen oder nach Fahrzeugtyp bei Untersuchungen zu Schadstoffemissionen im Straßenverkehr.
 Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. In der Statistik werden Merkmale üblicherweise mit *Großbuchstaben* gekennzeichnet, Merkmalsausprägungen mit *Kleinbuchstaben*.
@@ -322,7 +325,7 @@ Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren eine Teilmenge 
 
 <div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
 <p style="color:#acc940;"><b>Beispiel: Statistische Grundbegriffe</b></p>
-Eine Grundgesamtheit ist z.B. definiert durch
+Eine **Grundgesamtheit** ist z.B. definiert durch
 
 - alle Personen, die am 1. Mai 2022 in München ihren Erstwohnsitz hatten;
 - Studierende einer Hochschule zu Beginn des Sommersemesters 2023, über die man via Telefonbefragung Informationen gewinnen will;
@@ -330,7 +333,7 @@ Eine Grundgesamtheit ist z.B. definiert durch
 - die von einem stahlverarbeitenden Unternehmen im März 2023 produzierten Serienteile eines bestimmten Typs;
 - die in Deutschland am 1. Januar 2024 gemeldeten PKWs.
 
-Die statistischen Einheiten werden hier repräsentiert durch
+Die **statistischen Einheiten** werden hier repräsentiert durch
 
 - jede Person mit Erstwohnsitz in München am 1. Mai 2022;
 - alle zum Sommersemester 2023 eingeschriebenen Studierenden;
@@ -338,7 +341,7 @@ Die statistischen Einheiten werden hier repräsentiert durch
 - die im März 2023 in dem Unternehmen produzierten Serienteile;
 - jeder am 1. Januar 2024 in Deutschland gemeldete PKW. 
 
-Interessierende Merkmale und Merkmalsausprägungen können hier sein
+Interessierende **Merkmale** und **Merkmalsausprägungen** können hier sein
 
 - der Familienstand der Person, etwa mit der Ausprägung „verheiratet“;
 - das Alter der Studierenden, erfasst z.B. in Form von Altersklassen;
@@ -349,7 +352,7 @@ Interessierende Merkmale und Merkmalsausprägungen können hier sein
 
 ### **Einführung in die deskriptive Statistik**
 
-Ein vorrangiges Ziel der **deskriptiven Statistik** oder beschreibenden Statistik ist es, mithilfe von **Kennzahlen** und grafischen Darstellungen (vorrangig Histogramme) wesentliche Charakteristiken von Häufigkeitsverteilungen herauszuarbeiten. Eine **Häufigkeitsverteilung** ist eine Zusammenfassung der beobachteten Werte einer Variablen und gibt an, wie oft die verschiedenen Werte vorkommen. Die Häufigkeit kann dabei pro Merkmalsausprägung oder für Klassen angegeben werden, die mehrere Merkmalsausprägungen zusammenfassen (z.B. Altes- und Einkommensgruppen).
+Ein vorrangiges Ziel der **deskriptiven Statistik** oder beschreibenden Statistik ist es, mithilfe von **Kennzahlen** und grafischen Darstellungen (vorrangig Histogramme) wesentliche Charakteristiken von Häufigkeitsverteilungen herauszuarbeiten. Eine **Häufigkeitsverteilung** ist eine Zusammenfassung der beobachteten Werte einer Variablen und gibt an, wie oft die verschiedenen Werte vorkommen. Die Häufigkeit kann dabei pro Merkmalsausprägung oder für Klassen angegeben werden, die mehrere Merkmalsausprägungen zusammenfassen (z.B. Alters- und Einkommensgruppen).
 
 #### **Lageparameter** 
 
@@ -359,7 +362,7 @@ Lageparameter dienen der Beantwortung der Frage, welche der in der Stichprobe vo
 
 **Median**: der "wahre" Mittelpunkt (50 % der Ausprägungen sind kleiner oder größer). Hierzu sortiert man alle Beobachtungen und bestimmt dann den Wert, der in der Mitte liegt.
 
-**Arithmetische Mittel**: Durchschnitt der Beobachtungen. Hierzu addiert man alle Einzelwerte und teilt anschließend durch die Anzahl der Beobachtungen. 
+**Arithmetisches Mittel**: Durchschnitt der Beobachtungen. Hierzu addiert man alle Einzelwerte und teilt anschließend durch die Anzahl der Beobachtungen. 
 
 Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens einer Stichprobe) ganz unterschiedliche Lagemaße haben kann, zeigt die folgende Abbildung.
 
@@ -400,7 +403,7 @@ quiz(caption = "Frage zu Lageparametern",
     answer("3"),
     answer("4"),
     answer("1,86", correct = TRUE),
-    correct = sprintf("Richtig! Der Mittelwert lautet 1,86. Dazu müssen zuerst alle Werte aufaddiert werden ($=13$), um anschließend durch die Anzahl der Messwerte ($=7$) geteilt zu werden. Wie wir sehen, ist der Mittelwert kein Wert, der in der Messung selber vorkommt, sondern ein fiktiver Wert."),
+    correct = sprintf("Richtig! Der Mittelwert lautet 1,86. Dazu müssen zuerst alle Werte aufaddiert werden (=13), um anschließend durch die Anzahl der Messwerte (=7) geteilt zu werden. Wie wir sehen, ist der Mittelwert kein Wert, der in der Messung selber vorkommt, sondern ein fiktiver Wert."),
     incorrect = "Leider falsch. Der Mittelwert ist die Summe aller Messwerte, geteilt durch die Anzahl der Messwerte.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -481,7 +484,7 @@ Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grunds�
 
 ### **Abschließendes Beispiel**
 
-Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten treten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. An dieser Stelle könnt ihr kurz innehalten und euch ein paar Gründe für diesen Befund überlegen. Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Grafik)! Wie kann beides gleichzeitig war sein? Wie können zwei Städte mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
+Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten treten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. An dieser Stelle könnt Ihr kurz innehalten und Euch ein paar Gründe für diesen Befund überlegen. Vielleicht vermutet Ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Grafik)! Wie kann beides gleichzeitig war sein? Wie können zwei Städte mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
 
 <center>
 ![*Grafik: US-Bundesstaaten mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
