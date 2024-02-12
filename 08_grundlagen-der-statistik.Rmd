@@ -517,4 +517,4 @@ Die zweite Übung behandelt noch einmal die Korrelation. Öffnet dazu bitte dies
 - [DATA-LITERACY-CHARTA](https://www.stifterverband.org/charta-data-literacy)
 - [Destatis - Statistisches Bundesamt](https://www.destatis.de/DE/Home/_inhalt.html)
 - [KI Campus](https://ki-campus.org/)
-- [systats](https://systats.github.io/)
+- [Werde ein Data Head](https://dpunkt.de/produkt/werde-ein-data-head/)
