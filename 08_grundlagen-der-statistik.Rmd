@@ -2,7 +2,7 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.png)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
-*"Grundlagen der Statistik" von Philipp Bosch, Nina Hauser, Sebastian Zezulka, Michael Aydinbas in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+*"Grundlagen der Statistik" von Michael Aydinbas in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
 In dieser Woche geht es um die Grundlagen des statistischen Denkens. Wir beginnen mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir die Grundbegriffe der Statistik kennen und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können.
 
