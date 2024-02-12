@@ -53,16 +53,13 @@ vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
 *Quelle: von6auf1 - "Statistik Teil 1 - statistische Daten - Merkmalsträger, Merkmalsausprägung ...", https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF (04.11.2015, abgerufen Februar 2024)*
 
 In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist.
-Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. In der Statistik werden Merkmale üblicherweise mit *Großbuchstaben* gekennzeichnet, Merkmalsausprägungen mit *Kleinbuchstaben*.
-
-<center>
-![**Abbildung**: Begriffshierarchien für statistische Grundbegriffe. Quelle: H.-J. Mittag, K. Schüller, Statistik (2023)](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Begriffshierarchien.png?raw=true){#id .class width=70% height=70%}
-</center>
+Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. 
 
 Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Dritt-Impfungen gegen [FSME](https://www.rki.de/SharedDocs/FAQ/FSME/FSME-Impfung/FSME-Impfung.html).
 
 <center>
 ![**Abbildung**: Population und Stichprobe. Quelle: <https://systats.github.io/linear_model/basics.html>](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
+</center>
 
 #### **Aufgaben und Teilbereiche der Statistik**
 
