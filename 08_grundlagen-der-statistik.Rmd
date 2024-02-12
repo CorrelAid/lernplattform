@@ -495,6 +495,23 @@ Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bundesstaaten zusamm
 ![*Grafik: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
 </center>
 
+### **Und jetzt Ihr**
+
+Zum Abschluss dieser Lerneinheit dürft ihr nun auch noch einmal Daten interpretieren. Schaut euch dazu bitte die folgende Grafik zu [Militärausgaben im Ländervergleich 2003 - 2017](https://www.hfh-fernstudium.de/statistik-app/daten/militaer.html):
+
+- Startet mit den Zeitreihen, sucht euch drei Länder aus und vergleicht die Ausgaben in 'absoluten' Werten, 'in % BIP' und 'pro Kopf'. Was verändert sich? Warum? 
+- Wechselt nun zur Darstellung 'Boxplots'. Was wird hier dargestellt, welche Dimensionen werden verglichen? Was fällt bei der Darstellung der Ausgaben in absoluten Werten auf? Geht nun auf 'pro Kopf'. Was fällt beim Vergleich der Boxplots über die Jahre auf? Was fällt beim Vergleich der Ausreißer auf? 
+- Wechselt nun zur Darstellung 'Säulendiagramme'. Was wird hier dargestellt, welche Dimensionen werden verglichen? Was fällt auf, wenn ihr 'in % BIP' und 'pro Kopf' vergleicht?
+
+Die zweite Übung behandelt noch einmal die Korrelation. Öffnet dazu bitte diese [Seite](https://www.hfh-fernstudium.de/statistik-app/korrelation.html):
+
+- Erzeugt Beispiele für eine hohe positive Korrelation ($r > +0.8$) und eine hohe negative Korrelation ($r < -0.8$).
+- Wenn ihr ein Beispiel für eine hohe Korrelation erzeugt habt, wechselt auf 'Punkte verschieben' und verändert einen Datenpunkt. Wie ändert sich die Korrelation $r$? Warum?
+- Erzeugt Beispiele für eine schwache Korrelation ($|r| < 0.2$).
+- Erzeugt nun ein Beispiel für einen Zusammenhang, der mit dem Auge sichtbar ist, aber dennoch laut Berechnung ($r$-Wert) keine oder nur eine geringe Korrelation aufweist. Woran liegt das?
+
+
+
 ### **Zusätzliche Ressourcen**
 
 - [DATA-LITERACY-CHARTA](https://www.stifterverband.org/charta-data-literacy)
