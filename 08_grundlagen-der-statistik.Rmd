@@ -22,7 +22,7 @@ Wenn Daten Entscheidungsprozesse unterstützen sollen, braucht es kompetente Ant
 Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Insbesondere werden die Fähigkeit und Bereitschaft, eine Datenkultur zu etablieren, sowie die Fähigkeit und Bereitschaft, Handeln abzuleiten, als Teilkompetenzen von Datenkompetenz verstanden.
 
 <center>
-![*Grafik: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten.<br>Quelle: Schüller, Busch, Hindinger (2019)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
+![**Abbildung**: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten. Quelle: Schüller, Busch, Hindinger (2019)](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
 </center>
 
 Im oberen Schaubild ist die Statistik an fast allen Schritten beteiligt:
@@ -56,13 +56,13 @@ In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuch
 Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. In der Statistik werden Merkmale üblicherweise mit *Großbuchstaben* gekennzeichnet, Merkmalsausprägungen mit *Kleinbuchstaben*.
 
 <center>
-![*Grafik: Begriffshierarchien für statistische Grundbegriffe, H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Begriffshierarchien.png?raw=true){#id .class width=70% height=70%}
+![**Abbildung**: Begriffshierarchien für statistische Grundbegriffe. Quelle: H.-J. Mittag, K. Schüller, Statistik (2023)](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Begriffshierarchien.png?raw=true){#id .class width=70% height=70%}
 </center>
 
 Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Dritt-Impfungen gegen [FSME](https://www.rki.de/SharedDocs/FAQ/FSME/FSME-Impfung/FSME-Impfung.html).
 
 <center>
-![*Grafik: Population und Stichprobe, Quelle: <https://systats.github.io/linear_model/basics.html>*](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
+![**Abbildung**: Population und Stichprobe. Quelle: <https://systats.github.io/linear_model/basics.html>](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
 
 #### **Aufgaben und Teilbereiche der Statistik**
 
@@ -223,7 +223,7 @@ Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**
 Die nachfolgende Grafik stellt alle Begriffe dieses Abschnittes noch einmal übersichtlich zusammen. 
 
 <center>
-![*Grafik: Grundbegriffe für den Umgang mit tabellarischen Datensätzen.<br>Quelle: Autor.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
+![**Abbildung**: Grundbegriffe für den Umgang mit tabellarischen Datensätzen. Quelle: Autor.](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz_datensatz, echo=FALSE}
@@ -333,7 +333,7 @@ Lageparameter dienen der Beantwortung der Frage, welche der in der Stichprobe vo
 Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens einer Stichprobe) ganz unterschiedliche Lagemaße haben kann, zeigt die folgende Abbildung.
 
 <center>
-![*Grafik: Schiefe vs. symmetrische Verteilungen. Quelle: Autor*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
+![**Abbildung**: Schiefe vs. symmetrische Verteilungen. Quelle: Autor](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz4, echo=FALSE}
@@ -401,7 +401,7 @@ Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum b
 **Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
 
 <center>
-![*Grafik: Bestimmung und Bedeutung von p-Quantilen. Quelle: Autor*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
+![**Abbildung**: Bestimmung und Bedeutung von p-Quantilen. Quelle: Autor](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz05, echo=FALSE}
@@ -453,7 +453,7 @@ Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grunds�
 Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten treten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. An dieser Stelle könnt Ihr kurz innehalten und Euch ein paar Gründe für diesen Befund überlegen. Vielleicht vermutet Ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Grafik)! Wie kann beides gleichzeitig war sein? Wie können zwei Städte mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
 
 <center>
-![*Grafik: US-Bundesstaaten mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
+![**Abbildung**: US-Bundesstaaten mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
 </center>
 
 Und die gibt es in der Tat: Die geringe Bevölkerungsdichte in den Bezirken sorgt für eine hohe Streuung (Varianz) in den Krebsraten. Nehmen wir zwei Bezirke in ländlicher Gegend, Bezirk A und Bezirk B, mit je 1000 Einwohnern. Bezirk A hat keine Krebsfälle, daher ist die Krebsrate 0. Bezirk B hat einen einzigen Krebsfall, doch die Krebsrate steigt dadurch sofort auf 100, da die Krebsrate ja pro 100.000 Bewohnern gemessen wird. 100 ist aber extrem hoch, sogar die höchste Rate im ganzen Land! Wenn wir uns dagegen den Bundesstaat New York mit einer Einwohnerzahl von 1.5 Millionen ansehen, würde ein einziger Krebsfall, sagen wir von 75 auf 76 Krebsfälle pro 100.000 Einwohner, die Rate kaum merklich verändern: Sie würde von 5 auf 5.07 ansteigen. 
@@ -461,7 +461,7 @@ Und die gibt es in der Tat: Die geringe Bevölkerungsdichte in den Bezirken sorg
 Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bundesstaaten zusammen. Die weniger dicht besiedelten Bundesstaaten auf der linken Seite der Grafik weisen eine deutlich höhere Varianz in den Krebsraten auf. Zudem treten sowohl die höchsten als auch die niedrigsten Krebsraten in dieser Gruppe auf. Mit steigender Bevölkerungsdichte (je mehr wir uns auf der x-Achse nach rechts bewegen) sinkt die Varianz und wir können eine Stabilisierung um den Wert 5 herum erkennen. Was sollten wir aus diesem Beispiel mitnehmen? Kleine Stichprobengrößen können zu extremen Ergebnissen führen.
 
 <center>
-![*Grafik: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
+![**Abbildung:**: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
 </center>
 
 ### **Und jetzt Ihr**
