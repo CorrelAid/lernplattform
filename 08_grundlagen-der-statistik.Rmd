@@ -4,7 +4,7 @@
 
 *"Grundlagen der Statistik" von Michael Aydinbas in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
-In dieser Woche geht es um die Grundlagen des statistischen Denkens. Wir beginnen mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir die Grundbegriffe der Statistik kennen und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können.
+In dieser Woche geht es um die Grundlagen des statistischen Denkens. Wir beginnen mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir, was Daten und Datentypen sind. Mit diesem Wissen steigen wir in die Grundbegriffe der Statistik ein und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können. Zum Schluss diskutieren wir das wichtige Thema Korrelation und Kausalität.
 
 Wir beschäftigen uns aber nicht mit der Statistik aus purem Selbstzweck, sondern sie ist ein ganz wesentlicher Teil und Voraussetzung für den kritischen Umgang mit Daten. Daher schauen wir uns zunächst an, was wir für einen kompetenten Umgang mit Daten benötigen und wie wir Datenkompetenz erlangen können.
 
@@ -43,22 +43,46 @@ Daher wollen wir uns näher mit den Grundlagen der Statistik beschäftigen. Wir 
 Your browser does not support the video tag.
 </video>
 </div>
+*Quelle: Weltstatistiktag - Statistisches Bundesamt, https://www.destatis.de/DE/Ueber-uns/Ziele-Strategie/weltstatistiktag-2020.html (Februar 2024).*
 
-*Quelle: Weltstatistiktag - Statistisches Bundesamt, https://www.destatis.de/DE/Ueber-uns/Ziele-Strategie/weltstatistiktag-2020.html (Februar 2024)*
+Die Statistik ist eine Wissenschaft, die alle Lebensbereiche durchdringt. Jeder von uns ist heute im Alltag mit einer Fülle von Daten und Visualisierungen von Daten konfrontiert, die uns über verschiedene Kanäle erreichen. Im Internet kann man gezielt nach Daten aller Art suchen, z.B. nach statistischen Informationen zu Migrationsströmen oder zur Kursentwicklung von Kryptowährungen. Zugleich wird die Online-Präsentation von Daten immer benutzerfreundlicher. Dies gilt insbesondere für Daten der amtlichen Statistik – wie das folgende Beispiel einer [interaktiven Präsentation der Bevölkerungsvorausberechnung](https://service.destatis.de/bevoelkerungspyramide/) für Deutschland des Statistischen Bundesamts (Destatis) zeigt.
 
-Die Statistik ist eine Wissenschaft, die alle Lebensbereiche durchdringt. Jeder von uns ist heute im Alltag mit einer Fülle von Daten und Visualisierungen von Daten konfrontiert, die uns über verschiedene Kanäle erreichen. Im Internet kann man gezielt nach Daten aller Art suchen, z.B. nach statistischen Informationen zu Migrationsströmen im Gefolge des Kriegs in der Ukraine oder zur Kursentwicklung von Kryptowährungen. Zugleich wird die Online-Präsentation von Daten immer benutzerfreundlicher. Dies gilt insbesondere für Daten der amtlichen Statistik – wie das folgende Beispiel einer [interaktiven Präsentation der Bevölkerungsvorausberechnung](https://service.destatis.de/bevoelkerungspyramide/) für Deutschland des Statistischen Bundesamts (Destatis) zeigt.
+```{r echo=FALSE}
+vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
+```
+*Quelle: von6auf1 - "Statistik Teil 1 - statistische Daten - Merkmalsträger, Merkmalsausprägung ...", https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF (04.11.2015, abgerufen Februar 2024)*
 
-Jetzt wollen wir uns einige Pressemitteilungen des Statistischen Bundesamts näher ansehen. 
+In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist.
+Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. In der Statistik werden Merkmale üblicherweise mit *Großbuchstaben* gekennzeichnet, Merkmalsausprägungen mit *Kleinbuchstaben*.
+
+<center>
+![*Grafik: Begriffshierarchien für statistische Grundbegriffe, H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Begriffshierarchien.png?raw=true){#id .class width=70% height=70%}
+</center>
+
+Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Dritt-Impfungen gegen [FSME](https://www.rki.de/SharedDocs/FAQ/FSME/FSME-Impfung/FSME-Impfung.html).
+
+<center>
+![*Grafik: Population und Stichprobe, Quelle: <https://systats.github.io/linear_model/basics.html>*](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
+
+#### **Aufgaben und Teilbereiche der Statistik**
+
+Für Statistiker ist der Begriff „Statistik“ nicht eindeutig belegt. Sie verstehen hierunter einerseits ihre Wissenschaft als Ganzes. Sie verwenden den Begriff aber auch für Kenngrößen, die sich aus statistischen Daten ableiten (z.B. den Mittelwert). Im allgemeinen Sprachgebrauch wird auch häufig ein Datensatz als eine Statistik angesprochen, etwa ein Datensatz mit der Medaillenverteilung bei den Olympischen Sommerspielen. In diesem Kurs wird „Statistik“ im Sinne von „Wissenschaft“ verwendet, also bestimmte Methoden sowie Denk- und Herangehensweisen.
+
+Innerhalb der Statistik lassen sich die **beschreibende** und die **schließende** Statistik unterscheiden. Die **beschreibende Statistik** oder **deskriptive Statistik** umfasst numerische und grafische Verfahren zur Charakterisierung und Präsentation von Daten. Ziel ist die **Reduktion** (Zusammenfassung) der in den Daten enthaltenen statistischen Informationen durch Verdichtung zu wenigen Kenngrößen, möglichst ohne größeren Informationsverlust. Auf diesen Zweig der Statistik wollen wir uns im Rest dieser Lerneinheit konzentrieren.
+
+Aus der beschreibenden Statistik hat sich die **explorative Datenanalyse** entwickelt. Diese geht über die beschreibende Statistik hinaus, weil hier – noch ohne Einsatz von (mathematischen) Modellen – mit rechenintensiven Verfahren nach auffälligen Mustern und Strukturen in Datenbeständen gesucht wird. So werden etwa die Scannerdaten eines Lebensmittelkonzerns von einem Verkaufstag routinemäßig nach Auffälligkeiten durchleuchtet, ohne dass sofort eine Hypothese im Spiel ist. So entdeckt man Trends im Käuferverhalten und kann zudem rechtzeitig Nachbestellungen organisieren.
+
+Die **schließende Statistik** oder induktive Statistik leitet aus Stichprobendaten **Aussagen** ab, die über die jeweilige Stichprobe hinausgehen und sich auf eine umfassendere **Grundgesamtheit beziehen**. Sie sei aber nur der Vollständigkeit halber genannt und wird uns heute nicht weiter beschäftigen.
+
+Jetzt wollen wir uns einige Pressemitteilungen des Statistischen Bundesamts näher ansehen.
 
 #### **Pressemitteilungen**
 
-Im folgenden zeigen wir exemplarische Pressemitteilungen des Statistischen Bundesamts (Destatis) und die dazu veröffentlichten Grafiken. Diese Pressemitteilungen sind typische Beispiele für die Veröffentlichungen von statistischen Ämtern und zeigen, wie Daten in der Öffentlichkeit präsentiert werden. 
+Im Folgenden zeigen wir exemplarische Pressemitteilungen des Statistischen Bundesamts (Destatis) und die dazu veröffentlichten Grafiken. Diese Pressemitteilungen sind typische Beispiele für die Veröffentlichungen von statistischen Ämtern und zeigen, wie Daten in der Öffentlichkeit präsentiert werden. 
 
-Achte auf die Kommunikation sowie die verschiedenen Darstellungsarten. Welches Wissen bzw. welche Fähigkeiten sind notwendig, um diese Informationen zu verstehen?
+Achtet auf die Kommunikation sowie die verschiedenen Darstellungsarten. Welches Wissen bzw. welche Fähigkeiten werden beim Betrachter vorausgesetzt? Welche Informationen werden vermittelt? Findet ihr die Grafiken geeignet, um die Informationen zu vermitteln?
 
-##### Pressemitteilung Nr. 051 vom 9. Februar 2024
-
-Inflationsrate im Januar 2024 bei +2,9 %. Inflationsrate schwächt sich zu Jahresbeginn ab. 
+##### Inflationsrate im Januar 2024 bei +2,9 %. Inflationsrate schwächt sich zu Jahresbeginn ab.
 
 Verbraucherpreisindex, Januar 2024
 
@@ -66,7 +90,7 @@ Verbraucherpreisindex, Januar 2024
 - +0,2 % zum Vormonat (vorläufiges Ergebnis bestätigt)
 
 <center>
-![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz1, echo=FALSE}
@@ -93,26 +117,24 @@ quiz(caption = "Fragen zur Pressemitteilung",
 )
 ```
 
-##### Pressemitteilung Nr. N007 vom 8. Februar 2024
-
-Menschen in Deutschland bei erster Heirat immer älter – Durchschnittsalter auf neuem Höchststand.
+##### Menschen in Deutschland bei erster Heirat immer älter – Durchschnittsalter auf neuem Höchststand.
 
 - Frauen bei erster Eheschließung 2022 im Schnitt 32,6 Jahre alt, Männer 35,1 Jahre
 - Zahl derjenigen, die mit 50+ zum ersten Mal heiraten, von 7 500 im Jahr 2002 auf rund 41 500 im Jahr 2022 gestiegen
 - Rund die Hälfte (49 %) der erwachsenen Bevölkerung war Ende 2022 verheiratet, bei den 65- bis 69-Jährigen gut zwei Drittel (68 %)
 
 <center>
-![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
 </center>
 
 <center>
-![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
 </center>
 
 
 ```{r 08_quiz2_v2, echo=FALSE}
 quiz(caption = "Fragen zur Pressemitteilung",
-  question("In welcher Altergruppe gibt es die größten Unterschiede zwischen 2002 und 2022?",
+  question("In welcher Altergruppe gibt es die größten Unterschiede zwischen 2002 und 2022 (Grafik 1)?",
     answer("50 Jahre und älter"),
     answer("40-49 Jahre"),
     answer("30-39 Jahre"),
@@ -122,7 +144,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     ),
-  question("Sind die Altersgruppen sinnvoll gewählt?",
+  question("Sind die Altersgruppen sinnvoll gewählt (Grafik 1)?",
     answer("Ja"),
     answer("Nein"),
     answer("Das kommt drauf an", correct = TRUE),
@@ -131,7 +153,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
     ),
-  question("Welche Altersgruppe weist die meisten Verheirateten in % der jeweiligen Altersgruppe auf?",
+  question("Welche Altersgruppe weist die meisten Verheirateten in % der jeweiligen Altersgruppe auf (Grafik 2)?",
     answer("30"),
     answer("40"),
     answer("50"),
@@ -146,15 +168,13 @@ quiz(caption = "Fragen zur Pressemitteilung",
 )
 ```
 
-##### Pressemitteilung Nr. 043 vom 1. Februar 2024
-
-Bierabsatz 2023 um 4,5 % niedriger als im Vorjahr.
+##### Bierabsatz 2023 um 4,5 % niedriger als im Vorjahr.
 
 - Inlandsabsatz um 4,2 % gesunken, Bierexporte um 5,9 % niedriger als im Vorjahr
 - Auch langfristig sinkender Bierabsatz: Im Jahr 2023 haben die Brauereien und Bierlager 11,5 % weniger Bier abgesetzt als im Jahr 2013
 
 <center>
-![](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz3, echo=FALSE}
@@ -188,28 +208,22 @@ quiz(caption = "Fragen zur Pressemitteilung",
 )
 ```
 
-#### **Aufgaben und Teilbereiche der Statistik**
-
-Für Statistiker ist der Begriff „Statistik“ nicht eindeutig belegt. Sie verstehen hierunter einerseits ihre Wissenschaft als Ganzes. Sie verwenden den Begriff aber auch für Kenngrößen, die sich aus statistischen Daten ableiten (z.B. den Mittelwert). Im allgemeinen Sprachgebrauch wird auch häufig ein Datensatz als eine Statistik angesprochen, etwa ein Datensatz mit der Medaillenverteilung bei den Olympischen Sommerspielen. In diesem Kurs wird „Statistik“ im Sinne von „Wissenschaft“ verwendet, also bestimmte Methoden sowie Denk- und Herangehensweisen.
-
-Innerhalb der Statistik lassen sich die **beschreibende** und die **schließende** Statistik unterscheiden. Die **beschreibende Statistik** oder **deskriptive Statistik** umfasst numerische und grafische Verfahren zur Charakterisierung und Präsentation von Daten. Ziel ist die **Reduktion** (Zusammenfassung) der in den Daten enthaltenen statistischen Informationen durch Verdichtung zu wenigen Kenngrößen, möglichst ohne größeren Informationsverlust.
-
-Aus der beschreibenden Statistik hat sich die **explorative Datenanalyse** entwickelt. Diese geht über die beschreibende Statistik hinaus, weil hier – noch ohne Einsatz von (mathematischen) Modellen – mit rechenintensiven Verfahren nach auffälligen Mustern und Strukturen in Datenbeständen gesucht wird. So werden etwa die Scannerdaten eines Lebensmittelkonzerns von einem Verkaufstag routinemäßig nach Auffälligkeiten durchleuchtet, ohne dass sofort eine Hypothese im Spiel ist. So entdeckt man Trends im Käuferverhalten und kann zudem rechtzeitig Nachbestellungen organisieren.
-
-Die **schließende Statistik** oder induktive Statistik leitet aus Stichprobendaten **Aussagen** ab, die über die jeweilige Stichprobe hinausgehen und sich auf eine umfassendere **Grundgesamtheit beziehen**. Die Stichprobendaten werden als Ausprägungen von Zufallsvariablen interpretiert (Modellvorstellung) und das Verhalten solcher Zufallsvariablen durch sog. Verteilungsmodelle beschrieben. Typische Aufgaben der schließenden Statistik sind das Schätzen von Modellparametern und das Testen von Hypothesen. Die aus den Daten abgeleiteten Folgerungen sind mit Unsicherheiten verknüpft.
-
 ### **Was sind Daten?**
 
-Zentral ist dabei Frage, was Daten und was Informationen sind. Information ist abgeleitetes Wissen. Dieses Wissen wollen wir anderen vermitteln sowie aufbewahren. Eine Möglichkeit, dies zu erreichen, ist die Kodierung. Daten sind kodierte Informationen. Da ein und dieselbe Information auf unterschiedliche Weise kodiert werden kann (verschiedene Einheiten, verschiedene Skalen usw.), kann ein und dieselbe Information auch mit unterschiedlichen Daten ausgedrückt werden. Verstehen wir die Kodierung hingegen nicht, so sind die Daten für uns wertlos, da wir die kodierten Informationen nicht verwerten können.
+Im letzten Abschnitt haben wir uns bereits mit Daten und Datenvisualisierungen auseinandergesetzt. Jetzt ist es Zeit, dass wir einmal genau festlegen, was wir mit Daten eigentlich meinen.
 
-Wenn wir uns nun eine gewöhnliche Tabelle vorstellen, so enthält diese Tabelle kodierte Informationen und somit Daten. Eine Tabelle mit Daten nennen wir daher auch einen Datensatz. 
+Beginnen wir mit der Frage, was Daten und was Informationen sind. **Information ist abgeleitetes Wissen**. Dieses Wissen wollen wir anderen vermitteln sowie aufbewahren. Eine Möglichkeit, dies zu erreichen, ist durch die Wahl einer geeigneten Kodierung. **Daten sind kodierte Informationen**. Da ein und dieselbe Information auf unterschiedliche Weise kodiert werden kann (verschiedene Einheiten, verschiedene Skalen usw.), kann ein und dieselbe Information auch mit unterschiedlichen Daten ausgedrückt werden. Verstehe ich die Kodierung hingegen nicht, so sind die Daten für mich wertlos, da ich die kodierten Informationen nicht verwerten kann.
 
-Dabei stellt eine Zeile einer Tabelle eine zusammenhängende Informationseinheit dar, die zu einem bestimmten Zeitpunkt erhoben oder gemessen wurde. Jede Spalte einer Tabelle repräsentiert eine Eigenschaft, die uns interessiert, und die für alle Zeilen auf die gleiche Art und Weise kodiert wird, so dass wir die verschiedenen Messungen leicht vergleichen können. 
+Wenn wir uns nun eine gewöhnliche Tabelle vorstellen, so enthält diese Tabelle kodierte Informationen und somit Daten. Eine Tabelle mit Daten nennen wir daher auch einen **Datensatz**. 
+
+Jede Zeile einer Tabelle stellt eine zusammenhängende Informationseinheit dar, die zu einem bestimmten Zeitpunkt erhoben oder gemessen wurde. Jede Spalte einer Tabelle repräsentiert eine Eigenschaft, die uns interessiert, und die für alle Zeilen auf die gleiche Art und Weise kodiert wird, so dass wir die verschiedenen Messungen leicht vergleichen können. 
 
 Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**, **Aufzeichnungen** (engl. records), oder **Versuche**. Die Spalten einer Tabelle bezeichnen wir als **Merkmale**, **Features**, **Attribute**, **Felder**, oder **Variablen**. Daher kann man einen Datensatz auch beschreiben als eine Sammlung von $N$ Beobachtungen mit $Y$ Merkmalen oder Variablen. Man spricht in diesem Falle von der **Dimension** des Datensatzes. Ein **Datenpunkt** oder **Datenwert** ist der Schnittpunkt (eine Zelle in der Tabelle) zwischen einer Beobachtung und einem Merkmal. Jede Tabelle besitzt eine Kopfzeile (engl. header), die die Merkmale näher beschreibt. 
 
+Die nachfolgende Grafik stellt alle Begriffe dieses Abschnittes noch einmal übersichtlich zusammen. 
+
 <center>
-![*Grafik: Grundbegriffe für den Umgang mit tabellarischen Datensätzen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
+![*Grafik: Grundbegriffe für den Umgang mit tabellarischen Datensätzen.<br>Quelle: Autor.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz_datensatz, echo=FALSE}
@@ -236,7 +250,7 @@ quiz(caption = "Fragen zu tabellarischen Daten",
     try_again_button = "Nochmal versuchen"
     ),
   
-  question("Wie lauten die Dimensionen des Datensatzes?",
+  question("Wie lauten die Dimensionen des Datensatzes aus der Abbildung?",
     answer("4x4"),
     answer("4x3", correct = TRUE),
     answer("3x4"),
@@ -249,10 +263,9 @@ quiz(caption = "Fragen zu tabellarischen Daten",
 )
 ```
 
-
 #### **Datentypen**
 
-Daten können je nach Kodierung in verschiedene **Datentypen** eingeteilt werden. Die zwei wichtigsten Datentypen werden als *numerisch* und *kategorisch* bezeichnet. **Numerische Daten** sind solche, die in Zahlen (und ggf. eine Einheit) ausgedrückt werden können. **Kategorische Daten** sind solche, die in Worten und Symbolen ausgedrückt werden. Es gibt jedoch auch kategorische Daten wie Postleitzahlen, die trotz ihres numerischen Charakters nur sinnvoll als kategorische Daten interpretiert werden können. 
+Daten können je nach Kodierung in verschiedene **Datentypen** eingeteilt werden. Die zwei wichtigsten Datentypen werden als *numerisch* und *kategorisch* bezeichnet. **Numerische Daten** werden in Zahlen (und ggf. eine Einheit) ausgedrückt. **Kategorische Daten** werden meist in Worten und Symbolen ausgedrückt. Es gibt jedoch auch kategorische Daten wie Postleitzahlen, die trotz ihres numerischen Charakters nur sinnvoll als kategorische Daten interpretiert werden können. 
 
 Numerische Daten werden in zwei Hauptkategorien unterteilt:
 
@@ -261,10 +274,10 @@ Numerische Daten werden in zwei Hauptkategorien unterteilt:
 
 Kategorische Daten werden ebenfalls in zwei Hauptkategorien unterteilt:
 
-- **Ordinale Daten** besitzen eine natürliche Ordnung. So nutzen Umfragen Ordinaldaten, wenn sie nach deiner Erfahrung oder Zustimmung auf einer Skala von 1-10 fragen. Die Werte sehen zwar wie diskrete Daten aus, aber es ist nicht möglich oder sinnvoll, den Abstand zwischen zwei Werten zu interpretieren. Man kann nicht sagen, dass der Abstand zwischen einer 9 und 10 in einer Umfrage identisch ist mit dem Abstand zwischen einer 0 und einer 1. Ordinaldaten müssen nicht mit Zahlen kodiert sein. So können Kleidergrößen wie S, M, L, XL, XXL als Ordinaldaten interpretiert werden.
+- **Ordinale Daten** besitzen eine natürliche Ordnung. So nutzen Umfragen Ordinaldaten, wenn sie nach eurer Erfahrung oder Zustimmung auf einer Skala von 1-10 fragen. Die Werte sehen zwar wie diskrete Daten aus, aber es ist nicht möglich oder sinnvoll, den Abstand zwischen zwei Werten zu interpretieren. Man kann nicht sagen, dass der Abstand zwischen einer 9 und 10 in einer Umfrage identisch ist mit dem Abstand zwischen einer 0 und einer 1. Ordinaldaten müssen nicht mit Zahlen kodiert sein. So können Kleidergrößen wie S, M, L, XL, XXL als Ordinaldaten interpretiert werden.
 - **Nominale Daten** besitzen keine natürliche Ordnung. Beispiele für nominale Daten sind die Farbe eines Autos, die Nationalität, das Geschlecht, die Postleitzahl oder die Parteizugehörigkeit. Die Reihenfolge, in der die Daten präsentiert werden, ist willkürlich, da es nicht möglich ist, eine Kategorie als "größer" oder "kleiner" als eine andere zu bezeichnen.
 
-Warum ist dieses sogenannte **Skalenniveau** wichtig für uns? Das Skalenniveau bestimmt, welche statistischen Methoden angewendet werden können. So können beispielsweise Mittelwerte nur für kontinuierliche numerische Daten sinnvoll berechnet werden. Nominale kategorische Daten hingegehen lassen sich nur sinnvoll über Häufigkeiten zusammenfassen, mehr kann man mit ihnen nicht anstellen. Außerdem hilft ein gemeinsames Vokabular dabei, sich mit anderen über die eigenen Daten auszutauschen und den Datensatz zu beschreiben.
+Warum ist dieses sogenannte **Skalenniveau** wichtig für uns? Das Skalenniveau bestimmt, welche statistischen Methoden angewendet werden können. So können beispielsweise Mittelwerte nur für kontinuierliche numerische Daten sinnvoll berechnet werden (man denke an den Notenspiegel aus der Schule, bei dem die Durchschnittsnote wenig sinnvoll ist, wenn Noten selbst diskrete Werte darstellen). Nominale kategorische Daten hingegen lassen sich nur sinnvoll über Häufigkeiten zusammenfassen, mehr kann man mit ihnen nicht anstellen. Außerdem hilft ein gemeinsames Vokabular dabei, sich mit anderen über die eigenen Daten auszutauschen und den Datensatz zu beschreiben.
 
 ```{r 08_quiz_datentypen, echo=FALSE}
 quiz(caption = "Fragen zu Datentypen",
@@ -303,56 +316,9 @@ quiz(caption = "Fragen zu Datentypen",
 
 Jetzt, wo wir uns mit den Grundlagen von Daten auskennen, können wir zur eigentlichen Statistik kommen.
 
-### **Grundbegriffe der Statistik**
-
-```{r echo=FALSE}
-vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
-```
-*Quelle: von6auf1 - "Statistik Teil 1 - statistische Daten - Merkmalsträger, Merkmalsausprägung ...", https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF (04.11.2015, abgerufen Februar 2024)*
-
-In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist. Oft werden Teilmengen von Grundgesamtheiten (Teilpopulationen) betrachtet, etwa Differenzierung nach Geschlecht bei Untersuchungen zu delinquentem Verhalten bei Jugendlichen oder nach Fahrzeugtyp bei Untersuchungen zu Schadstoffemissionen im Straßenverkehr.
-Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. In der Statistik werden Merkmale üblicherweise mit *Großbuchstaben* gekennzeichnet, Merkmalsausprägungen mit *Kleinbuchstaben*.
-
-<center>
-![*Grafik: Begriffshierarchien für statistische Grundbegriffe, H.-J. Mittag, K. Schüller, Statistik (2023)*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Begriffshierarchien.png?raw=true){#id .class width=70% height=70%}
-</center>
-
-Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren eine Teilmenge aus, spricht man von einer **Stichprobe**. Wenn man, wie in der schließenden Statistik üblich, die Ausprägungen eines Merkmals als das Ergebnis eines Zufallsvorgangs interpretiert (Modellvorstellung), nennt man ein solches Merkmal **Zufallsvariable** und deren Ausprägungen auch **Realisierungen**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Dritt-Impfungen gegen [FSME](https://www.rki.de/SharedDocs/FAQ/FSME/FSME-Impfung/FSME-Impfung.html).
-
-<center>
-![*Grafik: Population und Stichprobe, <https://systats.github.io/linear_model/basics.html>*](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
-</center>
-
-<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
-<p style="color:#acc940;"><b>Beispiel: Statistische Grundbegriffe</b></p>
-Eine **Grundgesamtheit** ist z.B. definiert durch
-
-- alle Personen, die am 1. Mai 2022 in München ihren Erstwohnsitz hatten;
-- Studierende einer Hochschule zu Beginn des Sommersemesters 2023, über die man via Telefonbefragung Informationen gewinnen will;
-- die im November 2021 im Landkreis „Sächsische Schweiz“ stationär behandelten Krebs-Patienten;
-- die von einem stahlverarbeitenden Unternehmen im März 2023 produzierten Serienteile eines bestimmten Typs;
-- die in Deutschland am 1. Januar 2024 gemeldeten PKWs.
-
-Die **statistischen Einheiten** werden hier repräsentiert durch
-
-- jede Person mit Erstwohnsitz in München am 1. Mai 2022;
-- alle zum Sommersemester 2023 eingeschriebenen Studierenden;
-- jede Person,die im November 2021 in der Sächsischen Schweiz mit Krebs hospitalisiert wurde;
-- die im März 2023 in dem Unternehmen produzierten Serienteile;
-- jeder am 1. Januar 2024 in Deutschland gemeldete PKW. 
-
-Interessierende **Merkmale** und **Merkmalsausprägungen** können hier sein
-
-- der Familienstand der Person, etwa mit der Ausprägung „verheiratet“;
-- das Alter der Studierenden, erfasst z.B. in Form von Altersklassen;
-- die Verweildauer im Krankenhaus in Tagen;
-- der Durchmesser des Serienteils in Millimetern;
-- die von einem PKW emittierte Menge an CO2 in g/km.
-</div>
-
 ### **Einführung in die deskriptive Statistik**
 
-Ein vorrangiges Ziel der **deskriptiven Statistik** oder beschreibenden Statistik ist es, mithilfe von **Kennzahlen** und grafischen Darstellungen (vorrangig Histogramme) wesentliche Charakteristiken von Häufigkeitsverteilungen herauszuarbeiten. Eine **Häufigkeitsverteilung** ist eine Zusammenfassung der beobachteten Werte einer Variablen und gibt an, wie oft die verschiedenen Werte vorkommen. Die Häufigkeit kann dabei pro Merkmalsausprägung oder für Klassen angegeben werden, die mehrere Merkmalsausprägungen zusammenfassen (z.B. Alters- und Einkommensgruppen).
+Ein vorrangiges Ziel der **deskriptiven Statistik** oder beschreibenden Statistik ist es, mithilfe von **Kennzahlen** und grafischen Darstellungen (vorrangig Histogramme, lernt ihr in einer späteren Lektion) wesentliche Charakteristiken von Häufigkeitsverteilungen herauszuarbeiten. Eine **Häufigkeitsverteilung** ist eine Zusammenfassung der beobachteten Werte einer Variablen und gibt an, wie oft die verschiedenen Werte vorkommen. Die Häufigkeit kann dabei pro Merkmalsausprägung oder für Klassen angegeben werden, die mehrere Merkmalsausprägungen zusammenfassen (z.B. Altes- und Einkommensgruppen).
 
 #### **Lageparameter** 
 
@@ -367,7 +333,7 @@ Lageparameter dienen der Beantwortung der Frage, welche der in der Stichprobe vo
 Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens einer Stichprobe) ganz unterschiedliche Lagemaße haben kann, zeigt die folgende Abbildung.
 
 <center>
-![*Grafik: Schiefe vs. symmetrische Verteilungen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
+![*Grafik: Schiefe vs. symmetrische Verteilungen. Quelle: Autor*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz4, echo=FALSE}
@@ -435,7 +401,7 @@ Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum b
 **Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
 
 <center>
-![*Grafik: Bestimmung und Bedeutung von p-Quantilen.*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
+![*Grafik: Bestimmung und Bedeutung von p-Quantilen. Quelle: Autor*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
 </center>
 
 ```{r 08_quiz05, echo=FALSE}
@@ -472,15 +438,15 @@ quiz(caption = "Frage zu Streuungsparameter",
 
 ### **Kausalität und Korrelation**
 
-Es gibt eine weitere statistische Größe, die uns wertvolle Aussagen zu den Daten liefern kann, die aber oftmals voreilig als Ursachenbeziehung interpretiert wird: die Korrelation. Die **Korrelation** ist ein Maß für den Zusammenhang zwischen zwei Variablen. Es gibt verschiedene Korrelationsmaße. Die häufigste Art der Korrelation nach Pearson misst einen linearen Zusammenhang (denke an eine gerade Linie durch die Datenpunkte) zwischen zwei Variablen und kann Werte zwischen $-1$ und $1$ annehmen. Bei einer **positiven Korrelation** beobachten wir bei Zunahme einer Variable auch eine gewisse Zunahme in der anderen Variable: größere Häuser erzielen für gewöhnlich einen höheren Verkaufspreis. Bei einer **negativen Korrelation** beobachten wir bei Zunahme einer Variable eine Abnahme in der anderen: Bei schwereren Autos beobachten wir in der Regel einen schlechteren Kraftstoffverbrauch. Je höher die Korrelation (nahe $1$ oder $-1$), desto näher liegen die Datenpunkte an einer geraden Linie im Scatterplot/Streudiagramm (lernen wir später ausführlich kennen). Bei einer Korrelation nahe $0$ können wir keinen *linearen* Zusammenhang erkennen: Egal, was wir über eine Variable wissen, wir können keine Vorhersage über die Werte der andere Variable treffen.
+Es gibt eine weitere statistische Größe, die uns wertvolle Aussagen zu den Daten liefern kann, die aber oftmals voreilig als Ursachenbeziehung interpretiert wird: die Korrelation. Die **Korrelation** ist ein Maß für den Zusammenhang zwischen zwei Variablen. Die häufigste Art der Korrelation nach **Pearson** misst einen **linearen Zusammenhang** (denke an eine gerade Linie durch die Datenpunkte) zwischen zwei Variablen und kann Werte zwischen $-1$ und $1$ annehmen. 
 
-Warum interessieren wir uns für die Korrelation? Sie kann uns dabei helfen, interessante Variablen zu identifizieren, wenn wir für eine Erklärung eines Phänomens mehrere Variablen zur Verfügung haben. Sie kann uns auch dabei helfen, die Qualität von Modellen zu beurteilen, die wir auf Basis von Daten erstellen. Wenn wir beispielsweise untersuchen, wie Verkaufspreise für Häuser zustande kommen, können wir zahlreiche Variablen in Betracht ziehen, die den Preis beeinflussen könnten: die Größe des Hauses, die Anzahl der Zimmer, die Lage, das Baujahr, die Ausstattung, die Anzahl der Bäder, die Anzahl der Stockwerke, die Grundstücksgröße, die Entfernung zu Schulen und Einkaufsmöglichkeiten, und so weiter. Die Korrelation kann uns dabei helfen, die Variablen zu identifizieren, die den Preis am stärksten beeinflussen (sprich, mit dem Preis eine hohe Korrelation aufweisen).
+Bei einer **positiven Korrelation** (Werte nahe $+1$) beobachten wir bei Zunahme einer Variable auch eine gewisse Zunahme in der anderen Variable: größere Häuser erzielen für gewöhnlich einen höheren Verkaufspreis. Bei einer **negativen Korrelation** (Werte nahe $-1$) beobachten wir bei Zunahme einer Variable eine Abnahme in der anderen: schwerere Autos besitzen in der Regel einen höheren Kraftstoffverbrauch und damit eine geringere Reichweite. Bei einer Korrelation nahe $0$ können wir keinen *linearen* Zusammenhang erkennen: Egal, was wir über eine Variable wissen, wir können keine Vorhersage über die Werte der andere Variable treffen (mit anderen Worten sagt uns der Wert einer Variable nichts über den Wert der anderen Variablen).
 
-Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir also nach (verborgenen) Mustern. Daraus können wir jedoch nicht notwendigerweise kausale Schlüsse ziehen. Bleiben wir bei unserem Beispiel des Häuserverkaufs: Wir vergleichen die Verkaufspreise in zwei Nachbarschaften. Dabei finden wir, dass die Anzahl der Bäume auf dem Grundstück stark mit dem Verkaufspreis korreliert. Wir könnten nun fälschlicherweise annehmen, dass die Anzahl der Bäume den Verkaufspreis positiv beeinflusst. Weitere Analysen zeigen jedoch, dass dieser Zusammenhang nur bis zu einer gewissen Anzahl an Bäumen besteht, danach sinkt der Verkaufspreis wieder. Zu viele Bäume sind also auch nicht gut. Um solche voreiligen Fehlschlüsse zu vermeiden, kann die Visualisierung des Datensatzes und der gefundenen Zusammenhänge eine große Hilfe sein.
+Korrelation kann sehr hilfreich, aber auch sehr trügerisch sein. Die erste wichtige Grundregel beim Umgang mit Korrelationen ist, dass es verschiedene Korrelationsmaße gibt. Einige messen nur einen linearen Zusammenhang (die Daten müssen mehr oder weniger gut auf einer geraden Linie liegen), andere (Rangkorrelationen) können auch nicht lineare Zusammenhänge erfassen. Das ist wichtig, weil eine Korrelation nahe 0 nicht bedeutet, dass es *keinen* Zusammenhang gibt, sondern oft nur, dass der Zusammenhang eben nicht *linear* ist. Man denke an den Zusammenhang zwischen Alter und der aufgenommenen Nahrungsmenge. Mit zunehmendem Alter steigt für gewöhnlich die Menge an Nahrung, die wir zu uns nehmen, an, bis sie ab einem gewissen Alter wieder zu sinken beginnt, weil der Körper nicht mehr so viel Energie benötigt. 
 
-Ein anderer sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit liegt es am Alter. Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
+Ein sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit liegt es am Alter. Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
 
-Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grundsätzlich so lange von keinerlei Kausalität auszugehen, bis diese durch ein Experiment belegt werden konnte. Kausale Zusammenhänge können nur durch kontrollierte Experimente bestätigt werden, nicht durch einfache Zusammenhangsmaße. 
+Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grundsätzlich so lange von keinerlei Kausalität auszugehen, bis diese durch ein Experiment belegt werden konnte. Kausale Zusammenhänge können nur durch kontrollierte Experimente bestätigt werden, nicht durch einfache statistische Kenngrößen. 
 
 ### **Abschließendes Beispiel**
 
@@ -520,4 +486,5 @@ Die zweite Übung behandelt noch einmal die Korrelation. Öffnet dazu bitte dies
 - [DATA-LITERACY-CHARTA](https://www.stifterverband.org/charta-data-literacy)
 - [Destatis - Statistisches Bundesamt](https://www.destatis.de/DE/Home/_inhalt.html)
 - [KI Campus](https://ki-campus.org/)
+- [https://systats.github.io/](https://systats.github.io/linear_model/index.html)
 - [Werde ein Data Head](https://dpunkt.de/produkt/werde-ein-data-head/)
