@@ -4,13 +4,15 @@
 
 *"Grundlagen der Statistik" von Michael Aydinbas in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
-In dieser Woche geht es um die Grundlagen des statistischen Denkens. Wir beginnen mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir, was Daten und Datentypen sind. Mit diesem Wissen steigen wir in die Grundbegriffe der Statistik ein und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können. Zum Schluss diskutieren wir das wichtige Thema Korrelation und Kausalität.
+In dieser Woche geht es um die Grundlagen des statistischen Denkens.
+Wir beschäftigen uns aber nicht mit der Statistik aus purem Selbstzweck, sondern sie ist ein ganz wesentlicher Teil und Voraussetzung für den kritischen Umgang mit Daten. Daher schauen wir uns zu Beginn an, was wir für einen kompetenten Umgang mit Daten benötigen, wie wir Datenkompetenz erlangen können und welche Rolle die Statistik dabei spielt.
 
-Wir beschäftigen uns aber nicht mit der Statistik aus purem Selbstzweck, sondern sie ist ein ganz wesentlicher Teil und Voraussetzung für den kritischen Umgang mit Daten. Daher schauen wir uns zunächst an, was wir für einen kompetenten Umgang mit Daten benötigen und wie wir Datenkompetenz erlangen können.
+Im Anschluss beginnen wir mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir, was Daten und Datentypen sind. Mit diesem Wissen steigen wir in die Grundbegriffe der Statistik ein und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können. Zum Schluss diskutieren wir das wichtige Thema Korrelation und Kausalität.
 
 ### **Data Literacy**
+*Quelle: - [DATA-LITERACY-CHARTA](https://www.stifterverband.org/charta-data-literacy)*
 
-Daten sind im digitalen Zeitalter eine Schlüsselressource für gesellschaftliche Teilhabe, Wohlstand und Wettbewerbsfähigkeit, für den Schutz von Klima und Umwelt sowie staatliches Handeln. Die Fähigkeiten, Daten auf kritische Art und Weise zu sammeln, zu managen, zu bewerten und anzuwenden, wird als Data Literacy bezeichnet. Data Literacy umfasst dabei nicht nur Statistikkompetenz oder ein mathematisches Grundverständnis, sondern auch Fertigkeiten wie Digital- und Medienkompetenz. Wer datenkompetent („data literate“) ist, kann die Zuverlässigkeit von Datenquellen beurteilen, Daten zielgerichtet aufbereiten und einordnen sowie sinnvolle Schlüsse aus diesen Daten ziehen.
+Daten sind im digitalen Zeitalter eine Schlüsselressource für gesellschaftliche Teilhabe, Wohlstand und Wettbewerbsfähigkeit, für den Schutz von Klima und Umwelt sowie staatliches Handeln. Die Fähigkeiten, Daten auf kritische Art und Weise zu sammeln, zu verwalten, zu bewerten und anzuwenden, wird als Data Literacy bezeichnet. Data Literacy umfasst dabei nicht nur Statistikkompetenz oder ein mathematisches Grundverständnis, sondern auch Fertigkeiten wie Digital- und Medienkompetenz. Wer datenkompetent („data literate“) ist, kann die Zuverlässigkeit von Datenquellen beurteilen, Daten zielgerichtet aufbereiten und einordnen sowie sinnvolle Schlüsse aus diesen Daten ziehen.
 
 Wenn Daten Entscheidungsprozesse unterstützen sollen, braucht es kompetente Antworten auf vier grundlegende Fragen:
 
@@ -19,7 +21,7 @@ Wenn Daten Entscheidungsprozesse unterstützen sollen, braucht es kompetente Ant
 - **Was darf ich mit Daten machen**? Alle gesetzlichen Regeln der Datennutzung (zum Beispiel Datenschutz, Urheberrechte und Lizenzfragen) müssen immer mitbedacht werden.
 - **Was soll ich mit Daten machen**? Weil Daten eine wertvolle Ressource darstellen, leitet sich daraus ein normativer Anspruch ab, sie zum Wohl von Individuen und Gesellschaft zu nutzen.
 
-Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Insbesondere werden die Fähigkeit und Bereitschaft, eine Datenkultur zu etablieren, sowie die Fähigkeit und Bereitschaft, Handeln abzuleiten, als Teilkompetenzen von Datenkompetenz verstanden.
+Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Auch wenn das Schaubild keinen klaren Startpunkt vermittelt, weil der Prozess mehrfach durchlaufen werden kann, so wird man für gewöhnlich mit der Eingrenzung der Aufgabe und der Formulierung von (Forschungs-)Fragen beginnen.
 
 <p>
 <center>
@@ -57,9 +59,24 @@ vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
 
 
 In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist.
-Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. 
+Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Die folgende Abbildung verdeutlicht noch einmal den Zusammenhang zwischen Population und Stichprobe.
 
-Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Dritt-Impfungen gegen [FSME](https://www.rki.de/SharedDocs/FAQ/FSME/FSME-Impfung/FSME-Impfung.html).
+**Beispiel**: Statistische Grundbegriffe
+
+Eine Grundgesamtheit ist z.B. definiert durch
+
+- alle Personen, die am 1. Mai 2023 in Berlin ihren Erstwohnsitz hatten;
+- Studierende einer Universität zu Beginn des Wintersemesters 2023, über die man via Internetbefragung Informationen gewinnen will;
+
+Die statistischen Einheiten werden hier repräsentiert durch
+
+- jede Person mit Erstwohnsitz in Berlin am 1. Mai 2023;
+- alle zum Wintersemester 2023 eingeschriebenen Studierenden;
+
+Interessierende Merkmale und Merkmalsausprägungen können hier sein
+
+- der Familienstand der Person, etwa mit den Ausprägung „single“, "verheiratet", "geschieden"; 
+- das Alter der Studierenden, erfasst z.B. in Form von Altersklassen;
 
 <p>
 <center>
@@ -71,11 +88,11 @@ Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling
 
 Für Statistiker ist der Begriff „Statistik“ nicht eindeutig belegt. Sie verstehen hierunter einerseits ihre Wissenschaft als Ganzes. Sie verwenden den Begriff aber auch für Kenngrößen, die sich aus statistischen Daten ableiten (z.B. den Mittelwert). Im allgemeinen Sprachgebrauch wird auch häufig ein Datensatz als eine Statistik angesprochen, etwa ein Datensatz mit der Medaillenverteilung bei den Olympischen Sommerspielen. In diesem Kurs wird „Statistik“ im Sinne von „Wissenschaft“ verwendet, also bestimmte Methoden sowie Denk- und Herangehensweisen.
 
-Innerhalb der Statistik lassen sich die **beschreibende** und die **schließende** Statistik unterscheiden. Die **beschreibende Statistik** oder **deskriptive Statistik** umfasst numerische und grafische Verfahren zur Charakterisierung und Präsentation von Daten. Ziel ist die **Reduktion** (Zusammenfassung) der in den Daten enthaltenen statistischen Informationen durch Verdichtung zu wenigen Kenngrößen, möglichst ohne größeren Informationsverlust. Auf diesen Zweig der Statistik wollen wir uns im Rest dieser Lerneinheit konzentrieren.
+Innerhalb der Statistik lassen sich die *beschreibende* und die *schließende* Statistik unterscheiden. Die beschreibende oder **deskriptive Statistik** umfasst numerische und grafische Verfahren zur Charakterisierung und Präsentation von Daten. Ziel ist die **Reduktion** (Zusammenfassung) der in den Daten enthaltenen statistischen Informationen durch Verdichtung zu wenigen Kenngrößen, möglichst ohne größeren Informationsverlust. Auf diesen Zweig der Statistik wollen wir uns im Rest dieser Lerneinheit konzentrieren.
 
 Aus der beschreibenden Statistik hat sich die **explorative Datenanalyse** entwickelt. Diese geht über die beschreibende Statistik hinaus, weil hier – noch ohne Einsatz von (mathematischen) Modellen – mit rechenintensiven Verfahren nach auffälligen Mustern und Strukturen in Datenbeständen gesucht wird. So werden etwa die Scannerdaten eines Lebensmittelkonzerns von einem Verkaufstag routinemäßig nach Auffälligkeiten durchleuchtet, ohne dass sofort eine Hypothese im Spiel ist. So entdeckt man Trends im Käuferverhalten und kann zudem rechtzeitig Nachbestellungen organisieren.
 
-Die **schließende Statistik** oder induktive Statistik leitet aus Stichprobendaten **Aussagen** ab, die über die jeweilige Stichprobe hinausgehen und sich auf eine umfassendere **Grundgesamtheit beziehen**. Sie sei aber nur der Vollständigkeit halber genannt und wird uns heute nicht weiter beschäftigen.
+Die schließende oder **induktive** Statistik leitet aus Stichprobendaten **Aussagen** ab, die über die jeweilige Stichprobe hinausgehen und sich auf eine umfassendere **Grundgesamtheit beziehen**. Sie sei aber nur der Vollständigkeit halber genannt und wird uns heute nicht weiter beschäftigen.
 
 Jetzt wollen wir uns einige Pressemitteilungen des Statistischen Bundesamts näher ansehen.
 
@@ -155,7 +172,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
     answer("Ja"),
     answer("Nein"),
     answer("Das kommt drauf an", correct = TRUE),
-    correct = "Das kann man so einfach nicht sagen! Bis auf die erste und letzte Altersgruppe umfasst jede Gruppe 10 Jahre. Bei der ersten Gruppe kann man argumentieren, dass eine weitere Unterteilung in ' Unter 20 Jahre' nicht sinnvoll ist, da diese Gruppe zu klein ist. Bei der letzten Gruppe kann man ähnlich argumentieren, dass eine erste Heirat vermutlich mit über 60 sehr unwahrscheinlich wird. Aber diese Einteilungen sinn dennoch 'willkürlich' und können die Visualisierung entscheidend verändern.",
+    correct = "Das kann man so einfach nicht sagen! Bis auf die erste und letzte Altersgruppe umfasst jede Gruppe 10 Jahre. Bei der ersten Gruppe kann man argumentieren, dass eine weitere Unterteilung in ' Unter 20 Jahre' nicht sinnvoll ist, da diese Gruppe zu klein ist. Bei der letzten Gruppe kann man ähnlich argumentieren, dass eine erste Heirat vermutlich mit über 60 sehr unwahrscheinlich wird. Aber diese Einteilungen sind dennoch 'willkürlich' und können die Visualisierung entscheidend verändern.",
     incorrect = "Leider falsch. Die Frage ist gemein, das wissen wir. Aber wie so oft im Leben: Es kommt eben darauf an.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -167,7 +184,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
     answer("60"),
     answer("70", correct=TRUE),
     answer("80"),
-    correct = "Richtig! Die Frage bezieht sich auf die zweite Grafik, greift aber die letzte Frage mit auf. Obwohl die erste Grafik alle Menschen ab 50 Jahre aufwärts in einer Gruppe einsortiert, zeigt die zweite Grafik doch noch deutliche Unterschiede innerhalb dieser Gruppe, was den Anteil der Verheirateten anbelangt. So ist der Anteil der 50-jährigen Verheirateten bei etwa 60 %, bei den 60-jährigen steigt dieser Anteil bereits auf etwa 66 % und bei den 70-jährigen (oder knapp darunter) erreicht er das Maximum von etwas über 70 %. Interessanterweise sinkt der Anteil bei den über 80-jährigen dann deutlich unter den Durchschnitt, d.h. die meisten über 80-jährigen sind nicht verheiratet, oder, wie die Beschreibung am unteren Rand erklärt, verwitwet.",
+    correct = "Richtig! Die Frage bezieht sich auf die zweite Grafik, greift aber die letzte Frage mit auf. Obwohl die erste Grafik alle Menschen ab 50 Jahre aufwärts in einer Gruppe einsortiert, zeigt die zweite Grafik doch noch deutliche Unterschiede innerhalb dieser Gruppe, was den Anteil der Verheirateten anbelangt. So ist der Anteil der 50-Jährigen Verheirateten bei etwa 60 %, bei den 60-Jährigen steigt dieser Anteil bereits auf etwa 66 % und bei den 70-Jährigen (oder knapp darunter) erreicht er das Maximum von etwas über 70 %. Interessanterweise sinkt der Anteil bei den über 80-Jährigen dann deutlich unter den Durchschnitt, d.h. die meisten über 80-Jährigen sind nicht verheiratet, oder, wie die Beschreibung am unteren Rand erklärt, verwitwet.",
     incorrect = "Leider falsch. Schau dir die blaue Kurve an und versuche, die Altersgruppe zu finden, die den höchsten Wert auf dieser Kurve hat.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -191,7 +208,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
   question("Was verrät die Färbung der Monatssegmente über den Bierabsatz eines Jahres (z.B. die Segmente des äußersten Ringes für das Jahr 2023)?",
     answer("Ich habe eine Idee", correct=TRUE),
     answer("Keine Idee"),
-    correct = "Die Farbskala geht über alle jemals gemessenen Werte zwischen Mai 2000 (höchster Wert) und Jan 2021 (niedrigster Wert). D.h. der hellste Blauton stellt den Minimalwert da, der dunkelste BLauton den Maximalwert. Wenn man sich auf einen Ring konzentriert, so fällt auf, dass die Wintermonate (=Segmente) grundsätzlich heller sind als die Sommermonate, vermutlich, weil die Menschen im Sommer mehr Bier konsumieren als im Winter.",
+    correct = "Die Farbskala geht über alle jemals gemessenen Werte zwischen Mai 2000 (höchster Wert) und Jan 2021 (niedrigster Wert). D.h. der hellste Blauton stellt den Minimalwert da, der dunkelste Blauton den Maximalwert. Wenn man sich auf einen Ring konzentriert, so fällt auf, dass die Wintermonate (=Segmente) grundsätzlich heller sind als die Sommermonate, vermutlich, weil die Menschen im Sommer mehr Bier konsumieren als im Winter.",
     incorrect = "Wenn du dich auf einen Ring (= ein Jahr) konzentrierst, was fällt dir dann in Bezug auf die Färbung der Segmente auf? Welche Monate sind heller, welche dunkler? Was kannst du daraus über den Absatz schlussfolgern? Liegt dem ein saisonaler Trend zugrunde?",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -233,7 +250,7 @@ Die nachfolgende Grafik stellt alle Begriffe dieses Abschnittes noch einmal übe
 
 <p>
 <center>
-![**Abbildung**: Grundbegriffe für den Umgang mit tabellarischen Datensätzen. Quelle: Autor.](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
+![**Abbildung**: Grundbegriffe für den Umgang mit tabellarischen Datensätzen. Quelle: Eigene Darstellung.](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -357,7 +374,7 @@ Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens ein
 
 <p>
 <center>
-![**Abbildung**: Schiefe vs. symmetrische Verteilungen. Quelle: Autor](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
+![**Abbildung**: Schiefe vs. symmetrische Verteilungen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -427,7 +444,7 @@ Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum b
 
 <p>
 <center>
-![**Abbildung**: Bestimmung und Bedeutung von p-Quantilen. Quelle: Autor](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
+![**Abbildung**: Bestimmung und Bedeutung von p-Quantilen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
