@@ -21,9 +21,11 @@ Wenn Daten Entscheidungsprozesse unterstützen sollen, braucht es kompetente Ant
 
 Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Insbesondere werden die Fähigkeit und Bereitschaft, eine Datenkultur zu etablieren, sowie die Fähigkeit und Bereitschaft, Handeln abzuleiten, als Teilkompetenzen von Datenkompetenz verstanden.
 
+<p>
 <center>
 ![**Abbildung**: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten. Quelle: Schüller, Busch, Hindinger (2019)](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
 </center>
+</p>
 
 Im oberen Schaubild ist die Statistik an fast allen Schritten beteiligt:
 
@@ -59,9 +61,11 @@ Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** gen
 
 Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Beispiele für Realisierungen von Zufallsvariablen sind etwa die bei einer Serie von Roulettespielen beobachteten Ausgänge oder die Anzahl der im Mai 2022 in Bayern verabreichten Dritt-Impfungen gegen [FSME](https://www.rki.de/SharedDocs/FAQ/FSME/FSME-Impfung/FSME-Impfung.html).
 
+<p>
 <center>
 ![**Abbildung**: Population und Stichprobe. Quelle: <https://systats.github.io/linear_model/basics.html>](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
 </center>
+</p>
 
 #### **Aufgaben und Teilbereiche der Statistik**
 
@@ -88,9 +92,11 @@ Verbraucherpreisindex, Januar 2024
 - +2,9 % zum Vorjahresmonat (vorläufiges Ergebnis bestätigt)
 - +0,2 % zum Vormonat (vorläufiges Ergebnis bestätigt)
 
+<p>
 <center>
 ![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
 </center>
+</p>
 
 ```{r 08_quiz1, echo=FALSE}
 quiz(caption = "Fragen zur Pressemitteilung",
@@ -122,6 +128,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
 - Zahl derjenigen, die mit 50+ zum ersten Mal heiraten, von 7 500 im Jahr 2002 auf rund 41 500 im Jahr 2022 gestiegen
 - Rund die Hälfte (49 %) der erwachsenen Bevölkerung war Ende 2022 verheiratet, bei den 65- bis 69-Jährigen gut zwei Drittel (68 %)
 
+<p>
 <center>
 ![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
 </center>
@@ -129,6 +136,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
 <center>
 ![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
 </center>
+</p>
 
 
 ```{r 08_quiz2_v2, echo=FALSE}
@@ -172,9 +180,11 @@ quiz(caption = "Fragen zur Pressemitteilung",
 - Inlandsabsatz um 4,2 % gesunken, Bierexporte um 5,9 % niedriger als im Vorjahr
 - Auch langfristig sinkender Bierabsatz: Im Jahr 2023 haben die Brauereien und Bierlager 11,5 % weniger Bier abgesetzt als im Jahr 2013
 
+<p>
 <center>
 ![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
 </center>
+</p>
 
 ```{r 08_quiz3, echo=FALSE}
 quiz(caption = "Fragen zur Pressemitteilung",
@@ -221,9 +231,11 @@ Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**
 
 Die nachfolgende Grafik stellt alle Begriffe dieses Abschnittes noch einmal übersichtlich zusammen. 
 
+<p>
 <center>
 ![**Abbildung**: Grundbegriffe für den Umgang mit tabellarischen Datensätzen. Quelle: Autor.](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
 </center>
+</p>
 
 ```{r 08_quiz_datensatz, echo=FALSE}
 quiz(caption = "Fragen zu tabellarischen Daten",
@@ -271,15 +283,22 @@ Numerische Daten werden in zwei Hauptkategorien unterteilt:
 - **Kontinuierliche Daten** können jede Zahl innerhalb eines bestimmten Bereichs annehmen. Sie stellen eine grundsätzlich nicht abzählbare Menge von Werten dar, d.h., es gibt immer noch einen Wert zwischen zwei beliebigen Werten. Beispiele für diesen Datentyp sind Wetterdaten wie die Menge an Niederschlag oder die Außentemperatur. Die Außentemperatur kann mit beliebiger Genauigkeit angegeben werden, also beispielsweise mit $29\ °C$, $28,6\ °C$, oder $28,6425\ °C$.
 - **Diskrete Daten** sind auf ganze Zahlen beschränkt. Sie stellen eine abzählbare Menge von Werten dar. Beispiele für diesen Datentyp sind die Anzahl der Kinder in einer Familie oder die Anzahl der Tore in einem Fußballspiel. Man kann $0, 1, 2$ oder mehr Kinder haben, aber nicht $1,28$ Kinder. 
 
-
-![*Grafik: Numerische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen2.png?raw=true){#id .class width=100%}
+<p>
+<center>
+![**Abbildung**: Numerische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen2.png?raw=true){#id .class width=100%}
+</center>
+</p>
 
 Kategorische Daten werden ebenfalls in zwei Hauptkategorien unterteilt:
 
 - **Ordinale Daten** besitzen eine natürliche Ordnung. So nutzen Umfragen Ordinaldaten, wenn sie nach eurer Erfahrung oder Zustimmung auf einer Skala von 1-10 fragen. Die Werte sehen zwar wie diskrete Daten aus, aber es ist nicht möglich oder sinnvoll, den Abstand zwischen zwei Werten zu interpretieren. Man kann nicht sagen, dass der Abstand zwischen einer 9 und 10 in einer Umfrage identisch ist mit dem Abstand zwischen einer 0 und einer 1. Ordinaldaten müssen nicht mit Zahlen kodiert sein. So können Kleidergrößen wie S, M, L, XL, XXL als Ordinaldaten interpretiert werden.
 - **Nominale Daten** besitzen keine natürliche Ordnung. Beispiele für nominale Daten sind die Farbe eines Autos, die Nationalität, das Geschlecht, die Postleitzahl oder die Parteizugehörigkeit. Die Reihenfolge, in der die Daten präsentiert werden, ist willkürlich, da es nicht möglich ist, eine Kategorie als "größer" oder "kleiner" als eine andere zu bezeichnen.
 
-![*Grafik: Kategorische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen1.png?raw=true){#id .class width=100%}
+<p>
+<center>
+![**Abbildung**: Kategorische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen1.png?raw=true){#id .class width=100%}
+</center>
+</p>
 
 Warum sind diese sogenannten **Skalenniveaus** wichtig für uns? Das Skalenniveau bestimmt, welche statistischen Methoden angewendet werden können. So können beispielsweise Mittelwerte nur für kontinuierliche numerische Daten sinnvoll berechnet werden (man denke an den Notenspiegel aus der Schule, bei dem die Durchschnittsnote wenig sinnvoll ist, wenn Noten selbst diskrete Werte darstellen). Nominale kategorische Daten hingegen lassen sich nur sinnvoll über Häufigkeiten zusammenfassen, mehr kann man mit ihnen nicht anstellen. Außerdem hilft ein gemeinsames Vokabular dabei, sich mit anderen über die eigenen Daten auszutauschen und den Datensatz zu beschreiben.
 
@@ -336,9 +355,11 @@ Lageparameter dienen der Beantwortung der Frage, welche der in der Stichprobe vo
 
 Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens einer Stichprobe) ganz unterschiedliche Lagemaße haben kann, zeigt die folgende Abbildung.
 
+<p>
 <center>
 ![**Abbildung**: Schiefe vs. symmetrische Verteilungen. Quelle: Autor](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
 </center>
+</p>
 
 ```{r 08_quiz4, echo=FALSE}
 quiz(caption = "Frage zu Lageparametern",
@@ -404,9 +425,11 @@ Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum b
 
 **Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
 
+<p>
 <center>
 ![**Abbildung**: Bestimmung und Bedeutung von p-Quantilen. Quelle: Autor](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
 </center>
+</p>
 
 ```{r 08_quiz05, echo=FALSE}
 quiz(caption = "Frage zu Streuungsparameter",
@@ -458,17 +481,21 @@ Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den 
 
 Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Grafik)! Wie kann beides gleichzeitig war sein? Wie können zwei Bezirke mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
 
+<p>
 <center>
 ![**Abbildung**: US-Bezirke mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
 </center>
+</p>
 
 Und die gibt es in der Tat: Die geringe Bevölkerungsdichte in den Bezirken sorgt für eine hohe Streuung (Varianz) in den Krebsraten. Nehmen wir zwei Bezirke in ländlicher Gegend, Bezirk A und Bezirk B, mit je 1000 Einwohnern. Bezirk A hat keine Krebsfälle, daher ist die Krebsrate 0. Bezirk B hat einen einzigen Krebsfall, doch die Krebsrate steigt dadurch sofort auf 100, da die Krebsrate ja pro 100.000 Bewohnern gemessen wird. 100 ist aber extrem hoch, sogar die höchste Rate im ganzen Land! Wenn wir uns dagegen die großen Städte wie New York mit Millionen von Einwohnern ansehen, würde ein einziger weiterer Krebsfall, sagen wir von 75 auf 76 Krebsfälle, die Rate kaum merklich verändern: Sie würde von $0,9375$ auf $0,95$ ansteigen. 
 
 Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bezirke zusammen. Die weniger dicht besiedelten Bezirke auf der linken Seite der Grafik weisen eine deutlich höhere Varianz in der Krebsrate auf. Zudem treten sowohl die höchsten als auch die niedrigsten Krebsraten in dieser Gruppe auf. Mit steigender Bevölkerungsdichte (je mehr wir uns auf der x-Achse nach rechts bewegen) sinkt die Varianz und wir können eine Stabilisierung um den Wert 5 herum erkennen. Was sollten wir aus diesem Beispiel mitnehmen? Kleine Stichprobengrößen können zu extremen Ergebnissen führen.
 
+<p>
 <center>
 ![**Abbildung**: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
 </center>
+</p>
 
 ### **Und jetzt Ihr**
 
