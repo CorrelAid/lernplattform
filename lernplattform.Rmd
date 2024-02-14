@@ -38,6 +38,7 @@ library(httr)
 library(purrr)
 library(RSQLite)
 library(leaflet)
+library(vembedr)
 
 ## RMD
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)

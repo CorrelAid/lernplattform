@@ -14,18 +14,22 @@ Inhalte der Sessions (durchnummerierte `.Rmd`-Dateien on top-level) sind generel
 Der Link zur Session kann als Hyperlink dem Titel hinzugefügt werden.
 
 ## Code
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Code in `.R`-Dateien und sonstige `.Rmd`-Dateien sind lizensiert unter der MIT Lizenz.
 
 ## Daten
+
 Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet Ihr [hier](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26). Vielen Dank an das Team von Tidy Tuesday und Break Free From Plastics!
 
 ## Inhaltlicher Input
+
 Die Lernplattform basiert auf dem CRAN [learnr-Package](https://cran.r-project.org/web/packages/learnr/learnr.pdf) sowie dem im Entwicklungsstadium befindlichen [gradethis-Package](https://github.com/rstudio/gradethis). Über die Datei lernplattform.Rmd werden die Kapitel der Lernplattform gerendered ("Run Document"). Der Inhalt der einzelnen Kapitel findet sich in den jeweiligemn Rmds. Hinzu kommen notwendige Daten (Ordner: daten), inklusive Abbildungen und Cheat Sheets, und Übungen für Teilnehmende (Ordner: uebungen). 
 
 ## Technische Details
-Entwickler:innen finden Informationen zu den technischen Anforderungen (R-Versionen und benötigte Packages) unter "requirements.txt". In der Datei "lernplattform.Rmd" fließen die einzelnen Kapitel zusammen. Dort sind auch sämtliche Einstellungen zum "Set-Up" enthalten. Sollen R-Objekte über mehrere Kapitel/Übungen zugreifbar sein, müssen sie im Set-Up Code Chunk definiert werden.
+
+Entwickler:innen finden Informationen zu den technischen Anforderungen (R-Versionen und benötigte Packages) unter "requirements.txt". Die benötigten Pakete können mit dem Paket [`renv`](https://rstudio.github.io/renv/) via `renv::init()` installiert werden. In der Datei "lernplattform.Rmd" fließen die einzelnen Kapitel zusammen. Dort sind auch sämtliche Einstellungen zum "Set-Up" enthalten. Sollen R-Objekte über mehrere Kapitel/Übungen zugreifbar sein, müssen sie im Set-Up Code Chunk definiert werden.
 ! Achtung: Die Spracheinstellungen bitte immer prüfen. !
 
 ```
