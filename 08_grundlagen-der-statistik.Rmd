@@ -431,17 +431,19 @@ quiz(caption = "Frage zu Lageparametern",
 
 #### **Streuungsparameter** 
 
-Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum beschreiben. Sie geben also an, wie weit im Mittel die einzelnen Beobachtungen von einem Lageparameter entfernt sind.
+Streuungsparameter sollen das Aumaß der Streuung innerhalb des Datensatzes oder um einen Lageparameter herum beschreiben. So gibt beispielsweise die Standardabweichung einer Variable an, wie weit im Mittel die einzelnen Beobachtungen vom Mittelwert dieser Variable entfernt sind.
 
-**Varianz**: die durchschnittliche quadrierte Streuung um den Mittelwert.
+**Standardabweichung**: standardisiertes Maß für die Streuung um den Mittelwert in der selben Maßeinheit wie die Variable (auch: mittlere Abweichung).
 
-**Standardabweichung**: standardisiertes Maß für die Streuung um den Mittelwert in der selben Maßeinheit wie die Variable (auch: mittlere Abweichung). Entspricht der Quadratwurzel aus der Varianz.
+**Varianz**: die quadrierte Standdardabweichung.
 
 **Spannweite**: Differenz zwischen dem kleinsten Wert (**minimale Ausprägung**) einer Variablen und dem größten Wert (**maximale Ausprägung**) einer Variablen
 
 **p-Quantil**: Der Wert, für den mindestens $p\cdot 100 \%$ der Beobachtungen kleiner oder gleich diesem Wert sind. Das 25%-Quantil ($p=25$) ist also der Wert, für den 25 % aller beobachteten Werte kleiner oder gleich diesem Wert sind.
 
 **Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
+
+In der nachfolgenden Abbildung wird verdeutlicht, wie der Median sowie das 25%-Quantil und 75%-Quantil für eine beispielhafte Messreihe ermittelt werden können.
 
 <p>
 <center>
@@ -489,15 +491,15 @@ Bei einer **positiven Korrelation** (Werte nahe $+1$) beobachten wir bei Zunahme
 
 Korrelation kann sehr hilfreich, aber auch sehr trügerisch sein. Die erste wichtige Grundregel beim Umgang mit Korrelationen ist, dass es verschiedene Korrelationsmaße gibt. Einige messen nur einen linearen Zusammenhang (die Daten müssen mehr oder weniger gut auf einer geraden Linie liegen), andere (Rangkorrelationen) können auch nicht lineare Zusammenhänge erfassen. Das ist wichtig, weil eine Korrelation nahe 0 nicht bedeutet, dass es *keinen* Zusammenhang gibt, sondern oft nur, dass der Zusammenhang eben nicht *linear* ist. Man denke an den Zusammenhang zwischen Alter und der aufgenommenen Nahrungsmenge. Mit zunehmendem Alter steigt für gewöhnlich die Menge an Nahrung, die wir zu uns nehmen, an, bis sie ab einem gewissen Alter wieder zu sinken beginnt, weil der Körper nicht mehr so viel Energie benötigt. 
 
-Ein sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit liegt es am Alter. Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
+Ein sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit sind beide über das Alter miteinander verbunden (man spricht daher beim Alter auch von einer **konfundierenden Variable**). Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
 
 Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grundsätzlich so lange von keinerlei Kausalität auszugehen, bis diese durch ein Experiment belegt werden konnte. Kausale Zusammenhänge können nur durch kontrollierte Experimente bestätigt werden, nicht durch einfache statistische Kenngrößen. 
 
 ### **Abschließendes Beispiel**
 
-Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten treten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. An dieser Stelle könnt ihr kurz innehalten und euch ein paar Gründe für diesen Befund überlegen. 
+Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Westen und den Süden des Landes verstreut sind. An dieser Stelle könnt ihr kurz innehalten und euch ein paar Gründe für diesen Befund überlegen. 
 
-Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Abbildung)! Wie kann beides gleichzeitig war sein? Wie können zwei Bezirke mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
+Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Westen, und den Süden des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Abbildung)! Wie kann beides gleichzeitig war sein? Wie können zwei Bezirke mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
 
 <p>
 <center>
