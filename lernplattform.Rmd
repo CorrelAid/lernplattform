@@ -197,6 +197,12 @@ out <- knitr::knit_child("02_datenschutz-und-datenethik.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
+<!-- ## Grundlagen der Statistik -->
+```{r results='asis'}
+out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
 <!-- ## Einführung in RStudio -->
 ```{r results='asis'}
 out <- knitr::knit_child("03_einfuehrung-in-rstudio.Rmd", quiet = TRUE)
@@ -236,12 +242,6 @@ cat(out, sep = '')
 <!-- ## Datenvisualisierung  -->
 ```{r results='asis'}
 out <- knitr::knit_child("07_datenvisualisierung.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Grundlagen der Statistik -->
-```{r results='asis'}
-out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 

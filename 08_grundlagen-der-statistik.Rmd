@@ -25,7 +25,7 @@ Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendig
 
 <p>
 <center>
-![**Abbildung**: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten. Quelle: Schüller, Busch, Hindinger (2019)](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
+![**Abbildung**: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten. Quelle: Schüller, Busch, Hindinger (2019)](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
 </center>
 </p>
 
@@ -111,7 +111,7 @@ Verbraucherpreisindex, Januar 2024
 
 <p>
 <center>
-![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -147,11 +147,11 @@ quiz(caption = "Fragen zur Pressemitteilung",
 
 <p>
 <center>
-![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
 </center>
 
 <center>
-![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -199,7 +199,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
 
 <p>
 <center>
-![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>*](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -250,7 +250,7 @@ Die nachfolgende Grafik stellt alle Begriffe dieses Abschnittes noch einmal übe
 
 <p>
 <center>
-![**Abbildung**: Grundbegriffe für den Umgang mit tabellarischen Datensätzen. Quelle: Eigene Darstellung.](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
+![**Abbildung**: Grundbegriffe für den Umgang mit tabellarischen Datensätzen. Quelle: Eigene Darstellung.](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -302,7 +302,7 @@ Numerische Daten werden in zwei Hauptkategorien unterteilt:
 
 <p>
 <center>
-![**Abbildung**: Numerische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen2.png?raw=true){#id .class width=100%}
+![**Abbildung**: Numerische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen2.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -313,7 +313,7 @@ Kategorische Daten werden ebenfalls in zwei Hauptkategorien unterteilt:
 
 <p>
 <center>
-![**Abbildung**: Kategorische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen1.png?raw=true){#id .class width=100%}
+![**Abbildung**: Kategorische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen1.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -374,7 +374,7 @@ Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens ein
 
 <p>
 <center>
-![**Abbildung**: Schiefe vs. symmetrische Verteilungen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
+![**Abbildung**: Schiefe vs. symmetrische Verteilungen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -444,7 +444,7 @@ Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum b
 
 <p>
 <center>
-![**Abbildung**: Bestimmung und Bedeutung von p-Quantilen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
+![**Abbildung**: Bestimmung und Bedeutung von p-Quantilen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -500,7 +500,7 @@ Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versor
 
 <p>
 <center>
-![**Abbildung**: US-Bezirke mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
+![**Abbildung**: US-Bezirke mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
 </center>
 </p>
 
@@ -510,7 +510,7 @@ Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bezirke zusammen. Di
 
 <p>
 <center>
-![**Abbildung**: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/michael_statistik/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
+![**Abbildung**: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
 </center>
 </p>
 
