@@ -9,8 +9,7 @@ Wir beschäftigen uns aber nicht mit der Statistik aus purem Selbstzweck, sonder
 
 Im Anschluss beginnen wir mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir, was Daten und Datentypen sind. Mit diesem Wissen steigen wir in die Grundbegriffe der Statistik ein und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können. Zum Schluss diskutieren wir das wichtige Thema Korrelation und Kausalität.
 
-### **Data Literacy**
-*Quelle: - [DATA-LITERACY-CHARTA](https://www.stifterverband.org/charta-data-literacy)*
+### **Data Literacy**<sup><a href="#section-quelle-1">1</a></sub>
 
 Daten sind im digitalen Zeitalter eine Schlüsselressource für gesellschaftliche Teilhabe, Wohlstand und Wettbewerbsfähigkeit, für den Schutz von Klima und Umwelt sowie staatliches Handeln. Die Fähigkeiten, Daten auf kritische Art und Weise zu sammeln, zu verwalten, zu bewerten und anzuwenden, wird als Data Literacy bezeichnet. Data Literacy umfasst dabei nicht nur Statistikkompetenz oder ein mathematisches Grundverständnis, sondern auch Fertigkeiten wie Digital- und Medienkompetenz. Wer datenkompetent („data literate“) ist, kann die Zuverlässigkeit von Datenquellen beurteilen, Daten zielgerichtet aufbereiten und einordnen sowie sinnvolle Schlüsse aus diesen Daten ziehen.
 
@@ -39,7 +38,7 @@ Im oberen Schaubild ist die Statistik an fast allen Schritten beteiligt:
 
 Daher wollen wir uns näher mit den Grundlagen der Statistik beschäftigen. Wir tun dies hier aber sehr anwendungsorientiert und werden nur die Grundlagen behandeln, die beim Umgang mit eigenen Daten und Datensätzen direkt angewendet werden können. 
 
-### **Einführung in die Statistik**
+### **Einführung in die Statistik**<sup><a href="#section-quelle-2">2</a></sub>
 
 <div>
 <video width="320" height="240" controls>
@@ -61,7 +60,8 @@ vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
 In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist.
 Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Die folgende Abbildung verdeutlicht noch einmal den Zusammenhang zwischen Population und Stichprobe.
 
-**Beispiel**: Statistische Grundbegriffe
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>Beispiele:  Statistische Grundbegriffe</b></p>
 
 Eine Grundgesamtheit ist z.B. definiert durch
 
@@ -77,6 +77,7 @@ Interessierende Merkmale und Merkmalsausprägungen können hier sein
 
 - der Familienstand der Person, etwa mit den Ausprägung „single“, "verheiratet", "geschieden"; 
 - das Alter der Studierenden, erfasst z.B. in Form von Altersklassen;
+</div>
 
 <p>
 <center>
@@ -234,7 +235,7 @@ quiz(caption = "Fragen zur Pressemitteilung",
 )
 ```
 
-### **Was sind Daten?**
+### **Was sind Daten?**<sup><a href="#section-quelle-3">3</a></sub>
 
 Im letzten Abschnitt haben wir uns bereits mit Daten und Datenvisualisierungen auseinandergesetzt. Jetzt ist es Zeit, dass wir einmal genau festlegen, was wir mit Daten eigentlich meinen.
 
@@ -246,7 +247,7 @@ Jede Zeile einer Tabelle stellt eine zusammenhängende Informationseinheit dar, 
 
 Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**, **Aufzeichnungen** (engl. records), oder **Versuche**. Die Spalten einer Tabelle bezeichnen wir als **Merkmale**, **Features**, **Attribute**, **Felder**, oder **Variablen**. Daher kann man einen Datensatz auch beschreiben als eine Sammlung von $N$ Beobachtungen mit $Y$ Merkmalen oder Variablen. Man spricht in diesem Falle von der **Dimension** des Datensatzes. Ein **Datenpunkt** oder **Datenwert** ist der Schnittpunkt (eine Zelle in der Tabelle) zwischen einer Beobachtung und einem Merkmal. Jede Tabelle besitzt eine Kopfzeile (engl. header), die die Merkmale näher beschreibt. 
 
-Die nachfolgende Grafik stellt alle Begriffe dieses Abschnittes noch einmal übersichtlich zusammen. 
+Die nachfolgende Abbildung stellt alle Begriffe dieses Abschnittes noch einmal übersichtlich zusammen. 
 
 <p>
 <center>
@@ -358,17 +359,17 @@ Jetzt, wo wir uns mit den Grundlagen von Daten auskennen, können wir zur eigent
 
 ### **Einführung in die deskriptive Statistik**
 
-Ein vorrangiges Ziel der **deskriptiven Statistik** oder beschreibenden Statistik ist es, mithilfe von **Kennzahlen** und grafischen Darstellungen (vorrangig Histogramme, lernt ihr in einer späteren Lektion) wesentliche Charakteristiken von Häufigkeitsverteilungen herauszuarbeiten. Eine **Häufigkeitsverteilung** ist eine Zusammenfassung der beobachteten Werte einer Variablen und gibt an, wie oft die verschiedenen Werte vorkommen. Die Häufigkeit kann dabei pro Merkmalsausprägung oder für Klassen angegeben werden, die mehrere Merkmalsausprägungen zusammenfassen (z.B. Altes- und Einkommensgruppen).
+Ein vorrangiges Ziel der **deskriptiven Statistik** oder beschreibenden Statistik ist es, mithilfe von **Kennzahlen** und grafischen Darstellungen (vorrangig Histogramme, lernt ihr in einer späteren Lektion) wesentliche Charakteristiken von Häufigkeitsverteilungen herauszuarbeiten. Eine **Häufigkeitsverteilung** ist eine Zusammenfassung der beobachteten Werte einer Variablen und gibt an, wie oft die verschiedenen Werte vorkommen. Die Häufigkeit kann dabei pro Merkmalsausprägung oder für Klassen angegeben werden, die mehrere Merkmalsausprägungen zusammenfassen (z.B. Alters- und Einkommensgruppen).
 
 #### **Lageparameter** 
 
 Lageparameter dienen der Beantwortung der Frage, welche der in der Stichprobe vorkommenden Werte "typisch" oder "repräsentativ" sind. Dabei ist große Vorsicht geboten, diese Werte nicht überzuinterpretieren, da sie den gesamten Datensatz auf eine einzige Zahl reduzieren.
 
-**Modus**: häufigste Ausprägung einer Variable (auch: Modalwert). Hierzu ermittelt man den häufigsten (oder wahrscheinlichsten) Wert einer Verteilung.
+**Modus**: der häufigste Wert einer Variable (auch: Modalwert). Hierzu ermittelt man die häufigste (oder wahrscheinlichste) Beobachtung.
 
-**Median**: der "wahre" Mittelpunkt (50 % der Ausprägungen sind kleiner oder größer). Hierzu sortiert man alle Beobachtungen und bestimmt dann den Wert, der in der Mitte liegt.
+**Median**: der "wahre" Mittelpunkt einer Variable (50 % aller Beobachtungen sind kleiner und 50 % aller Beobachtungen sind größer als der Median). Hierzu sortiert man alle Beobachtungen und bestimmt dann die Beobachtung, die genau in der Mitte liegt.
 
-**Arithmetisches Mittel**: Durchschnitt der Beobachtungen. Hierzu addiert man alle Einzelwerte und teilt anschließend durch die Anzahl der Beobachtungen. 
+**Arithmetisches Mittel**: Durchschnittswert einer Variable. Hierzu addiert man alle Einzelbeobachtungen und teilt anschließend durch die Anzahl der Beobachtungen. 
 
 Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens einer Stichprobe) ganz unterschiedliche Lagemaße haben kann, zeigt die folgende Abbildung.
 
@@ -420,7 +421,7 @@ quiz(caption = "Frage zu Lageparametern",
   question("Warum sind schiefe Verteilungen problematisch?",
     answer("Eine Idee", correct = TRUE),
     answer("Keine Idee"),
-    correct = "Schiefe Verteilungen sind problematisch, weil viele statistische Modelle und Berechnungen von einer symmetrischen Verteilung ausgehen, insbesondere davon, dass die Werte gleichmäßig um den Mittelwert herum verteilt sind. Ist eine Verteilung besonders 'schief', so hat sie entweder einen langen Schwanz (engl. tail) auf der linken oder rechten Seite, d.h., ganz viele Werte mit besonders kleinen oder großen Werten. Alleine schon der Mittelwert ist für solche Verteilungen problematisch, weil er nicht mehr wirklich repräsentativ ist (siehe Grafik). Er befindet sich viel näher an den wenigen Extremwerten als am Großteil der Werte. Mithilfe von Transformationen kann man manchmal eine solche Verteilung wieder 'normalisieren', z.B. mithilfe des Logarithmus'.",
+    correct = "Schiefe Verteilungen sind problematisch, weil viele statistische Modelle und Berechnungen von einer symmetrischen Verteilung ausgehen, insbesondere davon, dass die Werte gleichmäßig um den Mittelwert herum verteilt sind. Ist eine Verteilung besonders 'schief', so hat sie entweder einen langen Schwanz (engl. tail) auf der linken oder rechten Seite, d.h., ganz viele Werte mit besonders kleinen oder großen Werten. Alleine schon der Mittelwert ist für solche Verteilungen problematisch, weil er nicht mehr wirklich repräsentativ ist (siehe Abbildung). Er befindet sich viel näher an den wenigen Extremwerten als am Großteil der Werte. Mithilfe von Transformationen kann man manchmal eine solche Verteilung wieder 'normalisieren', z.B. mithilfe des Logarithmus'.",
     incorrect = "Macht nichts, einfach die andere Option wählen ;). Stell dir eine Gehaltsverteilung wie die obige in der Grafik vor: Welchen Wert würdest du für das durchschnittliche Gehalt nennen? Den Mittelwert oder den Median? Warum?",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
@@ -430,17 +431,19 @@ quiz(caption = "Frage zu Lageparametern",
 
 #### **Streuungsparameter** 
 
-Streuungsparameter sollen das Aumaß der Streuung um einen Lageparameter herum beschreiben. Sie geben also an, wie weit im Mittel die einzelnen Beobachtungen von einem Lageparameter entfernt sind.
+Streuungsparameter sollen das Aumaß der Streuung innerhalb des Datensatzes oder um einen Lageparameter herum beschreiben. So gibt beispielsweise die Standardabweichung einer Variable an, wie weit im Mittel die einzelnen Beobachtungen vom Mittelwert dieser Variable entfernt sind.
 
-**Varianz**: die durchschnittliche quadrierte Streuung um den Mittelwert.
+**Standardabweichung**: standardisiertes Maß für die Streuung um den Mittelwert in der selben Maßeinheit wie die Variable (auch: mittlere Abweichung).
 
-**Standardabweichung**: standardisiertes Maß für die Streuung um den Mittelwert in der selben Maßeinheit wie die Variable (auch: mittlere Abweichung). Entspricht der Quadratwurzel aus der Varianz.
+**Varianz**: die quadrierte Standdardabweichung.
 
 **Spannweite**: Differenz zwischen dem kleinsten Wert (**minimale Ausprägung**) einer Variablen und dem größten Wert (**maximale Ausprägung**) einer Variablen
 
 **p-Quantil**: Der Wert, für den mindestens $p\cdot 100 \%$ der Beobachtungen kleiner oder gleich diesem Wert sind. Das 25%-Quantil ($p=25$) ist also der Wert, für den 25 % aller beobachteten Werte kleiner oder gleich diesem Wert sind.
 
 **Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
+
+In der nachfolgenden Abbildung wird verdeutlicht, wie der Median sowie das 25%-Quantil und 75%-Quantil für eine beispielhafte Messreihe ermittelt werden können.
 
 <p>
 <center>
@@ -480,7 +483,7 @@ quiz(caption = "Frage zu Streuungsparameter",
 )
 ```
 
-### **Kausalität und Korrelation**
+### **Kausalität und Korrelation**<sup><a href="#section-quelle-3">3</a></sub>
 
 Es gibt eine weitere statistische Größe, die uns wertvolle Aussagen zu den Daten liefern kann, die aber oftmals voreilig als Ursachenbeziehung interpretiert wird: die Korrelation. Die **Korrelation** ist ein Maß für den Zusammenhang zwischen zwei Variablen. Die häufigste Art der Korrelation nach **Pearson** misst einen **linearen Zusammenhang** (denke an eine gerade Linie durch die Datenpunkte) zwischen zwei Variablen und kann Werte zwischen $-1$ und $1$ annehmen. 
 
@@ -488,15 +491,15 @@ Bei einer **positiven Korrelation** (Werte nahe $+1$) beobachten wir bei Zunahme
 
 Korrelation kann sehr hilfreich, aber auch sehr trügerisch sein. Die erste wichtige Grundregel beim Umgang mit Korrelationen ist, dass es verschiedene Korrelationsmaße gibt. Einige messen nur einen linearen Zusammenhang (die Daten müssen mehr oder weniger gut auf einer geraden Linie liegen), andere (Rangkorrelationen) können auch nicht lineare Zusammenhänge erfassen. Das ist wichtig, weil eine Korrelation nahe 0 nicht bedeutet, dass es *keinen* Zusammenhang gibt, sondern oft nur, dass der Zusammenhang eben nicht *linear* ist. Man denke an den Zusammenhang zwischen Alter und der aufgenommenen Nahrungsmenge. Mit zunehmendem Alter steigt für gewöhnlich die Menge an Nahrung, die wir zu uns nehmen, an, bis sie ab einem gewissen Alter wieder zu sinken beginnt, weil der Körper nicht mehr so viel Energie benötigt. 
 
-Ein sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit liegt es am Alter. Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
+Ein sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit sind beide über das Alter miteinander verbunden (man spricht daher beim Alter auch von einer **konfundierenden Variable**). Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
 
 Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grundsätzlich so lange von keinerlei Kausalität auszugehen, bis diese durch ein Experiment belegt werden konnte. Kausale Zusammenhänge können nur durch kontrollierte Experimente bestätigt werden, nicht durch einfache statistische Kenngrößen. 
 
 ### **Abschließendes Beispiel**
 
-Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten treten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. An dieser Stelle könnt ihr kurz innehalten und euch ein paar Gründe für diesen Befund überlegen. 
+Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Westen und den Süden des Landes verstreut sind. An dieser Stelle könnt ihr kurz innehalten und euch ein paar Gründe für diesen Befund überlegen. 
 
-Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Süden und den Westen des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Grafik)! Wie kann beides gleichzeitig war sein? Wie können zwei Bezirke mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
+Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Westen, und den Süden des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Abbildung)! Wie kann beides gleichzeitig war sein? Wie können zwei Bezirke mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
 
 <p>
 <center>
@@ -506,7 +509,7 @@ Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versor
 
 Und die gibt es in der Tat: Die geringe Bevölkerungsdichte in den Bezirken sorgt für eine hohe Streuung (Varianz) in den Krebsraten. Nehmen wir zwei Bezirke in ländlicher Gegend, Bezirk A und Bezirk B, mit je 1000 Einwohnern. Bezirk A hat keine Krebsfälle, daher ist die Krebsrate 0. Bezirk B hat einen einzigen Krebsfall, doch die Krebsrate steigt dadurch sofort auf 100, da die Krebsrate ja pro 100.000 Bewohnern gemessen wird. 100 ist aber extrem hoch, sogar die höchste Rate im ganzen Land! Wenn wir uns dagegen die großen Städte wie New York mit Millionen von Einwohnern ansehen, würde ein einziger weiterer Krebsfall, sagen wir von 75 auf 76 Krebsfälle, die Rate kaum merklich verändern: Sie würde von $0,9375$ auf $0,95$ ansteigen. 
 
-Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bezirke zusammen. Die weniger dicht besiedelten Bezirke auf der linken Seite der Grafik weisen eine deutlich höhere Varianz in der Krebsrate auf. Zudem treten sowohl die höchsten als auch die niedrigsten Krebsraten in dieser Gruppe auf. Mit steigender Bevölkerungsdichte (je mehr wir uns auf der x-Achse nach rechts bewegen) sinkt die Varianz und wir können eine Stabilisierung um den Wert 5 herum erkennen. Was sollten wir aus diesem Beispiel mitnehmen? Kleine Stichprobengrößen können zu extremen Ergebnissen führen.
+Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bezirke zusammen. Die weniger dicht besiedelten Bezirke auf der linken Seite der Abbildung weisen eine deutlich höhere Varianz in der Krebsrate auf. Zudem treten sowohl die höchsten als auch die niedrigsten Krebsraten in dieser Gruppe auf. Mit steigender Bevölkerungsdichte (je mehr wir uns auf der x-Achse nach rechts bewegen) sinkt die Varianz und wir können eine Stabilisierung um den Wert 5 herum erkennen. Was sollten wir aus diesem Beispiel mitnehmen? **Kleine Stichprobengrößen können zu extremen Ergebnissen führen**.
 
 <p>
 <center>
@@ -529,12 +532,17 @@ Die zweite Übung behandelt noch einmal die Korrelation. Öffnet dazu bitte dies
 - Erzeugt Beispiele für eine schwache Korrelation ($|r| < 0.2$).
 - Erzeugt nun ein Beispiel für einen Zusammenhang, der mit dem Auge sichtbar ist, aber dennoch laut Berechnung ($r$-Wert) keine oder nur eine geringe Korrelation aufweist. Woran liegt das?
 
+### **Quellen**
+
+- <span id="quelle-1">[1]</span> Data-Literacy-Charta. (n.d.). Stifterverband.org. Retrieved February 14, 2024, from <https://www.stifterverband.org/charta-data-literacy>.
+- <span id="quelle-2">[2]</span> Mittag, H.-J., & Schüller, K. (2020). Statistik: Eine Einführung mit interaktiven Elementen. Springer Berlin Heidelberg.
+- <span id="quelle-3">[3]</span> Gutman, A. J., & Goldmeier, J. (2022). Werde ein Data Head: Data Science, Machine Learning und Statistik verstehen und datenintensive Jobs meistern.
 
 
 ### **Zusätzliche Ressourcen**
 
-- [DATA-LITERACY-CHARTA](https://www.stifterverband.org/charta-data-literacy)
 - [Destatis - Statistisches Bundesamt](https://www.destatis.de/DE/Home/_inhalt.html)
 - [KI Campus](https://ki-campus.org/)
 - [https://systats.github.io/](https://systats.github.io/linear_model/index.html)
 - [Werde ein Data Head](https://dpunkt.de/produkt/werde-ein-data-head/)
+- [Statistik: Eine Einführung mit interaktiven Elementen.](https://link.springer.com/book/10.1007/978-3-662-61912-4)
