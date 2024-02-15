@@ -10,7 +10,7 @@ Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webse
 
 ### **Kernaussagen**
 - Datenprojekte von und für die Zivilgesellschaft gibt es in allen **Farben und Formen**
-- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](https://correlaid.org/nonprofits/projects/){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **[CorrelCon](https://www.youtube.com/watch?v=JJoEJGc1eNc&list=PLXK26SbU8735a2yFZIpIshLdiuxgaK2_n){target="_blank"} und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**.
+- Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](https://www.correlaid.org/daten-nutzen/projekte/){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **[CorrelCon](https://www.youtube.com/watch?v=JJoEJGc1eNc&list=PLXK26SbU8735a2yFZIpIshLdiuxgaK2_n){target="_blank"} und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**.
 - Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://dashboard.mailerlite.com/forms/257414/78742752988235359/share){target="_blank"}** vor.
 - Daten sind **formalisierte, idealerweise durch Binärcodierung maschinell lesbare Informationen**, die mit Hilfe von Datenwissenschaft verarbeitet werden können.
 - Daneben verstehen wir **Datenwissenschaft** auch als **Denkweise** ("Wie gehen wir an Herausforderungen heran?") und **Kompetenzbereich** ("Welche analytischen, technischen und fachlichen Fähigkeiten sind notwendig?").
@@ -75,7 +75,7 @@ quiz(caption = NULL,
 
 ### **Und jetzt Ihr**
 
-Nach den letzten Wochen seit Ihr nun richtig fit in R geworden! Daher ist es jetzt an der Zeit, Euch zu überlegen, wie Ihr Eure neuen R-Skills in einem Datenprojekt anwenden könnt - arbeitet dafür gerne mit unseren Templates und wir freuen uns, wenn Ihr Eure Ideen in der nächsten Livesession vorstellt! 
+Nun ist es an der Zeit, Euch zu überlegen, wie Ihr Eure R-Skills - die Ihr nach diesem Kurs haben werdet - in einem Datenprojekt anwenden könnt - arbeitet dafür gerne mit unseren Templates und wir freuen uns, wenn Ihr Eure Ideen in der nächsten Livesession vorstellt! 
 
 #### Teil 1: Erste Ideen entwickeln
 Anfangs ist es vielleicht gar nicht so leicht, ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
@@ -90,7 +90,7 @@ Anfangs ist es vielleicht gar nicht so leicht, ein eigenes Projekt zu finden, an
 Damit die Bearbeitung für Euch ganz leicht und ohne Druckerpapier möglich ist, haben wir das Template bei der digitalen WhiteBoard-Plattform Mural hochgeladen. Dort könnt Ihr ein eigenes "Mural" auf Basis des Templates erstellen und dann Euren Data Use Case erarbeiten. Bitte verklickt Euch nicht - ein kostenloser Account ist völlig ausreichend.
 
 Hier geht es zum
-[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1693225230580?code=306bee73fc874d8698c51192d51db612&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr ein Mural mit Eurem Namen - tobt Euch dort gerne aus! 
+[*Template: Ideenfindung (10min)*](https://app.mural.co/invitation/room/1706598580755?code=ddc536eb2ceb4d2791551fd5125ca92a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr ein Mural mit Eurem Namen - tobt Euch dort gerne aus! 
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/ideenfindung.pdf?raw=true){target="_blank"}.
 
@@ -108,7 +108,7 @@ Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. 
 <br>
 
 Hier geht es zum
-[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1693225230580?code=306bee73fc874d8698c51192d51db612&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr das Mural mit Eurem Namen - tobt Euch dort gerne aus! 
+[*Template: Data Use Case (20min*)](https://app.mural.co/invitation/room/1706598580755?code=ddc536eb2ceb4d2791551fd5125ca92a&sender=uad2f4e15e4f38c1000f33089){target="_blank"}. Im Ordner "Eure Datenprojekte" findet Ihr das Mural mit Eurem Namen - tobt Euch dort gerne aus! 
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/data-use-case.pdf?raw=true){target="_blank"}.
 
@@ -142,7 +142,7 @@ Einmal im Monat senden wir Euch eine Mail mit einem Projekt des Monats und Neuig
 
 <div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
 <p style="color:#acc940;"><b>Bildungsressourcen auf unserer Website</b></p>
-Es gibt unzählige CorrelAid-Workshops, die bereits stattgefunden haben - auf unserer neuen Website werdet Ihr bald alle Materialien in aufbereiteter Form davon finden. Bis dahin: Schaut gerne bei unserem Github [hier](https://github.com/CorrelAid){target="_blank"} vorbei, dort findet Ihr Code und Workshop-Materialien zu vielen verschiedenen Themenbereichen!
+Es gibt unzählige CorrelAid-Workshops, die bereits stattgefunden haben - auf unserer neuen Website findet ihr [hier](https://www.correlaid.org/bildung/ressourcen/){target="_blank"} alle Materialien in aufbereiteter Form. Außerdem: Schaut gerne bei unserem Github [hier](https://github.com/CorrelAid){target="_blank"} vorbei, dort findet Ihr Code und Workshop-Materialien zu vielen verschiedenen Themenbereichen!
 </div>
 
 <br>
