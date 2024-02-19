@@ -501,6 +501,7 @@ rmarkdown::render(
   <summary><h4>&#10145; Exkurs 2: Die Reportfabrik</h4></summary>
   <br>
 
+<h2><b>Die Reportfabrik</b></h2>  
 Wollen wir viele Reports auf einmal erstellen, müssen wir die Render-Funktion in etwas einbetten, das definiert, dass der Report für die verschiedenen Werte in einer Liste gerendert werden soll. Wir nutzen dazu die `purrr::walk`-Funktion. Sie bedeutet: Für jedes Element der Liste, wende die Funktion an, die hier definiert wird:
 
 ``` r
