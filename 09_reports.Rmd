@@ -201,7 +201,7 @@ quiz(caption = NULL,
 ### **Und jetzt Ihr**
 
 1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html){target="_blank"} und stöbert durch einige Beispiele, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
-2.  Bearbeitet lokal die **Übung 09_reports-uebung.Rmd** im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 09_reports zu R Markdown, die wir für Euch vorbereitet haben.
+2.  Bearbeitet lokal die **Übung 10_reports-uebung.Rmd** im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter `10_reports` zu R Markdown, die wir für Euch vorbereitet haben.
 
 ### **Zusätzliche Ressourcen**
 
@@ -551,7 +551,7 @@ Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](htt
 
 <h3><b>Und jetzt Ihr</b></h3>
 
-Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut in den Ordner `10_automatisierte-reports/10_automatisiertereports` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten.
+Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut in den Ordner `10_reports-exkurs/10_automatisiertereports` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten.
 
 <h3><b>Zusätzliche Ressourcen</b></h3>
 
