@@ -13,7 +13,7 @@ Inhalte der Sessions (durchnummerierte `.Rmd`-Dateien on top-level) sind generel
 
 Der Link zur Session kann als Hyperlink dem Titel hinzugefügt werden.
 
-## Code
+### Code
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -25,43 +25,52 @@ Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet
 
 ## Inhaltlicher Input
 
-Die Lernplattform basiert auf dem CRAN [learnr-Package](https://cran.r-project.org/web/packages/learnr/learnr.pdf) sowie dem im Entwicklungsstadium befindlichen [gradethis-Package](https://github.com/rstudio/gradethis). Über die Datei lernplattform.Rmd werden die Kapitel der Lernplattform gerendered ("Run Document"). Der Inhalt der einzelnen Kapitel findet sich in den jeweiligemn Rmds. Hinzu kommen notwendige Daten (Ordner: daten), inklusive Abbildungen und Cheat Sheets, und Übungen für Teilnehmende (Ordner: uebungen). 
+Die Lernplattform basiert auf dem CRAN [learnr-Package](https://cran.r-project.org/web/packages/learnr/learnr.pdf) sowie dem im Entwicklungsstadium befindlichen [gradethis-Package](https://github.com/rstudio/gradethis). Über die Datei lernplattform.Rmd werden die Kapitel der Lernplattform gerendered ("Run Document"). Der Inhalt der einzelnen Kapitel findet sich in den jeweiligemn Rmds. Hinzu kommen notwendige Daten (Ordner: `daten`), inklusive Abbildungen und Cheat Sheets, und Übungen für Teilnehmende (Ordner: uebungen). 
 
-## Technische Details
+# Für Entwickler*innen
 
-Entwickler:innen finden Informationen zu den technischen Anforderungen (R-Versionen und benötigte Packages) unter "requirements.txt". Die benötigten Pakete können mit dem Paket [`renv`](https://rstudio.github.io/renv/) via `renv::init()` installiert werden. In der Datei "lernplattform.Rmd" fließen die einzelnen Kapitel zusammen. Dort sind auch sämtliche Einstellungen zum "Set-Up" enthalten. Sollen R-Objekte über mehrere Kapitel/Übungen zugreifbar sein, müssen sie im Set-Up Code Chunk definiert werden.
+## genereller Aufbau
+
+In der Datei "lernplattform.Rmd" fließen die einzelnen Kapitel zusammen. Dort sind auch sämtliche Einstellungen zum "Set-Up" enthalten. Sollen R-Objekte über mehrere Kapitel/Übungen zugreifbar sein, müssen sie im Set-Up Code Chunk definiert werden.
 ! Achtung: Die Spracheinstellungen bitte immer prüfen. !
 
+## Package Management mit `renv`
+Es gibt ein virtuelles R Environment, welches mithilfe des `renv` Packages verwaltet wird.
+Die R Version, welche dort verwendet wird, ist `4.3.1.`
+
+Um das virtuelle Environment zu installieren:
+
+```r
+install.packages("renv")
+renv::activate()
+renv::restore()
 ```
-├── lernplattform
-│   ├── archiv --------------- alte Dateien - to be deleted
-│   ├── daten ---------------- Daten für die Lernplattform - to be checked
-│   ├── abbildungen ---------- Abbildungen auch aus daten/abbildungen hier hin verschieben
-│   ├── lernplattform_files -- to be checked
-│   │   ├── figure-html ------ ggf. in abbildungen verschieben
-│   │   ├── leaflet-providers-1.9.0 ---- @Cosima relevant?
-│   ├── rsconnect ------------ Shiny
-│   ├── uebungen ------------- to be sorted
-│   ├── utils ---------------- to be checked
-│   ├── VideoDecodeStats ----- to be checked
-│   ├── www ------------------ to be checked
-│   ├── 00_intro.Rmd -------------------------------------- 01 Willkommen
-│   ├── 01_setup.Rmd -------------------------------------- 01 Willkommen
-│   ├── 02_datenschutz-und-datenethik.Rmd ----------------- 02 Datenschutz und Datenethik
-│   ├── 03_einfuehrung-in-rstudio.Rmd --------------------- 03 Einführung in RStudio
-│   ├── 04_daten-verstehen-mit-r.Rmd ---------------------- 04 Daten verstehen in R
-│   ├── 05_datenimport.Rmd -------------------------------- 05 Datenimport
-│   ├── 05_1_datenimport-exkurs-api.Rmd ------------------- 05.1 Datenimport: Exkurs APIs
-│   ├── 05_2_datenimport-exkurs-sql.Rmd ------------------- 05.2 Datenimport: Exkurs SQL
-│   ├── 06_datentransformation.Rmd ------------------------ 06 Datentransformation
-│   ├── 07_datenvisualisierung.Rmd ------------------------ 07 Datenvisualisierung
-│   ├── 08_grundlagen-der-statistik.Rmd ------------------- 08 Grundlagen der Statistik
-│   ├── 09_reports.Rmd ------------------------------------ 09 Reports mit RMarkdown
-│   ├── 10_automatisierte-reports.Rmd --------------------- 10 Automatisierte Reports
-│   ├── 11_interaktive-visualisierungen.Rmd --------------- 11 Interaktive Visualisierungen
-│   ├── 12_datenprojekte-fuer-die-zivilgesellschaft.Rmd --- 12 Datenprojekte für die Zivilgesellschaft
-│   ├── 13_lernzielkontrolle.Rmd -------------------------- Lernzielkontrolle
-│   ├── 14_closing.Rmd ------------------------------------ Und jetzt?
-│   ├── 99_glossar.Rmd ------------------------------------ Glossar
-│   ├── lernplattform.Rmd --------------------------------- LERNPLATTFORM SETUP
+
+Um neue Packages hinzuzufügen:
+
+```r
+renv::install("packagename")
+renv::snapshot() # speichert das neue package im renv.lock
+```
+
+Dann das `renv.lock()` bei Git committen und pushen.
+
+## Deployment
+
+Voraussetzung: Zugriff auf CorrelAid shinyapps.io Account und Konfiguration von `rsconnect`. 
+
+R Lernen:
+
+```r
+renv::status() # sicher stellen, dass packages aktuell
+# renv::restore() # optional, falls out of sync
+source("deploy_rlernen.R")
+```
+
+R Lernen "komplett":
+
+```r
+renv::status() # sicher stellen, dass packages aktuell
+# renv::restore() # optional, falls out of sync
+source("deploy_rlernen_komplett.R")
 ```
