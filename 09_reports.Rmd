@@ -210,19 +210,20 @@ quiz(caption = NULL,
 -   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"}
 -   Templates für [PDF- und HTML-Dokumente](https://www.rstudio.com/blog/r-markdown-custom-formats/){target="_blank"}
 
-## **Exkurs 1: Reportautomatisierung**
+---
 
 <details>
-
-<summary>**Exkurs 1: Reportautomatisierung**</summary>
-
+  <summary><h4>&#10145; Exkurs 1: Reportautomatisierung</h4></summary>
+  <br>
+  
+<h2><b>Reportautomatisierung</b></h2>  
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
 *"Reportautomatisierung" von Lisa Reiber in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
 ![*Video: Reportautomatisierung (20min)*](https://youtu.be/78r2ugQ6bdQ)
 
-### **Kernaussagen**
+<h3><b>Kernaussagen</b></h3>
 
 -   Berichte in R Markdown anzulegen, bedeutet, **reproduzierbare Reports** zu erstellen
 -   So können...
@@ -238,7 +239,7 @@ quiz(caption = NULL,
 -   Innerhalb des R Markdowns kann auf die selbst benannten Parameter über `params$parameter_name` **zugegriffen** werden
 -   Möglich ist die Festlegung von Parametern von den folgenden **Typen**: `character` (Text), `integer` (ganze Zahl), `numeric` (Zahl), `logical` (logischer Ausdruck) und Ausdrücke in R
 
-### **Quiz**
+<h3><b>Quiz</b></h3>
 
 ```{r 11quiz_reportauto}
 quiz(caption = NULL,
@@ -282,9 +283,9 @@ quiz(caption = NULL,
 )
 ```
 
-### Interaktive Übung
+<h3><b>Interaktive Übung</b></h3>
 
-#### Schritt 0: Set-up
+<h4>Schritt 0: Set-up</h4>
 
 Zunächst ist es wichtig, die richtige Infrastruktur für Eure Reports zu schaffen. Eine Reportautomatisierung besteht aus:
 
@@ -293,7 +294,7 @@ Zunächst ist es wichtig, die richtige Infrastruktur für Eure Reports zu schaff
 
 Eingebettet sollten die beiden Codeskripte in einem **R-Projekt** sein. Wie bereits im Kapitel "Einführung in R(Studio)" erklärt, helfen diese als metaphorischer Umzugskarton unsere Infrastruktur zusammenzuhalten. Ein R-Projekt, das alle enthaltenen Dateien einbettet, erleichtert die Übergabe der Werte zwischen den Dateien. Nützlich sind zudem die **Ordner "daten"**, in dem alle Daten hinterlegt sind, sowie der **Ordner "out"**, in dem alle erzeugten Reports gespeichert werden.
 
-#### Schritt 1: Parameter definieren (und ggf. Standardwert setzen)
+<h4>Schritt 1: Parameter definieren (und ggf. Standardwert setzen)</h4>
 
 Um Parameter zu nutzen, müssen diese **immer** im YAML-Header definiert werden. Der folgende YAML-Header legt als Titel "Mein Report", als Autor:in "Maxi Mustermensch", als Datum den heutigen Tag (`r params$heute`) und als Output HTML fest. Darüber setzen wir noch eigene Parameter (params). Jede Zeile folgt der Logik eines **Key-Value-Paares** (zu dt. Schlüssel-Wert-Paar). Die Bezeichnung des Wertes steht also vor dem Doppelpunkt, der Wert danach (`parameter_name(key): parameter_wert(value)`). Dieser Wert ist Euer Standardwert bei der Ausführung des Codeskripts. Wenn der Wert frei bleibt, wird er automatisch auf `NULL` gesetzt.
 
@@ -315,7 +316,7 @@ Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den 
 
 *Anmerkung: Achtung bei der Nutzung von R-Funktionen in den allgemeinen YAML-Headereinstellungen und den Parametern. Die Syntax unterscheidet sich (siehe oben).*
 
-#### Schritt 2: Parameter einbinden
+<h4>Schritt 2: Parameter einbinden</h4>
 
 Parameter, die im YAML-Abschnitt definiert wurden, stehen als **Liste namens `params`** zur Verfügung. Um auf einen Parameter im Code zuzugreifen, benutzt Ihr `params$parameter_key`. Auf den Parameterwert könnt Ihr sowohl in Code Chunks als auch im Inhalt des R Markdowns zugreifen. Schauen wir uns das mal am Beispiel des Parameter "heute" an:
 
@@ -427,13 +428,14 @@ if (params$filter_continent != "alle Kontinente") {
 head(audit)
 ```
 
-#### Schritt 3: Parameter anpassen
 
-##### Option A1: YAML-Header (begrenzt praktikabel)
+<h4>Schritt 3: Parameter anpassen</h4>
+
+<h5>Option A1: YAML-Header (begrenzt praktikabel)</h5>
 
 Falls Ihr den Report lediglich semi-automatisch ausführen wollt, könnt Ihr die Parameter **manuell im YAML-Header** jederzeit austauschen und anpassen. Der Report wird dann auf Basis der aktualisierten Parameter durchgeführt (Klickt einfach auf "Knit").
 
-##### Option A2: YAML-Header mit GUI (begrenzt praktikabel)
+<h5>Option A2: YAML-Header mit GUI (begrenzt praktikabel)</h5>
 
 Neben dem Knit-Button findet sich ein Menü, in dem "Knit with parameters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine graphische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können.
 
@@ -467,7 +469,7 @@ params:
 
 ![*Knitting mit Parametern - Menüoptionen (Screenshot)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/10_automatisierte-reports/knitwithparametersoptions.png?raw=true){.class width="50%" height="50%"}
 
-##### Option B1: Die Render-Funktion mit GUI (begrenzt praktikabel)
+<h5>Option B1: Die Render-Funktion mit GUI (begrenzt praktikabel)</h5>
 
 Die andere Option, die wir Euch nicht vorenthalten möchten, ist das Starten des GUI über die `rmarkdown::render()`-Funktion. Ansonsten funktionier hier alles analog zu Option A2.
 
@@ -475,7 +477,7 @@ Die andere Option, die wir Euch nicht vorenthalten möchten, ist das Starten des
 rmarkdown::render("Report_Plastic.Rmd", params = "ask")
 ```
 
-##### Option B2: Die Render-Funktion (Best Practice)
+<h5>Option B2: Die Render-Funktion (Best Practice)</h5>
 
 Am Besten - und wenn Ihr viele Reports auf einmal erstellen wollt - solltet Ihr nun die **Render-Datei** `render.R/render.Rmd` einrichten. Hauptbestandteil dieses Codescriptes ist die Render-Funktion:
 
@@ -491,11 +493,13 @@ rmarkdown::render(
 
 </details>
 
-## **Exkurs 2: Die Reportfabrik**
+---
+
+---
 
 <details>
-
-<summary>Hier klicken zum Aufklappen</summary>
+  <summary><h4>&#10145; Exkurs 2: Die Reportfabrik</h4></summary>
+  <br>
 
 Wollen wir viele Reports auf einmal erstellen, müssen wir die Render-Funktion in etwas einbetten, das definiert, dass der Report für die verschiedenen Werte in einer Liste gerendert werden soll. Wir nutzen dazu die `purrr::walk`-Funktion. Sie bedeutet: Für jedes Element der Liste, wende die Funktion an, die hier definiert wird:
 
@@ -544,15 +548,17 @@ if (!dir.exists(output_dir)) {
 
 Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}, in den englischsprachigen Büchern [Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} und [R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html){target="_blank"} und bei [Dataquest](https://app.dataquest.io/course/intermediate-r){target="_blank"}. In dem verlinkten Kapitel findet Ihr insbesondere weitere Hilfestellungen zu Wenn-Dann-Bedingungen, Funktionen und Iterationen.
 
-### **Und jetzt Ihr**
+<h3><b>Und jetzt Ihr</b></h3>
 
 Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut in den Ordner `10_automatisierte-reports/10_automatisiertereports` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten.
 
-<details>
-
-### **Zusätzliche Ressourcen**
+<h3><b>Zusätzliche Ressourcen</b></h3>
 
 -   [RStudio Webinar: **Rethink Reporting with Automation**](https://www.rstudio.com/resources/webinars/rethink-reporting-with-automation/){target="_blank"}
 -   Yihui Xie et al. [**RMarkdown: The Definitive Guide**](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} (engl.)
 -   RStudios [Hilfeseite](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}
 -   [CorrelTalk: **Automatisierte Reportgenerierung für die Weltläden**](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
+
+</details>
+
+---
