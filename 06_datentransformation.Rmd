@@ -324,7 +324,6 @@ plastics_processed %>%
 Mit `dyplr::pivot_wider()` könnt Ihr den Datensatz auch wieder in das breite Format bringen. Wir empfehlen aber die lange Form zu nutzen.
 
 </details> 
-</p>
 
 ---
 
@@ -486,7 +485,6 @@ head(df2)
 ```
 
 </details>
-</p>
 
 ---
 
@@ -611,7 +609,6 @@ quiz(
 ```
 
 </details>
-</p>
 
 ---
 
