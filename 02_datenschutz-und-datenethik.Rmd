@@ -2,6 +2,9 @@
 title: "Datenschutz und Datenethik"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -22,6 +25,11 @@ library(learnr)
 library(gradethis)
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+source("R/setup/functions.R")
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 ![*Video: Datenschutz und Datenethik (20min)*](https://youtu.be/0Qmy81DLQDw)
