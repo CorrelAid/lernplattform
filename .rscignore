@@ -1,0 +1,7 @@
+.github/*
+.git/*
+cheatsheets/*
+README.md
+requirements.txt
+uebungen/*
+utils/*
