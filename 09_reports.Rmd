@@ -1,40 +1,36 @@
 ---
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
 ## **Reports in R Markdown**
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
-*"Reports in R Markdown" von Lisa Reiber in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+*"Reports in R Markdown" von Lisa Reiber und Emma Morlock in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
 ![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
 
 ### **Kernaussagen**
 
--   R Markdown ist ein **Framework**, das es ermöglicht, **reproduzierbare Reports** mit R Code zu schreiben\
+-   R Markdown ist ein **Framework**, das es ermöglicht, **reproduzierbare Reports** mit R Code zu schreiben
 
--   R Markdown ist so beliebt, weil es ermöglicht **alle Schritte einer Datenanalyse an einem Ort** zu sammeln:
+-   R Markdown ist so beliebt, weil es ermöglicht **alle Schritte einer Datenanalyse an einem Ort** zu sammeln. Dadurch werden Präsentationen verständlicher und bei Rückblicken kann auf Anmerkungen und Erklärungen zu Analysen zurückgeriffen werden :
 
-    -   Einleitung und Fragestellung (Text)\
-    -   Daten importieren, bereinigen & analysieren (Code)\
-    -   Ergebnisse darstellen (Code Output)\
-    -   Ergebnisse interpretieren (Text)\
-    -   Zusammenfassung (Text)\
-
--   Mit **Code, Code Output (z.B. Tabellen oder Plots) und formatierbarem Text** an einem Ort wird es leichter, anderen Menschen die eigene Arbeit zu vermitteln, aber auch Ihr Selbst werdet Euch über Anmerkungen und Erklärungen zu Eurer Analyse freuen, wenn Ihr nach einiger Zeit zu der Datei zurückkehrt\
+    -   Einleitung und Fragestellung (Text)
+    -   Daten importieren, bereinigen & analysieren (Code)
+    -   Ergebnisse darstellen, z.B. Tabellen oder Plots (Code Output)
+    -   Ergebnisse interpretieren (Text)
+    -   Zusammenfassung (Text)
 
 -   Die **Code Chunks**, in den Code steht und die Code Output erzeugen, sind in Rmds **grau** hinterlegt, während der **Markdown-Teil weiß** hinterlegt ist
 
--   In den formatierten Text Eures Reports könnt Ihr außerdem **berechnete Kennzahlen** integrieren, die bei der Aktualisierung der Daten wie der restliche Code Output automatisch geupdatet werden
+-   Außerdem könnt Ihr **berechnete Kennzahlen** integrieren, die bei der Aktualisierung der Daten, wie der restliche Code Output, automatisch geupdatet werden
 
--   Zudem ist es durch R Markdown leichter Eure Reports auf vielfältige Art und Weise mit anderen zu **teilen**: Der Export in PDFs, HTML und Word ist möglich\
+-   Der Export Eures Reports ist in PDFs, HTML und Word möglich. Für **statistische Reports** ist das **PDF** meistens die richtige Wahl, aber auch eine **HTML**-Datei kann Sinn machen
 
--   Wenn Ihr **statische Reports** erstellen wollt, ist das PDF die richtige Wahl, für mehr Optionen ist eine **HTML**-Datei, die auch im Browser geöffnet werden kann, besser geeignet
-
--   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"} zu vielen Themen rund um R Markdown in englischer Sprache an - unter anderem ein tolles Einführungsvideo (1min)\
+-   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"} zu vielen Themen rund um R Markdown in englischer Sprache an - unter anderem ein tolles Einführungsvideo (1min)
 
 -   Daneben gibt es auch noch diesen [**Schummelzettel (dt.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-2.pdf){target="_blank"}, diesen [**Schummelzettel (engl.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-1.pdf){target="_blank"} und dieses tolle [**Nachschlagewerk (engl.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-3.pdf){target="_blank"}
 
@@ -68,56 +64,21 @@ quiz(caption = NULL,
 
 #### 1. Markdown (Inhalt)
 
-In R Markdown Dateien steht das **md** in der Dateiendung `meine_datei.Rmd` für **Markdown.** Markdown (ohne R) ist eine einfache Möglichkeit, Text zu formatieren, der auf jedem Gerät gut aussieht. Auch unsere Lernplattform basiert auf Markdown. Alle Überschriften, Text in *italics* oder **bold**, das Einfügen von Bildern und Links funktioniert über Markdown.
+In R Markdown Dateien steht das **md** in der Dateiendung `meine_datei.Rmd` für **Markdown.** Markdown (ohne R) ist eine einfache Möglichkeit, Text zu formatieren, der auf allen Geräten gut aussieht. Auch unsere Lernplattform basiert auf Markdown.
 
-Die Formatierung funktioniert nur dem **weiß hinterlegten Teil** des Rmds, dem Textteil. Mit wenigen Zeichen könnt Ihr dort folgende Formatierungen vornehmen:
+Die Formatierung funktioniert nur in dem **weiß hinterlegten Teil** des Rmds, dem Textteil. Mit wenigen Zeichen könnt Ihr dort folgende Formatierungen vornehmen:
 
-**H5 Überschrift**
-
-erstellt mit: `##### H5 Überschrift`
-
-*Anmerkung: H1 Überschriften benötigen nur ein \#, H2 zwei \#\#, usw.*
-
-------------------------------------------------------------------------
-
-**Trennlinie**
-
-erstellt mit: `---`
-
-*Anmerkung: auf ausreichend Zeilenumbrüche davor und danach achten, häufige Fehlerquelle.*
-
-------------------------------------------------------------------------
-
-**Text**
-
--   `*Text in italics*` wird zu *Text in italics*
--   `**Text in bold**` wird zu **Text in bold**
-
-------------------------------------------------------------------------
-
-**Einfügen eines Bildes**
-
-erstellt mit: `![Bildbeschriftung](Link zum Bild){width=10% height=10%}`
-
-![Bild: Logo CorrelAid](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg){width="10%" height="10%"}
-
-------------------------------------------------------------------------
-
-**Einfügen eines Hyperlinks**
-
-erstellt mit: `[Hyperlinkname](Link){target="_blank"}`
-
-[Hyperlink: Webseite CorrelAid](https://correlaid.org/){target="_blank"}
-
-*Anmerkung: Mit {target="\_blank"} könnt Ihr festlegen, dass ein neuer Tab geöffnet wird.*
-
-------------------------------------------------------------------------
-
-**Zeilenumbrüche**
-
-Praktisch sind auch **Umbrüche**, die mit "\<br\>" eingefügt werden. Diese Notation stammt übrigens aus HTML - ebenso praktisch sind die Notationen "\<center\>", "\<left\>" und "\<right\>" zur **Positionierung**. <br>
-
-Soll Rmd diese mit Bedeutung belegten Sonderzeichen mal ignorieren, könnt Ihr vor sie einen **Backslash** `\` einfügen.
+| **Formatierung**              | **Erstellt mit:**                                                  | *Anmerkung*                                                                                                                                                                        |
+|--------------------------|---------------------------|-------------------|
+| **H5 Überschrift**            | `##### H5 Überschrift`                                             | *Anmerkung: H1 Überschriften benötigen nur ein #, H2 zwei ##, usw.*                                                                                                                |
+| **Trennlinie**                | `---`                                                              | *auf ausreichend Zeilenumbrüche davor und danach achten.*                                                                                                                          |
+| **Text**                      | `*Text in italics*`                                                | wird zu *Text in italics*                                                                                                                                                          |
+| **Text**                      | `**Text in bold**`                                                 | wird zu **Text in bold**                                                                                                                                                           |
+| **Einfügen eines Bildes**     | `![Bildbeschriftung](Link%20zum%20Bild){width="10%" height="10%"}` | ![Bild: Logo CorrelAid](https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/033/251/crop_original_bp1613490681_Logo.jpg){width="10%" height="10%"} |
+| **Einfügen eines Hyperlinks** | `[Hyperlinkname](Link){target="_blank"}`                           | *Mit {target="\_blank"} könnt Ihr festlegen, dass ein neuer Tab geöffnet wird.*                                                                                                    |
+| **Zeilenumbrüche**            | `<br>`                                                             | *Notation stammt aus HTML*                                                                                                                                                         |
+| **Positionierung**            | `<center>, <left> und <right>`                                     | *Ebenfalls HTML-Notation*                                                                                                                                                          |
+| **Backslash**                 | `\`                                                                | \*ignoriert Bedeutung von Sonderzeichen, wenn der Backslash vor ihnen steht                                                                                                        |
 
 ```{r 10quiz_reports_markdown}
 quiz(caption = NULL,
@@ -152,11 +113,13 @@ Je nachdem wie Ihr Euer Rmd gestalten wollt, müsst Ihr die Code Block **Argumen
 
 Grundsätzlich wird in Eurem Outputformat **aller Code, sämtlicher Code Output, alle Nachrichten und Warnungen** integriert. Nicht immer ist das gewünscht. Die wichtigsten Argumente findet Ihr deshalb hier:
 
--   `include = FALSE` definiert, dass **Code und Code Output** in der fertigen Datei **nicht erscheinen**. R Markdown führt den Code weiterhin im Chunk aus und die Ergebnisse können von anderen Chunks verwendet werden.
--   `echo = FALSE` definiert, dass **Code nicht angezeigt wird**, aber Code Output (wie Tabellen und Plots) in der fertigen Datei erscheinen. Dies ist eine nützliche Methode zum **Einbetten von Abbildungen**.
--   `message = FALSE` verhindert, dass **Nachrichten**, die bei der Ausführung des Codes generiert werden, in der fertigen Datei erscheinen.
--   `warning = FALSE` verhindert, dass **Warnungen**, die bei der Ausführung des Codes generiert werden, im Report erscheinen.
--   `fig.cap = "..."` fügt den grafischen Ergebnissen eine **Beschriftung** hinzu.
+| **Argumente**     | **Bedeutung**                                                                                                                                                                                       |
+|------------------------------------|------------------------------------|
+| `include = FALSE` | definiert, dass **Code und Code Output** in der fertigen Datei **nicht erscheinen**. R Markdown führt den Code weiterhin im Chunk aus und die Ergebnisse können von anderen Chunks verwendet werden |
+| `echo = FALSE`    | definiert, dass **Code nicht angezeigt wird**, aber Code Output (wie Tabellen und Plots) in der fertigen Datei erscheinen. Dies ist eine nützliche Methode zum **Einbetten von Abbildungen**        |
+| `message = FALSE` | verhindert, dass **Nachrichten**, die bei der Ausführung des Codes generiert werden, in der fertigen Datei erscheinen                                                                               |
+| `warning = FALSE` | verhindert, dass **Warnungen**, die bei der Ausführung des Codes generiert werden, im Report erscheinen                                                                                             |
+| `fig.cap = "..."` | fügt den grafischen Ergebnissen eine **Beschriftung** hinzu                                                                                                                                         |
 
 Um eine Option für alle Code Blocks festzulegen, kann sie **global im ersten Setup Code Block** mit der Funktion `knitr::opts_chunk$set(argument = ...)` gesetzt werden. <br>
 
@@ -193,26 +156,30 @@ quiz(caption = NULL,
 
 In der YAML Kopfzeile können verschiedene Meta-Parameter festgelegt werden, die für die Verarbeitung der R Markdown Datei wichtig sind.
 
-Der YAML Abschnitt ist für gewöhnlich ganz oben in R Markdown Dateien zu finden und daran zu erkennen, dass er mit `---` umschlossen ist:
+Die **Grundeinstellungen** geben Titel, Autor:in, Datum und Outputformat des geknitteten Dokuments an. Mit vorgefertigten Themes könnt ihr einfach ein Layout auswählen. Wenn Ihr Euch mit HTML und CSS auskennt, könnt ihr Stylesheets anlegen und auf diese verweisen.
 
-    ---
-    title: "Euer Titel"
-    date: "Datum"
-    output: html_document
-    ---
+Der YAML Abschnitt ist immer zu Beginn einer R Markdown Datei und daran zu erkennen, dass er mit `---` umschlossen ist:
 
-Die **Grundeinstellungen** geben Titel, Autor:in, Datum und Outputformat des geknitteten Dokuments an. Darüber hinaus gibt es aber noch mehr Möglichkeiten. So könnt Ihr dort beispielsweise das Layoutformat anpassen. Wenn Ihr Euch mit HTML und CSS auskennt, könnt Ihr sogenannte Stylesheets anlegen und auf diese verweisen. Die leichteste Option ist es allerdings vorgefertigte Themes zu nutzen.
+```         
+---
+title: "Euer Titel"
+date: "Datum"
+output: html_document
+---
+```
 
 Im untenstehenden YAML Code wird eimes der Standard Themes von R Markdown namens "Flatly" definiert. Weitere Themes findest du in dieser [R Markdown Theme Gallery](https://www.datadreaming.org/post/r-markdown-theme-gallery/){target="_blank"}.
 
-    ---
-    title: "Euer Titel"
-    date: "Datum"
-    output: 
-      html_document:
-        theme: "flatly"
-        highlight: github
-    ---
+```         
+---
+title: "Euer Titel"
+date: "Datum"
+output: 
+  html_document:
+    theme: "flatly"
+    highlight: github
+---
+```
 
 ```{r 10quiz_reports_yaml}
 quiz(caption = NULL,
@@ -242,3 +209,356 @@ quiz(caption = NULL,
 -   [**Nachschlagewerk zu RMarkdown (engl.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-3.pdf){target="_blank"}
 -   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"}
 -   Templates für [PDF- und HTML-Dokumente](https://www.rstudio.com/blog/r-markdown-custom-formats/){target="_blank"}
+
+---
+
+<details>
+  <summary><h4>&#10145; Exkurs 1: Reportautomatisierung</h4></summary>
+  <br>
+  
+<h2><b>Reportautomatisierung</b></h2>  
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
+
+*"Reportautomatisierung" von Lisa Reiber in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+
+![*Video: Reportautomatisierung (20min)*](https://youtu.be/78r2ugQ6bdQ)
+
+<h3><b>Kernaussagen</b></h3>
+
+-   Berichte in R Markdown anzulegen, bedeutet, **reproduzierbare Reports** zu erstellen
+-   So können...
+    a)  Reports leicht **aktualisiert**,
+    b)  **verschiedene Layoutformate** gleichzeitig und
+    c)  **eine hohe Anzahl** von Berichten pro **Ausprägung einer Entität** (z.B. Länder und Zeiträume) erstellt werden
+-   In dieser **Flexibilität** von R Markdowns liegt auch ihr Mehrwert
+-   Technisch ist dafür zumeist das Verwenden von **Parametern** (zu dt. auch Übergabewerte) notwendig
+-   Parameter sind Variablen, die in Computerprogrammen **verschiedene Ausprägungen** annehmen können und für die Art und Weise der **Verarbeitung** von Informationen in Routinen relevant sind (z.B. wenn individuelle Reports für verschiedene Beobachtungen erstellt werden)
+-   Parameter werden im **YAML-Abschnitt** von R Markdown Dokumenten definiert
+-   Sie können über eine Anpassung des YAML-Abschnitt selbst oder innerhalb der **Renderfunktion** `rmarkdown::render("MyDocument.Rmd", params = ...)` adaptiert werden
+-   Für Nutzer:innen kann zudem die Auswahl über **interaktive Menüs** ermöglicht werden (**Menü-Option** `Knit -> Knit with parameters` oder `rmarkdown::render(input = ..., params = "ask")`)
+-   Innerhalb des R Markdowns kann auf die selbst benannten Parameter über `params$parameter_name` **zugegriffen** werden
+-   Möglich ist die Festlegung von Parametern von den folgenden **Typen**: `character` (Text), `integer` (ganze Zahl), `numeric` (Zahl), `logical` (logischer Ausdruck) und Ausdrücke in R
+
+<h3><b>Quiz</b></h3>
+
+```{r 11quiz_reportauto}
+quiz(caption = NULL,
+  question("R Markdowns sind reproduzierbar. Das hat den Vorteil, dass...",
+    answer("sie leicht aktualisiert werden können.", correct = TRUE),
+    answer("in verschiede Layoutformate übertragen werden können.", correct = TRUE),
+    answer("sie für verschiedene Szenarien erstellt werden können.", correct = TRUE),
+    answer("problemlos auf völlig andere Daten übertragen werden können."),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Die Operationen, die Ihr auf Basis von Daten durchführt, sind in den meisten Fällen auf den Datensatz angestimmt. Daher ist es shr wahrscheinlich, dass der gleiche Code nicht mit einem völlig anderen Datengrundlage funktioniert. Die Struktur der Daten sollte deshalb konstant sein, insbesondere wenn Ihr den Bericht parametrisieren wollt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Der Mehrwert von R Markdowns liegt in...",
+    answer("der leichten Anpassungsfähigkeit ihrer Designs."),
+     answer("ihrer Reproduzierbarkeit.", correct = TRUE),
+     answer("ihrem niedrigschwelligen User Interface für nicht so tech-affine Nutzer:innen."),
+     correct = "Richtig! Glücklicherweise gibt es tolle Layouttemplates und die Möglichkeit der interaktiven Parametrisierung durch GUIs, die es uns vereinfachen, Reports anschaulich und nutzerinnenfreundlich zu gestalten.",
+     incorrect = "Leider falsch: Das Layout von R Markdowns muss oft in HTML und CSS codiert werden. Deshalb nutzen wir in der Regel Templates. Teilen wir außerdem R Markdowns direkt (also nicht das Outputformat) ist auch die Nutzung in RStudio gar nicht so leicht - wie Ihr ja bereits wisst. Da müssen wir also Zeit in das Set-up und die gute Erklärung des Tools stecken.",
+     allow_retry = TRUE,
+     try_again_button = "Nochmal versuchen"
+  ),
+  
+  question("Parameter sind...",
+    answer("Platzhalter, die es ermöglichen einen Wert einmal zu definieren, und ihn an verschiedenen Stellen im Code zu übergeben.", correct = TRUE),
+    answer("eine Maßeinheit der Performance in der Computerwissenschaft."),
+    correct = "Richtig! Glücklicherweise müssen wir in der Computerwissenschaft keine 100 Parameter-Sprints laufen.",
+    incorrect = "Leider falsch: Glücklicherweise müssen wir in der Computerwissenschaft keine 100 Parameter-Sprints laufen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Wie können Parameter gesetzt und übergeben werden?",
+    answer("Über den YAML-Header, optional: Mit GUI", correct = TRUE),
+    answer("In einer beliebigen Stelle im Code"),
+    answer("Über die Render-Funktion, optional: Mit GUI", correct = TRUE),
+    correct = "Richtig! Dann kann es ja losgehen...",
+    incorrect = "Leider falsch: Parameter werden über den YAML-Header oder die Render-Funktion gesetzt.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+<h3><b>Interaktive Übung</b></h3>
+
+<h4>Schritt 0: Set-up</h4>
+
+Zunächst ist es wichtig, die richtige Infrastruktur für Eure Reports zu schaffen. Eine Reportautomatisierung besteht aus:
+
+-   einem **Reporttemplate in R Markdown**, in dem der Inhalt des Reports, der Code, und die Parameter im YAML-Abschnitt definiert werden (reporttemplate.Rmd)
+-   einem **Ausführungsskript**, das die render-Funktion zur automatischen Erstellung der Reports enthält. Hier können verschiedene Optionen für den Prozess der Reportgenerierung eingestellt werden. Außerdem können Parameter Werte definiert werden, die dann über die Platzhalter Parameter sogar in den Code des R Markdown Dokuments einfließen können und somit den generierten Report beeinflussen. (diese Dateien werden oft render.R oder render.Rmd genannt. Wir verwenden report_factory.Rmd)
+
+Eingebettet sollten die beiden Codeskripte in einem **R-Projekt** sein. Wie bereits im Kapitel "Einführung in R(Studio)" erklärt, helfen diese als metaphorischer Umzugskarton unsere Infrastruktur zusammenzuhalten. Ein R-Projekt, das alle enthaltenen Dateien einbettet, erleichtert die Übergabe der Werte zwischen den Dateien. Nützlich sind zudem die **Ordner "daten"**, in dem alle Daten hinterlegt sind, sowie der **Ordner "out"**, in dem alle erzeugten Reports gespeichert werden.
+
+<h4>Schritt 1: Parameter definieren (und ggf. Standardwert setzen)</h4>
+
+Um Parameter zu nutzen, müssen diese **immer** im YAML-Header definiert werden. Der folgende YAML-Header legt als Titel "Mein Report", als Autor:in "Maxi Mustermensch", als Datum den heutigen Tag (`r params$heute`) und als Output HTML fest. Darüber setzen wir noch eigene Parameter (params). Jede Zeile folgt der Logik eines **Key-Value-Paares** (zu dt. Schlüssel-Wert-Paar). Die Bezeichnung des Wertes steht also vor dem Doppelpunkt, der Wert danach (`parameter_name(key): parameter_wert(value)`). Dieser Wert ist Euer Standardwert bei der Ausführung des Codeskripts. Wenn der Wert frei bleibt, wird er automatisch auf `NULL` gesetzt.
+
+```         
+---
+title: "Mein Report"
+author: "Maxi Mustermensch"
+date: "`r format(Sys.Date(), '%d. %B %Y')`"
+output: html_document
+params:
+  heute: !r format(Sys.Date(), '%d. %B %Y')
+  daten: "daten/audit.csv"
+  filter_plastic: "hdpe"
+  filter_continent: "alle Kontinente"
+---
+```
+
+Ausgewählt haben wir hier als Parameter das Ausstellungsdatum des Reports (den aktuellen Tag), Daten, Plastiktyp und einen Parameter mit diversen Ausprägungen (Kontinente), da dies Weichenstellungen sind, die wir bei der Erstellung und Aktualisierung von Reports häufig austauschen.
+
+*Anmerkung: Achtung bei der Nutzung von R-Funktionen in den allgemeinen YAML-Headereinstellungen und den Parametern. Die Syntax unterscheidet sich (siehe oben).*
+
+<h4>Schritt 2: Parameter einbinden</h4>
+
+Parameter, die im YAML-Abschnitt definiert wurden, stehen als **Liste namens `params`** zur Verfügung. Um auf einen Parameter im Code zuzugreifen, benutzt Ihr `params$parameter_key`. Auf den Parameterwert könnt Ihr sowohl in Code Chunks als auch im Inhalt des R Markdowns zugreifen. Schauen wir uns das mal am Beispiel des Parameter "heute" an:
+
+```         
+Das heutige Datum ist: `r knitr::inline_expr('params$heute')` 
+```
+
+Beim Rendern des R Markdowns wird also der Platzhalter `params$heute` durch das Datum ersetzt, welches im YAML-Abschnitt definiert wurde. Aus dem Code wird also:\
+
+```         
+Das heutige Datum ist: `r params$heute`. 
+```
+
+Genauso funktioniert das Ganze auch für Code:
+
+```{r, parameter_call, exercise = TRUE}
+# Zugriff auf den Parameter "heute"
+print(params$heute)
+```
+
+Druckt hier den als Parameter definierten Filter für Plastikart (`filter_plastic`).
+
+```{r 11quiz_parameter_call, exercise = TRUE}
+# Hier Euer Code!
+
+```
+
+```{r 11quiz_parameter_call-solution}
+# Zugriff auf den Parameter "filter_plastic"
+print(params$filter_plastic)
+```
+
+```{r 11quiz_parameter_call-check}
+grade_this_code()
+```
+
+<!-- Die Parameter können wir dann nutzen, um Daten einzulesen...  -->
+
+<!-- ```{r parameter_daten, exercise = TRUE} -->
+
+<!-- # Daten mit Parameter laden -->
+
+<!-- rio::import(here::here(params$daten), fill=TRUE) -->
+
+<!-- ``` -->
+
+Die Parameter können wir dann nutzen, um Daten zu filtern (wir nutzen hier den vorbereiteten Datensatz `audit`).
+
+```{r parameter_filtern, exercise = TRUE}
+# Laden des Audit-Datensatzes 
+audit <- rio::import(
+  here::here("daten/bffp2019_audit_by_country_and_company.csv")
+  )
+```
+
+```{r 11quiz_1-parameter_filtern, exercise = TRUE}
+# Filtern des Audit-Datensatzes 
+audit %>%
+  dplyr::filter(plastic_type == params$filter_plastic)
+```
+
+Filtert nun zusätzlich den Kontinent (hinterlegt als `filter_continent`):
+
+```{r 11quiz_parameter_filter, exercise = TRUE}
+# Filtern des Audit-Datensatzes (hinterlegt als )
+audit %>%
+  dplyr::filter(plastic_type == params$filter_plastic) 
+# Euer Code hier
+```
+
+```{r 11quiz_parameter_filter-solution}
+# Filtern des Audit-Datensatzes
+audit %>%
+  dplyr::filter(plastic_type == params$filter_plastic,
+                continent == params$filter_continent)
+```
+
+```{r 11quiz_reportauto_filter}
+quiz(caption = NULL,
+  question("Wie viele Beobachtungen werden gefunden?",
+    answer("2886"),
+    answer("0", correct = TRUE),
+    answer("178"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Warum ist das der Fall?",
+    answer("Es gibt für den Kontinent keine Beobachtungen.", correct = TRUE),
+    answer("Das muss ein Fehler sein..."),
+    correct = 'Richtig! Wir haben den Parameter "filter_continent" mit dem Standardwert "alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
+    incorrect = 'Leider falsch: Die Anzahl der Zeilen (= Beobachtungen beträgt 0, ablesbar in Description:df [0 × 16]. Wir haben den Parameter "filter_continent" mit dem Standardwert "alle Kontinente" definiert. So einen Kontinent gibt es im Datensatz natürlich überhaupt nicht. Es ist aber ein guter Trick, denn so könnt Ihr eine Bedingung einbauen: Nur wenn der Parameter spezifiziert ist (ungleich "alle Kontinente"), wird ein spezieller Report angelegt. Sonst wird der Report für den ganzen Datensatz erzeugt. Cool, oder?',
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Umsetzen können wir die Option "alle Kontinente" übrigens, indem wir beispielsweise in der Datenbereinigung diese Option einbauen:
+
+```{r filter_trick, exercise = TRUE}
+### Filter für parametrisierte Reports einfügen
+if (params$filter_continent != "alle Kontinente") {
+  audit <- audit %>% filter(continent == params$filter_continent)
+}
+
+# Head drucken
+head(audit)
+```
+
+
+<h4>Schritt 3: Parameter anpassen</h4>
+
+<h5>Option A1: YAML-Header (begrenzt praktikabel)</h5>
+
+Falls Ihr den Report lediglich semi-automatisch ausführen wollt, könnt Ihr die Parameter **manuell im YAML-Header** jederzeit austauschen und anpassen. Der Report wird dann auf Basis der aktualisierten Parameter durchgeführt (Klickt einfach auf "Knit").
+
+<h5>Option A2: YAML-Header mit GUI (begrenzt praktikabel)</h5>
+
+Neben dem Knit-Button findet sich ein Menü, in dem "Knit with parameters..." ausgewählt werden kann. Daraufhin öffnet sich in R-Studio eine graphische Oberfläche, in der für die im R Markdown Dokument definierten Parameter eigene Werte eingegeben werden können.
+
+![*Knitting mit Parametern - Standard (Screenshot)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/10_automatisierte-reports/knitwithparameters.png?raw=true){#id .class width="50%" height="50%"}
+
+Das Layout der Parametereingabe könnt Ihr über den YAML-Header sogar gestalten. Zur Verfügung steht Euch die freie Eingabe (Standard), Dateiuploards (nützlich für Daten), Slider (für numeriswche Werte oder Datumsangaben) und ein Dropdown-Menü zur Auswahl von Optionen. Außerdem könnt Ihr den Eingabefeldern individuelle Namen, ein Minimum und Maximum zuweisen.
+
+```         
+---
+title: "Mein Report"
+author: "Maxi Mustermensch"
+date: "`r format(Sys.Date(), '%d. %B %Y')`"
+output: html_document
+params:
+  heute: !r format(Sys.Date(), '%d. %B %Y')
+  daten: #Parametername
+    label: "Daten hochladen (CSV-Format):" #Beschreibung im Menü
+    value: "daten/audit.csv" #Standardwert
+    input: file #Layoutoption: File-Upload
+  filter_plastic: 
+    value: "hdpe"
+    label: "Plastikart auswählen:"
+    choices: ["hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc"] #Layoutoption: Einfachauswahl
+  filter_continent: 
+    label: "Kontinent auswählen:"
+    value: "alle Kontinente"
+    input: select #Layoutoption: Einfachauswahl
+    choices: ["Amerikas", "Asien", "Afrika", "Europa", "Ozeanien", "alle Kontinente"] 
+---
+```
+
+![*Knitting mit Parametern - Menüoptionen (Screenshot)*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/10_automatisierte-reports/knitwithparametersoptions.png?raw=true){.class width="50%" height="50%"}
+
+<h5>Option B1: Die Render-Funktion mit GUI (begrenzt praktikabel)</h5>
+
+Die andere Option, die wir Euch nicht vorenthalten möchten, ist das Starten des GUI über die `rmarkdown::render()`-Funktion. Ansonsten funktionier hier alles analog zu Option A2.
+
+``` r
+rmarkdown::render("Report_Plastic.Rmd", params = "ask")
+```
+
+<h5>Option B2: Die Render-Funktion (Best Practice)</h5>
+
+Am Besten - und wenn Ihr viele Reports auf einmal erstellen wollt - solltet Ihr nun die **Render-Datei** `render.R/render.Rmd` einrichten. Hauptbestandteil dieses Codescriptes ist die Render-Funktion:
+
+``` r
+rmarkdown::render(
+  input = here::here("Report_Plastic.Rmd"), # Hier kommt Euer Reporttemplate hin
+  output_format = "html_document", # Hier legt Ihr das Outputformat fest
+  output_file = glue::glue("{lubridate::today()}_Report_{params$filter_continent}"), # Hier legt Ihr den Outputnamen fest
+  output_dir = "output" # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
+  params = list(filter_continent: "alle Kontinente") # Hier könnt Ihr die Parameterliste setzen
+  ) 
+```
+
+</details>
+
+---
+
+---
+
+<details>
+  <summary><h4>&#10145; Exkurs 2: Die Reportfabrik</h4></summary>
+  <br>
+
+Wollen wir viele Reports auf einmal erstellen, müssen wir die Render-Funktion in etwas einbetten, das definiert, dass der Report für die verschiedenen Werte in einer Liste gerendert werden soll. Wir nutzen dazu die `purrr::walk`-Funktion. Sie bedeutet: Für jedes Element der Liste, wende die Funktion an, die hier definiert wird:
+
+``` r
+purrr::walk(liste, function(listenelement) {
+  beliebige_function(beliebiges_argument = bezug_listenelement)
+})
+```
+
+Wir wollen für den [Report Ausblick](https://drive.google.com/file/d/1vjfbibPdMfXuw0HQHL_0p4MeGO_kcYP2/view?usp=share_link){target="_blank"}, der bereits den Trick mit "alle Kontinente" enthält, nun ein `render.R`-Skript erstellen, das auch zulässt, dass wir für jeden Kontinent einen Report erstellen. Dazu importierten wir im `render.R`-Skript den Audit-Datensatz und erstellen - analog zum Report - den Audit-Datensatz. Da wir für jeden Kontinent einen Report anlegen wollen, benötigen wir eine **Liste** der Kontinente.
+
+``` r
+# Liste mit Kontinenten erstellen
+kontinente_liste <- unique(audit$continent)
+```
+
+Im Anschluss kombinieren wir die `purrr::walk()`-Funktion mit der `rmarkdown::render()`-Funktion.
+
+``` r
+purrr::walk(
+    .x = kontinente_liste, 
+    .f = ~rmarkdown::render(
+    # Hier kommt Euer Reporttemplate hin
+    input = here::here("11_reports-uebung_NH_Ausblick.Rmd"), 
+    # Hier legt Ihr das Outputformat fest
+    output_format = "html_document",
+    # Hier legt Ihr den Outputnamen fest, der nun den Kontinent beinhaltet
+    output_file = glue::glue("{lubridate::today()}_Report_{.x}"),
+    # Hier legt Ihr den Ordner fest, in dem Output gespeichert wird
+    output_dir = "output"
+    # Hier könnt Ihr die Parameterliste setzen: Wir ändern nur den Parameter "Kontinent"
+    params = list(filter_continent: "alle Kontinente") 
+  )
+```
+
+*Tipp 1: Erstellt das zugehörige Directory automatisch, falls es nicht exisiert.*
+
+``` r
+output_dir <- here::here("output")
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir)
+}
+```
+
+*Tipp 2: Ihr wollt die Reports ganz automatisch ohne Euer Zutun erzeugen, z.B. auf einem Server? Dafür nutzen wir CronJobs, die zeitbasiert Prozesse für uns ausführen. Wie üblich gibt es zum vereinfachten Management ein Package in R: [cron R Dokumentation](https://cran.r-project.org/web/packages/cronR/cronR.pdf){target="_blank"}*
+
+Tolle Tipps, Tricks und mehr Input findet Ihr auf der [Website von R-Studio](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}, in den englischsprachigen Büchern [Markdown: The Definite Guide, Kapitel 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} und [R Markdown Cookbook, Kapitel 17.4](https://bookdown.org/yihui/rmarkdown-cookbook/parameterized-reports.html){target="_blank"} und bei [Dataquest](https://app.dataquest.io/course/intermediate-r){target="_blank"}. In dem verlinkten Kapitel findet Ihr insbesondere weitere Hilfestellungen zu Wenn-Dann-Bedingungen, Funktionen und Iterationen.
+
+<h3><b>Und jetzt Ihr</b></h3>
+
+Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erstellt habt - dann könnt Ihr jetzt versuchen, diesen mit Hilfe der `rmarkdown::render()` Funktion zu generieren und die Funktion so anzupassen, dass der Dateiname nach euren Wünschen Angepasst wird. Wenn Ihr nicht genug vom Report fabrizieren bekommen könnt oder Ihr keinen eigenen Report habt, dann schaut in den Ordner `10_automatisierte-reports/10_automatisiertereports` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}, öffnet das R Projekt und versucht die Aufgaben in `Report_Factory.Rmd` zu bearbeiten.
+
+<h3><b>Zusätzliche Ressourcen</b></h3>
+
+-   [RStudio Webinar: **Rethink Reporting with Automation**](https://www.rstudio.com/resources/webinars/rethink-reporting-with-automation/){target="_blank"}
+-   Yihui Xie et al. [**RMarkdown: The Definitive Guide**](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html){target="_blank"} (engl.)
+-   RStudios [Hilfeseite](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}
+-   [CorrelTalk: **Automatisierte Reportgenerierung für die Weltläden**](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
+
+</details>
+
+---
