@@ -122,3 +122,18 @@ get_params <- function() {
     "filter_continent" = "Alle Kontinente"
   )
 }
+
+get_license_note <- function(title, authors) {
+  badge <- "[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)"
+  
+  license_attr <- paste0(
+    "*",
+    title,
+    " von ",
+    paste(authors, collapse = ", "),
+    " in \"R Lernen - der Datenkurs von und für die Zivilgesellschaft\" von CorrelAid e.V.",
+    " Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).",
+    "*")
+    
+  paste(badge, license_attr, sep = "\n\n")
+}
