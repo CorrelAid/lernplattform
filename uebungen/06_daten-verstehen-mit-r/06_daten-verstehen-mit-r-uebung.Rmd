@@ -1,0 +1,118 @@
+---
+title: "Erste Datenanalysen in R"
+author: "Nina Hauser"
+date: "10/20/2021"
+---
+
+## Übung 1
+
+Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**:
+
+1.  Wie viel Plastik wurde insgesamt gesammelt?
+2.  Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt?
+3.  Welche Faktoren beeinflussen möglicherweise diese Unterschiede?
+
+## Übung 2:
+
+Überlegt: Welche **Fragen** möchtet Ihr den Daten noch stellen? Wie könnte eine Visualisierung oder eine zusammenfassende Statistik dabei helfen? Skizziert Eure Fragen gerne schriftlich.
+
+## Übung 3:
+
+Versucht, dieses RMarkdown zum Laufen zu bringen und es nachzuvollziehen. Ihr könnt hierbei entweder im Skript Editor bleiben und die Code Chunks nacheinander ausführen (kleine grüne Play-Buttons in der oberen rechten Ecke bei jedem Code Chunk), oder Ihr klickt auf Knit oben im Menü - hier öffnet sich dann eine html-Vorschau.
+
+(Wenn ihr Code hinzufügt, müsst ihr das im Editor machen und dann schauen ob es klappt mit dem Ausführen)
+
+### Schritt 1: Infrastruktur
+
+```{r setup, output = FALSE, message = FALSE}
+
+# Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
+
+library(rio)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(countrycode)
+```
+
+### Schritt 2: Daten laden
+
+Speichert die Datensätze von dem Datenordner der CorrelCloud im Ordner "daten" ab, der auf einer Ebene mit diesem RMarkdown abliegt.
+
+```{r daten_laden}
+### Community Datensatz laden
+community <- rio::import(here::here('daten/bffp2019_community_by_country.csv'))
+
+### Audit Datensatz laden
+audit <- rio::import(here::here('daten/bffp2019_audit_by_country_and_company.csv'))
+```
+
+### Schritt 3: Daten bereinigen (hier für Euch schon erledigt)
+
+```{r daten_bereinigen}
+
+```
+
+### Schritt 4: Übersicht verschaffen
+
+```{r ueberblickcommunity}
+# Überblick über die Community verschaffen
+dplyr::glimpse(community)
+```
+
+```{r ueberblickaudit}
+# Überblick über den Plastik-Audit verschaffen
+dplyr::glimpse(audit)
+```
+
+### Schritt 5: Statistische Kennzahlen
+
+```{r tabelle}
+# Tabelle mit statistischen Kennzahlen
+# Tabelle mit statistischen Kennzahlen
+
+summarise(group_by(community, Kontinent = community$continent), 
+         "Anzahl Länder" = n(),
+         "Anzahl Plastikstücke" = sum(n_pieces),
+         "Mittelwert" = mean(n_pieces),
+         "Standardabweichung" = sd(n_pieces),
+         "Varianz" = var(n_pieces),
+         "Median" = median(n_pieces),
+         "Quartil (25%)" = quantile(n_pieces, .25),
+         "Quartil (75%)" = quantile(n_pieces, .75),
+         "Interquartilsabstand (IQR)" = IQR(n_pieces),
+         "Spannweite" = max(n_pieces) - min(n_pieces)) 
+```
+
+### Schritt 6: Visuelle Exploration
+
+```{r geom_point_n_pieces_bericht}
+
+# Erstellung eines jitter plots zur Anzahl gesammelter Plastikstücke pro Kontinent
+
+ggplot(data = community, 
+       aes(x = continent, # x-Achse soll Kontinente zeigen
+           y = n_pieces)) +  # y-Achse soll Stücke zeigen
+  geom_jitter(size = 3, # Größe der Punkte
+              alpha = 0.6, # Transparenz der Punkte
+              width = 0.2) +  # Breite der Punkt-jitter pro Kategorie
+  labs(title = "Auch die Anzahl gesammelter Plastikstücke von 'Break Free From Plastic' ..." ,
+    subtitle = "... unterscheidet sich nach Kontinent und Land.",
+    y = "Anzahl gefundener Plastikstücke pro Land",
+    x = "Kontinent",
+    caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs  
+  theme(legend.position="none") # Ausblenden der Legende
+```
+
+## Übung 4:
+
+In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pieces Variable** gewidmet. Nun blicken wir auf die **n_volunteers**: Wie sehr unterscheiden sich die Freiwilligenzahlen nach Kontinenten? Erstellt in dem heruntergeladenen RMarkdown ein **Punktediagramm** (Scatterplot) mit dem Datensatz `community` für diesen Blickwinkel auf den Erfolg der "Break Free from Plastik" Aktion. Die Graphik soll `n_volunteers`, die **Anzahl der Freiwilligen** auf der y-Achse und die **Kontinente** auf der x-Achse zeigen. <br> *Hinweis: Kopiert den Code der Graphik oben, tauscht an relevanten Stellen die entsprechende Variable aus und passt die Beschriftungen an (und tut sonst erstmal nichts).*
+
+```{r loesung}
+#Euer Code hier
+```
+
+## Übung 5:
+
+Interpretiert die Graphik. Was könnt Ihr ablesen?
