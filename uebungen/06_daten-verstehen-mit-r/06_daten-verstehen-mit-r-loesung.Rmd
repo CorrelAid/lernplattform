@@ -103,6 +103,19 @@ In der ersten Einheit haben wir uns bei der Visualisierung vor allem der **n_pie
 
 ```{r loesung}
 # Euer Code hier
+ggplot(data = community, 
+       aes(x = continent, # x-Achse soll Kontinente zeigen
+           y = n_volunteers)) +  # y-Achse soll Volunteers zeigen
+  geom_jitter(size = 3, # Größe der Punkte
+              alpha = 0.6, # Transparenz der Punkte
+              width = 0.2) +  # Breite der Punkt-jitter pro Kategorie
+  labs(title = "Auch die Anzahl an Freiwilligen von 'Break Free From Plastic' ..." ,
+       subtitle = "... unterscheidet sich nach Kontinent und Land.",
+       y = "Anzahl an Freiwilligen pro Land",
+       x = "Kontinent",
+       caption = "Datenquelle: TidyTuesday und BFFP") + # Festlegung der Achsenbezeichungen, Überschriften und Titel
+  theme_minimal() + # Festlegung des Layout-Designs  
+  theme(legend.position="none") # Ausblenden der Legende
 ```
 
 ## Übung 5
