@@ -221,24 +221,6 @@ out <- knitr::knit_child("05_datenimport.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Exkurs: APIs-->
-```{r results='asis'}
-out <- knitr::knit_child("05_1_datenimport-exkurs-api.Rmd", quiet = TRUE) 
-cat(out, sep = '')
-```
-
-<!-- ## Exkurs: Geo-->
-```{r results='asis'}
-out <- knitr::knit_child("05_0_datenimport-exkurs-geo.Rmd", quiet = TRUE) 
-cat(out, sep = '')
-```
-
-<!-- ## Exkurs: SQL -->
-```{r results='asis'}
-out <- knitr::knit_child("05_2_datenimport-exkurs-sql.Rmd", quiet = TRUE) 
-cat(out, sep = '')
-```
-
 <!-- ## Datentransformation -->
 ```{r results='asis'}
 out <- knitr::knit_child("06_datentransformation.Rmd", quiet = TRUE)
