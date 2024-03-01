@@ -1,11 +1,12 @@
 ---
 title: "Datenimport und APIs"
-author: "Nina Hauser"
-date: "10/20/2021"
+author: "Nina Hauser & David Schweizer"
+date: "01/02/2024"
 output: pdf_document
 ---
 
 # Schritt 1: Infrastruktur
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
@@ -20,6 +21,7 @@ Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank
 
 ```{r}
 # Euer Code hier
+
 ```
 
 
@@ -28,23 +30,19 @@ Ladet den "Plastics"-Datensatz über einen **Hyperlink** [Link](https://raw.gith
 
 ```{r}
 # Euer Code hier
+
 ```
 
+### Bonus - Übung 3:
+Mehr Strukturdaten vom Bundeswahlleiter: Wir wollen die Sturkturdaten der Bundestagswahl 2017 mit der Funktion *read_delim()* lokal laden. Die CSV-Datei könnt ihr [hier](https://www.bundeswahlleiterin.de/dam/jcr/f7566722-a528-4b18-bea3-ea419371e300/btw2017_strukturdaten.csv) herunterladen. 
 
-### Übung 3:
-Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
-```{r}
-# Euer Code hier
-```
+Versucht die Datei manuell zu importieren. Achtet dabei auf den im Kapitel beschriebenen Ablauf: Öffnet die Datei mit einem Texteditor; welche Formatierung (encoding) hat sie? Dies könnt ihr beim manuellen Import unter "Locale" ändern. Die 2021er Strukturdaten lagen in der UTF-8 Kodierung vor. (Test: Was passiert, wenn wir die Locale nicht ändern?) Des Weiteren müsst ihr natürlich wieder auf die Argumente *skip* und *delim* achten.
 
-
-### Übung 4: 
-In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um.
 
 ```{r}
 # Euer Code hier
-```
 
+```
 
 # Schritt 3: Daten bereinigen
 
