@@ -1,49 +1,46 @@
-## **Datenimport und APIs**
+## **Datenimport**
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
-*"Datenimport und APIs" von Nina Hauser, Frie Preu, Philipp Bosch in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+*"Datenimport" von David Schweizer, Nina Hauser, Frie Preu, Philipp Bosch in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
-Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um damit Analysen durchzuführen. 
+Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt. In den Kapiteln ganz unten auf der Seite (Exkurse 1 - 3) werden komplexere Themen eingeführt. Schaut Euch diese je nach Bedarf oder auch nach Ende des Kurses an - sie sind aber definitiv kein Muss! 
 
 ![*Video: Datenimport und APIs (30min)*](https://youtu.be/NA9QLeQsE9M)
 
-[Hier](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/05_cheatsheet-import.pdf){target="_blank"} findet Ihr zudem ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
-
 ### **Kernaussagen**
-- Es gibt **zwei grundlegende Möglichkeiten** Daten zu importieren:
-     a) aus lokal oder remote gespeicherten **Dateiformaten** (XLSX, CSV, JSON, ...)
-     b) über **Datenabfragen** von Datenbanken und aus dem Internet (Abfragesprachen wie SQL oder über APIs und Web-Scraping)
-- Um Dateien richtig importieren zu können, ist es wichtig herauszufinden, welches **Dateiformat** die Datei hat
-- **Windows-User** können sich die Dateiendung über die Multifunktionsleiste auf der Registerkarte "Ansicht" anzeigen lassen: Aktiviert dort das Feld "Dateinamenerweiterungen" im Abschnitt "Ein-/Ausblenden"
-- **Mac-User** navigieren zu ihrem Schreibtisch und können sich dort die Dateiendung über "Finder" -> "Erweitert" -> Alle Dateinamensuffixe einblenden" anzeigen lassen
-- Der Import von CSV-, XLSX-, SPSS-, SAS und Stata-Dateien kann in RStudio **ohne Code** über "File" -> "Import Dataset" erfolgen
-- Damit Ihr Fehler beim Importieren von Daten von Anfang an vorbeugt, solltet Ihr die **Datei vorab in einem Texteditor öffnen** (nicht immer möglich) und die folgende Checkliste beachten:
+
+- Es gibt **zwei grundlegende Möglichkeiten**, Daten zu importieren:
+     1. aus lokal oder remote gespeicherten **Dateiformaten** (XLSX, CSV, ...)
+     2. über **Datenabfragen** von Datenbanken und aus dem Internet (Abfragesprachen wie SQL oder über APIs und Web-Scraping; mehr hierzu in den Exkursen)
+     
+- Um Dateien richtig importieren zu können, ist es wichtig, herauszufinden, welches **Dateiformat** die Datei hat:
+    - **Windows-User** können sich die Dateiendung über die Multifunktionsleiste auf der Registerkarte "Ansicht" anzeigen lassen: Aktiviert dort das Feld "Dateinamenerweiterungen" im Abschnitt "Ein-/Ausblenden"
+    - **Mac-User** navigieren zu ihrem Schreibtisch und können sich dort die Dateiendung über "Finder" -> "Erweitert" -> Alle Dateinamensuffixe einblenden" anzeigen lassen
+    
+- Um Fehlern vorzubeugen, solltet Ihr die **Datei vorab in einem Texteditor öffnen** (nicht immer möglich) und dabei folgendes beachten:
 
     1) In welchem **Dateiformat** liegt die Datei vor?
     2) Wo ist die Datei **gespeichert**?
     3) Was gibt es hinsichtlich **Dateistruktur** zu beachten (Separatoren, fehlende Werte, etc.)?
-    
-- Wenn Ihr **deutschsprachige Dateien** importiert, müsst Ihr auf Zeichen wie "ä, ö, ü", Spaltentrenner (engl. Separator, im Deutschen ";") und Dezimaltrennzeichen (im Deutschen ",") achten, da dies besonders fehleranfällig ist (die meisten Datenanalyseprogramme arbeiten vorwiegend in englischer Sprache)
-- Mit dem **`rio`-Package** könnt Ihr zahlreiche Dateiformate automatisch einlesen (hier geht es zur [Übersicht](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"})
-- Falls das nicht funktioniert, gibt es für jedes Dateiformat **zahlreiche Funktionen**, mit denen Daten geladen werden können
-- Über **APIs** (zu dt. Schnittstellen) könnt Ihr Datenabfragen an externe Systeme über das Internet stellen
-- Viele APIs können über einfach zu bedienende Funktionen aus **R-Packages** angesprochen werden, weshalb wir zuerst danach suchen sollten
+    4) Wenn Ihr **deutschsprachige Dateien** importiert, müsst Ihr umso mehr auf Umlaute, Spaltentrenner (engl. Separator, im Deutschen ";") und Dezimaltrennzeichen (im Deutschen ",") achten. Hier besteht großes Fehlerpotential, da die meisten Datenanalyseprogramme die englische Sprache als Standardeinstellung haben.
+
+- Der Import von CSV-, XLSX-, SPSS-, SAS und Stata-Dateien kann in RStudio **ohne Code** über "File" -> "Import Dataset" erfolgen
+
+- Alternativ können wir diese Dateien auch mit Funktionen diverser Packages importieren
 
 **Überblick über die verschiedenen Dateiformate:**
 ```{r dateiformate_tabelle, results='asis'}
 tabelle <- "
 
-Dateiformat:  | Dateistruktur:                                                    | Endung:
---------------|-------------------------------------------------------------------|---------------------------------
-CSV-Datei     | tabellarisch-strukturierte Textdatei                              | .csv 
-Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx     
-GEOJSON       | textbasiertes, strukturiertes Format  mit geographischen Daten    | .geojson
-JSON          | textbasiertes, strukturiertes Format                              | .json (zumeist aus API-Requests) 
-SAS           | SAS-Export, der nicht in allen Anwendungen geöffnet werden kann   | .sas 
-Shapefile     | Kartographische Datei, die Koordinaten und Polygone enthält       | .shp
-SPSS          | SPSS-Export, der nicht in allen Anwendungen geöffnet werden kann  | .sav
-Stata         | Stata-Export, der nicht in allen Anwendungen geöffnet werden kann | .dta
-Textdatei     | allgemeine Textdateien                                            | .txt  
+Dateiformat:  | Dateistruktur:                                                    | Endung:                         | Package::Funktion
+--------------|-------------------------------------------------------------------|---------------------------------|------------
+CSV-Datei     | tabellarisch-strukturierte Textdatei                              | .csv                            | readr::read_csv
+Excel-Datei   | tabellarische Daten aus Microsoft Excel                           | .xls/.xlsx                      | readxl::read_excel
+SAS           | SAS-Export, der nicht in allen Anwendungen geöffnet werden kann   | .sas                            | haven::read_sas
+Shapefile     | Kartographische Datei, die Koordinaten und Polygone enthält       | .shp                            | sf::st_read
+SPSS          | SPSS-Export, der nicht in allen Anwendungen geöffnet werden kann  | .sav                            | haven:: read_sav
+Stata         | Stata-Export, der nicht in allen Anwendungen geöffnet werden kann | .dta                            | haven::read_dta
+Textdatei     | allgemeine Textdateien                                            | .txt                            | readr::read_delim
 "
 cat(tabelle)
 ```
@@ -82,12 +79,12 @@ quiz(caption = NULL,
     try_again_button = "Nochmal versuchen"
   ),
   
-  question("Welche Optionen habt Ihr lokale Dateien zu importieren?",
+  question("Welche Optionen habt Ihr, lokale Dateien zu importieren?",
     answer("Manuell über den File Explorer in RStudio (File -> Import Dataset)", correct = TRUE),
-    answer("Mit der Funktion import() des rio-Packages", correct = TRUE),
     answer("Mit individuellen Funktionen aus verschiedenen Packages für die verschiedenen Dateiformate", correct = TRUE),
+    answer("SAS- und SPSS-Dateien können mit der gleichen Funktion importiert werden"),
     correct = "Richtig!",
-    incorrect = "Leider falsch: Ihr könnt von allen drei Optionen Gebrauch machen",
+    incorrect = "Leider falsch: Wir benötigen unterschiedliche Funktionen, die jedoch mit dem gleichen Package geladen werden können.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   ),
@@ -99,53 +96,20 @@ quiz(caption = NULL,
     incorrect = "Leider falsch: Auch das Laden von Dateien über Hyperlinks ist beispielsweise möglich.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-  ),
-  
-  question("Warum ist es best practice Datenquellen live mit Analysetools zu verknüpfen?",
-    answer("Es ist leichter technisch umzusetzen."),
-    answer("Es garantiert, dass Daten aktuell und damit qualitativ hochwertiger sind.", correct = TRUE),
-    answer("Es ist nicht best practice."),
-    correct = "Richtig! Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
-    incorrect = "Leider falsch: Zwar sind Live-Verknüpfungen schwer einzurichten, aber dafür sind die Daten auch aktuell. Entscheidungen trefft Ihr damit auf Basis von aktuellen (und nicht eventuall auf der Basis von veralteten) Daten.",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
-  ),
-  
-  question("Um Datenquellen live zu verknüpfen, ist es immer notwendig, selbst Code zu schreiben, der mit einer API interagiert.",
-    answer("Wahr"),
-    answer("Unwahr", correct = TRUE),
-    correct = "Richtig! Ihr könnt dazu auch R-Packages nutzen, die von der R-Community zahlreich bereitgestellt wurden.",
-    incorrect = "Leider falsch: Ihr könnt dazu auch R-Packages nutzen, die von der R-Community zahlreich bereitgestellt wurden.",
-    allow_retry = TRUE,
-    try_again_button = "Nochmal versuchen"
   )
 )
 ```
 
 ### **Interaktive Übung**
-Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link zu einem öffentlichen Server eingelesen. Mit [`rio`](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"} könnt Ihr fast alle Dateiformate und -strukturen automatisch importieren - in der Theorie zumindest, manchmal klappt es leider nicht. Denn wir haben uns hier um drei wichtige Stellschrauben des Datenimports herumgemogelt: <br>
-1. Die **Dateiendung** konnten wir ignorieren, da das `rio`-Package dies für uns automatisch erkennt. <br>
-2. Der **Speicherort** wird über einen Web-Link und nicht über einen sog. Path (zu dt. Pfad) auf unserem Computer definiert. <br>
-3. Die **Dateistruktur** wird automatisch erkannt. <br>
 
-``` {r daten_einlesen_wdh, exercise = TRUE}
-# Hier laden wir mit dem rio-Package und der Funktion "import()" unseren Datensatz.
-data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
-```
+Im restlichen Kapitel üben wir den Import von unterschiedlichen CSV- und XLSX-Dateien.
 
-Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link) als auch über lokale Dateipfade importiert werden. Ersteres funktioniert für die meisten Packages intuitiv (siehe oben). Lesen wir Dateien ein, die lokal gespeichert sind, müssen wir den Path definieren. Dazu gibt es verschiedene Methoden, von denen jedoch nur eine wirklich sinnvoll ist: Arbeiten wir an Analysen in R, legen wir sowohl unser Skript als auch unsere Daten in einem dafür vorgesehenen **Ordner** ab, der "daten" heißt. Zu diesem Speicherort navigieren wir mithilfe der Funktion `here::here()`.
+##### **CSV-Dateien**
 
-``` {r daten_einlesen_lokal, exercise = TRUE}
-# Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package (hier nur zum Zeigen)
-data_processed <- rio::import(here::here('daten/bffp2019_plastics_processed.csv'))
-head(data_processed)
-```
-Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
+Eine CSV-Datei (comma separated values, zu dt. Komma getrennte Werte) ist eine Datei, in der die verschiedenen Datenwerte durch Kommata getrennt sind. Grundsätzlich entspricht **jede Zeile** einer **Beobachtung**. Die erste Zeile enthält allerding keine Werte, sondern die **Bezeichnungen für die entsprechende Spalte**. Sie wird **Header** genannt. Wir nutzen sie, um auf bestimmte Spalten und Werte zuzugreifen. 
 
-##### CSV
-Eine CSV-Datei (comma separated values, zu dt. Komma getrennte Werte) ist, wie der schon Name sagt, eine Datei in der die verschiedenen Datenwerte durch Kommata getrennt sind. Grundsätzlich entspricht **jede Zeile** einer **Beobachtung**. Die erste Zeile enthält allerding keine Werte, sondern die **Bezeichnungen für die entsprechende Spalte**. Sie wird **Header** genannt und wird genutzt, um auf bestimmte Spalten und Werte zuzugreifen. 
+Wir können die `read.csv()`-Funktion des `readr`-Packages nutzen, um CSV-Dateien zu importieren. Diese hat verschiedene Argumente, welche wir entsprechend unserer Dateistruktur setzen können:
 
-Um CSV-Dateien zu lesen, benutzen wir häufig die `read.csv()`-Funktion des `readr`-Packages. Diese hat verschiedene Argumente, welche wir entsprechend unserer Dateistruktur setzen können:
 ``` {r exericse_csv, exercise = TRUE}
 # install.packages("readr")
 
@@ -156,18 +120,62 @@ data_raw <- readr::read_csv(
   skip = 0, # Festlegen, ob Zeilen übersprungen werden sollen
   na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
   )
+
 head(data_raw)
 ```
-Aber Achtung: Wer **Programme** (insb. Excel) in **deutscher Sprache** nutzt, exportiert CSV-Dateien häufig mit dem Separator ";" und dem Dezimal-Trennzeichen ",". Das führt zu Fehlern. Deutschsprachige CSV-Dateien müssen deshalb mit der Funktion `read.csv2()` importiert werden.
 
-#### XLSX
-Mit **Google Trends Daten** könnt Ihr erforschen, wonach die Welt gerade auf der Suchmaschine Google sucht. Das **Google Search Volume** (zu dt. Google Suchvolumen) bezieht sich dabei konkret auf die Anzahl der Suchanfragen, die Nutzer:innen zu einem bestimmten Suchbegriff innerhalb eines bestimmten Zeitraums eingeben. Ein hohes Volumen deutet auf hohes Interesse an einem Thema hin.
+Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link) als auch über lokale Dateipfade importiert werden. Ersteres funktioniert für die meisten Packages intuitiv (siehe oben). Lesen wir Dateien ein, die lokal gespeichert sind, müssen wir den Path definieren. Dazu gibt es verschiedene Methoden, von denen jedoch nur eine wirklich sinnvoll ist: Arbeiten wir an Analysen in R, legen wir sowohl unser Skript als auch unsere Daten in einem dafür vorgesehenen **Ordner** ab, der "daten" heißt. Zu diesem Speicherort navigieren wir mithilfe der Funktion `here::here()`.
+
+``` {r daten_einlesen_lokal, exercise = TRUE}
+# Alternative für lokale Dateien, die in Eurem R-Projekt als CSV-Datei in einem Ordner namens "Daten hinterlegt wurden, mit dem "here"-Package (hier nur zum Zeigen)
+data_processed <- readr::read_csv(here::here('daten/bffp2019_plastics_processed.csv'))
+
+head(data_processed)
+```
+
+Aber Achtung: Wer **Programme** (insb. Excel) in **deutscher Sprache** nutzt, exportiert CSV-Dateien häufig mit dem Separator ";" und dem Dezimal-Trennzeichen ",". Das führt zu Fehlern. Deutschsprachige CSV-Dateien können mit der Funktion `read.csv2()` importiert werden oder wir können die allgemeinere Funktion `read_delim()` nutzen und  das Argument `delim = ";` hinzufügen. Damit nutzen wir das Semikolon als Separator.
+
+Dies trifft zum Beispiel auf die Strukturdaten für die Wahlkreise zur Bundestagswahl 2021 zu. Die Bundeswahlleiterin stellt die Daten [hier](https://www.bundeswahlleiterin.de/bundestagswahlen/2021/strukturdaten.html) zur Verfügung. Versucht die Datei korrekt zu importieren. Ergänzt dafür das `delim = ";"` Argument.
+
+```{r exercise_csv, exercise = TRUE}
+# Ergänzt das `delim = ...` Argument:
+strukturdaten <- readr::read_delim(
+  file = 'https://www.bundeswahlleiterin.de/dam/jcr/b1d3fc4f-17eb-455f-a01c-a0bf32135c5d/btw21_strukturdaten.csv', # Dateiname/Pfad zur Datei
+  col_names = TRUE, # Vorhandensein des Headers
+  skip = 8, # Wir müssen zudem 8 Zeilen überspringen. Am Besten öffnet Ihr die CSV-Datei einmal selbst mit einem Texteditor
+  na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
+  )
+
+head(strukturdaten)
+```
+
+```{r exercise_csv-solution}
+# Laden der Strukturdaten der Bundeswahlleiterin
+strukturdaten <- readr::read_delim(
+  file = 'https://www.bundeswahlleiterin.de/dam/jcr/b1d3fc4f-17eb-455f-a01c-a0bf32135c5d/btw21_strukturdaten.csv', # Dateiname/Pfad zur Datei
+  delim = ";", # Wir legen das Semikolon als Separator fest
+  col_names = TRUE, # Vorhandensein des Headers
+  skip = 8, # Wir müssen zudem 8 Zeilen überspringen. Am Besten öffnet Ihr die CSV-Datei einmal selbst mit einem Texteditor
+  na = c("", "NA") # Definition, wie "NA"-Werte aussehen z.B. "" (leer), festlegen
+  )
+
+head(strukturdaten)
+```
+
+```{r exercise_csv-check}
+grade_this_code()
+```
+
+#### **XLSX**
+
+Mit **Google Trends Daten** könnt Ihr erforschen, wonach die Welt gerade auf der Suchmaschine Google sucht. Das **Google Search Volume** (zu dt. Google Suchvolumen) bezieht sich dabei konkret auf die Anzahl der Suchanfragen, die Nutzer*innen zu einem bestimmten Suchbegriff innerhalb eines bestimmten Zeitraums eingeben. Ein hohes Volumen deutet auf hohes Interesse an einem Thema hin.
 
 Wir haben für Euch zwei **XLSX-Dateien** erstellt, die zu den Suchbegriffen "beach clean up" (zu dt. Strand aufräumen), also Aktionen wie denen von "Break Free From Plastics", und "plastic pollution" (zu dt. Plastikverschmutzung) Daten enthalten. Das Arbeitsblatt "trends_over_time" stellt die Entwicklung des Google Search Volumes über die Zeit für die letzten fünf Jahre dar. "by_country" enthält die Entwicklung aufgeschlüsselt nach verschiedenen Ländern im Durchschnitt des letzten Jahres.
 
 Hier laden wir mit der Funktion `readxl::read_excel()` das Arbeitsblatt (`sheet = ...`) "trends_over_time" der Excel-Datei "Plastic Pollution - Google Trends.xlsx" aus unserem Ordner "Daten" (`path = ...`), das Spaltenbezeichnungen enthält (`col_names = ...`) und in dem fehlende Werte zumeist durch "" (leer) gekennzeichnet sind (`na = ...`).
 
-*Anmerkung: Zur Live-Verknüpfung mit den aktuellen Daten von Google gibt es in R das `gtrendsR`-Package. Dazu gleich mehr.*
+*Anmerkung: Zur Live-Verknüpfung mit den aktuellen Daten von Google gibt es in R das `gtrendsR`-Package. Dazu mehr in Exkurs 1.*
+
 ```{r exercise_xlsx, exercise = TRUE}
 #install.packages(readxl)
 
@@ -182,6 +190,7 @@ head(googletrendstime_plasticpollution)
 ```
 
 Ladet nun das Arbeitsblatt "by_country" der Datei "Beach Clean Up - Google Trends.xlsx". Kopiert dazu den Code von oben und passt den Dateinamen und das Arbeitsblatt an der richtigen Stelle an.
+
 ```{r exercise_excel, exercise = TRUE}
 # Euer Code hier
 ```
@@ -199,96 +208,27 @@ readxl::read_excel(
 grade_this_code()
 ```
 
-#### SPSS, SAS und Stata
-Gerade in der akademischen Welt (oder den dort produzierten Datensätzen) werden
-Euch hin und wieder auch Dateien mit anderen Endungen begegnen. Diese stammen
-meist von **kostenpflichtigen Analyseprogrammen** wie SPSS oder STATA. Von welchem 
-Programm eure Daten stammen, erkennt ihr wie gehabt an der **Endung**:
-- `.sav` steht für Daten aus SPSS
-- `.dta` steht für Daten aus STATA
-- `.sas7bdat"` steht für Daten aus SAS
+### **Und jetzt Ihr**
+Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Kommuniziert gerne über Slack, wenn Euch bestimmte Datensätze interessieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige **RMD 07_datenimport-uebung.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 07_datenimport):
 
-R selbst hat übrigens auch ein **eigenes Format** in dem Ihr Dateien abspeichern könnt.
-Wenn Ihr eine Datei mit der Endung `.RDATA` seht, wurde diese mit R erstellt und 
-lässt sich dementsprechend sehr einfach mit R einlesen. Wir raten Euch aber trotzdem
-die Daten, wenn möglich, als `.csv` abzuspeichern, da dieses Format sehr weit verbreitet ist
-und auch mit gängiger Software wie Excel geöffnet werden kann.
+1. Versucht, den "Plastics"-Datensatz (im Ordner `daten/plastics.csv` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}) mit diesem Code **lokal zu laden**.
+2. Ladet den "Plastics"-Datensatz über einen [**Hyperlink**](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
+3. *Bonus:* Mehr Strukturdaten vom Bundeswahlleiter: Wir wollen die Sturkturdaten der Bundestagswahl 2017 mit der Funktion *read_delim()* lokal laden. Die CSV-Datei könnt ihr [hier](https://www.bundeswahlleiterin.de/dam/jcr/f7566722-a528-4b18-bea3-ea419371e300/btw2017_strukturdaten.csv) herunterladen. Versucht die Datei manuell zu importieren. Achtet dabei auf den im Kapitel beschriebenen Ablauf: Öffnet die Datei mit einem Texteditor; welche Formatierung (encoding) hat sie? Dies könnt ihr beim manuellen Import unter "Locale" ändern. Die 2021er Strukturdaten lagen in der UTF-8 Kodierung vor. (Test: Was passiert, wenn wir die Locale nicht ändern?) Des Weiteren müsst ihr natürlich wieder auf die Argumente *skip* und *delim* achten.
 
-Um Dateien mit den oben genannten Formaten einzulesen, nutzen wir das `haven` 
-package. Die jeweiligen Datensätze dienen dabei nur der Veranschaulichung und 
-haben für unseren Kurs keine inhaltliche Bedeutung.
+### **Exkurse**
 
-```{r otherformats_exercise, exercise = TRUE}
-#install.packages("haven")
-library(haven)
+---
 
-# SAS
-sas_daten <- haven::read_sas(data_file = "http://libguides.library.kent.edu/ld.php?content_id=11205331")
+<details>
+  <summary><h4>&#10145; Exkurs 1: APIs</h4></summary>
+  <br>
 
-# SPSS
-sav_daten <- haven::read_sav(file = "http://calcnet.mth.cmich.edu/org/spss/V16_materials/DataSets_v16/Cars.sav")
+<h2><b>Exkurs 1: APIs</b></h2>  
 
-# Stata
-dta_daten <- haven::read_dta(file = "http://www.stata-press.com/data/r8/auto.dta")
-```
+<h3><b>APIs in R-Packages</b></h3>
+Der Umgang mit APIs ist für Programmieranfänger*innen oft eine Herausforderung. Viele APIs sind aber bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten wesentlich leichter funktioniert. Über das Package `WDI` könnt Ihr beispielsweise **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
 
-Eine Besonderheit von `.dta` und `.sav` Daten sind **"Labels"**. Labels finden sich
-häufig bei Umfragedaten. Prinzipiell sind diese Labels auch eine schöne Sache. Sie
-liefern euch beispielsweise Informationen über eine bestimme Variable (über einen
-kryptischen Variablennamen hinaus). Programme wie STATA oder SPSS haben eine eigene
-Infrastruktur wie sie diese Labels als Metainformationen anzeigen. Wenn solche Daten
-in R eingelesen werden, kann es aber manchmal zu Problemen mit den Labels kommen. 
-[Hier](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) 
-findet Ihr dazu Hilfe.
-
-#### JSON
-Normalerweise lesen wir JSONs nicht manuell ein, vielmehr sind sie **Teil der Antwort einer Datenabfrage**. Der Vollständigkeit halber findet Ihr hier trotzdem das Package `jsontlite` und die Funktion `read_json()` zum Einlesen von JSON-Dateien.
-```{r json_exercise, exercise = TRUE}
-# Einlesen einer JSON-Datei mit dem jsonlite-Package.
-opengov_beispielsdaten <- jsonlite::read_json(here::here("daten/beispieljson.json"))
-
-# Drucken des zweiten Elements
-head(opengov_beispielsdaten[[2]])
-```
-
-#### Geo(-referenzierte) Daten
-Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergänzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein. <br>
-*Achtung: Damit der Import funktioniert müsst Ihr die gesamte ZIP-Datei, die Ihr laden wollt, in einem Ordner mit der hier gewünschten .shp-Datei ablegen - also auch alle Dateien mit anderen Endungen.*
-```{r polygons_world, exercise = TRUE}
-# install.packages("sf")
-
-# Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
-polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
-```
-
-Unser Datensatz enthält zahlreiche Spalten mit zusätzlichen Informationen zu den Ländern der Welt. Uns interessiert hier die Spalte "`geometry`", die die kartographischen Informationen enthält.
-```{r polygon_welt_exercise, exercise = TRUE}
-# Betrachtung der Daten
-head(polygons_welt$geometry)
-```
-
-Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualisierung.
-```{r polygon_welt__plot_exercise, exercise = TRUE}
-# Erstellung eines einfachen Kartenplots
-plot(polygons_welt$geometry)
-```
-Auch für Deutschland gibt es ähnliche Shapefiles:
-```{r polygon_de_exercise, exercise = TRUE}
-# Einlesen der Deutschlandkarte mit Bundesländern
-polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
-plot(polygons_deutschland$geometry)
-```
-Der Import von geographischen Daten folgt also der folgenden Checkliste:
-
-1. Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
-2. Wo kann ich zugehörige **Shapefiles** finden? <br>
-      *Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden.*
-3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
-
-#### APIs in R-Packages
-Der Umgang mit APIs ist für Programmieranfänger:innen oft eine Herausforderung. Viele APIs sind aber bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten wesentlich leichter funktioniert. Über das Package `WDI` könnt Ihr beispielsweise **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
-
-*Anmerkung: Genau wissen wir das natürlich nicht, die Daten geben uns hier lediglich einen Hinweis darauf, wo der Bedarf groß sein könnte. Deshalb ist es wichtig die Annahmen, auf denen Entscheidungen basieren genau zu definieren und sich darüber Gedanken zu machen, ob die Datengrundlage für eine Entscheidung überhaupt ausreichend ist. Unsere Thesen können wir dann ggf. in Interviews mit Expert:innen (hier z.B. Naturschützer:innen) verifizieren.*
+*Anmerkung: Genau wissen wir das natürlich nicht, die Daten geben uns hier lediglich einen Hinweis darauf, wo der Bedarf groß sein könnte. Deshalb ist es wichtig die Annahmen, auf denen Entscheidungen basieren genau zu definieren und sich darüber Gedanken zu machen, ob die Datengrundlage für eine Entscheidung überhaupt ausreichend ist. Unsere Thesen können wir dann ggf. in Interviews mit Expert\*innen (hier z.B. Naturschützer\*innen) verifizieren.*
 ```{r wb, exercise = TRUE}
 #install.packages("WDI")
 
@@ -344,16 +284,390 @@ Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr ein
 Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquelle ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können. <br>
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
-### **Und jetzt Ihr**
-Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige **RMD 05_datenimport-uebung.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 05_datenimport):
+<h3><b>Eigene API Anfragen</b></h3>
 
-1. Versucht, den "Plastics"-Datensatz (im Ordner `daten/plastics.csv` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}) mit diesem Code **lokal zu laden**.
-2. Ladet den "Plastics"-Datensatz über einen [**Hyperlink**](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
-3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
-4. In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um. 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
+
+*"Eigene API-Anfragen (Exkurs)" von Frie Preu in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+
+![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)
+
+<h4><b>Interaktive Übung</b></h4>
+Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
+
+Eine Interaktion sieht so aus:
+
+1. Der **Client** macht eine Anfrage (engl. Request) an die API
+2. Die API verarbeitet die Anfrage und gibt eine Antwort (engl.: **Response**) zurück. 
+3. Der Client verarbeitet die Antwort.
+
+APIs verfügen zumeist über eine **Dokumentation**, die enthält, welche Funktionalitäten verfügbar sind und wie Anfragen gestellt werden müssen.
+
+**Analogie**: Wenn Ihr (als _Client_) im Restaurant seid, stellt Euch das Restaurant eine*n Kellner\*in (Eure _API_) und eine Speisekarte (Eure _API-Dokumentation_) bereit. Der\*die Kellner\*in nimmt Eure Bestellungen (_Anfragen_) entgegen, die Küche verarbeitet diese und der:die Kellner\*in bringt Eure Bestellung (_Antwort_). 
+
+Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sogenannte _Methoden_ umfasst: GET, POST, PUT, PATCH und DELETE. Da wir in unserem Fall auf Interaktionen schauen, welche sich auf den Datenaustausch fokussieren, ergeben sich folgende Entsprechungen:
+
+- `GET` --> Daten lesen
+- `POST` --> Neue Daten erstellen
+- `PUT` --> Daten ersetzen
+- `PATCH` --> Daten aktualisieren
+- `DELETE` --> Daten löschen
+
+(siehe Folie 10 von ["Datenzugriff im World Wide Web"](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf), Jan Dix, lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode.de).)
+
+[Hier (en)](https://github.com/public-apis/public-apis) findet Ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
+
+<h4><b>GET-Anfragen</b></h4>
+Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein. `GET`-Anfragen können als normale URL (das was Ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
+`{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
+
+Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/search?q=CorrelAid`.
+
+- `BASIS_URL`: `https://www.google.com/`
+- `ROUTE`: `search`
+- `QUERY_PARAMETER`:
+  - `q`: `CorrelAid`
+
+**Analogie**: Im Restaurant bestellt (--> `GET`) Ihr bei Elmo (Eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
+
+<h4><b>Statuscodes</b></h4> 
+Fast alle APIs geben in Ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
+
+Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
+ 
+- `404`: Nicht gefunden ("Not found"). Z.B. existiert der Endpunkt / die Route gar nicht in der API 
+- `401`: Nicht autorisiert ("Not authorised"): Ihr seid nicht autorisiert auf die API zuzugreifen, z.B. weil Ihr keinen *Token* übergeben habt.
+- `403`: Nicht erlaubt ("Forbidden"): Ihr seid zwar im Prinzip für die API autorisiert, aber nicht für die Route, auf die ihr zugreifen wollt (z.B. sensitive Daten oder Administration).
+- `422`: Nicht verarbeitbare Anfrage ("Unprocessable Entity"): Eure Anfrage wurde nicht richtig gestellt
+- `500`: Interner Server-Fehler ("Internal Server Error"): Eure Anfrage ist zwar richtig gestellt worden, innerhalb der API kam es aber zu einem Fehler
+
+**Analogie**: Nach Eurem Besuch im Restaurant "Correl and Friends" geht Ihr noch in die Bar "AidBar". Doch irgendwie seid Ihr nicht so richtig satt geworden vorhin und bestellt, ohne die Karte (_API -Dokumentation_) zu konsultieren, eine Pommes (`/essen?gericht=Pommes`). Leider muss Euch die Kellnerin enttäuschen, "Aid's Tavern" verkauft nur Getränke: 404!
+
+Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet Ihr noch mehr Erklärungen zu wichtigen Statuscodes.
+
+<h4><b>Beispiel</b></h4>
+Wir verwenden die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet Ihr [hier](https://unstats.un.org/SDGAPI/swagger/). Der Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) passt gut zu unseren bisherigen Analysen zum Thema Plastikverschmutzung. Um die Daten zu diesem Indikator zu laden, verwendet Ihr den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Zudem habt Ihr nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den Ihr Daten benötigt.
+
+Um Anfragen an APIs zu machen, nutzen wir das [`httr`](https://httr.r-lib.org/)-Package (Doku).
+
+```{r series-req, exercise=TRUE}
+# library(httr)
+basis_url <- "https://unstats.un.org/" # Haupt-URL
+initiale_anfrage <- httr::GET( # Initialisierung
+  basis_url, # URL verlinken
+  path = "/SDGAPI/v1/sdg/Series/Data", # Route definieren
+  query = list(
+    seriescode = "EN_REF_WASCOL"
+  )
+)
+```
+
+Wenn wir uns die Anfrage-URL anschauen, erkennen wir wieder das Schema `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`.
+
+```{r waste-url, exercise=TRUE}
+initiale_anfrage$url
+```
+
+```{r quiz-route, exercise = FALSE, echo=FALSE}
+quiz(caption = NULL,
+  question("Was ist die Basis-URL der Anfrage?",
+    answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/Data"),
+    answer("https://unstats.un.org/SDGAPI/v1/sdg/Series/"),
+    answer("https://unstats.un.org/", correct = TRUE),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"),
+  question("Was ist die Route der Anfrage?",
+    answer("v1/sdg/Series/Data"),
+    answer("SDGAPI/v1/sdg/Series/Data/", correct = TRUE),
+    answer("sdg/Series/"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Wie viele Parameter hat unsere Anfrage?",
+    answer("0"),
+    answer("1", correct = TRUE),
+    answer("2"),
+    answer("3"),
+    answer("4"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Schaue dir den Code nochmal an!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+Zuerst checken wir nun den **Statuscode**, um sicher zu gehen, dass unsere Anfrage erfolgreich war. In `httr` gibt es hierzu auch die `stop_for_status` Funktion, die einen Fehler schmeißt, wenn die Anfrage nicht erfolgreich war, sonst aber nichts tut.
+
+```{r waste-status, exercise=TRUE}
+initiale_anfrage$status_code # 200
+httr::stop_for_status(initiale_anfrage) # nichts passiert, alles gut!
+```
+
+Nun fragen wir uns: **Wie viele Seiten Dokument** müssen überhaupt geladen werden? APIs geben Euch nämlich meistens nicht von Haus aus alle Resultate zurück.
+```{r apicontent, exercise = TRUE}
+# Vorläufig Inhalt der Inititalabfrage zur Prüfung speichern
+content <- httr::content(initiale_anfrage)
+
+# Einlesen der Seitenanzahl durch das Attribut "totalPages", auf das wir mithilfe von "$" zugreifen
+total_pages <- content$totalPages
+print(total_pages)
+pages <- c(1:total_pages)
+```
+
+Diese Information merken wir uns und schauen uns nun an, was genau die Antwort unserer Anfrage beinhaltet. Diese erhaltet Ihr, indem Ihr die Funktion `httr::content()` (de: Inhalt) verwendet. Output dieser Funktion ist eine **vielschichtige (eng. nested) Liste**.
+```{r content, exercise=TRUE}
+# Inhalt der Response herausziehen
+httr::content(initiale_anfrage)
+```
+Wir erhalten von der Anfrage also eine Liste mit mehreren Elementen zurück, die die gesamte _Antwort_ darstellt. Als Anwender:innen seid Ihr hauptsächlich an den **übermittelten Daten** interessiert, die wir nun ziehen ("$data") . Mit `purrr::map_df` können wir nun die Datenliste (ebenfalls vielschichtig) entpacken.
+```{r goals-extract, exercise=TRUE}
+# Für verschiedene Städte in verschiedenen Ländern erhalten wir so zu verschiedenen Jahren Ihre Müllsammlungsquoten
+waste_list <- waste_data$data
+
+# Mit dem purrr-Package ziehen wir nun die Daten in einen Dataframe
+library(purrr)
+waste_geo <- waste_list %>%
+  purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) %>%
+  filter(dimensions != "G") # Duplikate entfernen, die aus der Datenstruktur resultieren
+
+# Datensatz betrachten
+dplyr::glimpse(waste_geo)
+```
+
+Abschließend schauen wir uns nochmal genauer eines der Datenelemente an:
+```{r inspect-data, exercise=TRUE}
+# Wir schauen uns eines der Daten Elemente an. Die doppelten Klammern extrahieren das x-te Element aus der Liste, hier das zehnte.
+str(waste_data$data[[10]])
+```
+
+Das Daten-Listenelement enthält ziemlich viele Informationen. Für Euch relevant ist der Wert (`value`) sowie die Informationen über das "Wo": `geoAreaCode` und `geoAreaName`. 
+
+Diese Informationen nutzen wir nun - gemeinsam mit der Seitenanzahl - um für jede Seite die benötigten Informationen zu ziehen und diese in einem Dataframe zusammenzuführen. Wie genau Ihr mit solchen komplexeren Datenstrukturen umgehen könnt und diese Daten aus _allen_ Elementen extrahieren könnt, lernt Ihr zu einem späteren Zeitpunkt in Eurer Karriere als Datenwissenschaftler\*innen der Zivilgesellschaft - hier schon einmal die Preview:
+
+```{r listofdataframes, exercise=TRUE}
+# Funktion, mit der alle Seiten geladen werden, indem die Seitenanzahl "Page" durch eine Nummer zwischen 1 und 11 (= Total Pages) ersetzt wir
+list_of_dataframes <- purrr::map(pages, function(page) {
+  antwort <- httr::GET(
+    basis_url,
+    path = "/SDGAPI/v1/sdg/Series/Data",
+    query = list(
+      seriescode = "EN_REF_WASCOL",
+      page = page # Hier wird die Seitenzahl eingesetzt
+    )
+  )
+  # Von jeder Seite die Daten laden
+  waste_list <- httr::content(antwort)$data
+  
+  # Generierung eines Dataframes mit den ausgewählten Variablen
+  waste_geo <- waste_list %>% 
+    purrr::map_df(`[`, c("geoAreaCode", "geoAreaName", "dimensions", "value")) 
+  return(waste_geo)
+})
+
+# Erstellung eines großen Dataframes mit allen Daten
+waste_geo_df <- dplyr::bind_rows(list_of_dataframes)
+```
+
+<h4><b>Authentifizierung</b></h4>
+In unserem Beispiel konnten wir ohne Authentifizierung die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. Ihr müsst beweisen, dass Ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
+
+Hierzu gibt es viele verschiedene Modelle. Im einfachsten Fall erstellt ihr euch einen sogenannten Token in der entsprechenden Website in den Benutzereinstellungen. Ein **Token** ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus `eyJpc3MiOiJodHRwczovL2V4YW1...`.
+
+```{r authorization-ex, exercise=FALSE, eval=FALSE, echo=TRUE}
+# Liest die Umgebungsvariable API_TOKEN und speichert sie im Objekt Token
+basis_url <- "https://beispielapi.org/"
+token <- Sys.getenv("API_TOKEN") 
+
+# Füge unserer Anfrage einen Autorisierungs-Header hinzu, sodass die API weiß, dass wir autorisiert sind
+antwort <- httr::GET(basis_url, 
+                 httr::add_headers(Authorization = paste("Authorization", token)))
+```
+Die Details zur Authentifizierung sind von API zu API unterschiedlich. Die genauen Instruktionen solltet ihr in der jeweiligen API-Dokumentation finden. 
+
+Es gibt spezifische Statuscodes, die in Verbindung mit Authentifizierung besonders häufig auftauchen: 401 und 403. Diese Fehlercodes tauchen häufig auf, wenn man eigentlich den richtigen Token hat, aber ihn in der Anfrage nicht richtig übergeben hat. Lest deshalb immer genau in der Dokumentation nach, wie die Authentifizierung der API im Detail funktioniert.
+
+Aus Sicherheitsgründen ist es zudem sehr wichtig, Euren Token (oder sonstige **sicherheitsrelevante Informationen**) **nicht direkt im Code zu speichern**. Anstatt dessen nutzt ihr hierzu am besten **Umgebungsvariablen** (engl. environment variables). Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Auch wir üben das zu einem späteren Zeitpunkt nochmal.
+
+<h3><b>Zusätzliche Ressourcen</b></h3>
+- Ihr wollt mehr darüber lernen, wie man API-Anfragen selbst schreibt? Dataquest bietet den Kurs ["APIs in R"](https://app.dataquest.io/course/apis-in-r){target="_blank"} (engl.) an.
+
+</details>
+
+---
+
+---
+
+<details>
+  <summary><h4>&#10145; Exkurs 2: Geo(-referenzierte) Daten</h4></summary>
+  <br>
+
+<h2><b>Exkurs 2: Geo(-referenzierte) Daten</b></h2>  
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
+
+*"Geo(-referenzierte) Daten (Exkurs)" von David Schweizer in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+
+Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergänzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein. <br>
+*Achtung: Damit der Import funktioniert müsst Ihr die gesamte ZIP-Datei, die Ihr laden wollt, in einem Ordner mit der hier gewünschten .shp-Datei ablegen - also auch alle Dateien mit anderen Endungen.*
+```{r polygons_world, exercise = TRUE}
+# install.packages("sf")
+
+# Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
+polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
+```
+
+Unser Datensatz enthält zahlreiche Spalten mit zusätzlichen Informationen zu den Ländern der Welt. Uns interessiert hier die Spalte "`geometry`", die die kartographischen Informationen enthält.
+```{r polygon_welt_exercise, exercise = TRUE}
+# Betrachtung der Daten
+head(polygons_welt$geometry)
+```
+
+Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualisierung.
+```{r polygon_welt__plot_exercise, exercise = TRUE}
+# Erstellung eines einfachen Kartenplots
+plot(polygons_welt$geometry)
+```
+Auch für Deutschland gibt es ähnliche Shapefiles:
+```{r polygon_de_exercise, exercise = TRUE}
+# Einlesen der Deutschlandkarte mit Bundesländern
+polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
+plot(polygons_deutschland$geometry)
+```
+Der Import von geographischen Daten folgt also der folgenden Checkliste:
+
+1. Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
+2. Wo kann ich zugehörige **Shapefiles** finden? <br>
+      *Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden.*
+3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
+
+</details>
+
+---
+
+---
+
+<details>
+  <summary><h4>&#10145; Exkurs 3: Datenabfragen in SQL</h4></summary>
+  <br>
+
+<h2><b>Exkurs 3: Datenabfragen in SQL</b></h2>  
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
+
+*"Datenabfragen in SQL" von Nina Hauser in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+
+<h3><b>Interaktive Übung</b></h3>  
+Daten, die uns in unserem Alltag als Datenanalyst\*innen und Datenwissenschaftler\*innen begegnen, sind oft in **Datenbanken** gespeichert. Datenbanken sind **logisch modellierte, strukturierte Datenspeicher**, mit denen mit Hilfe von **Datenbankmanagementsystemen (kurz DBMS)**, also Softwaretools, interagiert werden kann. Diese Interaktion funktioniert für jedes Datenbankmanagementsystem anders und ist **nicht trivial**. Während in einigen Fällen ein manueller Export als XLSX-, CSV- oder JSON-Datei möglich ist, kann es in einigen Fällen, auch auf Grund der Größe der Datensätze, nicht praktikabel sein manuell Daten zu exportieren. Daneben ist das natürlich auch IT im Schneckentempo statt in Lichtgeschwindigkeit. Idealerweise sind Eure Daten nämlich **live** mit Euren Analysetools verknüpft, sodass sie beständig aktuell sind. Die populärsten Datenbankmanagementsysteme findet Ihr in dieser Übersicht einer Umfrage unter Entwickler:innen von [Stack Overflow](https://insights.stackoverflow.com/survey/2020#technology-databases-all-respondents4){target="_blank}.
+
+<center>
+
+![*2020 Developer Survey, Stack Overflow, n = 65,000*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/05_datenimport/popular_dbms.png?raw=true){#id .class width=50% height=50%}
+</center>
+
+An einer Technologie kommt man beim Thema Datenbanken also nicht vorbei: **SQL (Structured Query Language, zu dt. Strukturierte Abfragesprache)**. SQL erlaubtuns aus SQL-basierten Datenbanken Daten abzufragen. Wie bei R handelt es sich hier also um eine Programmiersprache mit eigenem Syntax. Um erste Abfragen zu generieren, reichen allerdings nur wenige Befehle aus. In diesem Code Chunk stellen wir die Verbindung zu einer SQLite-DBMS her (Platz 4 in der 2020 Developer Survey von Stack Overflow).
+
+```{r exercise_sqlite, exercise = TRUE, message = FALSE}
+# Laden der benötigten Packages für die Verknüpfung mit SQLite-Datenbanken
+library(RSQLite)
+library(DBI)
+
+# Initialisierung eines temporären Ordners
+tmpfile <- tempfile(fileext = "sqlite") # Identifizierung der SQLite-DB über das Suffix "sqlite"
+download.file("https://correlaid.github.io/lernplattform/daten/plastics.sqlite", tmpfile) # Herunterladen der temporären Datei
+con <- dbConnect(RSQLite::SQLite(), tmpfile) # Aufbau der Verbindung
+```
+
+Die Live-Verknüpfung selbst funktioniert wie erklärt **für jede Datenbank anders** - dieser Code kann also nicht einfach übertragen werden. Für einen Großteil der verschiedenen DBMS und zugehörige Importmöglichkeiten gibt es  jedoch von RStudio eine praktische [Übersicht](https://db.rstudio.com/tooling/pro-drivers/){target="_blank"}. Ist Euer Analysetool mit der Datenbank verknüft, könnt Ihr in der zugehörigen Abfragesprache **Abfragen** generieren. Schauen wir uns dazu zunächst an, wie das ERM (Entity-Relationship-Modell, zu dt. Datenbankschema) der Datenbank aussieht:
+
+![*ERM der Plastics-SQLite-Datenbank*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/05_datenimport/erm.png?raw=true){#id .class width=50% height=50%}
+
+```{r quiz_dbdiagramm}
+quiz(
+  caption = "Was fällt Euch auf?",
+  question_numeric(
+    "Wie viele Tabellen enthält das Datenbankschema?",
+    answer(3, correct = TRUE),
+    correct = "Richtig! Bei den Tabellen Audit Plastic und Community handelt es sich um Entitäten, also identifizierbare Objekte, während in der Tabelle Countries lediglich eine Beziehung zwischen den beiden Entitätstabellen hergestellt wird. Alle Tabellen haben Attribute (Eigenschaften).",
+    incorrect = "Leider falsch. Es gibt drei Tabellen. Bei den Tabellen Audit Plastic und Community handelt es sich um Entitäten, also identifizierbare Objekte, während in der Tabelle Countries lediglich eine Beziehung zwischen den beiden Entitätstabellen hergestellt wird. Alle Tabellen haben Attribute (Eigenschaften).",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ), 
+  question(
+    "Anhand welchen Attributs werden die Tabellen verknüpft?",
+    answer("year"),
+    answer("plastics"),
+    answer("countrycode", correct = TRUE),
+    correct = "Richtig! Das erkennt man daran, dass dieses Attribut in allen drei Tabellen auftaucht.",
+    incorrect = "Leider falsch. Das erkennt man an dem Attribut countrycode, das in allen drei Tabellen auftaucht." ,
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+In einer **idealen Welt** würde so auch unser Datensatz aussehen - aufgeteilt nach Entitäten (identifizierbare Objekte) und ihren jeweiligen Attributen (Eigenschaften) in drei klar benannten Tabellen, in der jede Zeile für eine Beobachtung steht. In der realen Welt passiert das allerdings selten. So ist es eben. Wichtig ist, dass Ihr auch mit solchen Daten arbeiten könnt, aber versteht, dass Eure Datenbanken idealerweise dieser Grundlogik folgen.
+
+Für **SQL-basierte Datenbanken** werden Abfragen nun in der zugehörigen Abfragesprache SQL erstellt. Mit `dbListTables(Verbindung)` könnt Ihr Euch die Tabelle, die das DBMS enthält **anzeigen** lassen. Mit `dbReadTable(Verbindung, Tabelle)` könnt Ihr die gewünschte **Gesamttabelle laden** und als Objekt in R **speichern**. Mit `dbGetQuery(Verbindung, "SQL Befehl")` könnt Ihr die Tabelle filtern und so **Teilmengen des Datensatzes laden** (und ggf. in R als Objekt speichern).
+
+```{r exercise_queries, exercise = TRUE}
+# Abfrage der Tabellen
+dbListTables(con)
+
+# Speicherung der Tabelle "Audit Plastic" als Objekt
+audit_plastic <- dbReadTable(con, "audits")
+
+# Laden eines gefilterten Datensatzes (Land = Benin)
+dbGetQuery(con, "SELECT *
+                 FROM audits
+                 WHERE countrycode = 'BEN'") # Achtung: Während wir R Ist-gleich-Vergleiche mit "==" initialisieren, benutzt man in SQL nur ein "="
+
+# Laden eines gefilterten Datensatzes (Hersteller = Nice And Lovely)
+dbGetQuery(con, "SELECT *
+                 FROM audits
+                 WHERE parent_company = 'Nice And Lovely'")
+```
+Die wichtigsten **Befehle zur Datenabfrage in SQL** sind:
+
+- `SELECT`: **Auswahl** aller **Spalten** (mit *) oder definierter Spalten
+- `FROM`: **Auswahl** eines **Datensatzes**
+- `WHERE`: **Filtern des Datensatzes** auf Basis von Kriterien
+
+
+Versucht hier die Datentabelle "events" für Australien zu filtern.
+```{r exercise_sql, exercise = TRUE}
+# Euer Code hier
+```
+
+```{r exercise_sql-solution}
+# Laden eines gefilterten Datensatzes (Land = AUS)
+dbGetQuery(con, "SELECT *
+                 FROM events
+                 WHERE countrycode = 'AUS'")
+```
+```{r exercise_sql-check}
+grade_this_code()
+```
+
+Im letzten Schritt **schließen** wir **immer** die **Verbindung** zu der Datenbank mit dem Befehl `dbDisconnect()`.
+```{r dbclose_exercise, exercise = TRUE}
+# Schließen der DB-Verbindung
+dbDisconnect(con)
+```
+
+SQLite-Datenbanken benötigen in der Regel **kein Passwort** (und somit auch keinen Code für die Authentifizierung). Falls das für Euch notwendig ist, findet Ihr in der Dokumentation von RStudio in den Kapiteln [Database](https://docs.rstudio.com/connect/1.7.8/admin/database-provider.html){target="_blank"} und [Authentication](https://docs.rstudio.com/connect/1.7.8/admin/authentication.html){target="_blank"} Hilfestellungen.
+
+<h3><b>Zusätzliche Ressourcen</b></h3> 
+Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
+
+</details>
+
+---
 
 ### **Zusätzliche Ressourcen**
 - [Cheat Sheet: Data import](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/05_cheatsheet-import.pdf){target="_blank"} (engl.)
-- [APIs in R](https://app.dataquest.io/course/apis-in-r){target="_blank"} auf DataQuest (engl.)
-- [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
 - [Web Scraping in R](https://app.dataquest.io/course/scraping-in-r){target="_blank"} auf DataQuest (engl.)

@@ -1,0 +1,34 @@
+## **Exkurs 2: Geo(-referenzierte) Daten**
+
+Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergänzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein. <br>
+*Achtung: Damit der Import funktioniert müsst Ihr die gesamte ZIP-Datei, die Ihr laden wollt, in einem Ordner mit der hier gewünschten .shp-Datei ablegen - also auch alle Dateien mit anderen Endungen.*
+```{r polygons_world, exercise = TRUE}
+# install.packages("sf")
+
+# Einlesen des globalen Shapefiles (geometrischen Datensatzes, erkennbar an .shp) über sf::st_read()
+polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countries.shp"))
+```
+
+Unser Datensatz enthält zahlreiche Spalten mit zusätzlichen Informationen zu den Ländern der Welt. Uns interessiert hier die Spalte "`geometry`", die die kartographischen Informationen enthält.
+```{r polygon_welt_exercise, exercise = TRUE}
+# Betrachtung der Daten
+head(polygons_welt$geometry)
+```
+
+Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualisierung.
+```{r polygon_welt__plot_exercise, exercise = TRUE}
+# Erstellung eines einfachen Kartenplots
+plot(polygons_welt$geometry)
+```
+Auch für Deutschland gibt es ähnliche Shapefiles:
+```{r polygon_de_exercise, exercise = TRUE}
+# Einlesen der Deutschlandkarte mit Bundesländern
+polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
+plot(polygons_deutschland$geometry)
+```
+Der Import von geographischen Daten folgt also der folgenden Checkliste:
+
+1. Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
+2. Wo kann ich zugehörige **Shapefiles** finden? <br>
+      *Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden.*
+3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?

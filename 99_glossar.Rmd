@@ -96,6 +96,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Slicing** = Zugriff auf bestimmte Daten in einem *Dataframe*
 
+**Software as a Service** (SaaS) = Software wird über eine Cloud zur Vefügung gestellt, d.h. Ihr greift auf das Programm über das Internet zu
+
 **Spannweite** = Differenz zwischen der *minimalen Ausprägung* und der *maximalen Ausprägung* einer Variablen
 
 **SQL** (Structured Query Language, dt. Strukturierte Abfragesprache) = eine Sprache zur Definition, Bearbeitung und Abfrage von Daten aus Datenbanken

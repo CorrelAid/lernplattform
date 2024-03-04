@@ -225,39 +225,6 @@ quiz(caption = NULL,
 )
 ```
 
-### **Interaktive Übung**
-Wenn Ihr (personenbezogene) Daten verarbeitet, speichert Ihr diese in (exportierten) Excel-Tabellen, intern und externen Datenbanken oder unstrukturiert. Auch in R gibt es spezifische Lösungen zur Speicherung von **strukturierten und unstrukturierten Daten**: **Data Frames** (zu dt. Datenrahmen, ein tabellarisches Format) bzw. **Listen**. In Data Frames und Listen werden einzelne Beobachtungen und Variablen in Datenstrukturen zusammengefasst und als **Objekt** gespeichert. Mit was für einem Objekt Ihr arbeitet, könnt Ihr mit der Funktion `class()` überprüfen. Testet die Funktion in Zeile 8 für die Liste und den Data Frame, indem Ihr den Code ausführt.
-
-```{r objekte, exercise=TRUE}
-# Eine Liste kann aus verschiedenen Datenformaten bestehen: hier werden das Wort 'Text', die Zahl 20 und das aktuelle Datum in eine Liste geschrieben, der Pfeil weist das dem Objekt mit dem Namen 'liste' zu
-liste <- list("Text", 20, Sys.Date())
-class(liste)
-
-# In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert (wie in einer Excel Tabelle). Jede Spalte kann dabei nur Werte des gleichen Datentyps enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
-df <- data.frame(Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
-                 Variable2_string = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
-
-# Euer Code hier
-
-# Data Frame drucken (zur Veranschaulichung)
-print(df)
-```
-
-```{r objekte-solution}
-# Eine Liste kann aus verschiedenen Datenformaten bestehen: hier werden das Wort 'Text', die Zahl 20 und das aktuelle Datum in eine Liste geschrieben, der Pfeil weist das dem Objekt mit dem Namen 'liste' zu
-liste <- list("Text", 20, Sys.Date())
-class(liste)
-
-# In Euren Dataframes werden Daten in tabellarischen Formaten gespeichert (wie in einer Excel Tabelle). Jede Spalte kann dabei nur Werte des gleichen Datentyps enthalten (Ausnahme: fehlende Werte, die mit "NA" gekennzeichnet werden)
-df <- data.frame(Variable1_numerisch = c(1, 2, 3), # c() erstellt eine Spalte im Data Frame
-                 Variable2_string = c("Text", "noch mehr Text", NA)) # der letzte Wert von Variable2 fehlt
-
-class(df)
-
-# Data Frame drucken (zur Veranschaulichung)
-print(df)
-```
-
 ### Und jetzt Ihr: Eigenes Datenverarbeitungsverzeichnis erstellen (optional)
 Ihr arbeitet mit personenbezogenen Daten und möchtet ein **Datenverarbeitungsverzeichnis** anlegen? Zur Erstellung eines solchen Verzeichnisses gibt es im Netz zahlreiche Informationen. Hier geht es zu den Veröffentlichungen der [Datenschutzkonferenz (DKI)](https://www.bfdi.bund.de/DE/Fachthemen/Inhalte/Allgemein/Verzeichnis-Verarbeitungstaetigkeiten.html){target="_blank"} und [bitkom](https://www.bitkom.org/sites/default/files/file/import/180529-LF-Verarbeitungsverzeichnis-online.pdf){target="_blank"}. 
 

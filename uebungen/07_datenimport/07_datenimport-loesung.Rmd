@@ -1,0 +1,53 @@
+---
+title: "Datenimport und APIs"
+author: "Nina Hauser & David Schweizer"
+date: "01/02/2024"
+output: pdf_document
+---
+
+# Schritt 1: Infrastruktur
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+# Notwendige Packages laden - ggf. vorher mit "install.packages("package") installieren
+
+```
+
+# Schritt 2: Daten laden
+
+### Übung 1: 
+Ladet [hier](https://correlcloud.org/index.php/s/zsQrWdxKE6PsA3n){target="_blank"} den "Plastics"-Datensatz herunter, legt ihn dort, wo Euer Übungs-RMD abliegt, in einem Ordner "daten" ab und versucht die Datei **lokal zu laden**.
+
+```{r}
+# Euer Code hier
+
+```
+
+
+### Übung 2:
+Ladet den "Plastics"-Datensatz über einen **Hyperlink** [Link](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv){target="_blank"}.
+
+```{r}
+# Euer Code hier
+
+```
+
+### Bonus - Übung 3:
+Mehr Strukturdaten vom Bundeswahlleiter: Wir wollen die Sturkturdaten der Bundestagswahl 2017 mit der Funktion *read_delim()* lokal laden. Die CSV-Datei könnt ihr [hier](https://www.bundeswahlleiterin.de/dam/jcr/f7566722-a528-4b18-bea3-ea419371e300/btw2017_strukturdaten.csv) herunterladen. 
+
+Versucht die Datei manuell zu importieren. Achtet dabei auf den im Kapitel beschriebenen Ablauf: Öffnet die Datei mit einem Texteditor; welche Formatierung (encoding) hat sie? Dies könnt ihr beim manuellen Import unter "Locale" ändern. Die 2021er Strukturdaten lagen in der UTF-8 Kodierung vor. (Test: Was passiert, wenn wir die Locale nicht ändern?) Des Weiteren müsst ihr natürlich wieder auf die Argumente *skip* und *delim* achten.
+
+
+```{r}
+# Euer Code hier
+
+```
+
+# Schritt 3: Daten bereinigen
+
+# Schritt 4: Übersicht verschaffen
+
+# Schritt 5: Visuelle Exploration
+
+# Schritt 6: Statistische Kennzahlen
