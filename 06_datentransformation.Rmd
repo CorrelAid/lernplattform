@@ -16,6 +16,11 @@
 <br>
 
 - Das Tidyverse ist eine **Sammlung von verschiedenen R-Packages**, die aufeinander abgestimmt sind und dabei derselben Logik folgen ([tidyverse.org](https://www.tidyverse.org/){target="_blank"}). 
+- Voraussetzung für die Arbeit mit dem Tidyverse sind "tidy" Datensätze:
+![Tidy Data](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/tidy-data.jpeg?raw=true){#id .class width=80% height=80%}
+
+*Illustrations from the Openscapes blog Tidy Data for reproducibility, efficiency, and collaboration by Julia Lowndes and Allison Horst*
+
 - Einige der Packages und Funktionen kennt Ihr bereits aus den letzten Wochen!
 - Die Packages können einzeln installiert und aufgerufen werden, aber auch gesammelt über `install_packages('tidyverse')` bzw. `library(tidyverse)`. 
 
