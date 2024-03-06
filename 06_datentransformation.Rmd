@@ -17,7 +17,7 @@
 
 - Das Tidyverse ist eine **Sammlung von verschiedenen R-Packages**, die aufeinander abgestimmt sind und dabei derselben Logik folgen ([tidyverse.org](https://www.tidyverse.org/){target="_blank"}). 
 - Voraussetzung für die Arbeit mit dem Tidyverse sind "tidy" Datensätze:
-![Tidy Data](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/tidy-data.jpeg?raw=true){#id .class width=80% height=80%}
+![Tidy Data](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/tidy-data.jpeg?raw=true){#id .class width=60% height=60%}
 
 *Illustrations from the Openscapes blog Tidy Data for reproducibility, efficiency, and collaboration by Julia Lowndes and Allison Horst*
 
@@ -196,7 +196,7 @@ data_raw %>%
       dplyr::case_when(
         country == "United Kingdom of Great Britain & Northern Ireland" ~ "United Kingdom",
         country == "United States of America" ~ "United States",
-        TRUE ~ country
+        TRUE ~ country # falls keine der beiden Zeilen zutrifft, dann nehmen wir diese Zeile und schreiben wieder den Wert aus `country` in die neue Variable
       ),
     # ..nur den Anfangsbuchstaben der Länder großschreibt
     ??? = stringr::str_to_title(country),
