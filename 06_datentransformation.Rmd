@@ -17,7 +17,7 @@
 
 - Das Tidyverse ist eine **Sammlung von verschiedenen R-Packages**, die aufeinander abgestimmt sind und dabei derselben Logik folgen ([tidyverse.org](https://www.tidyverse.org/){target="_blank"}). 
 - Voraussetzung für die Arbeit mit dem Tidyverse sind "tidy" Datensätze:
-![Tidy Data](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/tidy-data.jpeg?raw=true){#id .class width=60% height=60%}
+![Tidy Data](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/06_datentransformation/tidy-data.jpeg?raw=true){#id .class width=60% height=60%}
 
 *Illustrations from the Openscapes blog Tidy Data for reproducibility, efficiency, and collaboration by Julia Lowndes and Allison Horst*
 
@@ -619,7 +619,7 @@ quiz(
 
   
 ### **Und jetzt Ihr**
-Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das **R Markdown: 06_datentransformation-uebung.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 06_datentransformation) an und versucht die Aufgaben darin zu bearbeiten. 
+Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das **R Markdown: 06_datentransformation-uebung.Rmd** (im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 06_datentransformation) an und versucht die Aufgaben darin zu bearbeiten. 
 
 ### **Zusätzliche Ressourcen**
 - [Schummelblatt: dplyr](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/06_cheatsheet-dplyr.pdf){target="_blank"} (engl.)
