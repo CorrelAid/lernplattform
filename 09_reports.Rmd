@@ -15,8 +15,6 @@ output:
 runtime: shiny_prerendered
 ---
 
-<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(learnr)
@@ -265,3 +263,5 @@ quiz(
 -   [**Nachschlagewerk zu RMarkdown (engl.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-3.pdf){target="_blank"}
 -   R-Studio bietet eine sehr gute [**Hilfeseite**](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"}
 -   Templates für [PDF- und HTML-Dokumente](https://www.rstudio.com/blog/r-markdown-custom-formats/){target="_blank"}
+
+<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>

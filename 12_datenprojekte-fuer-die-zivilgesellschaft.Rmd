@@ -15,8 +15,6 @@ output:
 runtime: shiny_prerendered
 ---
 
-<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(learnr)
@@ -195,3 +193,5 @@ Bei weiteren Fragen, könnt Ihr Euch einfach bei Slack an die beiden Organisator
 - [Skalacampus](https://www.skala-campus.org/){target="_blank"}
 - [Bernard Marr: Data Strategy: How to Profit from a World of Big Data, Analytics and the Internet of Things](https://bernardmarr.com/books/){target="_blank"}
 - [Haus des Stiftens: Digital-Report 2020](https://www.hausdesstiftens.org/wp-content/uploads/Digital-Report-2020.pdf){target="_blank"}
+
+<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>

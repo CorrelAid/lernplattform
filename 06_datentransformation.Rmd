@@ -15,8 +15,6 @@ output:
 runtime: shiny_prerendered
 ---
 
-<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(learnr)
@@ -669,3 +667,6 @@ Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R im
 - [Advanced Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning-advanced){target="_blank"} auf DataQuest (engl.)
 - Eine noch etwas holpriger Spielplatz, der zeigt, wie Eure Schritte in der Datenbereinigung aussehen: [Tidy Data Tutor](https://tidydatatutor.com){target="_blank"} (engl.)
 - [Tidyverse: Tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html){target="_blank"} (engl.)
+
+
+<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>

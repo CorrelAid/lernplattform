@@ -15,8 +15,6 @@ output:
 runtime: shiny_prerendered
 ---
 
-<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(learnr)
@@ -662,3 +660,5 @@ grade_this_code()
 
 #### Schritt 5: Ergebnisse teilen
 Probiert nun selbst, ob Ihr aus den generierten Ergebnissen lokal ein Rmarkdown oder eine Shiny Web App generieren könnt. Die theoretischen Vorkenntnisse habt Ihr bereits unter Beweis gestellt. Viel Glück!
+
+<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>

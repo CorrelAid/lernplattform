@@ -18,8 +18,6 @@ output:
 runtime: shiny_prerendered
 ---
 
-<a style="position: fixed; bottom: 0; left: 0; margin: 20px;" class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(learnr)
@@ -309,3 +307,5 @@ Wir haben für Euch zudem ein **Muster in Excel** erstellt, das Ihr [hier](https
 - Informationsseiten des:der [Berliner Datenschutzbeauftragten](https://www.datenschutz-berlin.de/){target="_blank"}
 (- [Data Ethics Canvas (dt.)](http://theodi.org/wp-content/uploads/2021/07/Data-Ethics-Canvas-German-Colour.pdf){target="_blank"} des Open Data Institutes
 - [Coded Bias](https://www.netflix.com/title/81328723){target="_blank"}, eine Netflixdokumentation zu Bias (zu dt. Verzerrungen) in Algorithmen
+
+<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
