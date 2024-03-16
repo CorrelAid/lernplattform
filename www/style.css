@@ -14,7 +14,7 @@ h1 {
   color: var(--blue1);
 }
 
-/* Change style of the "Zurück zur Hauptseite" button */
+/* Change style of the "Session beenden" button */
 body .btn.btn-primary.btn-back-to-main {
   background-color: var(--green2) !important;
   border: none !important;
