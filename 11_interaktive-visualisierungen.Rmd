@@ -1,7 +1,7 @@
 ## **Interaktive Visualisierungen**
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
-*"Interaktive Visualisierungen" von Cosima Meyer in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+*"Interaktive Visualisierungen" von Cosima Meyer und Jan Wiemer in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
 Was wäre eine Welt ohne zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen mit interaktiven Visualisierungen gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig! 
 
