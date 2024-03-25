@@ -4,7 +4,7 @@
 
 *"Interaktive Visualisierungen" von Cosima Meyer und Jan Wiemer in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
-Interaktive Visualisierungen ermöglichen es uns, mit Visualisierungen zu interagieren, also vorgefertigte Blicke auf Daten zu verändern. So können wir Daten erkunden, den Blick auf Daten schärfen entsprechend unserem Wissen und unserer jeweiligen Fragestellung und insbesondere komplexe Daten besser verstehen. Vielleicht habt Ihr schon in den Online-Ausgaben von Zeitungen interaktive Visualisierungen gesehen und seid neugierig, wie man so etwas leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig!
+Interaktive Visualisierungen ermöglichen es uns, mit Visualisierungen zu interagieren, also vorgefertigte Blicke auf Daten zu verändern. So können wir Daten erkunden, den Blick auf Daten schärfen entsprechend unseres Wissens und unserer jeweiligen Fragestellung und insbesondere komplexe Daten besser verstehen. Vielleicht habt Ihr schon in den Online-Ausgaben von Zeitungen interaktive Visualisierungen gesehen und seid neugierig, wie man so etwas leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig!
 
 Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funktioniert.
 
@@ -14,7 +14,7 @@ Im Video erfahrt Ihr, was es mit Shiny-Apps auf sich hat und wie es genau funkti
 
 -   **Shiny-Apps** sind Webapplikationen:
     -   Man kann damit **Daten**, **Visualisierungen** oder auch allgemein **Informationen** interaktiv bereitstellen.
-    -   Shiny-Apps können "gehostet" werden, d.h. Nutzern zur Verfügung gestellt werden, so dass sie einfach mittels Browser auf die App zugreifen können, genauso wie auf andere Internetseiten.
+    -   Shiny-Apps können "gehostet" werden, d.h. Nutzer:innen zur Verfügung gestellt werden, so dass sie einfach mittels Browser auf die App zugreifen können, genauso wie auf andere Internetseiten.
 -   Eine Shiny-App besteht immer aus zwei Komponenten, **UI** und **Server**:
     -   Die **UI** stellt das User Interface dar (dt. Benutzendenoberfläche), also das Aussehen der App und die Steuerungsmöglichkeiten. Man kann es sich auch als "Körper" der App vorstellen. Hier könnt Ihr Eure App optisch anpassen und die Anordnung der einzelnen Komponenten definieren.
     -   Der **Server** ist der Ort für die Erstellung und Verrechnung der Visualisierungen (und gegebenenfalls anderer Objekte wie z.B. Tabellen). Der Server ist quasi das "Gehirn" der Shiny-App.
@@ -60,69 +60,79 @@ Wie Ihr im Video gesehen habt, sind Eurer Phantasie keine Grenzen gesetzt. Ihr k
 
 **Teil 1**: Wir machen uns anhand der einfachsten R-Shiny App mit der konkreten Struktur vertraut, wie R-Shiny Apps aufgebaut sind und programmiert werden.
 
-**Teil 2**: Wir entwickeln unsere erste R-Shiny App zur interaktiven Visualisierung des #breakfreefromplastics Datensatzes. Genauer erstellen wir eine R-Shiny App, die Teil der folgenden zusammengesetzten und weiter ausgereiften R-Shiny App ist, siehe die folgende Abbildung und [https://correlaid.shinyapps.io/breakfreefromplastic/](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} (unter dem dritten Reiter „Hersteller“).
+**Teil 2**: Wir entwickeln unsere erste R-Shiny App zur interaktiven Visualisierung des #breakfreefromplastics Datensatzes. Genauer erstellen wir eine R-Shiny App, die Teil der folgenden zusammengesetzten und weiter ausgereiften R-Shiny App ist, siehe die folgende Abbildung und [https://correlaid.shinyapps.io/breakfreefromplastic/](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} (unter dem dritten Reiter „Hersteller").
 
-![](abbildungen/11_interaktive-visualisierungen/app-uebersicht_breakfreefromplastics.png)
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-uebersicht_breakfreefromplastics.png?raw=true){.class width="80%" height="80%"}
 
 ### **Teil 1: Einfachste R-Shiny App**
 
-In der R-Benutzer- und -Entwicklerumgebung RStudio können neue Dateien unterschiedlichen Typs erstellt werden, z.B. „R Skript“ Dateien, „R Markdown“ Dateien und auch „Shiny Web App“ Dateien. Durch die Auswahl „Shiny Web App“ erhältst Du auf dem schnellsten Weg eine erste lauffähige R-Shiny App:
+In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typs erstellt werden, z.B. „R Skript" Dateien, „R Markdown" Dateien und auch „Shiny Web App" Dateien. Durch die Auswahl „Shiny Web App" erhältst Du auf dem schnellsten Weg eine erste lauffähige R-Shiny App:
 
 1.  *Starte Rstudio*
 
 2.  *Wähle im Zeilenmenü oben in Rstudio aus:*\
-    File -\> new File -\> Shiny Web App
+    File → new File → Shiny Web App
 
 3.  *Gib einen Namen ein für Deine App*\
-    Der Name ist beliebig wählbar. Er sollte informativ und einfach sein und keine Leerzeichen oder Sonderzeichen enthalten, z.B. „Meine-Erste-R-Shiny-App_2024“ (ohne die Anführungszeichen).\
-    ![](abbildungen/11_interaktive-visualisierungen/rstudio-eingabefenster.png)
+    Der Name ist beliebig wählbar. Er sollte informativ und einfach sein und keine Leerzeichen oder Sonderzeichen enthalten, z.B. „Meine-Erste-R-Shiny-App_2024" (ohne die Anführungszeichen).\
+
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/rstudio-eingabefenster.png?raw=true){.class width="50%" height="50%"}
 
 4.  *Optional: Lege einen speziellen Speicherort fest für die Shiny-App*\
-    Wenn Du die Shiny App in einem anderen Verzeichnis speichern möchtest als dem aktuellen Arbeitsverzeichnis, kannst Du dies durch Klicken auf „Browse“ und die Auswahl eines anderen Verzeichnisses tun.
+    Wenn Du die Shiny App in einem anderen Verzeichnis speichern möchtest als dem aktuellen Arbeitsverzeichnis, kannst Du dies durch Klicken auf „Browse" und die Auswahl eines anderen Verzeichnisses tun.\
 
-5.  *Klicke auf „Create“*\
-    Dir wird in RStudio Deine erste R-Shiny-App angezeigt. Sie heißt „app.R“ und liegt in einem Verzeichnis mit dem von Dir unter „Application name“ eingegebenen Namen. ![](abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app.png)
+5.  *Klicke auf „Create"*\
+    Dir wird in RStudio Deine erste R-Shiny-App angezeigt. Sie heißt „app.R" und liegt in einem Verzeichnis mit dem von Dir unter „Application name" eingegebenen Namen.\
 
-6.  *Starte die App durch Klicken auf das Feld „Run App“ oben links.*\
-    Wenn das R-paket „shiny“ auf Deinem Computer noch nicht installiert ist, fordert Dich das folgende Fenster dazu auf, das Paket zu installieren. Klicke auf „Ja“ (oder „Yes“). Dann wird zunächst das R-Paket „shiny“ installiert und danach die App gestartet. ![](abbildungen/11_interaktive-visualisierungen/pop-up-fenster_installation-shiny.png)\
-    Deine erste R-Shiny-App läuft jetzt auf Deinem Computer und bietet Dir in einem pop-up Fenster eine einfache interaktive Visualisierung an! (Du kannst auch oben in der Kopfzeile der App „Open in Browser“ anklicken, dann wird Dir das Fenster in Deinem Browser angezeigt.)\
-    ![](abbildungen/11_interaktive-visualisierungen/pop-up-fenster_r-shiny-app.png)\
-    (Falls Du wissen möchtest, was das für ein Datensatz ist: Azzalini, A. and Bowman, A. W. (1990). A look at some data on the Old Faithful geyser. Applied Statistics, 39, 357–365. <doi:10.2307/2347385>.)
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app.png?raw=true){.class width="50%" height="50%"}
+
+6.  *Starte die App durch Klicken auf das Feld „Run App" oben links.*\
+    Wenn das R-paket „shiny" auf Deinem Computer noch nicht installiert ist, fordert Dich das folgende Fenster dazu auf, das Paket zu installieren. Klicke auf „Ja" (oder „Yes"). Dann wird zunächst das R-Paket „shiny" installiert und danach die App gestartet.
+    
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_installation-shiny.png?raw=true){.class width="50%" height="50%"}
+
+Deine erste R-Shiny-App läuft jetzt auf Deinem Computer und bietet Dir in einem pop-up Fenster eine einfache interaktive Visualisierung an! (Du kannst auch oben in der Kopfzeile der App „Open in Browser" anklicken, dann wird Dir das Fenster in Deinem Browser angezeigt.)\
+
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_r-shiny-app.png?raw=true){.class width="50%" height="50%"}
+
+  (Falls Du wissen möchtest, was das für ein Datensatz ist: Azzalini, A. and Bowman, A. W. (1990). A look at some data on the Old Faithful geyser. Applied Statistics, 39, 357--365. <doi:10.2307/2347385>.)
 
 7.  *Probiere die Interaktivität aus:*\
-    Stelle mit der Maus eine andere Anzahl Bins für das Histogramm ein und verfolge, wie sich das Histogramm ändert.
+    Stelle mit der Maus eine andere Anzahl Bins (die Klassen bzw. hier Säulen) für das Histogramm ein und verfolge, wie sich das Histogramm ändert.
 
 Die folgende Abbildung gibt einen Überblick über den Aufbau der App:
 
-![](abbildungen/11_interaktive-visualisierungen/uebersicht-einfachste-r-shiny-app.png)
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/uebersicht-einfachste-r-shiny-app.png?raw=true){.class width="100%" height="100%"}
 
 -   Links: R-Code. Mitte: Blockstruktur und Kurzhinweise. Rechts: Interaktives Pop-up Fenster.
--   Block 1 „UI“ besteht aus einer Hierarchie von Spezifizierungen der App-Oberfläche:
-    -   **fluidPage()** für einen flexiblen Aufbau der App abhängig von der bereitgestellten Fenstergröße
-    -   **titlePanel()** für eine Überschrift
-    -   **sidebarPanel()** für einen Seitenbereich links, in dem interaktive Einstellungen vorgenommen werden können
-    -   **sliderInput()** für die Änderung eines numerischen Werts mittels Maus (durch Ziehen an einem Regler). Der numerische Wert wird unter „input\$bins“ abgelegt.
-    -   **mainPanel()** für den Bereich rechts vom Einstellungsbereich, in dem Ergebnisse dargestellt werden
-    -   **plotOutput()** für die Darstellung eines Abbildungsobjekts mit Namen „distPlot“
--   Block 2 „Server“ ist eine Funktion Namens „server()“, die ein darstellbares Objekt erzeugt in Abhängigkeit von interaktiven Eingaben:
-    -   **renderPlot()** für die Erzeugung einer Abbildung unter Verwendung der interaktiven Eingaben. Das Ergebnis wird als Objekt „output\$distPlot“ abgespeichert.
+-   Block 1 „UI" besteht aus einer Hierarchie von Spezifizierungen der App-Oberfläche:
+
+| **Funktion**       | **Beschreibung** |
+|--------------------|-------------------|
+| `fluidPage()`      | für einen flexiblen Aufbau der App abhängig von der bereitgestellten Fenstergröße         |
+| `titlePanel()`.    | für eine Überschrift                                                                      |
+| `sidebarPanel()`   | für einen Seitenbereich links, in dem interaktive Einstellungen vorgenommen werden können |
+| `sliderInput()`    | für die Änderung eines numerischen Werts mittels Maus (durch Ziehen an einem Regler). Der numerische Wert wird unter „input\$bins" abgelegt. |
+| `mainPanel()`      | für den Bereich rechts vom Einstellungsbereich, in dem Ergebnisse dargestellt werden      |
+| `plotOutput()`     | für die Darstellung eines Abbildungsobjekts mit Namen „distPlot"                          |
+
+-   Block 2 „Server" ist eine Funktion Namens „server()", die ein darstellbares Objekt erzeugt in Abhängigkeit von interaktiven Eingaben:
+    -   **renderPlot()** für die Erzeugung einer Abbildung unter Verwendung der interaktiven Eingaben. Das Ergebnis wird als Objekt „output\$distPlot" abgespeichert.
 
 Ein paar Fragen, die Euch helfen können, Euch mit dem R-Code der Shiny-App vertraut zu machen:
 
 I.  Bug oder Feature: Wie ändert sich das **Layout**, wenn Ihr das Fenster schmaler macht?
-II. App-spezifische **Variablennamen**: Woher kommt der Namensteil „bins“ hinter dem „\$“ des interaktiv einstellbaren Wertes der Variablen „input\$bins“? (Zeile 41)
+II. App-spezifische **Variablennamen**: Woher kommt der Namensteil „bins" hinter dem „\$" des interaktiv einstellbaren Wertes der Variablen „input\$bins"? (Zeile 41)
 III. **Interagieren** zwischen UI und Server:
-     a.  Was müsstest Du beachten, wenn Du den Namen „distPlot“ ändern wolltest? (Zeile 30)
-     b.  Warum hängt die Funktion „server()“ nicht nur vom Input-Objekt „input“ ab, sondern auch vom Output-Objekt „output“? (Zeile 36) Hinweis: Welcher zeitliche Zusammenhang besteht zwischen Input und Output bzw. wann sollte der Output neu erzeugt werden?
+     a.  Was müsstest Du beachten, wenn Du den Namen „distPlot" ändern wolltest? (Zeile 30)
+     b.  Warum hängt die Funktion „server()" nicht nur vom Input-Objekt „input" ab, sondern auch vom Output-Objekt „output"? (Zeile 36) Hinweis: Welcher zeitliche Zusammenhang besteht zwischen Input und Output bzw. wann sollte der Output neu erzeugt werden?
 
 ### **Teil 2: R-Shiny App zum #breakfreefromplastic Datensatz**
 
 Schaut Euch den [**Schummelzettel zu Shiny-Apps**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/11_cheatsheet-shiny.pdf){target="_blank"} an für weitere Infos zu Shiny-Apps, z.B. zu den oben verwendeten Strukturelementen und vielen weiteren Möglichkeiten. Wenn Ihr mehr Inspiration möchtet, schaut in der [Galerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
 <p style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
-
-**Achtung** <br> Den Code aus dieser Sitzung müsst Ihr lokal ausführen. Dafür könnt Ihr Stück für Stück die Code-Snippets kopieren und befüllen. Alternativ haben wir Euch im Ordner **11_interaktive-visualisierungen** im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} in einer ZIP-Datei schon Skripte vorbereitet, die Ihr nutzen könnt (`uebung.R` enthält den Lückentext, `loesung.R` die Lösung, wenn Ihr nicht weiterkommt).
-
+  **Achtung** <br> Den Code aus dieser Sitzung müsst Ihr lokal ausführen. Dafür könnt Ihr Stück für Stück die Code-Snippets kopieren und befüllen. Alternativ haben wir Euch im Ordner **11_interaktive-visualisierungen** im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} in einer ZIP-Datei schon Skripte vorbereitet, die Ihr nutzen könnt (`uebung.R` enthält den Lückentext, `loesung.R` die Lösung, wenn Ihr nicht weiterkommt).
 </p>
 
 Der [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/11_cheatsheet-shiny.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzendenoberfläche") und **einen Server**.
@@ -310,11 +320,7 @@ Eine UI ist immer nach dem gleichen Prinzip aufgebaut:
 
 Wir entscheiden uns für ein **einseitiges Sidebarlayout**:
 
-<center>
-
-![*Bild: Skizzierung unserer App*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui.png?raw=true){.class width="70%" height="70%"}
-
-</center>
+<center>![Bild: Skizzierung unserer App](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui.png?raw=true){.class width="70%" height="70%"}</center>
 
 Die Grundstruktur dieses Layouts sieht so aus:
 
@@ -576,7 +582,12 @@ ui <- fluidPage(
 
 Und jetzt lassen wir sie noch einmal final erstellen - markiert dazu wieder den ganzen Code in der `app.R`-Datei und lasst sie durchlaufen. Herzlichen Glückwünsch zu Eurer ersten Shiny-App! Das sieht klasse aus!
 
-### **Exkurs 1**: Reaktives Programmieren - das Geheimnis einer Shiny-App
+---
+
+<details>
+  <summary><h3>&#10145; Exkurs 1: Reaktives Programmieren - das Geheimnis einer Shiny-App</h3></summary>
+  <br>
+
 
 Im folgenden Abschnitt lernt Ihr mehr über die Funktionsweise einer Shiny-App. Was ist genau der Algorithmus, der sie zum Laufen bringt? Das ganze Geheimnis hinter der App nennt sich **reactive programming**, oder auch **reaktives Programmieren**. Wie das funktioniert, könnt Ihr Euch in dem Video ansehen:
 
@@ -600,7 +611,15 @@ quiz(caption = NULL,
 )
 ```
 
-### **Exkurs 2**: Hosten von ShinyApps
+</details>
+
+---
+
+---
+
+<details>
+  <summary><h3>&#10145; Exkurs 2: Hosten von ShinyApps</h3></summary>
+  <br>
 
 RStudio bietet einen Hosting-Service für Eure Shiny-App an, den Ihr für kleinere Anwendungen kostenlos nutzen könnt: [ShinyApps.io](https://www.shinyapps.io){target="_blank"}. Eine dort gehostete Anwendung kann dann zum Beispiel [so aussehen](https://cosima-meyer.shinyapps.io/conflict-elections/){target="_blank"} und, wie im Beispiel visuell, die Gewaltentwicklung vor Wahlen in Afghanistan darstellen.
 
@@ -649,6 +668,10 @@ quiz(caption = NULL,
   )
 )
 ```
+
+</details>
+
+---
 
 ### **Und jetzt seid Ihr dran!** (diese Woche optional)
 
