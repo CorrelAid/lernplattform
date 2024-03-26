@@ -435,7 +435,7 @@ community %>%
   )
 ```
 
-Die plotly-Plots könnt Ihr als HTML Datei speichern und dann im Browser öffnen:
+Die plotly-Plots könnt Ihr als HTML Datei speichern und dann im Browser öffnen. Achtung: Im Plot wird der gesamte Datensatz verwendet (und nicht nur die verwendeten Variablen), sodass die exportierte HTML-Datei ggf. sehr groß wird. Also selektiert vor dem Erstellen der plotly-Visualisierung Euren Datensatz, sodass er nur die Variablen enthält, die Ihr benötigt - dann kann die HTML-Datei vielleicht auch wieder per Mail versendet werden, weil sie eine geringere Dateigröße hat und Ihr versendet nicht aus Versehen personenbezogene Daten etc.
 
 ```{r ggplot_plotly_save, exercise = TRUE, exercise.setup = "ggplot_plotly_labels"}
 htmlwidgets::saveWidget(with_labels_plotly, 'events-weltweit.html')
