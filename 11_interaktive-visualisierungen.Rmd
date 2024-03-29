@@ -52,21 +52,21 @@ quiz(caption = NULL,
 )
 ```
 
-### **Interaktive Übung: Wie funktioniert eine R-Shiny App?**
+### **Interaktive Übung: Wie funktioniert eine R-Shiny-App?**
 
 <left> ![\*Shiny](https://d33wubrfki0l68.cloudfront.net/d08c35bfe1ba68584788f5cdcad703d0c9d8263f/7969a/wp-content/uploads/2014/04/shiny.png){#id .class alt="*Shiny" width="20%" height="100%"}
 
 Wie Ihr im Video gesehen habt, sind Eurer Phantasie keine Grenzen gesetzt. Ihr könnt Shiny-Apps zur Visualisierung nutzen, als Suchmaschine -- oder aber auch, um Euch automatisiert die Reports aus der letzten Sitzung erstellen zu lassen. In diesem Kurs lernt Ihr die Grundkenntnisse, um Eure erste eigene Anwendung (engl. *application*, daher auch Shiny-*App* für "Shiny *application*") zu bauen. Hierzu dienen die folgenden zwei Teile:
 
-**Teil 1**: Wir machen uns anhand der einfachsten R-Shiny App mit der konkreten Struktur vertraut, wie R-Shiny Apps aufgebaut sind und programmiert werden.
+**Teil 1**: Wir machen uns anhand der einfachsten R-Shiny-App mit der konkreten Struktur vertraut, wie R-Shiny-Apps aufgebaut sind und programmiert werden.
 
-**Teil 2**: Wir entwickeln unsere erste R-Shiny App zur interaktiven Visualisierung des #breakfreefromplastics Datensatzes. Genauer erstellen wir eine R-Shiny App, die Teil der folgenden zusammengesetzten und weiter ausgereiften R-Shiny App ist, siehe die folgende Abbildung und [https://correlaid.shinyapps.io/breakfreefromplastic/](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} (unter dem dritten Reiter „Hersteller").
+**Teil 2**: Wir entwickeln unsere erste R-Shiny-App zur interaktiven Visualisierung des #breakfreefromplastics Datensatzes. Genauer erstellen wir eine R-Shiny-App, die Teil der folgenden zusammengesetzten und weiter ausgereiften R-Shiny-App ist, siehe die folgende Abbildung und [https://correlaid.shinyapps.io/breakfreefromplastic/](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} (unter dem dritten Reiter „Hersteller").
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-uebersicht_breakfreefromplastics.png?raw=true){.class width="100%"}
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-uebersicht_breakfreefromplastics_2024-03-29.png?raw=true){.class width="100%"}
 
-### **Teil 1: Einfachste R-Shiny App**
+### **Teil 1: Einfachste R-Shiny-App**
 
-In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typs erstellt werden, z.B. „R Skript" Dateien, „R Markdown" Dateien und auch „Shiny Web App" Dateien. Durch die Auswahl „Shiny Web App" erhältst Du auf dem schnellsten Weg eine erste lauffähige R-Shiny App:
+In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typs erstellt werden, z.B. „R Skript" Dateien, „R Markdown" Dateien und auch „Shiny Web App" Dateien. Durch die Auswahl „Shiny Web App" erhältst Du auf dem schnellsten Weg eine erste lauffähige R-Shiny-App:
 
 1.  *Starte RStudio*
 
@@ -83,14 +83,14 @@ In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typ
     </div>
 
 4.  *Optional: Lege einen speziellen Speicherort fest für die Shiny-App*\
-    Wenn Du die Shiny App in einem anderen Verzeichnis speichern möchtest als dem aktuellen Arbeitsverzeichnis, kannst Du dies durch Klicken auf „Browse" und die Auswahl eines anderen Verzeichnisses tun.\
+    Wenn Du die Shiny-App in einem anderen Verzeichnis speichern möchtest als dem aktuellen Arbeitsverzeichnis, kannst Du dies durch Klicken auf „Browse" und die Auswahl eines anderen Verzeichnisses tun.\
 
 5.  *Klicke auf „Create"*\
     Dir wird in RStudio Deine erste R-Shiny-App angezeigt. Sie heißt „app.R" und liegt in einem Verzeichnis mit dem von Dir unter „Application name" eingegebenen Namen.
 
     <div>
 
-    ![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app.png?raw=true){.class width="70%"}
+    ![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app_2024-03-29.png?raw=true){.class width="70%"}
 
     </div>
 
@@ -118,7 +118,7 @@ In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typ
 
 Die folgende Abbildung gibt einen Überblick über den Aufbau der App:
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/uebersicht-einfachste-r-shiny-app.png?raw=true){.class width="100%"}
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/uebersicht-einfachste-r-shiny-app_2024-03-29.png?raw=true){.class width="100%"}
 
 -   Links: R-Code. Mitte: Blockstruktur und Kurzhinweise. Rechts: Interaktives Pop-up Fenster.
 
@@ -127,7 +127,7 @@ Die folgende Abbildung gibt einen Überblick über den Aufbau der App:
     <div>
 
     | **Funktion**     | **Beschreibung**                                                                                                                             |
-    |----------------------|--------------------------------------------------|
+    |-----------------|-------------------------------------------------------|
     | `fluidPage()`    | für einen flexiblen Aufbau der App abhängig von der bereitgestellten Fenstergröße                                                            |
     | `titlePanel()`.  | für eine Überschrift                                                                                                                         |
     | `sidebarPanel()` | für einen Seitenbereich links, in dem interaktive Einstellungen vorgenommen werden können                                                    |
@@ -142,7 +142,7 @@ Die folgende Abbildung gibt einen Überblick über den Aufbau der App:
     <div>
 
     | **Funktion**   | **Beschreibung**                                                                                                                             |
-    |----------------------|-------------------------------------------------|
+    |-----------------|-------------------------------------------------------|
     | `renderPlot()` | für die Erzeugung einer Abbildung unter Verwendung der interaktiven Eingaben. Das Ergebnis wird als Objekt „output\$distPlot" abgespeichert. |
 
     </div>
@@ -158,7 +158,7 @@ Ein paar Fragen, die Euch helfen können, Euch mit dem R-Code der Shiny-App vert
     a.  Was müsstest Du beachten, wenn Du den Namen „distPlot" ändern wolltest? (Zeile 30)
     b.  Warum hängt die Funktion „server()" nicht nur vom Input-Objekt „input" ab, sondern auch vom Output-Objekt „output"? (Zeile 36) Hinweis: Welcher zeitliche Zusammenhang besteht zwischen Input und Output bzw. wann sollte der Output neu erzeugt werden?
 
-### **Teil 2: R-Shiny App zum #breakfreefromplastic Datensatz**
+### **Teil 2: R-Shiny-App zum #breakfreefromplastic Datensatz**
 
 Schaut Euch den [**Schummelzettel zu Shiny-Apps**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/11_cheatsheet-shiny.pdf){target="_blank"} an für weitere Infos zu Shiny-Apps, z.B. zu den oben verwendeten Strukturelementen und vielen weiteren Möglichkeiten. Wenn Ihr mehr Inspiration möchtet, schaut in der [Galerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
@@ -309,7 +309,7 @@ server <- function(input, output) {
 Das Rendern erfolgt mit `renderPlot`, da wir einen Plot, also eine Visualisierung darstellen. Wenn Ihr allerdings einen Text oder eine Tabelle einfügen wollt, müsst Ihr entsprechend eine andere Funktion nehmen. Die Tabelle stellt Euch die wichtigsten Befehle gegenüber:
 
 | **Was möchtet Ihr darstellen?**                                   | **Befehl in R für den `server`** |
-|---------------------------------------------|---------------------------|
+|----------------------------------------------|-------------------------|
 | Einen Text(block)                                                 | `renderText({})`                 |
 | Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`     |
 | Eine Visualisierung                                               | `renderPlot({})`                 |
@@ -397,7 +397,7 @@ quiz(caption = NULL,
 Die Tabelle gibt Euch eine kurze Übersicht über die wichtigsten **Auswahlmöglichkeiten**:
 
 | Layoutoption                          | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                                      |
-|--------------------------|----------------------------------------------|
+|-----------------|-------------------------------------------------------|
 | Einen kurzen Freitext                 | `textInput("id", "Beschreibung")`                                                                                                                                                                                                 |
 | Einen langen Freitext                 | `textAreaInput("id", "Beschreibung", rows = 3)` <br> Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                                   |
 | Eine Zahl                             | `numericInput("id", "Beschreibung", value = 0, min = 0, max = 100)` <br> Mit `value` bestimmen wir den Standardwert, der immer angezeigt wird. Mit `min` und `max` legen wir die Mindest- und die Maximalwerte fest               |
@@ -477,7 +477,7 @@ ui <- fluidPage(
 Wunderbar - unsere Seitenleiste steht. Wir wenden uns dem `mainPanel()` zu. Die Tabelle sollte Euch bekannt vorkommen - wir haben sie an dieser Stelle um eine weitere Spalte ergänzt. Wenn Ihr Euch noch einmal an das Video zurückerinnert, haben wir dort gelernt, dass alles **miteinander verbunden** sein muss, damit die Shiny-App auch funktioniert. Das bezieht sich auf eine entsprechende Einbindung der im `server` generierten Texte, Tabellen oder Visualisierungen. In der dritten Spalte der Tabelle habt Ihr das entsprechende Äquivalent, dass Ihr nutzen könnt, um den "Output" im `mainPanel()` der Shiny-App einzubinden.
 
 | **Was möchtet Ihr darstellen?**                                   | **Befehl in R für den `server`** | **Befehl in R für die `ui` in mainPanel()** |
-|----------------------------------|-------------------|-------------------|
+|--------------------------------|-------------------|----------------------|
 | Einen Text(block)                                                 | `renderText({})`                 | `textOutput()`                              |
 | Eine Tabelle (stellt z.B. den gesamten Datensatz `community` dar) | `renderTable({community  })`     | `tableOutput()`                             |
 | Eine Visualisierung                                               | `renderPlot({})`                 | `plotOutput()`                              |
