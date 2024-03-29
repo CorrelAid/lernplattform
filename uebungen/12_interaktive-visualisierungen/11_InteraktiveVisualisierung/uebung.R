@@ -56,11 +56,12 @@ library(leaflet) # Das ermöglicht das Erstellen von Karten
 
 # 3) DATEN LADEN
 ### Euer Script sucht - genau wie Ihr es tun würdet - die genutzten Daten.
-### Sogenannte "Paths" (zu dt. Wege) geben an, wo lokale Dokumente abliegen. 
-### Dabei werden die verschiedenen Ordner mit "/" getrennt und der gesamte Path in Anführungszeichen gesetzt.
+### Sogenannte "Paths" (zu dt. Wege oder Pfade) geben an, wo lokale Dokumente abliegen. 
+### Dabei werden die verschiedenen Ordner mit "/" getrennt und der gesamte Path wird in Anführungszeichen gesetzt.
 ### Als absolute Paths bezeichnet man die Option, eine Reise von Berlin nach München mit allen Zwischenstationen zu definieren.
 ### Relative Paths starten bei einem gesetzten Startpunkt, wo z.B. Euer Script liegt. Damit können Scripte leichter geteilt werden.
-### Die Idee ist: Wenn Ihr erst in Dresden losfahrt, dann braucht Ihr auch erst ab die Fahrstrecke. 
+### Die Idee ist: Wenn Ihr in Dresden losfahrt, dann braucht Ihr für die Fahrt nach München nur die Fahrstrecke von Dresden nach München.
+### Unabhängig davon, wie Ihr nach Dresden gekommen seid.
 ### So müssen Eure Kolleg:innen nicht erstmal den Path anpassen, wenn sie Euer Script auf ihrem PC ausführen möchten.
 ### Hinweis: In R gibts dafür für neue Projekte einen tollen Trick - Nutzt RProjects und schiebt alle Eure Dokumente in den entsprechenden Ordner (https://rstats.wtf/project-oriented-workflow.html) 
 ### Alle Pfade beginnen dann in Eurem RProject-Ordner. 
@@ -76,7 +77,7 @@ plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/l
 ### Im "langen" Format lassen sich dann die Variablen auch als Filter verwenden - das ist später für die Visualisierung praktisch.
 ### Diese Technik ist besonders bei Umfragen relevant!
 
-### Hier hinterlegen wir die Option "Alle Ort" für den Wohnort-Filter
+### Hier hinterlegen wir die Option "Alle Orte" für den Wohnort-Filter
 continent_list <- c("Alle Kontinente", sort(unique(community$continent)))
 
 ############################################
