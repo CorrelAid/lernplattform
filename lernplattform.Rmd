@@ -185,7 +185,7 @@ regex_df <- tibble::tribble(
 
 ### Doktor Oetker Kochbuch von Project Gutenberg für Wordcloud
 
-oetker <- gutenberg_download(31537)
+oetker <- gutenbergr::gutenberg_download(31537)
 
 Encoding(oetker$text) <- "latin1"
 
@@ -214,7 +214,6 @@ lexicon <- map(c("daten/SentiWS_v2.0_Negative.txt", "daten/SentiWS_v2.0_Positive
   
   union_all(original_only, inflektionen)
 }) %>% list_rbind()
-
 ``` 
 
 <!-- ## Willkommen -->
