@@ -106,6 +106,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Statuscode** = Antwort eines Servers auf HTTP-Anfragen (über APIs)
 
+**Stoppwörter** = Wörter, die nicht zur Inhaltsbeschreibung eines Textes beitragen, z.B. "der", "und", "so"
+
 **Subsets** = Teilmenge des Datensatzes
 
 **Regelbasierte Systeme** = Systeme, die Aufgaben auf Basis von bestimmten, manuell festgesetzten Regeln erledigen. Diese Regeln werden häufig von Expert:innen festgesetzt.
