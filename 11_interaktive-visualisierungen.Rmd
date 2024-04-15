@@ -127,7 +127,7 @@ Die folgende Abbildung gibt einen Überblick über den Aufbau der App:
     <div>
 
     | **Funktion**     | **Beschreibung**                                                                                                                             |
-    |--------------------|----------------------------------------------------|
+    |---------------------|---------------------------------------------------|
     | `fluidPage()`    | für einen flexiblen Aufbau der App abhängig von der bereitgestellten Fenstergröße                                                            |
     | `titlePanel()`.  | für eine Überschrift                                                                                                                         |
     | `sidebarPanel()` | für einen Seitenbereich links, in dem interaktive Einstellungen vorgenommen werden können                                                    |
@@ -142,7 +142,7 @@ Die folgende Abbildung gibt einen Überblick über den Aufbau der App:
     <div>
 
     | **Funktion**   | **Beschreibung**                                                                                                                             |
-    |--------------------|----------------------------------------------------|
+    |---------------------|---------------------------------------------------|
     | `renderPlot()` | für die Erzeugung einer Abbildung unter Verwendung der interaktiven Eingaben. Das Ergebnis wird als Objekt „output\$distPlot" abgespeichert. |
 
     </div>
@@ -282,11 +282,10 @@ Wir möchten das **Balkendiagramm** aus der letzten Woche in eine App übersetze
 
 Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 
-1.  `server <- function(input, output) {}` definiert eine **Funktion**, die `input` und `output`-Argumente annimmt. Der `input` stellt das dar, was unsere **Nutzer:innen in der UI** bei den interaktiven Elementen der App **eingeben**. Der `output` definiert, was die **App zurückgeben** soll, also was die Nutzer:innen sehen sollen.
+1.  `server <- function(input, output) {}` definiert eine **Funktion**, die `input` und `output`-Argumente annimmt. Der `input` stellt das dar, was unsere **Nutzer:innen in der UI** bei den interaktiven Elementen der App **eingeben**. Der `output` definiert, was die **App zurückgeben** soll, also was die Nutzer:innen sehen sollen.\
+    <center>![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-server_2024-03-29.png?raw=true){.class width="70%" height="70%"}</center>
 2.  Das Erzeugen des Outputformats erfolgt auch hier über eine **Renderfunktion**: `render...({})`. Dieser Funktionstyp erzeugt also überall im R-Universum benötigte Outputs. Allerdings ist es wichtig, die **richtige Renderfunktion** für den gewünschten Output zu nutzen - es passt also nicht jede Renderfunktion zu jedem Output (dazu später mehr). Innerhalb der Renderfunktion wird dann der Output definiert.
 3.  Der Output, den die `render`-Funktion erzeugt, wird einem **Objektnamen** zugewiesen (`output$name <- render...({})`), auf den wir dann in der UI verweisen können.
-
-<center>![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-server_2024-03-29.png?raw=true){.class width="70%" height="70%"}</center>
 
 Für den Server unserer App können wir den Code für das Balkendiagramm an der richtigen Stelle in die Grundstruktur der `app.R`-Datei kopieren, eine passende Renderfunktion auswählen (Tipp: Schaut auf den [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/11_cheatsheet-shiny.pdf){target="_blank"}!) und benennen.
 
@@ -396,7 +395,7 @@ quiz(caption = NULL,
 Die Tabelle gibt Euch eine kurze Übersicht über die wichtigsten **Auswahlmöglichkeiten**:
 
 | Layoutoption                          | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                                      |
-|--------------------|----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | Einen kurzen Freitext                 | `textInput("id", "Beschreibung")`                                                                                                                                                                                                 |
 | Einen langen Freitext                 | `textAreaInput("id", "Beschreibung", rows = 3)` <br> Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                                   |
 | Eine Zahl                             | `numericInput("id", "Beschreibung", value = 0, min = 0, max = 100)` <br> Mit `value` bestimmen wir den Standardwert, der immer angezeigt wird. Mit `min` und `max` legen wir die Mindest- und die Maximalwerte fest               |
