@@ -10,12 +10,10 @@ Aufbauend auf die Vorlesung und das Quiz wollen wir jetzt lokal die
 Textvariablen des Platikdatensatzes weiter bereinigen. Laden wir dazu
 zunächst die nötigen Packages und den Datensatz.
 
-```{r}
-library(tidyverse)
-library(rio)
+Den etwas bereinigten Datensatz findet ihr unter 'https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv'
 
-### Bereinigten Datensatz laden
-plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv')
+```{r}
+# Euer Code hier
 ```
 
 Im Datensatz sind Plastikabfälle ungeklärter Herkunft oder ohne klare
@@ -28,10 +26,7 @@ Dataframe mit dem Namen `plastics_clean_text`, wobei die Variable
 weiterhin `parent_company` heißen soll.
 
 ```{r}
-plastics_clean_text <- plastics_processed %>% 
-  mutate(parent_company = str_replace(parent_company,
-                                      "Unbranded|Assorted|Inconnu|Non Identified", "Marke unbekannt")
-         )
+# Euer Code hier
 ```
 
 Neben den im Quiz genannten Fällen sind auch weitere Marken und Schreibweisen zu
@@ -48,25 +43,25 @@ großeren Konzernen zuzuordnen:
 |                       | Kraft Heinz     |
 |                       | Kraft           |
 |**McDonald's Corporation**|MacDonald|
-||Mc Donald'S|
-||Macdonald|
-||McDonaldâ€™s|
-||Mc Donald's|
-||Unknown, Mc Donaldâ€™s|
-||McDonald|
-|**Aldi**|ALDI|
-|**Red Bull**| Redbull|
-||RedBull|
-||redbull plastic wrapper|
-||Cty Tnhh Red Bull|
-|**Lidl**|Lidl - Argus beer|
-||Lidl Lager beer|
-||Deep beer - Lidl|
-||Argus beer- Lidl|
-||Kong Strong (Urban Classic Energy Drink) Lidl|
-||Lidl - Floralys|
-||Torreznos Lidl|
-||Floralys (Lidl)|
+|                           |Mc Donald'S|
+|                           |Macdonald|
+|                           |McDonaldâ€™s|
+|                           |Mc Donald's|
+|                   |Unknown, Mc Donaldâ€™s|
+|                                   |McDonald|
+|**Aldi**                           |ALDI|
+|**Red Bull**                   | Redbull|
+|                               |RedBull|
+|                   |redbull plastic wrapper|
+|                           |Cty Tnhh Red Bull|
+|**Lidl**                   |Lidl - Argus beer|
+|                               |Lidl Lager beer|
+|                               |Deep beer - Lidl|
+|                               |Argus beer- Lidl|
+|   |Kong Strong (Urban Classic Energy Drink) Lidl|
+|                           |Lidl - Floralys|
+|                               |Torreznos Lidl|
+|                           |Floralys (Lidl)|
 
 Findest Du noch andere Möglichkeiten zu gruppieren?
 
@@ -77,14 +72,7 @@ Ersetze die verschiedenen Schreibweisen mittels `str_replace()`, idealerweise un
 * Hinweis: in dplyr::mutate kann eine Spalte auch mehrfach hintereinander bearbeitet werden, indem die Funktionen mit dem Pipe-Operator `%>%` aneinander gekettet werden. In den folgenden Funktionen muss die Spalte als Input-Argument nicht mehr angegeben werden weil dies implizit schon so verstanden wird. *
 
 ```{r}
-plastics_clean_text <- plastics_clean_text %>% 
-  mutate(parent_company = 
-           str_replace(parent_company,".*[Pp]epsi.*", "PepsiCo") %>% 
-           str_replace(".*[Kk]raft.*", "Kraft Heinz Company") %>% 
-           str_replace(".*Ma?c ?Donald.*", "McDonald's Corporation") %>% 
-           str_replace(".*Red ?[Bb]ull.*", "Red Bull") %>% 
-           str_replace(".*Lidl.*", "Lidl")
-         )
+# Euer Code hier
 ```
 
 ### Übung 2
@@ -95,11 +83,7 @@ Gruppiere die Daten erneut und nach Jahr, Land und parent_company (sowie num_eve
 Um wie viele Zeilen verkleinert sich der neue Dataframe im Vergleich zu `plastics_processed`?
 
 ```{r}
-plastics_clean_text <- plastics_clean_text %>% 
-  group_by(country, year, parent_company, num_events, 
-           volunteers, continent, countrycode) %>% 
-  summarise(across(empty:grand_total, ~sum(.x)),
-            .groups = "drop")
+# Euer Code hier
 ```
 
 ### Übung 3
@@ -109,14 +93,7 @@ Lasst uns schauen von welchen Firmen am meisten Plastikmüll über mehrere Länd
 Nach der Aggregation filtern wir dann auch Firmen heraus, die in mindestens 5 Ländern gefunden wurden.
 
 ```{r}
-plastics_by_company <- plastics_clean_text %>% 
-  filter(grand_total > 0,
-         parent_company != "Marke unbekannt") %>% 
-  group_by(parent_company) %>% 
-  summarise(n_countries = n_distinct(country),
-            grand_total = sum(grand_total)) %>% 
-  filter(n_countries >= 5) %>% 
-  arrange(desc(grand_total))
+plastics_by_company <- # Euer Code hier
   
 ```
 
@@ -129,14 +106,7 @@ Optional:
 
 ```{r}
 plastics_by_company %>% 
-  top_n(10) %>% 
-  mutate(parent_company = fct_reorder(parent_company, grand_total)) %>% 
-  ggplot(aes(grand_total, parent_company, fill = n_countries)) +
-  geom_col() +
-  labs(title= "Plastikabfälle nach Unternehmen",
-       x = "gefundene Plastikabfälle (St.)", y = "Unternehmen",
-       caption = "Stichprobe von erkannten Marken die in mindestens 5 Ländern gefunden wurden.",
-       fill = "Anzahl Länder")
+  # Euer Code hier
   
 ```
 
