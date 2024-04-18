@@ -290,6 +290,12 @@ cat(out, sep = '')
 ```
 -->
 
+<!-- ## Arbeiten mit Text? -->
+```{r results='asis'}
+out <- knitr::knit_child("15_arbeiten_mit_text.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
 <!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
 out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
@@ -305,12 +311,6 @@ cat(out, sep = '')
 <!-- ## Und jetzt? -->
 ```{r results='asis'}
 out <- knitr::knit_child("14_closing.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Arbeiten mit Text? -->
-```{r results='asis'}
-out <- knitr::knit_child("15_arbeiten_mit_text.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
