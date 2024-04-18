@@ -76,11 +76,7 @@ In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typ
 3.  *Gib einen Namen ein für Deine App*\
     Der Name ist beliebig wählbar. Er sollte informativ und einfach sein und keine Leerzeichen oder Sonderzeichen enthalten, z.B. „Meine-Erste-R-Shiny-App_2024" (ohne die Anführungszeichen).
 
-    <div>
-
-    ![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/rstudio-eingabefenster.png?raw=true){.class width="70%"}
-
-    </div>
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/rstudio-eingabefenster.png?raw=true){.class width="70%"}
 
 4.  *Optional: Lege einen speziellen Speicherort fest für die Shiny-App*\
     Wenn Du die Shiny-App in einem anderen Verzeichnis speichern möchtest als dem aktuellen Arbeitsverzeichnis, kannst Du dies durch Klicken auf „Browse" und die Auswahl eines anderen Verzeichnisses tun.\
@@ -88,30 +84,18 @@ In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typ
 5.  *Klicke auf „Create"*\
     Dir wird in RStudio Deine erste R-Shiny-App angezeigt. Sie heißt „app.R" und liegt in einem Verzeichnis mit dem von Dir unter „Application name" eingegebenen Namen.
 
-    <div>
-
-    ![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app_2024-03-29.png?raw=true){.class width="70%"}
-
-    </div>
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app_2024-03-29.png?raw=true){.class width="70%"}
 
 6.  *Starte die App durch Klicken auf das Feld „Run App" oben links.*\
     Wenn das R-Paket „shiny" auf Deinem Computer noch nicht installiert ist, fordert Dich das folgende Fenster dazu auf, das Paket zu installieren. Klicke auf „Ja" (oder „Yes"). Dann wird zunächst das R-Paket „shiny" installiert und danach die App gestartet.
 
-    <div>
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_installation-shiny.png?raw=true){.class width="70%"}
 
-    ![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_installation-shiny.png?raw=true){.class width="70%"}
+  Deine erste R-Shiny-App läuft jetzt auf Deinem Computer und bietet Dir in einem Pop-up-Fenster eine einfache interaktive Visualisierung an! (Du kannst auch oben in der Kopfzeile der App „Open in Browser" anklicken, dann wird Dir das Fenster in Deinem Browser angezeigt.)
 
-    </div>
+![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_r-shiny-app.png?raw=true){.class width="70%"}
 
-    Deine erste R-Shiny-App läuft jetzt auf Deinem Computer und bietet Dir in einem Pop-up-Fenster eine einfache interaktive Visualisierung an! (Du kannst auch oben in der Kopfzeile der App „Open in Browser" anklicken, dann wird Dir das Fenster in Deinem Browser angezeigt.)
-
-    <div>
-
-    ![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_r-shiny-app.png?raw=true){.class width="70%"}
-
-    </div>
-
-    (Falls Du wissen möchtest, was das für ein Datensatz ist: Azzalini, A. and Bowman, A. W. (1990). A look at some data on the Old Faithful geyser. Applied Statistics, 39, 357--365. <doi:10.2307/2347385>.)
+  (Falls Du wissen möchtest, was das für ein Datensatz ist: Azzalini, A. and Bowman, A. W. (1990). A look at some data on the Old Faithful geyser. Applied Statistics, 39, 357--365. <doi:10.2307/2347385>.)
 
 7.  *Probiere die Interaktivität aus:*\
     Stelle mit der Maus eine andere Anzahl Bins ein für das Histogramm (die Klassen bzw. hier Säulen) und verfolge, wie sich das Histogramm ändert.
@@ -168,7 +152,7 @@ Schaut Euch den [**Schummelzettel zu Shiny-Apps**](https://github.com/CorrelAid/
 
 Der [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/11_cheatsheet-shiny.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzendenoberfläche") und **einen Server**.
 
-![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui-server-2.png?raw=true){.class width="70%" height="70%"}</right>
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui-server-2.png?raw=true){.class width="60%" height="60%"}</right>
 
 In einer Shiny-App habt Ihr meist zwei separate Blöcke, einen `ui`-Part und einen `server`-Part, die Ihr dann mit dem Befehl **`shinyApp(ui = ui, server = server)`** zusammenbringt und Eure Shiny-App zum Laufen bringt. Da die **UI** und der **Server** die zentralen Bestandteile der Shiny-App sind, hier noch einmal in Kürze das Wichtigste:
 
@@ -268,7 +252,9 @@ Wenn wir diese Abbildung in unsere Shiny-App integrieren wollen, können wir ein
 
 Probiert die App doch einfach einmal aus! Wie Ihr sehen werdet, könnt Ihr innerhalb der Shiny-App **nach Kontinenten filtern**. Die Übungsdateien könnt Ihr jetzt im Ordner **11_interaktive-visualisierungen** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}) herunterladen.
 
-#### Schritt 1: Shiny-App planen
+<br>
+
+#### **Schritt 1: Shiny-App planen**
 
 Als Erstes sollte man sich beim Entwerfen einer Shiny-App einen **Plan** zurechtlegen. Hierbei ist es sehr hilfreich, die App grob zu skizzieren (gerne auch ganz klassisch auf Papier).
 
@@ -276,7 +262,9 @@ Wir möchten das **Balkendiagramm** aus der letzten Woche in eine App übersetze
 
 *Tipp: Es ist am besten, so simpel wie möglich anzufangen. Eine Shiny-App kann man nach Belieben immer weiter erweitern und komplexer machen.*
 
-#### Schritt 2: Der Server
+<br>
+
+#### **Schritt 2: Der Server**
 
 Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 
@@ -337,7 +325,9 @@ server <- function(input, output) {
 
 *Tipp: Genauso wie wir es hier gemacht haben, ist es oft leichter, zunächst in einer `Rmd.-Datei` notwendige Packages zu laden, die Daten zu importieren, zu bereinigen und zu Tabellen, Diagrammen und anderen Formaten zu verarbeiten. Im Anschluss könnt Ihr den dort funktionierenden Code in eine Shiny-App übertragen.*
 
-#### Schritt 3: Die UI (User Interface)
+<br>
+
+#### **Schritt 3: Die UI (User Interface)**
 
 Damit steht der `server` der App in den Grundzügen und wir können uns der (**G**raphical) **U**ser **I**nterface (also der *UI*, manchmal auch: *GUI*) der Shiny-App widmen.
 
@@ -393,7 +383,11 @@ quiz(caption = NULL,
 Die Tabelle gibt Euch eine kurze Übersicht über die wichtigsten **Auswahlmöglichkeiten**:
 
 | Layoutoption                          | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                                      |
+<<<<<<< Updated upstream
 |---------------------|---------------------------------------------------|
+=======
+|--------------------------|---------------------------------------------|
+>>>>>>> Stashed changes
 | Einen kurzen Freitext                 | `textInput("id", "Beschreibung")`                                                                                                                                                                                                 |
 | Einen langen Freitext                 | `textAreaInput("id", "Beschreibung", rows = 3)` <br> Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                                   |
 | Eine Zahl                             | `numericInput("id", "Beschreibung", value = 0, min = 0, max = 100)` <br> Mit `value` bestimmen wir den Standardwert, der immer angezeigt wird. Mit `min` und `max` legen wir die Mindest- und die Maximalwerte fest               |
@@ -518,7 +512,9 @@ ui <- fluidPage(
 )
 ```
 
-#### Schritt 4: Funktionalität testen & Server und UI verbinden
+<br>
+
+#### **Schritt 4: Funktionalität testen & Server und UI verbinden**
 
 Im letzten Schritt bringen wir in Eurer Shiny-App den `server` und die `ui` zusammen - erinnert Ihr Euch noch, wie das ging?
 
@@ -588,7 +584,9 @@ if (input$continent != "Alle Kontinente"){ # Erster Fall: Ein Kontinent wird aus
 
 Wie Ihr seht, wählen wir hier wieder die `dplyr::filter()` Option und definieren so, dass nur die Kontinente ausgewählt werden sollen, die in `input$continent`ausgewählt wurden. Erinnert Ihr Euch noch an die `id`, die wir in der `ui` vergeben haben? Genau hier nutzen wir sie, um darauf im `server` zu verweisen!
 
-#### 5. Verschönerung Eurer Shiny-App
+<br>
+
+#### **Schritt 5: Verschönerung Eurer Shiny-App**
 
 Bis hierhin haben wir schon 80% der Shiny-App geschafft - herzlichen Glückwunsch! Sie läuft, zeigt uns zuverlässig über unseren vordefinierten Filter die Balken an, die wir sehen möchten und ist insgesamt auch schon recht professionell. Es wäre natürlich noch schön, wenn wir die Shiny-App noch ein bisschen weiter verschönern könnten. Dazu gibt es verschiedene Möglichkeiten und auch oft schon vordefinierte Packages, die Ihr einfach nutzen könnt.
 
