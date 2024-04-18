@@ -96,6 +96,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 
 **Slicing** = Zugriff auf bestimmte Daten in einem *Dataframe*
 
+**Software as a Service** (SaaS) = Software wird über eine Cloud zur Vefügung gestellt, d.h. Ihr greift auf das Programm über das Internet zu
+
 **Spannweite** = Differenz zwischen der *minimalen Ausprägung* und der *maximalen Ausprägung* einer Variablen
 
 **SQL** (Structured Query Language, dt. Strukturierte Abfragesprache) = eine Sprache zur Definition, Bearbeitung und Abfrage von Daten aus Datenbanken
@@ -103,6 +105,8 @@ Zum Begriffsdschungel gab es bei uns übrigens schon einmal ein Open Online Data
 **Standardabweichung** = standardisiertes Maß für die Streuung um den Mittelwert in der selben Maßeinheit wie die Variable (auch: mittlere Abweichung), das der Wurzel aus der *Varianz* entspricht
 
 **Statuscode** = Antwort eines Servers auf HTTP-Anfragen (über APIs)
+
+**Stoppwörter** = Wörter, die nicht zur Inhaltsbeschreibung eines Textes beitragen, z.B. "der", "und", "so"
 
 **Subsets** = Teilmenge des Datensatzes
 

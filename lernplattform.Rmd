@@ -42,6 +42,7 @@ library(tidytext)
 library(gutenbergr)
 library(wordcloud)
 library(stopwords)
+library(vembedr)
 
 ## RMD
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -228,9 +229,21 @@ out <- knitr::knit_child("01_setup.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
+<!-- ## Datenprojekte aus der Zivilgesellschaft -->
+```{r results='asis'}
+out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
 <!-- ## Datenschutz und Datenethik -->
 ```{r results='asis'}
 out <- knitr::knit_child("02_datenschutz-und-datenethik.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
+<!-- ## Grundlagen der Statistik -->
+```{r results='asis'}
+out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
@@ -252,18 +265,6 @@ out <- knitr::knit_child("05_datenimport.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Exkurs: APIs-->
-```{r results='asis'}
-out <- knitr::knit_child("05_1_datenimport-exkurs-api.Rmd", quiet = TRUE) 
-cat(out, sep = '')
-```
-
-<!-- ## Exkurs: SQL -->
-```{r results='asis'}
-out <- knitr::knit_child("05_2_datenimport-exkurs-sql.Rmd", quiet = TRUE) 
-cat(out, sep = '')
-```
-
 <!-- ## Datentransformation -->
 ```{r results='asis'}
 out <- knitr::knit_child("06_datentransformation.Rmd", quiet = TRUE)
@@ -276,33 +277,22 @@ out <- knitr::knit_child("07_datenvisualisierung.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Grundlagen der Statistik -->
-```{r results='asis'}
-out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
 <!-- ## Reports in R Markdown -->
 ```{r results='asis'}
 out <- knitr::knit_child("09_reports.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Reportautomatisierung -->
+<!-- ## Reportautomatisierung 
 ```{r results='asis'}
-out <- knitr::knit_child("10_automatisierte-reports.Rmd", quiet = TRUE)
-cat(out, sep = '')
+# out <- knitr::knit_child("10_automatisierte-reports.Rmd", quiet = TRUE)
+# cat(out, sep = '')
 ```
+-->
 
 <!-- ## Interaktive Visualisierungen -->
 ```{r results='asis'}
 out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
-cat(out, sep = '')
-```
-
-<!-- ## Datenprojekte aus der Zivilgesellschaft -->
-```{r results='asis'}
-out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 

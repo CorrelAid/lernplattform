@@ -1,342 +1,548 @@
 ## **Grundlagen der Statistik**
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
-*"Grundlagen der Statistik" von Philipp Bosch, Nina Hauser, Sebastian Zezulka in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.png)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
-![*Video: Grundlagen der Statistik (30min)*](https://youtu.be/ASL2IihMtl0)
+*"Grundlagen der Statistik" von Michael Aydinbas in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
-<p style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
-  **Disclaimer** <br>
-  Du hast alles direkt verstanden? Perfekt!
-  Du hast nicht alles direkt verstanden? Völlig normal! Nimm Deine Fragen gerne mit in die Livesession - die Tutor:innen freuen sich darüber, alle Deine Fragen zu beantworten und Dir weiterzuhelfen. Bei kleineren Fragen wende Dich natürlich auch gerne einfach direkt an Deine:n Mentor:in. Und wenn Du gar nicht weißt, wo Du anfangen sollst mit Deinen Fragen - ein kleiner Schritt nach dem anderen und nicht alles brauchst Du für jede Datenanalyse oder -visualisierung. 
+In dieser Woche geht es um die Grundlagen des statistischen Denkens.
+Wir beschäftigen uns aber nicht mit der Statistik aus purem Selbstzweck, sondern sie ist ein ganz wesentlicher Teil und Voraussetzung für den kritischen Umgang mit Daten. Daher schauen wir uns zu Beginn an, was wir für einen kompetenten Umgang mit Daten benötigen, wie wir Datenkompetenz erlangen können und welche Rolle die Statistik dabei spielt.
+
+Im Anschluss beginnen wir mit einer Einführung in die Statistik und diskutieren, wie Daten in der Öffentlichkeit präsentiert werden. Anschließend lernen wir, was Daten und Datentypen sind. Mit diesem Wissen steigen wir in die Grundbegriffe der Statistik ein und schauen uns an, wie Daten (mehr oder weniger) sinnvoll zusammengefasst werden können. Zum Schluss diskutieren wir das wichtige Thema Korrelation und Kausalität.
+
+### **Data Literacy**<sup><a href="#section-quelle-1">1</a></sub>
+
+Daten sind im digitalen Zeitalter eine Schlüsselressource für gesellschaftliche Teilhabe, Wohlstand und Wettbewerbsfähigkeit, für den Schutz von Klima und Umwelt sowie staatliches Handeln. Die Fähigkeiten, Daten auf kritische Art und Weise zu sammeln, zu verwalten, zu bewerten und anzuwenden, wird als Data Literacy bezeichnet. Data Literacy umfasst dabei nicht nur Statistikkompetenz oder ein mathematisches Grundverständnis, sondern auch Fertigkeiten wie Digital- und Medienkompetenz. Wer datenkompetent („data literate“) ist, kann die Zuverlässigkeit von Datenquellen beurteilen, Daten zielgerichtet aufbereiten und einordnen sowie sinnvolle Schlüsse aus diesen Daten ziehen.
+
+Wenn Daten Entscheidungsprozesse unterstützen sollen, braucht es kompetente Antworten auf vier grundlegende Fragen:
+
+- **Was will ich mit Daten machen**? Daten und Datenanalysen sind kein Selbstzweck, sondern dienen einer konkreten Anwendung in der realen Welt.
+- **Was kann ich mit Daten machen**? Datenquellen und deren Qualität sowie der Stand der technischen und methodischen Entwicklungen eröffnen Möglichkeiten und setzen Grenzen.
+- **Was darf ich mit Daten machen**? Alle gesetzlichen Regeln der Datennutzung (zum Beispiel Datenschutz, Urheberrechte und Lizenzfragen) müssen immer mitbedacht werden.
+- **Was soll ich mit Daten machen**? Weil Daten eine wertvolle Ressource darstellen, leitet sich daraus ein normativer Anspruch ab, sie zum Wohl von Individuen und Gesellschaft zu nutzen.
+
+Die nachfolgende Abbildung zeigt ein zyklisches Prozessmodell, das die notwendigen Schritte für einen **kompetenten Umgang mit Daten** abbildet. Auch wenn das Schaubild keinen klaren Startpunkt vermittelt, weil der Prozess mehrfach durchlaufen werden kann, so wird man für gewöhnlich mit der Eingrenzung der Aufgabe und der Formulierung von (Forschungs-)Fragen beginnen.
+
+<p>
+<center>
+![**Abbildung**: Zyklisches Modell des Prozesses der Wertschöpfung aus Daten. Quelle: Schüller, Busch, Hindinger (2019)](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Zyklisches_Modell.png?raw=true){#id .class width=70% height=70%}
+</center>
 </p>
 
-### **Kernaussagen**
+Im oberen Schaubild ist die Statistik an fast allen Schritten beteiligt:
 
--   In der **Replikationskrise der Wissenschaft** können unerwartet viele publizierte Studienergebnisse nicht repliziert werden: Forscher:innen in aller Welt nahmen dies zum Anlass, kritisch zu hinterfragen, wie wir mit Daten verantwortungsbewusst forschen können
--   Wir müssen zwischen verschiedenen **Qualitätsstufen** von Studien unterscheiden
--   In der Medizin erfolgt das über **Evidenzklassen**:
+- Sie spielt bei der Planung der Datenerhebung (Messung) eine Rolle, wenn es darum geht, welche Daten in welchen Einheiten erhoben werden sollen
+- Sie spielt bei der Erhebung der Daten eine Rolle, wenn es darum geht, eine repräsentative Stichprobe auszuwählen sowie Messfehler und Verzerrungen zu vermeiden
+- Sie spielt bei der Datenanalyse eine zentrale Rolle, wenn es darum geht, Muster und Auffälligkeiten in den Daten zu finden
+- Sie spielt bei der Interpretation der Daten eine zentrale Rolle, wenn es darum geht, gefundene Zusammenhänge auf ihre Bedeutung hin zu prüfen und zu bewerten
+- Sie spielt bei der Entscheidungsfindung eine Rolle, wenn es darum geht, auf Basis der erhobenen Daten Entscheidungen abzuleiten
 
-<center>![Bild: Evidenzklassen](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/evidenzklassen.png?raw=true){#id .class width="100%" height="100%"}</center>
+Daher wollen wir uns näher mit den Grundlagen der Statistik beschäftigen. Wir tun dies hier aber sehr anwendungsorientiert und werden nur die Grundlagen behandeln, die beim Umgang mit eigenen Daten und Datensätzen direkt angewendet werden können. 
 
--   Mit unterschiedlichen **Forschungsdesigns** ergeben sich also auch unterschiedliche interne Validität (Zuverlässigkeit der Studienergebnisse), externe Validität (Generalisierbarkeit der Studienergebnisse) und Reliabilität (Reproduzierbarkeit der Studienergebnisse)
--   Insbesondere wenn wir den Begriff der **Kausalität** für uns beanspruchen wollen, müssen wir vorsichtig sein: Wir unterscheiden die Begriffe **Assoziation, Intervention und Kontrafaktische Analyse**
--   In der Zivilgesellschaft können wir auf Grund von ethischen Herausforderungen oft kein geeignetes Experiment durchführen, es fehlt uns die **Vergleichsgruppe**
--   Es hilft deshalb **Effekte** (Veränderung oder Stabilisierung), **plausibilisierte Wirkungen** (Plausibilitätscheck möglicher kausaler Mechanismen) und **Wirkung** (nachgewiesener kausaler Mechanismus) unserer Programme zu unterscheiden
--   Viele analytische Verfahren können mit **Mustererkennung** allein schon viel Zugewinn ermöglichen, da wir maschinell viel größere Mengen an Informationen verarbeiten können als manuell
+### **Einführung in die Statistik**<sup><a href="#section-quelle-2">2</a></sub>
 
-### **Quiz**
+<div>
+<video width="320" height="240" controls>
+  <source src="https://www.destatis.de/static/DE/videos/Imagevideo_Weltstatistiktag_2020.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
+*Quelle: Weltstatistiktag - Statistisches Bundesamt, https://www.destatis.de/DE/Ueber-uns/Ziele-Strategie/weltstatistiktag-2020.html (Februar 2024).*
 
-```{r quiz_statistischesdenken}
-quiz(caption = NULL,
-  question("Das Studiendesign mit der höchsten Zuverlässigkeit (höchste Evidenzklasse) ist die Meta-Studie.",
-    answer("Korrekt", correct = TRUE),
-    answer("Inkorrekt"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Es ist die Meta-Studie.",
+
+Die Statistik ist eine Wissenschaft, die alle Lebensbereiche durchdringt. Jeder von uns ist heute im Alltag mit einer Fülle von Daten und Visualisierungen von Daten konfrontiert, die uns über verschiedene Kanäle erreichen. Im Internet kann man gezielt nach Daten aller Art suchen, z.B. nach statistischen Informationen zu Migrationsströmen oder zur Kursentwicklung von Kryptowährungen. Zugleich wird die Online-Präsentation von Daten immer benutzerfreundlicher. Dies gilt insbesondere für Daten der amtlichen Statistik – wie das folgende Beispiel einer [interaktiven Präsentation der Bevölkerungsvorausberechnung](https://service.destatis.de/bevoelkerungspyramide/) für Deutschland des Statistischen Bundesamts (Destatis) zeigt.
+
+```{r echo=FALSE}
+vembedr::embed_url("https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF")
+```
+*Quelle: von6auf1 - "Statistik Teil 1 - statistische Daten - Merkmalsträger, Merkmalsausprägung ...", https://youtu.be/fmpxGo1JJiE?si=5_Wu79t3LVA9gmLF (04.11.2015, abgerufen Februar 2024)*
+
+
+In der Statistik nennt man die Objekte, auf die sich eine statistische Untersuchung bezieht, statistische Einheiten oder **Merkmalsträger**. Daten werden also an statistischen Einheiten bzw. Merkmalsträgern erhoben. Die Menge aller für eine Fragestellung interessierenden statistischen Einheiten bildet eine **Grundgesamtheit**. Sie wird auch als **Population** bezeichnet. Wichtig ist, dass eine Grundgesamtheit klar abgegrenzt ist.
+Die Eigenschaften statistischer Einheiten werden **Merkmale oder Variablen** genannt. Die möglichen Werte, die ein Merkmal annehmen kann, heißen **Merkmalsausprägungen**. Wählt man aus einer Grundgesamtheit nach einem Auswahlverfahren (engl. Sampling) eine Teilmenge aus, spricht man von einer **Stichprobe**. Die folgende Abbildung verdeutlicht noch einmal den Zusammenhang zwischen Population und Stichprobe.
+
+<div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
+<p style="color:#acc940;"><b>Beispiele:  Statistische Grundbegriffe</b></p>
+
+Eine Grundgesamtheit ist z.B. definiert durch
+
+- alle Personen, die am 1. Mai 2023 in Berlin ihren Erstwohnsitz hatten;
+- Studierende einer Universität zu Beginn des Wintersemesters 2023, über die man via Internetbefragung Informationen gewinnen will;
+
+Die statistischen Einheiten werden hier repräsentiert durch
+
+- jede Person mit Erstwohnsitz in Berlin am 1. Mai 2023;
+- alle zum Wintersemester 2023 eingeschriebenen Studierenden;
+
+Interessierende Merkmale und Merkmalsausprägungen können hier sein
+
+- der Familienstand der Person, etwa mit den Ausprägung „single“, "verheiratet", "geschieden"; 
+- das Alter der Studierenden, erfasst z.B. in Form von Altersklassen;
+</div>
+
+<p>
+<center>
+![**Abbildung**: Population und Stichprobe. Quelle: <https://systats.github.io/linear_model/basics.html>](https://systats.github.io/linear_model/images/pop/population.png){#id .class width=70% height=70%}
+</center>
+</p>
+
+#### **Aufgaben und Teilbereiche der Statistik**
+
+Für Statistiker ist der Begriff „Statistik“ nicht eindeutig belegt. Sie verstehen hierunter einerseits ihre Wissenschaft als Ganzes. Sie verwenden den Begriff aber auch für Kenngrößen, die sich aus statistischen Daten ableiten (z.B. den Mittelwert). Im allgemeinen Sprachgebrauch wird auch häufig ein Datensatz als eine Statistik angesprochen, etwa ein Datensatz mit der Medaillenverteilung bei den Olympischen Sommerspielen. In diesem Kurs wird „Statistik“ im Sinne von „Wissenschaft“ verwendet, also bestimmte Methoden sowie Denk- und Herangehensweisen.
+
+Innerhalb der Statistik lassen sich die *beschreibende* und die *schließende* Statistik unterscheiden. Die beschreibende oder **deskriptive Statistik** umfasst numerische und grafische Verfahren zur Charakterisierung und Präsentation von Daten. Ziel ist die **Reduktion** (Zusammenfassung) der in den Daten enthaltenen statistischen Informationen durch Verdichtung zu wenigen Kenngrößen, möglichst ohne größeren Informationsverlust. Auf diesen Zweig der Statistik wollen wir uns im Rest dieser Lerneinheit konzentrieren.
+
+Aus der beschreibenden Statistik hat sich die **explorative Datenanalyse** entwickelt. Diese geht über die beschreibende Statistik hinaus, weil hier – noch ohne Einsatz von (mathematischen) Modellen – mit rechenintensiven Verfahren nach auffälligen Mustern und Strukturen in Datenbeständen gesucht wird. So werden etwa die Scannerdaten eines Lebensmittelkonzerns von einem Verkaufstag routinemäßig nach Auffälligkeiten durchleuchtet, ohne dass sofort eine Hypothese im Spiel ist. So entdeckt man Trends im Käuferverhalten und kann zudem rechtzeitig Nachbestellungen organisieren.
+
+Die schließende oder **induktive** Statistik leitet aus Stichprobendaten **Aussagen** ab, die über die jeweilige Stichprobe hinausgehen und sich auf eine umfassendere **Grundgesamtheit beziehen**. Sie sei aber nur der Vollständigkeit halber genannt und wird uns heute nicht weiter beschäftigen.
+
+Jetzt wollen wir uns einige Pressemitteilungen des Statistischen Bundesamts näher ansehen.
+
+#### **Pressemitteilungen**
+
+Im Folgenden zeigen wir exemplarische Pressemitteilungen des Statistischen Bundesamts (Destatis) und die dazu veröffentlichten Grafiken. Diese Pressemitteilungen sind typische Beispiele für die Veröffentlichungen von statistischen Ämtern und zeigen, wie Daten in der Öffentlichkeit präsentiert werden. 
+
+Achtet auf die Kommunikation sowie die verschiedenen Darstellungsarten. Welches Wissen bzw. welche Fähigkeiten werden beim Betrachter vorausgesetzt? Welche Informationen werden vermittelt? Findet ihr die Grafiken geeignet, um die Informationen zu vermitteln?
+
+##### Inflationsrate im Januar 2024 bei +2,9 %. Inflationsrate schwächt sich zu Jahresbeginn ab.
+
+Verbraucherpreisindex, Januar 2024
+
+- +2,9 % zum Vorjahresmonat (vorläufiges Ergebnis bestätigt)
+- +0,2 % zum Vormonat (vorläufiges Ergebnis bestätigt)
+
+<p>
+<center>
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_051_611.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/vpi-kraftstoffe-nahrung.png?raw=true){#id .class width=100%}
+</center>
+</p>
+
+```{r 08_quiz1, echo=FALSE}
+quiz(caption = "Fragen zur Pressemitteilung",
+  question("Welche der drei Kategorien (VPI insgesamt, Energie, Nahrungsmittel) weist die größte Schwankung über die Zeit auf? Warum?",
+    answer("VPI insgesamt"),
+    answer("Energie", correct = TRUE),
+    answer("Nahrungsmittel"),
+    correct = "Richtig! Der Verlauf der Energiepreisindizes zeigt die deutlichsten Schwankungen und damit Veränderungen über die Zeit. Dies ist auch nicht weiter verwunderlich, da Preise auf dem Strommarkt deutlich stärker schwanken, als Lebensmittelpreise, u.a. durch starke globale Abhängigkeiten. Da die Linie für 'VPI insgesamt' keine eigene Kategorie ist, sondern der Verbraucherpreisindex über alle Kategorien, ist der Verlauf deutlich glatter als der Verlauf für eine einzelne Kategorie.",
+    incorrect = "Leider falsch. Schau dir den zeitlichen Verlauf der drei Linien an. Welche Linie ist besonders 'ruhig' und welche Linie ist besonders 'wild'?",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-  ),
+    ),
   
-  question("Meta-Studien vergleichen die Ergebnisse mehrerer experimenteller Studien (RCTs) miteinander.",
-    answer("Korrekt", correct = TRUE),
-    answer("Inkorrekt"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Meta-Studien überprüfen die Reliabilität/Reproduzierbarkeit von Studienergebnissen, indem sie diese miteinander vergleichen.",
+  question("Was lässt sich über die Preisentwicklung seit Januar 2021 sagen?",
+    answer("Alle drei Indizes lagen stets über 100.", correct = TRUE),
+    answer("Energie und Nahrungsmittel lagen stets über 100, aber nicht VPI gesamt."),
+    answer("Alle drei Indizes waren auch einmal unter 100."),
+    correct = "Richtig! Seit Januar 2021 liegen alle drei Linien stets über dem Referenzwert 100 (schwarze Linie), daher sind die Preise niemals unter diesen Wert gefallen.",
+    incorrect = "Leider falsch. Die Linien liegen alle stets über dem Vergleichswert von 100 (schwarze Linie) nach Januar 2021.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-  ),
+    )
+)
+```
+
+##### Menschen in Deutschland bei erster Heirat immer älter – Durchschnittsalter auf neuem Höchststand.
+
+- Frauen bei erster Eheschließung 2022 im Schnitt 32,6 Jahre alt, Männer 35,1 Jahre
+- Zahl derjenigen, die mit 50+ zum ersten Mal heiraten, von 7 500 im Jahr 2002 auf rund 41 500 im Jahr 2022 gestiegen
+- Rund die Hälfte (49 %) der erwachsenen Bevölkerung war Ende 2022 verheiratet, bei den 65- bis 69-Jährigen gut zwei Drittel (68 %)
+
+<p>
+<center>
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/eheschliessende-nach-altersgruppen.png?raw=true){#id .class width=100%}
+</center>
+
+<center>
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_N007_126.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/anteil-verheiratete.png?raw=true){#id .class width=100%}
+</center>
+</p>
+
+
+```{r 08_quiz2_v2, echo=FALSE}
+quiz(caption = "Fragen zur Pressemitteilung",
+  question("In welcher Altergruppe gibt es die größten Unterschiede zwischen 2002 und 2022 (Grafik 1)?",
+    answer("50 Jahre und älter"),
+    answer("40-49 Jahre"),
+    answer("30-39 Jahre"),
+    answer("Unter 30 Jahren", correct = TRUE),
+    correct = "Richtig! Den größten Unterschied gibt es in der Altersgruppe 'Unter 30 Jahren', da hier ein Rückgang von etwa 52 % auf 36 % zu beobachten ist, also ein Rückgang von 16 %.",
+    incorrect = "Leider falsch. Schau dir die länge der Balken an. In welcher Altersgruppe sind die Balken am unterschiedlichsten?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  question("Sind die Altersgruppen sinnvoll gewählt (Grafik 1)?",
+    answer("Ja"),
+    answer("Nein"),
+    answer("Das kommt drauf an", correct = TRUE),
+    correct = "Das kann man so einfach nicht sagen! Bis auf die erste und letzte Altersgruppe umfasst jede Gruppe 10 Jahre. Bei der ersten Gruppe kann man argumentieren, dass eine weitere Unterteilung in ' Unter 20 Jahre' nicht sinnvoll ist, da diese Gruppe zu klein ist. Bei der letzten Gruppe kann man ähnlich argumentieren, dass eine erste Heirat vermutlich mit über 60 sehr unwahrscheinlich wird. Aber diese Einteilungen sind dennoch 'willkürlich' und können die Visualisierung entscheidend verändern.",
+    incorrect = "Leider falsch. Die Frage ist gemein, das wissen wir. Aber wie so oft im Leben: Es kommt eben darauf an.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  question("Welche Altersgruppe weist die meisten Verheirateten in % der jeweiligen Altersgruppe auf (Grafik 2)?",
+    answer("30"),
+    answer("40"),
+    answer("50"),
+    answer("60"),
+    answer("70", correct=TRUE),
+    answer("80"),
+    correct = "Richtig! Die Frage bezieht sich auf die zweite Grafik, greift aber die letzte Frage mit auf. Obwohl die erste Grafik alle Menschen ab 50 Jahre aufwärts in einer Gruppe einsortiert, zeigt die zweite Grafik doch noch deutliche Unterschiede innerhalb dieser Gruppe, was den Anteil der Verheirateten anbelangt. So ist der Anteil der 50-Jährigen Verheirateten bei etwa 60 %, bei den 60-Jährigen steigt dieser Anteil bereits auf etwa 66 % und bei den 70-Jährigen (oder knapp darunter) erreicht er das Maximum von etwas über 70 %. Interessanterweise sinkt der Anteil bei den über 80-Jährigen dann deutlich unter den Durchschnitt, d.h. die meisten über 80-Jährigen sind nicht verheiratet, oder, wie die Beschreibung am unteren Rand erklärt, verwitwet.",
+    incorrect = "Leider falsch. Schau dir die blaue Kurve an und versuche, die Altersgruppe zu finden, die den höchsten Wert auf dieser Kurve hat.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    )
+)
+```
+
+##### Bierabsatz 2023 um 4,5 % niedriger als im Vorjahr.
+
+- Inlandsabsatz um 4,2 % gesunken, Bierexporte um 5,9 % niedriger als im Vorjahr
+- Auch langfristig sinkender Bierabsatz: Im Jahr 2023 haben die Brauereien und Bierlager 11,5 % weniger Bier abgesetzt als im Jahr 2013
+
+<p>
+<center>
+![*Quelle: <https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/02/PD24_043_799.html>*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/bierabsatz.png?raw=true){#id .class width=100%}
+</center>
+</p>
+
+```{r 08_quiz3, echo=FALSE}
+quiz(caption = "Fragen zur Pressemitteilung",
+  question("Was verrät die Färbung der Monatssegmente über den Bierabsatz eines Jahres (z.B. die Segmente des äußersten Ringes für das Jahr 2023)?",
+    answer("Ich habe eine Idee", correct=TRUE),
+    answer("Keine Idee"),
+    correct = "Die Farbskala geht über alle jemals gemessenen Werte zwischen Mai 2000 (höchster Wert) und Jan 2021 (niedrigster Wert). D.h. der hellste Blauton stellt den Minimalwert da, der dunkelste Blauton den Maximalwert. Wenn man sich auf einen Ring konzentriert, so fällt auf, dass die Wintermonate (=Segmente) grundsätzlich heller sind als die Sommermonate, vermutlich, weil die Menschen im Sommer mehr Bier konsumieren als im Winter.",
+    incorrect = "Wenn du dich auf einen Ring (= ein Jahr) konzentrierst, was fällt dir dann in Bezug auf die Färbung der Segmente auf? Welche Monate sind heller, welche dunkler? Was kannst du daraus über den Absatz schlussfolgern? Liegt dem ein saisonaler Trend zugrunde?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
   
-  question("Der Rückschluss von statistischen Eigenschaften der Stichprobe auf die Population wird als ... bezeichnet.",
-    answer("Externe Validität", correct = TRUE),
-    answer("Interne Validität"),
-    answer("Reliabilität"),
-    correct = "Richtig!",
-    incorrect = "Leider falsch. Es handelt sich bei der Generalisierbarkeit der Ergebnisse um die externe Validität.",
+  question("In welchem Monat und Jahr war der geringste Absatz, in welchem der größte Absatz?",
+    answer("Sehe ich", correct = TRUE),
+    answer("Sehe ich nicht"),
+    correct = "Diese Frage ist natürlich nicht ganz einfach nur anhand der Grafik abzulesen. Die hellste Färbung tritt im Januar und Februar auf, daher ist zumindest einer der niedrigsten Wert der Januar 2021. Umgekehrt treten die dunkelsten Blautöne im August und Mai auf, daher dürfte einer der absatzstärksten Monate der Mai 2000 gewesen sein.",
+    incorrect = "Da die Farbskala global für alle Monate und Jahre gilt, muss der Monat mit dem geringsten Absatz die hellste Färbung, der Monat mit dem größten Absatz die dunkelste Färbung aufweisen.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
-  ),
-  question("Wirkungen können durch explorative Datenanalysen bestätigt werden.",
-    answer("Korrekt"),
-    answer("Inkorrekt", correct = TRUE),
-    correct = "Richtig!",
-    incorrect = "Leider falsch: Wirkungen setzen Kausalität voraus. Deshalb ist es wichtig, Effekte, plausibilisierte Wirkungen und Wirkungen voneinander abzugrenzen.",
+    ),
+  
+  question("Was verrät die Färbung eines Monats (alle Segmente) über alle Jahre hinweg (z.B. August von 1993 - 2023)?",
+    answer("Ich habe eine Idee", correct=TRUE),
+    answer("Keine Idee"),
+    correct = "Wenn wir uns den Verlauf der Jahre ansehen, aber in einem Monat bleiben, so bewegen wir uns nicht im Uhrzeigersinn, sondern von innen nach außen. Wenn wir uns z.B. den August nehmen, so sehen wir im Inneren des Kreises sehr dunkelblaue Segmente. Gegen außen hin werden diese Segmente jedoch zunehmend heller. Das deutet darauf hin, dass der Absatz für diesen Monat über die Jahre zurückgegangen ist.",
+    incorrect = "Nimm dir einen beliebigen Monat heraus und konzentriere dich auf den Verlauf der Färbung vom Kreisinneren zum Kreisäußeren. Was fällt dir auf? Was bedeutet dieser Farbverlauf bzw. die Änderung der Farbhelligkeit für den Absatz über die Jahre hinweg?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    )
+)
+```
+
+### **Was sind Daten?**<sup><a href="#section-quelle-3">3</a></sub>
+
+Im letzten Abschnitt haben wir uns bereits mit Daten und Datenvisualisierungen auseinandergesetzt. Jetzt ist es Zeit, dass wir einmal genau festlegen, was wir mit Daten eigentlich meinen.
+
+Beginnen wir mit der Frage, was Daten und was Informationen sind. **Information ist abgeleitetes Wissen**. Dieses Wissen wollen wir anderen vermitteln sowie aufbewahren. Eine Möglichkeit, dies zu erreichen, ist durch die Wahl einer geeigneten Kodierung. **Daten sind kodierte Informationen**. Da ein und dieselbe Information auf unterschiedliche Weise kodiert werden kann (verschiedene Einheiten, verschiedene Skalen usw.), kann ein und dieselbe Information auch mit unterschiedlichen Daten ausgedrückt werden. Verstehe ich die Kodierung hingegen nicht, so sind die Daten für mich wertlos, da ich die kodierten Informationen nicht verwerten kann.
+
+Wenn wir uns nun eine gewöhnliche Tabelle vorstellen, so enthält diese Tabelle kodierte Informationen und somit Daten. Eine Tabelle mit Daten nennen wir daher auch einen **Datensatz**. 
+
+Jede Zeile einer Tabelle stellt eine zusammenhängende Informationseinheit dar, die zu einem bestimmten Zeitpunkt erhoben oder gemessen wurde. Jede Spalte einer Tabelle repräsentiert eine Eigenschaft, die uns interessiert, und die für alle Zeilen auf die gleiche Art und Weise kodiert wird, so dass wir die verschiedenen Messungen leicht vergleichen können. 
+
+Die Zeilen eines Datensatzes bezeichnen wir als **Messungen**, **Beobachtungen**, **Aufzeichnungen** (engl. records), oder **Versuche**. Die Spalten einer Tabelle bezeichnen wir als **Merkmale**, **Features**, **Attribute**, **Felder**, oder **Variablen**. Daher kann man einen Datensatz auch beschreiben als eine Sammlung von $N$ Beobachtungen mit $Y$ Merkmalen oder Variablen. Man spricht in diesem Falle von der **Dimension** des Datensatzes. Ein **Datenpunkt** oder **Datenwert** ist der Schnittpunkt (eine Zelle in der Tabelle) zwischen einer Beobachtung und einem Merkmal. Jede Tabelle besitzt eine Kopfzeile (engl. header), die die Merkmale näher beschreibt. 
+
+Die nachfolgende Abbildung stellt alle Begriffe dieses Abschnittes noch einmal übersichtlich zusammen. 
+
+<p>
+<center>
+![**Abbildung**: Grundbegriffe für den Umgang mit tabellarischen Datensätzen. Quelle: Eigene Darstellung.](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Datensatz.png?raw=true){#id .class width=100%}
+</center>
+</p>
+
+```{r 08_quiz_datensatz, echo=FALSE}
+quiz(caption = "Fragen zu tabellarischen Daten",
+  question("Wie viele Merkmale hat der Datensatz aus der Abbildung?",
+    answer("2"),
+    answer("3", correct = TRUE),
+    answer("4"),
+    answer("5"),
+    correct = "Richtig. Der Datensatz hat 3 Merkmale: 'Name', 'Alter' und 'Reaktionszeit'. 'Index' ist kein Merkmal im eigentlichen Sinne, da es automatisch für uns erzeugt wird.",
+    incorrect = "Leider falsch. Zähle nochmal die Spalten in der Tabelle. Ist 'Index' ein Merkmal, dass wir messen würden?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Wie viele Beobachtungen hat der Datensatz aus der Abbildung?",
+    answer("2"),
+    answer("3"),
+    answer("4", correct = TRUE),
+    answer("5"),
+    correct = "Richtig. Der Datensatz zeigt vier Beobachtungen, da es vier Zeilen mit befüllten Werten gibt und jede Zeile ist eine Beobachtung/Messung.",
+    incorrect = "Leider falsch. Zähle nochmal die Zeilen in der Tabelle.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Wie lauten die Dimensionen des Datensatzes aus der Abbildung?",
+    answer("4x4"),
+    answer("4x3", correct = TRUE),
+    answer("3x4"),
+    answer("3x3"),
+    correct = sprintf("Richtig. Die Dimension eines Datensatzes wird angegeben als Anzahl Zeilen $\\times$ Anzahl Spalten, daher ist die richtige Antwort $4 \\times 3$"),
+    incorrect = "Leider falsch. Die Dimension eines Datensatzes wird angegeben als Anzahl Zeilen $\\times$ Anzahl Spalten.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    )
+)
+```
+
+#### **Datentypen**
+
+Daten können je nach Kodierung in verschiedene **Datentypen** eingeteilt werden. Die zwei wichtigsten Datentypen werden als *numerisch* und *kategorisch* bezeichnet. **Numerische Daten** werden in Zahlen (und ggf. eine Einheit) ausgedrückt. **Kategorische Daten** werden meist in Worten und Symbolen ausgedrückt. Es gibt jedoch auch kategorische Daten wie Postleitzahlen, die trotz ihres numerischen Charakters nur sinnvoll als kategorische Daten interpretiert werden können. 
+
+Numerische Daten werden in zwei Hauptkategorien unterteilt:
+
+- **Kontinuierliche Daten** können jede Zahl innerhalb eines bestimmten Bereichs annehmen. Sie stellen eine grundsätzlich nicht abzählbare Menge von Werten dar, d.h., es gibt immer noch einen Wert zwischen zwei beliebigen Werten. Beispiele für diesen Datentyp sind Wetterdaten wie die Menge an Niederschlag oder die Außentemperatur. Die Außentemperatur kann mit beliebiger Genauigkeit angegeben werden, also beispielsweise mit $29\ °C$, $28,6\ °C$, oder $28,6425\ °C$.
+- **Diskrete Daten** sind auf ganze Zahlen beschränkt. Sie stellen eine abzählbare Menge von Werten dar. Beispiele für diesen Datentyp sind die Anzahl der Kinder in einer Familie oder die Anzahl der Tore in einem Fußballspiel. Man kann $0, 1, 2$ oder mehr Kinder haben, aber nicht $1,28$ Kinder. 
+
+<p>
+<center>
+![**Abbildung**: Numerische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen2.png?raw=true){#id .class width=100%}
+</center>
+</p>
+
+Kategorische Daten werden ebenfalls in zwei Hauptkategorien unterteilt:
+
+- **Ordinale Daten** besitzen eine natürliche Ordnung. So nutzen Umfragen Ordinaldaten, wenn sie nach eurer Erfahrung oder Zustimmung auf einer Skala von 1-10 fragen. Die Werte sehen zwar wie diskrete Daten aus, aber es ist nicht möglich oder sinnvoll, den Abstand zwischen zwei Werten zu interpretieren. Man kann nicht sagen, dass der Abstand zwischen einer 9 und 10 in einer Umfrage identisch ist mit dem Abstand zwischen einer 0 und einer 1. Ordinaldaten müssen nicht mit Zahlen kodiert sein. So können Kleidergrößen wie S, M, L, XL, XXL als Ordinaldaten interpretiert werden.
+- **Nominale Daten** besitzen keine natürliche Ordnung. Beispiele für nominale Daten sind die Farbe eines Autos, die Nationalität, das Geschlecht, die Postleitzahl oder die Parteizugehörigkeit. Die Reihenfolge, in der die Daten präsentiert werden, ist willkürlich, da es nicht möglich ist, eine Kategorie als "größer" oder "kleiner" als eine andere zu bezeichnen.
+
+<p>
+<center>
+![**Abbildung**: Kategorische Datentypen. Quelle: \@allison_horst, lizensiert nach cc by 4.0](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/04_daten-verstehen/AllisonHorst_Datentypen1.png?raw=true){#id .class width=100%}
+</center>
+</p>
+
+Warum sind diese sogenannten **Skalenniveaus** wichtig für uns? Das Skalenniveau bestimmt, welche statistischen Methoden angewendet werden können. So können beispielsweise Mittelwerte nur für kontinuierliche numerische Daten sinnvoll berechnet werden (man denke an den Notenspiegel aus der Schule, bei dem die Durchschnittsnote wenig sinnvoll ist, wenn Noten selbst diskrete Werte darstellen). Nominale kategorische Daten hingegen lassen sich nur sinnvoll über Häufigkeiten zusammenfassen, mehr kann man mit ihnen nicht anstellen. Außerdem hilft ein gemeinsames Vokabular dabei, sich mit anderen über die eigenen Daten auszutauschen und den Datensatz zu beschreiben.
+
+```{r 08_quiz_datentypen, echo=FALSE}
+quiz(caption = "Fragen zu Datentypen",
+  question("Welches Merkmal hat einen kategorischen Datentyp im Datensatz aus der Abbildung?",
+    answer("Name", correct = TRUE),
+    answer("Alter"),
+    answer("Reaktionszeit"),
+    correct = "Richtig. Das Merkmal 'Name' enthält Text und ist daher eine klassische (nominale) kategorische Variable.",
+    incorrect = "Leider falsch. Kategorische Daten sind oftmals als Text oder Symbole kodiert.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Welches Merkmal hat einen diskreten numerischen Datentyp im Datensatz aus der Abbildung?",
+    answer("Name"),
+    answer("Alter", correct = TRUE),
+    answer("Reaktionszeit"),
+    correct = "Richtig. Das Merkmal 'Alter' ist klassischerweise eine diskrete numerische Variable, weil wir das Alter für gewöhnlich in ganzen Jahren (oder Tage/Monaten) angeben.",
+    incorrect = "Leider falsch. Diskrete numerische Daten sind als ganze Zahlen kodiert.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Welches Merkmal hat einen kontinuierlichen numerischen Datentyp im Datensatz aus der Abbildung?",
+    answer("Name"),
+    answer("Alter"),
+    answer("Reaktionszeit", correct=TRUE),
+    correct = "Richtig. Das Merkmal 'Reaktionszeit' wird in Sekunden gemessen und kann daher jeden beliebigen Wert annehmen und ist letztendlich nur durch die Genauigkeit der Messung begrenzt.",
+    incorrect = "Leider falsch. Kontinuierliche numerische Daten sind oftmals mit Kommazahlen kodiert.",
     allow_retry = TRUE,
     try_again_button = "Nochmal versuchen"
   )
 )
 ```
 
-### **Interaktive Übung**
 
-#### **Kausalität**
+Jetzt, wo wir uns mit den Grundlagen von Daten auskennen, können wir zur eigentlichen Statistik kommen.
 
-Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir nach Mustern. Daraus können wir nicht notwendigerweise kausale Schlüsse ziehen. Judea Pearl beschreibt in "The Book of Why" (2018) die **Leiter der Kausalität** auf drei Ebenen in aufsteigender Reihenfolge:
+### **Einführung in die deskriptive Statistik**
 
--   **Ebene 1 - Assoziation:**
-    -   Aktivität: Sehen, Beobachtung
-    -   Fragen: Was ist, wenn ich XY sehe? Wie stehen Variablen in Beziehung? Wie ändert die Beobachtung von X meine Erwartung an Y?
-    -   Beispiele: Was sagt ein Symptom über eine Krankheit aus? Was sagt eine Umfrage über Wahlergebnisse aus?
--   **Ebene 2 - Intervention:**
-    -   Aktivität: Tun, Beeinflussung
-    -   Fragen: Was ist, wenn ich XY tue (und wie)? Wie wäre Y, wenn ich X tue? Wie kann ich Y erreichen?
-    -   Beispiele: Verschwinden Kopfschmerzen, wenn man Aspirin nimmt? Was passiert, wenn wir Zigaretten verbieten?
--   **Ebene 3 - Kontrafaktische Analyse:**
-    -   Aktivität: Vorstellung, Rückschau, Verstehen
-    -   Fragen: Was wäre, wenn ich XY getan hätte (und warum)? Hat X Y ausgelöst? Was wäre, wenn X nicht aufgetreten wäre? Was wäre, wenn ich etwas anderes getan hatte?
-    -   Beispiele: Hat das Aspirin meine Kopfschmerzen gestoppt? Würde Kennedy noch leben, wenn Oswald ihn nicht erschossen hätte? Was wäre, wenn ich nicht die letzten zwei Jahre geraucht hätte?
+Ein vorrangiges Ziel der **deskriptiven Statistik** oder beschreibenden Statistik ist es, mithilfe von **Kennzahlen** und grafischen Darstellungen (vorrangig Histogramme, lernt ihr in einer späteren Lektion) wesentliche Charakteristiken von Häufigkeitsverteilungen herauszuarbeiten. Eine **Häufigkeitsverteilung** ist eine Zusammenfassung der beobachteten Werte einer Variablen und gibt an, wie oft die verschiedenen Werte vorkommen. Die Häufigkeit kann dabei pro Merkmalsausprägung oder für Klassen angegeben werden, die mehrere Merkmalsausprägungen zusammenfassen (z.B. Alters- und Einkommensgruppen).
 
-Die erste Ebene nimmt Vorhersagen auf Basis von **Beobachtungen** vor. Dafür werden in der Statistik bedingte Wahrscheinlichkeiten (wie wahrscheinlich ist Y gegeben X?), Korrelationen, Regressionen und andere Methoden des maschinellen Lernens genutzt. Das ist auch der Grund, warum Datenanalyst:innen, die diese Methoden nutzen, nicht ohne weiteres von Kausalitäten sprechen. Denn statistische Modelle können gute Vorhersagen treffen auch ohne das wir die *kausalen* Zusammenhänge zwischen Variablen verstehen oder modellieren. Wie die Eule aus dem Video, die dem Laufweg einer Maus folgt, um an der richtigen Stelle zuschnappen zu können.
+#### **Lageparameter** 
 
-Beobachtungsdaten, die wir in der ersten Ebene gesammelt haben, können wir nicht notwendigerweise dafür nutzen, Fragen der zweiten Ebene zu beantworten. Denn die Daten reflektieren **Bedingungen**, die durch eine Intervention geändert würden und diese Veränderung deshalb nicht abbilden können. Am Beispiel der Frage, welchen Effekt ein Verbot von Zigaretten auf die durchschnittliche Lebenserwartung der Bevölkerung hat, lässt sich das Problem verdeutlichen. Beobachtungsdaten erlauben uns, die Lebenserwartung von Menschen, die rauchen, mit der von Menschen, die nicht rauchen, zu vergleichen. Diese Differenz, $d$, muss aber kein guter Schätzer für den kausalen Effekt eines Verbots von Zigaretten sein! Nehmen wir beispielsweise an, dass Menschen in sehr stressigen Berufen auch sehr viel häufiger rauchen, Stress aber ebenfalls die Lebenserwartung reduziert, dann wird der kausale Effekt eines Rauchverbotes kleiner ausfallen als $d$. In anderen Worten, die Gruppe der aktuellen "freiwilligen" Nichtraucher ist dann keine gute Kontrollgruppe für die Gruppe der Raucher, die wir durch eine Intervention (das Rauchverbot) vom Rauchen abhalten.
+Lageparameter dienen der Beantwortung der Frage, welche der in der Stichprobe vorkommenden Werte "typisch" oder "repräsentativ" sind. Dabei ist große Vorsicht geboten, diese Werte nicht überzuinterpretieren, da sie den gesamten Datensatz auf eine einzige Zahl reduzieren.
 
-Fragen der zweiten Ebene können mit kontrollierten Experimenten oder quasi-Experimenten beantwortet werden: *Randomized Control Trials* (kurz RCTs, randomisierte kontrollierte Studie) erlauben es, kausale Effekte von Interventionen unter unterschiedlichen Bedingungen zu erfassen. Kehren wir zurück zum Problem des Rauchverbotes. Ein Experiment ist schwer umsetzbar, denn dafür müssten wir erst eine repräsentative Stichprobe der Bevölkerung ziehen und einem zufällig ausgewählten Teil dieser Stichprobe das Rauchen verbieten. Zusätzlich müssten wir dieses Verbot auch durchsetzen und kontrollieren können. Aber manchmal werden stattdessen Quasiexperimente möglich. Bayern und Baden-Württemberg sind in vieler Hinsicht ähnliche Bundesländer. Wenn nur in einem der beiden ein Rauchverbot gülte, könnte das andere unter Umständen als Vergleichsgruppe dienen um den kausalen Effekt des Rauchverbotes zu isolieren. Die regionale Nähe allerdings ist Fluch und Segen zugleich. Einerseits macht sie es plausibler, dass sich beide Länder ähnlich sind (zum Beispiel in den klimatisch und geographischen Bedingungen). Andererseits können viele Menschen aus dem Bundesland mit Rauchverbot ohne viel Aufwand in das Andere reisen und dort Zigaretten kaufen. Dann wäre unser Vergleich, die Differenz in der Lebenserwartung zwischen den Bundesländern nach der Einführung des Rauchverbots, kein guter Schätzer mehr für den durchschnittlichen kausalen Effekt eines Rauchverbots.
+**Modus**: der häufigste Wert einer Variable (auch: Modalwert). Hierzu ermittelt man die häufigste (oder wahrscheinlichste) Beobachtung.
 
-Ob jedoch im Einzelfall mit dem Rauchen aufzuhören kausal ist für eine höhere Lebenserwartung können wir erst auf Ebene 3 verstehen. Hier fragen wir, was passiert wäre, wenn wir etwas nicht getan hätten. Träte der Effekt trotzdem ein? Und hier liegt dann auch der Hase im Pfeffer begraben: Wir können schließlich nicht gleichzeitig Rauchen und mit dem Rauchen aufhören - es fehlt uns der Vergleich.
+**Median**: der "wahre" Mittelpunkt einer Variable (50 % aller Beobachtungen sind kleiner und 50 % aller Beobachtungen sind größer als der Median). Hierzu sortiert man alle Beobachtungen und bestimmt dann die Beobachtung, die genau in der Mitte liegt.
 
-### **Plausibilität, Wahrscheinlichkeit und Statistik**
+**Arithmetisches Mittel**: Durchschnittswert einer Variable. Hierzu addiert man alle Einzelbeobachtungen und teilt anschließend durch die Anzahl der Beobachtungen. 
 
-Stehe einmal kurz vom Computer auf und schau aus dem Fenster. Ist die Straße draußen nass? Wenn die Straße trocken ist, folgt daraus, dass es nicht geregnet hat. Es folgt aber andersherum nicht, dass es geregnet haben muss, wenn die Straße nass ist. Es hätte ja jemand auch die Straße mit einem Gartenschlauch gießen können. Intuitiv werden wir aber annehmen, dass die Beobachtung einer nassen Straße die Aussage "es hat geregnet" *plausibler* macht. Statistik ist am Ende nichts anderes als eine Systematisierung dieser Art von Plausibilisierungen. Wir haben Beobachtungen ("die Straße draußen ist nass"), auch Daten genannt, mit denen wir etwas über die Plausibilität einer Hypothese ("es hat geregnet") oder eines Modelles lernen wollen.
+Dass ein und dieselbe Verteilung (beispielsweise die Erhebung des Einkommens einer Stichprobe) ganz unterschiedliche Lagemaße haben kann, zeigt die folgende Abbildung.
 
-In der Statistik gibt es zwei grundlegende Ansätze, den Zusammenhang zwischen Daten und Hypothesen zu verstehen. Bevor wir diesen erklären benatworte bitte zunächst die folgenden drei Fragen aus Johnson, Ott und Dogucu (2021). Anhand der Antworten werden wir dann die Unterschiede erklären.
+<p>
+<center>
+![**Abbildung**: Schiefe vs. symmetrische Verteilungen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Schiefe_Verteilungen.png?raw=true){#id .class width=100%}
+</center>
+</p>
 
-```{r quiz_grundlagen_stats}
-quiz(caption = NULL,
-  question("Wenn eine faire Münze geworfen wird ist die Wahrscheinlichkeit Kopf zu werfen $p=0.5$. Wie verstehst du diese Wahrscheinlichkeit?",
-    answer("Wenn ich die Münze immer wieder werfe, wird in etwa 50% der Würfe Kopf oben liegen.", correct = TRUE),
-    answer("Kopf oder Zahl zu werfen ist gleich plausibel.", correct = TRUE),
-    correct = "Super! Merke dir deine Antwort.",
-    type = "learnr_radio"
+```{r 08_quiz4, echo=FALSE}
+quiz(caption = "Frage zu Lageparametern",
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Modus?"),
+    answer("0",),
+    answer("1", correct = TRUE),
+    answer("2", correct = TRUE),
+    answer("3"),
+    answer("4"),
+    correct = "Richtig! Diese Variable besitzt zwei häufigste Werte, 1 und 2.",
+    incorrect = "Leider falsch. Der Modus ist der häufigste Wert. Der Modus kann dabei auch mehrere Zahlen umfassen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
     ),
   
-  question("Eine Wahl steht bevor und ein Umfrageinstitut behauptet, dass Kandidat A eine Wahrscheinlichkeit von 0.9 hat zu gewinnen. Wie verstehst du diese Wahrscheinlichkeit?",
-    answer("Wenn wir die Wahl immer wieder beobachten wird Kandidat A in 90% der Fälle gewinnen.", correct = TRUE),
-    answer("Es ist sehr viel wahrscheinlicher, dass Kandidat A die Wahl gewinnt als das er sie nicht gewinnt.", correct = TRUE),
-    answer("Das Umfrageinstitut hat einen Fehler gemacht. Kandidat A wird entweder gewinnen oder verlieren und darum kann die Wahrscheinlichkeit zu gewinnen nur 0 oder 1 sein.", correct = TRUE),
-    correct = "Super! Merke dir deine Antwort.",
-    type = "learnr_radio"
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Median?"),
+    answer("0",),
+    answer("1"),
+    answer("2", correct = TRUE),
+    answer("3"),
+    answer("4"),
+    correct = "Richtig! Der Median lautet 2. Wenn wir die Werte sortieren, erhalten wir die Reihenfolge 0, 1, 1, 2, 2, 3, 4. Wir haben 7 Messwerte und der mittlere Wert ist der Wert an der Stelle 4, also der Messwert 2.",
+    incorrect = "Leider falsch. Der Median ist der mittlere Wert der geordneten Messreihe.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
     ),
   
-  question("Nimm an, dass du während deines letzten Arztbesuches positiv auf eine seltene Krankheit getestet wurdest. Wenn du der Ärztin nur eine Frage stellen darfst, welche würdest Du sinnvollerweise stellen?",
-    answer("Was ist jetzt die Wahrscheinlichkeit, dass ich tatsächlich diese Krankheit habe?", correct = TRUE),
-    answer("Wenn ich diese Krankheit nicht hätte, was ist die Wahrscheinlichkeit, dass ich trotzdem ein positives Testergebnis erhalten hätte?", correct = TRUE),
-    correct = "Super. Antworten gemerkt? Dann weiter zur Auflösung im Text.",
-    type = "learnr_radio"
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet der Mittelwert?"),
+    answer("0",),
+    answer("1"),
+    answer("2"),
+    answer("3"),
+    answer("4"),
+    answer("1,86", correct = TRUE),
+    correct = sprintf("Richtig! Der Mittelwert lautet 1,86. Dazu müssen zuerst alle Werte aufaddiert werden (=13), um anschließend durch die Anzahl der Messwerte (=7) geteilt zu werden. Wie wir sehen, ist der Mittelwert kein Wert, der in der Messung selber vorkommt, sondern ein fiktiver Wert."),
+    incorrect = "Leider falsch. Der Mittelwert ist die Summe aller Messwerte, geteilt durch die Anzahl der Messwerte.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Warum sind schiefe Verteilungen problematisch?",
+    answer("Eine Idee", correct = TRUE),
+    answer("Keine Idee"),
+    correct = "Schiefe Verteilungen sind problematisch, weil viele statistische Modelle und Berechnungen von einer symmetrischen Verteilung ausgehen, insbesondere davon, dass die Werte gleichmäßig um den Mittelwert herum verteilt sind. Ist eine Verteilung besonders 'schief', so hat sie entweder einen langen Schwanz (engl. tail) auf der linken oder rechten Seite, d.h., ganz viele Werte mit besonders kleinen oder großen Werten. Alleine schon der Mittelwert ist für solche Verteilungen problematisch, weil er nicht mehr wirklich repräsentativ ist (siehe Abbildung). Er befindet sich viel näher an den wenigen Extremwerten als am Großteil der Werte. Mithilfe von Transformationen kann man manchmal eine solche Verteilung wieder 'normalisieren', z.B. mithilfe des Logarithmus'.",
+    incorrect = "Macht nichts, einfach die andere Option wählen ;). Stell dir eine Gehaltsverteilung wie die obige in der Grafik vor: Welchen Wert würdest du für das durchschnittliche Gehalt nennen? Den Mittelwert oder den Median? Warum?",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
     )
-  )
+)
 ```
 
-Die ersten beiden Fragen verdeutlichen den entscheidenden Unterschied zwischen den beiden Ansätzen im Verständnis von Wahrscheinlichkeiten selbst. Die **frequentistische Statistik** interpretiert die Wahrscheinlichkeit eines Ereignisses als dessen *langfristige relative Häufigkeit*. Entsprechend beantworten Frequentist:innen die erste Frage mit Antwort 1. Streng genommen müssten sie auf Frage 2 die dritte Antwort geben, denn eine Wahl ist ein einmaliges Ereignis. In der Praxis behilft man sich aber häufig mit der Konstruktion einer *hypothetisch* wiederholten Wahl. Denk an eine Simulation der Wahl, die man hundertmal laufen lässt und in der Kandidat A 90 der 100 Durchgänge gewinnt.
+#### **Streuungsparameter** 
 
-In der **bayesianischen Statistik** dagegen beruht der Begriff der Wahrscheinlichkeit auf dem Grad der "vernünftigen" Erwartung für den Eintritt des Ereignisses. Wahrscheinlichkeit ist damit auch auf einmalige Ereignisse anwendbar. Vernünftig meint hier unter anderem, dass mir, wenn meine Erwartungen die Regeln der Wahrscheinlichkeitstheorie befolgen, keine Wette angeboten werden kann, in der ich von vornherein sicher bin zu verlieren (ein sogenanntes Dutch Book). Entsprechend beantwortet eine Bayesianerin die Fragen 1 und 2 jeweils mit Antwort 2: Kopf oder Zahl zu werfen ist bei einer fairen Münze gleich plausibel und es ist sehr viel plausibler, dass Kandidat A die Wahl gewinnt als nicht. Frequentist:innen und Bayesianer:innen sind sich einige darin, dass die Wahrscheinlichkeit Kopf zu werfen bei einer fairen Münze $p=0.5$ ist. Allerdings *interpretieren* sie diese Wahrscheinlichkeit unterschiedlich.
+Streuungsparameter sollen das Aumaß der Streuung innerhalb des Datensatzes oder um einen Lageparameter herum beschreiben. So gibt beispielsweise die Standardabweichung einer Variable an, wie weit im Mittel die einzelnen Beobachtungen vom Mittelwert dieser Variable entfernt sind.
 
-Die dritte Frage bringt den zu Beginn angesprochenen Bezug zwischen Hypothesen und Daten ins Spiel, Die beiden Antworten stehen exemplarisch für die Art von Fragen, die wir mit der frequentistischen oder eben bayesianischen Statistik beantworten wollen. Da in der frequentistischen Statistik Wahrscheinlichkeit als langfristige relative Häufigkeit definiert wird, können Hypothesen keine Wahrscheinlichkeit haben. Sie sind entweder wahr oder falsch. Deshalb fragen Frequentisten ihre Ärztin auch, was die Wahrscheinlichkeit ist ein positives Testergebnis zu erhalten, wenn sie die Krankheit *nicht* hätten (also die Hypothese falsch ist). In der Bayesianischen Statistik dagegen dient Wahrscheinlichkeit dazu, Wahrheit (Plausibilität) über eine Reihe von konkurrierenden Hypothesen zu verteilen. Die Bayesianerin fragt fragt entsprechend, was die Wahrscheinlichkeit ist, gegeben der Beobachtung die Krankheit tatsächlich zu haben.
+**Standardabweichung**: standardisiertes Maß für die Streuung um den Mittelwert in der selben Maßeinheit wie die Variable (auch: mittlere Abweichung).
 
-#### **Bayesianische Statistik**
+**Varianz**: die quadrierte Standdardabweichung.
 
-Wie wir gerade gesehen haben fragt die Bayesianerin nach der Wahrscheinlichkeit, die Krankheit tatsächlich zu haben ($H=1$) nachdem sie einen positives Testergebnis erhalten hat ($D=1$). Etwas formaler gesprochen haben wir es hier mit zwei binäre Ereignisse ($H=\{0,1\}$, $D=\{0,1\}$) zu tun und wir fragen nach der bedingten Wahrscheinlichkeit von $H$ gegeben $D$, wir schreiben $P(H=1|D=1)$.
+**Spannweite**: Differenz zwischen dem kleinsten Wert (**minimale Ausprägung**) einer Variablen und dem größten Wert (**maximale Ausprägung**) einer Variablen
 
-In der klassischen Wahrscheinlichkeitstheorie (unabhängig von Bayesianischer oder frequentistischer Statistik!) gilt dann folgender Zusammenhang: $$\underbrace{P(H=1|D=1)}_{\text{Posterior}} = \frac{\overbrace{P(D=1|H=1)}^{\text{Likelihood}}\overbrace{P(H=1)}^{\text{Prior}}}{\underbrace{P(D=1)}_{\text{Evidenz}}}.$$ Diese Gleichung wird **Bayes' Theorem** genannt. Es erlaubt uns, unsere gesuchte Wahrscheinlichkeit auf der linken Seite als Term mit drei Komponenten auf der rechten Seite des Gleichheitszeichen zu schreiben. Der entscheidende Schritt zur bayesianischen Statistik ist, diese Gleichung, als *die* grundlegende Regel zu nehmen, mit der wir von Beobachtung etwas über die Plausibilität von Hypothesen lernen. Unsere Zielwahrscheinlichkeit, $P(H=1|D=1)$, nennen wir dann *Posterior* (nach der Beobachtung). $P(H=1)$ ist der *Prior*, die Wahrscheinlichkeit der Hypothese vor der Beobachtung, $P(D=1|H=1)$ ist die *Likelihood* der Beobachtung, wenn die Hypothese wahr ist, und $P(D=1)$ nennen wir die *Evidenz*. Das ist die Wahrscheinlichkeit der Beobachtungen. In anderen Worten, in der Bayesianischen Statistik braucht es drei Zutaten - Prior, Likelihood, und Evidenz - als direkte Konsequenz der Wahrscheinlichkeitstheorie (Bayes' Theorem), um die Wahrscheinlichkeit der Hypothese gegeben der Beobachtung zu berechnen.
+**p-Quantil**: Der Wert, für den mindestens $p\cdot 100 \%$ der Beobachtungen kleiner oder gleich diesem Wert sind. Das 25%-Quantil ($p=25$) ist also der Wert, für den 25 % aller beobachteten Werte kleiner oder gleich diesem Wert sind.
 
-Nehmen wir das obige Beispiel und setzen es in einen leider nur zu gut bekannten Kontext. Nehmen wir an, eine Person in Deutschland hat am 13.08.2022 einen positiven Corona-Schnelltest der Firma Roche gemacht. Was ist dann die Wahrscheinlichkeit, dass die Person tatsächlich krank ist ($H=1$)? Drei Zutaten brauchen wir um die Frage zu beantworten: Prior, Likelihood, Evidenz.
+**Interquartilsabstand**: Der Abstand zwischen dem 75%-Quantil und dem 25%-Quantil. Es ist sozusagen der Wertebereich, in den die mittleren 50 % der beobachteten Daten fallen.
 
-Als Prior bietet sich die aktuelle 7-Tages-Inzidenz des RKI an. Diese lag nach dem [Covid-19-Dashboard](https://experience.arcgis.com/experience/478220a4c454480e823b17327b2bf1d4){target="_blank"} bei 342 pro Hunderttausend Einwohner:innen. Die Likelihood gibt die Wahrscheinlichkeit an, einen positiven Schnelltest zu haben, wenn man tatsächlich krank ist, $P(D=1|H=1)$. Der Hersteller unseres Tests berichtet [hier](https://assets.cwp.roche.com/f/94122/x/3fced15880/40338-33-ga-sars-cov-2-09417125003_sozu_a4_ansicht.pdf){target="_blank"} (Seite 2), dass von 102 PCR-positiv getesteten Patient:innen 85 einen positive Schnelltest hatten, wir nennen diesen Wert *richtig-positiv*. Wir lernen weiter dass 4 Personen, die einen positiven Antigentest hattet, negativ im PCR Test waren, wir sagen *falsch-positiv* waren. In der Tabelle unten haben wir die Daten noch einmal zusammengefasst.
+In der nachfolgenden Abbildung wird verdeutlicht, wie der Median sowie das 25%-Quantil und 75%-Quantil für eine beispielhafte Messreihe ermittelt werden können.
 
-|                     | PCR positiv | PCR negativ | Gesamt  |
-|:--------------------|:-----------:|:-----------:|:-------:|
-| **Antigen positiv** |     85      |      4      | **89**  |
-| **Antigen negativ** |     17      |     431     | **448** |
-| **Gesamt**          |   **102**   |   **435**   | **537** |
+<p>
+<center>
+![**Abbildung**: Bestimmung und Bedeutung von p-Quantilen. Quelle: Eigene Darstellung](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/Quantile.png?raw=true){#id .class width=100%}
+</center>
+</p>
 
-Damit haben wir alle Informationen, um die gesuchte *posterior* Wahrscheinlichkeit zu bestimmen. Denn die Evidenz, $P(D=1)$, kann bei binären Ereignissen nach den Regeln der Wahrscheinlichkeitstheorie wie folgt als Summe mit nur zwei Termen geschrieben werden: $$P(D=1) = \underbrace{P(D=1|H=1)}_{\text{richtig-positiv-rate}}\underbrace{P(H=1)}_{\text{Prior}} + \underbrace{ P(D=1|H=0)}_{\text{falsch-positiv-rate}}\underbrace{P(H=0)}_{=1-P(H=1)}$$.
-
-```{r estimate_posterior, exercise=TRUE}
-# Werte bestimmen
-p_prior_krank <- 342/100000
-rpr <- 85 / 102
-fpr <- 4 / 435
-
-# Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
-p_posterior_krank <- 
-print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", p_posterior_krank , "."))
-
+```{r 08_quiz05, echo=FALSE}
+quiz(caption = "Frage zu Streuungsparameter",
+  question(sprintf("Gegeben sei die folgende Variable metrischen Messniveaus mit folgenden Ausprägungen: $x = [0, 1, 2, 4, 3, 1, 2]$. Wie lautet die Spannweite?"),
+    answer("0",),
+    answer("1"),
+    answer("2"),
+    answer("3"),
+    answer("4", correct = TRUE),
+    correct = sprintf("Richtig! Der größte Wert ist 4, der kleinste Wert ist 0, daher beträgt die Spannweite $4-0=4$."),
+    incorrect = "Leider falsch. Die Spannweite ist der Abstand zwischen dem größten und kleinsten Messweret.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Entspricht ein größerer IQR auch einer größeren Streuung/Varianz um den Median?",
+    answer("Ja", correct = TRUE),
+    answer("Nein"),
+    correct = "Richtig! Für den Mittelwert wäre die Sache nicht ganz so einfach, aber der Median liegt IMMER innerhalb des oberen und unteren Quartils (per Definition), daher bedeutet ein größerer IQR auch, dass die Werte (wenigstens am Rand) weiter vom Median entfert sind als bei einem kleineren IQR. Am Boxplot wird dies in einer späteren Lektion am besten ersichtlich.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    ),
+  
+  question("Kann der Median durch Ausreißer (besonders große oder kleine Werte) verzerrt/beeinflusst werden?",
+    answer("Ja"),
+    answer("Nein", correct = TRUE),
+    correct = "Richtig! Der Median ergibt sich ja durch den mittleren Wert der geordneten Messreihe, d.h., zuerst werden alle Messwerte sortiert und dann wird der Wert in der Mitte herausgezogen. Dieser verändert sich nicht, wenn die Werte am Anfang der Reihe, oder am Ende, noch weiter ins Extreme verschoben werden. Daher sagt man auch, dass der Median ein robustes Lagemaß ist, da er gegenüber Ausreißern unempfindlich ist. Ganz anders als der Mittelwert, bei dem ja alle Werte durch die Aufsummierung in die Berechnung mit einfließen.",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+    )
+)
 ```
 
-```{r estimate_posterior-solution}
-# Werte bestimmen
-p_prior_krank <- 342/100000
-rpr <- 85 / 102
-fpr <- 4 / 435
+### **Kausalität und Korrelation**<sup><a href="#section-quelle-3">3</a></sub>
 
-# Berechne nun die posterior Wahrscheinlichkeit. Nutze dazu die oben gegebenen Informationen.
-p_posterior_krank <- (rpr * p_prior_krank) / ((rpr * p_prior_krank) + (fpr * (1 - p_prior_krank)))
-print(paste0("Die posterior Wahrscheinlichkeit für eine Person in Deutschland am 13.08.2022 tatsächlich an Corona erkannt zu sein, nachdem sie einen positiven Schnelltest gemacht hat, ist ", round(p_posterior_krank,2)*100 , " Prozent."))
+Es gibt eine weitere statistische Größe, die uns wertvolle Aussagen zu den Daten liefern kann, die aber oftmals voreilig als Ursachenbeziehung interpretiert wird: die Korrelation. Die **Korrelation** ist ein Maß für den Zusammenhang zwischen zwei Variablen. Die häufigste Art der Korrelation nach **Pearson** misst einen **linearen Zusammenhang** (denke an eine gerade Linie durch die Datenpunkte) zwischen zwei Variablen und kann Werte zwischen $-1$ und $1$ annehmen. 
 
-```
+Bei einer **positiven Korrelation** (Werte nahe $+1$) beobachten wir bei Zunahme einer Variable auch eine gewisse Zunahme in der anderen Variable: größere Häuser erzielen für gewöhnlich einen höheren Verkaufspreis. Bei einer **negativen Korrelation** (Werte nahe $-1$) beobachten wir bei Zunahme einer Variable eine Abnahme in der anderen: schwerere Autos besitzen in der Regel einen höheren Kraftstoffverbrauch und damit eine geringere Reichweite. Bei einer Korrelation nahe $0$ können wir keinen *linearen* Zusammenhang erkennen: Egal, was wir über eine Variable wissen, wir können keine Vorhersage über die Werte der andere Variable treffen (mit anderen Worten sagt uns der Wert einer Variable nichts über den Wert der anderen Variablen).
 
-Was sagt uns dieses Ergebnis? Zunächst sehen wir, dass die Wahrscheinlichkeit, an Corona erkrankt zu sein, im Vergleich zur Ausgangswahrscheinlichkeit, dem Prior, deutlich gestiegen ist. Gleichzeitig bleibt es trotz positivem Test immer noch sehr viel wahrscheinlicher, nicht erkrankt zu sein. Das liegt hier vor allem an der im Bezug auf die Gesamtbevölkerung niedrigen Inzidenz.
+Korrelation kann sehr hilfreich, aber auch sehr trügerisch sein. Die erste wichtige Grundregel beim Umgang mit Korrelationen ist, dass es verschiedene Korrelationsmaße gibt. Einige messen nur einen linearen Zusammenhang (die Daten müssen mehr oder weniger gut auf einer geraden Linie liegen), andere (Rangkorrelationen) können auch nicht lineare Zusammenhänge erfassen. Das ist wichtig, weil eine Korrelation nahe 0 nicht bedeutet, dass es *keinen* Zusammenhang gibt, sondern oft nur, dass der Zusammenhang eben nicht *linear* ist. Man denke an den Zusammenhang zwischen Alter und der aufgenommenen Nahrungsmenge. Mit zunehmendem Alter steigt für gewöhnlich die Menge an Nahrung, die wir zu uns nehmen, an, bis sie ab einem gewissen Alter wieder zu sinken beginnt, weil der Körper nicht mehr so viel Energie benötigt. 
 
-**Aber war es richtig, die 7-Tages-Inzidenz des RKI als Prior zu nutzen?** Es gibt gute Gründe zu vermuten, dass die berichtete Inzidenz eine Untergrenze der tatsächlichen Inzidenz ist, die wohl einiges höher liegt. Probier doch mal aus, wie sich die Posterior verändert, wenn Du die Inzidenz (den Prior) verdoppelst/verdreifachst, um ein Gefühl für die Effektgröße zu bekommen. Ab welcher Inzidenz macht ein positives Testergebnisses dieses Tests eine tatsächliche Erkrankung wahrscheinlicher als nicht erkrankt zu sein?
+Ein sehr wichtiger Spruch ist: **"Aus Korrelation folgt keine Kausalität"**. Zwei Variablen können miteinander korrelieren, sogar sehr stark, ohne dass die eine die andere verursacht oder hervorruft. Beispielsweise sind der Verkauf von Eis und die Anzahl der Haiangriffe im Sommer stark korreliert. Das bedeutet aber nicht, dass der Verkauf von Eis Haie anlockt, oder dass Opfer von Haiangriffen danach gerne ein Eis essen. Vielmehr gibt es eine dritte Variable, die beide beeinflusst: die Temperatur. Je wärmer es ist, desto mehr Eis wird verkauft und desto mehr Menschen gehen schwimmen. Die Schuhgröße korreliert positiv mit der Lesefähigkeit, aber größere Schuhe machen niemanden klüger. In Wahrheit sind beide über das Alter miteinander verbunden (man spricht daher beim Alter auch von einer **konfundierenden Variable**). Außerdem kann man auch rein [zufällige Korrelationen](https://tylervigen.com/spurious-correlations) finden, die absolut keine sinnvolle Erklärung haben dürften (oder Käsekonsum sagt wirklich eine Menge über uns aus).
 
-Mit der Entscheidung, die Gesamtdeutsche 7-Tages-Inzidenz des RKI als Prior zu nehmen beschränken wir die Aussagekraft der berechneten posterior Wahrscheinlichkeit zusätzlich auf eine beliebige Person in Deutschland. Wir bekommen also maximal einen ersten Anhaltspunkt, wie unsere persönliche Wahrscheinlichkeit wäre krank zu sein. Wir könnten aber auch weitere Informationen in den Prior einfließen lassen. Beispielsweise könnte man die **lokale Inzidenz im Heimatkreis** der Person nutzen oder **individuelles Risikoverhalten** berücksichtigen. Genauso basiert unsere gewählte Likelihood auf der Annahme, dass der Schnelltest richtig durchgeführt wurde. In anderen Worten, eine sinnvolle Wahl des Priors und der Likelihood ist nicht einfach und die getroffenen Annahmen wollen gut begründet sein und in der Interpretation berücksichtigt werden. In komplexeren Analysen könnte man auch eine Wahrscheinlichkeitsverteilung über die Inzidenz selbst modellieren, die wiederum auf Schätzungen der tatsächlichen (lokalen) Verbreitung des Viruses basieren und damit unsere Unsicherheit über die tatsächliche Inzidenz berücksichtigt. Wichtig ist, dass die grundsätzliche Logik der bayesianischen Statistik dieselbe bleibt auch wenn wir statt mit diskreten Wahrscheinlichkeiten mit komplizierteren Wahrscheinlichkeitsverteilungen arbeiten.
+Um solche Fehlschlüsse und Falschaussagen zu vermeiden, ist es wichtig, grundsätzlich so lange von keinerlei Kausalität auszugehen, bis diese durch ein Experiment belegt werden konnte. Kausale Zusammenhänge können nur durch kontrollierte Experimente bestätigt werden, nicht durch einfache statistische Kenngrößen. 
 
-Wenn dein Interesse geweckt ist, bietet Fabian Dablander (selbst CorrelAider in den Niederlanden) auf seinem [Blog](https://fabiandablander.com/r/Bayes-Potter.html){target="_blank"} einen etwas umfangreichen Einstieg in die Bayesianische Statistik. Wenn du mehr über Bayesianische Statistik lernen willst, bietet sich sonst auch [diese](https://youtube.com/playlist?list=PLFDbGp5YzjqXQ4oE4w9GVWdiokWB9gEpm){target="_blank"} Youtube-Reihe von Ben Lambert an, der in kurzen Videos zentrale Konzepte erklärt. Ebenfalls zu empfehlen ist das frei verfügbare Buch ["Bayes rules!"](https://www.bayesrulesbook.com/){target="_blank"} von Johnson, Ott und Dogucu, aus dem auch unsere drei Eingangsfragen entnommen sind. Die obenstehende Darstellung von (bayesianischer) Statistik basiert auf Vorlesungen von Prof. Philipp Henning an der Uni Tübingen.
+### **Abschließendes Beispiel**
 
-#### **Frequentistische Statistik**
+Zum Schluss betrachten wir einen Datensatz zum Auftreten von Nierenkrebs in den USA, gemessen als Anzahl der Fälle pro 100.000 Einwohner. Dabei stellt sich heraus, dass die höchsten Krebsraten in sehr ländlichen Bezirken auftreten, die über den Mittleren Westen, den Westen und den Süden des Landes verstreut sind. An dieser Stelle könnt ihr kurz innehalten und euch ein paar Gründe für diesen Befund überlegen. 
 
-Auch um den Ansatz der frequentistischen Statistik zu verstehen können wir das Beispiel des positiven Corona-Schnelltests von oben nutzen. Von einem frequentistischen Standpunkt aus betrachtet ist die Wahrscheinlichkeit mit Corona infiziert zu sein entweder $1$ oder $0$, da der Infektionsstatus kein beliebig oft wiederholbares Ereignis ist. Entweder man ist infiziert oder man ist nicht infiziert. Was wir jedoch wiederholen können sind die Tests selbst. Daher geht eine frequentistische Analyse in diesem Fall von der Frage aus, wie hoch die Wahrscheinlichkeit ist, dass mein Test **positiv** ausfällt, in dem Fall das ich **nicht** an Corona erkrankt bin.
+Vielleicht vermutet ihr, dass für Menschen auf dem Land die medizinische Versorgung schlechter ist, oder dass sie sich ungesünder ernähren. Es ist leicht und für uns Menschen ganz natürlich, sich ein passendes Narrativ zu vermeindlichen Fakten aufzubauen, um diese zu erklären. Doch jetzt kommt der Haken: die niedrigsten Krebsraten in den USA treten ebenfalls in sehr ländlichen Bezirken auf, die über den Mittleren Westen, den Westen, und den Süden des Landes verstreut sind. Oftmals sogar in direkter Nachbarschaft zu den Bezirken mit den niedrigsten Raten (siehe nächste Abbildung)! Wie kann beides gleichzeitig war sein? Wie können zwei Bezirke mit ähnlicher Demographie so verschiedene Krebsraten haben? Jede Erklärung, die wir uns für den einen Fall zurecht legen, würde sicherlich auch teilweise auf die benachbarten Bezirke zutreffen. Also muss es eine andere Erklärung geben.
 
-Da Frequentist:innen Hypothesen keine Wahrscheinlichkeit zuordnen, können sie auch nicht Bayes' Theorem nutzen, um den Zusammenhang zwischen Beobachtungen und Hypothese zu beschreiben. Der Prior und der Posterior haben keine Interpretation. Stattdessen arbeiten Frequentist:innen nur mit der Likelihood, das heißt der Wahrscheinlichkeit von Beobachtungen unter einer Hypothese. Konkret fokussisert man auf zwei konkurrierenden Hypothesen. Diese Hypothesen bezeichnet man als $H_{1}$ und $H_{0}$, als **Alternativhypothese** und **Nullhypothese.** Dabei leitet sich die Alternativhypothese $H_{1}$ aus meiner Theorie oder Fragestellung ab und die Nullhypothese $H_{0}$ beschreibt einen Zustand, in dem die Alternativhypothese nicht gilt (das logische Gegenteil). In unserem Fall lautet die Alternativhypothese also: **Ich bin an Corona erkrankt.** Und die Nullhypothese lautet entsprechend: **Ich bin nicht an Corona erkrankt.**
+<p>
+<center>
+![**Abbildung**: US-Bezirke mit der niedrigsten (türkis) sowie der höchsten (rot) Nierenkrebsrate. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/kidney_cancer_map.png?raw=true){#id .class width=100%}
+</center>
+</p>
 
-Damit können wir nun berechnen, wie hoch die Wahrscheinlichkeit ist, einen positiven Schnelltest zu erhalten (die beobachteten Daten), wenn meine Alternativhypothese (*Ich bin an Corona erkrankt)* **nicht** zutrifft. Anders formuliert, in dem Fall dass die Nullhypothese (*Ich bin nicht an Corona erkrankt*) korrekt ist. Deswegen spricht man auch häufig davon, dass wir **gegen** die Nullhypothese testen. Wie beantworten wir dann hier unsere Ausgangsfrage?
+Und die gibt es in der Tat: Die geringe Bevölkerungsdichte in den Bezirken sorgt für eine hohe Streuung (Varianz) in den Krebsraten. Nehmen wir zwei Bezirke in ländlicher Gegend, Bezirk A und Bezirk B, mit je 1000 Einwohnern. Bezirk A hat keine Krebsfälle, daher ist die Krebsrate 0. Bezirk B hat einen einzigen Krebsfall, doch die Krebsrate steigt dadurch sofort auf 100, da die Krebsrate ja pro 100.000 Bewohnern gemessen wird. 100 ist aber extrem hoch, sogar die höchste Rate im ganzen Land! Wenn wir uns dagegen die großen Städte wie New York mit Millionen von Einwohnern ansehen, würde ein einziger weiterer Krebsfall, sagen wir von 75 auf 76 Krebsfälle, die Rate kaum merklich verändern: Sie würde von $0,9375$ auf $0,95$ ansteigen. 
 
-Die Antwort ist (wie so häufig) in den Daten zu finden. Wir können der Tabelle entnehmen, dass von 435 Personen die PCR negativ getestet wurden (= gesunden Personen) nur 4 Personen einen positiven Antigen/Schnelltest hatten. Wenn wir also jeden positiven Schnelltest als Coronainfektion werten würden, dann würden wir in $\frac{4}{435}$ der Fälle fälschlicherweise die Nullhypothese verwerfen, obwohl sie zutrifft. Das entspricht etwa $0.91\%$. Diese Wahrscheinlichkeit bezeichnen wir darum auch als Irrtumswahrscheinlichkeit. Diese Irrtumswahrscheinlichkeit kann euch in wissenschafltichen Arbeiten auch unter der Bezeichnung **p-Wert** begegnen. Die Interpretation eines solchen p-Werts ist jedoch gar nicht so trivial und auch Forscher:innen [tun sich mitunter schwer damit](https://pubmed.ncbi.nlm.nih.gov/18582619/){target="_blank"}. Das hat sogar dazu geführt, dass die *American Statistical Association* ein ["public safety announcement"](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108){target="_blank"} zur Verwendung von p-Werten veröffentlicht hat.
+Die nachfolgende Abbildung fasst die Ergebnisse für die US-Bezirke zusammen. Die weniger dicht besiedelten Bezirke auf der linken Seite der Abbildung weisen eine deutlich höhere Varianz in der Krebsrate auf. Zudem treten sowohl die höchsten als auch die niedrigsten Krebsraten in dieser Gruppe auf. Mit steigender Bevölkerungsdichte (je mehr wir uns auf der x-Achse nach rechts bewegen) sinkt die Varianz und wir können eine Stabilisierung um den Wert 5 herum erkennen. Was sollten wir aus diesem Beispiel mitnehmen? **Kleine Stichprobengrößen können zu extremen Ergebnissen führen**.
 
-##### Unterschiede zwischen Gruppen
-
-Die Logik von Hypothesentests können wir auch verwenden, um beobachtete Unterschiede zwischen Gruppen zu untersuchen. Stellen wir uns vor, dass wir in einer Studie zwei Gruppen von Versuchspersonen aus den Städten A und Stadt B beobachten. Alle Personen werden in unserem Versuch anhand eines PCR-Tests auf das Coronavirus getestet. Wir wissen also von allen Versuchspersonen, ob sie sich mit dem Virus infiziert haben oder nicht. Dabei stellen wir fest, dass in Stadt A von 5840 Bürger:innen 3154 Personen positiv auf Corona getestet wurden, ein Anteil von $0.54$. In Stadt B hingegen sind von 5640 BürgerInnen nur 3102 mit dem Coronavirus infiziert. Dies entspricht einem Anteil von $0.55$. Mit einem Hypothesentest können wir untersuchen, wie hoch die Wahrscheinlichkeit ist, dass der Unterschied rein zufällig zustande gekommen ist.
-
-Dafür gehen wir zunächst im bekannten Muster vor, das heißt wir stellen eine Alternativhypothese und eine Nullhypothese auf. Unsere Alternativhypothese lautet: Der Anteil der mit dem Coronavirus infizierten Bürger:innen unterscheidet sich zwischen Stadt A und B. Formal ausgedrückt könnten wir auch formulieren $H_A: A_A \neq A_B$. Das ist gleichbedeutend mit $A_A - A_B \neq 0$. Da die Nullhypothese das Gegenteil der Alternativhypothese vertritt, können wir diese nun wie folgt schreiben: $H_0: A_A - A_B = 0$. In Worten: Der Unterschied zwischen beiden Anteilen ist $0$.
-
-Um nun wie oben die Irrtumswahrscheinlichkeit zu berechnen, benötigen wir eine sogenannte **Teststatistik**. Im vorliegenden Fall vergleichen wir zwei Anteile. Deshalb nutzen wir hier die sogenannte *z-Statistik*. Für unterschiedliche Anwendungsfälle gibt es verschiedene solcher Teststatistiken, die jeweils eigene Annahmen und Bedingungen für die Anwendung haben. Die Intuition hinter der z-Statistik ist folgende: Wenn wir annehmen, dass die Infektionslagen beider Städte identisch sind, können wir die Bürger:innen beider Städte zu **einer** Population zusammenfassen. Falls wir dann zwei hinreichend große Stichproben (n \> 30) aus dieser Population ziehen, sollten auch die Anteilswerte der jeweiligen Stichproben ähnlich sein. Wenn wir jedoch feststellen, dass die Anteilswerte der Stichproben weit auseinander liegen, ist das ein Indiz für uns, dass die beiden Stichproben nicht aus der selben Population stammen. Es bestehen dann systematische Unterschiede zwischen beiden Stichproben (in unserem Beispiel den Städten).
-
-Anhand der **z-Statistik** können wir nun genau festlegen, welche Beobachtungen für uns als "weit genug auseinander" gelten, um unsere Nullhypothese unplausibel zu machen. Wir sprechen dann von einem **signifikanten Unterschied**. Technisch ausgedrückt: Wie groß muss der Unterschied sein, dass wir davon ausgehen können, dass die zwei Stichproben nicht von ein und derselben Population stammen.
-
-Berechnet wird der **z-Wert** folgendermaßen:
-
-$$z = \frac{p_{A} - p_{B}}{\sqrt{p(1-p)(\frac{1}{n_{A}} + \frac{1}{n_{B}})}}$$
-
-Keine Sorge, was die einzelnen Variablen bedeuten, haben wir hier für euch aufgeschlüsselt:
-
--   $p_{A}$: der Anteil der Infizierten in Stadt A (hier $0.54$),
--   $p_{B}$: der Anteil der Infizierten in Stadt B (hier $0.55$),
--   $p$: der Anteil der Infizierten an der Gesamtbevölkerung beider Städte (hier $0.545$),
--   $n_{A}$: die Stichprobengröße in Stadt A (hier: $5840$),
--   $n_{B}$: die Stichprobengröße in Stadt B (hier: $5640$).
-
-Um den z-Wert zu bestimmen könnt ihr nun einfach folgenden Code ausführen:
-
-```{r z_Wert, exercise = TRUE}
-# Anteile bestimmen
-anteil_a <- 0.54
-anteil_b <- 0.55
-anteil_pool <- (anteil_a + anteil_b) / 2
-
-# Stichprobengröße
-n_a <- 5840
-n_b <- 5640
-
-# z-Wert bestimmen
-z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
-print(z)
-```
-
-Allerdings wollten wir doch eine Irrtums*wahrscheinlichkeit* bestimmen? Das Ergebnis ist aber negativ, kann also keine Wahrscheinlichkeit sein. Keine Sorge, wir sind auf dem Weg! Um von unserem z-Wert auf eine Irrtumswahrscheinlichkeit zu schließen, müssen wir uns die **Verteilung** von z-Werten ansehen. Diese beschreibt welche z-Werte wir erwarten, wenn die Nullhypothese korrekt ist und wir unsere Studie in den beiden Städten sehr häufig wiederholen würden. Z-Werte verteilen sich dann nach einer **Standardnormalverteilung**. Diese könnt ihr euch mit dem nächsten Code-Block graphisch anzeigen lassen.
-
-```{r normal_distribution, exercise = TRUE}
-# Verteilung visualisieren
-ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6) + 
-  theme_minimal()
-
-```
-
-Man erkennt, dass sich die z-Werte symmetrisch um die $0$ verteilen. Je weiter unser berechneter z-Wert von der $0$ entfernt ist, das heißt, je weiter wir an den Rand der Verteilung geraten, desto unplausibler ist es, dass unsere Beobachtungen tatsächlich aus nur einer Population stammen und die Nullhypothese wahr ist. In anderen Worten, je weiter am Rand der Verteilung unser z-Wert liegt, desto niedriger ist unsere Irrtumswahrscheinlichkeit und damit der p-Wert, wenn wir die Nullhypothese verwerfen. Zeichnen wir unseren z-Wert also in die Verteilung ein:
-
-```{r z_visual, exercise = TRUE}
-# Verteilung visualisieren
-ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6) + 
-  geom_vline(xintercept = z, color = "red") +
-  theme_minimal()
-
-```
-
-Wir sehen, dass der z-Wert unserer Beobachtungen nicht genau in der **Mitte der Verteilung** liegt, jedoch auch nicht wirklich am Rand. Wie hoch ist denn nun unsere Irrtumswahrscheinlichkeit? Die genaue Wahrscheinlichkeit verbirgt sich in der Fläche unter der Kurve, also dem Integral zwischen unserem z-Wert und dem linken Rand der Verteilung. Hier für euch visualisiert:
-
-```{r p_value, exercise = TRUE}
-# Verteilung visualisieren
-ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6,
-                xlim = c(-3, z)) + 
-  geom_vline(xintercept = z, color = "red") +
-  xlim(-3,3) +
-    stat_function(fun = dnorm,
-                geom = "line",
-                xlim = c(z, 3)) +
-  theme_minimal()
-
-```
-
-Die blaue Fläche entspricht $0.14105$, also etwa $14\%$ der Gesamtfläche unter der Kurve. Nun haben wir fast unsere Irrtumswahrscheinlichkeit. Warum nur fast? Dazu müssen wir noch einmal zurück zur Formulierung unseren Hypothesen. Wir hatten einfach nur nach einem Unterschied zwischen beiden Gruppen gefragt und damit keine **Richtung** des Unterschiedes vorgegeben. In anderen Worten, wir haben nicht die Hypothese aufgestellt, dass der Anteil der Infizierten in Gruppe A größer als der Anteil in Gruppe B. Dieses kleine Detail hat große Auswirkungen auf die berechnete Irrtumswahrscheinlichkeit. Wir müssen nämlich zusätzlich zu unserem z-Wert von $-1.07565$ auch den positiven z-Wert von $1.07565$ in Betracht ziehen, um Unterschiede in beide Richtungen zu berücksichtigen. Damit verdoppelt sich die Fläche unter der Kurve und somit auch unsere Irrtumswahrscheinlihckeit! Sie beträgt nun also rund 28%. Das könnt ihr in der Grafik unten sehen:
-
-```{r p_value_both, exercise = TRUE}
-# Verteilung visualisieren
-ggplot(data.frame(x = c(-3, 3)), aes(x)) +
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6,
-                xlim = c(-3, z)) + 
-  stat_function(fun = dnorm,
-                geom = "area",
-                fill = "steelblue", 
-                alpha = 0.6,
-                xlim = c(z*(-1), 3)) +
-  geom_vline(xintercept = z, color = "red") +
-  geom_vline(xintercept = z*(-1), color = "red") +
-  xlim(-3,3) +
-    stat_function(fun = dnorm,
-                geom = "line",
-                xlim = c(z, z*(-1))) +
-  theme_minimal()
-
-```
-
-Für unseren Hypothesentest bedeutet das folgendes: **Wenn wir die Nullhypothese verwerfen, besteht eine Irrtumswahrscheinlichkeit von 28%.** Dieser Wert wird in der wissenschafltichen Literatur auch häufig das **empirische Signifikanzniveau** genannt. Wenn wir jetzt zusätzlich festlegen, welche Irrtumswahrscheinlichkeit wir bereit sind zu akzeptieren, dann können wir entscheiden, ob wir die Nullhypothese verwerfen. Diese Grenze wird in den Wissenschaften oftmals bei 5% gesetzt, ist aber eine Konvention. Das bedeutet, dass wir die Nullhypothese nur verwerfen, wenn sich eine Irrtumswahrscheinlichkeit unterhalb eines kritischen Wertes, zum Beispiel 5%, ergibt. Im Bild oben wäre dies also ein z-Wert der sich weiter am Rand der Verteilung befindet.
-
-Hypothesentests betrachten also die Plausibilität von Beobachtungen unter einer bestimmten Hypothese. In unserem Fall beobachten wir eine Differenz von $0.01$ im Anteil der Erkrankten zwischen Stadt A und B. Wenn es unter der Nullhypothese, dass die Inzidenz in beiden Städten gleich ist, sehr unwahrscheinlich ist diese oder eine größere Differenz zu beobachten, dann verwerfen wir die Nullhypothese. Wir sagen, dass der Unterschied zwischen den Anteilen **statistisch signifikant** ist. Wichtig ist es vier Dinge zu beachten. Erstens sagt die Feststellung der statisitschen Signifikanz nichts über die tatsächliche **Größe der Differenz** oder deren **praktische Bedeutung** aus. Wir verwerfen die Nullhypothese, aber die Alternativhypothese umfasst alle möglichen Differenzen, die ungleich null sind! Zweitens können selbst **kleinste Differenzen statistisch signifikant** sein, wenn die Stichproben groß genug werden. Das folgt aus der Definition der z-Statistik. Je größer die Stichproben, desto kleiner wird der Nenner und damit wird der z-Wert größer. Drittens verwerfen wir die Nullhypothese, wenn die Beobachtungen nicht gut zur Nullhypothese passen. Wann eine Differenz nicht mehr mit der Nullhypothese vereinbar ist, ist eine **arbiträre Festlegung** unsererseits. Und viertens arbeiten wir auch dann mit einer, wenn auch kleinen, Irrtumswahrscheinlichkeit. Es ist aber nicht gänzlich auszuschließen, dass die Nullhypothese dennoch (manchmal) korrekt ist und wir einen **Fehler** machen.
-
-Nun seid ihr aber an der Reihe! Versucht doch einmal im Beispiel oben eine Irrtumswahrscheinlichkeit von unter 5% zu erreichen. Dafür muss euer z-Wert größer/kleiner als $1,960$/$-1,960$ sein. Nutzt einfach den Code oben und ändert die Differenz zwischen den Anteilen oder auch die Stichprobengröße. Was fällt Euch zum Beispiel bei der Stichprobengröße auf?
-
-```{r z_Wert_experiment, exercise = TRUE}
-anteil_a <- 0.54
-anteil_b <- 0.55
-anteil_pool <- (anteil_a + anteil_b) / 2
-
-n_a <- 5840
-n_b <- 5640
-
-z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
-print(z)
-```
-
-R ermöglicht Euch die Berechnung der Teststatistik über zahreiche Funktionen: `t.test()`, `wilcox.test()`, `shapiro.test()`, etc. Die beste Übersicht, die wir zu Hypothesentests und ihren vorab zu prüfenden Voraussetzungen, gibt es - überraschenderweise als Blogartikel - [hier](https://towardsdatascience.com/hypothesis-tests-explained-8a070636bd28){target="_blank"}.
-
-#### **Fazit**
-
-Abschließend an diese Einführung ist es uns noch ein Anliegen, zu betonen, dass wir keine abschließende Wertung der beiden Herangehensweisen vornehmen möchten und können. Vielmehr haben beide Philosophien Ihre Berechtigung in der Statistik und ermöglichen es uns, Sachverhalte und Fragen aus unterschiedlichen Perspektiven zu betrachten. Oftmals führen beide Verfahren angewandt auf die selbe Fragestellung auch zum selben Ergebnis. Dies ist insbesondere der Fall, wenn wir es mit großen Stichproben zu tun haben.
-
-Komplett befreit von Vorlieben sind wir jedoch auch nicht. Ein Grund, warum die bayesianische Statistik immer weitere Verbreitung gefunden hat, mag an der intuitivieren Vorgehensweise liegen. Schon im einführenden Quiz weiter oben mag Euch aufgefallen sein, dass die Art und Weise wie die bayesianische Statistik Fragen stellt und die Welt interpretiert, den meisten Menschen leichter fällt im Vergleich zur frequentistischen Statistik. Aus bayesianischer Sicht stelle ich mir die Frage wie wahrscheinlich meine aufgestellte Hypothese (*Bin ich mit Corona infiziert?*) im Lichte meiner beobachteten Daten (positiver Test) ist. Frequentistisch drehe ich den Spieß um: Wie wahrscheinlich ist es meine Daten zu beobachten (positiver Test), falls meine Hypothese (*Bin ich mit Corona infiziert*) zutrifft?
-
-Uns jedenfalls fällt es leichter, anhand der bayesianischen Vorgehensweise Fragen zu stellen und Entscheidungen zu treffen. Teilt uns gerne in der Sprechstunde Eure Präferenz mit! 
+<p>
+<center>
+![**Abbildung**: Wenn man die altersbereinigten Nierenkrebsraten in den US-amerikanischen Bundesstaaten gegen den Logarithmus der Bezirksbevölkerung aufträgt, wird die Verringerung der Variation mit der Bevölkerung deutlich. Quelle: Wainer, H. ([2007](http://nsmn1.uh.edu/dgraur/niv/TheMostDangerousEquation.pdf))](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/08_grundlagen-der-statistik/kidney_cancer_rates.png?raw=true){#id .class width=50% height=50%}
+</center>
+</p>
 
 ### **Und jetzt Ihr**
 
-Statt eigene Berechnungen anzustellen, möchten wir Euch diese Woche dazu einladen, Eure Kenntnisse zu kausalen Zusammenhängen um ein graphisches Tool zu erweitern: **Directed Acyclic Graphs (kurz DAGs)** stellen Ursache-Wirkungs-Zusammenhänge zwischen verschiedenen Ereignissen dar. Sie helfen uns zu verstehen, welche erklärenden Variablen unsere zu erklärende Variable noch beeinflussen könnten. Andrew Heiss erklärt in seiner [Programmevaluationsvorlesung](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"} besonders toll, wie das funktioniert und wie Ihr in R eigene DAGs kreieren könnt. Schaut Euch die Lektion an und bringt zur nächsten Live Session ein eigenes DAG mit - auf Papier oder in R. Thematisch könnt Ihr Euch entweder mit einem eigenen Thema beschäftigen oder aber überlegen, wie die Aktionen von Break Free From Plastik mit gesammeltem Plastik und Bewusstseinsveränderungen (höheres Umweltbewusstsein) zusammenhängen und welche Faktoren diese Wirkungen noch beeinflussen könnten.
+Zum Abschluss dieser Lerneinheit dürft ihr nun auch noch einmal Daten interpretieren. Schaut euch dazu bitte die folgende Grafik zu [Militärausgaben im Ländervergleich 2003 - 2017](https://www.hfh-fernstudium.de/statistik-app/daten/militaer.html):
+
+- Startet mit den Zeitreihen, sucht euch drei Länder aus und vergleicht die Ausgaben in 'absoluten' Werten, 'in % BIP' und 'pro Kopf'. Was verändert sich? Warum? 
+- Wechselt nun zur Darstellung 'Boxplots'. Was wird hier dargestellt, welche Dimensionen werden verglichen? Was fällt bei der Darstellung der Ausgaben in absoluten Werten auf? Geht nun auf 'pro Kopf'. Was fällt beim Vergleich der Boxplots über die Jahre auf? Was fällt beim Vergleich der Ausreißer auf? 
+- Wechselt nun zur Darstellung 'Säulendiagramme'. Was wird hier dargestellt, welche Dimensionen werden verglichen? Was fällt auf, wenn ihr 'in % BIP' und 'pro Kopf' vergleicht?
+
+Die zweite Übung behandelt noch einmal die Korrelation. Öffnet dazu bitte diese [Seite](https://www.hfh-fernstudium.de/statistik-app/korrelation.html):
+
+- Erzeugt Beispiele für eine hohe positive Korrelation ($r > +0.8$) und eine hohe negative Korrelation ($r < -0.8$).
+- Wenn ihr ein Beispiel für eine hohe Korrelation erzeugt habt, wechselt auf 'Punkte verschieben' und verändert einen Datenpunkt. Wie ändert sich die Korrelation $r$? Warum?
+- Erzeugt Beispiele für eine schwache Korrelation ($|r| < 0.2$).
+- Erzeugt nun ein Beispiel für einen Zusammenhang, der mit dem Auge sichtbar ist, aber dennoch laut Berechnung ($r$-Wert) keine oder nur eine geringe Korrelation aufweist. Woran liegt das?
+
+### **Quellen**
+
+- <span id="quelle-1">[1]</span> Data-Literacy-Charta. (n.d.). Stifterverband.org. Retrieved February 14, 2024, from <https://www.stifterverband.org/charta-data-literacy>.
+- <span id="quelle-2">[2]</span> Mittag, H.-J., & Schüller, K. (2020). Statistik: Eine Einführung mit interaktiven Elementen. Springer Berlin Heidelberg.
+- <span id="quelle-3">[3]</span> Gutman, A. J., & Goldmeier, J. (2022). Werde ein Data Head: Data Science, Machine Learning und Statistik verstehen und datenintensive Jobs meistern.
+
 
 ### **Zusätzliche Ressourcen**
 
--   [An introduction to Causal inference](https://fabiandablander.com/r/Causal-Inference.html){target="_blank"}, Fabian Dablander, 2019
--   [Statistical Rethinking](https://www.routledge.com/Statistical-Rethinking-A-Bayesian-Course-with-Examples-in-R-and-STAN/McElreath/p/book/9780367139919){target="_blank"}, Richard McElreath, CRC Press, 2020
--   [Good & Bad Controls](https://www.youtube.com/watch?v=NSuTaeW6Orc&list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN&index=7&t=3530s){target="_blank"}, Richard McElreath
--   DAGs: Vorlesung mit [Andrew Heiss](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"}
+- [Destatis - Statistisches Bundesamt](https://www.destatis.de/DE/Home/_inhalt.html)
+- [KI Campus](https://ki-campus.org/)
+- [https://systats.github.io/](https://systats.github.io/linear_model/index.html)
+- [Werde ein Data Head](https://dpunkt.de/produkt/werde-ein-data-head/)
+- [Statistik: Eine Einführung mit interaktiven Elementen.](https://link.springer.com/book/10.1007/978-3-662-61912-4)

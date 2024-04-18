@@ -1,4 +1,5 @@
-## **Datenabfragen in SQL (Exkurs)**
+## **Exkurs 3: Datenabfragen in SQL**
+
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
 
 *"Datenabfragen in SQL" von Nina Hauser in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
@@ -103,4 +104,5 @@ dbDisconnect(con)
 
 SQLite-Datenbanken benötigen in der Regel **kein Passwort** (und somit auch keinen Code für die Authentifizierung). Falls das für Euch notwendig ist, findet Ihr in der Dokumentation von RStudio in den Kapiteln [Database](https://docs.rstudio.com/connect/1.7.8/admin/database-provider.html){target="_blank"} und [Authentication](https://docs.rstudio.com/connect/1.7.8/admin/authentication.html){target="_blank"} Hilfestellungen.
 
-Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
+### **Zusätzliche Ressourcen**
+Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
