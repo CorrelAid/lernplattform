@@ -38,6 +38,10 @@ library(httr)
 library(purrr)
 library(RSQLite)
 library(leaflet)
+library(tidytext)
+library(gutenbergr)
+library(wordcloud)
+library(stopwords)
 library(vembedr)
 
 ## RMD
@@ -171,6 +175,46 @@ n_a <- 5840
 n_b <- 5640
 
 z <- (anteil_a - anteil_b)/(sqrt(anteil_pool * (1 - anteil_pool) * ((1/n_a) + (1/n_b))))
+
+### Beispieldatensatz für Regex
+regex_df <- tibble::tribble(
+  ~name,      ~adresse,                                  ~kfz,       ~geburtsdatum,     ~groesse, 
+  "Person 1", 'Kaiserstraße 29, 60311 Frankfurt am Main', 'F-FM 101', '26.01.2001',      '1,88m', 
+  "Person 2", 'Panoramastraße 1A, 10178 Berlin',          'B-BG 200', '7.7.1999',        '1,67m',
+  "Person 3", 'Arnulf-Klett-Platz 2, 70173 Stuttgart',    'S-Ö 9999', '12.12.1985',      '1,92m'
+  )
+
+### Doktor Oetker Kochbuch von Project Gutenberg für Wordcloud
+
+oetker <- gutenbergr::gutenberg_download(31537)
+
+Encoding(oetker$text) <- "latin1"
+
+oetker <- oetker %>% 
+  filter(text != "")
+
+oetker <- oetker[1:1749, ]
+
+### SentiWS Lexikon vom Projekt Wortschatz Leipzig
+
+lexicon <- map(c("daten/SentiWS_v2.0_Negative.txt", "daten/SentiWS_v2.0_Positive.txt"), function(file){
+  file_df <- read_tsv(file, 
+                     col_names = c("wort|code", "sentiment", "inflektionen")
+                     ) %>% 
+  separate_wider_delim(col = "wort|code", delim = "|", 
+                       names = c("wort", "code")
+                       )
+  
+  original_only <- file_df %>% 
+    select(wort, code, sentiment)
+  
+  inflektionen <- file_df %>% 
+    separate_longer_delim(inflektionen, delim = ",") %>% 
+    select(wort = inflektionen, code, sentiment) %>% 
+    filter(!is.na(wort))
+  
+  union_all(original_only, inflektionen)
+}) %>% list_rbind()
 ``` 
 
 <!-- ## Willkommen -->
@@ -263,6 +307,13 @@ cat(out, sep = '')
 out <- knitr::knit_child("14_closing.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
+
+<!-- ## Arbeiten mit Text? -->
+```{r results='asis'}
+out <- knitr::knit_child("15_arbeiten_mit_text.Rmd", quiet = TRUE)
+cat(out, sep = '')
+```
+
 
 <!-- ## Glossar -->
 ```{r results='asis'}
