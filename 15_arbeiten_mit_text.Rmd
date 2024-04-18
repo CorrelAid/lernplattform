@@ -4,7 +4,7 @@
 
 *"Arbeiten mit Text" von Alexandros Melemenidis in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
 
-![*Video: Arbeiten mit Text (30min)*](tbd)
+![*Video: Arbeiten mit Text (20min)*](https://youtu.be/NOHyED9u3x0)
 
 ### **Kernaussagen**
 
