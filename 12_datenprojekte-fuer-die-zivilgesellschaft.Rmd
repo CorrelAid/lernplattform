@@ -196,4 +196,4 @@ Bei weiteren Fragen, könnt Ihr Euch einfach bei Slack an die beiden Organisator
 - [Bernard Marr: Data Strategy: How to Profit from a World of Big Data, Analytics and the Internet of Things](https://bernardmarr.com/books/){target="_blank"}
 - [Haus des Stiftens: Digital-Report 2020](https://www.hausdesstiftens.org/wp-content/uploads/Digital-Report-2020.pdf){target="_blank"}
 
-<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>

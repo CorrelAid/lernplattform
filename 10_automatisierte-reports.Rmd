@@ -349,4 +349,4 @@ Wenn Ihr einen **eigenen Report** habt - den Ihr letzte Woche bereits in R erste
 - RStudios [Hilfeseite](https://rmarkdown.rstudio.com/lesson-6.html){target="_blank"}
 - [CorrelTalk: **Automatisierte Reportgenerierung für die Weltläden**](https://soundcloud.com/correlaid_podcast/about-correlaid-eine-interaktive-weltkarte-fur-erlassjahrde?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing){target="_blank"}
 
-<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>

@@ -676,4 +676,4 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
   - [Make your Shiny-App faster (auf Englisch)](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
   - [shiny.worker (auf Englisch)](https://www.r-bloggers.com/shiny-worker-speed-up-r-shiny-apps-by-offloading-heavy-calculations/){target="_blank"}
   
-  <a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+  <a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>

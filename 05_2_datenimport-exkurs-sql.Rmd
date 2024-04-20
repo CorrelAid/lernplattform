@@ -135,5 +135,5 @@ SQLite-Datenbanken benötigen in der Regel **kein Passwort** (und somit auch kei
 
 Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
 
-<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>
 

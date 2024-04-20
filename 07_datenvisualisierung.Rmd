@@ -531,4 +531,4 @@ Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr geler
 - [Visual Inference with R (engl.)](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/visinference/){target="_blank"} (engl.)
 - [Datenvisualisierung (Wieso, warum und wie?)](https://www.skala-campus.org/artikel/tipps-daten-visualisieren/146){target="_blank"}
 
-<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>

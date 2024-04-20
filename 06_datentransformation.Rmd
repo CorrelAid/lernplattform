@@ -671,4 +671,4 @@ Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R im
 - [Tidyverse: Tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html){target="_blank"} (engl.)
 
 
-<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>

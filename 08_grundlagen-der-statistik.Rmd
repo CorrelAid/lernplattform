@@ -378,4 +378,4 @@ Statt eigene Berechnungen anzustellen, möchten wir Euch diese Woche dazu einlad
 -   [Good & Bad Controls](https://www.youtube.com/watch?v=NSuTaeW6Orc&list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN&index=7&t=3530s){target="_blank"}, Richard McElreath
 -   DAGs: Vorlesung mit [Andrew Heiss](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"}
 
-<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>

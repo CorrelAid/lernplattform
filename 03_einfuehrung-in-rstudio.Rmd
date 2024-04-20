@@ -368,4 +368,4 @@ Legt nun ein neues R Projekt (wie im Video) und eine neue R Markdown-Datei auf E
 - [Control Flow, Iteration and Functions in R (engl.)](https://app.dataquest.io/course/intermediate-r){target="_blank"} von Dataquest
 - [R Studio Learn: Programming Basics](https://rstudio.cloud/learn/primers/1.2){target="_blank"}
 
-<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>
