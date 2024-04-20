@@ -8,6 +8,7 @@ files_every_time <- c(
   "www/favicon.html",
   "www/favicon.ico",
   "www/style.css",
+  "www/app_parameters.yml",
   "R/setup/gradethis-setup.R",
   "R/setup/tutorial-setup.R")
 
