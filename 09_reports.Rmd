@@ -2,6 +2,9 @@
 title: "Reports in R Markdown"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -24,6 +27,10 @@ source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
 # Read app parameters
 params <- yaml::yaml.load_file("www/app_parameters.yml")
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 ![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)

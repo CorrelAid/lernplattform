@@ -2,6 +2,9 @@
 title: "Datentransformation"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -34,6 +37,10 @@ plastics_processed <- get_pl_proc()
 audit <- get_audit()
 wb_areas <- get_wb_areas()
 wb_processed <- process_wb_areas(wb_data = wb_areas)
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 ![*Video: Datentransformation (30min)*](https://youtu.be/YWFLSovbha0)

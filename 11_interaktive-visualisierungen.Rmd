@@ -2,6 +2,9 @@
 title: "Interaktive Visualisierungen"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -14,7 +17,6 @@ output:
     language: de
 runtime: shiny_prerendered
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -31,6 +33,10 @@ params <- yaml::yaml.load_file("www/app_parameters.yml")
 source("R/setup/functions.R") 
 community <- get_community()
 audit <- get_audit()
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 Was wäre eine Welt ohne zugängliche Visualisierungen? Vielleicht habt Ihr es schon in den Online-Ausgaben von Zeitungen mit interaktiven Visualisierungen gesehen und seid neugierig, wie man so etwas auch leicht selbst machen kann? Dann seid Ihr bei Shiny-Apps genau richtig! 

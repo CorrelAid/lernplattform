@@ -2,6 +2,9 @@
 title: "Datenimport und APIs"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -28,6 +31,10 @@ params <- yaml::yaml.load_file("www/app_parameters.yml")
 # Benötigte Daten laden
 source("R/setup/functions.R")
 polygons_welt <- get_poly_welt()
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um damit Analysen durchzuführen. 

@@ -2,6 +2,9 @@
 title: "Datenvisualisierung"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -39,6 +42,10 @@ karten_daten <- get_karten_daten(
   from = community,
   join = polygons_welt
 )
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 ![*Video: Datenvisualisierung (15min)*](https://youtu.be/LtjKZjCPijo)

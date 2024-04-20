@@ -2,6 +2,9 @@
 title: "Reportautomatisierung"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -30,6 +33,10 @@ params <- yaml::yaml.load_file("www/app_parameters.yml")
 source("R/setup/functions.R") 
 audit <- get_audit()
 params <- get_params()
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 ![*Video: Reportautomatisierung (20min)*](https://youtu.be/78r2ugQ6bdQ)

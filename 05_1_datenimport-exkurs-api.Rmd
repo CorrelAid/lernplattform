@@ -2,6 +2,9 @@
 title: "Eigene API-Anfragen (Exkurs)"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -32,6 +35,10 @@ basis_url <- "https://unstats.un.org/"
 initiale_anfrage <- get_initiale_anfrage(url = basis_url)
 waste_data <- get_waste_data(anfrage = initiale_anfrage)
 pages <- get_pages(content = waste_data)
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 ![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)

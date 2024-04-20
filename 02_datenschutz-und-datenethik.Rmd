@@ -14,7 +14,7 @@ output:
     css: www/style.css
     includes:
       after_body: ./www/favicon.html
-    language: de<
+    language: de
 runtime: shiny_prerendered
 ---
 

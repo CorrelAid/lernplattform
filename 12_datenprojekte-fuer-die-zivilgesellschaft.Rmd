@@ -2,6 +2,9 @@
 title: "Datenprojekte für die Zivilgesellschaft"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
+authors:
+  - Nina Hauser
+  - Zoé Wolter
 output: 
   html_document:
     toc: true
@@ -24,6 +27,10 @@ source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
 # Read app parameters
 params <- yaml::yaml.load_file("www/app_parameters.yml")
+```
+
+```{r results='asis'}
+cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
 ![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (60min)*](https://youtu.be/6lGuBz7Cie0)
@@ -153,7 +160,7 @@ Ist Euch der #rlernen-alumni Slack Channel bereits aufgefallen? Dieser Channel s
 <br>
 
 <div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
-<p style="color:#acc940;"><b>R Lernen Sprechstunde</b></p>
+<p style="color:#acc940;"><b>R Lernen Sprechstunde/b></p>
 Ihr habt bereits guten Kontakt zu Eurer\*m Mentor\*in? Perfekt - dann fragt gerne einfach direkt im Slack bei ihnen nach! Ansonsten ist auch weiterhin die R Lernen Sprechstunde für Euch geöffnet. Meldet Euch dafür gerne [hier](https://calendly.com/correlaid/30min){target="_blank"} an und wir helfen Euch in der halben Stunde direkt weiter!
 </div>
 
