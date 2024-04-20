@@ -1,5 +1,5 @@
 ---
-title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+title: "Eigene API-Anfragen (Exkurs)"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
@@ -34,11 +34,9 @@ waste_data <- get_waste_data(anfrage = initiale_anfrage)
 pages <- get_pages(content = waste_data)
 ```
 
-## **Eigene API-Anfragen (Exkurs)**
-
 ![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)
 
-### **Interaktive Übung**
+# Interaktive Übung
 Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
 
 Eine Interaktion sieht so aus:
@@ -63,7 +61,8 @@ Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sog
 
 [Hier (en)](https://github.com/public-apis/public-apis) findet Ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
 
-### **GET-Anfragen**
+# GET-Anfragen
+
 Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein. `GET`-Anfragen können als normale URL (das was Ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
 `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
 
@@ -76,7 +75,8 @@ Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/searc
 
 **Analogie**: Im Restaurant bestellt (--> `GET`) Ihr bei Elmo (Eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
 
-### **Statuscodes** 
+# Statuscodes
+
 Fast alle APIs geben in Ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
 
 Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
@@ -91,7 +91,8 @@ Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. D
 
 Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet Ihr noch mehr Erklärungen zu wichtigen Statuscodes.
 
-### **Beispiel**
+## Beispiel
+
 Wir verwenden die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet Ihr [hier](https://unstats.un.org/SDGAPI/swagger/). Der Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) passt gut zu unseren bisherigen Analysen zum Thema Plastikverschmutzung. Um die Daten zu diesem Indikator zu laden, verwendet Ihr den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Zudem habt Ihr nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den Ihr Daten benötigt.
 
 Um Anfragen an APIs zu machen, nutzen wir das [`httr`](https://httr.r-lib.org/)-Package (Doku).
@@ -219,7 +220,7 @@ list_of_dataframes <- purrr::map(pages, function(page) {
 waste_geo_df <- dplyr::bind_rows(list_of_dataframes)
 ```
 
-### **Authentifizierung**
+# Authentifizierung
 In unserem Beispiel konnten wir ohne Authentifizierung die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. Ihr müsst beweisen, dass Ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
 
 Hierzu gibt es viele verschiedene Modelle. Im einfachsten Fall erstellt ihr euch einen sogenannten Token in der entsprechenden Website in den Benutzereinstellungen. Ein **Token** ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus `eyJpc3MiOiJodHRwczovL2V4YW1...`.

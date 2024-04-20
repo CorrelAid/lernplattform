@@ -1,5 +1,5 @@
 ---
-title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+title: "Grundlagen der Statistik"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
@@ -32,8 +32,6 @@ z <- get_z()
 
 ```
 
-## **Grundlagen der Statistik**
-
 ![*Video: Grundlagen der Statistik (30min)*](https://youtu.be/ASL2IihMtl0)
 
 <p style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
@@ -42,7 +40,7 @@ z <- get_z()
   Du hast nicht alles direkt verstanden? Völlig normal! Nimm Deine Fragen gerne mit in die Livesession - die Tutor:innen freuen sich darüber, alle Deine Fragen zu beantworten und Dir weiterzuhelfen. Bei kleineren Fragen wende Dich natürlich auch gerne einfach direkt an Deine:n Mentor:in. Und wenn Du gar nicht weißt, wo Du anfangen sollst mit Deinen Fragen - ein kleiner Schritt nach dem anderen und nicht alles brauchst Du für jede Datenanalyse oder -visualisierung. 
 </p>
 
-### **Kernaussagen**
+# Kernaussagen
 
 -   In der **Replikationskrise der Wissenschaft** können unerwartet viele publizierte Studienergebnisse nicht repliziert werden: Forscher:innen in aller Welt nahmen dies zum Anlass, kritisch zu hinterfragen, wie wir mit Daten verantwortungsbewusst forschen können
 -   Wir müssen zwischen verschiedenen **Qualitätsstufen** von Studien unterscheiden
@@ -56,7 +54,7 @@ z <- get_z()
 -   Es hilft deshalb **Effekte** (Veränderung oder Stabilisierung), **plausibilisierte Wirkungen** (Plausibilitätscheck möglicher kausaler Mechanismen) und **Wirkung** (nachgewiesener kausaler Mechanismus) unserer Programme zu unterscheiden
 -   Viele analytische Verfahren können mit **Mustererkennung** allein schon viel Zugewinn ermöglichen, da wir maschinell viel größere Mengen an Informationen verarbeiten können als manuell
 
-### **Quiz**
+# Quiz
 
 ```{r quiz_statistischesdenken}
 quiz(
@@ -97,9 +95,9 @@ quiz(
 )
 ```
 
-### **Interaktive Übung**
+# Interaktive Übung
 
-#### **Kausalität**
+## Kausalität
 
 Wenn wir Daten mit statistischen Methoden untersuchen, suchen wir nach Mustern. Daraus können wir nicht notwendigerweise kausale Schlüsse ziehen. Judea Pearl beschreibt in "The Book of Why" (2018) die **Leiter der Kausalität** auf drei Ebenen in aufsteigender Reihenfolge:
 
@@ -124,7 +122,7 @@ Fragen der zweiten Ebene können mit kontrollierten Experimenten oder quasi-Expe
 
 Ob jedoch im Einzelfall mit dem Rauchen aufzuhören kausal ist für eine höhere Lebenserwartung können wir erst auf Ebene 3 verstehen. Hier fragen wir, was passiert wäre, wenn wir etwas nicht getan hätten. Träte der Effekt trotzdem ein? Und hier liegt dann auch der Hase im Pfeffer begraben: Wir können schließlich nicht gleichzeitig Rauchen und mit dem Rauchen aufhören - es fehlt uns der Vergleich.
 
-### **Plausibilität, Wahrscheinlichkeit und Statistik**
+## Plausibilität, Wahrscheinlichkeit und Statistik
 
 Stehe einmal kurz vom Computer auf und schau aus dem Fenster. Ist die Straße draußen nass? Wenn die Straße trocken ist, folgt daraus, dass es nicht geregnet hat. Es folgt aber andersherum nicht, dass es geregnet haben muss, wenn die Straße nass ist. Es hätte ja jemand auch die Straße mit einem Gartenschlauch gießen können. Intuitiv werden wir aber annehmen, dass die Beobachtung einer nassen Straße die Aussage "es hat geregnet" *plausibler* macht. Statistik ist am Ende nichts anderes als eine Systematisierung dieser Art von Plausibilisierungen. Wir haben Beobachtungen ("die Straße draußen ist nass"), auch Daten genannt, mit denen wir etwas über die Plausibilität einer Hypothese ("es hat geregnet") oder eines Modelles lernen wollen.
 
@@ -161,7 +159,7 @@ In der **bayesianischen Statistik** dagegen beruht der Begriff der Wahrscheinlic
 
 Die dritte Frage bringt den zu Beginn angesprochenen Bezug zwischen Hypothesen und Daten ins Spiel, Die beiden Antworten stehen exemplarisch für die Art von Fragen, die wir mit der frequentistischen oder eben bayesianischen Statistik beantworten wollen. Da in der frequentistischen Statistik Wahrscheinlichkeit als langfristige relative Häufigkeit definiert wird, können Hypothesen keine Wahrscheinlichkeit haben. Sie sind entweder wahr oder falsch. Deshalb fragen Frequentisten ihre Ärztin auch, was die Wahrscheinlichkeit ist ein positives Testergebnis zu erhalten, wenn sie die Krankheit *nicht* hätten (also die Hypothese falsch ist). In der Bayesianischen Statistik dagegen dient Wahrscheinlichkeit dazu, Wahrheit (Plausibilität) über eine Reihe von konkurrierenden Hypothesen zu verteilen. Die Bayesianerin fragt fragt entsprechend, was die Wahrscheinlichkeit ist, gegeben der Beobachtung die Krankheit tatsächlich zu haben.
 
-#### **Bayesianische Statistik**
+## Bayesianische Statistik
 
 Wie wir gerade gesehen haben fragt die Bayesianerin nach der Wahrscheinlichkeit, die Krankheit tatsächlich zu haben ($H=1$) nachdem sie einen positives Testergebnis erhalten hat ($D=1$). Etwas formaler gesprochen haben wir es hier mit zwei binäre Ereignisse ($H=\{0,1\}$, $D=\{0,1\}$) zu tun und wir fragen nach der bedingten Wahrscheinlichkeit von $H$ gegeben $D$, wir schreiben $P(H=1|D=1)$.
 
@@ -209,7 +207,7 @@ Mit der Entscheidung, die Gesamtdeutsche 7-Tages-Inzidenz des RKI als Prior zu n
 
 Wenn dein Interesse geweckt ist, bietet Fabian Dablander (selbst CorrelAider in den Niederlanden) auf seinem [Blog](https://fabiandablander.com/r/Bayes-Potter.html){target="_blank"} einen etwas umfangreichen Einstieg in die Bayesianische Statistik. Wenn du mehr über Bayesianische Statistik lernen willst, bietet sich sonst auch [diese](https://youtube.com/playlist?list=PLFDbGp5YzjqXQ4oE4w9GVWdiokWB9gEpm){target="_blank"} Youtube-Reihe von Ben Lambert an, der in kurzen Videos zentrale Konzepte erklärt. Ebenfalls zu empfehlen ist das frei verfügbare Buch ["Bayes rules!"](https://www.bayesrulesbook.com/){target="_blank"} von Johnson, Ott und Dogucu, aus dem auch unsere drei Eingangsfragen entnommen sind. Die obenstehende Darstellung von (bayesianischer) Statistik basiert auf Vorlesungen von Prof. Philipp Henning an der Uni Tübingen.
 
-#### **Frequentistische Statistik**
+## Frequentistische Statistik
 
 Auch um den Ansatz der frequentistischen Statistik zu verstehen können wir das Beispiel des positiven Corona-Schnelltests von oben nutzen. Von einem frequentistischen Standpunkt aus betrachtet ist die Wahrscheinlichkeit mit Corona infiziert zu sein entweder $1$ oder $0$, da der Infektionsstatus kein beliebig oft wiederholbares Ereignis ist. Entweder man ist infiziert oder man ist nicht infiziert. Was wir jedoch wiederholen können sind die Tests selbst. Daher geht eine frequentistische Analyse in diesem Fall von der Frage aus, wie hoch die Wahrscheinlichkeit ist, dass mein Test **positiv** ausfällt, in dem Fall das ich **nicht** an Corona erkrankt bin.
 
@@ -219,7 +217,7 @@ Damit können wir nun berechnen, wie hoch die Wahrscheinlichkeit ist, einen posi
 
 Die Antwort ist (wie so häufig) in den Daten zu finden. Wir können der Tabelle entnehmen, dass von 435 Personen die PCR negativ getestet wurden (= gesunden Personen) nur 4 Personen einen positiven Antigen/Schnelltest hatten. Wenn wir also jeden positiven Schnelltest als Coronainfektion werten würden, dann würden wir in $\frac{4}{435}$ der Fälle fälschlicherweise die Nullhypothese verwerfen, obwohl sie zutrifft. Das entspricht etwa $0.91\%$. Diese Wahrscheinlichkeit bezeichnen wir darum auch als Irrtumswahrscheinlichkeit. Diese Irrtumswahrscheinlichkeit kann euch in wissenschafltichen Arbeiten auch unter der Bezeichnung **p-Wert** begegnen. Die Interpretation eines solchen p-Werts ist jedoch gar nicht so trivial und auch Forscher:innen [tun sich mitunter schwer damit](https://pubmed.ncbi.nlm.nih.gov/18582619/){target="_blank"}. Das hat sogar dazu geführt, dass die *American Statistical Association* ein ["public safety announcement"](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108){target="_blank"} zur Verwendung von p-Werten veröffentlicht hat.
 
-##### Unterschiede zwischen Gruppen
+### Unterschiede zwischen Gruppen
 
 Die Logik von Hypothesentests können wir auch verwenden, um beobachtete Unterschiede zwischen Gruppen zu untersuchen. Stellen wir uns vor, dass wir in einer Studie zwei Gruppen von Versuchspersonen aus den Städten A und Stadt B beobachten. Alle Personen werden in unserem Versuch anhand eines PCR-Tests auf das Coronavirus getestet. Wir wissen also von allen Versuchspersonen, ob sie sich mit dem Virus infiziert haben oder nicht. Dabei stellen wir fest, dass in Stadt A von 5840 Bürger:innen 3154 Personen positiv auf Corona getestet wurden, ein Anteil von $0.54$. In Stadt B hingegen sind von 5640 BürgerInnen nur 3102 mit dem Coronavirus infiziert. Dies entspricht einem Anteil von $0.55$. Mit einem Hypothesentest können wir untersuchen, wie hoch die Wahrscheinlichkeit ist, dass der Unterschied rein zufällig zustande gekommen ist.
 
@@ -359,7 +357,7 @@ print(z)
 
 R ermöglicht Euch die Berechnung der Teststatistik über zahreiche Funktionen: `t.test()`, `wilcox.test()`, `shapiro.test()`, etc. Die beste Übersicht, die wir zu Hypothesentests und ihren vorab zu prüfenden Voraussetzungen, gibt es - überraschenderweise als Blogartikel - [hier](https://towardsdatascience.com/hypothesis-tests-explained-8a070636bd28){target="_blank"}.
 
-#### **Fazit**
+## Fazit
 
 Abschließend an diese Einführung ist es uns noch ein Anliegen, zu betonen, dass wir keine abschließende Wertung der beiden Herangehensweisen vornehmen möchten und können. Vielmehr haben beide Philosophien Ihre Berechtigung in der Statistik und ermöglichen es uns, Sachverhalte und Fragen aus unterschiedlichen Perspektiven zu betrachten. Oftmals führen beide Verfahren angewandt auf die selbe Fragestellung auch zum selben Ergebnis. Dies ist insbesondere der Fall, wenn wir es mit großen Stichproben zu tun haben.
 
@@ -367,11 +365,11 @@ Komplett befreit von Vorlieben sind wir jedoch auch nicht. Ein Grund, warum die 
 
 Uns jedenfalls fällt es leichter, anhand der bayesianischen Vorgehensweise Fragen zu stellen und Entscheidungen zu treffen. Teilt uns gerne in der Sprechstunde Eure Präferenz mit! 
 
-### **Und jetzt Ihr**
+# Und jetzt Ihr
 
 Statt eigene Berechnungen anzustellen, möchten wir Euch diese Woche dazu einladen, Eure Kenntnisse zu kausalen Zusammenhängen um ein graphisches Tool zu erweitern: **Directed Acyclic Graphs (kurz DAGs)** stellen Ursache-Wirkungs-Zusammenhänge zwischen verschiedenen Ereignissen dar. Sie helfen uns zu verstehen, welche erklärenden Variablen unsere zu erklärende Variable noch beeinflussen könnten. Andrew Heiss erklärt in seiner [Programmevaluationsvorlesung](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"} besonders toll, wie das funktioniert und wie Ihr in R eigene DAGs kreieren könnt. Schaut Euch die Lektion an und bringt zur nächsten Live Session ein eigenes DAG mit - auf Papier oder in R. Thematisch könnt Ihr Euch entweder mit einem eigenen Thema beschäftigen oder aber überlegen, wie die Aktionen von Break Free From Plastik mit gesammeltem Plastik und Bewusstseinsveränderungen (höheres Umweltbewusstsein) zusammenhängen und welche Faktoren diese Wirkungen noch beeinflussen könnten.
 
-### **Zusätzliche Ressourcen**
+# Zusätzliche Ressourcen
 
 -   [An introduction to Causal inference](https://fabiandablander.com/r/Causal-Inference.html){target="_blank"}, Fabian Dablander, 2019
 -   [Statistical Rethinking](https://www.routledge.com/Statistical-Rethinking-A-Bayesian-Course-with-Examples-in-R-and-STAN/McElreath/p/book/9780367139919){target="_blank"}, Richard McElreath, CRC Press, 2020

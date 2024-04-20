@@ -1,5 +1,5 @@
 ---
-title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+title: "Datentransformation"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
@@ -36,13 +36,12 @@ wb_areas <- get_wb_areas()
 wb_processed <- process_wb_areas(wb_data = wb_areas)
 ```
 
-## **Datentransformation**
-
 ![*Video: Datentransformation (30min)*](https://youtu.be/YWFLSovbha0)
 
-### **Kernaussagen**
+# Kernaussagen
 
-#### Das Tidyverse
+## Das Tidyverse
+
 <left>
 
 ![](https://www.tidyverse.org/images/hex-tidyverse.png){#id .class width=20% height=100%}
@@ -58,11 +57,13 @@ wb_processed <- process_wb_areas(wb_data = wb_areas)
   - Jede **Beobachtung** hat eine **eigene Zeile**.
   - Jeder **Wert** hat eine eigene **Zelle**.
   
-#### Die Pipe
+### Die Pipe
+
 - Die Pipe `%>%` wird verwendet, um eine **Abfolge von Aktionen** nacheinander durchzuführen.
 - Um den Code übersichtlich zu halten, sollte dabei jede Funktion, die auf das Objekt angewendet wird, in einer eigenen Zeile stehen.
 
-#### Die wichtigsten Funktionen des Tidyverse
+### Die wichtigsten Funktionen des Tidyverse
+
 - `dplyr::arrange()`: **Sortierung** von Zeilen im Datensatz nach bestimmten Kriterien
 - `dplyr::filter()`: **Auswahl von Zeile**n bzw. Beobachtungen nach bestimmten Kriterien
 - `dplyr::select()`: **Auswahl von Spalten** bzw. Variablen
@@ -70,13 +71,14 @@ wb_processed <- process_wb_areas(wb_data = wb_areas)
 - `dplyr::group_by()`: **Gruppierung** von Beobachtungen 
 - `dplyr::summarise()`: **Zusammenfassen** von Beobachtungen mit statistischen Kennzahlen
 
-#### Daten zusammenführen
+### Daten zusammenführen
+
 Sehr wahrscheinlich werdet Ihr vor dem Problem stehen, dass Ihr Daten in **mehreren Datensätzen** vorliegen habt. Beispielsweise einen Datensatz pro Jahr oder auch Datensätze zu unterschiedlichen Themenbereichen. In dem Fall braucht Ihr Methoden, um die Daten zusammenzuführen: 
 
 - `dplyr::xxxx_join()` hilft Euch, wenn Ihr zwei Datensätze habt mit den gleichen oder zumindest sich **überschneidenden Beobachtungen** und Ihr die Variablen in einem Datensatz haben wollt.
 - `dplyr::bind_rows()` ist nützlich für Euch, wenn Ihr **Zeilen an einen Datensatz anhängen** wollt, d.h. weitere Beobachtungen mit den gleichen Variablen hinzufügen wollt.
 
-### **Quiz** 
+# Quiz
 
 ```{r 07quiz_datenbereinigung1}
 quiz(caption = NULL,
@@ -135,9 +137,10 @@ quiz(caption = NULL,
 ```
 
 
-### **Interaktive Übung**
+# Interaktive Übung
 
-#### Wiederholung: Die Pipe `%>%`
+## Wiederholung: Die Pipe `%>%`
+
 Bei der ersten Einführung in R habt Ihr Euch die Funktion `nrow()` angeschaut, mit der Ihr herausfinden könnt, wie viele Zeilen ein Datensatz hat. Damals habt Ihr das mit `nrow(data_raw)` gemacht, also `base R`, in der Zwischenzeit habt Ihr aber auch die **Pipe (%>%)** aus dem `tidyverse` kennengelernt. So könnten wir anstatt mit `ncol(plastics)` mit dem Pipe-Operator die Anzahl an Spalten bestimmen:
 
 ``` {r 07pipebeispiel, exercise = TRUE}
@@ -163,7 +166,8 @@ grade_this_code()
 
 Die Pipe wird Euch in dieser Lektion überall begegnen. So bleibt die langwidrige Datenbereinigung nämlich schön übersichtlich.
 
-#### Import der Rohdaten
+## Import der Rohdaten
+
 Zuerst laden wir - wie immer - den Datensatz. Das kennt Ihr ja bereits! Hier ziehen wir uns über den Hyperlink einen ziemlich unordentlichen Rohdatensatz, aus dem wir gemeinsam zwei bereinigte Datentabellen (`community` und `audit`) generieren.
 
 ``` {r 07load_data, exercise = TRUE}
@@ -171,7 +175,8 @@ Zuerst laden wir - wie immer - den Datensatz. Das kennt Ihr ja bereits! Hier zie
 data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
 ```
 
-#### Bereinigungsschritte definieren
+## Bereinigungsschritte definieren
+
 Nun überlegen wir uns, welche Datensätze am Ende des Bereinigungsprozesses existieren sollen und wie wir dorthin kommen.
 
 Ziel - Zwei Datensätze:<br>
@@ -186,7 +191,8 @@ Schritt 1: Zeilen, in denen das Land "EMPTY" ist, Sammelzeilen und Beobachtungen
 Schritt 2: Ländernamen bereinigen und übersetzen. <br>
 Schritt 3: Entsprechende Variablen auswählen und ggf. Datensatz umformen. <br>
 
-#### Die Funktion `dplyr::filter()`
+## Die Funktion `dplyr::filter()`
+
 Für die Analyse des Datensatzes planen wir einen **Ländervergleich** und sortieren deshalb Beobachtungen aus, für die das Land nicht hinterlegt wurde. Es handelt sich hierbei vermutlich um ein einziges Land, da die Anzahl an Freiwilligen und Events über alle Zeilen konstant ist. Daneben sortieren wir Summenzeilen aus, die unsere Ergebnisse verfälschen würden, und schließen 2020 auf Grund der COVID-19-Pandemie aus. Zum **Filtern von Zeilen bzw. Beobachtungen** nutzen wir die `dplyr::filter()`-Funktion, wobei die Zeilen beibehalten werden, die die Bedingung(en) erfüllen, die Ihr definiert. Im Kapitel "Einführung in (R)Studio" im Exkurs "Syntax R" könnt Ihr nachschauen, wie Ihr die Bedingungen für die Filterfunktion definieren könnt.
 
 ``` {r 07overview_data, exercise = TRUE}
@@ -226,9 +232,11 @@ data_raw %>%
 ```{r exercise_07filter_data_exercise-check}
 grade_this_code()
 ```
+
 *Anmerkung: Wenn Ihr sicher seid, dass nur 2019 und 2020 enthalten sind, könnt Ihr auch mit `year != 2020` filtern.*
 
-#### Die Funktion `dplyr::mutate()`
+## Die Funktion `dplyr::mutate()`
+
 Nun sollten wir die Variable `country` (zu dt. Land) bereinigen. Wie so oft sind die Bezeichnungen für Großbritannien und die USA **nicht standardisiert** und die **Groß- und Kleinschreibung** ist vollkommen durcheinander geraten. Außerdem möchten wir die **deutschen Bezeichnungen** nutzen und den Kontinent und Countrycode ergänzen. Mit `dplyr::case_when()`können wir einen bestimmten Wert in einen anderen Wert transformieren (WENN-DANN), mit `stringr::str_to_title()` wird nur noch der Anfangsbuchstabe großgeschrieben und mit dem Package `countrycode` können wir Ländernamen in verschiedene Sprachen übersetzen und kodieren. Welche Funktionen Ihr für Eure Bereinigungsschritte braucht, hängt immer vom Datensatz ab. Mit etwas mehr Erfahrung und einer Googlerecherche lassen sich für die meisten Herausforderungen tolle Hilfsmittel finden!
 
 De Code ist für Euch schon geschrieben. Könnt Ihr die fehlenden Funktionen und Variablennamen an Stelle der ??? ergänzen? Um alle Stellen zu finden, müsst Ihr etwas scrollen.
@@ -320,7 +328,8 @@ grade_this_code()
 
 Der Hauptteil der Bereinigung ist nun abgeschlossen. Das Ergebnis steht Euch unter `plastics_processed` zur Verfügung. Wir können die Daten nun in zwei Tabellen aufteilen.
 
-#### Die Funktionen `dplyr::group_by()` und `dplyr::summarise()`
+## Die Funktionen `dplyr::group_by()` und `dplyr::summarise()`
+
 Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vorhanden sein soll, müssen wir die bereinigten Daten pro Land gruppieren und entscheiden, wie die anderen Variablen zusammengefasst werden sollen. Mit `dplyr::group_by()` und `dplyr::summarise()` steht uns die **Gruppierung und Zusammenfassung** der Variablen offen. Wir addieren die Plastikstücke und wählen für die Anzahl der Events und Freiwilligen genau einen Wert aus. Diese sind im Originaldatensatz mehrfach vorhanden - etwas, das typischerweise beim Zusammenfügen von Datensätzen entsteht.
 
 ``` {r 07group_by_summarise1, exercise = TRUE}
@@ -355,7 +364,8 @@ community %>%
 grade_this_code()
 ```
 
-#### Pivoting
+## Pivoting
+
 Über die Bereinigung von Werten im Datensatz und das Filtern von Werten hinaus, könnt Ihr auch die Form des gesamten Datensatzes über `tidyr::pivot_longer()` und `tidyr::pivot_wider()` verändern. Um den `audit`-Datensatz zu bereinigen, müsst Ihr beispielsweise noch die Plastikarten so transformieren, dass sie als eine Variable im Datensatz vorkommen:
 
 ``` {r 07pivot_wider, exercise = TRUE}
@@ -375,7 +385,8 @@ plastics_processed %>%
 ```
 Mit `dyplr::pivot_wider()` könnt Ihr den Datensatz auch wieder in das breite Format bringen. Wir empfehlen aber die lange Form zu nutzen.
 
-#### Die Funktion `dplyr::select()`
+## Die Funktion `dplyr::select()`
+
 Neben Zeilen bzw. Beobachtungen könnt Ihr natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `dplyr::select()` weiter. Mit `dplyr::select()` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `data_raw`-Datensatz:
 
 ``` {r 07select_data1, exercise = TRUE}
@@ -384,6 +395,7 @@ data_raw %>%
   dplyr::select(-grand_total) %>%
   head()
 ```
+
 Um den `audit`-Datensatz zu finalisieren, wählen wir in einem letzten Schritt die relevanten Variablen aus:
 
 ```{r 07select_data2, exercise = TRUE}
@@ -417,7 +429,8 @@ sort(unique(community$country)) == sort(unique(audit$country))
 
 Check! Das habt Ihr wirklich gut gemacht!
 
-#### Die Funktion `dplyr::arrange()`
+## Die Funktion `dplyr::arrange()`
+
 Eine Funktion, die wir Euch nicht vorenthalten möchten und die oft eher für Transformation als Bereinigung genutzt wird, z.B. um **Ranglisten** auszugeben, ist `dplyr::arrange()`. Sie **sortiert Datensätze** für Euch. Wir interessieren uns für die Top10 der Firmen, deren Plastikverpackung gefunden wurde:
 
 ```{r arrange, exercise = TRUE}
@@ -441,7 +454,8 @@ Das gefundene Plastik kann Herstellern direkt zugeordnet werden: La Doo (4 Proze
 Nun kennt Ihr alle `dplyr`-Verben und seid fit für die Datentransformation! Bevor Ihr in die Übung geht: Auf einige Themen sind wir hier nur am Rande eingegangen - den Umgang mit fehlenden Werte (NAs), die Umformung von Textdaten und das (in der `countrycode`-Funktion versteckte) Zusammenfügen von Datensätzen. Wenn Ihr Euch für diese Themen interessiert, dann macht gerne die Exkurse.
 
 
-### **Exkurs**: Umgang mit fehlenden Werten (NAs)
+# Exkurs: Umgang mit fehlenden Werten (NAs)
+
 Nachdem Ihr nun Variablen und Beobachtungen auswählen und filtern könnt, schaut Ihr Euch nun den Umgang mit fehlenden Werten, also NAs (**n**ot **a**vailable) an. Versucht zuerst einmal, die Summe für die Variable `n_pieces` im Datensatz `community` zu berechnen.
 
 ``` {r 07mean_na1, exercise = TRUE}
@@ -523,7 +537,8 @@ df2 <- df %>%
 head(df2)
 ```
 
-### **Exkurs**: String Manipulation
+# Exkurs: String Manipulation
+
 Der Umgang mit **Text (eng. Strings)** ist etwas komplexer. In Eurem Beispiel haben wir die Namen der Länder verändert, unter anderem um die **Kodierung** des "United Kingdom of Great Britain & Northern Ireland" und den "United States of America" zu ermöglichen (es sind wirklich immer diese zwei...). Um diese Bezeichnungen zu verändern, habt Ihr die Funktion `dplyr::case_when()` und das `stringr`-Package mit der Funktion `stringr::str_replace` genutzt. Erstere haben wir im Rahmen einer **Einzelfallentscheidung** genutzt: Wir haben genau bestimmt, in welchen Fällen Wert A ("United Kingdom of Great Britain & Northern Ireland") durch Wert B ("United Kingdom") ersetzt werden soll. Letztere folgte dagegen einer **Logik**: Alle Ländernamen werden nun großgeschrieben - ansonsten gibt es keine Großbuchstaben mehr. So wurde "ECUADOR" zu "Ecuador".
 
 ``` {r 07strings1, exercise = TRUE}
@@ -543,7 +558,7 @@ clean_strings <- data_raw %>%
   dplyr::mutate(parent_company = stringr::str_remove(parent_company, "\\([^()]*\\)"))
 ```
 
-### **Exkurs**: Datensätze zusammenfügen
+# Exkurs: Datensätze zusammenfügen
 Häufig ist es auch der Fall, dass mehrere Datensätze zu einem zusammengefügt werden sollen. Letzte Woche habt Ihr bereits den Datensatz der Weltbank zu Naturschutzgebieten (`wb_areas`) heruntergeladen. Verschafft Euch zuerst nochmal einen kleinen Überblick über den Datensatz `wb_areas`: 
 
 ``` {r 07gdppc, exercise = TRUE}
@@ -660,10 +675,12 @@ quiz(
 )
 ```
   
-### **Und jetzt Ihr**
+# Und jetzt Ihr
+
 Wenn Ihr einen **eigenen Datensatz** habt - den Ihr letzte Woche bereits in R importiert habt - dann könnt Ihr jetzt versuchen, diesen zu bereinigen. Wenn Ihr nicht genug von Datenbereinigung bekommen könnt oder Ihr keinen eigenen Datensatz habt, dann schaut Euch das [**R Markdown: 07_Datentransformation**](https://correlcloud.org/index.php/s/xnCP2JgDGW7SDTS){target="_blank"} an und versucht die Aufgaben darin zu bearbeiten. 
 
-### **Zusätzliche Ressourcen**
+# Zusätzliche Ressourcen
+
 - [Schummelblatt: dplyr](https://correlaid.org/material/Schummelblatt_dplyr.pdf){target="_blank"} (engl.)
 - [Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning){target="_blank"} auf DataQuest (engl.)
 - [Advanced Data Cleaning in R](https://app.dataquest.io/course/r-data-cleaning-advanced){target="_blank"} auf DataQuest (engl.)

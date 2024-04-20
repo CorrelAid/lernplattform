@@ -1,5 +1,5 @@
 ---
-title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+title: "Datenprojekte für die Zivilgesellschaft"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
@@ -26,14 +26,13 @@ source("R/setup/tutorial-setup.R")
 params <- yaml::yaml.load_file("www/app_parameters.yml")
 ```
 
-## **Datenprojekte für die Zivilgesellschaft**
-
 ![*Video: Daten- und Leuchtturmprojekte von und für die Zivilgesellschaft (60min)*](https://youtu.be/6lGuBz7Cie0)
 *Anmerkung: Der Begriff "Impact" ist hier mit "Effekt" zu übersetzen - nicht mit "Wirkung".*
 
 Mehr Informationen zu Projekten von CorrelAid e.V. findet Ihr auf unserer [Webseite](https://correlaid.org/projects/){target="_blank"}, in unserem [Blog](https://correlaid.org/blog/){target="_blank"} und bei unserem [Podcast](https://soundcloud.com/correlaid_podcast){target="_blank"}. Die versprochenen Materialien rund um das Thema Wirkungslogik findet Ihr hier: Wir empfehlen von Phineo die kostenlosen Angebote [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"} und den [Skalacampus](https://www.skala-campus.org/){target="_blank"}.
 
-### **Kernaussagen**
+# Kernaussagen
+
 - Datenprojekte von und für die Zivilgesellschaft gibt es in allen **Farben und Formen**
 - Inspiration findet Ihr deshalb bei Organisationen wie **[CorrelAid e.V.](https://correlaid.org/nonprofits/projects/){target="_blank"} und [DSSG](https://www.datascienceforsocialgood.org/){target="_blank"}** und auf Konferenzen wie der **[CorrelCon](https://www.youtube.com/watch?v=JJoEJGc1eNc&list=PLXK26SbU8735a2yFZIpIshLdiuxgaK2_n){target="_blank"} und [AI for Good](https://aiforgood.itu.int/programme/){target="_blank"}**.
 - Wir stellen zudem jeden Monat ein Projekt aus unserem Arbeitsalltag in unserem **[Newsletter für NPOs](https://dashboard.mailerlite.com/forms/257414/78742752988235359/share){target="_blank"}** vor.
@@ -63,7 +62,7 @@ Bei der Erstellung einer Datenstrategie und der Planung von Datenprojekten mit M
 - Uns auf Trendtechnologien und BuzzWords zu fokussieren
 - Den Aufwand von Datenprojekten (insb. im Bereich der Organisationskultur) zu unterschätzen
 
-### **Quiz**
+## Quiz
 
 ```{r quiz_datenstrategie}
 quiz(caption = NULL,
@@ -98,11 +97,12 @@ quiz(caption = NULL,
 )
 ```
 
-### **Und jetzt Ihr**
+# Und jetzt Ihr
 
 Nach den letzten Wochen seit Ihr nun richtig fit in R geworden! Daher ist es jetzt an der Zeit, Euch zu überlegen, wie Ihr Eure neuen R-Skills in einem Datenprojekt anwenden könnt - arbeitet dafür gerne mit unseren Templates und wir freuen uns, wenn Ihr Eure Ideen in der nächsten Livesession vorstellt! 
 
-#### Teil 1: Erste Ideen entwickeln
+## Teil 1: Erste Ideen entwickeln
+
 Anfangs ist es vielleicht gar nicht so leicht, ein eigenes Projekt zu finden, an dem Ihr Euer Gelerntes erproben könnt. Damit es daran nicht scheitert, haben wir für Euch ein Template erstellt, mit dem Ihr allein oder in Gruppen mit Hilfe Eurer strategischen Organisationsziele datenbasierte Projekte herleiten könnt.
 
 <center>
@@ -120,7 +120,8 @@ Hier geht es zum
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/ideenfindung.pdf?raw=true){target="_blank"}.
 
 
-#### Teil 2: Eigenen Data Use Case entwickeln
+## Teil 2: Eigenen Data Use Case entwickeln
+
 Ein Data Use Case (zu dt. Datenanwendungsfall) beschreibt ein datengestütztes System oder eine Anwendung, das sich auf bestimmte Art und Weise verhält. Einfacher ausgedrückt: Hiermit skizziert Ihr eine datenbasierte Lösung für Eure Herausforderung aus der letzten Lektion, damit Ihr später bei der Implementierung nur noch einem vorgegebenen Bauplan folgen müsst.
 
 Mit unserem Data Use Case Template könnt Ihr Euer eigenes Datenprojekt planen. Da Datenprojekte sehr divers sein können, gibt es vielleicht Teile des Templates, die für Euch nicht relevant sind. Die könnt Ihr natürlich einfach überspringen. Es ist zudem ausreichend, wenn Ihr allein bis Sektion 5 kommt. Ihr könnt im Verlauf des Kurses immer wieder auf das Template zurückgreifen und insbesondere die Sektionen 6-8 werden zu einem späteren Zeitpunkt leichter zu beantworten sein.
@@ -137,7 +138,7 @@ Hier geht es zum
 
 Alternativ findet Ihr das Template als PDF unter diesem [Link](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/12_datenprojekte-fuer-die-zivilgesellschaft/data-use-case.pdf?raw=true){target="_blank"}.
 
-### **Wie CorrelAid Euch unterstützen kann** 
+# Wie CorrelAid Euch unterstützen kann
 
 <div style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
 <p style="color:#acc940;"><b>R Lernen Alumni</b></p>
@@ -190,7 +191,8 @@ Darüber hinaus, bieten wir Eurer Non-Profit-Organisation unsere Unterstützung 
 Bei weiteren Fragen, könnt Ihr Euch einfach bei Slack an die beiden Organisatoren Long und Andreas wenden.
 </div>
 
-### **Zusätzliche Ressourcen**
+# Zusätzliche Ressourcen
+
 - [Kursbuch Wirkung](https://www.phineo.org/kursbuch-wirkung){target="_blank"}
 - [Skalacampus](https://www.skala-campus.org/){target="_blank"}
 - [Bernard Marr: Data Strategy: How to Profit from a World of Big Data, Analytics and the Internet of Things](https://bernardmarr.com/books/){target="_blank"}

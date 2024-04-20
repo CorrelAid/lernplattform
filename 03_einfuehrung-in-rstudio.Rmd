@@ -29,14 +29,17 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 
 ![*Video: Einführung in RStudio (30min)*](https://youtu.be/sgczH-e0Cxg)
 
-### **Kernaussagen** 
-#### R
+# Kernaussagen
+
+## R
+
 - R ist eine **freie, statistische Programmiersprache**
 - **Groß- und Kleinschreibung** muss in R unbedingt beachtet werden
 - Nicht jede **Funktionalität** müsst Ihr in R selbst schreiben: Über **`install.packages()`** und **`library()`** könnt Ihr Funktionalitäten, die andere Coder:innen für Euch bereitstellen, nutzen - das spart viel Zeit! Es ist empfehlenswert, install.packages("") in Euren Dateien **auszukommentieren** oder eine dezidierte Datei mit den Installationsbefehlen anzulegen
 - Innerhalb von Code muss auch **Text auskommentiert werden** (z.B. über das Einfügen eines Hashtags "#" zu Beginn des Textes), in einem RMD wird über "#" allerdings formatiert
 
-#### RStudio
+## RStudio
+
 - RStudio ist auf R spezialisierte **integrierte Entwicklungsumgebung** (eng. Integrated Development Environment oder IDE), in der Ihr Code schreiben, ausführen, auf Dokumentation und Dateien zugreift, Eure Arbeit mit Anderen teilen könnt uvm.
 - Im **Code Editor** (zu dt. Codebearbeitungsprogramm) wird programmiert - den Code führt Ihr mit "CMD + ENTER" für Mac und "CTRL + ENTER" für Windows aus
 - In der **Console** erhaltet Ihr die Ergebnisse Eurer Programmierung
@@ -47,18 +50,21 @@ Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektione
 - In englischer Sprache ist zudem ein **Schummelblatt** zur [IDE RStudio](https://correlaid.org/material/CheatSheet_rstudio.pdf){target="_blank"} verfügbar
 - Mit dem **Tabstopp** (Pfeil nach rechts über Shift) könnt Ihr die **Vorschläge**, die Euch RStudio für Euren Code macht, übernehmen
 
-#### R Markdown (Rmd)
+## R Markdown (Rmd)
+
 - Ein **Code Chunk** kann in RStudio in RMDs mit \```{r} Dein Code hier\```, über das Menü "Code -> Insert Chunk" oder den Kurzbefehlen "CMD + CTRL + i" für Mac und "CTRL + Alt + i" für Windows) hinzugefügt werden
 - Mit **Knit** "strickt" Ihr aus einem RMD ein Outputdokument, während Ihr mit **Run** Code interpretieren lasst 
 
-#### R Projekt (RProj)
+## R Projekt (RProj)
+
 - Um nervige Dateipfad-Verwirrungen zu vermeiden und eine Art "Container" für Eure R Projekte anzulegen, erstellt Ihr am besten immer ein **R Projekt**
 - Im Ordner mit dem R Projekt legt Ihr am besten immer einen **Ordner** für Eure Daten und einen Ordner für Euren Code an und falls nötig noch für Grafiken o.ä.
 - Mit dem `here`-Package und der Funktion `here` (ja, im Code ergibt sich damit ein `here::here()`), könnt Ihr Euer Arbeitsverzeichnis dann auf den Ordner setzen, in dem die .Rproj-Datei gespeichert ist und relativ dazu auf alle anderen Dateien zugreifen (z.B. *here::here('data/plastics.csv')*)
 
 Alle Informationen zu dem Datensatz, mit dem wir in diesem Kurs arbeiten, findet Ihr [hier](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"}.
 
-### **Quiz**
+# Quiz
+
 ```{r quiz_rstudio}
 quiz(
   caption = NULL,
@@ -114,7 +120,8 @@ quiz(
 *Jetzt geht es so richtig los! Bitte denke daran: am Anfang passieren immer viele Fehler und Du wirst vermutlich auch nicht alles auf Anhieb verstehen, das ist völlig normal. Lass Dich davon nicht abschrecken, schreibe Dir einfach Deine Fragen auf und bringe sie zur nächsten Livesession am Freitag mit!*
 </p>
 
-### **Grundlagen: Syntax in R**
+# Grundlagen: Syntax in R
+
 Einen Überblick über die Grundlagen in R erhaltet Ihr in diesem [**Schummelblatt**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/03_cheatsheet-base-r.pdf){target="_blank"}. In diesem Abschnitt stellen wir Euch die wichtigsten Grundlagen für die kommenden Wochen vor! 
 
 Die simpelste Version von R ist einfach die Verwendung als Taschenrechner. Führt mal folgenden Code-Block aus:
@@ -183,7 +190,8 @@ meine_liste[1]
 
 Listen sind die Grundlage von Datensätzen, die schauen wir uns jetzt in der interaktiven Übung an!
 
-### **Interaktive Übung**
+# Interaktive Übung
+
 *Hinweis: In den folgenden Übungslektionen gibt es einen Teil, den Ihr innerhalb der Lernplattform erledigen könnt. Den anderen Teil solltet Ihr lokal auf Eurem Rechner ausführen, um Euch an die IDE RStudio zu gewöhnen.*
 
 Wenn Ihr mit Eurem Datenprojekt startet, solltet Ihr Euch überlegen, welche **Funktionalitäten** Ihr braucht, um Daten zu importieren, zu bereinigen und zu analysieren. Die benötigten Funktionalitäten müsst Ihr nicht alle selbst programmieren, dafür gibt es sogenannte **Packages** (zu dt. Pakete) - eine ziemlich gute Sache. Eure Arbeit beginnt deshalb in der Regel mit der **Installation und dem Laden** dieser Funktionalitäten. Dazu nutzen wir die Funktionen **`install.packages("package")`** und **`library(package)`**. Die Nutzung von Anführungszeichen ist nur bei der Installation (also für install.packages()) relevant. Bitte denkt daran, "install.packages()" auszukommentieren (also ein # vor die Zeile zu packen), wenn die Installation abgeschlossen ist - sonst wird die Installation bei jedem Ausführen des Skripts wieder durchgeführt. In der Zukunft könnt Ihr auch eine eigene Datei für Installationsskripte einrichten - damit könnt Ihr Euch aber noch zu einem späteren Zeitpunkt beschäftigen.
@@ -294,7 +302,7 @@ subset(data_raw, country == "Argentina" & year == 2020)
 *Uff geschafft! Wenn Du direkt noch mehr zu R lernen möchtest, dann schau Dir gerne den Exkurs zu Kontrollstrukturen an. Gerne kannst Du aber auch direkt weiter zur Übung springen!*
 </p>
 
-### **Exkurs: Kontrollstrukturen**
+# Exkurs: Kontrollstrukturen
 
 In der Programmierung gibt es verschiedene Kontrollstrukturen: Nur *wenn* die Note eines Teilnehmenden besser als eine 2 ist, *dann* soll R den Text 'Gut gemacht' ausgeben? Dann braucht Ihr eine **Wenn-Dann-Bedingung** (*engl. If-Then-Statement*). Hier die Syntax und ein kleines Beispiel - Welcher Text (*Operation innerhalb der geschwungenen Klammern*) wird hier ausgegeben?
 
@@ -353,14 +361,15 @@ while (i <= length(spenderinnenliste)) {
 Eine letzte Anmerkung, bevor es losgeht: Es ist ganz normal, dass Euer Code mal **Fehler** wirft - auch uns passiert das. In der Console (und in RMDs unter dem Code Chunk) wird Euch dann angezeigt, **wo der Fehler auftritt und um welche Art von Fehler es sich handelt** (sog. Fehlermeldung). Beliebte Fehlerquellen sind **Syntaxfehler** (wenn Ihr beispielsweise Klammern nicht schließt, die falsche Klammerart nutzt oder Argumente nicht durch Kommata trennt) oder die falsche Verwendung von Argumenten in Funktionen. Auch das Schreiben von Kommentaren in Code Chunks ist nur mit "#" zu Beginn des Textes möglich. Wenn Ihr mal gar nicht weiter wisst, kopiert einfach die Fehlermeldung aus der Console und begebt Euch damit auf eine Googlesuche. Auf [**Stack Overflow**](https://stackoverflow.com/){target="_blank"} und in der [**R-Online Community**](https://community.rstudio.com/){target="_blank"} finden sich für (fast) alle Herausforderungen Antworten und Hilfestellungen.
 
 
-### **Und jetzt Ihr**
+# Und jetzt Ihr
 Legt nun ein neues R Projekt (wie im Video) und eine neue R Markdown-Datei auf Eurem Rechner an und...
 
 1. Installiert und ladet das Package "rio".
 2. Lest den Datensatz über den Hyperlink oder lokal ein. Ihr findet ihn unter diesem [Link]('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv'){target="_blank"} und könnt ihn dort auch herunterladen, wenn Ihr Euch für die zweite Variante entscheidet.
 3. Nutzt die vorgestellten Funktionen, um den Datensatz zu erkunden. Dafür könnt Ihr die Code Chunks aus der Lernplattform einfach in RStudio kopieren und sie dort ausführen.
 
-### **Zusätzliche Ressourcen**
+# Zusätzliche Ressourcen
+
 - Schummelblatt zu den [Grundlagen in R](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/03_cheatsheet-base-r.pdf){target="_blank"} (dt.)
 - Schummelblatt zur [IDE RStudio](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/03_cheatsheet-rstudio.pdf){target="_blank"} (engl.)
 - [Introduction to Programming in R (engl.)](https://app.dataquest.io/course/intro-to-r-rewrite){target="_blank"} von Dataquest

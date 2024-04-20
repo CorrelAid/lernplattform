@@ -33,14 +33,17 @@ community <- get_community()
 
 ![*Video: Daten mit R verstehen (30min)*](https://youtu.be/nEbiJ4EZ3OE)
 
-### **Kernaussagen**
-#### Grundlagen der Datenanalyse
+# Kernaussagen
+
+## Grundlagen der Datenanalyse
+
 - Konzeptionell sollten wir uns von **Fragen zur Exploration, möglichen Plausibilitätschecks und Fallentscheidungen** leiten lassen, die während der Analyse beantwortet werden
 - Bei einer Datenanalyse nutzen wir zunächst niedrigschwellige **tabellarische Formate** wie `summary()` und `str()`, um uns einen Überblick über die Daten zu verschaffen
 - Danach helfen uns **einfache Datenvisualisierungen**, die Ausprägungen von Variablen zu untersuchen (und Extremwerte zu identifizieren)
 - Um weitere Operationen durchführen zu können, berechnen wir im Anschluss **statistische Kennzahlen**, Lage- und Verteilungsparameter, die für uns spannende Informationen enthalten und die Grundlage für weitere Analysen bilden
 
-#### Visuelle Exploration
+## Visuelle Exploration
+
 - **`ggplot2`** ist ein Paket für vielseitige **Graphiken** in R
 - Die wichtigsten Schichten (Bestandteile) eines ggplots sind: 
     1. `data` - der **Datensatz**
@@ -51,7 +54,8 @@ community <- get_community()
 
 Im Kapitel "Datenvisualisierung" lernt Ihr, wie ihr Graphen in R erstellen könnt. 
 
-#### Statistische Kennzahlen
+## Statistische Kennzahlen
+
 - Mittels statistischer Kennzahlen lassen sich **Datensätze zusammenfassen** und Fragen an den Datensatz zu beantworten
 - Besonders oft werden folgende Kennzahlen genutzt: 
     - Lagemaße:
@@ -76,6 +80,7 @@ Im Kapitel "Datenvisualisierung" lernt Ihr, wie ihr Graphen in R erstellen könn
 Im Kapitel "Datenbereinigung" lernt Ihr diese Funktionen des tidyverse in R noch ausführlicher kennen. 
 
 Für diese Lektion benötigt Ihr also zwei Packages: `dplyr`und `ggplot2` (beide Teil des `tidyverse`)
+
 ```{r pakete_ersteanalysen, exercise = TRUE}
 # install.packages("dplyr")
 # install.packages("ggplot2")
@@ -83,7 +88,8 @@ library(dplyr)
 library(ggplot2)
 ```
 
-### **Quiz**
+# Quiz
+
 ```{r quiz_ersteanalyseninr}
 quiz(
   caption = NULL,
@@ -139,9 +145,10 @@ quiz(
 ```
 
 
-### **Interaktive Übung**
+# Interaktive Übung
 
-#### Fragen
+## Fragen
+
 Am Anfang jeder Datenanalyse steht etwas, dass zunächst gar nichts mit Daten zu tun haben muss: Fragen. Da Daten letztlich Informationen formalisieren, nutzen wir die Ergebnisse einer Datenanalyse in der Regel für den **Erkenntnisgewinn**. Möchten wir Daten erheben oder liegen uns diese bereits vor vor, hilft es, sich auf bestimmte Fragestellungen zu fokussieren, die sich aus strategischen Überlegungen ergeben.
 
 Der [Datensatz](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-26){target="_blank"} von **"Break Free From Plastic"** stammt aus den Jahren 2019 und 2020. Da es in dieser Einheit darum geht, in den **Analyse-Spirit** zu kommen und R als Analysetool kennenzulernen, haben wir den Datensatz "Break Free from Plastic" bereits **bereinigt** und in **zwei Datensätze** aufgeteilt: der Community Datensatz (als `community` hinterlegt) enthält alle Variablen, welche für Fragestellungen rund um die Community-Perspektive nützlich sind und der Audit Datensatz (als `audit` hinterlegt) umfasst jene Variablen, die für Fragen zur Audit-Perspektive nützlich sind. Da 2020 auch für die Initiative ein besonderes Jahr war, konzentrieren wir uns auf 2019.
@@ -152,7 +159,8 @@ Versetzen wir uns die Rolle der Organisator:innen. Sie fragen sich bestimmt, wie
   2. Wie viel Plastik wurde durchschnittlich je Kontinent gesammelt? <br>
   3. Welche Faktoren beeinflussen möglicherweise diese Unterschiede? <br>
 
-#### Datenstruktur
+## Datenstruktur
+
 Um diese Fragen zu beantworten, schauen wir nun auf die Informationen, die uns vorliegen: Wir analysieren die dazu vorliegenden Daten und interpretieren die Ergebnisse.
 
 Mit der Funktion **`dplyr::glimpse()`** erhaltet Ihr einen Überblick über die Struktur des Datensatzes (Anzahl der Beobachtungen, Anzahl der Variablen, Name und Datentyp der Variablen). Der `community` Datensatz enthält geographische und zeitliche Variablen sowie Daten zur gesammelten Plastikmenge, Veranstaltungen und Freiwilligen. Eine Zeile (auch: Beobachtung) entspricht einem Land.
@@ -196,7 +204,8 @@ Wir sehen, dass die Variablen, die Spalten in unserem Datensatz, unterschiedlich
 Bei der Interpretation der Daten müssen wir zudem die **Aggregationsebene** betrachten. In der Datenwissenschaft verweist man auf die **Granularität der Daten**: Je aggregierter Daten vorliegen, desto schwerer wird es Zusammenhänge korrekt zu bestimmen. Idealerweise wäre in unserem Datensatz ein Event - und nicht ein Land - eine Beobachtung ("Zeile"). Wir können in unserem Datensatz also lediglich zwischen den Ländern vergleichen und müssen beachten, warum diese Schwankungen existieren. So weichen auch die Anzahl durchgeführter Events und die Anzahl involvierter Freiwilliger stark voneinander ab. Wie genau diese Unterschiede zu werten sind, ob beide Zahlen von anderen Variablen (sog. Störfaktoren, engl. *confounding variables*) beeinflusst werden und ob eine Bewertung auf Basis der Daten möglich ist, müssen wir noch herausfinden. Ein Schlagwort welches häuftig in Verbindung mit der Aggregation von Daten fällt, ist der **"Ökologische Fehlschluss**. Dieser beschreibt wie auf der Basis von Aggregatdaten unzulässigerweise auf die Individualebene geschlossen wird. Mehr dazu findet ihr natürlich auf [Wikipedia](https://de.wikipedia.org/wiki/%C3%96kologischer_Fehlschluss).
 
 
-#### Erster Überblick
+## Erster Überblick
+
 Nun kennen wir den Grundaufbau des Datensatzes schon und möchten die Variablen, die für unsere Fragestellungen interessant sind besser verstehen. Dazu geben wir uns mit `summary()` **erste (statistische) Eigenschaften** der Variablen aus.
 
 ```{r summary_community, exercise = TRUE}
@@ -244,7 +253,8 @@ sum(community$n_volunteers)
 ```
 
 
-#### Datenvisualisierung
+## Datenvisualisierung
+
 Erstellen wir zur Betrachtung der Kontinente nun ein Punktediagramm (*engl. Scatterplot*), genauer: Einen Beeswarmplot (*dt. Bienenschwarmdiagramm*). Diese Visualisierung stellt sowohl die Verteilung als auch die Häufigkeit von Beobachtungen über die Verteilung dar. Nehmt Euch einen Moment und beschreibt die Graphik in Euren Worten. Wo würdet Ihr den Mittelwert verorten? Markiert ihn gedanklich auf der Visualisierung. <br>
 
 ```{r geom_point_n_pieces_bericht, exercise = TRUE}
@@ -338,7 +348,8 @@ quiz(
 )
 ```
 
-#### Häufige Fehler bei der Betrachtung von statistischen Kennzahlen
+## Häufige Fehler bei der Betrachtung von statistischen Kennzahlen
+
 Obwohl er das wohl am häufigsten genutzte statistische Maß ist: Das arithmetische Mittel (auch: Mittelwert) darf **nur für metrisch skalierte Variablen** berechnet werden (!) und muss aufgrund der **fehlenden Robustheit gegenüber Ausreißern** oft genauer betrachtet werden, um aus den Daten keine falschen Schlüsse zu ziehen. Klarer wird das, wenn der Mittelwert visualisiert oder mit anderen statistischen Kennzahlen betrachtet wird: Wie stark streuen die beobachteten Werte um den Mittelwert, wie hoch sind Standardabweichung und Varianz? Gibt es Ausreißer? Ihr solltet in Euren Analysen also verschiedene statistische Kennzahlen miteinander vergleichen. Nutzen wir nun das Power-Duo **`dplyr::group_by()` und `dplyr::summarize()`**, um mehr statistische Kennzahlen pro Kontinent zu berechnen.
 
 ```{r ueberblick_statistische_kennzahlen, exercise = TRUE}
@@ -386,7 +397,8 @@ Besonders häufig wird zudem das **25%-Quantil** und das **75%-Quantil** genutzt
 
 Die **Spannbreite** ist die Differenz aus Minimum und Maximum: 100% oder schlicht "alle" beobachten Werte liegen darin. Allein hat sie nur eine geringe Aussagekraft. Allerdings könnt Ihr über das Minimum und Maximum sehr gut die Datenqualität überprüfen. Gibt es negative Beobachtungen, obwohl die Variable einen natürlichen Nullpunkt hat? Ist das Maximum ein Wert wie "99999", der eventuell auf eine Codierung hinweist? Leider schleichen sich durch mit Zahlen codierte Werte, z.B.99999 für fehlende Werte, immer wieder Fehler in Analysen ein.
 
-#### Boxplots und ihre besondere Funktionsdualität
+## Boxplots und ihre besondere Funktionsdualität
+
 **Boxplots** stellen die Verteilung von Variablen inklusive wichtiger statistischer Eigenschaften dar. Sie fassen die **fünf Punkte der Verteilung (Minimum, 25%-Quartil, Median, 75%-Quartil, Maximum)** zusammen und geben damit einen sehr guten Überblick über Daten. Deshalb fügen wir sie nun zum Graphen hinzu: 
 
 ```{r boxplot_plastik, exercise = TRUE}
@@ -453,7 +465,8 @@ quiz(
 Fassen wir kurz zusammen: Wir wissen nun, dass im Datensatz einige Ausreißer enthalten sind. Daher sollten wir in der statistischen Zusammenfassung den Median und nicht das arithmetische Mittel nutzen. Außerdem empfiehlt sich bei Achsenabschnitten in graphischen Darstellungen die extremen Werte auszuklammern, um die Graphiken leserlich zu halten. 
 
 
-#### Beziehungen zwischen Variablen
+## Beziehungen zwischen Variablen
+
 Bisher haben wir uns vor allem der **univariaten** (= eine Variable) Verteilung von Plastikstücken gewidmet. Nun möchten wir die Daten weiter nutzen, um **bivariat** (= zwei Variablen) herauszuarbeiten: Welche Faktoren beeinflussen möglicherweise die Unterschiede in der Anzahl an Plastikstücken, die gesammelt wurden? Vielleicht die Zahl an Events?
 
 ```{r scatter_plot_n_events}
@@ -481,6 +494,7 @@ In diesem Scatterplot haben wir zwei Hilfslinien eingezogen, welche jeweils den 
 Der Korrelationskoeffizient, der den statistischen Zusammenhang zwischen zwei metrisch skalierten Variablen erfasst, beträgt `r cor(community$n_pieces, community$n_events)`. 
 
 **Überblick über den Korrelationskoeffizienten:**
+
 ```{r korrelation_tabelle, results='asis'}
 tabelle <- "
 
@@ -555,7 +569,8 @@ ggplot(data = community, aes(n_volunteers, n_pieces, label = country)) + # Initi
 Was nehmen wir aus dieser bivariaten Analyse mit? Die Anzahl an Events korreliert nur sehr schwach positiv mit der Anzahl gesammelter Plastikstücke. Die Anzahl der Freiwilligen korreliert stark positiv mit der Anzahl an gesammelten Plastikstücken. Für diesen Zusammenhang kann es viele Ursachen geben, die wir in unseren Daten überhaupt nicht betrachten, zum Beispiel die Bevölkerungsanzahl oder auch die Zeit, welche einzelene Freiwillige investiert haben. Welche "Störfaktoren" fallen Euch noch ein?
 
 
-### **Und jetzt Ihr**
+# Und jetzt Ihr
+
 Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu besprechen. Ergänzt unseren Input gerne zudem mit Euren **Ideen, Fragen, Anregungen oder Kommentaren**. Es ist nicht schlimm, falls diese Woche noch gar nichts (komplexes) klappt, da wir das Gelernte in den nächsten Wochen wiederholen und vertiefen werden.
 
 1. Beantwortet anhand der präsentierten Datenanalyse die vorgestellten **Fragen**: <br>
@@ -572,8 +587,8 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 
 5. Interpretiert die Graphik. Was könnt Ihr ablesen?
 
+# Zusätzliche Ressourcen
 
-### **Zusätzliche Ressourcen**
 - Die kostenlosen Kurse des [Statistischen Bundesamts](https://www.destatis.de/DE/Service/Statistik-Campus/E-Learning/eLearning-statistik.html;jsessionid=63AE25DDABD8853990FBE83F354C8911.live722?nn=206328){target="_blank"}
 - Stocker T. C. und Steinke I. (2017): Statistik – Grundlagen und Methodik [verfügbar z.B. hier](https://www.beck-shop.de/stocker-steinke-de-gruyter-studium-statistik/product/32926361){target="_blank"}
 - [R for Data Science (engl.)](https://r4ds.had.co.nz/){target="_blank"}

@@ -1,5 +1,5 @@
 ---
-title: "R Lernen: Inhaltsverzeichnis"
+title: "Datenabfragen in SQL (Exkurs)"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
@@ -31,9 +31,8 @@ source("R/setup/functions.R")
 con <- get_connection()
 ```
 
-## **Datenabfragen in SQL (Exkurs)**
+# Interaktive Übung
 
-### **Interaktive Übung**
 Daten, die uns in unserem Alltag als Datenanalyst:innen und Datenwissenschaftler:innen begegnen, sind oft in **Datenbanken** gespeichert. Datenbanken sind **logisch modellierte, strukturierte Datenspeicher**, mit denen mit Hilfe von **Datenbankmanagementsystemen (kurz DBMS)**, also Softwaretools, interagiert werden kann. Diese Interaktion funktioniert für jedes Datenbankmanagementsystem anders und ist **nicht trivial**. Während in einigen Fällen ein manueller Export als XLSX-, CSV- oder JSON-Datei möglich ist, kann es in einigen Fällen, auch auf Grund der Größe der Datensätze, nicht praktikabel sein manuell Daten zu exportieren. Daneben ist das natürlich auch IT im Schneckentempo statt in Lichtgeschwindigkeit. Idealerweise sind Eure Daten nämlich **live** mit Euren Analysetools verknüpft, sodass sie beständig aktuell sind. Die populärsten Datenbankmanagementsysteme findet Ihr in dieser Übersicht einer Umfrage unter Entwickler:innen von [Stack Overflow](https://insights.stackoverflow.com/survey/2020#technology-databases-all-respondents4){target="_blank}.
 
 <center>
@@ -103,6 +102,7 @@ dbGetQuery(con, "SELECT *
                  FROM audits
                  WHERE parent_company = 'Nice And Lovely'")
 ```
+
 Die wichtigsten **Befehle zur Datenabfrage in SQL** sind:
 
 - `SELECT`: **Auswahl** aller **Spalten** (mit *) oder definierter Spalten
@@ -111,6 +111,7 @@ Die wichtigsten **Befehle zur Datenabfrage in SQL** sind:
 
 
 Versucht hier die Datentabelle "events" für Australien zu filtern.
+
 ```{r exercise_sql, exercise = TRUE}
 # Euer Code hier
 ```
@@ -126,6 +127,7 @@ grade_this_code()
 ```
 
 Im letzten Schritt **schließen** wir **immer** die **Verbindung** zu der Datenbank mit dem Befehl `dbDisconnect()`.
+
 ```{r dbclose_exercise, exercise = TRUE}
 # Schließen der DB-Verbindung
 dbDisconnect(con)

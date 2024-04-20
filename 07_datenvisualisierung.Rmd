@@ -1,5 +1,5 @@
 ---
-title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+title: "Datenvisualisierung"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
@@ -41,11 +41,10 @@ karten_daten <- get_karten_daten(
 )
 ```
 
-## **Datenvisualisierung**
-
 ![*Video: Datenvisualisierung (15min)*](https://youtu.be/LtjKZjCPijo)
 
-### **Kernaussagen**
+# Kernaussagen
+
 - Visualisierungen **vereinfachen und beschleunigen** die Vermittlung von (komplexen) Inhalten, weil Menschen visuelle Zusammenhänge oft schneller begreifen können als Text
 - Sie erlauben uns in Daten **Muster** zu erkennen (z.B. zur Verteilung von und zu Beziehungen zwischen Variablen)
 - Auch **Fehler und Ausreißer** in den Daten können mit ihnen schnell identifiziert werden
@@ -58,7 +57,8 @@ karten_daten <- get_karten_daten(
 - Die Webseite [From-Data-to-Viz](https://www.data-to-viz.com){target="_blank"} bietet einen hervorragenden **Ausgangspunkt**, um sich für eine Visualisierung zu entscheiden und liefert auch gleichzeitig Code-Schnipsel zur praktischen Implementierung
 - Wir schauen uns in dieser Lektion gemeinsam die R-Packages `ggplot2` und `leaflet` an
 
-### **Quiz**
+# Quiz
+
 ```{r 10visualisierung}
 quiz(
   caption = NULL,
@@ -122,7 +122,7 @@ quiz(
 )
 ```
 
-### **Interaktive Übung**
+# Interaktive Übung
 
 <right>
 ![*ggplot2](https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png){#id .class width=20% height=60%}
@@ -132,7 +132,8 @@ quiz(
 
 In dieser Sitzung lernt Ihr zunächst verschiedene Visualisierungsformen- und Möglichkeiten mit `ggplot2` kennen. Ziel ist es, dass Ihr hinterher die Visualisierungen in unserem Report und in unserer Shiny Web App erstellen könnt [(zur App)](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"}. 
 
-#### Wiederholung: `ggplot2`-Basics
+## Wiederholung: `ggplot2`-Basics
+
 Erinnert Ihr Euch noch an die [fünfte Sitzung](https://correlaid.shinyapps.io/lernplattform/#section-daten-verstehen-mit-r)?
 
 - `ggplot2` folgt einer **Lagen- bzw. Schichtlogik**, d.h. wir bauen unsere Visualisierung nach und nach auf
@@ -172,8 +173,10 @@ library(ggplot2)
 Alle wichtigen `ggplot2` Befehle findet Ihr in diesem [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/07_cheatsheet-ggplot2.pdf){target="_blank"}.
 
 
-#### Inspiration suchen
+## Inspiration suchen
+
 Wir orientieren uns an einer Euch bereits bekannten Graphik:
+
 ```{r boxplot_plastik_viz, echo = FALSE}
 # Erstellung eines Boxplots mit Punktewolke zur Anzahl gesammelter Plastikstücke pro Kontinent
 ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + # Initialisierung des ggplots mit Variablen
@@ -192,7 +195,8 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   scale_fill_manual(values = c("#C9DFE6", "#94C0CD", "#4E97AC", "#366978", "#2E5A67")) # Anwendung der BFFP-Farben
 ```
 
-#### Initialisierung
+## Initialisierung
+
 Im ersten Schritt bauen wir diese Graphik Schritt-für-Schritt nach. Wir beginnen mit dem Grundgerüst einer `ggplot`-Graphik: dem **Erstellen eines `ggplot`-Objekts und der Definition von ästhetischen Attributen**. Das sind die Variablen bzw. Spalten, die auf der x-und y-Achse dargestellt werden sollen. Was produziert dieser Code? Was passiert, wenn Ihr die Variablen vertauscht?
 
 ```{r grahik1, exercise=TRUE}
@@ -200,7 +204,8 @@ Im ersten Schritt bauen wir diese Graphik Schritt-für-Schritt nach. Wir beginne
 ggplot2::ggplot(data = community, aes(x = continent, y = n_volunteers)) # Initialisierung des Plots mit Variablen
 ```
 
-#### Einfügen der Visualisierungsform
+## Einfügen der Visualisierungsform
+
 `ggplot2` bietet eine fantastische Vielzahl an Visualisierungsmöglichkeiten! Die bekanntesten (und meist genutzten) sind:
 
 - `geom_point()`: eine Punktewolke
@@ -237,7 +242,8 @@ ggplot2::ggplot(data = community, aes(x = continent, y = n_volunteers)) +
 gradethis::grade_this_code()
 ```
 
-#### Layoutoptionen
+## Layoutoptionen
+
 Mit **Layoutoptionen** schaffen wir mehr Übersichtlichkeit. Mit **`alpha = Wert`** ( zwischen 0 und 1) werden die Punkte etwas transparenter, mit **`size= Wert`** (Wert zwischen 0 und +∞) werden die Punkte etwas größer und so auch einzeln besser sichtbar.
 
 ```{r geom-point2,exercise=TRUE}
@@ -247,7 +253,8 @@ ggplot(data = community, aes(x = continent, y = n_pieces)) + # Initialisierung d
   geom_boxplot(alpha = 0.6) # Hinzufügen des Boxplots
 ```
 
-#### Achsenbegrenzungen
+## Achsenbegrenzungen
+
 Auch in Visualisierungen können wir **Extremwerte** exkludieren. Der Ausschluss von Werten sollte immer gut durchdacht und begründet sein. Es gibt hier leider oft keine "Blaupause", der man folgen kann, sondern es handelt sich oft um Einzelfallentscheidungen. Eine Möglichkeit, um zum Beispiel einen logisch sinnvoll Werterahmen für das Koordinatensystem zu wählen, bilden statistische Kennzahlen wie Mittelwert und Median (auch multipliziert mit einem Faktor und der Standardabweichung), Varianz oder dem Interquartilsabstand. So bleiben Eure Achsen reaktiv, wenn sich die zugrundeliegenden Daten ändern. <br>
 *Hinweis: Nicht immer ist der Ausschluss von Extremwerten sinnvoll. Gerade bei der visuellen Exploration der Daten ist es sinnvoll sie zunächst zu inkludieren, da man sich dann bereits Gedanken über die Auswirkungen auf statistische Kennzahlen und Teststatistik machen kann.*
 
@@ -259,7 +266,8 @@ ggplot(data = community, aes(x = continent, y = n_pieces)) + # Initialisierung d
   coord_cartesian(ylim = c(0, median(community$n_pieces) + 2 * IQR(community$n_pieces))) # Festlegung der Achsenlänge der y-Achse abhängig von Median und IQR
 ```
 
-#### Farben
+## Farben
+
 `ggplot2` erlaubt es Euch Farben für Eure Datenpunkte festzulegen. Das kann sehr sinnvoll sein, wenn Ihr **zusätzliche Informationen** übermitteln möchtet, aber auch einfach eine ästhetische Entscheidung sein. 
 
 Die Argumente dafür heißen `color` und `fill`:
@@ -319,7 +327,8 @@ Tolle, **vordefinierte Farbpaletten** findet Ihr hier (hinter den Paketnamen ver
 - oder aber auch [colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3){target="_blank"}, mit dem Ihr nach verschiedenen Kriterien (z.B. kopier- oder farbenblindfreundlich) Eure eigenen Farbpaletten zusammenstellen könnt
 
 
-#### Anmerkungen
+## Anmerkungen
+
 **Anmerkungen** sind ganz wesentliche Bestandteile einer Graphik. Neben Titel, Achsenbeschriftung wäre hier auch ein Hinweis auf die Datenquelle sowie die nichtdargestellte Beobachtung sinnvoll. Dies lässt sich alles über **`labs()`** in die Graphik einfügen. Mit **"`\n`"** könnt Ihr händisch Zeilenumbrüche einfügen und mit `glue::glue()` einzelne Textbausteine "zusammenkleben". Wir blenden zudem die **Legende** aus.
 
 ```{r plot_beschriftung, exercise = TRUE}
@@ -339,7 +348,8 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   theme(legend.position = "none") # Ausblenden der Legende
 ```
 
-#### Themes
+## Themes
+
 Mit **`theme_()`** geben wir unserem Plot-Layout den letzten Schliff: Hier entscheiden wir uns für `theme_minimal()`. Da wir auch hier wieder in einer Lagenlogik vorgehen, setzen wir erst das Thema `theme_minimal()` fest, um dann in einem zweiten Schritt die Standardeinstellungen dieses Themas zu überschreiben und mit `theme()` die Legende auszublenden:
 
 ```{r plot_theme, exercise=TRUE}
@@ -359,6 +369,7 @@ ggplot(data = community, aes(x = continent, y = n_pieces, fill = continent)) + #
   theme_minimal() + # Festlegung des Layout-Designs
   theme(legend.position = "none") # Ausblenden der Legende
 ```
+
 Alle anderen Themes von `ggplot2` findet Ihr unter diesem [Link](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}. Man kann dieses Repertoire durch weitere Packages wie beispielweise `ggthemes` ergänzen und so auch eine Visualisierung im Economist-Stil erzeugen (für mehr Optionen klickt [hier](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/){target="_blank"})!
 
 Und tadaa -- das ist der Plot, den wir erstellen wollten! Herzlichen Glückwunsch - das sieht klasse aus! `ggplot2` ist ein sehr mächtiges Tool mit **vielen Stellschrauben**. Sobald Ihr die Grundlogik des Aufbaus verstanden habt, ist es eigentlich ganz leicht Codebausteine wiederzuverwenden. Probiert hier doch mal dieselbe Graphik für die Anzahl an Freiwilligen zu erstellen:
@@ -388,7 +399,8 @@ ggplot(data = community, aes(x = continent, y = n_volunteers, fill = continent))
 gradethis::grade_this_code()
 ```
 
-#### Facets
+## Facets
+
 Wie Ihr auf dem [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/07_cheatsheet-ggplot2.pdf){target="_blank"} seht, bietet `ggplot2` noch viel mehr! Mit dem Befehl `facet_wrap()` sprecht Ihr über eine Tilde (`~`) die Spalte an, über die Ihr gruppieren möchtet. Bei uns ist das `continent`, d.h. unser Befehl sieht so aus: `facet_wrap(~continent)`. Diesen  Befehl könnt Ihr wie gehabt durch ein `+` verknüpfen.
 
 Im nachfolgenden Code Chunk könnt Ihr es selbst ausprobieren. Wir haben hier Histogramme, also die Darstellungen der Verteilung von Freiwilligen gewählt. Es wäre hier sehr praktisch, wenn man es nach Kontinent darstellen könnte. Dabei hilft und `facet_wrap()` mit dem Ihr die Anzahl der Freiwilligen nach Kontinent (`continent`) gruppieren könnt. 
@@ -409,7 +421,8 @@ ggplot2::ggplot(data = community, aes(x = n_volunteers)) +
 gradethis::grade_this_code()
 ```
 
-#### Visualisierungen speichern
+## Visualisierungen speichern
+
 Im letzten Schritt lernen wir, wie Ihr Eure erstellen Graphen abspeichert! Dazu liefert das Package `ggplot2` eine Funktion, die es ganz leicht macht: `ggplot2::ggsave`.
 
 Ihr ruft dazu `ggplot2::ggsave` auf und definiert den Dateinamen (`filename`). Ihr könnt beim Dateinamen auch den Pfad mit angeben. Solltet Ihr keinen Pfad angeben wird die Datei automatisch auf der Ebene gespeichert, auf der Eure `.R`-Datei liegt. Ihr habt außerdem die Möglichkeit explizit anzugeben, welche Visualisierung Ihr speichern möchtet (standardmäßig sollte das auch die Praxis sein, da man so mögliche Fehler verhindert. Als Standardeinstellung speichert R nämlich die letzte Visualisierung, die Ihr generiert habt.)
@@ -436,14 +449,15 @@ ggplot2::ggsave(filename = "euer_pfad/euer_plot.png") # Mit Pfad
 
 Dieser Befehl erlaubt es Euch, statische Visualisierungen zu speichern. Für interaktive Visualisierungen, wie beispielsweise die durch `leaflet` oder `echarts4r` erstellten Karten, bieten sich andere Formate wie `.html` (über Rmds) oder aber auch eine ShinyApp an -- mehr dazu erfahrt Ihr am Ende des Kurses!
 
-### **Exkurs**: Für das schnelle, visuelle Ausprobieren - `esquisse`
+# Exkurs: Für das schnelle, visuelle Ausprobieren - `esquisse`
+
 Ein Grundverständnis für die Logik von `ggplot2` ist immer sinnvoll - aber was, wenn ihr mal "schnell" etwas ausprobieren wollt und es in `ggplot2` einfach nicht klappt? Dann gibt es `esquisse`! `esquisse` erlaubt es euch, direkt einen Datensatz anzusprechen und per Klick die Darstellungsmöglichkeiten auszuwählen. Das Schöne an `esquisse` ist, dass man den `ggplot2` Code dann auch direkt kopieren kann und in das R-Skript einfügen kann - so geht nichts verloren und man kann alles replizieren. Wie das funktioniert sehr Ihr hier im Clip. Dort zeige ich Euch, wie man die Daten lädt, einzelne Variablen auswählt, den Plot-Typ dann bestimmt und letztendlich den `ggplot2`-Code in Euer R-Skript kopiert.
 
 <center>
 ![*GIF zur Erklärung von esquisse*](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/07_datenvisualisierung/esquisse.gif?raw=true){#id .class width=70% height=70%}
 </center>
 
-### **Exkurs**: Karten mit `leaflet`
+# Exkurs: Karten mit `leaflet`
 
 > Um die Ergebnisse des Codes sehen zu können, müsst Ihr den Code in Eurem lokalen RStudio/R ausführen. 
 
@@ -513,12 +527,14 @@ Neben `ggplot2` und `leaflet` gibt es noch ein drittes R-Package, das es euch er
 
 Ähnlich wie `leaflet` baut es auf einer JavaScript-Bibliothek auf und unterliegt in seiner Programmierlogik wie `ggplot2` und `leaflet` einer Schichtlogik und funktioniert auch über die Pipe `%>%`, die Ihr aus dem `tidyverse` und auch `leaflet` kennt. Die Visualisierungen sind hier auch interaktiv, es gibt z.B. Tooltips (zusätzliche Informationen), die angezeigt werden, wenn Betrachter:innen mit der Maus über die Visualisierung fahren.
 
-### **Und jetzt Ihr** (diese Woche optional)
+# Und jetzt Ihr (diese Woche optional)
+
 Diesmal werden wir Euch kein Rmd vorgeben - es ist Zeit zu testen, was Ihr gelernt habt! Generiert aus den **Top10-Herstellern**, die wir im letzten Kapitel aus dem Datensatz gefiltert haben, ein **Balkendiagramm**. In unserer [Beispielapplikation](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} könnt Ihr die Visualisierung live sehen und nachbauen. Als Layoutoptionen haben wir die Farbe `#4E97AC` und `theme_minimal()` genutzt. Experimentiert gerne mit weiteren Gestaltungsoptionen. Wie würden wir beispielsweise Beschriftungen für die Datenpunkte hinzufügen?
 
 *Tipp: Nutzt die Infrastruktur und recycelt Code aus den letzten Übungen. Innerhalb von `geom_bar()` müsst Ihr das Argument `stat = "identity" setzen.*
 
-### **Zusätzliche Ressourcen**
+# Zusätzliche Ressourcen
+
 - Dataquest bietet auch einen [Kurs zu Datenvisualisierungen in R](https://app.dataquest.io/course/r-data-viz){target="_blank"} an
 - [Schummelzettel zu `ggplot2`](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/07_cheatsheet-ggplot2.pdf){target="_blank"}
 - Mehr Informationen zu [`leaflet` (engl.)](https://leafletjs.com/){target="_blank"}

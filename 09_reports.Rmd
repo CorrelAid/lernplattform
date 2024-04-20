@@ -1,5 +1,5 @@
 ---
-title: "R Lernen - Der Datenkurs von und für die Zivilgesellschaft"
+title: "Reports in R Markdown"
 author: CorrelAid e.V.
 date: "`r Sys.Date()`"
 output: 
@@ -26,11 +26,9 @@ source("R/setup/tutorial-setup.R")
 params <- yaml::yaml.load_file("www/app_parameters.yml")
 ```
 
-## **Reports in R Markdown**
-
 ![*Video: Reports in RMarkdown (45min)*](https://youtu.be/VUQseeP65t8)
 
-### **Kernaussagen**
+# Kernaussagen
 
 -   R Markdown ist ein **Framework**, das es ermöglicht, **reproduzierbare Reports** mit R Code zu schreiben\
 
@@ -56,7 +54,7 @@ params <- yaml::yaml.load_file("www/app_parameters.yml")
 
 -   Daneben gibt es auch noch diesen [**Schummelzettel (dt.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-2.pdf){target="_blank"}, diesen [**Schummelzettel (engl.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-1.pdf){target="_blank"} und dieses tolle [**Nachschlagewerk (engl.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-3.pdf){target="_blank"}
 
-### **Quiz**
+# Quiz
 
 ```{r 10quiz_reports_allg}
 quiz(
@@ -84,9 +82,9 @@ quiz(
 )
 ```
 
-### **Interaktive Übung**
+# Interaktive Übung
 
-#### 1. Markdown (Inhalt)
+## 1. Markdown (Inhalt)
 
 In R Markdown Dateien steht das **md** in der Dateiendung `meine_datei.Rmd` für **Markdown.** Markdown (ohne R) ist eine einfache Möglichkeit, Text zu formatieren, der auf jedem Gerät gut aussieht. Auch unsere Lernplattform basiert auf Markdown. Alle Überschriften, Text in *italics* oder **bold**, das Einfügen von Bildern und Links funktioniert über Markdown.
 
@@ -158,7 +156,7 @@ quiz(
 
 Wenn Ihr noch ein bisschen üben wollt, wie Ihr Text mit Hilfe von der Markdown Syntax formatieren könnt, gibt es hier ein [10-minutes interaktives Tutorial in englischer Sprache](https://commonmark.org/help/), welches wir sehr empfehlen können.
 
-#### 2. R Code Blöcke (Chunks)
+## 2. R Code Blöcke (Chunks)
 
 Code Blöcke werden in Eurem Rmd's **grau hinterlegt**. Ihr könnt sie mit
 
@@ -211,7 +209,7 @@ quiz(
 )
 ```
 
-#### 3. YAML Kopfzeile
+## 3. YAML Kopfzeile
 
 In der YAML Kopfzeile können verschiedene Meta-Parameter festgelegt werden, die für die Verarbeitung der R Markdown Datei wichtig sind.
 
@@ -254,12 +252,12 @@ quiz(
 )
 ```
 
-### **Und jetzt Ihr**
+# Und jetzt Ihr
 
 1.  **Lasst Euch inspirieren**: Besucht die [R-Studio R Markdown Galerie](https://rmarkdown.rstudio.com/gallery.html){target="_blank"} und stöbert durch einige Beispiele, die mit R Markdown erstellt wurden. Ihr könnt zwischen Webseiten, PDF-Dokumenten oder Dashboards, Slideshows uvm. wählen. Teilt Euer Lieblingsbeispiel (als Screenshot und/oder mit Link) im Slack Channel und beschreibt in 1-3 Sätzen, was Ihr an dem Report besonders gelungen findet.
 2.  Bearbeitet lokal die **Übung 09_reports-uebung.Rmd** im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 09_reports zu R Markdown, die wir für Euch vorbereitet haben.
 
-### **Zusätzliche Ressourcen**
+# Zusätzliche Ressourcen
 
 -   [**Schummelzettel (dt.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-2.pdf){target="_blank"}
 -   [**Nachschlagewerk zu RMarkdown (engl.)**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/09_cheatsheet-rmarkdown-3.pdf){target="_blank"}

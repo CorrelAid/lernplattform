@@ -36,7 +36,8 @@ Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um dami
 
 [Hier](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/05_cheatsheet-import.pdf){target="_blank"} findet Ihr zudem ein Cheat Sheet (engl.) zum Datenimport Daten aus Dateien.
 
-### **Kernaussagen**
+# Kernaussagen
+
 - Es gibt **zwei grundlegende Möglichkeiten** Daten zu importieren:
      a) aus lokal oder remote gespeicherten **Dateiformaten** (XLSX, CSV, JSON, ...)
      b) über **Datenabfragen** von Datenbanken und aus dem Internet (Abfragesprachen wie SQL oder über APIs und Web-Scraping)
@@ -57,6 +58,7 @@ Diese Woche geht es darum, wie Ihr Daten in R-Studio importieren könnt, um dami
 - Viele APIs können über einfach zu bedienende Funktionen aus **R-Packages** angesprochen werden, weshalb wir zuerst danach suchen sollten
 
 **Überblick über die verschiedenen Dateiformate:**
+
 ```{r dateiformate_tabelle, results='asis'}
 tabelle <- "
 
@@ -75,7 +77,8 @@ Textdatei     | allgemeine Textdateien                                          
 cat(tabelle)
 ```
 
-### **Quiz**
+# Quiz
+
 ```{r quiz_datenimport, echo=FALSE}
 quiz(
   caption = NULL,
@@ -143,7 +146,8 @@ quiz(
 )
 ```
 
-### **Interaktive Übung**
+# Interaktive Übung
+
 Bisher haben wir den Datensatz "Plastics" über das `rio`-Package und den Link zu einem öffentlichen Server eingelesen. Mit [`rio`](https://cran.r-project.org/web/packages/rio/vignettes/rio.html){target="_blank"} könnt Ihr fast alle Dateiformate und -strukturen automatisch importieren - in der Theorie zumindest, manchmal klappt es leider nicht. Denn wir haben uns hier um drei wichtige Stellschrauben des Datenimports herumgemogelt: <br>
 1. Die **Dateiendung** konnten wir ignorieren, da das `rio`-Package dies für uns automatisch erkennt. <br>
 2. Der **Speicherort** wird über einen Web-Link und nicht über einen sog. Path (zu dt. Pfad) auf unserem Computer definiert. <br>
@@ -161,9 +165,10 @@ Daten können sowohl über (offene) URLs (Uniform Resource Locator, zu dt. Link)
 data_processed <- rio::import(here::here("daten/bffp2019_plastics_processed.csv"))
 head(data_processed)
 ```
+
 Wie genau der Import von unterschiedlichen Dateitypen mit variierenden Dateistrukturen ohne das `rio`-Package funktioniert, schauen wir uns jetzt an.
 
-##### CSV
+### CSV
 Eine CSV-Datei (comma separated values, zu dt. Komma getrennte Werte) ist, wie der schon Name sagt, eine Datei in der die verschiedenen Datenwerte durch Kommata getrennt sind. Grundsätzlich entspricht **jede Zeile** einer **Beobachtung**. Die erste Zeile enthält allerding keine Werte, sondern die **Bezeichnungen für die entsprechende Spalte**. Sie wird **Header** genannt und wird genutzt, um auf bestimmte Spalten und Werte zuzugreifen. 
 
 Um CSV-Dateien zu lesen, benutzen wir häufig die `read.csv()`-Funktion des `readr`-Packages. Diese hat verschiedene Argumente, welche wir entsprechend unserer Dateistruktur setzen können:
@@ -179,9 +184,11 @@ data_raw <- readr::read_csv(
 )
 head(data_raw)
 ```
+
 Aber Achtung: Wer **Programme** (insb. Excel) in **deutscher Sprache** nutzt, exportiert CSV-Dateien häufig mit dem Separator ";" und dem Dezimal-Trennzeichen ",". Das führt zu Fehlern. Deutschsprachige CSV-Dateien müssen deshalb mit der Funktion `read.csv2()` importiert werden.
 
-#### XLSX
+## XLSX
+
 Mit **Google Trends Daten** könnt Ihr erforschen, wonach die Welt gerade auf der Suchmaschine Google sucht. Das **Google Search Volume** (zu dt. Google Suchvolumen) bezieht sich dabei konkret auf die Anzahl der Suchanfragen, die Nutzer:innen zu einem bestimmten Suchbegriff innerhalb eines bestimmten Zeitraums eingeben. Ein hohes Volumen deutet auf hohes Interesse an einem Thema hin.
 
 Wir haben für Euch zwei **XLSX-Dateien** erstellt, die zu den Suchbegriffen "beach clean up" (zu dt. Strand aufräumen), also Aktionen wie denen von "Break Free From Plastics", und "plastic pollution" (zu dt. Plastikverschmutzung) Daten enthalten. Das Arbeitsblatt "trends_over_time" stellt die Entwicklung des Google Search Volumes über die Zeit für die letzten fünf Jahre dar. "by_country" enthält die Entwicklung aufgeschlüsselt nach verschiedenen Ländern im Durchschnitt des letzten Jahres.
@@ -189,6 +196,7 @@ Wir haben für Euch zwei **XLSX-Dateien** erstellt, die zu den Suchbegriffen "be
 Hier laden wir mit der Funktion `readxl::read_excel()` das Arbeitsblatt (`sheet = ...`) "trends_over_time" der Excel-Datei "Plastic Pollution - Google Trends.xlsx" aus unserem Ordner "Daten" (`path = ...`), das Spaltenbezeichnungen enthält (`col_names = ...`) und in dem fehlende Werte zumeist durch "" (leer) gekennzeichnet sind (`na = ...`).
 
 *Anmerkung: Zur Live-Verknüpfung mit den aktuellen Daten von Google gibt es in R das `gtrendsR`-Package. Dazu gleich mehr.*
+
 ```{r exercise_xlsx, exercise = TRUE}
 # install.packages(readxl)
 
@@ -204,6 +212,7 @@ head(googletrendstime_plasticpollution)
 ```
 
 Ladet nun das Arbeitsblatt "by_country" der Datei "Beach Clean Up - Google Trends.xlsx". Kopiert dazu den Code von oben und passt den Dateinamen und das Arbeitsblatt an der richtigen Stelle an.
+
 ```{r exercise_excel, exercise = TRUE}
 # Euer Code hier
 ```
@@ -222,7 +231,8 @@ readxl::read_excel(
 grade_this_code()
 ```
 
-#### SPSS, SAS und Stata
+## SPSS, SAS und Stata
+
 Gerade in der akademischen Welt (oder den dort produzierten Datensätzen) werden
 Euch hin und wieder auch Dateien mit anderen Endungen begegnen. Diese stammen
 meist von **kostenpflichtigen Analyseprogrammen** wie SPSS oder STATA. Von welchem 
@@ -264,8 +274,10 @@ in R eingelesen werden, kann es aber manchmal zu Problemen mit den Labels kommen
 [Hier](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) 
 findet Ihr dazu Hilfe.
 
-#### JSON
+## JSON
+
 Normalerweise lesen wir JSONs nicht manuell ein, vielmehr sind sie **Teil der Antwort einer Datenabfrage**. Der Vollständigkeit halber findet Ihr hier trotzdem das Package `jsontlite` und die Funktion `read_json()` zum Einlesen von JSON-Dateien.
+
 ```{r json_exercise, exercise = TRUE}
 # Einlesen einer JSON-Datei mit dem jsonlite-Package.
 opengov_beispielsdaten <- jsonlite::read_json(here::here("daten/beispieljson.json"))
@@ -274,9 +286,11 @@ opengov_beispielsdaten <- jsonlite::read_json(here::here("daten/beispieljson.jso
 head(opengov_beispielsdaten[[2]])
 ```
 
-#### Geo(-referenzierte) Daten
+## Geo(-referenzierte) Daten
+
 Um Karten zu erstellen, nutzt Ihr verschiedene geometrische Typen und müsst Eure Datensätze somit um unterschiedliche geographische Daten ergänzen (sog. Geocodierung). Bei der Darstellung von Punkten auf der Karte benötigt Ihr **Längen- und Breitengrad** der Orte, die Ihr visualisieren möchtet. Für eindimensionale Linien (z.B. Straßen) benötigt Ihr eine **Reihe an Punkten** mit dem jeweiligen Längen- und Breitengrad. Zweidimensionale Kartenbereiche werden mit Polygonen geocodiert. **Polygone** stellen kartographische Informationen dar - beispielsweise die Form und Lage von Deutschland auf einer Weltkarte. Diese Daten lesen wir mit dem Package `sf` und der Funktion `st_read()` ein. <br>
 *Achtung: Damit der Import funktioniert müsst Ihr die gesamte ZIP-Datei, die Ihr laden wollt, in einem Ordner mit der hier gewünschten .shp-Datei ablegen - also auch alle Dateien mit anderen Endungen.*
+
 ```{r polygons_world, exercise = TRUE}
 # install.packages("sf")
 
@@ -285,22 +299,27 @@ polygons_welt <- sf::st_read(here::here("daten/geospatial/ne_50m_admin_0_countri
 ```
 
 Unser Datensatz enthält zahlreiche Spalten mit zusätzlichen Informationen zu den Ländern der Welt. Uns interessiert hier die Spalte "`geometry`", die die kartographischen Informationen enthält.
+
 ```{r polygon_welt_exercise, exercise = TRUE}
 # Betrachtung der Daten
 head(polygons_welt$geometry)
 ```
 
 Zur Veranschaulichung können wir nun die Polygone des Datensatzes `polygons_welt` veranschaulichen. Wir nutzen hier die `baseR`-Funktion `plot()`. Wie wir mit kartographischen Daten schönere und insb. interaktive Karten gestalten, lernt Ihr in Lektion 11 - Datenvisualisierung.
+
 ```{r polygon_welt__plot_exercise, exercise = TRUE}
 # Erstellung eines einfachen Kartenplots
 plot(polygons_welt$geometry)
 ```
+
 Auch für Deutschland gibt es ähnliche Shapefiles:
+
 ```{r polygon_de_exercise, exercise = TRUE}
 # Einlesen der Deutschlandkarte mit Bundesländern
 polygons_deutschland <- sf::st_read(here::here("daten/geospatial/1000_NUTS1.shp"))
 plot(polygons_deutschland$geometry)
 ```
+
 Der Import von geographischen Daten folgt also der folgenden Checkliste:
 
 1. Welche **geographische Ebene** soll visualisiert werden (Punkte, Striche oder Polygone)?
@@ -308,10 +327,12 @@ Der Import von geographischen Daten folgt also der folgenden Checkliste:
       *Tipp: [Hier](http://www.naturalearthdata.com/features/){target="_blank"} findet Ihr globale und beim [Bundesamt für Kartographie](https://gdz.bkg.bund.de/index.php/default/nuts-gebiete-1-1-000-000-stand-31-12-nuts1000-31-12.html){target="_blank"} deutsche Shapefiles. Einige können auch über Packages und Links geladen werden.*
 3. Über welche **Schlüsselvariable** füge ich meinen Datensatz und die geographischen Daten zusammen? Gibt es (sprachliche) Hürden (Deutschland != Germany != DEU)?
 
-#### APIs in R-Packages
+## APIs in R-Packages
+
 Der Umgang mit APIs ist für Programmieranfänger:innen oft eine Herausforderung. Viele APIs sind aber bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten wesentlich leichter funktioniert. Über das Package `WDI` könnt Ihr beispielsweise **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
 
 *Anmerkung: Genau wissen wir das natürlich nicht, die Daten geben uns hier lediglich einen Hinweis darauf, wo der Bedarf groß sein könnte. Deshalb ist es wichtig die Annahmen, auf denen Entscheidungen basieren genau zu definieren und sich darüber Gedanken zu machen, ob die Datengrundlage für eine Entscheidung überhaupt ausreichend ist. Unsere Thesen können wir dann ggf. in Interviews mit Expert:innen (hier z.B. Naturschützer:innen) verifizieren.*
+
 ```{r wb, exercise = TRUE}
 # install.packages("WDI")
 
@@ -328,6 +349,7 @@ head(wb_areas)
 ```
 
 Ladet nun den Datensatz zum Indikator ["Fish species, threatened" (EN.FSH.THRD.NO)](https://data.worldbank.org/indicator/EN.FSH.THRD.NO?view=chart){target="_blank"} für das Jahr 2018. Kopiert dazu den Code von oben und fügt den richtigen Indikatorschlüssel ein.
+
 ```{r exercise_wb, exercise = TRUE}
 # Euer Code hier
 ```
@@ -367,7 +389,8 @@ Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr ein
 Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquelle ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können. <br>
 *Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
 
-### **Und jetzt Ihr**
+# Und jetzt Ihr
+
 Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Ansonsten (oder zusätzlich) gibt es die folgenden Aufgaben und das zugehörige **RMD 05_datenimport-uebung.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 05_datenimport):
 
 1. Versucht, den "Plastics"-Datensatz (im Ordner `daten/plastics.csv` im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}) mit diesem Code **lokal zu laden**.
@@ -375,7 +398,8 @@ Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Anso
 3. Ladet über das **`wb`-Package** den Indikator "Mammal species, threatened" (EN.MAM.THRD.NO) für das Jahr 2018 herunter.
 4. In den **SDG-Datensätzen der UN** findet sich ein weiterer spannender Indikator: Municipal waste recycled (Tonnes) mit dem Seriescode "EN_MWT_RCYV". Auch die UN verfügt über eine API. Wie könntet Ihr diesen Datensatz ziehen? Setzt Eure Idee um. 
 
-### **Zusätzliche Ressourcen**
+# Zusätzliche Ressourcen
+
 - [Cheat Sheet: Data import](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/05_cheatsheet-import.pdf){target="_blank"} (engl.)
 - [APIs in R](https://app.dataquest.io/course/apis-in-r){target="_blank"} auf DataQuest (engl.)
 - [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
