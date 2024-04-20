@@ -16,7 +16,7 @@ h1 {
 
 /* Change style of the "Session beenden" button */
 body .btn.btn-primary.btn-back-to-main {
-  background-color: var(--green2) !important;
+  background-color: var(--blue1) !important;
   border: none !important;
 }
 
