@@ -21,6 +21,8 @@ library(learnr)
 library(gradethis)
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+# Read app parameters
+params <- yaml::yaml.load_file("www/app_parameters.yml")
 ```
 
 Ab dieser Woche geht es ans Eingemachte: Nachdem Ihr in den vergangenen Lektionen bereits erste Codezeilen ausgeführt habt, beginnen wir nun zu programmieren. Um die R-Dateien, die wir nutzen werden, lokal zu öffnen, benötigt Ihr [R](https://ftp.fau.de/cran/){target="_blank"} und [RStudio](https://rstudio.com/products/rstudio/download/#download){target="_blank"}. Versucht gerne selbst beide Programme für Euer Betriebssystem zu installieren – idealerweise auf einem Laptop oder PC, auf dem Ihr **Adminrechte** habt. Gerne auch auf Eurem privaten PC. Bei Installationsschwierigkeiten könnt Ihr uns gerne vor unserer Live-Session am Freitag **per Slack-Nachricht** kontaktieren - dann lösen wir die Herausforderungen mit Euch gemeinsam.
@@ -366,4 +368,4 @@ Legt nun ein neues R Projekt (wie im Video) und eine neue R Markdown-Datei auf E
 - [Control Flow, Iteration and Functions in R (engl.)](https://app.dataquest.io/course/intermediate-r){target="_blank"} von Dataquest
 - [R Studio Learn: Programming Basics](https://rstudio.cloud/learn/primers/1.2){target="_blank"}
 
-<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>

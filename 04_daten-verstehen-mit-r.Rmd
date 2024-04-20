@@ -23,6 +23,8 @@ library(ggplot2)
 
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+# Read app parameters
+params <- yaml::yaml.load_file("www/app_parameters.yml")
 
 # Benötigte Daten laden
 source("R/setup/functions.R")
@@ -578,4 +580,4 @@ Diese Woche möchten wir die Präsenzzeit nutzen, um die folgenden Übungen zu b
 - [Statistics Fundamentals in R](https://app.dataquest.io/course/statistics-fundamentals-r){target="_blank"} auf DataQuest (engl.)
 - [Lernvideos](https://www.youtube.com/watch?v=RRIsBFW8ovc){target="_blank"} zur Inferenzstatistik (dt.)
 
-<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>

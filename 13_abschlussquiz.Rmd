@@ -22,6 +22,8 @@ library(gradethis)
  
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+# Read app parameters
+params <- yaml::yaml.load_file("www/app_parameters.yml")
 ```
 
 ## **Abschlussquiz**
@@ -661,4 +663,4 @@ grade_this_code()
 #### Schritt 5: Ergebnisse teilen
 Probiert nun selbst, ob Ihr aus den generierten Ergebnissen lokal ein Rmarkdown oder eine Shiny Web App generieren könnt. Die theoretischen Vorkenntnisse habt Ihr bereits unter Beweis gestellt. Viel Glück!
 
-<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>

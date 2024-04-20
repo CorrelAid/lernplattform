@@ -24,6 +24,8 @@ library(ggplot2)
  
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+# Read app parameters
+params <- yaml::yaml.load_file("www/app_parameters.yml")
 
 # Benötigte Daten laden
 source("R/setup/functions.R") 
@@ -674,4 +676,4 @@ Gebt eurer Shiny-App einen geeigneten Namen. Wählt dort die Variante mit einer 
   - [Make your Shiny-App faster (auf Englisch)](https://appsilon.com/r-shiny-faster-updateinput-css-javascript/){target="_blank"}
   - [shiny.worker (auf Englisch)](https://www.r-bloggers.com/shiny-worker-speed-up-r-shiny-apps-by-offloading-heavy-calculations/){target="_blank"}
   
-  <a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
+  <a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>

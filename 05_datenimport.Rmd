@@ -22,6 +22,8 @@ library(gradethis)
  
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+# Read app parameters
+params <- yaml::yaml.load_file("www/app_parameters.yml")
 
 # Benötigte Daten laden
 source("R/setup/functions.R")
@@ -379,4 +381,4 @@ Gerne könnt Ihr nun versuchen, **eigene Datensätze** in R zu importieren. Anso
 - [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
 - [Web Scraping in R](https://app.dataquest.io/course/scraping-in-r){target="_blank"} auf DataQuest (engl.)
 
-<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>

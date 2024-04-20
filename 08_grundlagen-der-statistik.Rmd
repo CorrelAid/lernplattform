@@ -23,6 +23,8 @@ library(ggplot2)
  
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+# Read app parameters
+params <- yaml::yaml.load_file("www/app_parameters.yml")
 
 # Benötigte Daten laden
 source("R/setup/functions.R")
@@ -376,4 +378,4 @@ Statt eigene Berechnungen anzustellen, möchten wir Euch diese Woche dazu einlad
 -   [Good & Bad Controls](https://www.youtube.com/watch?v=NSuTaeW6Orc&list=PLDcUM9US4XdMROZ57-OIRtIK0aOynbgZN&index=7&t=3530s){target="_blank"}, Richard McElreath
 -   DAGs: Vorlesung mit [Andrew Heiss](https://evalf20.classes.andrewheiss.com/example/dags/){target="_blank"}
 
-<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>

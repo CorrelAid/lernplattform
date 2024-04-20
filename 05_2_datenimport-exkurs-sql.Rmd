@@ -23,6 +23,8 @@ library(RSQLite)
  
 source("R/setup/gradethis-setup.R")
 source("R/setup/tutorial-setup.R")
+# Read app parameters
+params <- yaml::yaml.load_file("www/app_parameters.yml")
 
 # Benötigte Daten laden
 source("R/setup/functions.R")
@@ -133,5 +135,5 @@ SQLite-Datenbanken benötigen in der Regel **kein Passwort** (und somit auch kei
 
 Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
 
-<a class="btn btn-primary btn-back-to-main" href="https://correlaid.github.io/lernplattform_website/">Session beenden</a>
+<a class="btn btn-primary btn-back-to-main" href="`r params$links$end_session`">Session beenden</a>
 
