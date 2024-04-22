@@ -25,16 +25,9 @@ install.packages(c(
   'tidyr',
   'dplyr',
   'plotly',
-  'DT',
   'here',
   'ShinyFiles',
-  'tinytex',
-  'gridExtra',
-  'leaflet'
 ))
-
-tinytex::install_tinytex()
-
 "
 
 ### Die installierten Packages müssen geladen werden, um die Funktionalitäten zugänglich zu machen.
