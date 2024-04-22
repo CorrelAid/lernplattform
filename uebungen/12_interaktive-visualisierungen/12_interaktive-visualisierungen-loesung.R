@@ -41,13 +41,9 @@ tinytex::install_tinytex()
 ### Dies wird durch die folgenden Zeilen für Euch erledigt, wenn Ihr "Run App" anklickt.
 library(shiny)       # Das RShiny Package.
 library(ggplot2)     # Hiermit können wir schöne Plots generieren.
-library(ggbeeswarm)  # Hiermit können wir Beeswarm Plots generieren.
 library(tidyr)       # Hiermit kann man Daten bereinigen.
 library(dplyr)       # Hiermit kann man Daten sehr gut filtern, gruppieren und modifizieren.
 library(knitr)       # Hiermit können wir Reports "knitten" (stricken).
-library(tinytex)     # Dieses Latex-Package gibt uns die Option, den Report als PDF zu exportieren.
-library(gridExtra)   # Das ermöglicht uns mehrere Plots auf einer Seite zu integrieren.
-library(leaflet)     # Das ermöglicht das Erstellen von Karten.
 
 ########################################################################################.
 
