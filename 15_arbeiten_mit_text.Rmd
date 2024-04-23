@@ -351,7 +351,7 @@ sentiment_oetker <- woerter_2 %>%
 ### **Und jetzt Ihr**
 
 Ich habe ein paar Übungen zur Textmanipulation (mittels Regex) sowie Transformation mittels dplyr und Visualisierung mit ggplot vorbereitet, mit denen Ihr Euch am Plastikdatensatz austoben könnt.
-Schaut Euch das **R Markdown: 11_arbeiten_mit_text_uebungen.Rmd** (im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 11_arbeiten_mit_text) an und versucht die Aufgaben darin zu bearbeiten. 
+Schaut Euch das **R Markdown: 11_arbeiten_mit_text_uebungen.Rmd** (im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 11_arbeiten_mit_text) an und versucht die Aufgaben darin zu bearbeiten. 
 
 
 ### **Zusätzliche Ressourcen**
