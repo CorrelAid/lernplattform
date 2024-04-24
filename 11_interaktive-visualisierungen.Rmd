@@ -147,7 +147,7 @@ Ein paar Fragen, die Euch helfen können, Euch mit dem R-Code der Shiny-App vert
 Schaut Euch den [**Schummelzettel zu Shiny-Apps**](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/11_cheatsheet-shiny.pdf){target="_blank"} an für weitere Infos zu Shiny-Apps, z.B. zu den oben verwendeten Strukturelementen und vielen weiteren Möglichkeiten. Wenn Ihr mehr Inspiration möchtet, schaut in der [Galerie von RStudio](https://shiny.rstudio.com/gallery/){target="_blank"} vorbei!
 
 <p style="border-width:1px; border-style:solid; border-color:#acc940; padding: 1em;">
-  **Achtung** <br> Den Code aus dieser Sitzung müsst Ihr lokal ausführen. Dafür könnt Ihr Stück für Stück die Code-Snippets kopieren und befüllen. Alternativ haben wir Euch im Ordner **11_interaktive-visualisierungen** im [Übungsordner](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} in einer ZIP-Datei schon Skripte vorbereitet, die Ihr nutzen könnt (`uebung.R` enthält den Lückentext, `loesung.R` die Lösung, wenn Ihr nicht weiterkommt).
+  **Achtung** <br> Den Code aus dieser Sitzung müsst Ihr lokal auf Eurem Computer in RStudio ausführen. Dafür könnt Ihr Stück für Stück die Code-Snippets kopieren und befüllen wie im Folgenden beschrieben. Alternativ könnt Ihr die Erstellung der Shiny-App auch direkter und praxisnäher mittels der vorbereiteten Datei "ausblick.R" durchführen. Die Datei liegt im Ordner `12_interaktive-visualisierungen/12_InteraktiveVisualisierung` im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"}. Öffnet die Datei "ausblick.R" in RStudio und folgt den darin enthaltenen Beschreibungen. Wenn Euch die Erläuterungen dort zu kurz sind oder die Zeit sehr knapp ist, dann arbeitet stattdessen den folgenden Text durch.
 </p>
 
 Der [Schummelzettel](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/11_cheatsheet-shiny.pdf){target="_blank"} liefert Euch einen guten Überblick über alle Komponenten und die wichtigsten Befehle zum Erstellen einer Shiny-App. Im Video habt Ihr bereits die Grundkomponenten kennen gelernt, die jede Shiny-App benötigt: **eine UI** (kurz für "**u**ser **i**nterface", Englisch für "Benutzendenoberfläche") und **einen Server**.
@@ -382,12 +382,8 @@ quiz(caption = NULL,
 
 Die Tabelle gibt Euch eine kurze Übersicht über die wichtigsten **Auswahlmöglichkeiten**:
 
-| Layoutoption                          | Befehl in R (wird in der `ui` implementiert)                                                                                                                                                                                      |
-<<<<<<< Updated upstream
+| Layoutoption                          | Befehl in R (wird in der `ui` implementiert)   |
 |---------------------|---------------------------------------------------|
-=======
-|--------------------------|---------------------------------------------|
->>>>>>> Stashed changes
 | Einen kurzen Freitext                 | `textInput("id", "Beschreibung")`                                                                                                                                                                                                 |
 | Einen langen Freitext                 | `textAreaInput("id", "Beschreibung", rows = 3)` <br> Mit `rows` (also Zeilen) geben wir die Länge des Textes an                                                                                                                   |
 | Eine Zahl                             | `numericInput("id", "Beschreibung", value = 0, min = 0, max = 100)` <br> Mit `value` bestimmen wir den Standardwert, der immer angezeigt wird. Mit `min` und `max` legen wir die Mindest- und die Maximalwerte fest               |
@@ -717,7 +713,7 @@ quiz(caption = NULL,
 
 ### **Und jetzt seid Ihr dran!** (diese Woche optional)
 
-Diese Woche erstellt Ihr Eure erste eigene Shiny App! Schaut Euch die Datei **12_interaktive-visualisierungen-uebung.R** (im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 12_interaktive-visualisierungen) an und versucht, die Aufgaben darin zu bearbeiten. 
+Testet Euer Wissen: Gelingt es Euch, eine eigene (einfache) Shiny-App zur interaktiven Visualisierung zu erstellen? Startet mit der Datei **12_interaktive-visualisierungen-uebung.R** (im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 12_interaktive-visualisierungen) und ergänzt R-Code Eurer Wahl an den mit "Aufgabe 1", "Aufgabe 2" etc. gekennzeichneten Stellen. Viel Erfolg!
 
 ### **Weitere Ressourcen**
 
