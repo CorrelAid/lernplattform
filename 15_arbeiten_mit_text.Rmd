@@ -1,0 +1,360 @@
+## **Arbeiten mit Text**
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
+
+*"Arbeiten mit Text" von Alexandros Melemenidis in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+
+![*Video: Arbeiten mit Text (20min)*](https://youtu.be/NOHyED9u3x0)
+
+### **Kernaussagen**
+
+#### Das stringr Package
+
+<left>
+
+![](https://www.tidyverse.org/css/images/hex/stringr.png){#id .class width="20%" height="100%"}
+
+</left> <br>
+
+-   stringr ist Teil des Tidyverse und beinhaltet viele nützliche Funktionen rund um die Arbeit mit Textvariablen.
+
+#### Die wichtigsten Funktionen von stringr
+
+-   `stringr::str_to_upper()`, `stringr::str_to_lower()`, `str_to_title()`: **Änderung der Groß-/Kleinschreibung** von Zeilen im Datensatz
+-   `stringr::str_c()`: **Zusammenfügen** von mehreren Textvariablen, Vektoren oder einfachen Texten
+-   `stringr::str_split()`: **Trennen** von Textvariablen anhand definierter Trennzeichen
+-   `stringr::str_sub()`: **Extrahieren von Zeichenfolgen** von Textvariablen anhand der Position im Text
+-   `stringr::str_detect()`, `str_match()`, `str_extract()`,`str_replace()`, `str_remove()`: **Erkennen, Extrahieren, Ersetzten** von expliziten Texten oder regulären Ausdrücken aus Textvariablen
+-   `stringr::str_length()`: **Messen** der Zeichenlänge eines Texts
+-   `stringr::str_pad()`, `str_trunc()`, `str_trim()`, `str_squish()`: **Erweitern/Verkürzen** von Texten, **Entfernung** unnötiger Leerzeichen
+
+### **Quiz**
+
+```{r 15quiz_arbeiten_mit_text1}
+quiz(caption = NULL,
+  question("Was macht die stringr-Funktion `str_length()`?",
+    answer("Sie zählt die Anzahl der Zeichen eines Texts", correct = TRUE),
+    answer("Sie entfernt unnötige Leerzeichen aus einem Text"),
+    answer("Sie wandelt den Text in Großbuchstaben um"),
+    answer("Sie findet die Position einer Zeichenfolge innerhalb von einem Text"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Welche stringr-Funktion wird benutzt um zwei oder mehr Texte zusammen zu führen?",
+    answer("`str_concat()`"),
+    answer("`str_c()`", correct = TRUE),
+    answer("`str_combine()`"),
+    answer("`str_join()`"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Welcher reguläre Ausdruck passt zu einer gültigen deutschen Telefonnummer im Format `01234/567890`?",
+    answer("`\\d{5}/\\d{6}`", correct = TRUE),
+    answer("`\\d{5}-\\d{6}`"),
+    answer("`\\d{5}\\d{6}`"),
+    answer("`\\d{5}/\\d{5}`"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  ),
+  question("Mit welcher stringr-Funktion kann man eine Zeichenfolge oder einen regulären Ausdruck in einem Text mit einer anderen Zeichenfolge ersetzen?",
+    answer("`str_replace()`", correct = TRUE),
+    answer("`str_substitute()`"),
+    answer("`str_change()`"),
+    answer("`str_modify()`"),
+    correct = "Richtig!",
+    incorrect = "Leider falsch: Versuche es einfach nochmal oder schau im Video nach!",
+    allow_retry = TRUE,
+    try_again_button = "Nochmal versuchen"
+  )
+)
+```
+
+### **Interaktive Übung**
+
+
+#### **Import der Rohdaten**
+
+Zuerst laden wir - wie immer - den Datensatz. Das kennt Ihr ja bereits! Hier ziehen wir uns über den Hyperlink einen ziemlich unordentlichen Rohdatensatz, aus dem wir gemeinsam zwei bereinigte Datentabellen (`community` und `audit`) generieren.
+
+```{r 15load_data, exercise = TRUE}
+# Laden des Datensatzes
+data_raw <- rio::import('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-01-26/plastics.csv')
+```
+
+
+#### **Groß- und Kleinschreibung**
+
+Die Variablennamen 5-11 im `data_raw`-Datensatz beschreiben die Anzahl gefundener Kunststoffsorten, die üblicherweise in Großbuchstaben angegeben werden. Nutzen wir die Base-R Funktion `names()` um die Variablennamem aufzurufen und `stringr::str_to_upper()`, um sie in Großbuchstaben umzuwandeln.
+
+```{r 15to_upper_beispiel, exercise = TRUE}
+# Umwandlung der Spaltennamen zu Großbuchstaben
+names(data_raw)[5:11]  %>%
+  stringr::str_to_upper()
+```
+
+Nutzt nun `str_to_title()`, um die Variable `country` einheitlich im sogenannten Title Case auszugeben (erster Buchstabe jedes Wortes jeweils großgeschrieben). Zur Erinnerung: Ecuador und Nigeria sind in Großbuchstaben codiert.
+
+```{r exercise_15to_title, exercise = TRUE}
+
+data_raw  %>%
+  dplyr::mutate(
+    # Hier Euer Code!
+  )
+```
+
+```{r exercise_15to_title-solution}
+# Berechnung der Zeilenanzahl
+data_raw  %>%
+  dplyr::mutate(
+    country = stringr::str_to_title(country)
+  )
+  
+```
+
+```{r exercise_15to_title-check}
+grade_this_code()
+```
+
+
+#### **Zeichenfolgen ersetzen**
+
+Als nächstes möchten wir die Namen einiger multinationaler Konzerne im Datensatz vereinfachen. Um den Code kurz und flexibel zu halten, nutzen wir hierzu `str_replace()` zusammen mit regulären Ausdrücken.
+
+Als erstes Beispiel bearbeiten wir die Einträge von `parent_company` welche zu PepsiCo gehören. Mit dem regulären Ausdruck`'.*[Pp]epsi.*'` erfassen wir alle, Einträge die `Pepsi` oder `pepsi` und von einer unbestimmten Menge weiterer Zeichen umschlossen sind. Dies erfasst die drei folgenden im Datensatz vorhandenen Varianten:
+
+| parent_company  |
+|-----------------|
+| Pepsico         |
+| PepsiCo         |
+| Etika - PepsiCo |
+
+Wir wollen die gefundenen Einträge einheitlich mit dem Namen `PepsiCo` ersetzen. Die Syntax von `str_replace` funktioniert folgendermaßen: `str_replace(*Textvariable*, *Zeichenfolge oder Regex*, *Ersatz*)`
+
+```{r 15replace_Pepsi, exercise = TRUE}
+# Ihr nehmt Euren Datensatz...
+data_raw  %>%
+  # ..und bearbeitet ihn mittels dplyr::mutate
+  dplyr::mutate(
+    #.. und ersetzt den regulären Ausdruck mittels str_replace() mit dem gewünschten Text
+    parent_company = stringr::str_replace(parent_company, '.*[Pp]epsi.*', 'PepsiCo')
+  )
+```
+
+Als weiteres Beispiel zur praktischen Anwendung schauen wir uns die Kraft Heinz Company an. Hierfür gibt es folgende Varianten, die einheitlich mit dem Namen `Kraft Heinz Company` ersetzt werden sollen:
+
+| parent_company      |
+|---------------------|
+| Kraft Heinz Company |
+| Kraft Foods         |
+| kraft food          |
+| Capri Sun/Kraft     |
+| Kraft Suchard       |
+| Kraft Heinz         |
+| Kraft               |
+
+```{r exercise_15replace_kraft_exercise, exercise = TRUE}
+# Ihr nehmt Euren Datensatz...
+data_raw  %>%
+  # ..und bearbeitet ihn mittels dplyr::mutate
+  dplyr::mutate(
+    # Hier Euer Code! 
+                )
+```
+
+```{r exercise_15replace_kraft_exercise-solution}
+# Ihr nehmt Euren Datensatz...
+data_raw %>%
+  # ..und bearbeitet ihn mittels dplyr::mutate
+  dplyr::mutate(
+    parent_company = stringr::str_replace(parent_company, '.*[Kk]raft.*', 'Kraft Foods')
+                )
+```
+
+```{r exercise_15replace_kraft_exercise-check}
+grade_this_code()
+```
+
+
+#### **Weitere Beispiele für Regex**
+
+Arbeiten wir auch noch ein paar Beispiel durch, die der Plastik-Datensatz nicht hergibt, wie zum Beispiel das Erkennen von Ziffern.
+
+```{r regex_examples, exercise = TRUE}
+regex_df <- tibble::tribble(
+  ~name,      ~adresse,                                  ~kfz,       ~geburtsdatum,     ~groesse, 
+  "Person 1", 'Kaiserstraße 29, 60311 Frankfurt am Main', 'F-FM 101', '26.01.2001',      '1,88m', 
+  "Person 2", 'Panoramastraße 1A, 10178 Berlin',          'B-BG 200', '7.7.1999',        '1,67m',
+  "Person 3", 'Arnulf-Klett-Platz 2, 70173 Stuttgart',    'S-Ö 9999', '12.12.1985',      '1,92m'
+  )
+```
+
+Neben `str_replace()` können auch einfachere Funktionen von stringr benutzt werden. So kann mit `str_detect()` einfach überprüft werden, ob ein regulärer Ausdruck gefunden wird oder nicht. Dies lässt sich dann auch gut mit `dplyr::filter()` verbinden, um nur die Zeilen zu übernehmen, bei denen die Regex gefunden wird.
+
+Überprüfen wir zum Beispiel, ob die Zeichenfolgen in der Spalte `kfz` valide deutsche KFZ-Kennzeichen sind:
+
+```{r str_detect_example, exercise = TRUE}
+regex_df %>%
+  dplyr::mutate(
+    kfz_valide = stringr::str_detect(kfz, '[A-ZÄÖÜ]{1,3}-[A-Z0-9]{1,2} \\d{1,4}')
+  )
+```
+
+Als nächstes erstellen wir als Übung eine neue Spalte `PLZ` aus den Daten der Spalte `adresse`. Hierfür nutzen wir die Funktion `str_match()` und den geeigneten regulären Ausdruck. Die Funktion hat zwei Argumente und folgende Syntax: `str_match(*Text*, *Regex/Zeichenfolge*)`
+
+Fügt im folgenden Codeblock anstelle der `???` den korrekten Regex ein. *Um ein Backslash in einem Text an R zur Evaluierung zu schicken, muss ein weiteres Backslash davorgestellt werden!*
+
+```{r exercise_15extract_zip_exercise, exercise = TRUE}
+# Ihr nehmt Euren Datensatz...
+regex_df  %>%
+  # ..und bearbeitet ihn mittels dplyr::mutate
+  dplyr::mutate(
+    # Hier Euer Code! 
+    plz = stringr::str_match(adresse, '???')
+                )
+```
+
+```{r exercise_15extract_zip_exercise-solution}
+# Ihr nehmt Euren Datensatz...
+regex_df %>%
+  # ..und bearbeitet ihn mittels dplyr::mutate
+  dplyr::mutate(
+    plz = stringr::str_match(adresse, '\\d{5}')
+                )
+```
+
+```{r exercise_15extract_zip_exercise-check}
+grade_this_code()
+```
+
+#### **Umwandlung von Datentypen**
+
+Alle Spalten im Beispieldatensatz sind als Textdaten formatiert, jedoch wären auch Anwendungsfälle vorstellbar, bei denen wir mit den numerischen Informationen in den Spalten `geburtsdatum` und `groesse` rechnen wollten.
+
+Um die **Geburtsdaten** vom Text in das R-Datumsformat umzuwandeln können wir direkt mit der Funktion `dmy()` aus dem `lubridate`-Package arbeiten.
+
+```{r 15convert_date, exercise = TRUE}
+# Ihr nehmt Euren Datensatz,...
+regex_df %>%
+  dplyr::mutate(
+    geb_numerisch = lubridate::dmy(geburtsdatum)
+  )
+```
+
+Sollte eine der vorhandenen Funktionen nicht funktionieren, kann alternativ die Funktion `lubridate:as_date()` mit dem richtigen Textformat verwendet werden. Für den vorliegenden Fall aus ein-oder zweistelligen Tages- und Monatszahlen wäre das richtige Format `'%d.%m.%Y'`. Für weitere Formatoptionen schaut in der R-Dokumentation nach (`help("strptime")`).
+
+Berechnet nun zur Übung eine Spalte `groesse_numerisch` mit den Funktionen `stringr::str_sub()`, `str_replace()` und `as.numeric()`. `str_sub()` kann Teile von Texten anhand der Zeichenposition extrahieren und hat folgende Syntax:\
+`str_sub(*Text*, *Position Start*, *Position Ende*)`
+
+```{r 15convert_numeric_exercise, exercise = TRUE}
+# Ihr nehmt Euren Datensatz,...
+regex_df %>%
+  dplyr::mutate(
+    #Hier euer Code...
+    # 1. wandelt in Dezimalzahl um
+    groesse_numerisch = ???(
+      # 2. extrahiere die ersten vier Zeichen
+      ???(
+        # 3. ersetze Komma mit Punkt 
+        ???(),
+           ???, ???)
+    )
+  )
+```
+
+```{r 15convert_numeric_exercise-solution}
+# Ihr nehmt Euren Datensatz,...
+regex_df %>%
+  dplyr::mutate(
+    # 1. wandelt in Dezimalzahl um
+    groesse_numerisch = as.numeric(
+      # 2. extrahiere die ersten vier Zeichen
+      stringr::str_sub(
+        # 3. ersetze Komma mit Punkt 
+        stringr::str_replace(groesse, ',', '.'), 
+              1, 4)
+      )
+  )
+```
+
+```{r 15convert_numeric_exercise-check}
+grade_this_code()
+```
+
+---
+
+<details>
+  <summary><h3>&#10145; Exkurs: Text Mining</h3></summary>
+  <br>
+
+Zur Veranschaulichung von Text Mining wollen wir nun ein deutschsprachiges Werk aus dem [Project Gutenberg](https://www.gutenberg.org/) analysieren, welche sich bequem im dem R-Package `gutenbergr` herunterladen lassen.
+Als Beispiel soll hier "Dr. Oetkers Grundlehren der Kochkunst" dienen (Gutenberg ID 31537), welches wir bereits in einen Dataframe namens `oetker` bereitgestellt haben.
+
+Zunächst möchten wir das Werk mit der Funktion `tidytext::unnnest_tokens()` in seine einzelnen Wörter zerlegen. Diese werden dabei auch standardmäßig in Kleinschreibung umgewandelt. Danach bereinigen wir den Datensatz um sogenannte Stoppwörter (mit dem Package `stopwords`), Zahlen und einzelne Buchstaben. Zuletzt zählen wir, wie häufig die einzelnen Wörter im Text vorkommen und visualisieren dies dann in einer Wordcloud (mit dem Package `wordcloud`).
+
+```{r 15wordcloud, exercise = TRUE}
+# Wir nehmen den Datensatz...
+woerter <- oetker %>%
+  # ...und teilen ihn in einzelne Wörter (Tokens) auf
+  tidytext::unnest_tokens(wort, text)
+
+# Deutsche Stoppwörter in "stopp" speichern
+stopp <- stopwords::stopwords("de")
+
+# Jetzt nehmen wir unsere Liste an Wörtern...
+woerter <- woerter %>%
+  # ...und filtern Stoppwörter,
+  dplyr::filter(!(wort %in% stopp),
+                # Zahlen,
+                !stringr::str_detect(wort, "\\d"),
+                # nicht alphanumerische Zeichen.
+                !stringr::str_detect(wort, "^\\w$"))
+
+# Wir zählen die Häufigkeit jedes Wortes...
+hitlist <- woerter %>%
+  dplyr::count(wort, sort = TRUE)
+
+# ...und erstellen daraus eine Wortwolke!
+wordcloud::wordcloud(hitlist$wort, hitlist$n, min.freq = 20)
+```
+
+Als zweites wollen wir schauen, ob das Kochbuch im Durchschnitt eher positive oder negative Wörter verwendet.
+Den Sentimentwortschatz vom Projekt [Wortschatz Leipzig](https://wortschatz.uni-leipzig.de/de/download) haben wir dabei schon als Dataframe `lexicon` importiert.
+Da der Wortschatz Wörter in Groß- und Kleinschreibung klassifiziert zerlegen wir das Buch noch einmal in seine Wörter, aber diesmal ohne die Umwandlung. So können wir den Text-Dataframe mit dem Sentimentwortschatz joinen und so allen in beiden Tabellen vorhandenen Wörtern einen Sentimentwert zuordnen. Abschließend können wir über den Durchschnitt das gesamte Sentiment bestimmen.
+
+```{r 15sentiment, exercise = TRUE}
+# Wir nehmen den Datensatz...
+woerter_2 <- oetker %>%
+  # ...und teilen ihn in einzelne Wörter (Tokens) auf
+  tidytext::unnest_tokens(wort, text, to_lower = FALSE)
+
+# Wir nehmen diese einzelnen Tokens...
+sentiment_oetker <- woerter_2 %>%
+  # ...packen diesen Datensatz mit dem Sentimentwortschatz zusammen...
+  dplyr::inner_join(lexicon, by = "wort") %>%
+  # ...berechnen den Mittelwert der Sentimentwerte...
+  dplyr::summarize(sentiment = mean(sentiment)) %>%
+  # ...und wählen die Spalte "sentiment" aus!
+  pull(sentiment) %>%
+  print()
+```
+
+</details>
+
+---
+
+### **Und jetzt Ihr**
+
+Ich habe ein paar Übungen zur Textmanipulation (mittels Regex) sowie Transformation mittels dplyr und Visualisierung mit ggplot vorbereitet, mit denen Ihr Euch am Plastikdatensatz austoben könnt.
+Schaut Euch das **R Markdown: 11_arbeiten_mit_text_uebungen.Rmd** (im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 11_arbeiten_mit_text) an und versucht die Aufgaben darin zu bearbeiten. 
+
+
+### **Zusätzliche Ressourcen**
+
+-   [Schummelblatt: stringr](https://github.com/CorrelAid/lernplattform/blob/main/cheatsheets/06_cheatsheet-stringr.pdf){target="_blank"} (engl.)
+-   [regexr.com](https://regexr.com/){target="_blank"} (engl.)

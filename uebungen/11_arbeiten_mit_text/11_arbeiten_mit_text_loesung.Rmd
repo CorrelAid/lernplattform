@@ -1,0 +1,151 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## 11 - Arbeiten mit Text - Übungsaufgaben
+
+Aufbauend auf die Vorlesung und das Quiz wollen wir jetzt lokal die
+Textvariablen des Platikdatensatzes weiter bereinigen. Laden wir dazu
+zunächst die nötigen Packages und den Datensatz.
+
+```{r}
+library(tidyverse)
+library(rio)
+
+### Bereinigten Datensatz laden
+plastics_processed <- rio::import('https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv')
+```
+
+Im Datensatz sind Plastikabfälle ungeklärter Herkunft oder ohne klare
+Markenkennung immer noch uneinheitlich gekennzeichnet. So finden sich
+immer neben dem Wert `Unbranded` auch die Werte `Non Identified`, `Assorted` (gemischt)
+und `Inconnu` (französisch für "unbekannt"), welche für eine Analyse
+aber dieselbe Bedeutung hätten. Überschreibe alle drei Werte mit dem
+deutschen Begriff "Marke unbekannt", abgespeichert in einem neuen
+Dataframe mit dem Namen `plastics_clean_text`, wobei die Variable
+weiterhin `parent_company` heißen soll.
+
+```{r}
+plastics_clean_text <- plastics_processed %>% 
+  mutate(parent_company = str_replace(parent_company,
+                                      # wir können eine Regex mit dem "oder" | benutzen
+                                      "Unbranded|Assorted|Inconnu|Non Identified", "Marke unbekannt")
+         )
+```
+
+Neben den im Quiz genannten Fällen sind auch weitere Marken und Schreibweisen zu
+großeren Konzernen zuzuordnen:
+
+| Konzern               | Marke/Variante  |
+|:------------|:-----------------|
+|**PepsiCo**            | Pepsico         |
+|                       | Etika - PepsiCo |
+|**Kraft Heinz Company**| Kraft Foods     |
+|                       | kraft food      |
+|                       | Capri Sun/Kraft |
+|                       | Kraft Suchard   |
+|                       | Kraft Heinz     |
+|                       | Kraft           |
+|**McDonald's Corporation**|MacDonald|
+||Mc Donald'S|
+||Macdonald|
+||McDonaldâ€™s|
+||Mc Donald's|
+||Unknown, Mc Donaldâ€™s|
+||McDonald|
+|**Aldi**|ALDI|
+|**Red Bull**| Redbull|
+||RedBull|
+||redbull plastic wrapper|
+||Cty Tnhh Red Bull|
+|**Lidl**|Lidl - Argus beer|
+||Lidl Lager beer|
+||Deep beer - Lidl|
+||Argus beer- Lidl|
+||Kong Strong (Urban Classic Energy Drink) Lidl|
+||Lidl - Floralys|
+||Torreznos Lidl|
+||Floralys (Lidl)|
+
+Findest Du noch andere Möglichkeiten zu gruppieren?
+
+### Übung 1
+
+Ersetze die verschiedenen Schreibweisen mittels `str_replace()`, idealerweise unter Verwendung von regulären Ausdrücken, mit den Namen des Konzerns.
+
+* Hinweis: in dplyr::mutate kann eine Spalte auch mehrfach hintereinander bearbeitet werden, indem die Funktionen mit dem Pipe-Operator `%>%` aneinander gekettet werden. In den folgenden Funktionen muss die Spalte als Input-Argument nicht mehr angegeben werden weil dies implizit schon so verstanden wird. *
+
+```{r}
+plastics_clean_text <- plastics_clean_text %>% 
+  mutate(parent_company = 
+           str_replace(parent_company,".*[Pp]epsi.*", "PepsiCo") %>% 
+           str_replace(".*[Kk]raft.*", "Kraft Heinz Company") %>% 
+           str_replace(".*Ma?c ?Donald.*", "McDonald's Corporation") %>% 
+           str_replace(".*Red ?[Bb]ull.*", "Red Bull") %>% 
+           str_replace(".*Lidl.*", "Lidl")
+         )
+```
+
+### Übung 2
+
+Durch die Bereinigung der Marken können nun die Statistiken neu berechnet werden.
+Gruppiere die Daten erneut und nach Jahr, Land und parent_company (sowie num_events, volunteers, continent und countrycode) und aggregiere die numerischen Variablen als Summe auf.
+
+Um wie viele Zeilen verkleinert sich der neue Dataframe im Vergleich zu `plastics_processed`?
+
+```{r}
+plastics_clean_text <- plastics_clean_text %>% 
+  group_by(country, year, parent_company, num_events, 
+           volunteers, continent, countrycode) %>% 
+  # anstatt jede aggregierte Spalte einzeln zu definieren können wir `sum` an alle Spalten von empty bis grand_total mittels across() weitergeben - die resultierenden Spalten haben dann denselben Namen wie vorher 
+  summarise(across(empty:grand_total, ~sum(.x)),
+            .groups = "drop")
+```
+
+### Übung 3
+
+Lasst uns schauen von welchen Firmen am meisten Plastikmüll über mehrere Länder gefunden wurde und in wie vielen unterschiedlichen Ländern? Filtern wir hierfür zunächst Einträge mit einem `grand_total` von Null heraus sowie jene mit `Marke unbekannt`.
+
+Nach der Aggregation filtern wir dann auch Firmen heraus, die in mindestens 5 Ländern gefunden wurden.
+
+```{r}
+plastics_by_company <- plastics_clean_text %>% 
+  # wir können mehrere Filterbedingungen mit Komma getrennt definieren, dies ist gleichbedeutend mit einem "und" oder der Aneinanderkettung von zwei filter()-Bedingungen hintereinander.
+  filter(grand_total > 0,
+         parent_company != "Marke unbekannt") %>% 
+  group_by(parent_company) %>% 
+  # wir zählen pro Gruppe die Anzahl der verschiedenen Länder mit n_distinct() und summieren das grand_total auf
+  summarise(n_countries = n_distinct(country),
+            grand_total = sum(grand_total)) %>% 
+  #hier beschränken wir uns auf Gruppen bei denen mindestens 5 verschiedene Länder vorkommen
+  filter(n_countries >= 5) %>% 
+  # wir ordnen den Dataframe in umgekehrter Häufigkeit nach grand_total
+  arrange(desc(grand_total))
+  
+```
+
+Erstellt ein Balkendiagramm für die Top-10. 
+
+Optional: 
+* Ordne die Balken nach der Menge der gefundenen Plastikstücke. 
+* Kannst Du die Anzahl der Länder, in denen die Abfälle gefunden wurden auch irgendwie in das Diagramm integrieren?
+* Beschrifte das Diagramm
+
+```{r}
+plastics_by_company %>% 
+  #nachdem der Dataframe bereits nach grand_total geordnet ist können wir einfach top_n() nutzen
+  top_n(10) %>% 
+  # um eine geordnete Darstellung in ggplot zu erhalten, müssen wir aus parent_company eine Variable des Typs factor erstellen, deren Reihenfolge nach der Größe von grand_total geordnet ist 
+  mutate(parent_company = fct_reorder(parent_company, grand_total)) %>%
+  # Um die Firmennamen am Besten lesen zu können, nehmen wir die parent_company auf die y-Achse und das grand_total auf die x-Achse. Um auch die Anzahl der Länder im Diagramm zu repräsentieren, können wir die  Füllfarbe der Balken nutzen. 
+  ggplot(aes(grand_total, parent_company, fill = n_countries)) +
+  geom_col() +
+  labs(title= "Plastikabfälle nach Unternehmen",
+       x = "gefundene Plastikabfälle (St.)", y = "Unternehmen",
+       caption = "Stichprobe von erkannten Marken die in mindestens 5 Ländern gefunden wurden.",
+       fill = "Anzahl Länder")
+  
+```
+

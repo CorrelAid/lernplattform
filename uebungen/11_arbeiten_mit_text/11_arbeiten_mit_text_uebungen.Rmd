@@ -1,0 +1,112 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## 11 - Arbeiten mit Text - Übungsaufgaben
+
+Aufbauend auf die Vorlesung und das Quiz wollen wir jetzt lokal die
+Textvariablen des Platikdatensatzes weiter bereinigen. Laden wir dazu
+zunächst die nötigen Packages und den Datensatz.
+
+Den etwas bereinigten Datensatz findet ihr unter 'https://raw.githubusercontent.com/CorrelAid/lernplattform/main/daten/bffp2019_plastics_processed.csv'
+
+```{r}
+# Euer Code hier
+```
+
+Im Datensatz sind Plastikabfälle ungeklärter Herkunft oder ohne klare
+Markenkennung immer noch uneinheitlich gekennzeichnet. So finden sich
+immer neben dem Wert `Unbranded` auch die Werte `Non Identified`, `Assorted` (gemischt)
+und `Inconnu` (französisch für "unbekannt"), welche für eine Analyse
+aber dieselbe Bedeutung hätten. Überschreibe alle drei Werte mit dem
+deutschen Begriff "Marke unbekannt", abgespeichert in einem neuen
+Dataframe mit dem Namen `plastics_clean_text`, wobei die Variable
+weiterhin `parent_company` heißen soll.
+
+```{r}
+# Euer Code hier
+```
+
+Neben den im Quiz genannten Fällen sind auch weitere Marken und Schreibweisen zu
+großeren Konzernen zuzuordnen:
+
+| Konzern               | Marke/Variante  |
+|:------------|:-----------------|
+|**PepsiCo**            | Pepsico         |
+|                       | Etika - PepsiCo |
+|**Kraft Heinz Company**| Kraft Foods     |
+|                       | kraft food      |
+|                       | Capri Sun/Kraft |
+|                       | Kraft Suchard   |
+|                       | Kraft Heinz     |
+|                       | Kraft           |
+|**McDonald's Corporation**|MacDonald|
+|                           |Mc Donald'S|
+|                           |Macdonald|
+|                           |McDonaldâ€™s|
+|                           |Mc Donald's|
+|                   |Unknown, Mc Donaldâ€™s|
+|                                   |McDonald|
+|**Aldi**                           |ALDI|
+|**Red Bull**                   | Redbull|
+|                               |RedBull|
+|                   |redbull plastic wrapper|
+|                           |Cty Tnhh Red Bull|
+|**Lidl**                   |Lidl - Argus beer|
+|                               |Lidl Lager beer|
+|                               |Deep beer - Lidl|
+|                               |Argus beer- Lidl|
+|   |Kong Strong (Urban Classic Energy Drink) Lidl|
+|                           |Lidl - Floralys|
+|                               |Torreznos Lidl|
+|                           |Floralys (Lidl)|
+
+Findest Du noch andere Möglichkeiten zu gruppieren?
+
+### Übung 1
+
+Ersetze die verschiedenen Schreibweisen mittels `str_replace()`, idealerweise unter Verwendung von regulären Ausdrücken, mit den Namen des Konzerns.
+
+* Hinweis: in dplyr::mutate kann eine Spalte auch mehrfach hintereinander bearbeitet werden, indem die Funktionen mit dem Pipe-Operator `%>%` aneinander gekettet werden. In den folgenden Funktionen muss die Spalte als Input-Argument nicht mehr angegeben werden weil dies implizit schon so verstanden wird. *
+
+```{r}
+# Euer Code hier
+```
+
+### Übung 2
+
+Durch die Bereinigung der Marken können nun die Statistiken neu berechnet werden.
+Gruppiere die Daten erneut und nach Jahr, Land und parent_company (sowie num_events, volunteers, continent und countrycode) und aggregiere die numerischen Variablen als Summe auf.
+
+Um wie viele Zeilen verkleinert sich der neue Dataframe im Vergleich zu `plastics_processed`?
+
+```{r}
+# Euer Code hier
+```
+
+### Übung 3
+
+Lasst uns schauen von welchen Firmen am meisten Plastikmüll über mehrere Länder gefunden wurde und in wie vielen unterschiedlichen Ländern? Filtern wir hierfür zunächst Einträge mit einem `grand_total` von Null heraus sowie jene mit `Marke unbekannt`.
+
+Nach der Aggregation filtern wir dann auch Firmen heraus, die in mindestens 5 Ländern gefunden wurden.
+
+```{r}
+plastics_by_company <- # Euer Code hier
+  
+```
+
+Erstellt ein Balkendiagramm für die Top-10. 
+
+Optional: 
+* Ordne die Balken nach der Menge der gefundenen Plastikstücke. 
+* Kannst Du die Anzahl der Länder, in denen die Abfälle gefunden wurden auch irgendwie in das Diagramm integrieren?
+* Beschrifte das Diagramm
+
+```{r}
+plastics_by_company %>% 
+  # Euer Code hier
+  
+```
+

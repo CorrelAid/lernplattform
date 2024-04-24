@@ -335,10 +335,10 @@ In diesem Datensatz mit "simple features" haben wir neben dem `countrycode` noch
 
 ```{r ggplot_maps_merging, exercise = TRUE, exercise.setup = "ggplot_maps_data"}
 map <- world %>% 
-  dplyr::left_join(community %>% select(-country), by = "countrycode") %>% 
-  dplyr::select(country, countrycode, starts_with("n_")) %>%
+  dplyr::left_join(community %>% dplyr::select(-country), by = "countrycode") %>% 
+  dplyr::select(country, countrycode, dplyr::starts_with("n_")) %>%
   # NA in community = keine Events, kein Plastik gesammelt:
-  dplyr::mutate(across(starts_with("n_"), function(x) tidyr::replace_na(x, 0)))
+  dplyr::mutate(dplyr::across(dplyr::starts_with("n_"), function(x) tidyr::replace_na(x, 0)))
 ```
 
 Es gibt ein eigenes `geom` für ggplot2, um nun aus diesen Daten ganz einfach eine Karte zu erstellen, `geom_sf()`. Die anderen `aes()`, zum Beispiel `fill` (Füllfarbe) funktionieren wie gehabt:
@@ -435,7 +435,7 @@ community %>%
   )
 ```
 
-Die plotly-Plots könnt Ihr als HTML Datei speichern und dann im Browser öffnen:
+Die plotly-Plots könnt Ihr als HTML Datei speichern und dann im Browser öffnen. Achtung: Im Plot wird der gesamte Datensatz verwendet (und nicht nur die verwendeten Variablen), sodass die exportierte HTML-Datei ggf. sehr groß wird. Also selektiert vor dem Erstellen der plotly-Visualisierung Euren Datensatz, sodass er nur die Variablen enthält, die Ihr benötigt - dann kann die HTML-Datei vielleicht auch wieder per Mail versendet werden, weil sie eine geringere Dateigröße hat und Ihr versendet nicht aus Versehen personenbezogene Daten etc.
 
 ```{r ggplot_plotly_save, exercise = TRUE, exercise.setup = "ggplot_plotly_labels"}
 htmlwidgets::saveWidget(with_labels_plotly, 'events-weltweit.html')
