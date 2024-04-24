@@ -218,77 +218,88 @@ lexicon <- map(c("daten/SentiWS_v2.0_Negative.txt", "daten/SentiWS_v2.0_Positive
 ``` 
 
 <!-- ## Willkommen -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("00_intro.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Setup -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("01_setup.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Datenprojekte aus der Zivilgesellschaft -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("12_datenprojekte-fuer-die-zivilgesellschaft.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Datenschutz und Datenethik -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("02_datenschutz-und-datenethik.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Grundlagen der Statistik -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("08_grundlagen-der-statistik.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Einführung in RStudio -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("03_einfuehrung-in-rstudio.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- Daten verstehen mit R -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("04_daten-verstehen-mit-r.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Datenimport und APIs -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("05_datenimport.Rmd", quiet = TRUE) 
 cat(out, sep = '')
 ```
 
 <!-- ## Datentransformation -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("06_datentransformation.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Datenvisualisierung  -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("07_datenvisualisierung.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Reports in R Markdown -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("09_reports.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
-<!-- ## Reportautomatisierung 
+<!-- ## Reportautomatisierung -->
+
 ```{r results='asis'}
 # out <- knitr::knit_child("10_automatisierte-reports.Rmd", quiet = TRUE)
 # cat(out, sep = '')
 ```
--->
 
 <!-- ## Arbeiten mit Text? -->
 ```{r results='asis'}
@@ -297,18 +308,21 @@ cat(out, sep = '')
 ```
 
 <!-- ## Interaktive Visualisierungen -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("11_interaktive-visualisierungen.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Abschlussquiz -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("13_abschlussquiz.Rmd", quiet = TRUE)
 cat(out, sep = '')
 ```
 
 <!-- ## Und jetzt? -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("14_closing.Rmd", quiet = TRUE)
 cat(out, sep = '')
@@ -316,6 +330,7 @@ cat(out, sep = '')
 
 
 <!-- ## Glossar -->
+
 ```{r results='asis'}
 out <- knitr::knit_child("99_glossar.Rmd", quiet = TRUE)
 cat(out, sep = '')
