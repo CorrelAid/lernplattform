@@ -27,6 +27,7 @@ install.packages(c(
   'plotly',
   'here',
   'ShinyFiles',
+  'rio'
 ))
 "
 

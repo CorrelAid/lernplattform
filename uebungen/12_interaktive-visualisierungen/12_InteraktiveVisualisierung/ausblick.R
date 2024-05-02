@@ -25,7 +25,7 @@ install.packages(c(
   'plotly',
   'DT',
   'here',
-  'ShinyFiles',
+  'shinyFiles',
   'tinytex',
   'gridExtra',
   'leaflet'

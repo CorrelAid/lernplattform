@@ -141,6 +141,12 @@ Ein paar Fragen, die Euch helfen können, Euch mit dem R-Code der Shiny-App vert
 
     a.  Was müsstest Du beachten, wenn Du den Namen „distPlot" ändern wolltest? (Zeile 30)
     b.  Warum hängt die Funktion „server()" nicht nur vom Input-Objekt „input" ab, sondern auch vom Output-Objekt „output"? (Zeile 36) Hinweis: Welcher zeitliche Zusammenhang besteht zwischen Input und Output bzw. wann sollte der Output neu erzeugt werden?
+    
+    
+### **Und jetzt seid Ihr dran!** (diese Woche schon an dieser Stelle)
+
+Testet Euer Wissen bevor Ihr zu Teil 2 weiter geht: Gelingt es Euch, eine eigene (einfache) Shiny-App zur interaktiven Visualisierung zu erstellen? Startet mit der Datei **12_interaktive-visualisierungen-uebung.R** (im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 12_interaktive-visualisierungen) und ergänzt R-Code Eurer Wahl an den mit "Aufgabe 1", "Aufgabe 2" etc. gekennzeichneten Stellen. Viel Erfolg!
+
 
 ### **Teil 2: R-Shiny-App zum #breakfreefromplastic Datensatz**
 
@@ -710,10 +716,6 @@ quiz(caption = NULL,
 </details>
 
 ------------------------------------------------------------------------
-
-### **Und jetzt seid Ihr dran!** (diese Woche optional)
-
-Testet Euer Wissen: Gelingt es Euch, eine eigene (einfache) Shiny-App zur interaktiven Visualisierung zu erstellen? Startet mit der Datei **12_interaktive-visualisierungen-uebung.R** (im [Übungsordner](https://download-directory.github.io/?url=https://github.com/CorrelAid/lernplattform/tree/main/uebungen){target="_blank"} unter 12_interaktive-visualisierungen) und ergänzt R-Code Eurer Wahl an den mit "Aufgabe 1", "Aufgabe 2" etc. gekennzeichneten Stellen. Viel Erfolg!
 
 ### **Weitere Ressourcen**
 
