@@ -40,7 +40,7 @@ Ihr habt außerdem die Möglichkeit, Euch nach weiteren Kursen umzuschauen, zum 
 Materialien der Lernplattform sind unter **CC-BY 4.0** lizensiert (Open Source mit Autor:innenakkreditierung). Bitte behandelt den **Link zur Lernplattform vertraulich**. 
 
 ### Eckdaten 
-- 02.02.2024 - 03.05.2024, Aufwand: 2-4h/Woche (auch davon abhängig, ob Ihr doch schon Vorkenntnisse im Programmieren habt)
+- 06.09.2024 - 06.12.2024, Aufwand: 2-4h/Woche (auch davon abhängig, ob Ihr doch schon Vorkenntnisse im Programmieren habt)
 - Blended-Learning mit Lernplattform
 - Jeden Freitag live von 12 - 13 Uhr  [(Klick hier!)](https://us02web.zoom.us/j/85612231184?pwd=Ymg3QjZiYkFnVHYxM2FpQ3VzcElsUT09){target="_blank"}
 - Mit und von Datenprofis
