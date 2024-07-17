@@ -41,9 +41,76 @@ pages <- get_pages(content = waste_data)
 cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
+## **Exkurs 1: APIs**
+
+### APIs in R-Packages
+Der Umgang mit APIs ist für Programmieranfänger:innen oft eine Herausforderung. Viele APIs sind aber bereits in passende **Packages** eingebettet, über die der Zugriff auf die Daten wesentlich leichter funktioniert. Über das Package `WDI` könnt Ihr beispielsweise **Daten der World Bank** laden, die Euch helfen können, Eure gesellschaftliche Herausforderung besser zu verstehen und zu kontextualisieren. In der Datenbank gibt es den Indikator "Terrestrial and marine protected areas (% of total territorial area)", der für die Planung von zukünftigen Aktivitäten und die Kommunikation mit Freiwilligen und Fördernden genutzt werden soll. Für "Break Free From Plastics" ist dieser Indikator spannend, weil in **Naturschutzgebieten** Flora und Fauna besser vor Plastikmüll geschützt sind. In Ländern, wo neben der hohen Müllmenge und der niedrigen Recyclingquoten, besonders wenige Gebiete als Naturschutzgebiete ausgezeichnet sind, könnte der Bedarf nach gemeinnützigen Organisationen wie "Break Free From Plastic", die die Natur von schädlichen Plastikmüll befreien, also besonders hoch sein.
+
+*Anmerkung: Genau wissen wir das natürlich nicht, die Daten geben uns hier lediglich einen Hinweis darauf, wo der Bedarf groß sein könnte. Deshalb ist es wichtig die Annahmen, auf denen Entscheidungen basieren genau zu definieren und sich darüber Gedanken zu machen, ob die Datengrundlage für eine Entscheidung überhaupt ausreichend ist. Unsere Thesen können wir dann ggf. in Interviews mit Expert:innen (hier z.B. Naturschützer:innen) verifizieren.*
+```{r wb, exercise = TRUE}
+#install.packages("WDI")
+
+# Daten der World Bank mit R-Package ziehen
+wb_areas <- WDI::WDI(
+  country = "all", # Auswahl der Länder
+  indicator = "ER.PTD.TOTL.ZS",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+    start = 2018, # Auswahl Zeithorizont: Anfang
+  end = 2018, # Auswahl Zeithorizont: Ende
+  language = "en" # Sprachauswahl
+) 
+
+head(wb_areas)
+```
+
+Ladet nun den Datensatz zum Indikator ["Fish species, threatened" (EN.FSH.THRD.NO)](https://data.worldbank.org/indicator/EN.FSH.THRD.NO?view=chart){target="_blank"} für das Jahr 2018. Kopiert dazu den Code von oben und fügt den richtigen Indikatorschlüssel ein.
+```{r exercise_wb, exercise = TRUE}
+# Euer Code hier
+```
+
+```{r exercise_wb-solution}
+# Daten der World Bank mit R-Package ziehen
+WDI::WDI(
+  country = "all", # Auswahl der Länder
+  indicator = "EN.FSH.THRD.NO",  # Spezifikation des Indikators (Tipp: siehe Link in der Datenbank)
+  start = 2018, # Auswahl Zeithorizont: Anfang
+  end = 2018, # Auswahl Zeithorizont: Ende
+  language = "en" # Sprachauswahl
+) 
+```
+
+```{r exercise_wb-check}
+grade_this_code()
+```
+
+Daten mit APIs, die in R-Packages eingebettet sind, zu importieren, ist sehr einfach und wir sparen uns viel Zeit für die Datenbereinigung. Neben dem `WDI`-Package für die World Bank, gibt es noch viele **weitere, nützliche R-Packages**:
+
+- `acled.api`-Package: Daten zu **bewaffneten Konflikten** von ACLED (zur [Doku](https://cran.r-project.org/web/packages/acled.api/index.html){target="_blank"}//mehr [Infos](https://acleddata.com/#/dashboard){target="_blank"})
+- `datenguideR`-Package: Daten der **amtlichen Amtstatistik** in Deutschland (zum [Repo](https://github.com/CorrelAid/datenguideR){target="_blank"}//mehr [Infos](https://datengui.de/){target="_blank"})
+- `DWD`-Package: Daten des **Deutschen Wetter Dienstes** (zur [Doku](https://github.com/CorrelAid/datenguideR){target="_blank"}//mehr [Infos](https://www.dwd.de/DE/Home/home_node.html){target="_blank"})
+- `eurostat`-Package: Open Data von **Eurostat** (zur [Doku](https://cran.r-project.org/web/packages/eurostat/index.html){target="_blank"}//mehr [Infos](https://ec.europa.eu/eurostat/de/home){target="_blank"})
+- `GermaParl`-Package: Plenarprotokolle des **Bundestags** (zur [Doku](https://cran.r-project.org/web/packages/gesisdata/index.html){target="_blank"}//mehr [Infos](https://www.gesis.org/home){target="_blank"})
+- `gesisdata`-Package: Daten des **Leibniz-Instituts** (zur [Doku](https://cran.r-project.org/web/packages/gesisdata/index.html){target="_blank"}//mehr [Infos](https://www.gesis.org/home){target="_blank"})
+- `googleAnalyticsR`-Package: Daten von **Google Analytics** (zur [Doku](https://cran.r-project.org/web/packages/googleAnalyticsR/index.html){target="_blank"}//mehr [Infos](https://analytics.google.com/analytics/web/provision/#/provision){target="_blank"})
+- `gtrendsR`-Package: **Google Trends** Daten (zur [Doku](https://cran.r-project.org/web/packages/gtrendsR/gtrendsR.pdf){target="_blank"}//mehr [Infos](https://trends.google.com/trends/?geo=FR){target="_blank"})
+- `nasadata`-Package: Daten von **NASA** (zur [Doku](https://cran.r-project.org/web/packages/nasadata/index.html){target="_blank"}//mehr [Infos](https://data.nasa.gov/){target="_blank"})
+- `pangaear`-Package: Daten zu Erde und **Umwelt** (zur [Doku](https://cran.r-project.org/web/packages/pangaear/pangaear.pdf){target="_blank"}//mehr [Infos](https://www.pangaea.de/){target="_blank"})
+- `rtweet`-Package: **Twitter**-Daten (zur [Doku](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf){target="_blank"}//mehr [Infos](https://www.twitter.com/){target="_blank"})
+- `salesforcer`-Package: Interaktion mit Daten in Salesforce (zur [Doku](https://cran.r-project.org/web/packages/salesforcer/index.html){target="_blank"})
+- `dieZeit`-Package: Online-Veröffentlichungen der **Zeit** (zur [Doku](https://cran.r-project.org/web/packages/diezeit/index.html){target="_blank"}//mehr [Infos](https://www.zeit.de/){target="_blank"})
+- uvm...
+
+Schaut Euch gerne um - entweder über eine Suchmaschinenrecherche dazu, ob Eure Lieblingsdatenquelle ein zugehöriges R-Package hat, oder auf dieser Liste aller R-Packages, die über [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html){target="_blank"} (Comprehensive R Archive Network, zu dt. Umfassendes R-Archivnetzwerk), die zentrale Stelle für geprüfte Package-Distribution, installiert werden können. <br>
+*Hinweis: Manche Packages wurden (noch) nicht in die Liste der von RStudio geprüften CRAN-Packages aufgenommen. Ihre Installation erfolgt zumeist über den Befehl `remotes::install_github("Link zum Github-Repository")`.*
+
+### Eigene API Anfragen
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/deed.de)
+
+*"Eigene API-Anfragen (Exkurs)" von Frie Preu in "R Lernen - der Datenkurs von und für die Zivilgesellschaft" von CorrelAid e.V. Lizensiert unter [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).*
+
 ![*Video: Eigene API-Anfragen (10min)*](https://youtu.be/DePm6F_6YMA)
 
-# Interaktive Übung
+#### **Interaktive Übung**
 Eine API (_Application Programming Interface_, de: Schnittstelle zur Programmierung von Anwendungen) ist eine Schnittstelle, die ein System bereitstellt, um anderen Programmen die Interaktion zu ermöglichen. 
 
 Eine Interaktion sieht so aus:
@@ -68,8 +135,7 @@ Die allermeisten APIs heutzutage verwenden das HTTP-Protokoll, welches fünf sog
 
 [Hier (en)](https://github.com/public-apis/public-apis) findet Ihr eine Liste von öffentlichen APIs, die Ihr kostenfrei nutzen könnt. 
 
-# GET-Anfragen
-
+#### **GET-Anfragen**
 Wenn Ihr nur Daten laden möchtet, reicht `GET` meistens aus. Je nach API können allerdings auch `POST` Anfragen notwendig sein. `GET`-Anfragen können als normale URL (das was Ihr in euren Browser eingebt) abgebildet werden. Diese URLs setzen sich aus drei Teilen zusammen: 
 `{BASIS_URL}/{ROUTE}?{QUERY_PARAMETER}`. 
 
@@ -82,8 +148,7 @@ Das kennt Ihr zum Beispiel von einer Google-Suche: `https://www.google.com/searc
 
 **Analogie**: Im Restaurant bestellt (--> `GET`) Ihr bei Elmo (Eure API mit der Basis-URL `https://elmo.correlandfriends.de/`) auf der Route "Essen" (`essen`) das Gericht Risotto (Query-Parameter `gericht=risotto`). Die komplette Anfrage-URL wäre also: `https://elmo.correlandfriends.de/essen?gericht=risotto`. Das Fragezeichen signalisiert das Ende der Route und den Anfang der Query-Parameter. 
 
-# Statuscodes
-
+#### **Statuscodes** 
 Fast alle APIs geben in Ihrer Antwort einen Code zurück, anhand dem man schnell sehen kann, ob die Anfrage erfolgreich war oder nicht. Dieser sogenannte _Statuscode_ ist sehr hilfreich, da er Aufschluss gibt, was schief gegangen sein könnte. 
 
 Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. Darüber hinaus gibt es viele Statuscodes, die einen Fehler anzeigen. Häufige Fälle sind:
@@ -98,8 +163,7 @@ Wenn die Anfrage erfolgreich war, gibt die API einen `200` Statuscode zurück. D
 
 Auf Folien 13-16 [dieses Foliensatzes](https://projektzyklus.correlaid.org/07_datenmanagement-webdaten/2021-05-09_Datenzugriff_im_WWW.pdf) findet Ihr noch mehr Erklärungen zu wichtigen Statuscodes.
 
-## Beispiel
-
+#### **Beispiel**
 Wir verwenden die [Sustainable Development Goals (SDG) API](https://unstats-undesa.opendata.arcgis.com/#api) der Vereinten Nationen (en: _United Nations_), welche Daten über den Fortschritt der [Sustainable Development Goals](https://sdgs.un.org/) bereitstellt. Die Dokumentation der API findet Ihr [hier](https://unstats.un.org/SDGAPI/swagger/). Der Indikator "[Municipal Solid Waste collection coverage by cities (percent)](https://www.sdg.org/datasets/undesa::indicator-11-6-1-municipal-solid-waste-collection-coverage-by-cities-percent/about)" (Seriencode: `EN_REF_WASCOL`) passt gut zu unseren bisherigen Analysen zum Thema Plastikverschmutzung. Um die Daten zu diesem Indikator zu laden, verwendet Ihr den GET-Endpunkt [`/v1/sdg/Series/Data`](https://unstats.un.org/SDGAPI/swagger/#!/Series/V1SdgSeriesDataGet). Zudem habt Ihr nun mehrere Möglichkeiten, Query-Parameter anzugeben, unter anderem den Code des Indikators (`seriesCode`) und den Zeitrahmen, für den Ihr Daten benötigt.
 
 Um Anfragen an APIs zu machen, nutzen wir das [`httr`](https://httr.r-lib.org/)-Package (Doku).
@@ -227,7 +291,7 @@ list_of_dataframes <- purrr::map(pages, function(page) {
 waste_geo_df <- dplyr::bind_rows(list_of_dataframes)
 ```
 
-# Authentifizierung
+#### **Authentifizierung**
 In unserem Beispiel konnten wir ohne Authentifizierung die UN-SDG API verwenden. Die meisten APIs erfordern allerdings eine Authentifizierung, d.h. Ihr müsst beweisen, dass Ihr berechtigt (*autorisiert*) seid, auf die API und ihre Daten zuzugreifen. 
 
 Hierzu gibt es viele verschiedene Modelle. Im einfachsten Fall erstellt ihr euch einen sogenannten Token in der entsprechenden Website in den Benutzereinstellungen. Ein **Token** ist ein zufällig erstellter String, quasi euer API-"Passwort". Tokens sehen meistens so aus `eyJpc3MiOiJodHRwczovL2V4YW1...`.
@@ -247,6 +311,8 @@ Es gibt spezifische Statuscodes, die in Verbindung mit Authentifizierung besonde
 
 Aus Sicherheitsgründen ist es zudem sehr wichtig, Euren Token (oder sonstige **sicherheitsrelevante Informationen**) **nicht direkt im Code zu speichern**. Anstatt dessen nutzt ihr hierzu am besten **Umgebungsvariablen** (engl. environment variables). Wie man Umgebungsvariablen zu R hinzufügt, ist in [diesem Blogpost](https://www.roelpeters.be/what-is-the-renviron-file/) gut beschrieben. Auch wir üben das zu einem späteren Zeitpunkt nochmal.
 
-Ihr wollt mehr darüber lernen, wie man API-Anfragen selbst schreibt? Dataquest bietet den Kurs ["APIs in R"](https://app.dataquest.io/course/apis-in-r){target="_blank"} an.
+### **Zusätzliche Ressourcen**
+- [APIs in R](https://app.dataquest.io/course/apis-in-r){target="_blank"} auf DataQuest (engl.)
+- Ihr wollt mehr darüber lernen, wie man API-Anfragen selbst schreibt? Dataquest bietet den Kurs ["APIs in R"](https://app.dataquest.io/course/apis-in-r){target="_blank"} an.
 
 <a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>
