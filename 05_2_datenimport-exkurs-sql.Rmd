@@ -38,8 +38,9 @@ con <- get_connection()
 cat(get_license_note(rmarkdown::metadata$title, rmarkdown::metadata$authors))
 ```
 
-# Interaktive Übung
+## **Exkurs 3: Datenabfragen in SQL**
 
+### **Interaktive Übung**
 Daten, die uns in unserem Alltag als Datenanalyst:innen und Datenwissenschaftler:innen begegnen, sind oft in **Datenbanken** gespeichert. Datenbanken sind **logisch modellierte, strukturierte Datenspeicher**, mit denen mit Hilfe von **Datenbankmanagementsystemen (kurz DBMS)**, also Softwaretools, interagiert werden kann. Diese Interaktion funktioniert für jedes Datenbankmanagementsystem anders und ist **nicht trivial**. Während in einigen Fällen ein manueller Export als XLSX-, CSV- oder JSON-Datei möglich ist, kann es in einigen Fällen, auch auf Grund der Größe der Datensätze, nicht praktikabel sein manuell Daten zu exportieren. Daneben ist das natürlich auch IT im Schneckentempo statt in Lichtgeschwindigkeit. Idealerweise sind Eure Daten nämlich **live** mit Euren Analysetools verknüpft, sodass sie beständig aktuell sind. Die populärsten Datenbankmanagementsysteme findet Ihr in dieser Übersicht einer Umfrage unter Entwickler:innen von [Stack Overflow](https://insights.stackoverflow.com/survey/2020#technology-databases-all-respondents4){target="_blank}.
 
 <center>
@@ -118,7 +119,6 @@ Die wichtigsten **Befehle zur Datenabfrage in SQL** sind:
 
 
 Versucht hier die Datentabelle "events" für Australien zu filtern.
-
 ```{r exercise_sql, exercise = TRUE}
 # Euer Code hier
 ```
@@ -129,12 +129,12 @@ dbGetQuery(con, "SELECT *
                  FROM events
                  WHERE countrycode = 'AUS'")
 ```
+
 ```{r exercise_sql-check}
 grade_this_code()
 ```
 
 Im letzten Schritt **schließen** wir **immer** die **Verbindung** zu der Datenbank mit dem Befehl `dbDisconnect()`.
-
 ```{r dbclose_exercise, exercise = TRUE}
 # Schließen der DB-Verbindung
 dbDisconnect(con)
@@ -142,7 +142,7 @@ dbDisconnect(con)
 
 SQLite-Datenbanken benötigen in der Regel **kein Passwort** (und somit auch keinen Code für die Authentifizierung). Falls das für Euch notwendig ist, findet Ihr in der Dokumentation von RStudio in den Kapiteln [Database](https://docs.rstudio.com/connect/1.7.8/admin/database-provider.html){target="_blank"} und [Authentication](https://docs.rstudio.com/connect/1.7.8/admin/authentication.html){target="_blank"} Hilfestellungen.
 
-Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs ["SQL Fundamentals"](https://app.dataquest.io/path/sql-fundamentals){target="_blank"} an.
+### **Zusätzliche Ressourcen**
+Ihr wollt mehr SQL lernen? Dataquest bietet den Kurs [SQL Fundamentals](https://app.dataquest.io/course/sql-fundamentals){target="_blank"} und [Intermediate SQL in R](https://app.dataquest.io/course/sql-intermediate-r){target="_blank"} auf DataQuest (engl.)
 
 <a class="btn btn-primary btn-back-to-main" href=`r params$links$end_session`>Session beenden</a>
-
