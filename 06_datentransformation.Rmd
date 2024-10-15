@@ -132,7 +132,7 @@ Das heißt um diese beiden Datensätze zu erstellen, müssen wir folgende Schrit
 <br>
 
 #### Die Funktion `dplyr::filter()`
-![](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/filter.png?raw=true){#id .class width=60% height=60%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/06_datentransformation/filter.png?raw=true){#id .class width=60% height=60%}
 
 Für die Analyse des Datensatzes planen wir einen **Ländervergleich** und sortieren deshalb Beobachtungen aus, für die das Land nicht hinterlegt wurde. Es handelt sich hierbei vermutlich um ein einziges Land, da die Anzahl an Freiwilligen und Events über alle Zeilen konstant ist. Daneben sortieren wir Summenzeilen aus, die unsere Ergebnisse verfälschen würden, und schließen 2020 auf Grund der COVID-19-Pandemie aus. Zum **Filtern von Zeilen bzw. Beobachtungen** nutzen wir die `dplyr::filter()`-Funktion, wobei die Zeilen beibehalten werden, die die Bedingung(en) erfüllen, die Ihr definiert. Im Kapitel "Einführung in (R)Studio" im Exkurs "Syntax R" könnt Ihr nachschauen, wie Ihr die Bedingungen für die Filterfunktion definieren könnt.
 
@@ -174,7 +174,7 @@ grade_this_code()
 <br>
 
 #### Die Funktion `dplyr::mutate()`
-![](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/mutate.png?raw=true){#id .class width=60% height=60%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/06_datentransformation/mutate.png?raw=true){#id .class width=60% height=60%}
 
 Nun sollten wir die Variable `country` (zu dt. Land) bereinigen. Wie so oft sind die Bezeichnungen für Großbritannien und die USA **nicht standardisiert** und die **Groß- und Kleinschreibung** ist vollkommen durcheinander geraten. Außerdem möchten wir die **deutschen Bezeichnungen** nutzen und den Kontinent und Countrycode ergänzen. Mit `dplyr::case_when()` können wir einen bestimmten Wert in einen anderen Wert transformieren (WENN-DANN), mit `stringr::str_to_title()` wird nur noch der Anfangsbuchstabe großgeschrieben und mit dem Package `countrycode` können wir Ländernamen in verschiedene Sprachen übersetzen und kodieren. Welche Funktionen Ihr für Eure Bereinigungsschritte braucht, hängt immer vom Datensatz ab. Mit etwas mehr Erfahrung und einer Googlerecherche lassen sich für die meisten Herausforderungen tolle Hilfsmittel finden!
 
@@ -265,8 +265,8 @@ Der Hauptteil der Bereinigung ist nun abgeschlossen. Das Ergebnis steht Euch unt
 <br>
 
 #### Die Funktionen `dplyr::group_by()` und `dplyr::summarise()`
-![](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/groupby.png?raw=true){#id .class width=60% height=60%}
-![](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/summarize.png?raw=true){#id .class width=60% height=60%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/06_datentransformation/groupby.png?raw=true){#id .class width=60% height=60%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/06_datentransformation/summarize.png?raw=true){#id .class width=60% height=60%}
 
 Um den `community`- Datensatz zu erstellen, in dem eine Beobachtung pro Land vorhanden sein soll, müssen wir die bereinigten Daten pro Land gruppieren und entscheiden, wie die anderen Variablen zusammengefasst werden sollen. Mit `dplyr::group_by()` und `dplyr::summarise()` steht uns die **Gruppierung und Zusammenfassung** der Variablen offen. Wir addieren die Plastikstücke und wählen für die Anzahl der Events und Freiwilligen genau einen Wert aus. Diese sind im Originaldatensatz mehrfach vorhanden - etwas, das typischerweise beim Zusammenfügen von Datensätzen entsteht.
 
@@ -333,7 +333,7 @@ Mit `dyplr::pivot_wider()` könnt Ihr den Datensatz auch wieder in das breite Fo
 ---
 
 #### Die Funktion `dplyr::select()`
-![](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/select.png?raw=true){#id .class width=60% height=60%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/06_datentransformation/select.png?raw=true){#id .class width=60% height=60%}
 
 Neben Zeilen bzw. Beobachtungen könnt Ihr natürlich auch **Spalten bzw. Variablen filtern**. Auch hier hilft Euch das `dplyr` Package mit der Funktion `dplyr::select()` weiter. Mit `dplyr::select()` könnt Ihr entweder die Variablen auswählen, die im Datensatz enthalten sein sollen oder aber mit einem `-` die Variablen auswählen, die aus Eurem Datensatz gelöscht werden sollen. Der folgende Code löscht so zum Beispiel die Variable `grand_total` aus dem `data_raw`-Datensatz:
 
@@ -379,7 +379,7 @@ Check! Das habt Ihr wirklich gut gemacht!
 <br>
 
 #### Die Funktion `dplyr::arrange()`
-![](https://github.com/CorrelAid/lernplattform/blob/zoe_datentransformation/abbildungen/06_datentransformation/arrange.png?raw=true){#id .class width=60% height=60%}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/06_datentransformation/arrange.png?raw=true){#id .class width=60% height=60%}
 
 Eine Funktion, die wir Euch nicht vorenthalten möchten und die oft eher für Transformation als Bereinigung genutzt wird, z.B. um **Ranglisten** auszugeben, ist `dplyr::arrange()`. Sie **sortiert Datensätze** für Euch. Wir interessieren uns für die Top10 der Firmen, deren Plastikverpackung gefunden wurde:
 

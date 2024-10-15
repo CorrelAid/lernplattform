@@ -62,7 +62,7 @@ Wie Ihr im Video gesehen habt, sind Eurer Phantasie keine Grenzen gesetzt. Ihr k
 
 **Teil 2**: Wir entwickeln unsere erste R-Shiny-App zur interaktiven Visualisierung des #breakfreefromplastics Datensatzes. Genauer erstellen wir eine R-Shiny-App, die Teil der folgenden zusammengesetzten und weiter ausgereiften R-Shiny-App ist, siehe die folgende Abbildung und [https://correlaid.shinyapps.io/breakfreefromplastic/](https://correlaid.shinyapps.io/breakfreefromplastic/){target="_blank"} (unter dem dritten Reiter „Hersteller").
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-uebersicht_breakfreefromplastics_2024-03-29.png?raw=true){.class width="100%"}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-uebersicht_breakfreefromplastics_2024-03-29.png?raw=true){.class width="100%"}
 
 ### **Teil 1: Einfachste R-Shiny-App**
 
@@ -76,7 +76,7 @@ In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typ
 3.  *Gib einen Namen ein für Deine App*\
     Der Name ist beliebig wählbar. Er sollte informativ und einfach sein und keine Leerzeichen oder Sonderzeichen enthalten, z.B. „Meine-Erste-R-Shiny-App_2024" (ohne die Anführungszeichen).
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/rstudio-eingabefenster.png?raw=true){.class width="70%"}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/rstudio-eingabefenster.png?raw=true){.class width="70%"}
 
 4.  *Optional: Lege einen speziellen Speicherort fest für die Shiny-App*\
     Wenn Du die Shiny-App in einem anderen Verzeichnis speichern möchtest als dem aktuellen Arbeitsverzeichnis, kannst Du dies durch Klicken auf „Browse" und die Auswahl eines anderen Verzeichnisses tun.\
@@ -84,16 +84,16 @@ In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typ
 5.  *Klicke auf „Create"*\
     Dir wird in RStudio Deine erste R-Shiny-App angezeigt. Sie heißt „app.R" und liegt in einem Verzeichnis mit dem von Dir unter „Application name" eingegebenen Namen.
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app_2024-03-29.png?raw=true){.class width="70%"}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/anzeige-der-rshiny-app_2024-03-29.png?raw=true){.class width="70%"}
 
 6.  *Starte die App durch Klicken auf das Feld „Run App" oben links.*\
     Wenn das R-Paket „shiny" auf Deinem Computer noch nicht installiert ist, fordert Dich das folgende Fenster dazu auf, das Paket zu installieren. Klicke auf „Ja" (oder „Yes"). Dann wird zunächst das R-Paket „shiny" installiert und danach die App gestartet.
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_installation-shiny.png?raw=true){.class width="70%"}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_installation-shiny.png?raw=true){.class width="70%"}
 
   Deine erste R-Shiny-App läuft jetzt auf Deinem Computer und bietet Dir in einem Pop-up-Fenster eine einfache interaktive Visualisierung an! (Du kannst auch oben in der Kopfzeile der App „Open in Browser" anklicken, dann wird Dir das Fenster in Deinem Browser angezeigt.)
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_r-shiny-app.png?raw=true){.class width="70%"}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/pop-up-fenster_r-shiny-app.png?raw=true){.class width="70%"}
 
   (Falls Du wissen möchtest, was das für ein Datensatz ist: Azzalini, A. and Bowman, A. W. (1990). A look at some data on the Old Faithful geyser. Applied Statistics, 39, 357--365. <doi:10.2307/2347385>.)
 
@@ -102,7 +102,7 @@ In der R-Entwicklungsumgebung RStudio können neue Dateien unterschiedlichen Typ
 
 Die folgende Abbildung gibt einen Überblick über den Aufbau der App:
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/uebersicht-einfachste-r-shiny-app_2024-03-29.png?raw=true){.class width="100%"}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/uebersicht-einfachste-r-shiny-app_2024-03-29.png?raw=true){.class width="100%"}
 
 -   Links: R-Code. Mitte: Blockstruktur und Kurzhinweise. Rechts: Interaktives Pop-up-Fenster.
 
@@ -275,7 +275,7 @@ Wir möchten das **Balkendiagramm** aus der letzten Woche in eine App übersetze
 Die Grundstruktur des Servers besteht aus drei wichtigen Komponenten.
 
 1.  `server <- function(input, output) {}` definiert eine **Funktion**, die `input` und `output`-Argumente annimmt. Der `input` stellt das dar, was unsere **Nutzer:innen in der UI** bei den interaktiven Elementen der App **eingeben**. Der `output` definiert, was die **App zurückgeben** soll, also was die Nutzer:innen sehen sollen.\
-    <center>![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-server_2024-03-29.png?raw=true){.class width="70%" height="70%"}</center>
+    <center>![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-server_2024-03-29.png?raw=true){.class width="70%" height="70%"}</center>
 2.  Das Erzeugen des Outputformats erfolgt auch hier über eine **Renderfunktion**: `render...({})`. Dieser Funktionstyp erzeugt also überall im R-Universum benötigte Outputs. Allerdings ist es wichtig, die **richtige Renderfunktion** für den gewünschten Output zu nutzen - es passt also nicht jede Renderfunktion zu jedem Output (dazu später mehr). Innerhalb der Renderfunktion wird dann der Output definiert.
 3.  Der Output, den die `render`-Funktion erzeugt, wird einem **Objektnamen** zugewiesen (`output$name <- render...({})`), auf den wir dann in der UI verweisen können.
 
@@ -569,7 +569,7 @@ quiz(caption = NULL,
 
 Richtig, Euer Filter scheint noch nicht richtig zu funktionieren. Das liegt daran, dass wir den **`server` noch nicht mit der `ui` verbunden** haben. Erinnert Ihr Euch an die Abbildung im Video, die Euch gezeigt hat, dass alles miteinander verbunden sein muss?
 
-![](https://github.com/CorrelAid/lernplattform/blob/jan_interaktivevisualisierungen/abbildungen/11_interaktive-visualisierungen/app-ui-server-1_2024-03-29.png?raw=true){.class width="70%" height="70%"}
+![](https://github.com/CorrelAid/lernplattform/blob/main/abbildungen/11_interaktive-visualisierungen/app-ui-server-1_2024-03-29.png?raw=true){.class width="70%" height="70%"}
 
 Das holen wir jetzt nach. Dazu bauen wir einen Filter in unsere Visualisierungsfunktion im `server` ein. Dazu gehen wir in die Funktion, die wir vorher einfach in unseren `server` reinkopiert haben.
 
